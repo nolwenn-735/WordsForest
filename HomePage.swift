@@ -102,7 +102,8 @@ struct HomePage: View {
                                     return c.word.localizedCaseInsensitiveContains(q)
                                         || c.meaning.localizedCaseInsensitiveContains(q)
                                 },
-                                accent: .gray.opacity(0.6)
+                                accent: .gray.opacity(0.6),
+                                animalName: "adj_rabbit_gray"
                             )
                         }
                         .disabled(searchText.trimmingCharacters(in: .whitespaces).isEmpty)
@@ -118,7 +119,11 @@ struct HomePage: View {
                         ForEach(poses.indices, id: \.self) { i in
                             let pos = poses[i]
                             NavigationLink {
-                                POSFlashcardListView(pos: pos, accent: accentFor(pos))
+                                POSFlashcardListView(
+                                    pos: pos,
+                                    accent: accentFor(pos),
+                                    animalName: animalNameFor(pos)
+                                )
                             } label: {
                                 HStack {
                                     Text(pos.rawValue).foregroundColor(.blue)
@@ -128,7 +133,7 @@ struct HomePage: View {
                                 .padding(.vertical, 6)
                             }
                             .buttonStyle(.plain)
-
+                            
                             if i < poses.count - 1 { Divider().opacity(0.2) }
                         }
                     }
@@ -175,7 +180,15 @@ struct HomePage: View {
         //                Text("Wi-Fiではないため、通信量を消費します。取得しますか？")
         //            }
         
-        
+// 画像名を品詞ごとに返す（HomePage の中・body の外）
+private func animalNameFor(_ pos: PartOfSpeech) -> String {
+    switch pos {
+    case .noun: return "noun_bear_brown"
+    case .verb: return "verb_cat_gray"
+    case .adj:  return "adj_rabbit_white"
+    case .adv:  return "adv_alpaca_ivory"
+    }
+}
         // MARK: - ダミー更新（HomePage の“中・bodyの外”）
         //   private func performRefresh(allowCellular: Bool = false) {
         //      guard !isUpdating else { return }

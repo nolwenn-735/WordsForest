@@ -4,71 +4,73 @@ import SwiftUI
 struct POSFlashcardListView: View {
     let pos: PartOfSpeech
     let accent: Color
+    let animalName: String
 
     var body: some View {
-        // ここで5件に絞る（必要なら数字を変えるだけ）
-        let limited = Array(SampleDeck.filtered(by: pos).prefix(5))
+        // ここで5件に絞る（数字を変えれば件数変更）
+        let limited = Array(SampleDeck.filtered(by: pos).prefix(4))
         POSFlashcardView(
             title: "\(pos.rawValue) レッスン",
             cards: limited,
-            accent: accent
+            accent: accent,
+            animalName: animalName
         )
     }
 }
+
 // 単語カード画面（縦スクロール・右下に動物PNG）
 struct POSFlashcardView: View {
     let title: String
     let cards: [WordCard]
     let accent: Color
-    // 画面内だけの♡トグル用（仮）
-    @State private var tempPicked: Set<String> = []
+    let animalName: String
 
-    // とりあえず固定。後で品詞に合わせて差し替えます
-    private let animalName = "rabbit_white"
+    // ← 2) でも使うのでここに置く
+    @State private var tempPicked: Set<String> = []
 
     var body: some View {
         ZStack {
-            // 1) 背景は単色（パステル）
+            // 背景（単色）
             accent.ignoresSafeArea()
 
-            // 2) 中身（縦スクロール）
+            // 本文
             ScrollView {
-                VStack(spacing: 16) {
-
-                    // タイトル不要ならこの行は残しても非表示でOK
-                    // Text(title).font(.system(size: 28, weight: .bold)).opacity(0)
-
-                    ForEach(cards) { card in
-                        cardView(card)
-                    }
-
-                    // 右下の動物とかぶらない逃げ
-                    Spacer(minLength: 120)
-                }
-                .padding(.horizontal, 16)
-                .padding(.top, 16)
+                // …カードなど（今は空でもOK）
             }
 
-            // 3) 右下固定の動物PNG
-            VStack {
-                Spacer()
-                HStack {
+            // --- 右下の動物（少し大きめ & タップは透過）---
+            GeometryReader { proxy in
+                VStack {
                     Spacer()
-                    Image(animalName)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 140)     // 好みで 120〜160
-                        .opacity(0.95)
-                        .padding(.trailing, 16)
-                        .padding(.bottom, 12)
+                    HStack {
+                        Spacer()
+                        Image(animalName)                 // 例: "noun_bear_brown" など
+                            .resizable()
+                            .renderingMode(.original)
+                            .scaledToFit()
+                            .frame(
+                                width: min(                // 画面に応じて自然に拡縮
+                                    max(180, proxy.size.width * 0.35),
+                                    220
+                                )
+                            )
+                            .opacity(0.98)
+                            .shadow(radius: 6, x: 0, y: 5)
+                            .padding(.trailing, 18)       // ← 位置の細かい調整
+                            .padding(.bottom, 14)
+                            .accessibilityHidden(true)
+                    }
                 }
+                .allowsHitTesting(false)                  // 下のスクロールやタップを邪魔しない
             }
+            // --------------------------------------------
         }
-        .navigationBarTitleDisplayMode(.inline)
-    }
-
-    // 1枚のカード
-    @ViewBuilder
+        .navigationBarTitleDisplayMode(.inline)           // ← ZStack の “外”、body を閉じる前
+    } // ← ここで body を閉じる（この下に関数などを続けてOK）
+    
+    
+    
+@ViewBuilder
     private func cardView(_ card: WordCard) -> some View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
@@ -87,8 +89,18 @@ struct POSFlashcardView: View {
         }
         .padding(.vertical, 14)
         .padding(.horizontal, 16)
-        .background(Color.white)
+        .background(.white)
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 4)
+    }
+}
+
+// 動物画像名のデフォルト（必要に応じて好きに変更OK）
+private func animalNameFor(_ pos: PartOfSpeech) -> String {
+    switch pos {
+    case .noun: return "noun_bear_brown"
+    case .verb: return "verb_cat_gray"
+    case .adj:  return "adj_rabbit_white"
+    case .adv:  return "adv_alpaca_ivory"
     }
 }
