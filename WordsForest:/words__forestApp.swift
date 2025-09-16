@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct words__forestApp: App {
+    @StateObject private var homework = HomeworkState()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView() // ←あなたの最初のルートビュー名
+                .environmentObject(homework)
         }
     }
 }

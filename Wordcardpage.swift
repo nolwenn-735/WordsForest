@@ -1,5 +1,18 @@
 import SwiftUI
+// Wordcardpage.swift のどこか（import SwiftUI の下あたり）に
+struct WordItem: Identifiable, Hashable { let id = UUID(); let text: String }
 
+struct WordCardPage: View {
+    let pos: PartOfSpeech
+    let baseVariantIndex: Int
+    let items: [WordItem]
+
+    var body: some View {
+        // とりあえずの仮実装（あとで本実装に差し替え）
+        List(items) { it in Text(it.text) }
+            .navigationTitle("\(pos.rawValue) レッスン")
+    }
+}
 // 品詞ごとのフラッシュカード一覧に遷移する薄いラッパー
 struct POSFlashcardListView: View {
     let pos: PartOfSpeech
@@ -104,3 +117,5 @@ private func animalNameFor(_ pos: PartOfSpeech) -> String {
     case .adv:  return "adv_alpaca_ivory"
     }
 }
+//形容詞レッスンへ
+

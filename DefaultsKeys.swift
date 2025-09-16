@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum DefaultsKeys {
+    static let hwHistoryJSON = "hw_history_json"
+}
