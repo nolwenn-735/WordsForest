@@ -7,7 +7,7 @@ struct WordCard: Identifiable, Hashable {
     let meaning: String
     let pos: PartOfSpeech
 }
-enum PartOfSpeech: String, CaseIterable, Identifiable {
+enum PartOfSpeech: String, CaseIterable, Identifiable,Hashable {
     case noun = "🐻 名詞", verb = "🐈 動詞", adj = "🐇 形容詞", adv = "🦙 副詞"
     var id: String { rawValue }
 }
@@ -137,137 +137,145 @@ struct HomePage: View {
                 let poses = Array(PartOfSpeech.allCases)
                 ForEach(poses.indices, id: \.self) { i in
                     let pos = poses[i]
+
                     NavigationLink {
-                        POSFlashcardListView(
-                            pos: pos,
+                        // ← ここで遷移先を“直接”つくる方式（確実に動く）
+                        POSFlashcardView(
+                            title: pos.rawValue,                                  // 🐻は付けない
+                            cards: Array(SampleDeck.filtered(by: pos).prefix(4)),
                             accent: accentFor(pos),
                             animalName: animalNameFor(pos)
                         )
                     } label: {
                         HStack {
-                            Text(pos.rawValue).foregroundColor(.blue)
+                            Text(pos.rawValue).foregroundStyle(.blue)
                             Spacer()
-                            Image(systemName: "chevron.right").foregroundColor(.secondary)
+                            Image(systemName: "chevron.right").foregroundStyle(.secondary)
                         }
                         .padding(.vertical, 6)
                     }
                     .buttonStyle(.plain)
-                    
-                    if i < poses.count - 1 { Divider().opacity(0.2) }
                 }
-            }
-            .padding(.top, 8)
-            // 🔖 栞（色四角それぞれ遷移）
-            HStack(spacing: 10) {
-                Text("🔖 栞へ").font(.subheadline)
-                ForEach(bookmarkColors, id: \.self) { c in
-                    BookmarkColorItem(color: c)
+                .padding(.top, 8)
+                // 🔖 栞（色四角それぞれ遷移）
+                HStack(spacing: 10) {
+                    Text("🔖 栞へ").font(.subheadline)
+                    ForEach(bookmarkColors, id: \.self) { c in
+                        BookmarkColorItem(color: c)
+                    }
                 }
+                
+                // 🍄 My Collection
+                NavigationLink("🍄 My Collection（覚えにくい単語）") {
+                    MyCollectionView()
+                }
+                .buttonStyle(ColoredPillButtonStyle(color: Color.pink))
+                
+                // 🐺 コラムページ
+                NavigationLink("🐺 コラムページ（ColumnPage）") {
+                    ColumnPage()
+                }
+                .buttonStyle(ColoredPillButtonStyle(color: Color.indigo))
+                
+                Spacer(minLength: 8) // …既存のセクションたち…
             }
+            .padding()// ← VStackへのパディング
             
-            // 🍄 My Collection
-            NavigationLink("🍄 My Collection（覚えにくい単語）") {
-                MyCollectionView()
-            }
-            .buttonStyle(ColoredPillButtonStyle(color: Color.pink))
-            
-            // 🐺 コラムページ
-            NavigationLink("🐺 コラムページ（ColumnPage）") {
-                ColumnPage()
-            }
-            .buttonStyle(ColoredPillButtonStyle(color: Color.indigo))
-            
-            Spacer(minLength: 8) // …既存のセクションたち…
+        } // ← NavigationStack の閉じカッコ
+        
+        .navigationDestination(for: PartOfSpeech.self) { pos in
+            POSFlashcardView(
+                title: pos.rawValue,  // 🐻は付けない。付けるなら遷移先だけで
+                cards: Array(SampleDeck.filtered(by: pos).prefix(4)),
+                accent: accentFor(pos),
+                animalName: animalNameFor(pos)
+            )
         }
-        .padding()// ← VStackへのパディング
-        .navigationBarHidden(true)  // ← 修飾子は NavigationStack に付ける
-      
-    } // ← NavigationStack の閉じカッコ
- 
-}// ← body の閉じカッコ（ここは1個だけ！）
-// MARK: - Helpers (bodyの外)
-private func itemsFor(_ pos: PartOfSpeech) -> [WordItem] {
-    // SampleDeck.filtered(by:) が無い場合でも動く安全版
-    let list = SampleDeck.all.filter { $0.pos == pos }
-    return Array(list.prefix(12)).map { WordItem(text: $0.word) }
-}
-              // VStack（中身）ここまで
-            
-        
-        //            .alert("⚠️ Wi-Fi環境ではありません", isPresented: $showCellularAlert) {
-        //                Button("キャンセル", role: .cancel) {}
-        //                Button("取得する（通信量がかかります）", role: .destructive) {
-        //                    performRefresh(allowCellular: true)
-        //                }
-        //            } message: {
-        //                Text("Wi-Fiではないため、通信量を消費します。取得しますか？")
-        //            }
-        
-// 画像名を品詞ごとに返す（HomePage の中・body の外）
-private func animalNameFor(_ pos: PartOfSpeech) -> String {
-    switch pos {
-    case .noun: return "noun_bear_brown"
-    case .verb: return "verb_cat_gray"
-    case .adj:  return "adj_rabbit_white"
-    case .adv:  return "adv_alpaca_ivory"
+    }// ← body の閉じカッコ（ここは1個だけ！）
+    // MARK: - Helpers (bodyの外)
+    private func itemsFor(_ pos: PartOfSpeech) -> [WordItem] {
+        // SampleDeck.filtered(by:) が無い場合でも動く安全版
+        let list = SampleDeck.all.filter { $0.pos == pos }
+        return Array(list.prefix(12)).map { WordItem(text: $0.word) }
     }
+    // VStack（中身）ここまで
+    
+    
+    //            .alert("⚠️ Wi-Fi環境ではありません", isPresented: $showCellularAlert) {
+    //                Button("キャンセル", role: .cancel) {}
+    //                Button("取得する（通信量がかかります）", role: .destructive) {
+    //                    performRefresh(allowCellular: true)
+    //                }
+    //            } message: {
+    //                Text("Wi-Fiではないため、通信量を消費します。取得しますか？")
+    //            }
+    
+    // 画像名を品詞ごとに返す（HomePage の中・body の外）
+    private func animalNameFor(_ pos: PartOfSpeech) -> String {
+        switch pos {
+        case .noun: return "noun_bear_brown"
+        case .verb: return "verb_cat_gray"
+        case .adj:  return "adj_rabbit_white"
+        case .adv:  return "adv_alpaca_ivory"
+        }
+    }
+    // MARK: - ダミー更新（HomePage の“中・bodyの外”）
+    //   private func performRefresh(allowCellular: Bool = false) {
+    //      guard !isUpdating else { return }
+    //      isUpdating = true
+    //      DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+    //         pendingCount = 0
+    //          lastUpdated = Date()
+    //           isUpdating = false
+    //        }
+    //    }
+    // ← ここで **HomePage を閉じる**（最後の1個だけ）
+    // 品詞→アクセント色（後でHexに差し替え可）
+    func accentFor(_ pos: PartOfSpeech) -> Color {
+        switch pos {
+        case .noun:       return Color(red: 0.96, green: 0.78, blue: 0.83) // #F4C7D3 近似
+        case .verb:       return Color(red: 0.63, green: 0.75, blue: 0.90) // 動詞系ブルー近似
+        case .adj:        return Color(red: 0.72, green: 0.89, blue: 0.78) // #B7E4C7 近似
+        case .adv:        return Color(red: 1.00, green: 0.95, blue: 0.69) // #FFF3B0 近似
+        }
+    }
+    struct ColumnPage: View {
+        var body: some View {
+            ColumnTOCView()
+        }
+    }
+    struct MyCollectionView: View {
+        var body: some View {
+            VStack(spacing: 16) {
+                Text("My Collection")
+                    .font(.title3).bold()
+                
+                Text("ここに“覚えにくい単語”が並びます。\n今はダミー表示です。")
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.secondary)
+                    .padding(.horizontal)
+                
+                // 後で本実装に差し替える:
+                // WordListView(title: "My Collection", cards: picked)
+            }
+            .padding()
+            .navigationTitle("My Collection")
+        }
+    }
+    // ダミー更新（のちに UpdateCenter へ差し替え）
+    //private func performRefresh(allowCellular: Bool = false) {
+    //  guard !isUpdating else { return }
+    // isUpdating = true
+    // DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+    //   pendingCount = 0
+    //  lastUpdated = Date()
+    //  isUpdating = false
+    //  }
+    //}
+    //} // ← ここで struct HomePage を閉じる（最後の1個だけ）
+    
+    // MARK: - SampleDeck 拡張
 }
-        // MARK: - ダミー更新（HomePage の“中・bodyの外”）
-        //   private func performRefresh(allowCellular: Bool = false) {
-        //      guard !isUpdating else { return }
-        //      isUpdating = true
-        //      DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-        //         pendingCount = 0
-        //          lastUpdated = Date()
-        //           isUpdating = false
-        //        }
-        //    }
-        // ← ここで **HomePage を閉じる**（最後の1個だけ）
-        // 品詞→アクセント色（後でHexに差し替え可）
-        func accentFor(_ pos: PartOfSpeech) -> Color {
-            switch pos {
-            case .noun:       return Color(red: 0.96, green: 0.78, blue: 0.83) // #F4C7D3 近似
-            case .verb:       return Color(red: 0.63, green: 0.75, blue: 0.90) // 動詞系ブルー近似
-            case .adj:        return Color(red: 0.72, green: 0.89, blue: 0.78) // #B7E4C7 近似
-            case .adv:        return Color(red: 1.00, green: 0.95, blue: 0.69) // #FFF3B0 近似
-            }
-        }
-        struct ColumnPage: View {
-            var body: some View {
-                ColumnTOCView()
-            }
-        }
-        struct MyCollectionView: View {
-            var body: some View {
-                VStack(spacing: 16) {
-                    Text("My Collection")
-                        .font(.title3).bold()
-                    
-                    Text("ここに“覚えにくい単語”が並びます。\n今はダミー表示です。")
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.secondary)
-                        .padding(.horizontal)
-                    
-                    // 後で本実装に差し替える:
-                    // WordListView(title: "My Collection", cards: picked)
-                }
-                .padding()
-                .navigationTitle("My Collection")
-            }
-        }
-        // ダミー更新（のちに UpdateCenter へ差し替え）
-        //private func performRefresh(allowCellular: Bool = false) {
-        //  guard !isUpdating else { return }
-        // isUpdating = true
-        // DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-        //   pendingCount = 0
-        //  lastUpdated = Date()
-        //  isUpdating = false
-        //  }
-        //}
-        //} // ← ここで struct HomePage を閉じる（最後の1個だけ）
-        
-        // MARK: - SampleDeck 拡張
         extension SampleDeck {
             static var nouns: [WordCard] {
                 all.filter { $0.pos == .noun }

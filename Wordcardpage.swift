@@ -10,112 +10,68 @@ struct WordCardPage: View {
     var body: some View {
         // とりあえずの仮実装（あとで本実装に差し替え）
         List(items) { it in Text(it.text) }
-            .navigationTitle("\(pos.rawValue) レッスン")
+            .navigationTitle("🐻\(pos.rawValue) レッスン")
     }
 }
-// 品詞ごとのフラッシュカード一覧に遷移する薄いラッパー
 struct POSFlashcardListView: View {
     let pos: PartOfSpeech
     let accent: Color
     let animalName: String
 
     var body: some View {
-        // ここで5件に絞る（数字を変えれば件数変更）
+        // ここで List や VStack の余白を作らず、目的の画面をそのまま表示
         let limited = Array(SampleDeck.filtered(by: pos).prefix(4))
         POSFlashcardView(
-            title: "\(pos.rawValue) レッスン",
+            title: "🐻 \(pos.rawValue) レッスン",
             cards: limited,
             accent: accent,
             animalName: animalName
         )
+        // 余白や枠になる修飾子（.padding など）は絶対につけない！
     }
 }
-
 // 単語カード画面（縦スクロール・右下に動物PNG）
+// 単語カード1画面（縦スクロール＋右下にマスコット固定）
 struct POSFlashcardView: View {
     let title: String
-    let cards: [WordCard]
-    let accent: Color
-    let animalName: String
-
-    // ← 2) でも使うのでここに置く
-    @State private var tempPicked: Set<String> = []
+    let cards: [WordCard]      // 既存の型名。ここは使ってなくてもOK
+    let accent: Color          // 画面のテーマ色（ピンクなど）
+    let animalName: String     // 例: "noun_bear_brown"
 
     var body: some View {
-        ZStack {
-            // 背景（単色）
+        ZStack(alignment: .bottomTrailing) {
+
+            // ① 背景（端まで）
             accent.ignoresSafeArea()
 
-            // 本文
+            // ② 中央の内容（いまは空でもOK）
             ScrollView {
-                // …カードなど（今は空でもOK）
-            }
-
-            // --- 右下の動物（少し大きめ & タップは透過）---
-            GeometryReader { proxy in
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Image(animalName)                 // 例: "noun_bear_brown" など
-                            .resizable()
-                            .renderingMode(.original)
-                            .scaledToFit()
-                            .frame(
-                                width: min(                // 画面に応じて自然に拡縮
-                                    max(180, proxy.size.width * 0.35),
-                                    220
-                                )
-                            )
-                            .opacity(0.98)
-                            .shadow(radius: 6, x: 0, y: 5)
-                            .padding(.trailing, 18)       // ← 位置の細かい調整
-                            .padding(.bottom, 14)
-                            .accessibilityHidden(true)
-                    }
+                VStack(spacing: 16) {
+                    // TODO: カードUIや見出しを置く
                 }
-                .allowsHitTesting(false)                  // 下のスクロールやタップを邪魔しない
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 16)
+                .padding(.top, 12)
+                .padding(.bottom, 120) // ← クマさん分の余白
             }
-            // --------------------------------------------
+            .scrollContentBackground(.hidden) // ScrollViewの白地を隠す
+            .background(Color.clear)
+            .scrollIndicators(.hidden)
+
+            // ③ 右下マスコット（タップは透過）
+            Image(animalName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 180)
+                .shadow(radius: 6, y: 6)
+                .padding(24)
+                .allowsHitTesting(false)
         }
-        .navigationBarTitleDisplayMode(.inline)           // ← ZStack の “外”、body を閉じる前
-    } // ← ここで body を閉じる（この下に関数などを続けてOK）
-    
-    
-    
-@ViewBuilder
-    private func cardView(_ card: WordCard) -> some View {
-        HStack(spacing: 12) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(card.word).font(.system(size: 22, weight: .semibold))
-                Text(card.meaning).foregroundColor(.secondary)
-            }
-            Spacer()
-            Button {
-                if tempPicked.contains(card.id) { tempPicked.remove(card.id) }
-                else { tempPicked.insert(card.id) }
-            } label: {
-                Image(systemName: tempPicked.contains(card.id) ? "heart.fill" : "heart")
-            }
-            .buttonStyle(.borderless)
-            .foregroundColor(.pink)
-        }
-        .padding(.vertical, 14)
-        .padding(.horizontal, 16)
-        .background(.white)
-        .cornerRadius(16)
-        .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 4)
+        
+        .navigationTitle(Text(" \(title) レッスン")) // ④ ナビの見た目を同色に
+        .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(accent, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
     }
 }
-
-// 動物画像名のデフォルト（必要に応じて好きに変更OK）
-private func animalNameFor(_ pos: PartOfSpeech) -> String {
-    switch pos {
-    case .noun: return "noun_bear_brown"
-    case .verb: return "verb_cat_gray"
-    case .adj:  return "adj_rabbit_white"
-    case .adv:  return "adv_alpaca_ivory"
-    }
-}
-//形容詞レッスンへ
-
