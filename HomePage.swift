@@ -71,127 +71,116 @@ struct HomePage: View {
     // HomePage の struct 内（body の外）に置く
     private let bookmarkColors: [Color] = [.red, .blue, .green, .orange, .purple]
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             ZStack {
-                Color.homeIvory.ignoresSafeArea()
-                
-                ScrollView {
-                }                 // タイトル
-                VStack(alignment: .leading, spacing: 4) {
-                    
-                    NavigationLink {
-                        WordCardPage(
-                            pos: .adj,
-                            baseVariantIndex: hw.variantIndex(for: .adj),
-                            items: itemsFor(.adj)
-                        )
-                    } label: {                        // ← 半角コロン ":" を必ず使用
-                        Text("形容詞レッスンへ")
-                            .font(.headline)
-                            .padding(.vertical, 8)
-                    }
-                    // …この下に既存のUIが続く…
-                }
-                HomeworkBanner()
-                HomeworkRecentWidget()
-                
-                HStack(spacing: 8) {
-                    
-                    Text("Words' Forest")
-                        .font(.system(size: 34, weight: .bold))
-                    Text("🏠")
-                        .font(.system(size: 34))
-                        .accessibilityLabel("ホーム")
-                }
-                Text("A gentle vocabulary journey")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-            }
-            // 🔍 検索（←タイトルの直後に置く）
-            HStack(spacing: 8) {
-                TextField("単語を検索（英語・日本語）", text: $searchText)
-                    .textFieldStyle(.roundedBorder)
-                
-                NavigationLink("検索") {
-                    POSFlashcardView(
-                        title: "検索結果",
-                        cards: SampleDeck.all.filter { c in
-                            let q = searchText.trimmingCharacters(in: .whitespaces)
-                            guard !q.isEmpty else { return false }
-                            return c.word.localizedCaseInsensitiveContains(q)
-                            || c.meaning.localizedCaseInsensitiveContains(q)
-                        },
-                        accent: .gray.opacity(0.6),
-                        animalName: "adj_rabbit_gray"
-                    )
-                }
-                .disabled(searchText.trimmingCharacters(in: .whitespaces).isEmpty)
-                .buttonStyle(ColoredPillButtonStyle(color: .blue))
-            }
-            .padding(.top, 12)
-            
-            // 『単語カード学習』各品詞へ
-            VStack(alignment: .leading, spacing: 8) {
-                Text("『単語カード学習』各品詞へ").font(.headline)
-                
-                let poses = Array(PartOfSpeech.allCases)
-                ForEach(poses.indices, id: \.self) { i in
-                    let pos = poses[i]
+                Color.homeIvory.ignoresSafeArea()      // ← 全面アイボリー
 
-                    NavigationLink {
-                        // ← ここで遷移先を“直接”つくる方式（確実に動く）
-                        POSFlashcardView(
-                            title: pos.rawValue,                                  // 🐻は付けない
-                            cards: Array(SampleDeck.filtered(by: pos).prefix(4)),
-                            accent: accentFor(pos),
-                            animalName: animalNameFor(pos)
-                        )
-                    } label: {
-                        HStack {
-                            Text(pos.rawValue).foregroundStyle(.blue)
-                            Spacer()
-                            Image(systemName: "chevron.right").foregroundStyle(.secondary)
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 12) {
+
+                        // ① タイトル
+                        HStack(spacing: 8) {
+                            Text("Home Page")
+                                .font(.system(size: 34, weight: .bold))
+                                .foregroundStyle(.primary)
+                            Text("🏠")
+                                .font(.system(size: 28))
+                                .accessibilityLabel("ホーム")
                         }
-                        .padding(.vertical, 6)
+                        .padding(.horizontal, 16)
+                        .padding(.top, 12)
+
+                        // ② 検索
+                        HStack(spacing: 8) {
+                            TextField("単語を検索（英語・日本語）", text: $searchText)
+                                .textFieldStyle(.roundedBorder)
+                            NavigationLink("検索") {
+                                POSFlashcardView(
+                                    title: "検索結果",
+                                    cards: SampleDeck.all.filter { c in
+                                        let q = searchText.trimmingCharacters(in: .whitespaces)
+                                        return !q.isEmpty &&
+                                               (c.word.localizedCaseInsensitiveContains(q) ||
+                                                c.meaning.localizedCaseInsensitiveContains(q))
+                                    },
+                                    accent: .gray.opacity(0.6),
+                                    animalName: "adj_rabbit_gray"
+                                )
+                            }
+                            .disabled(searchText.trimmingCharacters(in: .whitespaces).isEmpty)
+                            .buttonStyle(ColoredPillButtonStyle(color: .blue))
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.top, 12)
+
+                        // ③ 宿題ウィジェット
+                        Group {
+                            HomeworkBanner()
+                            HomeworkRecentWidget()
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.top, 12)
+
+                        // ④ 『単語カード学習』
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("『単語カード学習』各品詞へ").font(.headline)
+
+                            let poses = Array(PartOfSpeech.allCases)
+                            ForEach(poses, id: \.self) { pos in
+                                NavigationLink(value: pos) {
+                                    HStack {
+                                        Text(pos.rawValue).foregroundStyle(.blue)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundStyle(.secondary)
+                                    }
+                                    .padding(.vertical, 6)
+                                }
+                                .buttonStyle(.plain)
+                            }
+                            .padding(.top, 8)
+
+                            // 🔖 栞
+                            HStack(spacing: 10) {
+                                Text("🔖 栞へ").font(.subheadline)
+                                ForEach(bookmarkColors, id: \.self) { BookmarkColorItem(color: $0) }
+                            }
+
+                            // 🍄 My Collection
+                            NavigationLink("🍄 My Collection（覚えにくい単語）") { MyCollectionView() }
+                                .buttonStyle(ColoredPillButtonStyle(color: .pink))
+
+                            // 🐺 Column
+                            NavigationLink("🐺 コラムページ（ColumnPage）") { ColumnPage() }
+                                .buttonStyle(ColoredPillButtonStyle(color: .indigo))
+
+                            Spacer(minLength: 8)
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.top, 12)
                     }
-                    .buttonStyle(.plain)
+                    .frame(maxWidth: .infinity, alignment: .leading) // ← 横いっぱい
+                    .background(Color.homeIvory)                     // ← 下地もアイボリー
                 }
-                .padding(.top, 8)
-                // 🔖 栞（色四角それぞれ遷移）
-                HStack(spacing: 10) {
-                    Text("🔖 栞へ").font(.subheadline)
-                    ForEach(bookmarkColors, id: \.self) { c in
-                        BookmarkColorItem(color: c)
-                    }
-                }
-                
-                // 🍄 My Collection
-                NavigationLink("🍄 My Collection（覚えにくい単語）") {
-                    MyCollectionView()
-                }
-                .buttonStyle(ColoredPillButtonStyle(color: Color.pink))
-                
-                // 🐺 コラムページ
-                NavigationLink("🐺 コラムページ（ColumnPage）") {
-                    ColumnPage()
-                }
-                .buttonStyle(ColoredPillButtonStyle(color: Color.indigo))
-                
-                Spacer(minLength: 8) // …既存のセクションたち…
             }
-            .padding()// ← VStackへのパディング
-            
-        } // ← NavigationStack の閉じカッコ
-        
-        .navigationDestination(for: PartOfSpeech.self) { pos in
-            POSFlashcardView(
-                title: pos.rawValue,  // 🐻は付けない。付けるなら遷移先だけで
-                cards: Array(SampleDeck.filtered(by: pos).prefix(4)),
-                accent: accentFor(pos),
-                animalName: animalNameFor(pos)
-            )
+            // ⑤ ナビバー（NavigationStack に付ける）
+            .toolbarBackground(Color.homeIvory, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(.light, for: .navigationBar)
+
+//            .navigationTitle("Home Page")
+//            .navigationBarTitleDisplayMode(.inline)
+
+            // ⑥ 遷移先
+            .navigationDestination(for: PartOfSpeech.self) { pos in
+                POSFlashcardView(
+                    title: pos.rawValue,
+                    cards: Array(SampleDeck.filtered(by: pos).prefix(4)),
+                    accent: accentFor(pos),
+                    animalName: animalNameFor(pos)
+                )
+            }
         }
-    }// ← body の閉じカッコ（ここは1個だけ！）
+    }
     // MARK: - Helpers (bodyの外)
     private func itemsFor(_ pos: PartOfSpeech) -> [WordItem] {
         // SampleDeck.filtered(by:) が無い場合でも動く安全版
