@@ -108,19 +108,24 @@ struct CardBackView: View {
 
             // ③ 例文表示（英→和）
             VStack(alignment: .leading, spacing: 6) {
+                // 英文（ほんの少し大きめ）
                 Text(exampleEn.isEmpty ? "（例文が未設定）" : exampleEn)
-                    .font(.body)
+                    .font(.system(size: 20))                 // ← デフォルト17 → 20に
                     .foregroundStyle(exampleEn.isEmpty ? .secondary : .primary)
+                    .lineSpacing(2)
                     .fixedSize(horizontal: false, vertical: true)
 
+                // 和文（英日ONのとき）
                 if jpAlso, !exampleJa.isEmpty {
                     Text(exampleJa)
-                        .font(.subheadline)
+                        .font(.system(size: 16))             // ← ちょいアップ
                         .foregroundStyle(.secondary)
+                        .lineSpacing(1)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
             .padding(.top, 2)
+            // ← ここでは .font は付けない（子のサイズ指定を上書きしないため）
 
             // ④ トグル列（下げて、文字とスイッチを近づける）
             Spacer(minLength: 6)

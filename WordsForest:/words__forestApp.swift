@@ -5,16 +5,21 @@
 //  Created by Nami .T on 2025/08/24.
 //
 
+// words__forestApp.swift
 import SwiftUI
 
 @main
 struct words__forestApp: App {
-    @StateObject private var homework = HomeworkState()
+    @StateObject private var router = Router()
+    @StateObject private var hw = HomeworkState()   // ← 追加（または .shared があるならそれ）
 
     var body: some Scene {
         WindowGroup {
-            ContentView() // ←あなたの最初のルートビュー名
-                .environmentObject(homework)
+            NavigationStack(path: $router.path) {
+                HomePage()
+            }
+            .environmentObject(router)
+            .environmentObject(hw)                  // ← これが大事
         }
     }
 }

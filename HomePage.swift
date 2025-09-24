@@ -413,6 +413,10 @@ struct HomePage: View {
                 .navigationTitle("栞ページ")
             }
         }
-        
+#Preview("Home") {
+    HomePage()
+        .environmentObject(Router())
+        .environmentObject(HomeworkState())
+}
     
 

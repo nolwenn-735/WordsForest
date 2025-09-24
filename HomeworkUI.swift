@@ -113,3 +113,14 @@ private func dateString(_ d: Date) -> String {
     f.dateFormat = "yyyy/MM/dd"
     return f.string(from: d)
 }
+#Preview("Banner") {
+    HomeworkBanner()
+        .environmentObject(HomeworkState())
+}
+
+#Preview("履歴リスト") {
+    NavigationStack {
+        HomeworkHistoryList()
+    }
+    .environmentObject(HomeworkState())
+}
