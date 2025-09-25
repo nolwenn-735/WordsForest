@@ -14,27 +14,45 @@ struct WordCardPage: View {
             .navigationTitle("🐻\(pos.rawValue) レッスン")
     }
 }
+
 struct POSFlashcardListView: View {
     let pos: PartOfSpeech
     let accent: Color
     let animalName: String
-
+    
     @State private var showingAdd = false
     @Environment(\.dismiss) private var dismiss
-
+    @State private var reversed = false   // ← これあり
+    
     var body: some View {
+        // カード配列を用意（今のままでOKならこの2行は既存の書き方でも可）
         let hw = HomeworkStore.shared.list(for: pos)
         let cards = hw.isEmpty ? Array(SampleDeck.filtered(by: pos).prefix(4)) : hw
-
-        POSFlashcardView(
-            title: "🐻\(pos.rawValue) レッスン",
-            cards: cards,
-            accent: accent,
-            animalName: animalName
-        )
-        .navigationTitle("🐻 \(pos.rawValue)")
-        .navigationBarTitleDisplayMode(.inline)           // 念のため
-        .toolbarBackground(.visible, for: .navigationBar) // 念のため
+        
+        // 返すビューはこれ（←このビューに .toolbar / .sheet を“チェイン”する）
+        VStack(spacing: 0) {
+            // ← ここは任意：ツールバーが出ない環境向けのインライン切替ボタン
+            HStack {
+                Spacer()
+                Button { reversed.toggle() } label: {
+                    Label(reversed ? "日→英" : "英→日", systemImage: "arrow.left.arrow.right")
+                        .labelStyle(.titleAndIcon)
+                }
+            }
+            .padding(.horizontal)
+            .padding(.top, 4)
+            
+            POSFlashcardView(
+                title: "🐻\(pos.rawValue) レッスン",
+                cards: cards,
+                accent: accent,
+                animalName: animalName,
+                reversed: reversed
+            )
+        }
+        // ！！！ここが超重要：返すビューに“連続して”ぶら下げる！！！
+        .navigationTitle("🐻\(pos.rawValue)")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             // 左：＋
             ToolbarItem(placement: .topBarLeading) {
@@ -43,27 +61,38 @@ struct POSFlashcardListView: View {
                 }
                 .accessibilityLabel("単語を追加")
             }
-            // 右：🏠（まずは1段戻る動作）
+            // 右：🏠（とりあえず1段戻る動作）
             ToolbarItem(placement: .topBarTrailing) {
                 Button { dismiss() } label: { Text("🏠") }
-                .accessibilityLabel("ホームへ")
+                    .accessibilityLabel("ホームへ")
             }
         }
         .sheet(isPresented: $showingAdd) {
             AddWordView(pos: pos)
         }
     }
-}
-    // 単語カード画面（縦スクロール・右下に動物PNG）
     // 単語カード1画面（縦スクロール＋右下にマスコット固定）
-    import SwiftUI
-    
+}
     struct POSFlashcardView: View {
         let title: String
-        let cards: [WordCard]            // c.word / c.meaning がある前提
-        let accent: Color                // 画面背景
-        let animalName: String           // 右下の動物画像名（例: "adj_rabbit_white"）
-        
+        let cards: [WordCard]
+        let accent: Color
+        let animalName: String
+        let reversed: Bool          // ← デフォルトは付けない
+
+        init(title: String,
+             cards: [WordCard],
+             accent: Color,
+             animalName: String,
+             reversed: Bool = false) {   // ← ここでデフォルトを持つ
+            self.title = title
+            self.cards = cards
+            self.accent = accent
+            self.animalName = animalName
+            self.reversed = reversed
+        }
+    
+    
         // レイアウト定数
         private let rowsPerScreen: CGFloat = 4
         private let screensPerVariant: CGFloat = 3   // ← ここが「3スクリーン1セット」
@@ -202,6 +231,7 @@ struct POSFlashcardListView: View {
                 exampleJa: exJa,
                 hasDolphin: hasD,
                 hasGold: hasG,
+                reversed: reversed,
                 isChecked: selected.contains(i),
                 isFav: favored.contains(i),
                 expanded: expanded == i,
@@ -275,6 +305,7 @@ struct POSFlashcardListView: View {
         let exampleJa: String
         let hasDolphin: Bool
         let hasGold: Bool
+        let reversed: Bool
         
         let isChecked: Bool
         let isFav: Bool
@@ -326,7 +357,7 @@ struct POSFlashcardListView: View {
                             
                             Spacer(minLength: 0)
                         } else {
-                            Text(word)
+                            Text(reversed ? meaning : word)
                                 .font(.system(size: 32, weight: .bold))
                         }
                     }
@@ -373,4 +404,5 @@ struct POSFlashcardListView: View {
         static var defaultValue: CGFloat = 0
         static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) { value = nextValue() }
     }
+    
 
