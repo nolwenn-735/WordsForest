@@ -11,15 +11,35 @@ import SwiftUI
 @main
 struct words__forestApp: App {
     @StateObject private var router = Router()
-    @StateObject private var hw = HomeworkState()   // ← 追加（または .shared があるならそれ）
+    @StateObject private var hw = HomeworkState()
+
+    // 追加：表紙の表示フラグ
+    @State private var showCover = true
 
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $router.path) {
                 HomePage()
+                    // 遷移先はこれまで通りここに
+                    .navigationDestination(for: PartOfSpeech.self) { pos in
+                        POSFlashcardListView(
+                            pos: pos,
+                            accent: pos.accent,
+                            animalName: pos.animalName(forCycle: hw.history.count)                
+                            
+                        )
+                    }
             }
             .environmentObject(router)
-            .environmentObject(hw)                  // ← これが大事
+            .environmentObject(hw)
+
+            // ← ここに付ける（NavigationStack の“外側”）
+            .fullScreenCover(isPresented: $showCover) {
+                // CoverPage から呼ばれる閉じ処理を配線
+                CoverPageView { showCover = false }
+            }
         }
     }
 }
+    
+

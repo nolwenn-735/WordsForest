@@ -7,15 +7,11 @@
 // RouterOfHome.swift
 import SwiftUI
 
+import SwiftUI
+
 final class Router: ObservableObject {
     @Published var path = NavigationPath()
-
-    func goHome() {
-        // ルート(Home)まで戻る
-        path.removeLast(path.count)
-    }
-
-    func push<T: Hashable>(_ value: T) {
-        path.append(value)
-    }
+    func push<T: Hashable>(_ value: T) { path.append(value) }
+    func reset() { path = NavigationPath() }
+    func goHome() { reset() }
 }

@@ -45,10 +45,9 @@ final class HomeworkStore {
             .filter { $0.pos == pos }
             .map { sw in
                 WordCard(
-                    id: "hw:\(sw.pos.id):\(sw.word)",   // 安定ID（品詞＋単語）
                     word: sw.word,
                     meaning: sw.meaning,
-                    pos: sw.pos
+                    pos: sw.pos        // ← ここまででOK（id は自動）
                 )
             }
     }
