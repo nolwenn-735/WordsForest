@@ -69,6 +69,12 @@ struct HomePage: View {
                     // ③ 今サイクル / 新着（既存のウィジェットをそのまま）
                     Group {
                         HomeworkBanner()
+                            .overlay(alignment: .topTrailing) {
+                                        WeeklySetMiniButton()              // ← 右上に重ねる
+                                            .padding(.top, 8)
+                                            .padding(.trailing, 8)
+                                    }
+
                         // 🆕 新着情報（直近4件）
                         VStack(alignment: .leading, spacing: 8) {
                             HStack {
@@ -186,3 +192,25 @@ struct HomePage: View {
            }
        }
    }
+
+private struct WeeklySetMiniButton: View {
+    @EnvironmentObject var hw: HomeworkState
+
+    var body: some View {
+        let p = hw.currentPair                     // いまの品詞ペア
+  
+        NavigationLink {
+            WeeklySetView(pair: p)
+                .environmentObject(hw)
+        } label: {
+            HStack(spacing: 6) {
+                Text("🗓️今週分へ（\(p.parts[0].jaTitle)+\(p.parts[1].jaTitle)）")
+            }
+            .font(.caption)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .background(.thinMaterial, in: Capsule())   // チップ風
+        }
+        .buttonStyle(.plain)                              // チップの見た目を維持
+    }
+}

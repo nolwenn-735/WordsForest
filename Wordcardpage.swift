@@ -35,10 +35,17 @@ struct POSFlashcardListView: View {
     @State private var reversed = false
 
     var body: some View {
-        let home = HomeworkStore.shared.list(for: pos)
-        let cards: [WordCard] = home.isEmpty
-        ? Array(SampleDeck.filtered(by: pos).prefix(40))
-        : home
+        // POSFlashcardListView.swift の var body 内、cards を決めている箇所を差し替え
+        let userCards = HomeworkStore.shared.list(for: pos)
+
+        // 保存があればそれを使う。無ければサンプルを使う（quota は使わない）
+        let cards: [WordCard] = userCards.isEmpty
+            ? SampleDeck.filtered(by: pos)
+            : userCards
+
+        // もし上限を 40 にしたい場合は↓に差し替え
+        // let cards = Array((userCards.isEmpty ? SampleDeck.filtered(by: pos) : userCards).prefix(40))
+        // ミックスして quota で切り上げ（= 常に quota 枚以内）
 
         POSFlashcardView(
             title: "\(pos.jaTitle) レッスン",
@@ -47,6 +54,7 @@ struct POSFlashcardListView: View {
             background: pos.backgroundColor,      // 品詞の淡色
             animalName: animalName,
             reversed: reversed
+        
         )
         .navigationTitle("\(pos.jaTitle) レッスン")
         .navigationBarTitleDisplayMode(.inline)
@@ -68,17 +76,18 @@ struct POSFlashcardListView: View {
 struct POSFlashcardView: View {
     let title: String
     let cards: [WordCard]
-    let accent: Color           // アイコン青
-    let background: Color       // 画面背景
+    private var quota: Int { cards.count }
+    let accent: Color
+    let background: Color
     let animalName: String
     let reversed: Bool
 
-    // レイアウト定数
+    // レイアウト定数（ここに置く）
     private let rowsPerScreen: CGFloat = 4
     private let screensPerVariant: CGFloat = 3
     private let actionBandTailRatio: CGFloat = 0.15
 
-    // 状態
+    // 状態 …（この下に @State などが続く）
     @State private var speechFast = false     // ゆっくり（🐢/🐇）
     @State private var speakBoth  = true      // 例文を英＋日で読む
     private let tts = AVSpeechSynthesizer()
@@ -101,6 +110,7 @@ struct POSFlashcardView: View {
             GeometryReader { outer in
                 let rowH   = max(88, (outer.size.height - 140) / rowsPerScreen)
                 let blockH = outer.size.height * screensPerVariant
+                // 以降のレイアウトで rowH / blockH を使用
 
                 ScrollView {
                     // スクロール量

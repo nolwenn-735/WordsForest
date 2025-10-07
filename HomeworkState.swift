@@ -6,6 +6,20 @@
 //
 import SwiftUI
 
+// CEFR レベル（必要なら別ファイルでもOK）
+enum CEFRLevel: String, CaseIterable, Hashable {
+    case A1, A2, B1, B2, C1, C2
+}
+
+// 既存の PosPair に、対応する品詞配列を返すヘルパー
+extension PosPair {
+    var parts: [PartOfSpeech] {
+        switch self {
+        case .nounAdj: return [.noun, .adj]
+        case .verbAdv: return [.verb, .adv]
+        }
+    }
+}
 enum HomeworkStatus: String, Codable { case active, paused, none }
 enum PosPair: Int, Codable { case nounAdj = 0, verbAdv = 1 }
 
@@ -52,7 +66,14 @@ final class HomeworkState: ObservableObject {
     @Published var status: HomeworkStatus {
         didSet { statusRaw = status.rawValue; logNow() }
     }
+    // 週合計24の内訳（お好みで変更可）
+    @Published var weeklyQuota: [PartOfSpeech: Int] = [
+        .noun: 12, .verb: 0, .adj: 12, .adv: 0
+    ]
 
+    // 学習に含める語彙レベル（まずは A1〜B1）
+    @Published var allowedLevels: Set<CEFRLevel> = [.A1, .A2, .B1]
+    
     // 交互ローテ
     @AppStorage("hw_pairIndex") private var pairIndex: Int = 0
     var currentPair: PosPair { PosPair(rawValue: pairIndex) ?? .nounAdj }

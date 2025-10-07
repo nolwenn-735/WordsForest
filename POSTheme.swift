@@ -46,3 +46,20 @@ extension PartOfSpeech {
         }
     }
 }
+
+// どこでもOK（例：POSTheme.swift の下など）
+import Foundation
+
+struct SampleDeckFilter {
+    // あなたの SampleDeck にレベル情報が無い場合、
+    // この関数は「pos だけでフィルタ → そのまま返す」にフォールバックします。
+    static func by(pos: PartOfSpeech, levels: Set<CEFRLevel>?) -> [WordCard] {
+        // 既存のヘルパがあるならそれを使用（無い場合は適宜差し替え）
+        // 例: SampleDeck.filtered(by: pos)
+        let base = SampleDeck.filtered(by: pos)
+
+        // いまは levels を無視（SampleDeck に載せてない前提）
+        // 後で SampleDeck に `level: CEFRLevel` を足したらここで絞り込めばOK
+        return base
+    }
+}
