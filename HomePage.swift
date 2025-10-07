@@ -6,7 +6,8 @@ struct HomePage: View {
     
     @State private var searchText = ""
     @State private var showBannerAlert = false
-    @State private var showRecent = true
+    @State private var showRecent = false
+
     // 栞は今は非表示（必要になったら true）
     private let showBookmarks = false
     private let bookmarkColors: [Color] = [.red, .blue, .green, .orange, .purple]
@@ -14,9 +15,10 @@ struct HomePage: View {
     var body: some View {
         ZStack {
             Color.homeIvory.ignoresSafeArea()
-            
+//           Color(.systemGroupedBackground)
+//                .ignoresSafeArea()
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: 8) {
                     
                     // ① タイトル（ナビタイトルは使わない）
                     HStack(spacing: 8) {
@@ -70,25 +72,27 @@ struct HomePage: View {
                         // 🆕 新着情報（直近4件）
                         VStack(alignment: .leading, spacing: 8) {
                             HStack {
-                                Label("新着情報（直近4件）", systemImage
-                                        : "sparkles")
+                                Label("新着情報（直近4件）", systemImage: "sparkles")
                                     .font(.headline)
                                 Spacer()
                                 Button(showRecent ? "隠す" : "表示") {
                                     withAnimation(.snappy) { showRecent.toggle() }
                                 }
-                                NavigationLink("履歴をすべて見る") {
-                                    HistoryAllView()           // ← 仮の一覧画面（下に定義を置きます）
-                                }
-                                .font(.subheadline)
                             }
-                            
+                            NavigationLink("履歴をすべて見る") {
+                                HistoryAllView()
+                            }
+                            .font(.subheadline)
+
                             if showRecent {
                                 HomeworkRecentWidget()
-                                    .transition(.opacity.combined(with: .move(edge: .top)))
+                                    .transition(.move(edge: .top).combined(with: .opacity))
                             }
-                        }
-                        .padding(.vertical, 4)
+                        } // ← ここでこの VStack を閉じる
+                        .padding(.horizontal)      // ← 直後に修飾子チェーン
+                        .padding(.vertical, 4)     // ← 直後に修飾子チェーン
+
+                        // ここから次のセクション（別の VStack でOK）
                         // ④ 『単語カード学習』各品詞へ（push方式）
                         VStack(alignment: .leading, spacing: 8) {
                             Text("『単語カード学習』各品詞へ").font(.headline)
@@ -122,8 +126,11 @@ struct HomePage: View {
                         Spacer(minLength: 8)
                     }
                     .padding(.horizontal, 16)
-                    .padding(.top, 12)
+                    .padding(.top, 4)
+                    .padding(.bottom,12)
                 }
+                // iPhone のホームインジケータに被らないための“下マージン”
+                .safeAreaInset(edge: .bottom) { Color.clear.frame(height: 20) }
             }
             // ← .navigationTitle は付けない（表紙と重複防止）
         }

@@ -177,3 +177,4 @@ fileprivate func playExample(english: String, japanese: String?, speed: SpeechSp
     }
     arr.forEach { synth.speak($0) }
 }
+

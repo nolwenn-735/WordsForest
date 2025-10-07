@@ -7,7 +7,6 @@
 
 import Foundation
 
-//enum PartOfSpeech: String, Codable, CaseIterable { case noun, verb, adj }
 extension PartOfSpeech: Codable {}
 struct StoredWord: Codable, Hashable {
     var word: String

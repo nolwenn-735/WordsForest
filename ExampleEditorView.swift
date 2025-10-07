@@ -6,32 +6,42 @@
 //
 
 
+// ExampleEditorView.swift
 import SwiftUI
 
 struct ExampleEditorView: View {
+    @Environment(\.dismiss) private var dismiss
     @State var english: String
     @State var japanese: String
-    var onSave: (String, String) -> Void
-    @Environment(\.dismiss) private var dismiss
+    var onSave: (_ en: String, _ ja: String) -> Void
 
     var body: some View {
-        Form {
-            Section("英語") {
-                TextField("English sentence", text: $english, axis: .vertical)
-                    .lineLimit(3...6)
-            }
-            Section("日本語") {
-                TextField("日本語訳", text: $japanese, axis: .vertical)
-                    .lineLimit(3...6)
-            }
-            Section {
-                Button("保存") {
-                    onSave(english, japanese)
-                    dismiss()
+        NavigationStack {
+            Form {
+                Section("英語") {
+                    TextField("English sentence", text: $english, axis: .vertical)
+                        .textInputAutocapitalization(.sentences)
                 }
-                .buttonStyle(.borderedProminent)
+                Section("日本語") {
+                    TextField("日本語訳", text: $japanese, axis: .vertical)
+                }
+            }
+            .navigationTitle("例文を編集")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("← return") {
+                        onSave(english, japanese)
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("保存") {
+                        onSave(english, japanese)
+                        dismiss()
+                    }
+                }
             }
         }
-        .navigationTitle("例文を編集")
     }
 }

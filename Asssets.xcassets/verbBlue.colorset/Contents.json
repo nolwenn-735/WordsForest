@@ -24,9 +24,9 @@
         "color-space" : "srgb",
         "components" : {
           "alpha" : "0.800",
-          "blue" : "0x6B",
-          "green" : "0x41",
-          "red" : "0x1F"
+          "blue" : "0xFF",
+          "green" : "0xCB",
+          "red" : "0xAF"
         }
       },
       "display-gamut" : "sRGB",
@@ -38,8 +38,8 @@
         "components" : {
           "alpha" : "1.000",
           "blue" : "0xFF",
-          "green" : "0xFF",
-          "red" : "0xFE"
+          "green" : "0xE8",
+          "red" : "0xD9"
         }
       },
       "display-gamut" : "display-P3",
@@ -57,8 +57,8 @@
         "components" : {
           "alpha" : "1.000",
           "blue" : "0xFF",
-          "green" : "0xFF",
-          "red" : "0xFE"
+          "green" : "0xCB",
+          "red" : "0xAF"
         }
       },
       "display-gamut" : "display-P3",
