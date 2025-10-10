@@ -11,23 +11,10 @@ private struct ScrollOffsetKey: PreferenceKey {
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) { value = nextValue() }
 }
 
-// 日本語タイトル（必要なら PartOfSpeech.swift へ分離可）
-/*  extension PartOfSpeech {
-    var jaTitle: String {
-        switch self {
-        case .noun:       return "名詞"
-        case .verb:       return "動詞"
-        case .adjective:  return "形容詞"
-        case .adverb:     return "副詞"
-        default:          return rawValue
-        }
-    }
-}
-*/
 // MARK: - 一覧（品詞ごと → 1 画面へ遷移）
 struct POSFlashcardListView: View {
     let pos: PartOfSpeech
-    let accent: Color          // チェック／ハートの青
+    let accent: Color          // チェック／ハート等の青
     let animalName: String
 
     @State private var showingAdd = false
@@ -35,26 +22,18 @@ struct POSFlashcardListView: View {
     @State private var reversed = false
 
     var body: some View {
-        // POSFlashcardListView.swift の var body 内、cards を決めている箇所を差し替え
-        let userCards = HomeworkStore.shared.list(for: pos)
-
-        // 保存があればそれを使う。無ければサンプルを使う（quota は使わない）
-        let cards: [WordCard] = userCards.isEmpty
-            ? SampleDeck.filtered(by: pos)
-            : userCards
-
-        // もし上限を 40 にしたい場合は↓に差し替え
-        // let cards = Array((userCards.isEmpty ? SampleDeck.filtered(by: pos) : userCards).prefix(40))
-        // ミックスして quota で切り上げ（= 常に quota 枚以内）
+        let home = HomeworkStore.shared.list(for: pos)
+        let cards: [WordCard] = home.isEmpty
+        ? Array(SampleDeck.filtered(by: pos).prefix(40))
+        : home
 
         POSFlashcardView(
             title: "\(pos.jaTitle) レッスン",
             cards: cards,
-            accent: pos.accent,
+            accent: accent,
             background: pos.backgroundColor,      // 品詞の淡色
             animalName: animalName,
             reversed: reversed
-        
         )
         .navigationTitle("\(pos.jaTitle) レッスン")
         .navigationBarTitleDisplayMode(.inline)
@@ -76,18 +55,17 @@ struct POSFlashcardListView: View {
 struct POSFlashcardView: View {
     let title: String
     let cards: [WordCard]
-    private var quota: Int { cards.count }
-    let accent: Color
-    let background: Color
+    let accent: Color           // アイコン青
+    let background: Color       // 画面背景
     let animalName: String
     let reversed: Bool
 
-    // レイアウト定数（ここに置く）
+    // レイアウト定数
     private let rowsPerScreen: CGFloat = 4
     private let screensPerVariant: CGFloat = 3
     private let actionBandTailRatio: CGFloat = 0.15
 
-    // 状態 …（この下に @State などが続く）
+    // 状態
     @State private var speechFast = false     // ゆっくり（🐢/🐇）
     @State private var speakBoth  = true      // 例文を英＋日で読む
     private let tts = AVSpeechSynthesizer()
@@ -110,7 +88,6 @@ struct POSFlashcardView: View {
             GeometryReader { outer in
                 let rowH   = max(88, (outer.size.height - 140) / rowsPerScreen)
                 let blockH = outer.size.height * screensPerVariant
-                // 以降のレイアウトで rowH / blockH を使用
 
                 ScrollView {
                     // スクロール量
@@ -160,20 +137,14 @@ struct POSFlashcardView: View {
         }
         // ZStack の外側にチェーン
         .scrollContentBackground(.hidden)
-        .background(background) // 見た目は background に任せる
+        .background(background)
         .toolbarBackground(background, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbarColorScheme(.light, for: .navigationBar)
 
-        // 編集シート（現在の単語の既存例文を初期値に）
+        // 編集シート（いまの単語の既存例文を中で読み込んで編集）
         .sheet(item: $editingCard) { card in
-            let saved  = ExampleStore.shared.example(for: card.word)
-            ExampleEditorView(
-                english:  saved?.en ?? "",
-                japanese: saved?.ja ?? ""
-            ) { en, ja in
-                ExampleStore.shared.setExample(ExamplePair(en: en, ja: ja), for: card.word)
-            }
+            ExampleEditorView(word: card.word)   // ← あなたの現在の実装に合わせる
         }
     }
 
@@ -310,10 +281,10 @@ private struct CardRow: View {
                     Button(action: checkTapped) {
                         Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
                             .font(.title2)
-                            .foregroundStyle(accent)          // チェックを青
+                            .foregroundStyle(accent)
                     }
 
-                    Text(reversed ? meaning : word)          // 表は 1 行のみ（薄い日本語は非表示）
+                    Text(reversed ? meaning : word)
                         .font(.system(size: 28, weight: .bold))
                         .foregroundStyle(.primary)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -323,7 +294,7 @@ private struct CardRow: View {
                     Button(action: heartTapped) {
                         Image(systemName: isFav ? "heart.fill" : "heart")
                             .font(.title2)
-                            .foregroundStyle(accent)          // ハートも青
+                            .foregroundStyle(accent)
                     }
                 }
                 .frame(minHeight: rowHeight)
@@ -352,7 +323,7 @@ private struct CardRow: View {
                         }
                         .labelStyle(.titleAndIcon)
                         .font(.body)
-                        .foregroundStyle(accent)             // ← 青
+                        .foregroundStyle(accent)   // ← 青
                     }
 
                     // 例文（英→日、日を少し大きめに）
@@ -367,9 +338,8 @@ private struct CardRow: View {
 
                     // トグルは一番下（統一で iOS 風グリーン）
                     HStack {
-                        Label("ゆっくり", systemImage: "tortoise")
-                            .font(.subheadline)              // 黒のまま
-                        Toggle("", isOn: Binding(
+                        Label("ゆっくり", systemImage: "tortoise").font(.subheadline)
+                        Toggle("", isOn: .init(
                             get: { speechFast },
                             set: { _ in toggleSpeechSpeed() }
                         ))
@@ -379,7 +349,7 @@ private struct CardRow: View {
                         Spacer()
 
                         Text("英＋日").font(.subheadline)
-                        Toggle("", isOn: Binding(
+                        Toggle("", isOn: .init(
                             get: { speakBoth },
                             set: { _ in toggleSpeakBoth() }
                         ))
@@ -388,7 +358,7 @@ private struct CardRow: View {
                     }
                 }
                 .frame(maxWidth: .infinity,
-                       minHeight: rowHeight * 2.2,            // ← 裏面は拡張してトグルを下へ
+                       minHeight: rowHeight * 2.2,
                        alignment: .topLeading)
                 .contentShape(Rectangle())
                 .onTapGesture(perform: centerTapped)
@@ -401,42 +371,3 @@ private struct CardRow: View {
         .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: 2)
     }
 }
-
-// MARK: - 例文編集画面（戻るボタン付き）
-/*struct ExampleEditorView: View {
-    @Environment(\.dismiss) private var dismiss
-    @State var english: String
-    @State var japanese: String
-    var onSave: (_ en: String, _ ja: String) -> Void
-
-    var body: some View {
-        NavigationStack {
-            Form {
-                Section("英語") {
-                    TextField("English sentence", text: $english, axis: .vertical)
-                        .textInputAutocapitalization(.sentences)
-                }
-                Section("日本語") {
-                    TextField("日本語訳", text: $japanese, axis: .vertical)
-                }
-            }
-            .navigationTitle("例文を編集")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("← return") {
-                        onSave(english, japanese)
-                        dismiss()
-                    }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("保存") {
-                        onSave(english, japanese)
-                        dismiss()
-                    }
-                }
-            }
-        }
-    }
-}
-*/

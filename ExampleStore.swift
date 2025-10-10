@@ -10,10 +10,12 @@ import Combine
 struct ExamplePair: Codable, Equatable {
     var en: String
     var ja: String
+    var note: String? = nil
 }
 
 final class ExampleStore: ObservableObject {
     static let shared = ExampleStore()
+
     @Published private(set) var map: [String: ExamplePair] = [:]
 
     private let key = "example_store_v1"
@@ -29,27 +31,36 @@ final class ExampleStore: ObservableObject {
             .store(in: &cancellables)
     }
 
-    func example(for word: String) -> ExamplePair? {
-        map[word]
-    }
-    func setExample(_ pair: ExamplePair, for word: String) {
-        map[word] = pair
-        save()
-    }
-    func removeExample(for word: String) {
-        map.removeValue(forKey: word)
-        save()
+    // 読み出し
+    func example(for word: String) -> ExamplePair? { map[word] }
+
+    // 保存/更新（※これを1つだけ残す）
+    func setExample(for word: String, en: String, ja: String, note: String? = nil) {
+        map[word] = ExamplePair(en: en, ja: ja, note: note)
     }
 
+    // 削除
+    func removeExample(for word: String) {
+        map.removeValue(forKey: word)
+    }
+
+    // MARK: - Persistence
     private func load() {
         guard let data = UserDefaults.standard.data(forKey: key) else { return }
-        if let decoded = try? JSONDecoder().decode([String: ExamplePair].self, from: data) {
-            map = decoded
+        do {
+            map = try JSONDecoder().decode([String: ExamplePair].self, from: data)
+        } catch {
+            print("ExampleStore load error:", error)
+            map = [:]
         }
     }
+
     private func save() {
-        if let data = try? JSONEncoder().encode(map) {
+        do {
+            let data = try JSONEncoder().encode(map)
             UserDefaults.standard.set(data, forKey: key)
+        } catch {
+            print("ExampleStore save error:", error)
         }
     }
 }

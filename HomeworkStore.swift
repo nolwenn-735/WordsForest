@@ -37,7 +37,17 @@ final class HomeworkStore {
         save()
     }
     func clear() { words.removeAll(); save() }
-    
+    func delete(_ card: WordCard) {
+        // 同じ品詞・単語・意味の「最初の1件だけ」を消す
+        if let i = words.firstIndex(where: {
+            $0.pos == card.pos &&
+            $0.word == card.word &&
+            $0.meaning == card.meaning
+        }) {
+            words.remove(at: i)
+            save() // ← 既存の保存処理を呼ぶ
+        }
+    }
     // 画面で使う WordCard に変換（必要に応じて初期値は調整）
     func list(for pos: PartOfSpeech) -> [WordCard] {
         words

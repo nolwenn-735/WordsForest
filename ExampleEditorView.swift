@@ -5,43 +5,70 @@
 //  Created by Nami .T on 2025/09/23.
 //
 
-
-// ExampleEditorView.swift
 import SwiftUI
 
 struct ExampleEditorView: View {
+    let word: String
     @Environment(\.dismiss) private var dismiss
-    @State var english: String
-    @State var japanese: String
-    var onSave: (_ en: String, _ ja: String) -> Void
+
+    @State private var en   = ""
+    @State private var ja   = ""
+    @State private var note = ""
 
     var body: some View {
         NavigationStack {
             Form {
                 Section("英語") {
-                    TextField("English sentence", text: $english, axis: .vertical)
+                    TextField("English sentence", text: $en)
                         .textInputAutocapitalization(.sentences)
                 }
                 Section("日本語") {
-                    TextField("日本語訳", text: $japanese, axis: .vertical)
+                    TextField("日本語訳", text: $ja)
+                }
+                Section("備考") {
+                    TextEditor(text: $note)
+                        .frame(minHeight: 220)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(.secondary.opacity(0.2))
+                        )
                 }
             }
             .navigationTitle("例文を編集")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("← return") {
-                        onSave(english, japanese)
+                // 戻る
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("戻る") { dismiss() }
+                }
+                // 保存
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("保存") {
+                        ExampleStore.shared.setExample(
+                            for:  word,
+                            en:   en,
+                            ja:   ja,
+                            note: note.isEmpty ? nil : note
+                        )
                         dismiss()
                     }
                 }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("保存") {
-                        onSave(english, japanese)
+                // 削除（お好みで残す）
+                ToolbarItem(placement: .bottomBar) {
+                    Button("この例文を削除", role: .destructive) {
+                        ExampleStore.shared.removeExample(for: word)
                         dismiss()
                     }
                 }
             }
+            .onAppear {
+                let saved = ExampleStore.shared.example(for: word)
+                en   = saved?.en   ?? ""
+                ja   = saved?.ja   ?? ""
+                note = saved?.note ?? ""
+            }
         }
+        // スワイプダウンで閉じる（必要なら）
+        .interactiveDismissDisabled(false)
     }
 }
