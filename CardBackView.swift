@@ -110,7 +110,7 @@ struct CardBackView: View {
             VStack(alignment: .leading, spacing: 6) {
                 // 英文（ほんの少し大きめ）
                 Text(exampleEn.isEmpty ? "（例文が未設定）" : exampleEn)
-                    .font(.system(size: 20))                 // ← デフォルト17 → 20に
+                    .font(.system(size: 24))                 // ← デフォルト17 → 24に
                     .foregroundStyle(exampleEn.isEmpty ? .secondary : .primary)
                     .lineSpacing(2)
                     .fixedSize(horizontal: false, vertical: true)

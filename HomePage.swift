@@ -58,7 +58,7 @@ struct HomePage: View {
                                 cards: cards,
                                 accent: .gray.opacity(0.6),
                                 background: Color(.systemGray6),
-                                animalName: "adj_rabbit_gray",
+                                animalName: "index_chipmunk",
                                 reversed: false
                             )
                         }

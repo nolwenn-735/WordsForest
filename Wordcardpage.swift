@@ -165,12 +165,14 @@ struct POSFlashcardView: View {
         let saved = ExampleStore.shared.example(for: c.word)
         let exEn: String = saved?.en ?? ""
         let exJa: String = saved?.ja ?? ""
-
+        let note = saved?.note ?? ""
+        
         CardRow(
             word: c.word,
             meaning: c.meaning,
             exampleEn: exEn,
             exampleJa: exJa,
+            note: note,
             reversed: reversed,
             isChecked: selected.contains(i),
             isFav: favored.contains(i),
@@ -252,6 +254,7 @@ private struct CardRow: View {
     let meaning: String
     let exampleEn: String
     let exampleJa: String
+    let note: String          // ← 追加
     let reversed: Bool
 
     let isChecked: Bool
@@ -333,14 +336,18 @@ private struct CardRow: View {
                     if !exampleJa.isEmpty {
                         Text(exampleJa).font(.system(size: 20, weight: .medium))
                     }
-
+                    if !note.isEmpty {
+                        Text(note)
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                    }
                     Spacer(minLength: 12)
 
                     // トグルは一番下（統一で iOS 風グリーン）
                     HStack {
                         Label("ゆっくり", systemImage: "tortoise").font(.subheadline)
                         Toggle("", isOn: .init(
-                            get: { speechFast },
+                            get: { !speechFast },
                             set: { _ in toggleSpeechSpeed() }
                         ))
                         .labelsHidden()
