@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct AddWordView: View {
-    let pos: PartOfSpeech                      // ← 受け取った品詞
+    let pos: PartOfSpeech
+    var editing: WordCard? = nil   // ← 既存なら渡す（新規は nil）
+
     @Environment(\.dismiss) private var dismiss
-    @State private var word = ""
-    @State private var meaning = ""
+    @State private var word: String = ""
+    @State private var meaning: String = ""
+
+    private var trimmedWord: String { word.trimmingCharacters(in: .whitespacesAndNewlines) }
+    private var trimmedMeaning: String { meaning.trimmingCharacters(in: .whitespacesAndNewlines) }
+    private var canSave: Bool { !trimmedWord.isEmpty && !trimmedMeaning.isEmpty }
 
     var body: some View {
         NavigationStack {
@@ -25,22 +31,52 @@ struct AddWordView: View {
                     TextField("さまよう", text: $meaning)
                 }
             }
-            .navigationTitle("単語を追加")
+            .navigationTitle(editing == nil ? "単語を追加" : "単語を編集")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("キャンセル") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("追加") {
-                        let w = word.trimmingCharacters(in: .whitespacesAndNewlines)
-                        let m = meaning.trimmingCharacters(in: .whitespacesAndNewlines)
-                        guard !w.isEmpty, !m.isEmpty else { return }
-
-                        HomeworkStore.shared.add(word: w, meaning: m, pos: pos) // ← 保存！
-                        dismiss() // sheet を閉じる（これで一覧が再描画されます）
+                    Button(editing == nil ? "追加" : "更新") {
+                        save()
                     }
+                    .disabled(!canSave)
                 }
             }
+            // 編集時だけフッターに「削除」を表示
+            .safeAreaInset(edge: .bottom) {
+                if editing != nil {
+                    Button("このカードを削除", role: .destructive) {
+                        deleteCard()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 10)
+                }
+            }
+        }
+        .onAppear {
+            if let c = editing {
+                word = c.word
+                meaning = c.meaning
+            }
+        }
+    }
+
+    private func save() {
+        if let c = editing {
+            // 既存カードを更新（メソッド名はプロジェクトに合わせて）
+            HomeworkStore.shared.update(c, word: trimmedWord, meaning: trimmedMeaning)
+        } else {
+            // 新規追加
+            HomeworkStore.shared.add(word: trimmedWord, meaning: trimmedMeaning, pos: pos)
+        }
+        dismiss()
+    }
+
+    private func deleteCard() {
+        if let c = editing {
+            HomeworkStore.shared.delete(c)
+            dismiss()
         }
     }
 }

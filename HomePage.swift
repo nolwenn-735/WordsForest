@@ -59,7 +59,8 @@ struct HomePage: View {
                                 accent: .gray.opacity(0.6),
                                 background: Color(.systemGray6),
                                 animalName: "index_chipmunk",
-                                reversed: false
+                                reversed: false,
+                                onEdit: { _ in }
                             )
                         }
                         .disabled(searchText.trimmingCharacters(in: .whitespaces).isEmpty)

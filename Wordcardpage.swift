@@ -14,12 +14,15 @@ private struct ScrollOffsetKey: PreferenceKey {
 // MARK: - 一覧（品詞ごと → 1 画面へ遷移）
 struct POSFlashcardListView: View {
     let pos: PartOfSpeech
-    let accent: Color          // チェック／ハート等の青
+    let accent: Color
     let animalName: String
 
     @State private var showingAdd = false
     @Environment(\.dismiss) private var dismiss
     @State private var reversed = false
+
+    // 追加：編集対象カード
+    @State private var editingWord: WordCard? = nil
 
     var body: some View {
         let home = HomeworkStore.shared.list(for: pos)
@@ -31,26 +34,44 @@ struct POSFlashcardListView: View {
             title: "\(pos.jaTitle) レッスン",
             cards: cards,
             accent: accent,
-            background: pos.backgroundColor,      // 品詞の淡色
+            background: pos.backgroundColor,
             animalName: animalName,
-            reversed: reversed
+            reversed: reversed,
+
+            // 追加：行の「このカードを編集」から呼ばれる
+            onEdit: { c in editingWord = c }
         )
         .navigationTitle("\(pos.jaTitle) レッスン")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .topBarLeading) {
-                Button { showingAdd = true } label: { Image(systemName: "plus") }
-                    .accessibilityLabel("単語を追加")
+                Menu {
+                    Button("単語を追加") { showingAdd = true }
+                    Button("不足分を自動追加(24まで)") {
+                        HomeworkStore.shared.autofill(for: pos, target: 24)
+                    }
+                } label: { Image(systemName: "plus") }
+                .tint(.gray)
             }
             ToolbarItemGroup(placement: .topBarTrailing) {
                 Button { dismiss() } label: { Text("ホームへ🏠") }
+                    .foregroundStyle(.blue)
+                    .buttonStyle(.plain)
+                    .padding(.horizontal, 12).padding(.vertical, 6)
+                    .background(.ultraThinMaterial, in: Capsule())
                     .accessibilityLabel("ホームへ")
             }
         }
-        .sheet(isPresented: $showingAdd) { AddWordView(pos: pos) }
+        // 既存：追加用
+        .sheet(isPresented: $showingAdd) {
+            AddWordView(pos: pos)
+        }
+        // 新規：編集用（ここ！）
+        .sheet(item: $editingWord) { c in
+            AddWordView(pos: pos, editing: c)
+        }
     }
 }
-
 // MARK: - 単語カード 1 画面（縦スクロール＋右下マスコット固定）
 struct POSFlashcardView: View {
     let title: String
@@ -59,7 +80,8 @@ struct POSFlashcardView: View {
     let background: Color       // 画面背景
     let animalName: String
     let reversed: Bool
-
+    let onEdit: (WordCard) -> Void
+    var onDataChanged: () -> Void = {}
     // レイアウト定数
     private let rowsPerScreen: CGFloat = 4
     private let screensPerVariant: CGFloat = 3
@@ -194,6 +216,22 @@ struct POSFlashcardView: View {
             speakBoth: speakBoth,
             accent: accent
         )
+        .contextMenu {
+            // 単語カード自体の編集
+            Button {
+                onEdit(c)   // ← ListView 側で editingWord に入ってシートが開く
+            } label: {
+                Label("このカードを編集", systemImage: "square.and.pencil")
+            }
+            
+            // 単語カード自体の削除（必要なら）
+            Button(role: .destructive) {
+                HomeworkStore.shared.delete(c)
+                onDataChanged()   // ← 使っていれば再描画キー更新用（なければ省略OK）
+            } label: {
+                Label("このカードを削除", systemImage: "trash")
+            }
+        }
     }
 
     // まとめ帯
@@ -338,8 +376,9 @@ private struct CardRow: View {
                     }
                     if !note.isEmpty {
                         Text(note)
-                            .font(.footnote)
+                            .font(.callout)
                             .foregroundStyle(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                     Spacer(minLength: 12)
 
