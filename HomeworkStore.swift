@@ -7,6 +7,7 @@
 
 import Foundation
 
+// 既存どおり
 extension PartOfSpeech: Codable {}
 
 struct StoredWord: Codable, Hashable {
@@ -15,13 +16,35 @@ struct StoredWord: Codable, Hashable {
     var pos: PartOfSpeech
 }
 
+/// 単語の一意キー（品詞＋単語＋意味）
+struct WordKey: Hashable, Codable {
+    var pos: PartOfSpeech
+    var word: String
+    var meaning: String
+}
+
 final class HomeworkStore {
     static let shared = HomeworkStore()
-    private init() { load() }
-    
+    private init() {
+        load()
+        loadFavorites()
+        loadLearned()
+    }
+
+    // 既存の保存キー（単語本体）
     private let key = "homework_words_v1"
-    
+    // 新規：お気に入り・覚えた用のキー
+    private let favKey = "homework_favs_v1"
+    private let learnedKey = "homework_learned_v1"
+
+    // 単語本体
     private(set) var words: [StoredWord] = []
+
+    // 新規：保存先
+    private(set) var favorites: Set<WordKey> = []
+    private(set) var learned: Set<WordKey> = []
+
+    // MARK: - 単語の保存/読込（既存）
     private func save() {
         let data = try? JSONEncoder().encode(words)
         UserDefaults.standard.set(data, forKey: key)
@@ -32,12 +55,52 @@ final class HomeworkStore {
             words = arr
         }
     }
-    
+
+    // MARK: - 新規: 保存/読込（お気に入り・覚えた）
+    private func saveFavorites() {
+        let data = try? JSONEncoder().encode(Array(favorites))
+        UserDefaults.standard.set(data, forKey: favKey)
+    }
+    private func loadFavorites() {
+        if let data = UserDefaults.standard.data(forKey: favKey),
+           let arr = try? JSONDecoder().decode([WordKey].self, from: data) {
+            favorites = Set(arr)
+        }
+    }
+
+    private func saveLearned() {
+        let data = try? JSONEncoder().encode(Array(learned))
+        UserDefaults.standard.set(data, forKey: learnedKey)
+    }
+    private func loadLearned() {
+        if let data = UserDefaults.standard.data(forKey: learnedKey),
+           let arr = try? JSONDecoder().decode([WordKey].self, from: data) {
+            learned = Set(arr)
+        }
+    }
+
+    // MARK: - 新規: Key 化ヘルパー
+    private func key(for c: WordCard) -> WordKey {
+        .init(pos: c.pos, word: c.word, meaning: c.meaning)
+    }
+    private func key(for s: StoredWord) -> WordKey {
+        .init(pos: s.pos, word: s.word, meaning: s.meaning)
+    }
+
+    // MARK: - CRUD
     func add(word: String, meaning: String, pos: PartOfSpeech) {
         words.append(.init(word: word, meaning: meaning, pos: pos))
         save()
     }
-    func clear() { words.removeAll(); save() }
+
+    func clear() {
+        words.removeAll()
+        save()
+        favorites.removeAll()
+        learned.removeAll()
+        saveFavorites()
+        saveLearned()
+    }
 
     func delete(_ card: WordCard) {
         // 同じ品詞・単語・意味の「最初の1件だけ」を消す
@@ -49,9 +112,13 @@ final class HomeworkStore {
             words.remove(at: i)
             save()
         }
+        // セット側からも掃除
+        let k = key(for: card)
+        if favorites.remove(k) != nil { saveFavorites() }
+        if learned.remove(k) != nil   { saveLearned()   }
     }
 
-    // 画面で使う WordCard に変換
+    /// 一覧表示用に変換
     func list(for pos: PartOfSpeech) -> [WordCard] {
         words
             .filter { $0.pos == pos }
@@ -63,16 +130,54 @@ final class HomeworkStore {
                 )
             }
     }
-} // ← ここでクラスを閉じる
 
-// ===== ここから「拡張」 2️⃣ をそのまま追加 =====
+    ///（AddWordView の「更新」に対応させるなら）
+    func update(_ old: WordCard, word: String, meaning: String) {
+        if let i = words.firstIndex(where: {
+            $0.pos == old.pos &&
+            $0.word == old.word &&
+            $0.meaning == old.meaning
+        }) {
+            // セットのキー整合を保つ（変更時は入れ替え）
+            let oldKey = key(for: old)
+            let newKey = WordKey(pos: old.pos, word: word, meaning: meaning)
+            if favorites.remove(oldKey) != nil { favorites.insert(newKey); saveFavorites() }
+            if learned.remove(oldKey) != nil   { learned.insert(newKey);   saveLearned()   }
+
+            words[i].word = word
+            words[i].meaning = meaning
+            save()
+        }
+    }
+
+    // MARK: - ♡ / ✅ API（UI から使う）
+    // My Collection
+    func isFavorite(_ c: WordCard) -> Bool { favorites.contains(key(for: c)) }
+    func setFavorite(_ c: WordCard, enabled: Bool) {
+        let k = key(for: c)
+        if enabled { favorites.insert(k) } else { favorites.remove(k) }
+        saveFavorites()
+    }
+    func toggleFavorite(_ c: WordCard) { setFavorite(c, enabled: !isFavorite(c)) }
+
+    // 覚えたBOX
+    func isLearned(_ c: WordCard) -> Bool { learned.contains(key(for: c)) }
+    func setLearned(_ c: WordCard, enabled: Bool) {
+        let k = key(for: c)
+        if enabled { learned.insert(k) } else { learned.remove(k) }
+        saveLearned()
+    }
+    func toggleLearned(_ c: WordCard) { setLearned(c, enabled: !isLearned(c)) }
+}
+
+// 既存の補完＆更新（そのまま生かす）
 extension HomeworkStore {
     /// 品詞ごとに target 枚になるまで SampleDeck から重複なく補完
     func autofill(for pos: PartOfSpeech, target: Int = 24) {
-        let current = list(for: pos)                 // 既存カード（UI用）
+        let current = list(for: pos)
         guard current.count < target else { return }
 
-        let bank = SampleDeck.filtered(by: pos)      // A1〜B1の元データ源（あなたの実装のまま）
+        let bank = SampleDeck.filtered(by: pos)
         let existing = Set(current.map { $0.word.lowercased() })
 
         var count = current.count
@@ -81,19 +186,6 @@ extension HomeworkStore {
                 add(word: card.word, meaning: card.meaning, pos: pos)
                 count += 1
             }
-        }
-    }
-
-    ///（※AddWordView で「更新」を使うなら同梱しておくと便利）
-    func update(_ old: WordCard, word: String, meaning: String) {
-        if let i = words.firstIndex(where: {
-            $0.pos == old.pos &&
-            $0.word == old.word &&
-            $0.meaning == old.meaning
-        }) {
-            words[i].word = word
-            words[i].meaning = meaning
-            save()
         }
     }
 }

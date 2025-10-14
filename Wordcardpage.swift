@@ -23,7 +23,8 @@ struct POSFlashcardListView: View {
 
     // 追加：編集対象カード
     @State private var editingWord: WordCard? = nil
-
+    @State private var refreshID = UUID()
+    
     var body: some View {
         let home = HomeworkStore.shared.list(for: pos)
         let cards: [WordCard] = home.isEmpty
@@ -37,10 +38,11 @@ struct POSFlashcardListView: View {
             background: pos.backgroundColor,
             animalName: animalName,
             reversed: reversed,
-
             // 追加：行の「このカードを編集」から呼ばれる
-            onEdit: { c in editingWord = c }
+            onEdit: { c in editingWord = c },
+            onDataChanged: { refreshID = UUID() }
         )
+        .id(refreshID)
         .navigationTitle("\(pos.jaTitle) レッスン")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -49,6 +51,7 @@ struct POSFlashcardListView: View {
                     Button("単語を追加") { showingAdd = true }
                     Button("不足分を自動追加(24まで)") {
                         HomeworkStore.shared.autofill(for: pos, target: 24)
+                        refreshID = UUID()
                     }
                 } label: { Image(systemName: "plus") }
                 .tint(.gray)
@@ -63,11 +66,13 @@ struct POSFlashcardListView: View {
             }
         }
         // 既存：追加用
-        .sheet(isPresented: $showingAdd) {
+        .sheet(isPresented: $showingAdd, onDismiss: {
+            refreshID = UUID()
+        }) {
             AddWordView(pos: pos)
         }
         // 新規：編集用（ここ！）
-        .sheet(item: $editingWord) { c in
+        .sheet(item: $editingWord, onDismiss: { refreshID = UUID() }) { c in
             AddWordView(pos: pos, editing: c)
         }
     }
@@ -188,26 +193,44 @@ struct POSFlashcardView: View {
         let exEn: String = saved?.en ?? ""
         let exJa: String = saved?.ja ?? ""
         let note = saved?.note ?? ""
+        // 不規則動詞なら 3 形を表示＆読み上げ対象に
+        let isVerb = (c.pos == .verb)
+        let forms: [String] = isVerb ? (IrregularVerbBank.forms(for: c.word) ?? []) : []
+
+        // 表示用（英面のときだけ3形を表示）
+        let displayWord = (isVerb && !forms.isEmpty) ? forms.joined(separator: " · ") : c.word
+        // 読み上げ用（3形あれば全部読む）
+        let speakForms = (isVerb && !forms.isEmpty) ? forms : [c.word]
+        // ← 追加：保存済み状態をストアから読む
+        let isChecked = HomeworkStore.shared.isLearned(c)
+        let isFav     = HomeworkStore.shared.isFavorite(c)
         
         CardRow(
-            word: c.word,
+            word: displayWord,
             meaning: c.meaning,
             exampleEn: exEn,
             exampleJa: exJa,
             note: note,
             reversed: reversed,
-            isChecked: selected.contains(i),
-            isFav: favored.contains(i),
+            isChecked: isChecked,
+            isFav:     isFav,
             expanded: expanded == i,
             rowHeight: rowH,
-            checkTapped: { toggle(selected: i) },
-            heartTapped: { toggle(favored: i) },
+            checkTapped: {
+                HomeworkStore.shared.toggleLearned(c)
+            onDataChanged()
+            },
+            heartTapped: {
+                HomeworkStore.shared.toggleFavorite(c)
+            onDataChanged()
+            },
             centerTapped: {
                 withAnimation(.spring(response: 0.25)) {
                     expanded = (expanded == i ? nil : i)
                 }
             },
-            speakWordTapped: { speakWord(c.word) },
+            speakWordTapped: {
+                speakForms.forEach{ speakWord($0)}},
             speakExampleTapped: { speakExample(en: exEn, ja: exJa) },
             addExampleTapped: { addExample(for: c) },
             toggleSpeechSpeed: { speechFast.toggle() },
@@ -217,24 +240,23 @@ struct POSFlashcardView: View {
             accent: accent
         )
         .contextMenu {
-            // 単語カード自体の編集
-            Button {
-                onEdit(c)   // ← ListView 側で editingWord に入ってシートが開く
-            } label: {
-                Label("このカードを編集", systemImage: "square.and.pencil")
+                    // 単語カード自体の編集
+                    Button {
+                        onEdit(c)   // ← ListView 側で editingWord に入ってシートが開く
+                    } label: {
+                        Label("このカードを編集", systemImage: "square.and.pencil")
+                    }
+                    
+                    // 単語カード自体の削除（必要なら）
+                    Button(role: .destructive) {
+                        HomeworkStore.shared.delete(c)
+                        onDataChanged()   // ← 使っていれば再描画キー更新用（なければ省略OK）
+                    } label: {
+                        Label("このカードを削除", systemImage: "trash")
+                    }
+                }
             }
-            
-            // 単語カード自体の削除（必要なら）
-            Button(role: .destructive) {
-                HomeworkStore.shared.delete(c)
-                onDataChanged()   // ← 使っていれば再描画キー更新用（なければ省略OK）
-            } label: {
-                Label("このカードを削除", systemImage: "trash")
-            }
-        }
-    }
-
-    // まとめ帯
+  // まとめ帯
     private var actionBand: some View {
         HStack(spacing: 10) {
             Button { selected.removeAll() } label: { bandButton("📦 覚えたBOX", filled: !selected.isEmpty) }
