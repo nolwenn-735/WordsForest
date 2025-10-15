@@ -204,6 +204,7 @@ struct POSFlashcardView: View {
         // ← 追加：保存済み状態をストアから読む
         let isChecked = HomeworkStore.shared.isLearned(c)
         let isFav     = HomeworkStore.shared.isFavorite(c)
+
         
         CardRow(
             word: displayWord,

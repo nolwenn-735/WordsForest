@@ -122,6 +122,7 @@ final class HomeworkStore {
     func list(for pos: PartOfSpeech) -> [WordCard] {
         words
             .filter { $0.pos == pos }
+            .filter { !learned.contains(self.key(for: $0)) } // ← ここで覚えたを除外
             .map { sw in
                 WordCard(
                     word: sw.word,
@@ -159,7 +160,14 @@ final class HomeworkStore {
         saveFavorites()
     }
     func toggleFavorite(_ c: WordCard) { setFavorite(c, enabled: !isFavorite(c)) }
+    // My Collection 一覧
+    func favoriteList() -> [WordCard] {
+        words
+            .filter { favorites.contains(WordKey(pos: $0.pos, word: $0.word, meaning: $0.meaning)) }
+            .map { WordCard(word: $0.word, meaning: $0.meaning, pos: $0.pos) }
+    }
 
+    
     // 覚えたBOX
     func isLearned(_ c: WordCard) -> Bool { learned.contains(key(for: c)) }
     func setLearned(_ c: WordCard, enabled: Bool) {
@@ -168,6 +176,12 @@ final class HomeworkStore {
         saveLearned()
     }
     func toggleLearned(_ c: WordCard) { setLearned(c, enabled: !isLearned(c)) }
+    // 覚えたBOX 一覧
+    func learnedList() -> [WordCard] {
+        words
+            .filter { learned.contains(WordKey(pos: $0.pos, word: $0.word, meaning: $0.meaning)) }
+            .map { WordCard(word: $0.word, meaning: $0.meaning, pos: $0.pos) }
+    }
 }
 
 // 既存の補完＆更新（そのまま生かす）

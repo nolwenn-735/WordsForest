@@ -15,17 +15,26 @@ extension Color {
 
 // MARK: - 共通ボタンスタイルなど
 
+// 例: Commonstyles.swift
 struct ColoredPillButtonStyle: ButtonStyle {
+    enum Size { case regular, compact }
     var color: Color
+    var size: Size = .regular
+    var alpha: Double = 0.22
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.subheadline)
-            .foregroundColor(.white)
-            .padding(.horizontal, 14)
+            .font(.headline)
+            .lineLimit(1)
+            .minimumScaleFactor(0.9)      // 長い文言でも1行で少しだけ縮小
             .padding(.vertical, 8)
-            .background(color.opacity(configuration.isPressed ? 0.85 : 1.0))
-            .cornerRadius(12)
-            .animation(.easeInOut(duration: 0.12), value: configuration.isPressed)
+            .padding(.horizontal, 16)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                Capsule()
+                    .fill(color.opacity(configuration.isPressed ? alpha + 0.08 : alpha))
+        )
+            .overlay(Capsule().stroke(color.opacity(0.35)))
+            .foregroundStyle(.primary)
     }
 }
-

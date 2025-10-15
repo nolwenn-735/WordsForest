@@ -5,6 +5,7 @@ struct HomePage: View {
     @EnvironmentObject var hw: HomeworkState
     
     @State private var searchText = ""
+    @FocusState private var searchFocused: Bool
     @State private var showBannerAlert = false
     @State private var showRecent = false
     
@@ -39,15 +40,15 @@ struct HomePage: View {
                     HStack(spacing: 8) {
                         TextField("単語を検索（英語・日本語）", text: $searchText)
                             .textFieldStyle(.roundedBorder)
-                        
+                            .focused($searchFocused)
                         // 🔎 検索ボタン（結果画面へ遷移）
                         NavigationLink {
                             // --- 遷移先コンテンツをここで組み立て ---
                             let q = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-
+                            
                             // 全品詞からサンプルを集約
                             let allSamples: [WordCard] = PartOfSpeech.allCases.flatMap { SampleDeck.filtered(by: $0) }
-
+                            
                             // フィルタ条件：英単語 / 日本語 / 不規則動詞3形のどれかにヒット
                             let cards: [WordCard] = allSamples.filter { c in
                                 guard !q.isEmpty else { return false }
@@ -56,7 +57,7 @@ struct HomePage: View {
                                 let forms = IrregularVerbBank.forms(for: c.word) ?? []
                                 return forms.contains { $0.localizedCaseInsensitiveContains(q) }
                             }
-
+                            
                             POSFlashcardView(
                                 title: "検索結果",
                                 cards: cards,
@@ -69,9 +70,13 @@ struct HomePage: View {
                         } label: {
                             Text("検索")
                         }
-                        .disabled(searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-                        .buttonStyle(ColoredPillButtonStyle(color: .blue))
-                        }
+ /*                       .disabled(searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)*/
+                        .buttonStyle(.borderedProminent)
+                        .tint(.blue)
+                    }
+                    .buttonStyle(.automatic)
+                    .onAppear { searchFocused = false }
+                    .scrollDismissesKeyboard(.interactively)
                         
                         // ③ 今サイクル / 新着（既存のウィジェットをそのまま）
                         Group {
@@ -125,25 +130,34 @@ struct HomePage: View {
                                     }
                                 }
                             }
-                            
                             // ⑥ その他ページ（Stub。あとで本物に差し替え）
-                            NavigationLink("✏️ スペリング・チャレンジ") { SpellingChallengeView() }
-                                .buttonStyle(ColoredPillButtonStyle(color: .purple))
-                            
-                            NavigationLink("🍄 My Collection（覚えにくい単語）") { MyCollectionView() }
-                                .buttonStyle(ColoredPillButtonStyle(color: .pink))
-                            
-                            NavigationLink("🐺 コラムページ（ColumnPage）") { ColumnPage() }
-                                .buttonStyle(ColoredPillButtonStyle(color: .indigo))
-                            
-                            Spacer(minLength: 8)
+                            VStack(spacing: 8) {
+                                NavigationLink("✏️  スペリング・チャレンジ") { SpellingChallengeView() }
+                                    .buttonStyle(ColoredPillButtonStyle(color: .purple, size: .compact, alpha: 0.20))
+                                
+                                NavigationLink("💗  My Collection（覚えにくい単語）") { MyCollectionView() }
+                                    .buttonStyle(ColoredPillButtonStyle(color: .pink, size: .compact, alpha: 0.20))
+                                
+                                // 覚えたBOXへ
+                                NavigationLink {
+                                    LearnedBoxView()
+                                } label: {
+                                    Text("📦  覚えたBOX")
+                                }
+                                .buttonStyle(ColoredPillButtonStyle(color: .green, size: .compact, alpha: 0.20))
+                                
+                                NavigationLink("🐺  コラムページ（ColumnPage）") { ColumnPage() }
+                                    .buttonStyle(ColoredPillButtonStyle(color: .indigo, size: .compact, alpha: 0.20))
+                                
+                                Spacer(minLength: 8)
+                            }
                         }
-                        .padding(.horizontal, 16)
-                        .padding(.top, 4)
-                        .padding(.bottom,12)
+                        .padding(.horizontal, 12)
+                        .padding(.top, 2)
+                        .padding(.bottom,8)
                     }
                     // iPhone のホームインジケータに被らないための“下マージン”
-                    .safeAreaInset(edge: .bottom) { Color.clear.frame(height: 20) }
+                    .safeAreaInset(edge: .bottom) { Color.clear.frame(height: 12) }
                 }
                 // ← .navigationTitle は付けない（表紙と重複防止）
             }
@@ -178,9 +192,62 @@ struct HomePage: View {
         private struct SpellingChallengeView: View {
             var body: some View { Text("Spelling Challenge stub") }
         }
+        
+        // My Collection 一覧
         private struct MyCollectionView: View {
-            var body: some View { Text("My Collection stub") }
+            @State private var refreshID = UUID()
+
+            var body: some View {
+                // 実装名に合わせて：favoriteCards() or favoriteList()
+                let cards = HomeworkStore.shared.favoriteList()
+                
+                Group {
+                    if cards.isEmpty {
+                        ContentUnavailableView("まだありません", systemImage: "heart")
+                    } else {
+                        POSFlashcardView(
+                            title: "My Collection",
+                            cards: cards,
+                            accent: .pink,
+                            background: Color(.systemBackground),
+                            animalName: "index_chipmunk",
+                            reversed: false,
+                            onEdit: { _ in },                 // ここは未使用なら空でOK
+                            onDataChanged: { refreshID = UUID() } // ★トグル時に即更新
+                        )
+                    }
+                }
+                .id(refreshID)                          // ★これでビューを再評価
+                .navigationTitle("My Collection")
+            }
         }
+
+        // 覚えたBOX 一覧
+        private struct LearnedBoxView: View {
+            @State private var refreshID = UUID()
+            var body: some View {
+                let cards = HomeworkStore.shared.learnedList()   // ← 実装名は learnedList()
+                Group {
+                    if cards.isEmpty {
+                        ContentUnavailableView("まだありません", systemImage: "checkmark.circle")
+                    } else {
+                        POSFlashcardView(
+                            title: "覚えたBOX",
+                            cards: cards,
+                            accent: .green,
+                            background: Color(.systemBackground),
+                            animalName: "index_chipmunk",
+                            reversed: false,
+                            onEdit: { _ in },
+                            onDataChanged: { refreshID = UUID() }   // ← トグル時に即更新
+                        )
+                    }
+                }
+                .id(refreshID)
+                .navigationTitle("覚えたBOX")
+            }
+        }
+        
         private struct ColumnPage: View {
             var body: some View { Text("Column Page stub") }
         }
@@ -225,7 +292,6 @@ struct HomePage: View {
             .buttonStyle(.plain)                              // チップの見た目を維持
         }
     }
-  // ここに Cut した posRow / BookmarkColorItem / SpellingChallengeView /
-        // MyCollectionView / ColumnPage / HistoryAllView をそのまま貼り付け
+  
     
  
