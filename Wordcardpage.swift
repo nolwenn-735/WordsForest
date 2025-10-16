@@ -86,7 +86,8 @@ struct POSFlashcardView: View {
     let animalName: String
     let reversed: Bool
     let onEdit: (WordCard) -> Void
-    var onDataChanged: () -> Void = {}
+    var onDataChanged: () -> Void = { }//最初varだったやつをletにしてまたvarに戻した
+    var perRowAccent: Bool = false
     // レイアウト定数
     private let rowsPerScreen: CGFloat = 4
     private let screensPerVariant: CGFloat = 3
@@ -108,6 +109,28 @@ struct POSFlashcardView: View {
     @State private var editingCard: WordCard? = nil
     private func addExample(for c: WordCard) { editingCard = c }
 
+    init(
+        title: String,
+        cards: [WordCard],
+        accent: Color,
+        background: Color,
+        animalName: String,
+        reversed: Bool,
+        onEdit: @escaping (WordCard) -> Void,
+        onDataChanged: @escaping () -> Void = {},
+        perRowAccent: Bool = false
+    ) {
+        self.title = title
+        self.cards = cards
+        self.accent = accent
+        self.background = background
+        self.animalName = animalName
+        self.reversed = reversed
+        self.onEdit = onEdit
+        self.onDataChanged = onDataChanged
+        self.perRowAccent = perRowAccent
+    }
+    
     var body: some View {
         ZStack {
             background.ignoresSafeArea()
@@ -196,7 +219,7 @@ struct POSFlashcardView: View {
         // 不規則動詞なら 3 形を表示＆読み上げ対象に
         let isVerb = (c.pos == .verb)
         let forms: [String] = isVerb ? (IrregularVerbBank.forms(for: c.word) ?? []) : []
-
+        
         // 表示用（英面のときだけ3形を表示）
         let displayWord = (isVerb && !forms.isEmpty) ? forms.joined(separator: " · ") : c.word
         // 読み上げ用（3形あれば全部読む）
@@ -204,7 +227,7 @@ struct POSFlashcardView: View {
         // ← 追加：保存済み状態をストアから読む
         let isChecked = HomeworkStore.shared.isLearned(c)
         let isFav     = HomeworkStore.shared.isFavorite(c)
-
+        
         
         CardRow(
             word: displayWord,
@@ -219,11 +242,11 @@ struct POSFlashcardView: View {
             rowHeight: rowH,
             checkTapped: {
                 HomeworkStore.shared.toggleLearned(c)
-            onDataChanged()
+                onDataChanged()
             },
             heartTapped: {
                 HomeworkStore.shared.toggleFavorite(c)
-            onDataChanged()
+                onDataChanged()
             },
             centerTapped: {
                 withAnimation(.spring(response: 0.25)) {
@@ -238,25 +261,37 @@ struct POSFlashcardView: View {
             speechFast: speechFast,
             toggleSpeakBoth: { speakBoth.toggle() },
             speakBoth: speakBoth,
-            accent: accent
+            accent: (perRowAccent ? c.pos.accent : accent)
         )
-        .contextMenu {
-                    // 単語カード自体の編集
-                    Button {
-                        onEdit(c)   // ← ListView 側で editingWord に入ってシートが開く
-                    } label: {
-                        Label("このカードを編集", systemImage: "square.and.pencil")
+        // CardRow( … ) のすぐ後ろに付ける
+        .overlay(alignment: .bottomLeading) {
+            ZStack {
+                // ここが「長押しでメニュー」の当たり判定
+                Color.clear
+                    .frame(width: 36, height: 36)
+                    .contentShape(Rectangle())
+                    .contextMenu {
+                        Button { onEdit(c) } label: {
+                            Label("このカードを編集", systemImage: "square.and.pencil")
+                        }
+                        Button(role: .destructive) {
+                            HomeworkStore.shared.delete(c)
+                            onDataChanged()
+                        } label: {
+                            Label("このカードを削除", systemImage: "trash")
+                        }
                     }
-                    
-                    // 単語カード自体の削除（必要なら）
-                    Button(role: .destructive) {
-                        HomeworkStore.shared.delete(c)
-                        onDataChanged()   // ← 使っていれば再描画キー更新用（なければ省略OK）
-                    } label: {
-                        Label("このカードを削除", systemImage: "trash")
-                    }
-                }
+                
+                // 見た目の“ … ”インジケーター（薄いグレー）
+                Image(systemName: "ellipsis")
+                    .font(.caption2)                  // 小さめ
+                    .foregroundStyle(.secondary)      // 薄いグレー
+                    .opacity(0.7)
             }
+            .padding(.leading, 6)                     // 角に寄せる量はお好みで調整
+            .padding(.bottom, 4)
+        }
+    }
   // まとめ帯
     private var actionBand: some View {
         HStack(spacing: 10) {
@@ -345,7 +380,8 @@ private struct CardRow: View {
                     Button(action: checkTapped) {
                         Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
                             .font(.title2)
-                            .foregroundStyle(accent)
+                            .symbolRenderingMode(.monochrome)
+                            .foregroundStyle(isChecked ? accent : .secondary)
                     }
 
                     Text(reversed ? meaning : word)
@@ -358,7 +394,8 @@ private struct CardRow: View {
                     Button(action: heartTapped) {
                         Image(systemName: isFav ? "heart.fill" : "heart")
                             .font(.title2)
-                            .foregroundStyle(accent)
+                            .symbolRenderingMode(.monochrome)
+                            .foregroundStyle(isFav ? accent : .secondary) 
                     }
                 }
                 .frame(minHeight: rowHeight)

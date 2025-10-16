@@ -198,9 +198,7 @@ struct HomePage: View {
             @State private var refreshID = UUID()
 
             var body: some View {
-                // 実装名に合わせて：favoriteCards() or favoriteList()
                 let cards = HomeworkStore.shared.favoriteList()
-                
                 Group {
                     if cards.isEmpty {
                         ContentUnavailableView("まだありません", systemImage: "heart")
@@ -210,14 +208,15 @@ struct HomePage: View {
                             cards: cards,
                             accent: .pink,
                             background: Color(.systemBackground),
-                            animalName: "index_chipmunk",
+                            animalName: "mycol_flowers",
                             reversed: false,
-                            onEdit: { _ in },                 // ここは未使用なら空でOK
-                            onDataChanged: { refreshID = UUID() } // ★トグル時に即更新
+                            onEdit: { _ in },
+                            onDataChanged: { refreshID = UUID() },   // ← これ重要！
+                            perRowAccent: true                       // 行ごと品詞色
                         )
+                        .id(refreshID)                               // ← 再評価のキー
                     }
                 }
-                .id(refreshID)                          // ★これでビューを再評価
                 .navigationTitle("My Collection")
             }
         }
@@ -225,8 +224,9 @@ struct HomePage: View {
         // 覚えたBOX 一覧
         private struct LearnedBoxView: View {
             @State private var refreshID = UUID()
+
             var body: some View {
-                let cards = HomeworkStore.shared.learnedList()   // ← 実装名は learnedList()
+                let cards = HomeworkStore.shared.learnedList()
                 Group {
                     if cards.isEmpty {
                         ContentUnavailableView("まだありません", systemImage: "checkmark.circle")
@@ -236,14 +236,15 @@ struct HomePage: View {
                             cards: cards,
                             accent: .green,
                             background: Color(.systemBackground),
-                            animalName: "index_chipmunk",
+                            animalName: "mycol_mushroom",
                             reversed: false,
                             onEdit: { _ in },
-                            onDataChanged: { refreshID = UUID() }   // ← トグル時に即更新
+                            onDataChanged: { refreshID = UUID() },     // ← 重要！
+                            perRowAccent: true
                         )
+                        .id(refreshID)
                     }
                 }
-                .id(refreshID)
                 .navigationTitle("覚えたBOX")
             }
         }
