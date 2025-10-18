@@ -1,12 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "index_chipmunk.png",
+      "filename" : "tutor_husky_shit.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "index_chipmunk 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -18,8 +17,5 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "localizable" : true
   }
 }

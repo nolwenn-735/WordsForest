@@ -146,7 +146,7 @@ struct HomePage: View {
                                 }
                                 .buttonStyle(ColoredPillButtonStyle(color: .green, size: .compact, alpha: 0.20))
                                 
-                                NavigationLink("🐺  コラムページ（ColumnPage）") { ColumnPage() }
+                                NavigationLink("🐺🦌  コラムページ（ColumnPage）") { ColumnPage() }
                                     .buttonStyle(ColoredPillButtonStyle(color: .indigo, size: .compact, alpha: 0.20))
                                 
                                 Spacer(minLength: 8)
@@ -236,7 +236,7 @@ struct HomePage: View {
                             cards: cards,
                             accent: .green,
                             background: Color(.systemBackground),
-                            animalName: "mycol_mushroom",
+                            animalName: "mycol_berry",
                             reversed: false,
                             onEdit: { _ in },
                             onDataChanged: { refreshID = UUID() },     // ← 重要！
