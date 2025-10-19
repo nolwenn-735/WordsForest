@@ -88,9 +88,26 @@ final class HomeworkStore {
     }
 
     // MARK: - CRUD
-    func add(word: String, meaning: String, pos: PartOfSpeech) {
-        words.append(.init(word: word, meaning: meaning, pos: pos))
+    // HomeworkStore.swift
+    @discardableResult
+    func add(word: String, meaning: String, pos: PartOfSpeech) -> Bool {
+        // 余白除去＆空文字は弾く
+        let w = word.trimmingCharacters(in: .whitespacesAndNewlines)
+        let m = meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !w.isEmpty, !m.isEmpty else { return false }
+
+        // 同一（品詞＋英単語＋意味）が既にあれば追加しない（英単語は大文字小文字を無視）
+        if words.contains(where: {
+            $0.pos == pos &&
+            $0.word.compare(w, options: .caseInsensitive) == .orderedSame &&
+            $0.meaning == m
+        }) {
+            return false
+        }
+
+        words.append(.init(word: w, meaning: m, pos: pos))
         save()
+        return true
     }
 
     func clear() {
@@ -118,6 +135,20 @@ final class HomeworkStore {
         if learned.remove(k) != nil   { saveLearned()   }
     }
 
+    // MARK: - 重複チェックヘルパ
+    func exists(word: String, pos: PartOfSpeech) -> Bool {
+        words.contains { $0.pos == pos && $0.word == word }
+    }
+
+    func exists(word: String, meaning: String, pos: PartOfSpeech) -> Bool {
+        words.contains { $0.pos == pos && $0.word == word && $0.meaning == meaning }
+    }
+
+    func existingMeanings(for word: String, pos: PartOfSpeech) -> [String] {
+        words
+            .filter { $0.pos == pos && $0.word == word }
+            .map { $0.meaning }
+    }
     /// 一覧表示用に変換
     func list(for pos: PartOfSpeech) -> [WordCard] {
         words

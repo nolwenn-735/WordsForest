@@ -14,6 +14,8 @@ struct AddWordView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var word: String = ""
     @State private var meaning: String = ""
+    @State private var dupWord = false
+    @State private var dupExact = false
 
     private var trimmedWord: String { word.trimmingCharacters(in: .whitespacesAndNewlines) }
     private var trimmedMeaning: String { meaning.trimmingCharacters(in: .whitespacesAndNewlines) }
@@ -31,6 +33,13 @@ struct AddWordView: View {
                     TextField("さまよう", text: $meaning)
                 }
             }
+            
+            .onChange(of: word,    initial: true) { _, _ in
+                updateDupFlags()
+            }
+            .onChange(of: meaning) { _, _ in
+                updateDupFlags()
+            }
             .navigationTitle(editing == nil ? "単語を追加" : "単語を編集")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -40,7 +49,7 @@ struct AddWordView: View {
                     Button(editing == nil ? "追加" : "更新") {
                         save()
                     }
-                    .disabled(!canSave)
+                    .disabled(!canSave || dupExact)
                 }
             }
             // 編集時だけフッターに「削除」を表示
@@ -73,6 +82,18 @@ struct AddWordView: View {
         dismiss()
     }
 
+    private func updateDupFlags() {
+        let w = trimmedWord
+            let m = trimmedMeaning
+            guard !w.isEmpty else {
+                dupWord = false
+                dupExact = false
+                return
+            }
+            dupWord  = HomeworkStore.shared.exists(word: w, pos: pos)
+            dupExact = HomeworkStore.shared.exists(word: w, meaning: m, pos: pos)
+    }
+    
     private func deleteCard() {
         if let c = editing {
             HomeworkStore.shared.delete(c)
