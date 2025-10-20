@@ -55,7 +55,10 @@ final class HomeworkStore {
             words = arr
         }
     }
-
+    // MARK: - 正規化ヘルパ
+    private func norm(_ s: String) -> String {
+        s.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    }
     // MARK: - 新規: 保存/読込（お気に入り・覚えた）
     private func saveFavorites() {
         let data = try? JSONEncoder().encode(Array(favorites))
@@ -88,24 +91,11 @@ final class HomeworkStore {
     }
 
     // MARK: - CRUD
-    // HomeworkStore.swift
+
     @discardableResult
     func add(word: String, meaning: String, pos: PartOfSpeech) -> Bool {
-        // 余白除去＆空文字は弾く
-        let w = word.trimmingCharacters(in: .whitespacesAndNewlines)
-        let m = meaning.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !w.isEmpty, !m.isEmpty else { return false }
-
-        // 同一（品詞＋英単語＋意味）が既にあれば追加しない（英単語は大文字小文字を無視）
-        if words.contains(where: {
-            $0.pos == pos &&
-            $0.word.compare(w, options: .caseInsensitive) == .orderedSame &&
-            $0.meaning == m
-        }) {
-            return false
-        }
-
-        words.append(.init(word: w, meaning: m, pos: pos))
+        if exists(word: word, meaning: meaning, pos: pos) { return false } // 完全かぶりは弾く
+        words.append(.init(word: word, meaning: meaning, pos: pos))
         save()
         return true
     }
@@ -137,17 +127,28 @@ final class HomeworkStore {
 
     // MARK: - 重複チェックヘルパ
     func exists(word: String, pos: PartOfSpeech) -> Bool {
-        words.contains { $0.pos == pos && $0.word == word }
+        let w = norm(word)
+        return words.contains { $0.pos == pos && norm($0.word) == w }
     }
 
     func exists(word: String, meaning: String, pos: PartOfSpeech) -> Bool {
-        words.contains { $0.pos == pos && $0.word == word && $0.meaning == meaning }
+        let w = norm(word)
+        let m = meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+        return words.contains {
+            $0.pos == pos &&
+            norm($0.word) == w &&
+            $0.meaning.trimmingCharacters(in: .whitespacesAndNewlines) == m
+        }
     }
 
+    // 既存意味の一覧（重複除去して返す）
     func existingMeanings(for word: String, pos: PartOfSpeech) -> [String] {
-        words
-            .filter { $0.pos == pos && $0.word == word }
-            .map { $0.meaning }
+        let w = norm(word)
+        let list = words
+            .filter { $0.pos == pos && norm($0.word) == w }
+            .map { $0.meaning.trimmingCharacters(in: .whitespacesAndNewlines) }
+        var seen = Set<String>()
+        return list.filter { seen.insert($0).inserted }
     }
     /// 一覧表示用に変換
     func list(for pos: PartOfSpeech) -> [WordCard] {
