@@ -141,25 +141,59 @@ struct HomePage: View {
                                     }
                                 }
                             }
-                            // ⑥ その他ページ（Stub。あとで本物に差し替え）
-                            VStack(spacing: 8) {
-                                NavigationLink("✏️  スペリング・チャレンジ") { SpellingChallengeView() }
-                                    .buttonStyle(ColoredPillButtonStyle(color: .purple, size: .compact, alpha: 0.20))
-                                
-                                NavigationLink("💗  My Collection（覚えにくい単語）") { MyCollectionView() }
-                                    .buttonStyle(ColoredPillButtonStyle(color: .pink, size: .compact, alpha: 0.20))
-                                
-                                // 覚えたBOXへ
-                                NavigationLink {
-                                    LearnedBoxView()
-                                } label: {
-                                    Text("📦  覚えたBOX")
+                            // （中略）VStack(spacing: 8) {
+
+                            let favCount     = HomeworkStore.shared.favoritesCount
+                            let learnedCount = HomeworkStore.shared.learnedCount
+
+                            NavigationLink("✏️  スペリング・チャレンジ") {
+                                SpellingChallengeView()
+                            }
+                            .buttonStyle(ColoredPillButtonStyle(color: .purple, size: .compact, alpha: 0.20))
+
+                            // My Collection
+                            NavigationLink("💗  My Collection（覚えにくい単語）") {
+                                MyCollectionView()
+                            }
+                            .buttonStyle(ColoredPillButtonStyle(color: .pink, size: .compact, alpha: 0.20))
+                            .overlay(alignment: .topTrailing) {
+                                if favCount > 0 {
+                                    Text("\(favCount)")
+                                        .font(.caption2).bold()
+                                        .padding(6)
+                                        .background(Circle().fill(.red))
+                                        .foregroundColor(.white)
+                                        .padding(.top, 6)                  // ← 内側へ寄せる（上）
+                                        .padding(.trailing, 10)
                                 }
-                                .buttonStyle(ColoredPillButtonStyle(color: .green, size: .compact, alpha: 0.20))
-                                
-                                NavigationLink("🐺🦌  コラムページ（ColumnPage）") { ColumnPage() }
-                                    .buttonStyle(ColoredPillButtonStyle(color: .indigo, size: .compact, alpha: 0.20))
-                                
+                            }
+
+                            // 覚えたBOX
+                            NavigationLink {
+                                LearnedBoxView()
+                            } label: {
+                                Text("📦  覚えたBOX")
+                            }
+                            .buttonStyle(ColoredPillButtonStyle(color: .green, size: .compact, alpha: 0.20))
+                            .overlay(alignment: .topTrailing) {
+                                if learnedCount > 0 {
+                                    Text("\(learnedCount)")
+                                        .font(.caption2).bold()
+                                        .padding(6)
+                                        .background(Circle().fill(.green))
+                                        .foregroundColor(.white)
+                                        .padding(.top, 6)                  // ← 内側へ寄せる（上）
+                                        .padding(.trailing, 10)
+                                }
+                            }
+
+                            // コラムページはそのまま
+                            NavigationLink("🐺🦌  コラムページ（ColumnPage）") {
+                                ColumnPage()
+                            }
+                            .buttonStyle(ColoredPillButtonStyle(color: .indigo, size: .compact, alpha: 0.20))
+
+                            // } // VSTack 終わり
                                 Spacer(minLength: 8)
                             }
                         }
@@ -173,7 +207,7 @@ struct HomePage: View {
                 // ← .navigationTitle は付けない（表紙と重複防止）
             }
         }
-    }
+    
 
     // ===== body の外に出す箱 =====
     extension HomePage {

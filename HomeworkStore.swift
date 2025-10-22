@@ -44,6 +44,11 @@ final class HomeworkStore {
     private(set) var favorites: Set<WordKey> = []
     private(set) var learned: Set<WordKey> = []
 
+    var favoritesCount: Int { favorites.count }
+    var learnedCount:  Int { learned.count }
+    
+    var hasFavorites:  Bool { !favorites.isEmpty }
+    var hasLearned:    Bool { !learned.isEmpty }
     // MARK: - 単語の保存/読込（既存）
     private func save() {
         let data = try? JSONEncoder().encode(words)
@@ -234,5 +239,6 @@ extension HomeworkStore {
                 count += 1
             }
         }
-    }
+    }    
 }
+
