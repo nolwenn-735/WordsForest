@@ -37,27 +37,37 @@ struct HomePage: View {
                     
                     
                     // ② 検索
+                    // === 検索 ===
                     HStack(spacing: 8) {
                         TextField("単語を検索（英語・日本語）", text: $searchText)
                             .textFieldStyle(.roundedBorder)
+                            .textInputAutocapitalization(.never)   // ← 先頭が勝手に大文字にならない
+                            .autocorrectionDisabled()              // ← 自動修正オフ
+                            .textContentType(.none)                // ← 「Auto Fill」候補を出さない
                             .focused($searchFocused)
-                        // 🔎 検索ボタン（結果画面へ遷移）
+                            .submitLabel(.search)
+
                         NavigationLink {
-                            // --- 遷移先コンテンツをここで組み立て ---
+                            // 入力文字列を整える
                             let q = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-                            
-                            // 全品詞からサンプルを集約
-                            let allSamples: [WordCard] = PartOfSpeech.allCases.flatMap { SampleDeck.filtered(by: $0) }
-                            
-                            // フィルタ条件：英単語 / 日本語 / 不規則動詞3形のどれかにヒット
-                            let cards: [WordCard] = allSamples.filter { c in
-                                guard !q.isEmpty else { return false }
+                            let isEmpty = q.isEmpty
+
+                            // 検索対象（先生の登録 + サンプル）を統合＆重複除去
+                            let userCards: [WordCard] =
+                                PartOfSpeech.allCases.flatMap { HomeworkStore.shared.list(for: $0) }
+                            let sampleCards: [WordCard] =
+                                PartOfSpeech.allCases.flatMap { SampleDeck.filtered(by: $0) }
+                            let all: [WordCard] = (userCards + sampleCards)
+                                .uniqued(by: { "\($0.pos)|\($0.word.lowercased())|\($0.meaning)" })
+                            // 条件：英単語 / 日本語 / 不規則動詞の形
+                            let cards: [WordCard] = all.filter { c in
+                                guard !isEmpty else { return false }
                                 if c.word.localizedCaseInsensitiveContains(q) { return true }
                                 if c.meaning.localizedCaseInsensitiveContains(q) { return true }
                                 let forms = IrregularVerbBank.forms(for: c.word) ?? []
                                 return forms.contains { $0.localizedCaseInsensitiveContains(q) }
                             }
-                            
+
                             POSFlashcardView(
                                 title: "検索結果",
                                 cards: cards,
@@ -65,12 +75,13 @@ struct HomePage: View {
                                 background: Color(.systemGray6),
                                 animalName: "index_chipmunk",
                                 reversed: false,
-                                onEdit: { _ in }
+                                onEdit: { _ in },
+                                perRowAccent: true
                             )
                         } label: {
                             Text("検索")
                         }
- /*                       .disabled(searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)*/
+    
                         .buttonStyle(.borderedProminent)
                         .tint(.blue)
                     }
@@ -294,5 +305,4 @@ struct HomePage: View {
         }
     }
   
-    
  

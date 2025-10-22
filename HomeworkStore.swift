@@ -55,6 +55,7 @@ final class HomeworkStore {
             words = arr
         }
     }
+    
     // MARK: - 正規化ヘルパ
     private func norm(_ s: String) -> String {
         s.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
