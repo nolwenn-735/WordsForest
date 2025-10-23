@@ -9,40 +9,46 @@ import SwiftUI
 
 extension PartOfSpeech {
 
-    // 画面の背景に使う色（Assets の Color Set 名）
+    // 画面の背景色（Assets の Color Set 名）
     var backgroundColor: Color {
         switch self {
-        case .noun: return Color("nounPink")
-        case .verb: return Color("verbBlue")
-        case .adj:  return Color("adjGreen")
-        case .adv:  return Color("advYellow")
+        case .noun:   return Color("nounPink")
+        case .verb:   return Color("verbBlue")
+        case .adj:    return Color("adjGreen")
+        case .adv:    return Color("advYellow")
+        case .others: return Color("othersLavender")
         }
     }
 
-    // アイコン等のアクセント色（任意）
-    var accent: Color {
+    // アクセント色（ボタンなど）
+    var accentColor: Color {
         switch self {
-        case .noun: return .pink
-        case .verb: return .blue
-        case .adj:  return .green
-        case .adv:  return .yellow
+        case .noun:   return .pink
+        case .verb:   return .blue
+        case .adj:    return .green
+        case .adv:    return .yellow
+        case .others: return Color("othersPurple")
         }
     }
 
-    // サイクル番号から表示する動物画像名を1つ選ぶ
+    // 互換用（過去に pos.accent を使っていた呼び出しを生かす）
+    var accent: Color { accentColor }
+
+    // サイクル番号から、表示する動物画像名を 1 つ選ぶ
     func animalName(forCycle cycle: Int) -> String {
         let list = animalVariants
         guard !list.isEmpty else { return "" }
         return list[cycle % list.count]
     }
 
-    // 品詞ごとの画像名リスト（Assets の画像名）
+    // 品詞ごとの画像名リスト（Assets の名前）
     private var animalVariants: [String] {
         switch self {
-        case .noun: return ["noun_bear_brown", "noun_bear_white", "noun_bear_panda"]
-        case .verb: return ["verb_cat_gray", "verb_cat_black", "verb_cat_tabby"]
-        case .adj:  return ["adj_rabbit_white", "adj_rabbit_beige", "adj_rabbit_gray"]
-        case .adv:  return ["adv_alpaca_ivory", "adv_alpaca_brown", "adv_alpaca_beige"]
+        case .noun:   return ["noun_bear_brown", "noun_bear_white", "noun_bear_panda"]
+        case .verb:   return ["verb_cat_gray", "verb_cat_black", "verb_cat_tabby"]
+        case .adj:    return ["adj_rabbit_white", "adj_rabbit_beige", "adj_rabbit_gray"]
+        case .adv:    return ["adv_alpaca_ivory", "adv_alpaca_brown", "adv_alpaca_beige"]
+        case .others: return ["others_deer_fawn", "others_deer_doe", "others_deer_stag"]
         }
     }
 }

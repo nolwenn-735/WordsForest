@@ -66,6 +66,7 @@ final class HomeworkState: ObservableObject {
     @Published var status: HomeworkStatus {
         didSet { statusRaw = status.rawValue; logNow() }
     }
+    @Published var variantOthers = 0
     // 週合計24の内訳（お好みで変更可）
     @Published var weeklyQuota: [PartOfSpeech: Int] = [
         .noun: 12, .verb: 0, .adj: 12, .adv: 0
@@ -143,6 +144,7 @@ final class HomeworkState: ObservableObject {
         case .adj: return variantAdj
         case .verb: return variantVerb
         case .adv: return variantAdv
+        case .others: return variantNoun
         }
     }
 

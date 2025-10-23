@@ -237,6 +237,7 @@ final class HomeworkStore {
 extension HomeworkStore {
     /// 品詞ごとに target 枚になるまで SampleDeck から重複なく補完
     func autofill(for pos: PartOfSpeech, target: Int = 24) {
+        guard pos != .others else { return }
         let current = list(for: pos)
         guard current.count < target else { return }
 

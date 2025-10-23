@@ -46,6 +46,18 @@ enum SampleDeck {
                 WordCard(word: "carefully",meaning: "注意深く", pos: .adv),
                 WordCard(word: "often",    meaning: "しばしば", pos: .adv),
             ]
+        case .others:
+            return [
+                WordCard(word: "the",  meaning: "定冠詞",           pos: .others),
+                WordCard(word: "a",    meaning: "不定冠詞",         pos: .others),
+                WordCard(word: "in",   meaning: "前置詞 〜の中で",   pos: .others),
+                WordCard(word: "on",   meaning: "前置詞 〜の上に",   pos: .others),
+                WordCard(word: "to",   meaning: "不定詞/前置詞 to",  pos: .others),
+                WordCard(word: "and",  meaning: "接続詞 〜と",       pos: .others),
+                WordCard(word: "but",  meaning: "接続詞 しかし",     pos: .others),
+                WordCard(word: "can",  meaning: "助動詞 〜できる",   pos: .others)
+            ]
+
         }
     }
 

@@ -58,9 +58,9 @@ struct HomePage: View {
 
                             // 検索対象（先生の登録 + サンプル）を統合＆重複除去
                             let userCards: [WordCard] =
-                                PartOfSpeech.allCases.flatMap { HomeworkStore.shared.list(for: $0) }
+                                PartOfSpeech.homeworkCases.flatMap { HomeworkStore.shared.list(for: $0) }
                             let sampleCards: [WordCard] =
-                                PartOfSpeech.allCases.flatMap { SampleDeck.filtered(by: $0) }
+                                PartOfSpeech.homeworkCases.flatMap { SampleDeck.filtered(by: $0) }
                             let all: [WordCard] = (userCards + sampleCards)
                                 .uniqued(by: { "\($0.pos)|\($0.word.lowercased())|\($0.meaning)" })
                             // 条件：英単語 / 日本語 / 不規則動詞の形
@@ -191,10 +191,32 @@ struct HomePage: View {
                             }
 
                             // コラムページはそのまま
-                            NavigationLink("🐺🦌  コラムページ（ColumnPage）") {
-                                ColumnPage()
-                            }
-                            .buttonStyle(ColoredPillButtonStyle(color: .indigo, size: .compact, alpha: 0.20))
+                    HStack(spacing: 8) {
+                        // 🐺 コラム（薄い indigo、左下マスコット想定）
+                        NavigationLink("🐺 コラム (新着）") {
+                            ColumnArticleView(
+                                title: " ",
+                                content: " ",
+                            )
+                                .background(Color.indigo.opacity(0.10))
+                            // ColumnPage 側で左下マスコット (tutor_husky 系) を表示
+                        }
+                        .buttonStyle(ColoredPillButtonStyle(color: .indigo, size: .compact, alpha: 0.20))
+
+                        // 🦌 その他品詞（薄い紫、右下マスコット）
+                        NavigationLink("🦌 その他品詞") {
+                            POSFlashcardView(
+                                title: "その他品詞レッスン",
+                                cards: HomeworkStore.shared.list(for: .others),   // ← .others を使う
+                                accent: (PartOfSpeech.others.accentColor),           //
+                                background: PartOfSpeech.others.backgroundColor.opacity(0.15),
+                                animalName: "others_deer_stag",                           // 右下マスコット
+                                reversed: false,
+                                onEdit: { _ in }
+                            )
+                        }
+                        .buttonStyle(ColoredPillButtonStyle(color: .orange, size: .compact, alpha: 0.20))
+                    }
 
                             // } // VSTack 終わり
                                 Spacer(minLength: 8)
