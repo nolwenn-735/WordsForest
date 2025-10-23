@@ -94,7 +94,7 @@ struct POSFlashcardView: View {
     private let actionBandTailRatio: CGFloat = 0.15
 
     // 状態
-    @State private var speechFast = false     // ゆっくり（🐢/🐇）
+    @State private var speechFast = false     // ゆっくり（🐢）
     @State private var speakBoth  = true      // 例文を英＋日で読む
     private let tts = AVSpeechSynthesizer()
 
@@ -174,7 +174,7 @@ struct POSFlashcardView: View {
                 }
 
                 // まとめ帯（末尾15%で出現）
-                if showActionBand(blockH: blockH) {
+                  if showActionBand(blockH: blockH) {
                     actionBand
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                         .animation(.easeOut(duration: 0.25),

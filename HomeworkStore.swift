@@ -44,11 +44,7 @@ final class HomeworkStore {
     private(set) var favorites: Set<WordKey> = []
     private(set) var learned: Set<WordKey> = []
 
-    var favoritesCount: Int { favorites.count }
-    var learnedCount:  Int { learned.count }
     
-    var hasFavorites:  Bool { !favorites.isEmpty }
-    var hasLearned:    Bool { !learned.isEmpty }
     // MARK: - 単語の保存/読込（既存）
     private func save() {
         let data = try? JSONEncoder().encode(words)
@@ -194,9 +190,17 @@ final class HomeworkStore {
     func isFavorite(_ c: WordCard) -> Bool { favorites.contains(key(for: c)) }
     func setFavorite(_ c: WordCard, enabled: Bool) {
         let k = key(for: c)
-        if enabled { favorites.insert(k) } else { favorites.remove(k) }
-        saveFavorites()
+        if enabled {
+            if favorites.insert(k).inserted {          // 追加が本当に起きた時だけ
+                saveFavorites()
+                NotificationCenter.default.post(name: .favoritesDidChange, object: nil)
+            }
+        } else if favorites.remove(k) != nil {          // 削除が本当に起きた時だけ
+            saveFavorites()
+            NotificationCenter.default.post(name: .favoritesDidChange, object: nil)
+        }
     }
+
     func toggleFavorite(_ c: WordCard) { setFavorite(c, enabled: !isFavorite(c)) }
     // My Collection 一覧
     func favoriteList() -> [WordCard] {
@@ -210,8 +214,15 @@ final class HomeworkStore {
     func isLearned(_ c: WordCard) -> Bool { learned.contains(key(for: c)) }
     func setLearned(_ c: WordCard, enabled: Bool) {
         let k = key(for: c)
-        if enabled { learned.insert(k) } else { learned.remove(k) }
-        saveLearned()
+        if enabled {
+            if learned.insert(k).inserted {
+                saveLearned()
+                NotificationCenter.default.post(name: .learnedDidChange, object: nil)
+            }
+        } else if learned.remove(k) != nil {
+            saveLearned()
+            NotificationCenter.default.post(name: .learnedDidChange, object: nil)
+        }
     }
     func toggleLearned(_ c: WordCard) { setLearned(c, enabled: !isLearned(c)) }
     // 覚えたBOX 一覧
@@ -241,4 +252,20 @@ extension HomeworkStore {
         }
     }    
 }
+
+extension Notification.Name {
+    static let favoritesChanged = Notification.Name("FavoritesChanged")
+    static let learnedChanged   = Notification.Name("LearnedChanged")
+    static let favoritesDidChange = Notification.Name("FavoritesDidChange")
+    static let learnedDidChange   = Notification.Name("LearnedDidChange")
+}
+    
+// MARK: - HomePage 用の読み取りプロパティ
+extension HomeworkStore {
+    var favoritesCount: Int { favorites.count }
+    var learnedCount:  Int { learned.count }
+    var hasFavorites:  Bool { !favorites.isEmpty }
+    var hasLearned:    Bool { !learned.isEmpty }
+}
+
 

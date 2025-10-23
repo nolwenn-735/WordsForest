@@ -8,11 +8,16 @@ struct HomePage: View {
     @FocusState private var searchFocused: Bool
     @State private var showBannerAlert = false
     @State private var showRecent = false
+    @State private var favCount     = HomeworkStore.shared.favoritesCount
+    @State private var learnedCount = HomeworkStore.shared.learnedCount 
+
+    private var favBadgeText: String { favCount > 99 ? "99+" : "\(favCount)" }
+    private var learnedBadgeText: String { learnedCount > 99 ? "99+" : "\(learnedCount)" }
     
     // 栞は今は非表示（必要になったら true）
     private let showBookmarks = false
     private let bookmarkColors: [Color] = [.red, .blue, .green, .orange, .purple]
-    
+   
     var body: some View {
         ZStack {
             Color.homeIvory.ignoresSafeArea()
@@ -37,7 +42,6 @@ struct HomePage: View {
                     
                     
                     // ② 検索
-                    // === 検索 ===
                     HStack(spacing: 8) {
                         TextField("単語を検索（英語・日本語）", text: $searchText)
                             .textFieldStyle(.roundedBorder)
@@ -73,7 +77,7 @@ struct HomePage: View {
                                 cards: cards,
                                 accent: .gray.opacity(0.6),
                                 background: Color(.systemGray6),
-                                animalName: "index_chipmunk",
+                                animalName: "index_raccoon",                                
                                 reversed: false,
                                 onEdit: { _ in },
                                 perRowAccent: true
@@ -90,14 +94,14 @@ struct HomePage: View {
                     .scrollDismissesKeyboard(.interactively)
                         
                         // ③ 今サイクル / 新着（既存のウィジェットをそのまま）
-                        Group {
-                            HomeworkBanner()
-                                .overlay(alignment: .topTrailing) {
-                                    WeeklySetMiniButton()              // ← 右上に重ねる
-                                        .padding(.top, 8)
-                                        .padding(.trailing, 8)
-                                }
-                            
+                    Group {
+                        HomeworkBanner()
+                            .overlay(alignment: .topTrailing) {
+                                WeeklySetMiniButton()              // ← 右上に重ねる
+                                    .padding(.top, 8)
+                                    .padding(.trailing, 8)
+                            }
+                    }
                             // 🆕 新着情報（直近4件）
                             VStack(alignment: .leading, spacing: 8) {
                                 HStack {
@@ -143,8 +147,7 @@ struct HomePage: View {
                             }
                             // （中略）VStack(spacing: 8) {
 
-                            let favCount     = HomeworkStore.shared.favoritesCount
-                            let learnedCount = HomeworkStore.shared.learnedCount
+                            
 
                             NavigationLink("✏️  スペリング・チャレンジ") {
                                 SpellingChallengeView()
@@ -158,7 +161,7 @@ struct HomePage: View {
                             .buttonStyle(ColoredPillButtonStyle(color: .pink, size: .compact, alpha: 0.20))
                             .overlay(alignment: .topTrailing) {
                                 if favCount > 0 {
-                                    Text("\(favCount)")
+                                    Text(favBadgeText)
                                         .font(.caption2).bold()
                                         .padding(6)
                                         .background(Circle().fill(.red))
@@ -177,7 +180,7 @@ struct HomePage: View {
                             .buttonStyle(ColoredPillButtonStyle(color: .green, size: .compact, alpha: 0.20))
                             .overlay(alignment: .topTrailing) {
                                 if learnedCount > 0 {
-                                    Text("\(learnedCount)")
+                                    Text(learnedBadgeText)
                                         .font(.caption2).bold()
                                         .padding(6)
                                         .background(Circle().fill(.green))
@@ -201,12 +204,23 @@ struct HomePage: View {
                         .padding(.top, 2)
                         .padding(.bottom,8)
                     }
-                    // iPhone のホームインジケータに被らないための“下マージン”
+        .onAppear {
+            // 念のため初期同期
+            favCount = HomeworkStore.shared.favoritesCount
+            learnedCount = HomeworkStore.shared.learnedCount
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .favoritesChanged)) { note in
+            if let n = note.userInfo?["count"] as? Int { favCount = n }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .learnedChanged)) { note in
+            if let n = note.userInfo?["count"] as? Int { learnedCount = n }
+        }
+        // iPhone のホームインジケータに被らないための“下マージン”
                     .safeAreaInset(edge: .bottom) { Color.clear.frame(height: 12) }
                 }
                 // ← .navigationTitle は付けない（表紙と重複防止）
-            }
-        }
+}
+        
     
 
     // ===== body の外に出す箱 =====
