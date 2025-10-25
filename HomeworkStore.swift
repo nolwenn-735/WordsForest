@@ -29,6 +29,7 @@ final class HomeworkStore {
         load()
         loadFavorites()
         loadLearned()
+        migrateIfNeeded()   // ← これを追加
     }
 
     // 既存の保存キー（単語本体）
@@ -36,6 +37,9 @@ final class HomeworkStore {
     // 新規：お気に入り・覚えた用のキー
     private let favKey = "homework_favs_v1"
     private let learnedKey = "homework_learned_v1"
+    // 追加：保存スキーマのバージョン管理
+    private let schemaVersionKey = "homework_schema_version"
+    private let currentSchemaVersion = 2
 
     // 単語本体
     private(set) var words: [StoredWord] = []
@@ -61,6 +65,8 @@ final class HomeworkStore {
     private func norm(_ s: String) -> String {
         s.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
     }
+    // 追加：保存データの移行（キー正規化など）
+   
     // MARK: - 新規: 保存/読込（お気に入り・覚えた）
     private func saveFavorites() {
         let data = try? JSONEncoder().encode(Array(favorites))
@@ -83,13 +89,63 @@ final class HomeworkStore {
             learned = Set(arr)
         }
     }
+    // 一度だけ実行する移行処理（お気に入り/覚えた/単語の重複を正規化）
+    private func migrateIfNeeded() {
+        let v = UserDefaults.standard.integer(forKey: schemaVersionKey)
+        guard v < currentSchemaVersion else { return }
 
+        // WordKey を統一ルールで正規化
+        func normalized(_ k: WordKey) -> WordKey {
+            WordKey(
+                pos: k.pos,
+                word: norm(k.word), // 小文字＋前後空白除去
+                meaning: k.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+            )
+        }
+
+        // 1) ♡ / ✅ セットを正規化して保存
+        favorites = Set(favorites.map(normalized))
+        learned   = Set(learned.map(normalized))
+        saveFavorites()
+        saveLearned()
+
+        // 2) 単語本体の重複/余分な空白を整理（表示の大文字は保持）
+        var seen = Set<WordKey>()
+        words = words.reduce(into: []) { acc, s in
+            let key = WordKey(
+                pos: s.pos,
+                word: norm(s.word),
+                meaning: s.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+            )
+            if seen.insert(key).inserted {
+                acc.append(StoredWord(
+                    word: s.word.trimmingCharacters(in: .whitespacesAndNewlines),
+                    meaning: s.meaning.trimmingCharacters(in: .whitespacesAndNewlines),
+                    pos: s.pos
+                ))
+            }
+        }
+        save()
+
+        // バージョンを更新
+        UserDefaults.standard.set(currentSchemaVersion, forKey: schemaVersionKey)
+    }
     // MARK: - 新規: Key 化ヘルパー
+    
+    // ここを置き換え
     private func key(for c: WordCard) -> WordKey {
-        .init(pos: c.pos, word: c.word, meaning: c.meaning)
+        .init(
+            pos: c.pos,
+            word: norm(c.word),
+            meaning: c.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+        )
     }
     private func key(for s: StoredWord) -> WordKey {
-        .init(pos: s.pos, word: s.word, meaning: s.meaning)
+        .init(
+            pos: s.pos,
+            word: norm(s.word),
+            meaning: s.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+        )
     }
 
     // MARK: - CRUD
@@ -99,6 +155,7 @@ final class HomeworkStore {
         if exists(word: word, meaning: meaning, pos: pos) { return false } // 完全かぶりは弾く
         words.append(.init(word: word, meaning: meaning, pos: pos))
         save()
+        NotificationCenter.default.post(name: .storeDidChange, object: nil)   // ← 追加
         return true
     }
 
@@ -109,6 +166,7 @@ final class HomeworkStore {
         learned.removeAll()
         saveFavorites()
         saveLearned()
+        NotificationCenter.default.post(name: .storeDidChange, object: nil)   // ← 追加
     }
 
     func delete(_ card: WordCard) {
@@ -125,6 +183,7 @@ final class HomeworkStore {
         let k = key(for: card)
         if favorites.remove(k) != nil { saveFavorites() }
         if learned.remove(k) != nil   { saveLearned()   }
+        NotificationCenter.default.post(name: .storeDidChange, object: nil)   // ← 追加
     }
 
     // MARK: - 重複チェックヘルパ
@@ -182,6 +241,7 @@ final class HomeworkStore {
             words[i].word = word
             words[i].meaning = meaning
             save()
+            NotificationCenter.default.post(name: .storeDidChange, object: nil) // ← 追加
         }
     }
 
@@ -255,10 +315,10 @@ extension HomeworkStore {
 }
 
 extension Notification.Name {
-    static let favoritesChanged = Notification.Name("FavoritesChanged")
-    static let learnedChanged   = Notification.Name("LearnedChanged")
+    
     static let favoritesDidChange = Notification.Name("FavoritesDidChange")
     static let learnedDidChange   = Notification.Name("LearnedDidChange")
+    static let storeDidChange     = Notification.Name("storeDidChange")   // 追加/削除など
 }
     
 // MARK: - HomePage 用の読み取りプロパティ

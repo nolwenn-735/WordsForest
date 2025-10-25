@@ -57,10 +57,10 @@ struct HomePage: View {
                             let isEmpty = q.isEmpty
 
                             // 検索対象（先生の登録 + サンプル）を統合＆重複除去
-                            let userCards: [WordCard] =
-                                PartOfSpeech.homeworkCases.flatMap { HomeworkStore.shared.list(for: $0) }
-                            let sampleCards: [WordCard] =
-                                PartOfSpeech.homeworkCases.flatMap { SampleDeck.filtered(by: $0) }
+                            let searchPOS: [PartOfSpeech] = PartOfSpeech.homeworkCases + [.others]
+
+                            let userCards: [WordCard] = searchPOS.flatMap { HomeworkStore.shared.list(for: $0) }
+                            let sampleCards: [WordCard] = searchPOS.flatMap { SampleDeck.filtered(by: $0) }
                             let all: [WordCard] = (userCards + sampleCards)
                                 .uniqued(by: { "\($0.pos)|\($0.word.lowercased())|\($0.meaning)" })
                             // 条件：英単語 / 日本語 / 不規則動詞の形
@@ -193,7 +193,7 @@ struct HomePage: View {
                             // コラムページはそのまま
                     HStack(spacing: 8) {
                         // 🐺 コラム（薄い indigo、左下マスコット想定）
-                        NavigationLink("🐺 コラム (新着）") {
+                        NavigationLink("🐺 コラム ") {
                             ColumnArticleView(
                                 title: " ",
                                 content: " ",
@@ -205,14 +205,14 @@ struct HomePage: View {
 
                         // 🦌 その他品詞（薄い紫、右下マスコット）
                         NavigationLink("🦌 その他品詞") {
-                            POSFlashcardView(
-                                title: "その他品詞レッスン",
-                                cards: HomeworkStore.shared.list(for: .others),   // ← .others を使う
-                                accent: (PartOfSpeech.others.accentColor),           //
-                                background: PartOfSpeech.others.backgroundColor.opacity(0.15),
-                                animalName: "others_deer_stag",                           // 右下マスコット
-                                reversed: false,
-                                onEdit: { _ in }
+                            let pos = PartOfSpeech.others
+                            let accent = pos.accentColor
+                            let animal = pos.animalName(forCycle: hw.history.count)
+
+                            POSFlashcardListView(
+                                pos: .others,
+                                accent: accent,
+                                animalName: animal
                             )
                         }
                         .buttonStyle(ColoredPillButtonStyle(color: .orange, size: .compact, alpha: 0.20))
@@ -227,15 +227,17 @@ struct HomePage: View {
                         .padding(.bottom,8)
                     }
         .onAppear {
-            // 念のため初期同期
-            favCount = HomeworkStore.shared.favoritesCount
+            // 初期同期
+            favCount     = HomeworkStore.shared.favoritesCount
             learnedCount = HomeworkStore.shared.learnedCount
         }
-        .onReceive(NotificationCenter.default.publisher(for: .favoritesChanged)) { note in
-            if let n = note.userInfo?["count"] as? Int { favCount = n }
+
+        // ▼ここを置き換え
+        .onReceive(NotificationCenter.default.publisher(for: .favoritesDidChange)) { _ in
+            favCount = HomeworkStore.shared.favoritesCount
         }
-        .onReceive(NotificationCenter.default.publisher(for: .learnedChanged)) { note in
-            if let n = note.userInfo?["count"] as? Int { learnedCount = n }
+        .onReceive(NotificationCenter.default.publisher(for: .learnedDidChange)) { _ in
+            learnedCount = HomeworkStore.shared.learnedCount
         }
         // iPhone のホームインジケータに被らないための“下マージン”
                     .safeAreaInset(edge: .bottom) { Color.clear.frame(height: 12) }

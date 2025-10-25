@@ -26,52 +26,73 @@ struct POSFlashcardListView: View {
     @State private var refreshID = UUID()
     
     var body: some View {
-        let home = HomeworkStore.shared.list(for: pos)
+        let raw = HomeworkStore.shared.list(for: pos)
+        let home = raw.filter {
+            !$0.word.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+            !$0.meaning.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        }
         let cards: [WordCard] = home.isEmpty
-        ? Array(SampleDeck.filtered(by: pos).prefix(40))
-        : home
+            ? Array(SampleDeck.filtered(by: pos).prefix(40))
+            : home
         
-        POSFlashcardView(
-            title: "\(pos.jaTitle) レッスン",
-            cards: cards,
-            accent: accent,
-            background: pos.backgroundColor,
-            animalName: animalName,
-            reversed: reversed,
-            // 追加：行の「このカードを編集」から呼ばれる
-            onEdit: { c in editingWord = c },
-            onDataChanged: { refreshID = UUID() }
-        )
-        .id(refreshID)
-        .navigationTitle("\(pos.jaTitle) レッスン")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            if pos != .others {
+            // 一覧ラッパー
+            POSFlashcardView(
+                title: "\(pos.jaTitle) レッスン",
+                cards: cards,
+                accent: accent,
+                background: pos.backgroundColor.opacity(0.30),          // 既存どおり
+                animalName: animalName,
+                reversed: false,
+                onEdit: { c in editingWord = c },
+                onDataChanged: { refreshID = UUID() },    // ★ 変化でリフレッシュ
+                perRowAccent: true
+            )
+            .id(refreshID)// ★ これも必須
+            .onReceive(NotificationCenter.default.publisher(for: .favoritesDidChange)) { _ in
+                refreshID = UUID()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .learnedDidChange)) { _ in
+                refreshID = UUID()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .storeDidChange)) { _ in   // ★ 追加
+                refreshID = UUID()
+            }
+            .navigationTitle("\(pos.jaTitle) レッスン")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                // 左：メニュー（others でも「単語を追加」は出す）
                 ToolbarItemGroup(placement: .topBarLeading) {
                     Menu {
                         Button("単語を追加") { showingAdd = true }
-                        Button("不足分を自動追加(24まで)") {
-                            HomeworkStore.shared.autofill(for: pos, target: 24)
-                            refreshID = UUID()
+                        // ← 自動補充だけ others の時は隠す
+                        if pos != .others {
+                            Button("不足分を自動追加（24まで）") {
+                                HomeworkStore.shared.autofill(for: pos, target: 24)
+                                refreshID = UUID()
+                            }
                         }
-                    } label: { Image(systemName: "plus") }
-                        .tint(.gray)
+                    } label: {
+                        Image(systemName: "plus")
+                        .foregroundStyle(.secondary)  // ← 薄いグレー
+                        .opacity(0.45)
+                    }
                 }
+
+                // 右：「ホームへ」は常に出す
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button { dismiss() } label: { Text("ホームへ🏠") }
-                        .foregroundStyle(.blue)
-                        .buttonStyle(.plain)
-                        .padding(.horizontal, 12).padding(.vertical, 6)
-                        .background(.ultraThinMaterial, in: Capsule())
-                        .accessibilityLabel("ホームへ")
+                    Button { dismiss() } label: {
+                        Text("ホームへ🏠")
+                    }
+                    .foregroundStyle(.blue)
+                    .buttonStyle(.plain)
+                    .background(.ultraThinMaterial, in: Capsule())
                 }
             }
-        }           // 既存：追加用
-                .sheet(isPresented: $showingAdd, onDismiss: {
-                    refreshID = UUID()
-                }) {
-                    AddWordView(pos: pos)
-                }
+            // 追加シート（others でも出す）
+            .sheet(isPresented: $showingAdd, onDismiss: { refreshID = UUID() }) {
+                AddWordView(pos: pos)
+            }
+            // 既存の編集シート（editingWord）もこの下で OK
             // 新規：編集用（ここ！）
                 .sheet(item: $editingWord, onDismiss: { refreshID = UUID() }) { c in
                     AddWordView(pos: pos, editing: c)
@@ -87,7 +108,7 @@ struct POSFlashcardListView: View {
         let animalName: String
         let reversed: Bool
         let onEdit: (WordCard) -> Void
-        var onDataChanged: () -> Void = { }//最初varだったやつをletにしてまたvarに戻した
+        var onDataChanged: () -> Void = { }
         var perRowAccent: Bool = false
         // レイアウト定数
         private let rowsPerScreen: CGFloat = 4
@@ -228,7 +249,7 @@ struct POSFlashcardListView: View {
             // ← 追加：保存済み状態をストアから読む
             let isChecked = HomeworkStore.shared.isLearned(c)
             let isFav     = HomeworkStore.shared.isFavorite(c)
-            
+            let canDelete = HomeworkStore.shared.exists(word: c.word, meaning: c.meaning, pos: c.pos)
             
             CardRow(
                 word: displayWord,
@@ -275,11 +296,13 @@ struct POSFlashcardListView: View {
                             Button { onEdit(c) } label: {
                                 Label("このカードを編集", systemImage: "square.and.pencil")
                             }
-                            Button(role: .destructive) {
-                                HomeworkStore.shared.delete(c)
-                                onDataChanged()
-                            } label: {
-                                Label("このカードを削除", systemImage: "trash")
+                            if canDelete {
+                                Button(role: .destructive) {
+                                    HomeworkStore.shared.delete(c)
+                                    onDataChanged()
+                                } label: {
+                                    Label("このカードを削除", systemImage: "trash")
+                                }
                             }
                         }
                     
@@ -345,137 +368,135 @@ struct POSFlashcardListView: View {
     }
     
     // MARK: - 1 行のカード（表／裏）
-    private struct CardRow: View {
-        // 入力
-        let word: String
-        let meaning: String
-        let exampleEn: String
-        let exampleJa: String
-        let note: String          // ← 追加
-        let reversed: Bool
-        
-        let isChecked: Bool
-        let isFav: Bool
-        let expanded: Bool
-        let rowHeight: CGFloat
-        
-        // アクション
-        let checkTapped: () -> Void
-        let heartTapped: () -> Void
-        let centerTapped: () -> Void
-        let speakWordTapped: () -> Void
-        let speakExampleTapped: () -> Void
-        let addExampleTapped: () -> Void
-        let toggleSpeechSpeed: () -> Void
-        let speechFast: Bool
-        let toggleSpeakBoth: () -> Void
-        let speakBoth: Bool
-        let accent: Color        // チェック・ハート・操作アイコン（青）
-        
-        var body: some View {
-            VStack(alignment: .leading, spacing: 10) {
-                
-                if !expanded {
-                    // ===== 表 =====
-                    HStack(alignment: .center, spacing: 12) {
-                        Button(action: checkTapped) {
-                            Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
-                                .font(.title2)
-                                .symbolRenderingMode(.monochrome)
-                                .foregroundStyle(isChecked ? accent : .secondary)
-                        }
-                        
-                        Text(reversed ? meaning : word)
-                            .font(.system(size: 28, weight: .bold))
-                            .foregroundStyle(.primary)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .contentShape(Rectangle())
-                            .onTapGesture(perform: centerTapped)
-                        
-                        Button(action: heartTapped) {
-                            Image(systemName: isFav ? "heart.fill" : "heart")
-                                .font(.title2)
-                                .symbolRenderingMode(.monochrome)
-                                .foregroundStyle(isFav ? accent : .secondary)
-                        }
+private struct CardRow: View {
+    // 入力
+    let word: String
+    let meaning: String
+    let exampleEn: String
+    let exampleJa: String
+    let note: String          // ← 追加
+    let reversed: Bool
+    
+    let isChecked: Bool
+    let isFav: Bool
+    let expanded: Bool
+    let rowHeight: CGFloat
+    
+    // アクション
+    let checkTapped: () -> Void
+    let heartTapped: () -> Void
+    let centerTapped: () -> Void
+    let speakWordTapped: () -> Void
+    let speakExampleTapped: () -> Void
+    let addExampleTapped: () -> Void
+    let toggleSpeechSpeed: () -> Void
+    let speechFast: Bool
+    let toggleSpeakBoth: () -> Void
+    let speakBoth: Bool
+    let accent: Color        // チェック・ハート・操作アイコン（青）
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            
+            if !expanded {
+                // ===== 表 =====
+                HStack(alignment: .center, spacing: 12) {
+                    // 左：チェック
+                    Button(action: checkTapped) {
+                        Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
+                            .font(.title2)
+                            .foregroundColor(isChecked ? accent : .secondary)   // ← ここだけで色付け
+                            .frame(width: 28, height: 28)
                     }
-                    .frame(minHeight: rowHeight)
+                    .buttonStyle(.plain)                                        // ← 余計な装飾を無効化
                     
-                } else {
-                    // ===== 裏 =====
-                    VStack(alignment: .leading, spacing: 10) {
+                    // 中央：語 or 意味
+                    Text(reversed ? meaning : word)
+                        .font(.system(size: 28, weight: .bold))
+                        .foregroundStyle(.primary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .onTapGesture(perform: centerTapped)
+                    
+                    // 右：ハート
+                    Button(action: heartTapped) {
+                        Image(systemName: isFav ? "heart.fill" : "heart")
+                            .font(.title2)
+                            .foregroundColor(isFav ? accent : .secondary)       // ← 同じく foregroundColor
+                            .frame(width: 28, height: 28)
+                    }
+                    .buttonStyle(.plain)
+                }
+                .frame(minHeight: rowHeight)
+                
+            } else {
+                // ===== 裏 =====
+                VStack(alignment: .leading, spacing: 10) {
+                    
+                    // 見出し行（左：日本語、右：操作アイコンを青で）
+                    HStack(alignment: .center) {
+                        Text(meaning)
+                            .font(.system(size: 22, weight: .semibold))
                         
-                        // 見出し行（左：日本語、右：操作アイコンを青で）
-                        HStack(alignment: .center) {
-                            Text(meaning)
-                                .font(.system(size: 22, weight: .semibold))
-                            
-                            Spacer()
-                            
-                            HStack(spacing: 16) {
-                                Button(action: speakWordTapped) {
-                                    Label("単語だけ", systemImage: "speaker.wave.2.fill")
-                                }
-                                Button(action: speakExampleTapped) {
-                                    Label("例文", systemImage: "bubble.left.and.bubble.right.fill")
-                                }
-                                Button(action: addExampleTapped) {
-                                    Image(systemName: "square.and.pencil")
+                        Spacer()
+                        
+                        HStack(spacing: 16) {
+                            Button(action: speakWordTapped) {
+                                HStack(spacing: 6) {
+                                    Image(systemName: "speaker.wave.2.fill")
+                                    Text("単語")              // 「単語だけ」→「単語」
                                 }
                             }
-                            .labelStyle(.titleAndIcon)
-                            .font(.body)
-                            .foregroundStyle(accent)   // ← 青
+                            Button(action: speakExampleTapped) {
+                                HStack(spacing: 6) {
+                                    Image(systemName: "bubble.left.and.bubble.right.fill")
+                                    Text("例文")
+                                }
+                            }
+                            Button(action: addExampleTapped) {
+                                Image(systemName: "square.and.pencil")
+                            }
                         }
-                        
-                        // 例文（英→日、日を少し大きめに）
-                        if !exampleEn.isEmpty {
-                            Text(exampleEn).font(.system(size: 18))
-                        }
-                        if !exampleJa.isEmpty {
-                            Text(exampleJa).font(.system(size: 20, weight: .medium))
-                        }
-                        if !note.isEmpty {
-                            Text(note)
-                                .font(.callout)
-                                .foregroundStyle(.secondary)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                        Spacer(minLength: 12)
-                        
-                        // トグルは一番下（統一で iOS 風グリーン）
-                        HStack {
-                            Label("ゆっくり", systemImage: "tortoise").font(.subheadline)
-                            Toggle("", isOn: .init(
-                                get: { !speechFast },
-                                set: { _ in toggleSpeechSpeed() }
-                            ))
-                            .labelsHidden()
-                            .tint(.green)
-                            
-                            Spacer()
-                            
-                            Text("英＋日").font(.subheadline)
-                            Toggle("", isOn: .init(
-                                get: { speakBoth },
-                                set: { _ in toggleSpeakBoth() }
-                            ))
-                            .labelsHidden()
-                            .tint(.green)
-                        }
+                        .font(.body)
+                        .foregroundStyle(accent)   // 操作アイコンの色
                     }
-                    .frame(maxWidth: .infinity,
-                           minHeight: rowHeight * 2.2,
-                           alignment: .topLeading)
-                    .contentShape(Rectangle())
-                    .onTapGesture(perform: centerTapped)
-                }
+                    
+                    // 例文（英→日）
+                    if !exampleEn.isEmpty {
+                        Text(exampleEn).font(.system(size: 18))
+                    }
+                    if !exampleJa.isEmpty && exampleJa != meaning {   // 意味と同じなら出さない
+                        Text(exampleJa).font(.system(size: 20, weight: .medium))
+                    }
+                    if !note.isEmpty {
+                        Text(note)
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    Spacer(minLength: 12)
+                    
+                    // トグル
+                    HStack {
+                        Label("ゆっくり", systemImage: "tortoise").font(.subheadline)
+                        Toggle("", isOn: .init(get: { !speechFast }, set: { _ in toggleSpeechSpeed() }))
+                            .labelsHidden()
+                            .tint(.green)
+                        
+                        Spacer()
+                        
+                        Text("英＋日").font(.subheadline)
+                        Toggle("", isOn: .init(get: { speakBoth }, set: { _ in toggleSpeakBoth() }))
+                            .labelsHidden()
+                            .tint(.green)
+                    }
+                } // ← ここで裏面の VStack を閉じる（重要）
+                .frame(maxWidth: .infinity,
+                       minHeight: rowHeight * 2.2,
+                       alignment: .topLeading)
+                .contentShape(Rectangle())
+                .onTapGesture(perform: centerTapped)
             }
-            .padding(.vertical, 14)
-            .padding(.horizontal, 16)
-            .background(Color.white)
-            .cornerRadius(16)
-            .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: 2)
         }
     }
-
+}

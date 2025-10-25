@@ -144,7 +144,7 @@ final class HomeworkState: ObservableObject {
         case .adj: return variantAdj
         case .verb: return variantVerb
         case .adv: return variantAdv
-        case .others: return variantNoun
+        case .others: return variantOthers
         }
     }
 

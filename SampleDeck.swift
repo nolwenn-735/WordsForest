@@ -48,14 +48,15 @@ enum SampleDeck {
             ]
         case .others:
             return [
-                WordCard(word: "the",  meaning: "定冠詞",           pos: .others),
-                WordCard(word: "a",    meaning: "不定冠詞",         pos: .others),
+                WordCard(word: "the",  meaning: "定冠詞　その〜、例の", pos: .others),
+                WordCard(word: "a",    meaning: "不定冠詞 ある〜、ひとつの", pos: .others),
                 WordCard(word: "in",   meaning: "前置詞 〜の中で",   pos: .others),
                 WordCard(word: "on",   meaning: "前置詞 〜の上に",   pos: .others),
-                WordCard(word: "to",   meaning: "不定詞/前置詞 to",  pos: .others),
-                WordCard(word: "and",  meaning: "接続詞 〜と",       pos: .others),
+                WordCard(word: "to",   meaning: "前置詞/不定詞 to",  pos: .others),
+                WordCard(word: "and",  meaning: "接続詞 〜と、そして",       pos: .others),
                 WordCard(word: "but",  meaning: "接続詞 しかし",     pos: .others),
-                WordCard(word: "can",  meaning: "助動詞 〜できる",   pos: .others)
+                WordCard(word: "can",  meaning: "助動詞 〜できる",   pos: .others),
+                WordCard(word: "at",   meaning: "〜で",        pos: .others),
             ]
 
         }
@@ -117,6 +118,7 @@ extension PartOfSpeech {
         case "verb","動詞","v": return .verb
         case "adjective","形容詞","adj","a": return .adj
         case "adverb","副詞","adv","r": return .adv
+        case "others","other","misc","その他","他":  return .others   // ← 追加
         default: return nil
         }
     }
