@@ -40,9 +40,9 @@ struct POSFlashcardListView: View {
                 title: "\(pos.jaTitle) レッスン",
                 cards: cards,
                 accent: accent,
-                background: pos.backgroundColor.opacity(0.30),          // 既存どおり
+                background: pos.backgroundColor.opacity(0.50),          // 既存どおり
                 animalName: animalName,
-                reversed: false,
+                reversed: reversed,
                 onEdit: { c in editingWord = c },
                 onDataChanged: { refreshID = UUID() },    // ★ 変化でリフレッシュ
                 perRowAccent: true
@@ -55,6 +55,10 @@ struct POSFlashcardListView: View {
                 refreshID = UUID()
             }
             .onReceive(NotificationCenter.default.publisher(for: .storeDidChange)) { _ in   // ★ 追加
+                refreshID = UUID()
+            }
+                // ★ 追加：例文が保存/削除されたら一覧を再描画
+            .onReceive(NotificationCenter.default.publisher(for: .examplesDidChange)) { _ in
                 refreshID = UUID()
             }
             .navigationTitle("\(pos.jaTitle) レッスン")
@@ -73,12 +77,38 @@ struct POSFlashcardListView: View {
                         }
                     } label: {
                         Image(systemName: "plus")
-                        .foregroundStyle(.secondary)  // ← 薄いグレー
-                        .opacity(0.45)
+                            .foregroundStyle(.secondary)  // 薄いグレー
+                            .opacity(0.45)
                     }
                 }
 
-                // 右：「ホームへ」は常に出す
+                // 中央タイトル（「名詞/動詞…」＋ 品詞色● = 英⇄日トグル）
+                ToolbarItem(placement: .principal) {
+                    HStack(spacing: 8) {
+                        Text(pos.jaTitle)                 // 「名詞」「動詞」など（レッスンは外すならここをそのまま）
+                            .font(.headline)
+                        Button {
+                            reversed.toggle()             // ページ単位で英⇄日切替
+                        } label: {
+                            HStack(spacing: 6) {
+                                Circle()
+                                    .fill(accent)         // 品詞色の●
+                                    .frame(width: 12, height: 12)
+                                    .overlay(Circle().stroke(.black.opacity(0.15), lineWidth: 0.5))
+                                Text("英日")               // ラベル
+                                    .font(.caption)
+                                    .foregroundStyle(.primary)
+                                    .lineLimit(1)
+                            }
+                            .fixedSize()
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("英語と日本語の表示を切り替え")
+                    }
+                    .fixedSize(horizontal: true, vertical: false)
+                }
+
+                // 右：「ホームへ」は常に出す（既存を統合）
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button { dismiss() } label: {
                         Text("ホームへ🏠")
@@ -314,6 +344,8 @@ struct POSFlashcardListView: View {
                 }
                 .padding(.leading, 6)                     // 角に寄せる量はお好みで調整
                 .padding(.bottom, 4)
+                .opacity(expanded == i ? 0 : 1)
+                .allowsHitTesting(expanded != i)
             }
         }
         // まとめ帯
@@ -369,6 +401,14 @@ struct POSFlashcardListView: View {
     
     // MARK: - 1 行のカード（表／裏）
 private struct CardRow: View {
+    // ==== 一時的なダミー変数（後で本配線に差し替え）====
+    var posLabel: String = ""
+    var hasDolphin: Bool = false
+    var hasGold: Bool = false
+    var isTutor: Bool = true
+
+    @State private var inCollectionLocal: Bool = false
+    @State private var learnedLocal: Bool = false
     // 入力
     let word: String
     let meaning: String
@@ -397,106 +437,72 @@ private struct CardRow: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            
+
             if !expanded {
                 // ===== 表 =====
-                HStack(alignment: .center, spacing: 12) {
-                    // 左：チェック
-                    Button(action: checkTapped) {
-                        Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
-                            .font(.title2)
-                            .foregroundColor(isChecked ? accent : .secondary)   // ← ここだけで色付け
-                            .frame(width: 28, height: 28)
+                ZStack(alignment: .topTrailing) {
+
+                    // 本体
+                    HStack(alignment: .center, spacing: 12) {
+
+                        // 左：チェック
+                        Button(action: checkTapped) {
+                            Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
+                                .font(.title2)
+                                .symbolRenderingMode(.monochrome)
+                                .foregroundStyle(isChecked ? accent : .secondary)
+                                .frame(width: 28, height: 28)
+                        }
+                        .buttonStyle(.plain)
+
+                        // 中央：語 or 意味（中央タップで反転）
+                        Text(reversed ? meaning : word)
+                            .font(.system(size: 28, weight: .bold))
+                            .foregroundStyle(.primary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .contentShape(Rectangle())
+                            .onTapGesture(perform: centerTapped)
+
+                        // 右：ハート
+                        Button(action: heartTapped) {
+                            Image(systemName: isFav ? "heart.fill" : "heart")
+                                .font(.title2)
+                                .symbolRenderingMode(.monochrome)
+                                .foregroundStyle(isFav ? accent : .secondary)
+                                .frame(width: 28, height: 28)
+                        }
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)                                        // ← 余計な装飾を無効化
-                    
-                    // 中央：語 or 意味
-                    Text(reversed ? meaning : word)
-                        .font(.system(size: 28, weight: .bold))
-                        .foregroundStyle(.primary)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .contentShape(Rectangle())
-                        .onTapGesture(perform: centerTapped)
-                    
-                    // 右：ハート
-                    Button(action: heartTapped) {
-                        Image(systemName: isFav ? "heart.fill" : "heart")
-                            .font(.title2)
-                            .foregroundColor(isFav ? accent : .secondary)       // ← 同じく foregroundColor
-                            .frame(width: 28, height: 28)
-                    }
-                    .buttonStyle(.plain)
+                    .frame(minHeight: rowHeight)
+
+                    // 右上：「…」メニュー（表だけ／薄いグレー）
+                  
                 }
-                .frame(minHeight: rowHeight)
-                
+
             } else {
                 // ===== 裏 =====
-                VStack(alignment: .leading, spacing: 10) {
-                    
-                    // 見出し行（左：日本語、右：操作アイコンを青で）
-                    HStack(alignment: .center) {
-                        Text(meaning)
-                            .font(.system(size: 22, weight: .semibold))
-                        
-                        Spacer()
-                        
-                        HStack(spacing: 16) {
-                            Button(action: speakWordTapped) {
-                                HStack(spacing: 6) {
-                                    Image(systemName: "speaker.wave.2.fill")
-                                    Text("単語")              // 「単語だけ」→「単語」
-                                }
-                            }
-                            Button(action: speakExampleTapped) {
-                                HStack(spacing: 6) {
-                                    Image(systemName: "bubble.left.and.bubble.right.fill")
-                                    Text("例文")
-                                }
-                            }
-                            Button(action: addExampleTapped) {
-                                Image(systemName: "square.and.pencil")
-                            }
-                        }
-                        .font(.body)
-                        .foregroundStyle(accent)   // 操作アイコンの色
-                    }
-                    
-                    // 例文（英→日）
-                    if !exampleEn.isEmpty {
-                        Text(exampleEn).font(.system(size: 18))
-                    }
-                    if !exampleJa.isEmpty && exampleJa != meaning {   // 意味と同じなら出さない
-                        Text(exampleJa).font(.system(size: 20, weight: .medium))
-                    }
-                    if !note.isEmpty {
-                        Text(note)
-                            .font(.callout)
-                            .foregroundStyle(.secondary)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    Spacer(minLength: 12)
-                    
-                    // トグル
-                    HStack {
-                        Label("ゆっくり", systemImage: "tortoise").font(.subheadline)
-                        Toggle("", isOn: .init(get: { !speechFast }, set: { _ in toggleSpeechSpeed() }))
-                            .labelsHidden()
-                            .tint(.green)
-                        
-                        Spacer()
-                        
-                        Text("英＋日").font(.subheadline)
-                        Toggle("", isOn: .init(get: { speakBoth }, set: { _ in toggleSpeakBoth() }))
-                            .labelsHidden()
-                            .tint(.green)
-                    }
-                } // ← ここで裏面の VStack を閉じる（重要）
-                .frame(maxWidth: .infinity,
-                       minHeight: rowHeight * 2.2,
-                       alignment: .topLeading)
-                .contentShape(Rectangle())
-                .onTapGesture(perform: centerTapped)
+                // ※ 裏には「…」を置かない。タップで反転させない。
+                CardBackView(
+                    word: word,
+                    posLabel: posLabel,
+                    meaning: meaning,
+                    exampleEn: exampleEn,
+                    exampleJa: exampleJa,
+                    hasDolphin: hasDolphin,
+                    hasGold: hasGold,
+                    inCollection: $inCollectionLocal,   // ← ここをローカルStateに
+                    learned: $learnedLocal,             // ← 同上
+                    canEditExamples: isTutor,
+                    onEditExample: { addExampleTapped() }
+                )
+                // 裏では大きな minHeight / contentShape / onTapGesture を付けない
             }
         }
+        // ← この3つは if/else の“外側”（表裏どちらにも効く）
+        .padding(.vertical, 14)
+        .padding(.horizontal, 16)
+        .background(Color.white)
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: 2)
     }
 }

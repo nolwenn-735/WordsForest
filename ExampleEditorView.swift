@@ -42,13 +42,15 @@ struct ExampleEditorView: View {
                     Button("戻る") { dismiss() }
                 }
                 // 保存
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button("保存") {
+                        let enT = en.trimmingCharacters(in: .whitespacesAndNewlines)
+                        let jaT = ja.trimmingCharacters(in: .whitespacesAndNewlines)
+                        let noT = note.trimmingCharacters(in: .whitespacesAndNewlines)
                         ExampleStore.shared.setExample(
-                            for:  word,
-                            en:   en,
-                            ja:   ja,
-                            note: note.isEmpty ? nil : note
+                            for: word,
+                            en: enT, ja: jaT,
+                            note: noT.isEmpty ? nil : noT
                         )
                         dismiss()
                     }

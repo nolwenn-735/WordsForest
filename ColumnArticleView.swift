@@ -25,9 +25,10 @@ struct ColumnArticleView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     // 黒の「🐺 Column」
                     Text("🐺 Column")
-                        .font(.headline)
+                        .font(.system(size: 34, weight: .bold))
                         .foregroundStyle(.black)
-                        .padding(.top, 16)
+                        .padding(.horizontal, 16)
+                        .padding(.top, 12)
 
                     // ネイビーの大きめ太字タイトル
                     Text(title)
