@@ -16,7 +16,7 @@ extension PartOfSpeech {
         case .verb:   return Color("verbBlue")
         case .adj:    return Color("adjGreen")
         case .adv:    return Color("advYellow")
-        case .others: return Color("othersLavender")
+        case .others: return Color("othersPurple")
         }
     }
 
