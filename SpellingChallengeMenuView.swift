@@ -113,7 +113,7 @@ struct SpellingChallengeMenuView: View {
 
         // ④ WordCard → SpellingWord に変換
         gameWords = picked.map {
-            SpellingWord(text: $0.word, pos: $0.pos)
+            SpellingWord(text: $0.word, pos: $0.pos,meaningJa: $0.meaning)
         }
 
         // ⑤ ゲームをひらく

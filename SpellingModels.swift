@@ -21,5 +21,6 @@ enum SpellingDifficulty: String, CaseIterable, Identifiable {
 struct SpellingWord: Identifiable {
     let id = UUID()
     let text: String      // 英単語
-    let pos: PartOfSpeech // 品詞（色づけ用）
+    let pos: PartOfSpeech // 品詞（色づけ用）    
+    let meaningJa: String
 }
