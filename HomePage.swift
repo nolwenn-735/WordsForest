@@ -10,7 +10,8 @@ struct HomePage: View {
     @State private var showRecent = false
     @State private var favCount     = HomeworkStore.shared.favoritesCount
     @State private var learnedCount = HomeworkStore.shared.learnedCount 
-
+    @State private var showSpellingMenu = false
+    
     private var favBadgeText: String { favCount > 99 ? "99+" : "\(favCount)" }
     private var learnedBadgeText: String { learnedCount > 99 ? "99+" : "\(learnedCount)" }
     
@@ -149,11 +150,15 @@ struct HomePage: View {
 
                             
 
-                            NavigationLink("✏️  スペリング・チャレンジ") {
-                                SpellingChallengeView()
+                            Button {
+                                showSpellingMenu = true
+                            } label: {
+                                Text("✏️ スペリング・チャレンジ")
                             }
                             .buttonStyle(ColoredPillButtonStyle(color: .purple, size: .compact, alpha: 0.20))
-
+                            .sheet(isPresented: $showSpellingMenu) {
+                                SpellingChallengeMenuView()
+                            }
                             // My Collection
                             NavigationLink("💗  My Collection（覚えにくい単語）") {
                                 MyCollectionView()
@@ -194,12 +199,8 @@ struct HomePage: View {
                     HStack(spacing: 8) {
                         // 🐺 コラム（薄い indigo、左下マスコット想定）
                         NavigationLink("🐺 コラム ") {
-                            ColumnArticleView(
-                                title: " ",
-                                content: " ",
-                            )
+                            ColumnIndexView()
                                 .background(Color.indigo.opacity(0.10))
-                            // ColumnPage 側で左下マスコット (tutor_husky 系) を表示
                         }
                         .buttonStyle(ColoredPillButtonStyle(color: .indigo, size: .compact, alpha: 0.20))
 

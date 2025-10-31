@@ -6,6 +6,7 @@
 //
 // PartOfSpeech.swift
 import Foundation
+import SwiftUI
 
 enum PartOfSpeech: String, CaseIterable, Hashable {
     case noun, verb, adj, adv
@@ -27,4 +28,16 @@ extension PartOfSpeech {
 extension PartOfSpeech {
     /// 宿題で使う4品詞だけ（others は除外）
     static var homeworkCases: [PartOfSpeech] { [.noun, .verb, .adj, .adv] }
+}
+
+extension PartOfSpeech {
+    var tileColor: Color {
+        switch self {
+        case .noun: return .pink
+        case .verb: return .blue
+        case .adj: return .green
+        case .adv: return .yellow
+        case .others: return .purple
+        }
+    }
 }

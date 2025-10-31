@@ -40,7 +40,7 @@ struct POSFlashcardListView: View {
                 title: "\(pos.jaTitle) レッスン",
                 cards: cards,
                 accent: accent,
-                background: pos.backgroundColor.opacity(0.40),          // 既存どおり
+                background: pos.backgroundColor.opacity(0.50),          // 既存どおり
                 animalName: animalName,
                 reversed: reversed,
                 onEdit: { c in editingWord = c },
@@ -93,26 +93,18 @@ struct POSFlashcardListView: View {
                             HStack(spacing: 6) {
                                 Circle()
                                     .fill(accent)         // 品詞色の●
-                                    .frame(width: 16, height: 16)
+                                    .frame(width: 12, height: 12)
                                     .overlay(Circle().stroke(.black.opacity(0.15), lineWidth: 0.5))
                                 Text("英日")               // ラベル
                                     .font(.caption)
                                     .foregroundStyle(.primary)
                                     .lineLimit(1)
                             }
-                            // 見た目は変えずに“タップ領域”だけ拡大
-                                        .padding(.horizontal, 6)
-                                        .padding(.vertical, 4)
-                                        .padding(.trailing, 2)
-                                        .frame(minWidth: 44, minHeight: 32) // iOS推奨に近い押しやすさ
-                                        .contentShape(Rectangle())
-                                        .fixedSize()
+                            .fixedSize()
                         }
                         .buttonStyle(.plain)
                         .accessibilityLabel("英語と日本語の表示を切り替え")
                     }
-                    // タイトル＋ボタンの束を 8pt だけ右へ寄せる
-                    .offset(x: 8)
                     .fixedSize(horizontal: true, vertical: false)
                 }
 
@@ -503,8 +495,8 @@ private struct CardRow: View {
                     canEditExamples: isTutor,
                     onEditExample: { addExampleTapped() }
                 )
-                // ★ 追加：裏面どこをタップしても表に戻す
-                    .contentShape(Rectangle())
+                // 裏では大きな minHeight / contentShape / onTapGesture を付けない
+                .contentShape(Rectangle())
                     .onTapGesture(perform: centerTapped)                
             }
         }
