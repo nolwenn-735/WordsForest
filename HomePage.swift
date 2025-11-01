@@ -45,6 +45,7 @@ struct HomePage: View {
                     // ② 検索
                     HStack(spacing: 8) {
                         TextField("単語を検索（英語・日本語）", text: $searchText)
+                            .keyboardType(.default) 
                             .textFieldStyle(.roundedBorder)
                             .textInputAutocapitalization(.never)   // ← 先頭が勝手に大文字にならない
                             .autocorrectionDisabled()              // ← 自動修正オフ

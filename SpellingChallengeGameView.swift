@@ -11,7 +11,6 @@
 import SwiftUI
 
 struct SpellingChallengeGameView: View {
-    // ← ここがさっき消えちゃってた
     let words: [SpellingWord]
     let difficulty: SpellingDifficulty
 
@@ -20,7 +19,7 @@ struct SpellingChallengeGameView: View {
     @State private var showHeart = false
 
     var body: some View {
-        // ① まず安全確認（0件で落ちないように）
+        // 出題できる単語がないときの安全ガード
         if words.isEmpty {
             VStack(spacing: 16) {
                 Text("出題できる単語がありません")
@@ -28,75 +27,78 @@ struct SpellingChallengeGameView: View {
             }
             .padding()
         } else {
-            ZStack {
-                // ===== メインの問題エリア =====
-                VStack(spacing: 6) {
+            GeometryReader { geo in
+                // ここで高さ・幅と current を先に作る
+                let h = geo.size.height
+                let w = geo.size.width
+                let current = words[currentIndex]
+                
 
-                    Spacer().frame(height: 36)
-
-                    // ② 毎回この問題を決める
-                    let current = words[currentIndex]
-                    let letters = tiles(for: current.text)
-
-                    // 見出し
-                    Text("問題 \(currentIndex + 1) / \(words.count)")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-
-                    // 日本語＋品詞（←さっきのやつ）
-                    Text("\(current.pos.jaTitle)  \(current.meaningJa)")
-                        .font(.title3)
-                        .foregroundColor(.primary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 24)
-
-                    Spacer().frame(height: 12)
-
-                    // タイル
-                    HStack(spacing: 8) {
-                        ForEach(letters, id: \.self) { ch in
-                            Text(ch)
-                                .font(.title2)
-                                .frame(width: 42, height: 42)
-                                .background(current.pos.tileColor)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                        }
-                    }
-                    .padding(.horizontal, 16)
-
-                    // 仮のボタン
-                    Button("正解したことにする（仮）") {
-                        handleCorrect()
-                    }
-                    .padding(.top, 12)
-
-                    // ハスキーぶんの空き
-                    Spacer().frame(height: 120)
-                }
-
-                // ===== 画面下の常駐ハスキー =====
-                VStack {
-                    Spacer()
-                    ZStack {
-                        Image("tutor_husky_cock")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 160)
-
-                        if showHeart {
-                            Image(systemName: "heart.fill")
-                                .font(.system(size: 40))
-                                .foregroundStyle(.pink)
-                                .offset(x: 60, y: -60)
-                                .transition(.scale.combined(with: .opacity))
-                        }
+                ZStack {
+                    // ===== ① 一番上のタイトル「問題 1/5」 =====
+                    VStack(spacing: 4) {
+                        Text("問題 \(currentIndex + 1) / \(words.count)")
+                            .font(.system(size: 30, weight: .semibold))  // ←目立たせる
+                        Text("\(current.pos.jaTitle)　\(current.meaningJa)")
+                            .font(.title3)
+                            .foregroundStyle(.primary)
+                            .padding(.top, 16)
                     }
                     .frame(maxWidth: .infinity)
-                    .padding(.bottom, 12)
+                    // 画面の上からだいたい 12% のところ
+                    .position(x: w / 2, y: h * 0.12)
+
+                    // ===== ② 日本語の下〜タイル〜ボタンのかたまり =====
+                    VStack(spacing: 16) {
+
+                        // タイル
+                        let letters = tiles(for: current.text)
+                        let tileWidth: CGFloat = min(60, 300 / CGFloat(letters.count))
+
+                        HStack(spacing: 8) {
+                            ForEach(letters, id: \.self) { ch in
+                                Text(ch)
+                                    .font(.title2)
+                                    .frame(width: tileWidth, height: tileWidth)
+                                    .background(current.pos.tileColor)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                            }
+                        }
+                        .padding(.horizontal, 16)
+
+                        Button("正解したことにする（仮）") {
+                            handleCorrect()
+                        }
+                        .padding(.top, 4)
+                    }
+                    .frame(maxWidth: .infinity)
+                    // 画面のだいたい 40% あたりに置く（＝真ん中よりちょい上）
+                    .position(x: w / 2, y: h * 0.40)
+
+                    // ===== ③ いちばん下のハスキー =====
+                    VStack {
+                        Spacer()
+                        ZStack {
+                            Image("tutor_husky_cock")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 180)
+
+                            if showHeart {
+                                Image(systemName: "heart.fill")
+                                    .font(.system(size: 42))
+                                    .foregroundStyle(.pink)
+                                    .offset(x: 60, y: -70)
+                                    .transition(.scale.combined(with: .opacity))
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.bottom, 12)
+                    }
                 }
+                .animation(.easeInOut, value: showHeart)
             }
-            .animation(.easeInOut, value: showHeart)
         }
     }
 
@@ -104,7 +106,6 @@ struct SpellingChallengeGameView: View {
 
     private func tiles(for word: String) -> [String] {
         var letters = Array(word.uppercased()).map { String($0) }
-        // 難しいモードのときだけ1文字混ぜる
         if difficulty == .hard, let extra = word.misleadingLetter() {
             letters.append(String(extra).uppercased())
         }
@@ -115,7 +116,7 @@ struct SpellingChallengeGameView: View {
         withAnimation(.spring) {
             showHeart = true
         }
-
+        // 1秒くらい表示してから次へ
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             withAnimation {
                 showHeart = false
