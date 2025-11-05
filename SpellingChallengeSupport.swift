@@ -16,33 +16,51 @@ extension String {
         // まずは文字をぜんぶ小文字に
         let chars = Array(self.lowercased())
 
-        // よく間違う候補たち
+        // よく間違える候補たち（母音→母音、子音→子音）
         let vowelConfusions: [Character: [Character]] = [
-            "a": ["e", "i"],
-            "e": ["a", "i"],
-            "i": ["e", "a", "u"],
-            "o": ["u", "a"],
-            "u": ["o", "a"]
-        ]
-        let consonantConfusions: [Character: [Character]] = [
-            "r": ["l"],
-            "l": ["r"],
-            "c": ["k"],
-            "k": ["c"]
+            "a": ["e","o"],
+            "e": ["i","a"],
+            "i": ["e","u"],
+            "o": ["a","u"],
+            "u": ["a","i"],
         ]
 
-        // 文字列の中にある文字を1コずつ見て、
-        // 「これには紛らわしさがあるかな？」って探す
-        for ch in chars.shuffled() {
+        let consonantConfusions: [Character: [Character]] = [
+            "n": ["m"], "m": ["n"],
+            "r": ["l"], "l": ["r"],
+            "k": ["c"],
+            "s": ["c"],
+            "b": ["v"], "v": ["b"],
+        ]
+
+        // 文字列の中にある文字をシャッフル順で見て、
+        //「それに紛らわしさがあるかな？」って探す
+        for (i, ch) in chars.enumerated().shuffled() {
+            // ① 母音系の混同行列
             if let list = vowelConfusions[ch], let pick = list.randomElement() {
                 return pick
             }
+
+            // ② c は文脈で分岐（"ce", "ci", "cy" → s、それ以外 → k）
+            if ch == "c" {
+                let next = (i + 1 < chars.count) ? chars[i + 1] : nil
+                if let n = next, "eiy".contains(n) { return "s" }
+                return "k"
+            }
+            // ③ g も文脈で分岐（ge, gi, gy → j、それ以外 → k）
+            if ch == "g" {
+                let next = (i + 1 < chars.count) ? chars[i + 1] : nil
+                if let n = next, "eiy".contains(n) { return "j" }
+                return "k"
+            }
+
+            // ③ それ以外の子音系
             if let list = consonantConfusions[ch], let pick = list.randomElement() {
                 return pick
             }
         }
 
-        // どれにも当てはまらなかったときの保険
-        return "a"
+        // ④ どれにも当てはまらなければ混入しない
+        return nil
     }
 }

@@ -266,9 +266,10 @@ final class HomeworkStore {
     func favoriteList() -> [WordCard] {
         words
             .filter { favorites.contains(WordKey(pos: $0.pos, word: $0.word, meaning: $0.meaning)) }
-            .map { WordCard(word: $0.word, meaning: $0.meaning, pos: $0.pos) }
+            .map { WordCard(word: $0.word, meaning: $0.meaning, pos: $0.pos, isFavorite: true)
+        }
     }
-
+    
     
     // 覚えたBOX
     func isLearned(_ c: WordCard) -> Bool { learned.contains(key(for: c)) }
@@ -313,7 +314,7 @@ extension HomeworkStore {
         }
     }    
 }
-
+ 
 extension Notification.Name {
     
     static let favoritesDidChange = Notification.Name("FavoritesDidChange")
@@ -326,7 +327,12 @@ extension HomeworkStore {
     var favoritesCount: Int { favorites.count }
     var learnedCount:  Int { learned.count }
     var hasFavorites:  Bool { !favorites.isEmpty }
-    var hasLearned:    Bool { !learned.isEmpty }
+    var hasLearned:    Bool { !learned.isEmpty }    
+    
+    @available(*, deprecated, message: "Use favoriteList()")
+    func myCollectionList(for pos: PartOfSpeech? = nil) -> [WordCard] {
+        let base = self.favoriteList()
+        if let p = pos { return base.filter { $0.pos == p } }
+        return base
+    }
 }
-
-

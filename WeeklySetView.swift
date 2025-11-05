@@ -9,6 +9,11 @@ import SwiftUI
 struct WeeklySetView: View {
     @EnvironmentObject var hw: HomeworkState
     let pair: PosPair
+    // ← ここに追加！
+    init(pair: PosPair) {
+        self.pair = pair
+
+    }
     
     var body: some View {
         let parts = pair.parts   // [.noun, .adj] など
