@@ -10,24 +10,24 @@ import SwiftUI
 struct MyCollectionSelectionView: View {
     let collection: [WordCard]
     @Binding var selectedDifficulty: SpellingDifficulty
+    @Binding var selectedIDs: Set<UUID>        // ← ★ ここが親とつながる
+    let onStart: ([WordCard]) -> Void          // ← ★ 親に「選ばれた5件」を返す
     @Environment(\.dismiss) private var dismiss
-    @State private var goGame = false
-    @State private var gameWords: [SpellingWord] = []
-    @State private var selected = Set<UUID>()   // 選択中のWordCard.id
+    
     private let maxPick = 5
-
+    
     var body: some View {
         VStack(spacing: 12) {
             // ヘッダ
             VStack(spacing: 4) {
                 Text("💗 My Collection から 5つ選んでね")
                     .font(.title3).bold()
-                Text("選択中：\(selected.count) / \(maxPick)")
+                Text("選択中：\(selectedIDs.count) / \(maxPick)")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
             .padding(.top, 8)
-
+            
             // 単語リスト
             List(collection) { card in
                 Button { toggle(card.id) } label: {
@@ -39,40 +39,37 @@ struct MyCollectionSelectionView: View {
                                 .foregroundStyle(.secondary)
                         }
                         Spacer()
-                        Image(systemName: selected.contains(card.id) ? "checkmark.circle.fill" : "circle")
-                            .foregroundStyle(selected.contains(card.id) ? Color.pink : Color.secondary)
+                        Image(systemName: selectedIDs.contains(card.id) ? "checkmark.circle.fill" : "circle")
+                            .foregroundStyle(selectedIDs.contains(card.id) ? Color.pink : Color.secondary)
                     }
+                    .contentShape(Rectangle())      // ← 行のどこを押しても反応
                 }
+                .disabled(selectedIDs.count >= maxPick && !selectedIDs.contains(card.id))
                 .buttonStyle(.plain)
             }
             .listStyle(.plain)
-
+            
             // 難易度（選び直しOK）
-            VStack(spacing: 6) {
-                Text("問題の難易度")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-
-                HStack(spacing: 12) {
-                    difficultyChip(.easy, "⭐️ 使う文字だけ")
-                    difficultyChip(.hard, "⭐️⭐️ いらない文字1つあり")
-                }
+            Picker("問題の難易度", selection: $selectedDifficulty) {
+                Text("⭐️ 使う文字だけ").tag(SpellingDifficulty.easy)
+                Text("⭐️⭐️ いらない文字1つあり").tag(SpellingDifficulty.hard)
             }
-            .padding(.vertical, 4)
-
+            .pickerStyle(.segmented)
+            .padding(.vertical, 6)
+            
             // 開始ボタン
             Button {
                 // ちょうど5つ選ばれている前提（ボタンは count != 5 で無効化済み）
-                let chosen = collection.filter { selected.contains($0.id) }
-                // WordCard -> SpellingWord に変換
-                gameWords = chosen.map(SpellingWord.init(card:))
-                // ナビ遷移フラグON
-                goGame = true
+                let chosen = collection.filter { selectedIDs.contains($0.id) }
+                guard chosen.count == maxPick else { return } // 必要に応じてガード
+                onStart(chosen)
             } label: {
                 Text("✅ スペリングチャレンジ開始！")
+                    .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
-            .disabled(selected.count != maxPick)
+            .disabled(selectedIDs.count != maxPick)
+            
             // キャンセル
             Button("キャンセル") { dismiss() }
                 .padding(.bottom, 8)
@@ -94,37 +91,16 @@ struct MyCollectionSelectionView: View {
                 .tint(.blue)  // ← これで青に統一！
             }
         }
-        .navigationDestination(isPresented: $goGame) {
-            SpellingChallengeGameView(
-                words: gameWords,
-                difficulty: selectedDifficulty
-            )
-        }
     }
-
+    
+    
     private func toggle(_ id: UUID) {
-        if selected.contains(id) {
-            selected.remove(id)
-        } else if selected.count < maxPick {
-            selected.insert(id)
+        if selectedIDs.contains(id) {
+            selectedIDs.remove(id)
+        } else if selectedIDs.count < maxPick {
+            selectedIDs.insert(id)
         }
-    }
-
-    @ViewBuilder
-    private func difficultyChip(_ value: SpellingDifficulty, _ title: String) -> some View {
-        Button { selectedDifficulty = value } label: {
-            HStack(spacing: 6) {
-                Image(systemName: selectedDifficulty == value ? "largecircle.fill.circle" : "circle")
-                    .foregroundStyle(selectedDifficulty == value ? Color.blue : Color.secondary)
-                Text(title)
-            }
-            .padding(.horizontal, 10)
-            .padding(.vertical, 8)
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(selectedDifficulty == value ? Color(.systemGray6) : .clear)
-            )
-        }
-        .buttonStyle(.plain)
     }
 }
+    
+

@@ -18,18 +18,20 @@ struct SpellingChallengeMenuView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var selectedDifficulty: SpellingDifficulty = .easy
-    @State private var goSelect = false
-
+    @State private var selectedIDs = Set<UUID>()   // ← チェック保持（新しく追加）
+    @State private var goSelect = false            // ← 遷移フラグ（既存のままOK）
+    
     // ✅ ここを既存の「My Collection取得」に差し替えて下さい
     private var favoriteList: [WordCard] {
         HomeworkStore.shared.favoriteList()
     }
-
+    
     var body: some View {
         NavigationStack {
             List {
                 Section {
                     Button {
+                        selectedIDs.removeAll()
                         goSelect = true
                     } label: {
                         HStack {
@@ -40,7 +42,7 @@ struct SpellingChallengeMenuView: View {
                         }
                     }
                 }
-
+                
                 Section("問題の難易度") {
                     difficultyRow(.easy, label: "⭐️ 使う文字だけ")
                     difficultyRow(.hard, label: "⭐️⭐️ いらない文字1つあり")
@@ -59,34 +61,44 @@ struct SpellingChallengeMenuView: View {
                     }
                 }
             }
-            // ⤵️ 遷移先
-                        .navigationDestination(isPresented: $goSelect) {
-                            MyCollectionSelectionView(
-                                collection: favoriteList,
-                                selectedDifficulty: $selectedDifficulty
-                            )
-                        }
-                    }
-                    // シートっぽいインジケータ（任意）
-                    .presentationDragIndicator(.visible)
+            .onChange(of: goSelect) { old, new in
+                if new {
+                    selectedIDs.removeAll()  // ← 開く直前にチェック初期化
                 }
-            
-            
-    @ViewBuilder
-    private func difficultyRow(_ value: SpellingDifficulty, label: String) -> some View {
-        Button {
-            selectedDifficulty = value
-        } label: {
-            HStack {
-                Image(systemName: selectedDifficulty == value ? "largecircle.fill.circle" : "circle")
-                    .foregroundStyle(selectedDifficulty == value ? Color.blue : Color.secondary) // ←青
-                Text(label)
             }
+            // ⤵️ 遷移先
+            .navigationDestination(isPresented: $goSelect) {
+                MyCollectionSelectionView(
+                    collection: favoriteList,
+                    selectedDifficulty: $selectedDifficulty,
+                    selectedIDs: $selectedIDs,               // ← Binding
+                    onStart: { chosen in
+                        // ここで chosen([WordCard]) を [SpellingWord] に変換して
+                        // GameView に渡す処理（既存のロジックを移植）
+                    }
+                )
+            }
+            
+            // シートっぽいインジケータ（任意）
+            .presentationDragIndicator(.visible)
         }
-        .foregroundStyle(.primary)
     }
-}
- 
+        
+        @ViewBuilder
+        private func difficultyRow(_ value: SpellingDifficulty, label: String) -> some View {
+            Button {
+                selectedDifficulty = value
+            } label: {
+                HStack {
+                    Image(systemName: selectedDifficulty == value ? "largecircle.fill.circle" : "circle")
+                        .foregroundStyle(selectedDifficulty == value ? Color.blue : Color.secondary) // ←青
+                    Text(label)
+                }
+            }
+            .foregroundStyle(.primary)
+        }
+    }
+    
     // MARK: - レベル1行分
     private func levelRow(
         icon: String,
@@ -99,12 +111,12 @@ struct SpellingChallengeMenuView: View {
             HStack(spacing: 12) {
                 Image(systemName: icon)
                     .foregroundStyle(iconColor)
-
+                
                 Text(title)
                     .foregroundStyle(.primary)
-
+                
                 Spacer()
-
+                
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
                         .foregroundStyle(.blue)
@@ -117,4 +129,5 @@ struct SpellingChallengeMenuView: View {
             )
         }
     }
+    
 
