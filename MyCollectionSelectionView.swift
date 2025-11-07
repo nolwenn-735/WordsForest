@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct MyCollectionSelectionView: View {
-    let collection: [WordCard]
-    @Binding var selectedDifficulty: SpellingDifficulty
-    @Binding var selectedIDs: Set<UUID>        // ← ★ ここが親とつながる
-    let onStart: ([WordCard]) -> Void          // ← ★ 親に「選ばれた5件」を返す
-    @Environment(\.dismiss) private var dismiss
-    
-    private let maxPick = 5
+        let collection: [WordCard]
+        let difficulty: SpellingDifficulty          // ← 読み取り専用
+        @Binding var selectedIDs: Set<UUID>
+        let onStart: ([WordCard]) -> Void
+
+        private let maxPick = 5
+
+        @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack(spacing: 12) {
@@ -49,14 +50,16 @@ struct MyCollectionSelectionView: View {
             }
             .listStyle(.plain)
             
-            // 難易度（選び直しOK）
-            Picker("問題の難易度", selection: $selectedDifficulty) {
-                Text("⭐️ 使う文字だけ").tag(SpellingDifficulty.easy)
-                Text("⭐️⭐️ いらない文字1つあり").tag(SpellingDifficulty.hard)
-            }
-            .pickerStyle(.segmented)
-            .padding(.vertical, 6)
-            
+            // 難易度
+            Text(
+                difficulty == .easy
+                ? "難易度：⭐️ 使う文字だけ"
+                : "難易度：⭐️⭐️ いらない文字1つあり"
+            )
+            .font(.subheadline)
+            .foregroundStyle(.secondary)
+            .padding(.bottom, 4)
+                     
             // 開始ボタン
             Button {
                 // ちょうど5つ選ばれている前提（ボタンは count != 5 で無効化済み）
@@ -65,17 +68,20 @@ struct MyCollectionSelectionView: View {
                 onStart(chosen)
             } label: {
                 Text("✅ スペリングチャレンジ開始！")
+                    .font(.headline)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
             .disabled(selectedIDs.count != maxPick)
+            .opacity(selectedIDs.count == maxPick ? 1 : 0.5)
+            .animation(.default, value: selectedIDs.count)
             
             // キャンセル
             Button("キャンセル") { dismiss() }
                 .padding(.bottom, 8)
         }
         .padding(.horizontal)
-        .navigationTitle("💗 My Collection")         // ★ タイトル（戻るの横）
+        .navigationTitle("💗 My Collection")        // ★ タイトル（戻るの横）       
         .navigationBarTitleDisplayMode(.inline)
         .tint(.blue)                                  // ★ 戻る矢印やリンクを青に統一
         .navigationBarBackButtonHidden(true)   // デフォルトの戻るを隠す

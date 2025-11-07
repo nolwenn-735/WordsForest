@@ -18,7 +18,7 @@ struct SpellingChallengeMenuView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var selectedDifficulty: SpellingDifficulty = .easy
-    @State private var selectedIDs = Set<UUID>()   // ← チェック保持（新しく追加）
+    @State private var selectedIDs: Set<UUID> = []  // ← チェック保持（新しく追加）
     @State private var goSelect = false            // ← 遷移フラグ（既存のままOK）
     
     // ✅ ここを既存の「My Collection取得」に差し替えて下さい
@@ -70,13 +70,14 @@ struct SpellingChallengeMenuView: View {
             .navigationDestination(isPresented: $goSelect) {
                 MyCollectionSelectionView(
                     collection: favoriteList,
-                    selectedDifficulty: $selectedDifficulty,
-                    selectedIDs: $selectedIDs,               // ← Binding
+                    difficulty: selectedDifficulty,   // ← $なし！値を渡すだけ
+                    selectedIDs: $selectedIDs,
                     onStart: { chosen in
-                        // ここで chosen([WordCard]) を [SpellingWord] に変換して
-                        // GameView に渡す処理（既存のロジックを移植）
+                        let words = chosen.map(SpellingWord.init(card:))
+                        // TODO: wordsとselectedDifficultyをGameVIewに渡して遷移
                     }
                 )
+       
             }
             
             // シートっぽいインジケータ（任意）
@@ -84,20 +85,24 @@ struct SpellingChallengeMenuView: View {
         }
     }
         
-        @ViewBuilder
-        private func difficultyRow(_ value: SpellingDifficulty, label: String) -> some View {
-            Button {
-                selectedDifficulty = value
-            } label: {
-                HStack {
-                    Image(systemName: selectedDifficulty == value ? "largecircle.fill.circle" : "circle")
-                        .foregroundStyle(selectedDifficulty == value ? Color.blue : Color.secondary) // ←青
-                    Text(label)
-                }
+    @ViewBuilder
+    private func difficultyRow(_ value: SpellingDifficulty, label: String) -> some View {
+        Button {
+            selectedDifficulty = value
+        } label: {
+            HStack(spacing: 8) {
+                Image(systemName: selectedDifficulty == value
+                      ? "largecircle.fill.circle"
+                      : "circle")
+                    .foregroundStyle(selectedDifficulty == value ? Color.blue : .secondary)
+                Text(label)
+                    .foregroundStyle(.primary)
             }
-            .foregroundStyle(.primary)
+            .padding(.vertical, 6)
         }
+        .buttonStyle(.plain)
     }
+ }
     
     // MARK: - レベル1行分
     private func levelRow(
