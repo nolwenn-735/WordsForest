@@ -11,28 +11,32 @@
 
 import SwiftUI
 
-//enum SpellingDifficulty: String, Identifiable { case easy, hard; var id: String { rawValue } }
-
 struct SpellingChallengeMenuView: View {
-    // 閉じるボタン用
     @Environment(\.dismiss) private var dismiss
-    
+
     @State private var selectedDifficulty: SpellingDifficulty = .easy
-    @State private var selectedIDs: Set<UUID> = []  // ← チェック保持（新しく追加）
-    @State private var goSelect = false            // ← 遷移フラグ（既存のままOK）
-    
-    // ✅ ここを既存の「My Collection取得」に差し替えて下さい
+    @State private var selectedIDs: Set<UUID> = []
+
+    // シート制御
+    @State private var showSelection = false      // 単語選択
+    @State private var showGame = false           // ゲーム
+
+    // ゲーム用の単語
+    @State private var gameWords: [SpellingWord] = []
+
+    // My Collection
     private var favoriteList: [WordCard] {
         HomeworkStore.shared.favoriteList()
     }
-    
+
     var body: some View {
         NavigationStack {
             List {
+                // My Collection から出題
                 Section {
                     Button {
                         selectedIDs.removeAll()
-                        goSelect = true
+                        showSelection = true
                     } label: {
                         HStack {
                             Text("💗 My Collection から出題")
@@ -42,51 +46,65 @@ struct SpellingChallengeMenuView: View {
                         }
                     }
                 }
-                
+
+                // 難易度
                 Section("問題の難易度") {
-                    difficultyRow(.easy, label: "⭐️ 使う文字だけ")
-                    difficultyRow(.hard, label: "⭐️⭐️ いらない文字1つあり")
+                    difficultyRow(.easy,
+                                  label: "⭐️ 使う文字だけ")
+                    difficultyRow(.hard,
+                                  label: "⭐️⭐️ いらない文字1つあり")
                 }
             }
             .navigationTitle("✏️ スペリングチャレンジ")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        dismiss()
-                    }label: {
-                        Text("閉じる")
-                            .font(.body)
-                            .foregroundColor(.blue)
-                    }
+                    Button("閉じる") { dismiss() }
                 }
             }
-            .onChange(of: goSelect) { old, new in
-                if new {
-                    selectedIDs.removeAll()  // ← 開く直前にチェック初期化
+        }
+
+        // ===== 単語選択シート =====
+        .sheet(isPresented: $showSelection) {
+            MyCollectionSelectionView(
+                collection: favoriteList,
+                selectedDifficulty: $selectedDifficulty,
+                selectedIDs: $selectedIDs
+            ) { chosen in
+                // 5件ちゃんと来てる前提（子ビュー側で保証済み）
+                let words = chosen.map(SpellingWord.init(card:))
+                guard !words.isEmpty else { return }
+
+                gameWords = words
+                showSelection = false
+
+                // 単語が入っているときだけゲームを開く
+                DispatchQueue.main.async {
+                    showGame = true
                 }
             }
-            // ⤵️ 遷移先
-            .navigationDestination(isPresented: $goSelect) {
-                MyCollectionSelectionView(
-                    collection: favoriteList,
-                    difficulty: selectedDifficulty,   // ← $なし！値を渡すだけ
-                    selectedIDs: $selectedIDs,
-                    onStart: { chosen in
-                        let words = chosen.map(SpellingWord.init(card:))
-                        // TODO: wordsとselectedDifficultyをGameVIewに渡して遷移
-                    }
-                )
-       
-            }
-            
-            // シートっぽいインジケータ（任意）
-            .presentationDragIndicator(.visible)
+        }
+
+        // ===== ゲーム画面シート =====
+        .sheet(
+            isPresented: Binding(
+                get: { showGame && !gameWords.isEmpty },
+                set: { newValue in
+                    if !newValue { showGame = false }
+                }
+            )
+        ) {
+            SpellingChallengeGameView(
+                words: gameWords,
+                difficulty: selectedDifficulty
+            )
         }
     }
-        
+
+    // ラジオボタン風の難易度行
     @ViewBuilder
-    private func difficultyRow(_ value: SpellingDifficulty, label: String) -> some View {
+    private func difficultyRow(_ value: SpellingDifficulty,
+                               label: String) -> some View {
         Button {
             selectedDifficulty = value
         } label: {
@@ -94,7 +112,7 @@ struct SpellingChallengeMenuView: View {
                 Image(systemName: selectedDifficulty == value
                       ? "largecircle.fill.circle"
                       : "circle")
-                    .foregroundStyle(selectedDifficulty == value ? Color.blue : .secondary)
+                    .foregroundStyle(selectedDifficulty == value ? .blue : .secondary)
                 Text(label)
                     .foregroundStyle(.primary)
             }
@@ -102,37 +120,4 @@ struct SpellingChallengeMenuView: View {
         }
         .buttonStyle(.plain)
     }
- }
-    
-    // MARK: - レベル1行分
-    private func levelRow(
-        icon: String,
-        iconColor: Color,
-        title: String,
-        isSelected: Bool,
-        action: @escaping () -> Void
-    ) -> some View {
-        Button(action: action) {
-            HStack(spacing: 12) {
-                Image(systemName: icon)
-                    .foregroundStyle(iconColor)
-                
-                Text(title)
-                    .foregroundStyle(.primary)
-                
-                Spacer()
-                
-                if isSelected {
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundStyle(.blue)
-                }
-            }
-            .padding(12)
-            .background(
-                RoundedRectangle(cornerRadius: 14)
-                    .fill(isSelected ? Color(.systemGray5) : .clear)
-            )
-        }
-    }
-    
-
+}

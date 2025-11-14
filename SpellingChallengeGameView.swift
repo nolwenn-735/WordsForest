@@ -7,6 +7,15 @@
 
 // SpellingChallengeGameView.swift
 // WordsForest
+// SpellingChallengeGameView.swift
+// WordsForest
+
+// SpellingChallengeGameView.swift
+// WordsForest
+
+// SpellingChallengeGameView.swift
+// WordsForest
+
 import SwiftUI
 import UniformTypeIdentifiers
 
@@ -15,7 +24,6 @@ extension UTType {
     static let wfTile = UTType(exportedAs: "app.wordsforest.tile")
 }
 
-// ===== タイル型（Transferable + Codable 明示実装）=====
 // ===== タイル型 =====
 struct GameTile: Identifiable, Hashable, Codable {
     let id: UUID
@@ -28,68 +36,75 @@ struct GameTile: Identifiable, Hashable, Codable {
         self.isExtra = isExtra
     }
 
-    // 等価判定 & ハッシュを id のみで
-    static func == (lhs: GameTile, rhs: GameTile) -> Bool { lhs.id == rhs.id }
-    func hash(into hasher: inout Hasher) { hasher.combine(id) }
-
     enum CodingKeys: String, CodingKey { case id, char, isExtra }
+
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
-        id      = try c.decode(UUID.self,    forKey: .id)
-        let s   = try c.decode(String.self,  forKey: .char)
-        char    = s.first ?? "?"
-        isExtra = try c.decode(Bool.self,    forKey: .isExtra)
+        id = try c.decode(UUID.self, forKey: .id)
+        let s = try c.decode(String.self, forKey: .char)
+        char = s.first ?? "?"
+        isExtra = try c.decode(Bool.self, forKey: .isExtra)
     }
+
     func encode(to encoder: Encoder) throws {
         var c = encoder.container(keyedBy: CodingKeys.self)
-        try c.encode(id,                forKey: .id)
-        try c.encode(String(char),      forKey: .char)
-        try c.encode(isExtra,           forKey: .isExtra)
+        try c.encode(id, forKey: .id)
+        try c.encode(String(char), forKey: .char)
+        try c.encode(isExtra, forKey: .isExtra)
     }
 }
 
-// DnD用（idを含むCodableで転送）
+// DnD 対応
 extension GameTile: Transferable {
     static var transferRepresentation: some TransferRepresentation {
         CodableRepresentation(contentType: .wfTile)
     }
 }
+
+// 既存互換
 typealias Tile = GameTile
 
-// ===== メインView =====
+// ===== メイン View =====
 struct SpellingChallengeGameView: View {
     let words: [SpellingWord]
     let difficulty: SpellingDifficulty
-
+    
     @Environment(\.dismiss) private var dismiss
-
+    
     // 進行・演出
     @State private var currentIndex = 0
     @State private var showHeart = false
-    @State private var showWrongMark = false      // ❌
-
+    @State private var showWrongMark = false
+    
     // タイル状態
-    @State private var tiles: [Tile] = []         // 表示中（必要＋余分）
-    @State private var trashed = Set<Tile>()      // 捨てた集合（透明＆無効化）
-    @State private var neededDiscarded = false    // 必要文字も捨てたフラグ
-
+    @State private var tiles: [Tile] = []
+    @State private var trashed = Set<Tile>()
+    @State private var answerCheckToken = 0
+    
+    // currentIndex が変でも必ず配列内に収める安全インデックス
+    private var safeIndex: Int {
+        guard !words.isEmpty else { return 0 }
+        return min(max(currentIndex, 0), words.count - 1)
+    }
+    
     var body: some View {
-        if words.isEmpty {
-            VStack(spacing: 16) {
-                Text("出題できる単語がありません")
-                Button("閉じる") { dismiss() }
-            }
-            .padding()
-        } else {
-            GeometryReader { geo in
-                let h = geo.size.height
-                let w = geo.size.width
-                let current = words[currentIndex]
-
+        GeometryReader { geo in
+            let h = geo.size.height
+            let w = geo.size.width
+            
+            // ★ 万一単語がない異常時だけ表示（通常ルートでは来ない想定）
+            if words.isEmpty {
+                Text("※ 単語が渡されていません（My Collection から選んでね）")
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                let index = safeIndex
+                let current = words[index]
+                
                 ZStack {
-                    // ===== ① タイトル／日本語意味 =====
+                    // ===== タイトル／日本語意味 =====
                     VStack(spacing: 4) {
-                        Text("問題 \(currentIndex + 1) / \(words.count)")
+                        Text("問題 \(index + 1) / \(words.count)")
                             .font(.system(size: 30, weight: .semibold))
                         Text("\(current.pos.jaTitle)　\(current.meaningJa)")
                             .font(.title3)
@@ -98,38 +113,46 @@ struct SpellingChallengeGameView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .position(x: w / 2, y: h * 0.12)
-
-                    // ===== ② タイル列＋判定ボタン =====
+                    
+                    // ===== タイル列＋スキップボタン =====
                     VStack(spacing: 16) {
                         let visible = tiles.filter { !trashed.contains($0) }
-                        let tileWidth: CGFloat = min(60, 300 / CGFloat(max(visible.count, 1)))
-
+                        let tileWidth: CGFloat = min(
+                            60,
+                            300 / CGFloat(max(visible.count, 1))
+                        )
+                        
                         HStack(spacing: 8) {
-                            ForEach(visible) { t in
+                            ForEach(tiles) { t in
+                                let isHidden = trashed.contains(t)
+                                
                                 Text(String(t.char))
                                     .font(.title2)
                                     .frame(width: tileWidth, height: tileWidth)
                                     .background(current.pos.tileColor)
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
-                                    .opacity(trashed.contains(t) ? 0.25 : 1.0)
-                                    .contentShape(RoundedRectangle(cornerRadius: 12))   // ← ヒット領域を見た目どおりに拡張
-                                    .onTapGesture { attemptTrash(t) }     // DnDなし環境でも試せる
+                                    .opacity(isHidden ? 0.18 : 1.0)
+                                // 並べ替え用 DnD
                                     .modifier(DraggableIfAvailable(tile: t))
+                                    .modifier(DropReorderIfAvailable(tile: t) { from, to in
+                                        moveTile(from: from, to: to)
+                                    })
                             }
                         }
                         .padding(.horizontal, 16)
-
-                        Button("正解したことにする（仮）") {
-                            finishAttempt()
+                        
+                        // ★ 分からないとき用スキップボタン
+                        Button("スキップ") {
+                            skipQuestion()
                         }
                         .padding(.top, 4)
                         .tint(.blue)
                     }
                     .frame(maxWidth: .infinity)
                     .position(x: w / 2, y: h * 0.40)
-
-                    // ===== ③ ハスキーと❤️/❌ =====
+                    
+                    // ===== ハスキー＋❤️／❌ =====
                     VStack {
                         Spacer()
                         ZStack {
@@ -137,7 +160,7 @@ struct SpellingChallengeGameView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 180)
-
+                            
                             if showHeart {
                                 Image(systemName: "heart.fill")
                                     .font(.system(size: 42))
@@ -158,173 +181,216 @@ struct SpellingChallengeGameView: View {
                     }
                 }
                 // ===== ライフサイクル =====
-                .onAppear { setupTiles() }
-                .onChange(of: currentIndex) { _ in setupTiles() }
+                .onAppear(perform: setupTiles)
+                .onChange(of: currentIndex) {
+                    setupTiles()
+                }
                 .animation(.easeInOut, value: showHeart)
                 .animation(.easeInOut, value: showWrongMark)
-
-                // ===== 右下の小さめゴミ箱（黒丸近辺） =====
+                // ===== 右下ゴミ箱 =====
                 .overlay(alignment: .bottomTrailing) {
                     TrashButton()
                         .modifier(DropDestinationIfAvailable { items in
                             items.forEach { attemptTrash($0) }
                             return true
                         })
-                        .scaleEffect(0.92)
-                        .padding(.trailing, 20)
-                        .padding(.bottom, h * 0.42) // 0.15〜0.22で微調整OK
+                        .scaleEffect(0.98)
+                        .padding(.trailing, 32)
+                        .padding(.bottom, h * 0.42)
                 }
             }
         }
     }
-
+    
     // MARK: - セットアップ
-
+    
     private func setupTiles() {
-        let word = baseWord(words[currentIndex].text)
+        guard !words.isEmpty else { return }
+        
+        let word = words[safeIndex]
         tiles = buildTiles(for: word)
         trashed.removeAll()
-        neededDiscarded = false
+        showHeart = false
         showWrongMark = false
     }
-
-    // 不規則動詞のベース（記号・前後空白も正規化）
-    private func baseWord(_ raw: String) -> String {
-        // 小文字 & 前後空白
-        var s = raw.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-
-        // 不規則動詞の代表形へ寄せる（必要に応じて増やせる）
-        switch s {
-        case "run", "ran": s = "run"
-        case "go", "went", "gone": s = "go"
-        case "keep", "kept": s = "keep"
-        default: break
+    
+    // SpellingWord に合わせたタイル生成
+    private func buildTiles(for word: SpellingWord) -> [Tile] {
+        var tiles = word.letters.map { Tile(char: $0, isExtra: false) }
+        
+        // ⭐️⭐️: 紛らわしい1文字を追加
+        if difficulty == .hard,
+           let extraLower = word.answer.misleadingLetter() {
+            let extra = Character(String(extraLower).uppercased())
+            tiles.append(Tile(char: extra, isExtra: true))
         }
-
-        // 区切り対策（"to keep / kept …" などの先頭トークンだけ採用）
-        var seps = CharacterSet(charactersIn: "/,・•;()")
-        seps.insert(charactersIn: " \t")
-        if let r = s.rangeOfCharacter(from: seps) {
-            s = String(s[..<r.lowerBound])
-        }
-
-        return s.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        return tiles.shuffled()
     }
-    // タイル生成（必要文字＋余分1枚）
-    private func buildTiles(for word: String) -> [Tile] {
-        var arr: [Tile] = Array(word.uppercased()).map { Tile(char: $0, isExtra: false) }
-        if difficulty == .hard, let extra = word.misleadingLetter() {
-            arr.append(Tile(char: Character(String(extra).uppercased()), isExtra: true))
-        }
-        return arr.shuffled()
-    }
-
+    
     // MARK: - ふるまい
-
-    // 捨てる試行：必要文字でもブロックせずに「捨てた扱い」にし、後で❌を出す
+    
+    // ゴミ箱に入ったタイルだけ「捨てた」扱い
     private func attemptTrash(_ t: Tile) {
         trashed.insert(t)
-        // 余分フラグに依存せず、「残りで答えが作れるか」で判断
-        neededDiscarded = !canStillMakeAnswer()
-
-        #if DEBUG
-        print("TRASH:", String(t.char),
-              "| canStillMakeAnswer =", canStillMakeAnswer(),
-              "| neededDiscarded =", neededDiscarded)
-        #endif
+        evaluateAnswerIfReady()
     }
+    
+    // タイルの並べ替え（DnD）
+    private func moveTile(from: Tile, to: Tile) {
+        guard let fromIndex = tiles.firstIndex(of: from),
+              let toIndex = tiles.firstIndex(of: to),
+              fromIndex != toIndex else { return }
+        
+        let item = tiles.remove(at: fromIndex)
+        tiles.insert(item, at: toIndex)
+        
+        evaluateAnswerIfReady()
+    }
+    
+    // 自動判定：答えの長さに揃ったら「正解のときだけ」♥️
+    // 自動判定：答えが揃ってから少し待って ❤️ / ❌
+    private func evaluateAnswerIfReady() {
+        guard !words.isEmpty else { return }
 
-    // 「完成」判定（いまは仮ボタンで呼ぶ）
-    private func finishAttempt() {
-        if neededDiscarded {
-            // 3秒後に❌→少し見せてリセット（同一問題を再挑戦）
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                withAnimation { showWrongMark = true }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                    withAnimation { showWrongMark = false }
-                    trashed.removeAll()  // 必要文字を復元（余分文字はそのままでもOK）
-                }
+        let targetIndex = safeIndex
+        let word = words[targetIndex]
+
+        // 現在の並びから回答文字列を作成
+        let usedTiles = tiles.filter { !trashed.contains($0) }
+        let answer = String(usedTiles.map(\.char)).lowercased()
+
+        // まだ文字数が揃っていない → 何もしない（途中経過）
+        guard answer.count == word.answer.count else { return }
+
+        // 🔹この瞬間の状態に対する「チェック予約」を作る
+        // 新しいチェックごとにトークンをインクリメント
+        let token = answerCheckToken + 1
+        answerCheckToken = token
+
+        // 少し待ってから（例: 4.5秒）もう一度状態を確認
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
+            // その間に別の操作がされたら token が変わっているのでキャンセル
+            guard token == answerCheckToken else { return }
+
+            // 問題が切り替わっていたらキャンセル
+            guard targetIndex == safeIndex,
+                  targetIndex < words.count else { return }
+
+            let latestWord = words[targetIndex]
+
+            // 最新の並びを取り直す
+            let latestUsed = tiles.filter { !trashed.contains($0) }
+            let latestAnswer = String(latestUsed.map(\.char)).lowercased()
+
+            // まだ揃っていなければやっぱり判定しない
+            guard latestAnswer.count == latestWord.answer.count else { return }
+
+            if latestAnswer == latestWord.answer {
+                // ❤️ 正解：次の問題へ
+                showCorrectAndNext()
+            } else {
+                // ❌ 不正解：Xを出してこの問題だけリセット
+                showWrongAndReset()
             }
-        } else {
-            handleCorrect() // ❤️→次へ
         }
     }
-
-    private func handleCorrect() {
-        withAnimation(.spring) { showHeart = true }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            withAnimation { showHeart = false }
-            goNext()
+    
+    // ❤️ 正解のとき → ハート表示して次の問題へ
+    private func showCorrectAndNext() {
+        showWrongMark = false
+        withAnimation { showHeart = true }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+            showHeart = false
+            goNextQuestion()
         }
     }
-
-    private func goNext() {
+    
+    // ❌ 不正解のとき → バツを出して同じ問題をやり直し
+    private func showWrongAndReset() {
+        showHeart = false
+        withAnimation { showWrongMark = true }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+            showWrongMark = false
+            setupTiles()
+        }
+    }
+    // 次の問題へ（通常の正解 or スキップ後に使用）
+    private func goNextQuestion() {
+        trashed.removeAll()
+        showHeart = false
+        showWrongMark = false
+        
         if currentIndex + 1 < words.count {
             currentIndex += 1
         } else {
             dismiss()
         }
     }
-    // 残っているタイル文字列を取得（大文字で統一）
-    private func visibleString() -> String {
-        tiles.filter { !trashed.contains($0) }
-             .map { String($0.char) }
-             .joined()
+    
+    // 分からないとき用スキップ
+    private func skipQuestion() {
+        // 進行中の判定を無効化
+        answerCheckToken += 1
+        showHeart = false
+        showWrongMark = false
+        goNextQuestion()
     }
-
-    // 文字出現回数のマップ
-    private func freqMap(_ s: String) -> [Character: Int] {
-        var d: [Character: Int] = [:]
-        for c in s.uppercased() { d[c, default: 0] += 1 }
-        return d
-    }
-
-    // 「残りタイル」で正解がまだ作れるか（マルチセット包含判定）
-    private func canStillMakeAnswer() -> Bool {
-        let need = freqMap(baseWord(words[currentIndex].text))
-        let have = freqMap(visibleString())
-        for (ch, cnt) in need {
-            if (have[ch] ?? 0) < cnt { return false }
-        }
-        return true
-    }
-}
-
-
-// ===== 見た目だけのゴミ箱ボタン（小さめ・青カプセル）=====
-private struct TrashButton: View {
-    var body: some View {
-        Label("ゴミ箱", systemImage: "trash")
-            .font(.subheadline)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 8)
-            .background(Capsule().fill(Color(.systemGray6)))
-            .overlay(Capsule().stroke(Color.blue.opacity(0.28), lineWidth: 2))
-            .foregroundStyle(.blue)
-            .contentShape(Capsule())
-    }
-}
-
-// ===== iOSバージョン差吸収：.draggable / .dropDestination を安全ラップ =====
-private struct DraggableIfAvailable: ViewModifier {
-    let tile: Tile
-    func body(content: Content) -> some View {
-        if #available(iOS 16.0, *) {
-            content.draggable(tile)
-        } else {
-            content // 古い環境はタップのみで捨てテスト
+    // ===== 見た目だけのゴミ箱ボタン =====
+    private struct TrashButton: View {
+        var body: some View {
+            Label("ゴミ箱", systemImage: "trash")
+                .font(.subheadline)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .background(Capsule().fill(Color(.systemGray6)))
+                .overlay(Capsule().stroke(Color.blue.opacity(0.28), lineWidth: 2))
+                .foregroundStyle(.blue)
+                .contentShape(Capsule())
         }
     }
-}
-private struct DropDestinationIfAvailable: ViewModifier {
-    let onDrop: ([Tile]) -> Bool
-    func body(content: Content) -> some View {
-        if #available(iOS 16.0, *) {
-            content.dropDestination(for: Tile.self) { items, _ in
-                onDrop(items)
+    
+    // ===== .draggable / .dropDestination ラッパ =====
+    private struct DraggableIfAvailable: ViewModifier {
+        let tile: Tile
+        func body(content: Content) -> some View {
+            if #available(iOS 16.0, *) {
+                content.draggable(tile)
+            } else {
+                content
             }
-        } else {
-            content // 古い環境は視覚のみ
+        }
+    }
+    
+    // ゴミ箱用: Tile.self を受け取る
+    private struct DropDestinationIfAvailable: ViewModifier {
+        let onDrop: ([Tile]) -> Bool
+        func body(content: Content) -> some View {
+            if #available(iOS 16.0, *) {
+                content.dropDestination(for: Tile.self) { items, _ in
+                    onDrop(items)
+                }
+            } else {
+                content
+            }
+        }
+    }
+    
+    // 並べ替え用: タイル同士の上に落としたら moveTile 発火
+    private struct DropReorderIfAvailable: ViewModifier {
+        let tile: Tile
+        let move: (Tile, Tile) -> Void
+        
+        func body(content: Content) -> some View {
+            if #available(iOS 16.0, *) {
+                content.dropDestination(for: Tile.self) { items, _ in
+                    guard let from = items.first else { return false }
+                    move(from, tile)
+                    return true
+                }
+            } else {
+                content
+            }
         }
     }
 }

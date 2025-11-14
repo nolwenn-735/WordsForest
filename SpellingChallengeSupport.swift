@@ -4,63 +4,60 @@
 //
 //  Created by Nami .T on 2025/10/31.
 //
-
-import SwiftUI
-
-
-
-
 /// 「この単語から紛らわしい文字を1コちょうだい」をやるためのextension
+// SpellingChallengeSupport.swift
+
+import Foundation
+
 extension String {
+    /// この単語から「紛らわしい余分1文字」を1つ返す
     func misleadingLetter() -> Character? {
-        // まずは文字をぜんぶ小文字に
         let chars = Array(self.lowercased())
 
-        // よく間違える候補たち（母音→母音、子音→子音）
+        // 母音の取り違え候補
         let vowelConfusions: [Character: [Character]] = [
-            "a": ["e","o"],
-            "e": ["i","a"],
-            "i": ["e","u"],
-            "o": ["a","u"],
-            "u": ["a","i"],
+            "a": ["e", "o"],
+            "e": ["a", "i"],
+            "i": ["e", "y"],
+            "o": ["a", "u"],
+            "u": ["a", "i"],
         ]
 
+        // 子音の取り違え候補（例）
         let consonantConfusions: [Character: [Character]] = [
-            "n": ["m"], "m": ["n"],
-            "r": ["l"], "l": ["r"],
+            "m": ["n"],
+            "n": ["m"],
+            "b": ["v"],
+            "v": ["b"],
+            "p": ["b"],
+            "r": ["l"],
+            "l": ["r"],
+            "c": ["s","k"],
             "k": ["c"],
             "s": ["c"],
-            "b": ["v"], "v": ["b"],
+            "f": ["p","h"],
+            // 必要に応じて増やしてOK
         ]
 
-        // 文字列の中にある文字をシャッフル順で見て、
-        //「それに紛らわしさがあるかな？」って探す
-        for (i, ch) in chars.enumerated().shuffled() {
-            // ① 母音系の混同行列
-            if let list = vowelConfusions[ch], let pick = list.randomElement() {
-                return pick
-            }
+        var candidates: [Character] = []
 
-            // ② c は文脈で分岐（"ce", "ci", "cy" → s、それ以外 → k）
-            if ch == "c" {
-                let next = (i + 1 < chars.count) ? chars[i + 1] : nil
-                if let n = next, "eiy".contains(n) { return "s" }
-                return "k"
+        for ch in chars {
+            if let vs = vowelConfusions[ch] {
+                candidates.append(contentsOf: vs)
             }
-            // ③ g も文脈で分岐（ge, gi, gy → j、それ以外 → k）
-            if ch == "g" {
-                let next = (i + 1 < chars.count) ? chars[i + 1] : nil
-                if let n = next, "eiy".contains(n) { return "j" }
-                return "k"
-            }
-
-            // ③ それ以外の子音系
-            if let list = consonantConfusions[ch], let pick = list.randomElement() {
-                return pick
+            if let cs = consonantConfusions[ch] {
+                candidates.append(contentsOf: cs)
             }
         }
 
-        // ④ どれにも当てはまらなければ混入しない
-        return nil
+        // 1つも候補が作れなかった場合だけ「単語に含まれないランダム1文字」
+        if candidates.isEmpty {
+            let alphabet = Array("abcdefghijklmnopqrstuvwxyz")
+            let base = Set(chars)
+            let filtered = alphabet.filter { !base.contains($0) }
+            return filtered.randomElement()
+        }
+
+        return candidates.randomElement()
     }
 }

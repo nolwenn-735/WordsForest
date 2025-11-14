@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct MyCollectionSelectionView: View {
-        let collection: [WordCard]
-        let difficulty: SpellingDifficulty          // ← 読み取り専用
-        @Binding var selectedIDs: Set<UUID>
-        let onStart: ([WordCard]) -> Void
-
-        private let maxPick = 5
-
-        @Environment(\.dismiss) private var dismiss
+    let collection: [WordCard]
+    @Binding var selectedDifficulty: SpellingDifficulty
+    @Binding var selectedIDs: Set<UUID>
+    let onStart: ([WordCard]) -> Void
+    @Environment(\.dismiss) private var dismiss
+    private let maxPick = 5
     
     var body: some View {
         VStack(spacing: 12) {
@@ -50,11 +48,11 @@ struct MyCollectionSelectionView: View {
             }
             .listStyle(.plain)
             
-            // 難易度
+            // 難易度表示（読み取り専用でOK）
             Text(
-                difficulty == .easy
-                ? "難易度：⭐️ 使う文字だけ"
-                : "難易度：⭐️⭐️ いらない文字1つあり"
+                selectedDifficulty == .easy
+                    ? "難易度：⭐️ 使う文字だけ"
+                    : "難易度：⭐️⭐️ いらない文字1つあり"
             )
             .font(.subheadline)
             .foregroundStyle(.secondary)
