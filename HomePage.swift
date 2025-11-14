@@ -105,29 +105,25 @@ struct HomePage: View {
                                     .padding(.trailing, 8)
                             }
                     }
-                            // 🆕 新着情報（直近4件）
-                            VStack(alignment: .leading, spacing: 8) {
-                                HStack {
-                                    Label("新着情報（直近4件）", systemImage: "sparkles")
-                                        .font(.headline)
-                                    Spacer()
-                                    Button(showRecent ? "隠す" : "表示") {
-                                        withAnimation(.snappy) { showRecent.toggle() }
-                                    }
-                                }
-                                NavigationLink("履歴をすべて見る") {
-                                    HistoryAllView()
-                                }
-                                .font(.subheadline)
-                                
-                                if showRecent {
-                                    HomeworkRecentWidget()
-                                        .transition(.move(edge: .top).combined(with: .opacity))
-                                }
-                            } // ← ここでこの VStack を閉じる
-                            .padding(.horizontal)      // ← 直後に修飾子チェーン
-                            .padding(.vertical, 4)     // ← 直後に修飾子チェーン
-                            
+                    // 🆕 新着情報（直近4件）
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text("🆕 新着情報（直近8件）")
+                                .font(.headline)
+                            Spacer()
+                            Button(showRecent ? "隠す" : "表示") {
+                                withAnimation(.snappy) { showRecent.toggle() }
+                            }
+                        }
+
+                        if showRecent {
+                            HomeworkRecentWidget()
+                                .transition(.move(edge: .top).combined(with: .opacity))
+                        }
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 4)
+                     
                             // ここから次のセクション（別の VStack でOK）
                             // ④ 『単語カード学習』各品詞へ（push方式）
                             VStack(alignment: .leading, spacing: 8) {
@@ -339,21 +335,94 @@ struct HomePage: View {
             var body: some View { Text("Column Page stub") }
         }
         
-        // 🆕 履歴一覧（仮）
+        // 🗂 宿題の履歴 一覧（新しい順）
+        // 🆕 履歴一覧（本番）
         private struct HistoryAllView: View {
+            @EnvironmentObject var hw: HomeworkState
+
+            // 日付表示用フォーマッタ（上の方に static で用意）
+            private static let dateFormatter: DateFormatter = {
+                let df = DateFormatter()
+                df.dateFormat = "yyyy/MM/dd"
+                return df
+            }()
+
             var body: some View {
-                List(0..<8) { _ in
+                // ★ 最新から最大8件だけ取り出し
+                let entries = Array(hw.history.prefix(8))
+
+                List(entries) { entry in
                     HStack(alignment: .top, spacing: 12) {
+                        // 左の🟩アイコン部分
                         Image(systemName: "square.fill")
-                            .foregroundStyle(.green)
+                            .foregroundStyle(.gray)
+
+                        // 右側の本文
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("2025/10/02").font(.caption).foregroundStyle(.secondary)
-                            Text("宿題：名詞＋形容詞（24語）")
+                            // 上段：日付
+                            Text(Self.dateFormatter.string(from: entry.date))
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+
+                            // 下段：宿題の内容
+                            Text(entry.titleLine)
+                                .font(.body)
                         }
                     }
                     .padding(.vertical, 4)
                 }
                 .navigationTitle("宿題の履歴")
+            }
+        }
+        // 🆕 新着情報（直近4件）カード
+        private struct HomeworkRecentWidget: View {
+            @EnvironmentObject var hw: HomeworkState
+            
+            // 日付表示用
+            private static let df: DateFormatter = {
+                let f = DateFormatter()
+                f.dateFormat = "yyyy/MM/dd"
+                return f
+            }()
+            
+            var body: some View {
+                // history は新しい順に先頭に入っているので、先頭4件だけ取り出す
+                let items = Array(hw.history.prefix(4))
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    ForEach(items) { entry in
+                        HStack(alignment: .top, spacing: 8) {
+                            // 左のステータス色（🟩 ⏸️ ❌）
+                            Text(entry.statusIcon)
+                                .font(.title3)
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(Self.df.string(from: entry.date))
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                                
+                                Text("宿題：\(entry.pairLabel)（\(entry.wordsCount)語）")
+                                    .font(.subheadline)
+                            }
+                        }
+                        .padding(.vertical, 4)
+                    }
+                    
+                    // 白い小ウィンドウの中にある「履歴をすべて見る」
+                    NavigationLink("🆕 履歴をすべて見る") {
+                        HistoryAllView()
+                            .environmentObject(hw)
+                    }
+                    .font(.subheadline)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding(.top, 4)
+                }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.systemBackground))
+                        .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 2)
+                )
             }
         }
     }

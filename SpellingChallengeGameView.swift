@@ -268,8 +268,8 @@ struct SpellingChallengeGameView: View {
         let token = answerCheckToken + 1
         answerCheckToken = token
 
-        // 少し待ってから（例: 4.5秒）もう一度状態を確認
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
+        // 少し待ってから（例: 4.0秒）もう一度状態を確認
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
             // その間に別の操作がされたら token が変わっているのでキャンセル
             guard token == answerCheckToken else { return }
 

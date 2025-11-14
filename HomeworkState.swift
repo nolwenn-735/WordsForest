@@ -1,9 +1,9 @@
 //
-//  HomeworkState.swift
 //  WordsForest
 //
 //  Created by Nami .T on 2025/09/15.
 //
+// HomeworkState.swift
 import SwiftUI
 
 // CEFR レベル（必要なら別ファイルでもOK）
@@ -148,14 +148,31 @@ final class HomeworkState: ObservableObject {
         }
     }
 
+   
+    // 履歴の上限（必要なら好きな件数に変えてOK）
+    private let maxHistoryCount = 50
+
     // MARK: - 履歴保存
     private func logNow(_ now: Date = Date()) {
         var list = history
-        list.insert(HomeworkEntry(date: now, status: status, pair: currentPair), at: 0)
-        // 任意：全件保持でOK。HOMEは最新4件だけ見せる
+
+        // ① 新しいエントリを先頭に追加（最新が一番上）
+        list.insert(
+            HomeworkEntry(date: now, status: status, pair: currentPair),
+            at: 0
+        )
+
+        // ② 上限を超えた分、末尾（＝古いエントリ）から削除
+        if list.count > maxHistoryCount {
+            let overflow = list.count - maxHistoryCount
+            list.removeLast(overflow)
+        }
+
+        // ③ 保存
         history = list
         historyRaw = Self.encode(list)
     }
+    
 
     private static func decode(_ raw: String) -> [HomeworkEntry] {
         (try? JSONDecoder().decode([HomeworkEntry].self, from: Data(raw.utf8))) ?? []
