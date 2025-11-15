@@ -33,8 +33,8 @@ struct HomePage: View {
                         Text("Home Page")
                             .font(.system(size: 34, weight: .bold))
                             .foregroundStyle(.primary)
-                        Text("🏠")
-                            .font(.system(size: 28))
+                        Text("🏡")
+                            .font(.system(size: 34))
                             .accessibilityLabel("ホーム")
                         Spacer()
                     }
@@ -105,15 +105,19 @@ struct HomePage: View {
                                     .padding(.trailing, 8)
                             }
                     }
-                    // 🆕 新着情報（直近4件）
+                    // 🆕 新着情報（直近8件）
                     VStack(alignment: .leading, spacing: 8) {
-                        HStack {
-                            Text("🆕 新着情報（直近8件）")
+                        HStack(alignment: .firstTextBaseline, spacing: 6) {
+                            Label("🆕 新着情報（直近8件）", systemImage: "sparkles")
                                 .font(.headline)
-                            Spacer()
+
                             Button(showRecent ? "隠す" : "表示") {
                                 withAnimation(.snappy) { showRecent.toggle() }
                             }
+                            .font(.callout.weight(.semibold))
+                            .foregroundStyle(.blue)
+
+                            Spacer()   // ← Spacer をここに移動
                         }
 
                         if showRecent {
@@ -374,7 +378,7 @@ struct HomePage: View {
                 .navigationTitle("宿題の履歴")
             }
         }
-        // 🆕 新着情報（直近4件）カード
+        // 🆕 新着情報（直近8件）カード
         private struct HomeworkRecentWidget: View {
             @EnvironmentObject var hw: HomeworkState
             
@@ -392,7 +396,7 @@ struct HomePage: View {
                 VStack(alignment: .leading, spacing: 8) {
                     ForEach(items) { entry in
                         HStack(alignment: .top, spacing: 8) {
-                            // 左のステータス色（🟩 ⏸️ ❌）
+                            // 左のステータス色（🟩 ⏸️ ⛔️）
                             Text(entry.statusIcon)
                                 .font(.title3)
                             
@@ -409,7 +413,7 @@ struct HomePage: View {
                     }
                     
                     // 白い小ウィンドウの中にある「履歴をすべて見る」
-                    NavigationLink("🆕 履歴をすべて見る") {
+                    NavigationLink("履歴をすべて見る") {
                         HistoryAllView()
                             .environmentObject(hw)
                     }
@@ -427,26 +431,25 @@ struct HomePage: View {
         }
     }
     
-    private struct WeeklySetMiniButton: View {
-        @EnvironmentObject var hw: HomeworkState
-        
-        var body: some View {
-            let p = hw.currentPair                     // いまの品詞ペア
-            
-            NavigationLink {
-                WeeklySetView(pair: p)
-                    .environmentObject(hw)
-            } label: {
-                HStack(spacing: 6) {
-                    Text("🗓️今週分へ（\(p.parts[0].jaTitle)+\(p.parts[1].jaTitle)）")
-                }
-                .font(.caption)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 6)
-                .background(.thinMaterial, in: Capsule())   // チップ風
-            }
-            .buttonStyle(.plain)                              // チップの見た目を維持
+private struct WeeklySetMiniButton: View {
+    @EnvironmentObject var hw: HomeworkState
+
+    var body: some View {
+        let p = hw.currentPair
+
+        NavigationLink {
+            WeeklySetView(pair: p)
+                .environmentObject(hw)
+        } label: {
+            Text("🗓️ 今週分へ →")
+                .font(.system(size: 16, weight: .semibold))   // ← フォント大きめに
+                .foregroundColor(.blue)                       // ← 青文字に強制
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .background(.thinMaterial, in: Capsule())      // ← カプセル形ボタン
         }
+        .buttonStyle(.plain)
     }
+}
   
  

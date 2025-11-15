@@ -222,6 +222,7 @@ struct POSFlashcardListView: View {
                                 .allowsHitTesting(false)
                                 .padding(.trailing, 12)
                                 .padding(.bottom, 8)
+                                .offset(x: -32)   // ← 左へ -ptを上げる
                         }
                     }
                     

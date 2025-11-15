@@ -12,6 +12,16 @@ struct HomeworkBanner: View {
                 pill(hw.currentPair == .nounAdj ? "名詞＋形容詞" : "動詞＋副詞")
                 if hw.paused { pill("⏸ ストップ中") }
                 pill(hw.daysPerCycle == 14 ? "2週間" : "1週間")
+                
+
+                    // ★ デバッグ専用（本番では消える）
+                    #if DEBUG
+                    Button("ペア切替テスト") {
+                        hw.advanceCycle()   // 強制的に「名詞＋形容詞」↔「動詞＋副詞」に交互切替
+                    }
+                    .font(.caption2)
+                    .tint(.blue)
+                    #endif
             }
 
             HStack(spacing: 8) {
@@ -23,13 +33,14 @@ struct HomeworkBanner: View {
                              isOn: hw.status == .paused,
                              onTap: { hw.setPaused() },
                              color: .orange)
-                ToggleButton(title: "❌ 宿題なし",
+                ToggleButton(title: "⛔️ 宿題なし",
                              isOn: hw.status == .none,
                              onTap: { hw.setNone() },
                              color: .red)
                 Spacer()
                 Button("＋1週延長") { hw.extendOneWeek() }
                     .buttonStyle(.bordered)
+                    .tint(.primary)
             }
         }
         .padding()
@@ -73,7 +84,7 @@ struct HomeworkRecentWidget: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text("🆕 新着情報（直近4件）").font(.headline)
+                Text("🆕 新着情報（直近8件）").font(.headline)
                 Spacer()
                 NavigationLink("履歴をすべて見る") { HomeworkHistoryList() }
             }

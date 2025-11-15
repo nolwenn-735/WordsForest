@@ -50,7 +50,7 @@ struct HomeworkEntry: Identifiable, Codable {
     }
 
     var statusIcon: String {
-        switch status { case .active: return "🟩"; case .paused: return "⏸️"; case .none: return "❌" }
+        switch status { case .active: return "🟩"; case .paused: return "⏸️"; case .none: return "⛔️" }
     }
     var pairLabel: String {
         switch pair { case .nounAdj: "名詞＋形容詞"; case .verbAdv: "動詞＋副詞" }
@@ -69,7 +69,7 @@ final class HomeworkState: ObservableObject {
     @Published var variantOthers = 0
     // 週合計24の内訳（お好みで変更可）
     @Published var weeklyQuota: [PartOfSpeech: Int] = [
-        .noun: 12, .verb: 0, .adj: 12, .adv: 0
+        .noun: 12, .verb: 12, .adj: 12, .adv: 12
     ]
 
     // 学習に含める語彙レベル（まずは A1〜B1）
@@ -79,10 +79,32 @@ final class HomeworkState: ObservableObject {
     @AppStorage("hw_pairIndex") private var pairIndex: Int = 0
     var currentPair: PosPair { PosPair(rawValue: pairIndex) ?? .nounAdj }
 
+    // 🆕 今サイクル表示用のラベル
+    var currentPairLabel: String {
+        switch currentPair {
+        case .nounAdj: return "名詞＋形容詞"
+        case .verbAdv: return "動詞＋副詞"
+        }
+    }
+
+    var cycleLengthLabel: String {
+        switch daysPerCycle {
+        case 7:  return "1週間"
+        case 14: return "2週間"
+        default: return "\(daysPerCycle)日"
+        }
+    }
+    
+    // 🆕 ボタンなどで使う「今サイクル」まとめ表示
+    var currentCycleLabel: String {
+        "\(currentPairLabel)"   // 今はペア名だけでOK
+        // もし「名詞＋形容詞・1週間」とか出したくなったら ↓ にすればいい
+        // "\(currentPairLabel)・\(cycleLengthLabel)"
+    }
+    
     // サイクル開始
     @AppStorage("hw_cycleStart") private var cycleStartISO: String =
         ISO8601DateFormatter().string(from: Date())
-
     // 動物色（起点）
     @AppStorage("variant_noun") var variantNoun: Int = 0
     @AppStorage("variant_adj")  var variantAdj:  Int = 0
