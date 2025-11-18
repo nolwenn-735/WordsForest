@@ -108,7 +108,7 @@ struct HomePage: View {
                     // 🆕 新着情報（直近8件）
                     VStack(alignment: .leading, spacing: 8) {
                         HStack(alignment: .firstTextBaseline, spacing: 6) {
-                            Label("🆕 新着情報（直近8件）", systemImage: "sparkles")
+                            Text("🆕 新着情報（直近8件）")
                                 .font(.headline)
 
                             Button(showRecent ? "隠す" : "表示") {

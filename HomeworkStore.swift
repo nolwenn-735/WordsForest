@@ -30,6 +30,7 @@ final class HomeworkStore {
         loadFavorites()
         loadLearned()
         migrateIfNeeded()   // ← これを追加
+        loadLastUsed()      // 🆕 直近サイクル情報の読み込み
     }
 
     // 既存の保存キー（単語本体）
@@ -40,6 +41,9 @@ final class HomeworkStore {
     // 追加：保存スキーマのバージョン管理
     private let schemaVersionKey = "homework_schema_version"
     private let currentSchemaVersion = 2
+    
+    // 🆕 lastUsed 用キー
+    private let lastUsedKey = "homework_last_used_v1"
 
     // 単語本体
     private(set) var words: [StoredWord] = []
@@ -47,6 +51,10 @@ final class HomeworkStore {
     // 新規：保存先
     private(set) var favorites: Set<WordKey> = []
     private(set) var learned: Set<WordKey> = []
+    
+    // 🆕 直近サイクルでの出題記録（WordKey → cycleIndex）
+    private var lastUsed: [WordKey: Int] = [:]
+    
 
     
     // MARK: - 単語の保存/読込（既存）
@@ -61,12 +69,7 @@ final class HomeworkStore {
         }
     }
     
-    // MARK: - 正規化ヘルパ
-    private func norm(_ s: String) -> String {
-        s.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-    }
-    // 追加：保存データの移行（キー正規化など）
-   
+
     // MARK: - 新規: 保存/読込（お気に入り・覚えた）
     private func saveFavorites() {
         let data = try? JSONEncoder().encode(Array(favorites))
@@ -89,6 +92,26 @@ final class HomeworkStore {
             learned = Set(arr)
         }
     }
+    // 🆕 MARK: - 直近サイクル情報の保存/読込
+    private func saveLastUsed() {
+        let data = try? JSONEncoder().encode(lastUsed)
+        UserDefaults.standard.set(data, forKey: lastUsedKey)
+    }
+
+    private func loadLastUsed() {
+        guard let data = UserDefaults.standard.data(forKey: lastUsedKey),
+              let dict = try? JSONDecoder().decode([WordKey: Int].self, from: data) else {
+            lastUsed = [:]
+            return
+        }
+        lastUsed = dict
+    }
+
+    // MARK: - 正規化ヘルパ
+    private func norm(_ s: String) -> String {
+        s.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    }
+
     // 一度だけ実行する移行処理（お気に入り/覚えた/単語の重複を正規化）
     private func migrateIfNeeded() {
         let v = UserDefaults.standard.integer(forKey: schemaVersionKey)
@@ -321,7 +344,62 @@ extension Notification.Name {
     static let learnedDidChange   = Notification.Name("LearnedDidChange")
     static let storeDidChange     = Notification.Name("storeDidChange")   // 追加/削除など
 }
-    
+
+// MARK: - Homework 用出題ロジック
+extension HomeworkStore {
+
+    /// 直近 `window` サイクルで出ていない単語を優先して count 個選ぶ
+    func pickHomeworkWords(
+        for pos: PartOfSpeech,
+        cycleIndex: Int,
+        count: Int,
+        window: Int = 4
+    ) -> [WordCard] {
+
+        // 1. いま登録されている単語（覚えたBOXは list(for:) が除外済）
+        let all = list(for: pos)
+        guard !all.isEmpty else { return [] }
+
+        // 2. 直近 window サイクル以内に出題された単語を集める
+        let recentThreshold = max(0, cycleIndex - window + 1)
+        let recentlyUsedKeys: Set<WordKey> = Set(
+            lastUsed.compactMap { (key, usedCycle) in
+                usedCycle >= recentThreshold ? key : nil
+            }
+        )
+
+        // 3. 最近出たもの / 出ていないもの に分ける
+        var fresh: [WordCard] = []
+        var older: [WordCard] = []
+
+        for card in all.shuffled() {
+            let k = key(for: card)
+            if recentlyUsedKeys.contains(k) {
+                older.append(card)
+            } else {
+                fresh.append(card)
+            }
+        }
+
+        // 4. まず fresh から優先的に取る
+        var selected = Array(fresh.prefix(count))
+
+        // 足りなければ older から補充
+        if selected.count < count {
+            let remain = count - selected.count
+            selected.append(contentsOf: older.prefix(remain))
+        }
+
+        // 5. lastUsed を更新
+        for c in selected {
+            lastUsed[key(for: c)] = cycleIndex
+        }
+        saveLastUsed()
+
+        return selected
+    }
+}
+
 // MARK: - HomePage 用の読み取りプロパティ
 extension HomeworkStore {
     var favoritesCount: Int { favorites.count }

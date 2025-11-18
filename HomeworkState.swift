@@ -63,6 +63,13 @@ final class HomeworkState: ObservableObject {
     @AppStorage("hw_daysPerCycle") var daysPerCycle: Int = 7
     @AppStorage("hw_paused") var paused: Bool = false
     @AppStorage("hw_statusRaw") private var statusRaw: String = HomeworkStatus.active.rawValue
+    // 交互ローテ
+    @AppStorage("hw_pairIndex") private var pairIndex: Int = 0
+    var currentPair: PosPair { PosPair(rawValue: pairIndex) ?? .nounAdj }
+
+    // 🆕 サイクル番号（0,1,2,...）
+    @AppStorage("hw_cycleIndex") private var cycleIndex: Int = 0
+    var currentCycleIndex: Int { cycleIndex }
     @Published var status: HomeworkStatus {
         didSet { statusRaw = status.rawValue; logNow() }
     }
@@ -75,10 +82,7 @@ final class HomeworkState: ObservableObject {
     // 学習に含める語彙レベル（まずは A1〜B1）
     @Published var allowedLevels: Set<CEFRLevel> = [.A1, .A2, .B1]
     
-    // 交互ローテ
-    @AppStorage("hw_pairIndex") private var pairIndex: Int = 0
-    var currentPair: PosPair { PosPair(rawValue: pairIndex) ?? .nounAdj }
-
+   
     // 🆕 今サイクル表示用のラベル
     var currentPairLabel: String {
         switch currentPair {
@@ -140,6 +144,9 @@ final class HomeworkState: ObservableObject {
     func advanceCycle(from now: Date = Date()) {
         // ペア交互
         pairIndex = (pairIndex + 1) % 2
+        // 🆕 サイクル番号を進める
+        cycleIndex += 1
+        
         // 色ローテ（当該ペアのみ）
         switch currentPair {
         case .nounAdj:
