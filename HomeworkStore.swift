@@ -338,6 +338,7 @@ extension HomeworkStore {
     }    
 }
  
+
 extension Notification.Name {
     
     static let favoritesDidChange = Notification.Name("FavoritesDidChange")

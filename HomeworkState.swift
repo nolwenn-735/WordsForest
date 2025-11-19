@@ -78,7 +78,8 @@ final class HomeworkState: ObservableObject {
     @Published var weeklyQuota: [PartOfSpeech: Int] = [
         .noun: 12, .verb: 12, .adj: 12, .adv: 12
     ]
-
+    // 🔹 今サイクルの宿題セット（品詞ごと）
+    @Published private var cachedHomework: [PartOfSpeech: [WordCard]] = [:]
     // 学習に含める語彙レベル（まずは A1〜B1）
     @Published var allowedLevels: Set<CEFRLevel> = [.A1, .A2, .B1]
     
@@ -142,6 +143,8 @@ final class HomeworkState: ObservableObject {
     }
 
     func advanceCycle(from now: Date = Date()) {
+        // 🔹 新しいサイクルに入るので宿題セットをリセット
+        cachedHomework.removeAll()
         // ペア交互
         pairIndex = (pairIndex + 1) % 2
         // 🆕 サイクル番号を進める
@@ -209,5 +212,32 @@ final class HomeworkState: ObservableObject {
     private static func encode(_ list: [HomeworkEntry]) -> String {
         let data = try? JSONEncoder().encode(list)
         return String(data: data ?? Data("[]".utf8), encoding: .utf8) ?? "[]"
+    }
+}
+
+// MARK: - 宿題用デッキの取得
+
+extension HomeworkState {
+    /// 今のサイクル番号・weekQuota に基づいて
+    /// この品詞の宿題用カードを返す
+    // MARK: - 宿題セット取得ヘルパ
+
+    func homeworkWords(for pos: PartOfSpeech) -> [WordCard] {
+        // すでにこのサイクルで選んだセットがあれば再利用
+        if let cached = cachedHomework[pos] {
+            return cached
+        }
+
+        let quota = weeklyQuota[pos] ?? 12
+
+        let cards = HomeworkStore.shared.pickHomeworkWords(
+            for: pos,
+            cycleIndex: cycleIndex,
+            count: quota
+        )
+
+        // このサイクル中は同じセットを使い回す
+        cachedHomework[pos] = cards
+        return cards
     }
 }

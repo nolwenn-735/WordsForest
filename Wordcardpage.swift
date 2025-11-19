@@ -83,7 +83,7 @@ struct POSFlashcardListView: View {
                 }
 
                 // 中央タイトル（「名詞/動詞…」＋ 品詞色● = 英⇄日トグル）
-                ToolbarItem(placement: .principal) {
+/*                ToolbarItem(placement: .principal) {
                     HStack(spacing: 8) {
                         Text(pos.jaTitle)                 // 「名詞」「動詞」など（レッスンは外すならここをそのまま）
                             .font(.headline)
@@ -107,7 +107,7 @@ struct POSFlashcardListView: View {
                     }
                     .fixedSize(horizontal: true, vertical: false)
                 }
-
+*/
                 // 右：「ホームへ」は常に出す（既存を統合）
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button { dismiss() } label: {
@@ -136,7 +136,7 @@ struct POSFlashcardListView: View {
         let accent: Color           // アイコン青
         let background: Color       // 画面背景
         let animalName: String
-        let reversed: Bool
+        @State private var reversed: Bool
         let onEdit: (WordCard) -> Void
         var onDataChanged: () -> Void = { }
         var perRowAccent: Bool = false
@@ -181,6 +181,7 @@ struct POSFlashcardListView: View {
             self.onEdit = onEdit
             self.onDataChanged = onDataChanged
             self.perRowAccent = perRowAccent
+            _reversed = State(initialValue: reversed)
         }
         
         var body: some View {
@@ -190,6 +191,8 @@ struct POSFlashcardListView: View {
                 GeometryReader { outer in
                     let rowH   = max(88, (outer.size.height - 140) / rowsPerScreen)
                     let blockH = outer.size.height * screensPerVariant
+                    // let blockH = outer.size.height * screensPerVariant
+                    // ↑ 将来、ページング風のアニメーションを入れる時に使う候補値
                     
                     ScrollView {
                         // スクロール量
@@ -225,17 +228,7 @@ struct POSFlashcardListView: View {
                                 .offset(x: -32)   // ← 左へ -ptを上げる
                         }
                     }
-                    
-                    // まとめ帯（末尾15%で出現）
-                    if showActionBand(blockH: blockH) {
-                        actionBand
-                            .transition(.move(edge: .bottom).combined(with: .opacity))
-                            .animation(.easeOut(duration: 0.25),
-                                       value: showActionBand(blockH: blockH))
-                            .padding(.horizontal, 12)
-                            .padding(.bottom, 8)
-                            .frame(maxHeight: .infinity, alignment: .bottom)
-                    }
+                                       
                 }
             }
             // ZStack の外側にチェーン
@@ -244,10 +237,43 @@ struct POSFlashcardListView: View {
             .toolbarBackground(background, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarColorScheme(.light, for: .navigationBar)
-            
-            // 編集シート（いまの単語の既存例文を中で読み込んで編集）
+
+            // 🆕 英⇄日トグル付きツールバー
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    HStack(spacing: 8) {
+                        Text(title)                // ← ここで title を使う
+                            .font(.headline)
+
+                        Button {
+                            reversed.toggle()      // ← @State だから toggle できる
+                        } label: {
+                            HStack(spacing: 6) {
+                                Circle()
+                                    .fill(accent)  // 品詞色の●
+                                    .frame(width: 12, height: 12)
+                                    .overlay(
+                                        Circle()
+                                            .stroke(.black.opacity(0.15), lineWidth: 0.5)
+                                    )
+
+                                Text("英日")
+                                    .font(.caption)
+                                    .foregroundStyle(.primary)
+                                    .lineLimit(1)
+                            }
+                            .fixedSize()
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("英語と日本語の表示を切り替え")
+                    }
+                    .fixedSize(horizontal: true, vertical: false)
+                }
+            }
+
+            // 編集シート
             .sheet(item: $editingCard) { card in
-                ExampleEditorView(word: card.word)   // ← あなたの現在の実装に合わせる
+                ExampleEditorView(word: card.word)
             }
         }
         
@@ -349,18 +375,6 @@ struct POSFlashcardListView: View {
                 .allowsHitTesting(expanded != i)
             }
         }
-        // まとめ帯
-        private var actionBand: some View {
-            HStack(spacing: 10) {
-                Button { selected.removeAll() } label: { bandButton("📦 覚えたBOX", filled: !selected.isEmpty) }
-                Button { favored.removeAll()  } label: { bandButton("♡ MYコレ",    filled: !favored.isEmpty) }
-                Spacer(minLength: 8)
-            }
-            .padding(12)
-            .background(.ultraThinMaterial)
-            .cornerRadius(14)
-            .overlay(RoundedRectangle(cornerRadius: 14).stroke(.black.opacity(0.15), lineWidth: 1))
-        }
         
         private func bandButton(_ title: String, filled: Bool) -> some View {
             Text(title)
@@ -371,13 +385,7 @@ struct POSFlashcardListView: View {
                 .background(filled ? AnyShapeStyle(Color.primary.opacity(0.08)) : AnyShapeStyle(.thinMaterial))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }
-        
-        private func showActionBand(blockH: CGFloat) -> Bool {
-            guard blockH > 0 else { return true }
-            let r = (scrollOffset.truncatingRemainder(dividingBy: blockH)) / blockH
-            return r >= (1.0 - actionBandTailRatio)
-        }
-        
+            
         private func toggle(selected i: Int) {
             if selected.contains(i) { selected.remove(i) } else { selected.insert(i) }
         }
