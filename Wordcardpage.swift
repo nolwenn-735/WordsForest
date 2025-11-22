@@ -37,7 +37,7 @@ struct POSFlashcardListView: View {
         
             // 一覧ラッパー
             POSFlashcardView(
-                title: "\(pos.jaTitle) レッスン",
+                title: pos.jaTitle,
                 cards: cards,
                 accent: accent,
                 background: pos.backgroundColor.opacity(0.50),          // 既存どおり
@@ -61,7 +61,7 @@ struct POSFlashcardListView: View {
             .onReceive(NotificationCenter.default.publisher(for: .examplesDidChange)) { _ in
                 refreshID = UUID()
             }
-            .navigationTitle("\(pos.jaTitle) レッスン")
+            .navigationTitle(pos.jaTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 // 左：メニュー（others でも「単語を追加」は出す）
@@ -254,7 +254,7 @@ struct POSFlashcardListView: View {
                                     .frame(width: 12, height: 12)
                                     .overlay(
                                         Circle()
-                                            .stroke(.black.opacity(0.15), lineWidth: 0.5)
+                                            .stroke(.black.opacity(0.45), lineWidth: 1.0)
                                     )
 
                                 Text("英日")

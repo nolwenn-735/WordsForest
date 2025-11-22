@@ -18,7 +18,7 @@ struct WeeklySetView: View {
         let parts = pair.parts   // [.noun, .adj] など
 
         List {
-            Section("今週のセット") {
+            Section("今回のセット") {
                 posRow(parts[0])
                 posRow(parts[1])
             }
@@ -29,7 +29,7 @@ struct WeeklySetView: View {
                 }
             }
         }
-        .navigationTitle("今週のセット")
+        .navigationTitle("今回のセット")
     }
 
     @ViewBuilder
@@ -46,7 +46,7 @@ struct WeeklySetView: View {
         let animal = pos.animalName(forCycle: hw.variantIndex(for: pos))
 
         return POSFlashcardView(
-            title: "\(pos.jaTitle) レッスン",
+            title: pos.jaTitle,
             cards: cards,
             accent: pos.accent,
             background: pos.backgroundColor,
@@ -65,9 +65,9 @@ struct WeeklySetView: View {
         let primary = parts.first ?? .noun
         let title: String
         if parts.count >= 2 {
-            title = "\(primary.jaTitle)＋\(parts[1].jaTitle) 24語レッスン"
+            title = "\(primary.jaTitle)＋\(parts[1].jaTitle) 24語"
         } else {
-            title = "24語レッスン"
+            title = "24語"
         }
 
         let animal = primary.animalName(forCycle: hw.variantIndex(for: primary))
@@ -100,7 +100,7 @@ struct WeeklySetView: View {
         let mixAnimal  = "index_racoon_stand" 
 
         return POSFlashcardView(
-            title: "今週の24語レッスン",
+            title: "今回の24語",
             cards: allCards,
             accent: accent,
             background: background,

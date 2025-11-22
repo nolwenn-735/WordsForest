@@ -441,7 +441,7 @@ private struct WeeklySetMiniButton: View {
             WeeklySetView(pair: p)
                 .environmentObject(hw)
         } label: {
-            Text("🗓️ 今週分へ →")
+            Text("🗓️ 今回分へ →")
                 .font(.system(size: 16, weight: .semibold))   // ← フォント大きめに
                 .foregroundColor(.blue)                       // ← 青文字に強制
                 .padding(.horizontal, 14)
