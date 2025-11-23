@@ -399,12 +399,17 @@ struct POSFlashcardListView: View {
             speak(en, lang: "en-US")
             if speakBoth, !ja.isEmpty { speak(ja, lang: "ja-JP") }
         }
+        private let synthesizer = AVSpeechSynthesizer()
+
         private func speak(_ text: String, lang: String) {
             guard !text.isEmpty else { return }
-            let u = AVSpeechUtterance(string: text)
-            u.voice = AVSpeechSynthesisVoice(language: lang)
-            u.rate  = speechFast ? 0.55 : 0.45
-            tts.speak(u)
+
+            DispatchQueue.main.async {
+                let u = AVSpeechUtterance(string: text)
+                u.voice = AVSpeechSynthesisVoice(language: lang)
+                u.rate = speechFast ? 0.65 : 0.45
+                synthesizer.speak(u)
+            }
         }
     }
     
