@@ -218,26 +218,25 @@ final class HomeworkState: ObservableObject {
 // MARK: - 宿題用デッキの取得
 
 extension HomeworkState {
-    /// 今のサイクル番号・weekQuota に基づいて
-    /// この品詞の宿題用カードを返す
-    // MARK: - 宿題セット取得ヘルパ
 
     func homeworkWords(for pos: PartOfSpeech) -> [WordCard] {
-        // すでにこのサイクルで選んだセットがあれば再利用
-        if let cached = cachedHomework[pos] {
-            return cached
+        // ① HomeworkStore に “保存されたセット” があればそれを優先
+        if let fixed = HomeworkStore.shared.savedHomeworkSet(for: pos) {
+            return fixed
         }
 
+        // ② なければ従来どおり自動生成
         let quota = weeklyQuota[pos] ?? 12
-
         let cards = HomeworkStore.shared.pickHomeworkWords(
             for: pos,
             cycleIndex: cycleIndex,
             count: quota
         )
 
-        // このサイクル中は同じセットを使い回す
-        cachedHomework[pos] = cards
+        // ③ HomeworkStore に保存して次回から固定
+        HomeworkStore.shared.saveHomeworkSet(cards, for: pos)
+
         return cards
     }
+
 }

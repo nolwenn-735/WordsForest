@@ -31,6 +31,7 @@ final class HomeworkStore {
         loadLearned()
         migrateIfNeeded()   // ← これを追加
         loadLastUsed()      // 🆕 直近サイクル情報の読み込み
+        loadHomeworkSets()
     }
 
     // 既存の保存キー（単語本体）
@@ -55,7 +56,14 @@ final class HomeworkStore {
     // 🆕 直近サイクルでの出題記録（WordKey → cycleIndex）
     private var lastUsed: [WordKey: Int] = [:]
     
+    // MARK: - Homework Sets 保存領域（12語×2品詞）
+    private let hwSetKeyPrefix = "hw_set_"
 
+    private func hwSetKey(for pos: PartOfSpeech) -> String {
+        "\(hwSetKeyPrefix)\(pos.rawValue)"
+    }
+
+    private(set) var homeworkSets: [PartOfSpeech: [WordCard]] = [:]
     
     // MARK: - 単語の保存/読込（既存）
     private func save() {
@@ -92,6 +100,24 @@ final class HomeworkStore {
             learned = Set(arr)
         }
     }
+    
+    func saveHomeworkSet(_ cards: [WordCard], for pos: PartOfSpeech) {
+        homeworkSets[pos] = cards
+        let key = hwSetKey(for: pos)
+        if let data = try? JSONEncoder().encode(cards) {
+            UserDefaults.standard.set(data, forKey: key)
+        }
+    }
+    
+    func savedHomeworkSet(for pos: PartOfSpeech) -> [WordCard]? {
+        let key = hwSetKey(for: pos)
+        guard let data = UserDefaults.standard.data(forKey: key),
+              let arr = try? JSONDecoder().decode([WordCard].self, from: data)
+        else {
+            return nil
+        }
+        return arr
+    }
     // 🆕 MARK: - 直近サイクル情報の保存/読込
     private func saveLastUsed() {
         let data = try? JSONEncoder().encode(lastUsed)
@@ -107,6 +133,15 @@ final class HomeworkStore {
         lastUsed = dict
     }
 
+    private func loadHomeworkSets() {
+        PartOfSpeech.allCases.forEach { pos in
+            let key = hwSetKey(for: pos)
+            if let data = UserDefaults.standard.data(forKey: key),
+               let cards = try? JSONDecoder().decode([WordCard].self, from: data) {
+                homeworkSets[pos] = cards
+            }
+        }
+    }
     // MARK: - 正規化ヘルパ
     private func norm(_ s: String) -> String {
         s.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()

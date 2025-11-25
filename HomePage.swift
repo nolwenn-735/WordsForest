@@ -53,7 +53,8 @@ struct HomePage: View {
                             .textContentType(.none)                // ← 「Auto Fill」候補を出さない
                             .focused($searchFocused)
                             .submitLabel(.search)
-
+                            .onAppear { searchText = "" }
+                        
                         NavigationLink {
                             // 入力文字列を整える
                             let q = searchText.trimmingCharacters(in: .whitespacesAndNewlines)

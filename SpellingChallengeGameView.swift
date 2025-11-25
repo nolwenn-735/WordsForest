@@ -80,6 +80,7 @@ struct SpellingChallengeGameView: View {
     @State private var tiles: [Tile] = []
     @State private var trashed = Set<Tile>()
     @State private var answerCheckToken = 0
+    @State private var tileWidth: CGFloat = 40
     
     // currentIndex が変でも必ず配列内に収める安全インデックス
     private var safeIndex: Int {
@@ -208,10 +209,19 @@ struct SpellingChallengeGameView: View {
         guard !words.isEmpty else { return }
         
         let word = words[safeIndex]
+
+        // タイル生成（⭐️⭐️の余分タイル含む）
         tiles = buildTiles(for: word)
         trashed.removeAll()
         showHeart = false
         showWrongMark = false
+
+        // === タイル幅の決定（初回の文字数から算出） ===
+        let baseCount = max(word.answer.count, 1)
+        let calculated = 300 / CGFloat(baseCount)
+
+        // 40 を上限とし、長い単語では縮む
+        tileWidth = min(40, max(24, calculated))
     }
     
     // SpellingWord に合わせたタイル生成
@@ -249,52 +259,51 @@ struct SpellingChallengeGameView: View {
     }
     
     // 自動判定：答えの長さに揃ったら「正解のときだけ」♥️
-    // 自動判定：答えが揃ってから少し待って ❤️ / ❌
     private func evaluateAnswerIfReady() {
-        guard !words.isEmpty else { return }
+            guard !words.isEmpty else { return }
 
-        let targetIndex = safeIndex
-        let word = words[targetIndex]
+            let targetIndex = safeIndex
+            let word = words[targetIndex]
 
-        // 現在の並びから回答文字列を作成
-        let usedTiles = tiles.filter { !trashed.contains($0) }
-        let answer = String(usedTiles.map(\.char)).lowercased()
+            // 現在の並びから回答文字列を作成
+            let usedTiles = tiles.filter { !trashed.contains($0) }
+            let answer = String(usedTiles.map(\.char)).lowercased()
 
-        // まだ文字数が揃っていない → 何もしない（途中経過）
-        guard answer.count == word.answer.count else { return }
+            // まだ文字数が揃っていない → 何もしない（途中経過）
+            guard answer.count == word.answer.count else { return }
 
-        // 🔹この瞬間の状態に対する「チェック予約」を作る
-        // 新しいチェックごとにトークンをインクリメント
-        let token = answerCheckToken + 1
-        answerCheckToken = token
+            // 🔹この瞬間の状態に対する「チェック予約」を作る
+            // 新しいチェックごとにトークンをインクリメント
+            let token = answerCheckToken + 1
+            answerCheckToken = token
 
-        // 少し待ってから（例: 4.0秒）もう一度状態を確認
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-            // その間に別の操作がされたら token が変わっているのでキャンセル
-            guard token == answerCheckToken else { return }
+            // 少し待ってから（例: 4.5秒）もう一度状態を確認
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
+                // その間に別の操作がされたら token が変わっているのでキャンセル
+                guard token == answerCheckToken else { return }
 
-            // 問題が切り替わっていたらキャンセル
-            guard targetIndex == safeIndex,
-                  targetIndex < words.count else { return }
+                // 問題が切り替わっていたらキャンセル
+                guard targetIndex == safeIndex,
+                      targetIndex < words.count else { return }
 
-            let latestWord = words[targetIndex]
+                let latestWord = words[targetIndex]
 
-            // 最新の並びを取り直す
-            let latestUsed = tiles.filter { !trashed.contains($0) }
-            let latestAnswer = String(latestUsed.map(\.char)).lowercased()
+                // 最新の並びを取り直す
+                let latestUsed = tiles.filter { !trashed.contains($0) }
+                let latestAnswer = String(latestUsed.map(\.char)).lowercased()
 
-            // まだ揃っていなければやっぱり判定しない
-            guard latestAnswer.count == latestWord.answer.count else { return }
+                // まだ揃っていなければやっぱり判定しない
+                guard latestAnswer.count == latestWord.answer.count else { return }
 
-            if latestAnswer == latestWord.answer {
-                // ❤️ 正解：次の問題へ
-                showCorrectAndNext()
-            } else {
-                // ❌ 不正解：Xを出してこの問題だけリセット
-                showWrongAndReset()
+                if latestAnswer == latestWord.answer {
+                    // ❤️ 正解：次の問題へ
+                    showCorrectAndNext()
+                } else {
+                    // ❌ 不正解：Xを出してこの問題だけリセット
+                    showWrongAndReset()
+                }
             }
         }
-    }
     
     // ❤️ 正解のとき → ハート表示して次の問題へ
     private func showCorrectAndNext() {
@@ -394,3 +403,5 @@ struct SpellingChallengeGameView: View {
         }
     }
 }
+
+
