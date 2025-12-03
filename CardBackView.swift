@@ -33,7 +33,7 @@ struct CardBackView: View {
     @State private var slow = false
     @State private var jpAlso = true
     // CardBackView 内の先頭付近に（定数）
-    private let backMinHeight: CGFloat = 260   // ← 210〜260 くらいで微調整// 表示サイズ（好みで調整OK）
+    private let backMinHeight: CGFloat = 280   // ← 210〜260 くらいで微調整// 表示サイズ（好みで調整OK）
     private let enFontSize: CGFloat = 24
     private let jaFontSize: CGFloat = 16
 

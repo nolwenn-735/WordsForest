@@ -4,13 +4,14 @@
 //
 //  Created by Nami .T on 2025/09/24.
 //
-
+//  HomeworkStore.swift
 import Foundation
 
 // 既存どおり
 extension PartOfSpeech: Codable {}
 
 struct StoredWord: Codable, Hashable {
+    var id: UUID = UUID()          // ← ★ 追加
     var word: String
     var meaning: String
     var pos: PartOfSpeech
@@ -25,15 +26,28 @@ struct WordKey: Hashable, Codable {
 
 final class HomeworkStore {
     static let shared = HomeworkStore()
+    // MARK: - 宿題履歴（直近の履歴ログ）
+    @Published var history: [String] = []
     private init() {
-        load()
+        // 1) 旧データの読み込み
+        load()              // 単語本体 words
+        loadFavorites()     // My Collection
+        loadLearned()       // 覚えた単語
+
+        // 2) スキーマ移行（正規化と再保存）
+        migrateIfNeeded()
+
+        // 🔥 3) migrate が favorites / learned を触るため
+        //     ここで "もう一度読み込み" して最新状態に揃える
         loadFavorites()
         loadLearned()
-        migrateIfNeeded()   // ← これを追加
-        loadLastUsed()      // 🆕 直近サイクル情報の読み込み
-        loadHomeworkSets()
-    }
 
+        // 4) その他の読み込み
+        loadLastUsed()      // サイクル情報
+        loadHomeworkSets()  // 宿題セット
+        loadHistory()
+    }
+    
     // 既存の保存キー（単語本体）
     private let key = "homework_words_v1"
     // 新規：お気に入り・覚えた用のキー
@@ -141,6 +155,21 @@ final class HomeworkStore {
                 homeworkSets[pos] = cards
             }
         }
+    }
+    
+    // MARK: - 履歴の保存/読み込み
+    private let historyKey = "homework_history_v1"
+
+    private func loadHistory() {
+        if let arr = UserDefaults.standard.array(forKey: historyKey) as? [String] {
+            history = arr
+        } else {
+            history = []
+        }
+    }
+
+    private func saveHistory() {
+        UserDefaults.standard.set(history, forKey: historyKey)
     }
     // MARK: - 正規化ヘルパ
     private func norm(_ s: String) -> String {
@@ -278,7 +307,9 @@ final class HomeworkStore {
                 WordCard(
                     word: sw.word,
                     meaning: sw.meaning,
-                    pos: sw.pos
+                    pos: sw.pos,
+                    id: sw.id,               // ← ★ これ！
+                    isFavorite: favorites.contains(key(for: sw))
                 )
             }
     }
@@ -323,9 +354,15 @@ final class HomeworkStore {
     // My Collection 一覧
     func favoriteList() -> [WordCard] {
         words
-            .filter { favorites.contains(WordKey(pos: $0.pos, word: $0.word, meaning: $0.meaning)) }
-            .map { WordCard(word: $0.word, meaning: $0.meaning, pos: $0.pos, isFavorite: true)
-        }
+            .filter { favorites.contains(key(for: $0)) }
+            .map { sw in
+                WordCard(
+                    word: sw.word,
+                    meaning: sw.meaning,
+                    pos: sw.pos,
+                    isFavorite: true
+                )
+            }
     }
     
     
@@ -347,8 +384,10 @@ final class HomeworkStore {
     // 覚えたBOX 一覧
     func learnedList() -> [WordCard] {
         words
-            .filter { learned.contains(WordKey(pos: $0.pos, word: $0.word, meaning: $0.meaning)) }
-            .map { WordCard(word: $0.word, meaning: $0.meaning, pos: $0.pos) }
+            .filter { learned.contains(key(for: $0)) }
+            .map {
+                WordCard(word: $0.word, meaning: $0.meaning, pos: $0.pos)
+            }
     }
 }
 
@@ -449,4 +488,50 @@ extension HomeworkStore {
         if let p = pos { return base.filter { $0.pos == p } }
         return base
     }
+}
+
+extension HomeworkStore {
+    func resetHomeworkOnce() {
+        UserDefaults.standard.removeObject(forKey: "homework_current_set_v1")
+        UserDefaults.standard.removeObject(forKey: lastUsedKey)
+        loadHomeworkSets()
+    }
+}
+
+extension HomeworkStore {
+    /// 宿題セットの完全リセット（単語データは消さない）
+    func repairHomeworkSets() {
+
+        // ---- 1) メモリ上のデータを消す ----
+        history.removeAll()
+        homeworkSets.removeAll()
+        lastUsed.removeAll()
+
+        // ---- 2) UserDefaults 上の保存データを全部削除 ----
+        // 履歴
+        UserDefaults.standard.removeObject(forKey: "homework_history_v1")
+
+        // 各品詞セット
+        PartOfSpeech.allCases.forEach { pos in
+            UserDefaults.standard.removeObject(
+                forKey: "hw_set_\(pos.rawValue)"
+            )
+        }
+
+        // lastUsed
+        UserDefaults.standard.removeObject(forKey: "homework_last_used_v1")
+
+
+        // ---- 3) 再読み込み（空の状態を反映）----
+        loadHomeworkSets()
+        loadLastUsed()
+        loadHistory()
+
+        // ---- 4) HOME画面更新 ----
+        NotificationCenter.default.post(name: .homeworkDidChange, object: nil)
+    }
+}
+// 通知（HOME画面の数字更新）
+extension Notification.Name {
+    static let homeworkDidChange = Notification.Name("homeworkDidChange")
 }

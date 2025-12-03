@@ -118,10 +118,7 @@ struct SpellingChallengeGameView: View {
                     // ===== タイル列＋スキップボタン =====
                     VStack(spacing: 16) {
                         let visible = tiles.filter { !trashed.contains($0) }
-                        let tileWidth: CGFloat = min(
-                            60,
-                            300 / CGFloat(max(visible.count, 1))
-                        )
+                        let tileW = tileWidth
                         
                         HStack(spacing: 8) {
                             ForEach(tiles) { t in
@@ -216,11 +213,11 @@ struct SpellingChallengeGameView: View {
         showHeart = false
         showWrongMark = false
 
-        // === タイル幅の決定（初回の文字数から算出） ===
-        let baseCount = max(word.answer.count, 1)
-        let calculated = 300 / CGFloat(baseCount)
+        // === タイル幅の決定（正解の文字数だけを見る） ===
+        let answerLength = max(word.answer.count, 1)
+        let calculated = 300 / CGFloat(answerLength)
 
-        // 40 を上限とし、長い単語では縮む
+        // 40 を上限、24 を下限（短すぎ/長すぎを防ぐ）
         tileWidth = min(40, max(24, calculated))
     }
     

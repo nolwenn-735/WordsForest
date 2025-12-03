@@ -1,9 +1,4 @@
 //
-//  WeeklySetView.swift
-//  WordsForest
-//
-//  Created by Nami .T on 2025/10/07.
-//
 import SwiftUI
 
 struct WeeklySetView: View {
@@ -42,7 +37,12 @@ struct WeeklySetView: View {
 
     // 品詞ごとの12語レッスン
     private func singleWordcardPage(for pos: PartOfSpeech) -> some View {
+        // HomeworkState 側で：
+        //  1) HomeworkStore.savedHomeworkSet(for:) があればそれを使う
+        //  2) なければ pickHomeworkWords(...) で生成し保存
         let cards = hw.homeworkWords(for: pos)
+
+        // 動物アイコンは HomeworkState の variantIndex と PartOfSpeech のテーマに依存
         let animal = pos.animalName(forCycle: hw.variantIndex(for: pos))
 
         return POSFlashcardView(
@@ -56,36 +56,13 @@ struct WeeklySetView: View {
         )
     }
 
-    // ✅ 2品詞ぶん（24語）のまとめページ
-    private func makeCombinedPage(for parts: [PartOfSpeech]) -> some View {
-        // それぞれ 12語ずつ取得して結合
-        let cards = parts.flatMap { hw.homeworkWords(for: $0) }
-
-        // とりあえず先頭品詞のテーマを代表に使う
-        let primary = parts.first ?? .noun
-        let title: String
-        if parts.count >= 2 {
-            title = "\(primary.jaTitle)＋\(parts[1].jaTitle) 24語"
-        } else {
-            title = "24語"
-        }
-
-        let animal = primary.animalName(forCycle: hw.variantIndex(for: primary))
-
-        return POSFlashcardView(
-            title: title,
-            cards: cards,
-            accent: primary.accent,
-            background: primary.backgroundColor,
-            animalName: animal,
-            reversed: false,
-            onEdit: { _ in }
-        )
-    }
-
     // 2品詞ぶんの「今週の24語」をまとめて表示するページ
     private func combinedWordcardPage(for parts: [PartOfSpeech]) -> some View {
         // 例: [.noun, .adj] や [.verb, .adv]
+        guard parts.count >= 2 else {
+            return AnyView(Text("設定に誤りがあります"))
+        }
+
         let firstPos  = parts[0]
         let secondPos = parts[1]
 
@@ -94,13 +71,18 @@ struct WeeklySetView: View {
         let cardsB = hw.homeworkWords(for: secondPos)
         let allCards = cardsA + cardsB
 
+        // タイトル
+        let title = "\(firstPos.jaTitle)＋\(secondPos.jaTitle) 24語"
+
         // 🎨 24語ページは「中立テーマ」にする（品詞色は使わない）
         let background = Color(.systemGray6)   // やわらかいグレー
         let accent     = Color.primary
-        let mixAnimal  = "index_racoon_stand" 
+
+        // 24語ページ用のマスコット（インデックス的なアライグマ）
+        let mixAnimal  = "index_raccoon_flower"
 
         return POSFlashcardView(
-            title: "今回の24語",
+            title: title,
             cards: allCards,
             accent: accent,
             background: background,
@@ -108,5 +90,11 @@ struct WeeklySetView: View {
             reversed: false,
             onEdit: { _ in }   // ここでは編集はしない
         )
+        .eraseToAnyView()
     }
+}
+
+// 小さなヘルパー（型消去）
+private extension View {
+    func eraseToAnyView() -> AnyView { AnyView(self) }
 }

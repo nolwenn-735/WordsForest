@@ -1,9 +1,9 @@
 //
-//  SampleDeck.swift
 //  WordsForest
 //
 //  Created by Nami .T on 2025/09/30.
 //
+//  SampleDeck.swift
 
 import Foundation
 
@@ -153,8 +153,7 @@ enum SampleDeck {
                  WordCard(word: "want", meaning: "欲しい", pos: .verb),
                  WordCard(word: "bake", meaning: "焼く", pos: .verb),
                 WordCard(word: "play", meaning: "遊ぶ", pos: .verb),
-                WordCard(word: "pay", meaning: "支払う", pos: .verb),
-                
+                WordCard(word: "pay", meaning: "支払う", pos: .verb),                
             ]
         case .adj:
             return [

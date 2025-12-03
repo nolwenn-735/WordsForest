@@ -83,27 +83,33 @@ struct HomeworkRecentWidget: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Text("🆕 新着情報（直近8件）").font(.headline)
-                Spacer()
-                NavigationLink("履歴をすべて見る") { HomeworkHistoryList() }
-            }
+
+            // 🔥 タイトルは HomePage 側にあるため、ここでは描かない！
 
             ForEach(hw.history.prefix(4)) { e in
                 HStack {
-                    Text(dateString(e.date)).foregroundColor(.secondary)
+                    Text(dateString(e.date))
+                        .foregroundColor(.secondary)
                     Text(e.titleLine)
                     Spacer()
                 }
             }
+
+            NavigationLink("履歴をすべて見る") {
+                HomeworkHistoryList()
+            }
+            .font(.callout)
+            .foregroundColor(.blue)
         }
         .padding()
         .background(Color.white)
         .cornerRadius(12)
-        .overlay(RoundedRectangle(cornerRadius: 12).stroke(.black.opacity(0.08), lineWidth: 1))
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(.black.opacity(0.08), lineWidth: 1)
+        )
     }
 }
-
 struct HomeworkHistoryList: View {
     @EnvironmentObject var hw: HomeworkState
     var body: some View {

@@ -63,7 +63,7 @@ struct AddWordView: View {
                         .foregroundStyle(dupExact ? .red : .orange)
 
                         if !dupExact {
-                            let meanings = HomeworkStore.shared.existingMeanings(for: word, pos: pos)
+                            let meanings = HomeworkStore.shared.existingMeanings(for: trimmedWord, pos: pos)
                             if !meanings.isEmpty {
                                 Text("既存の意味例：\(meanings.joined(separator: "、"))")
                                     .font(.footnote)
@@ -136,22 +136,28 @@ struct AddWordView: View {
                     focusedField = .word
                 }
             }
+            updateDupFlags()
         }
     }
 
     // MARK: - 保存処理
 
     private func save() {
+        let w = trimmedWord
+        let m = trimmedMeaning
+
         if let c = editing {
             // 既存カードの更新
-            HomeworkStore.shared.update(c,
-                                        word: trimmedWord,
-                                        meaning: trimmedMeaning)
+            HomeworkStore.shared.update(
+                c,
+                word: w,
+                meaning: m
+            )
         } else {
             // 新規追加
             let ok = HomeworkStore.shared.add(
-                word: trimmedWord,
-                meaning: trimmedMeaning,
+                word: w,
+                meaning: m,
                 pos: pos
             )
             if ok, autoFillAfterSave {
@@ -174,8 +180,20 @@ struct AddWordView: View {
             return
         }
 
+        // HomeworkStore 内部の正規化ロジックと同じ前提で exists を利用
         dupWord  = HomeworkStore.shared.exists(word: w, pos: pos)
         dupExact = HomeworkStore.shared.exists(word: w, meaning: m, pos: pos)
+
+        // 編集モードで「元のカード」と内容が全く同じ場合は
+        // 「既存」とみなしてボタンが押せなくなるのは不便なので、
+        // そのケースだけは dupExact をオフにする
+        if let c = editing {
+            let sameWord = c.word.trimmingCharacters(in: .whitespacesAndNewlines)
+            let sameMeaning = c.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+            if sameWord == w && sameMeaning == m {
+                dupExact = false
+            }
+        }
     }
 
     // MARK: - 削除

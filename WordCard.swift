@@ -50,12 +50,12 @@ extension WordCard {
         try c.encode(pos, forKey: .pos)
         try c.encode(isFavorite, forKey: .isFavorite)
     }
-        /// id と isFavorite を省略できる便利 init
-    init(word: String, meaning: String, pos: PartOfSpeech,id: UUID = UUID(), isFavorite: Bool = false) {
-            self.id = UUID()                  // 新規生成（安定IDにしたければ後述）
-            self.word = word
-            self.meaning = meaning
-            self.pos = pos
-            self.isFavorite = isFavorite
-        }    
+        /// UUIDを毎回新規生成しない
+    init(word: String, meaning: String, pos: PartOfSpeech, id: UUID = UUID(), isFavorite: Bool = false) {
+        self.id = id              // ← 引数のidをそのまま使う！
+        self.word = word
+        self.meaning = meaning
+        self.pos = pos
+        self.isFavorite = isFavorite
+    }
 }
