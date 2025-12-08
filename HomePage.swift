@@ -1,3 +1,5 @@
+//HomePage.swift
+
 import SwiftUI
 
 struct HomePage: View {
@@ -173,8 +175,6 @@ private extension HomePage {
                     accent: .gray.opacity(0.6),
                     background: Color(.systemGray6),
                     animalName: "index_raccoon_stand",
-                    reversed: false,
-                    onEdit: { _ in }
                 )
             }
             .buttonStyle(.borderedProminent)
@@ -229,6 +229,8 @@ private extension View {
 }
 
 // MARK: - MyCollection / LearnedBox ルート
+// MyCollection ルート
+// MARK: - MyCollection / LearnedBox ルート
 private struct MyCollectionRootView: View {
     @State private var refreshID = UUID()
 
@@ -245,10 +247,7 @@ private struct MyCollectionRootView: View {
                     accent: .pink,
                     background: Color(.systemBackground),
                     animalName: "mycol_flowers",
-                    reversed: false,
-                    onEdit: { _ in },
-                    onDataChanged: { refreshID = UUID() },
-                    perRowAccent: true
+                    perRowAccent: true   // 行ごとに品詞色
                 )
                 .id(refreshID)
             }
@@ -257,32 +256,7 @@ private struct MyCollectionRootView: View {
     }
 }
 
-// MARK: - 検索ロジック
-private extension HomePage {
-    func searchAllCards(query q: String) -> [WordCard] {
-        guard !q.isEmpty else { return [] }
-
-        // 検索対象となる品詞
-        let allPOS = PartOfSpeech.homeworkCases + [.others]
-
-        // HomeworkStore と SampleDeck の両方を検索対象にする
-        let cards =
-            allPOS.flatMap { HomeworkStore.shared.list(for: $0) } +
-            allPOS.flatMap { SampleDeck.filtered(by: $0) }
-
-        // 重複を排除しつつ検索
-        return cards
-            .uniqued(by: { "\($0.pos)|\($0.word.lowercased())|\($0.meaning)" })
-            .filter { c in
-                c.word.localizedCaseInsensitiveContains(q) ||
-                c.meaning.localizedCaseInsensitiveContains(q) ||
-                (IrregularVerbBank.forms(for: c.word) ?? []).contains(where: {
-                    $0.localizedCaseInsensitiveContains(q)
-                })
-            }
-    }
-}
-
+// 覚えたBOX ルート
 private struct LearnedBoxRootView: View {
     @State private var refreshID = UUID()
 
@@ -299,9 +273,6 @@ private struct LearnedBoxRootView: View {
                     accent: .green,
                     background: Color(.systemBackground),
                     animalName: "mycol_berry",
-                    reversed: false,
-                    onEdit: { _ in },
-                    onDataChanged: { refreshID = UUID() },
                     perRowAccent: true
                 )
                 .id(refreshID)
@@ -310,6 +281,43 @@ private struct LearnedBoxRootView: View {
         .navigationTitle("覚えたBOX")
     }
 }
+
+// MARK: - 検索ロジック
+private extension HomePage {
+    func searchAllCards(query q: String) -> [WordCard] {
+        guard !q.isEmpty else { return [] }
+
+        // 検索対象になる品詞
+        let allPOS = PartOfSpeech.homeworkCases + [.others]
+
+        // HomeworkStore + SampleDeck
+        let cards =
+            allPOS.flatMap { HomeworkStore.shared.list(for: $0) } +
+            allPOS.flatMap { SampleDeck.filtered(by: $0) }
+
+        return cards
+            .uniqued(by: { "\($0.pos)|\($0.word.lowercased())|\($0.meanings.joined(separator: ","))" })
+            .filter { c in
+
+                // ① 英単語
+                if c.word.localizedCaseInsensitiveContains(q) { return true }
+
+                // ② 意味（複数）
+                if c.meanings.contains(where: { $0.localizedCaseInsensitiveContains(q) }) {
+                    return true
+                }
+
+                // ③ 不規則動詞の形
+                if (IrregularVerbBank.forms(for: c.word) ?? [])
+                    .contains(where: { $0.localizedCaseInsensitiveContains(q) }) {
+                    return true
+                }
+
+                return false
+            }
+    }
+}
+
 
 private struct WeeklySetMiniButton: View {
     @EnvironmentObject var hw: HomeworkState

@@ -24,9 +24,10 @@ struct words__forestApp: App {
                     .navigationDestination(for: PartOfSpeech.self) { pos in
                         POSFlashcardListView(
                             pos: pos,
-                            accent: pos.accent,
-                            animalName: pos.animalName(forCycle: hw.history.count)                
-                            
+                            accent: pos.accentColor,
+                            animalName: pos.animalName(
+                                forCycle: hw.variantIndex(for: pos)
+                            )
                         )
                     }
             }

@@ -28,14 +28,9 @@ struct ExampleEditorView: View {
                 Section("備考") {
                     TextEditor(text: $note)
                         .frame(minHeight: 220)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(.secondary.opacity(0.2))
-                        )
                 }
             }
             .navigationTitle("例文を編集")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 // 戻る
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -47,30 +42,31 @@ struct ExampleEditorView: View {
                         let enT = en.trimmingCharacters(in: .whitespacesAndNewlines)
                         let jaT = ja.trimmingCharacters(in: .whitespacesAndNewlines)
                         let noT = note.trimmingCharacters(in: .whitespacesAndNewlines)
-                        ExampleStore.shared.setExample(
+
+                        ExampleStore.shared.saveExample(
                             for: word,
-                            en: enT, ja: jaT,
+                            en: enT,
+                            ja: jaT.isEmpty ? nil : jaT,
                             note: noT.isEmpty ? nil : noT
                         )
                         dismiss()
                     }
                 }
-                // 削除（お好みで残す）
+                // 削除
                 ToolbarItem(placement: .bottomBar) {
                     Button("この例文を削除", role: .destructive) {
+                        // 今は「その単語のすべての例文を削除」する簡易仕様
                         ExampleStore.shared.removeExample(for: word)
-                        dismiss()
+                           dismiss()
                     }
                 }
             }
             .onAppear {
-                let saved = ExampleStore.shared.example(for: word)
-                en   = saved?.en   ?? ""
-                ja   = saved?.ja   ?? ""
+                let saved = ExampleStore.shared.examples(for: word).first
+                en = saved?.en ?? ""
+                ja = saved?.ja ?? ""
                 note = saved?.note ?? ""
             }
         }
-        // スワイプダウンで閉じる（必要なら）
-        .interactiveDismissDisabled(false)
     }
 }

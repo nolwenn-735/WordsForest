@@ -125,7 +125,7 @@ struct AddWordView: View {
             // 既存カードなら値をセット
             if let c = editing {
                 word = c.word
-                meaning = c.meaning
+                meaning = c.meanings.first ?? ""
                 // 編集では意味のほうにフォーカス
                 DispatchQueue.main.async {
                     focusedField = .meaning
@@ -189,8 +189,9 @@ struct AddWordView: View {
         // そのケースだけは dupExact をオフにする
         if let c = editing {
             let sameWord = c.word.trimmingCharacters(in: .whitespacesAndNewlines)
-            let sameMeaning = c.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
-            if sameWord == w && sameMeaning == m {
+            let originalMeaning = (c.meanings.first ?? "")
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+            if sameWord == w && originalMeaning == m {
                 dupExact = false
             }
         }

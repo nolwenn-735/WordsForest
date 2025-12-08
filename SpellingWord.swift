@@ -1,46 +1,51 @@
 //
 //  SpellingWord.swift
 //  WordsForest
-//
 //  Created by Nami .T on 2025/11/04.
 //
+//  modified ver. 2025/12/06  （WordCard 複数意味対応版）
 
 import Foundation
 
 struct SpellingWord: Identifiable {
     let id = UUID()
 
-    let display: String       // 画面に出す用（go・went・gone 等）
-    let answer: String        // 判定に使う正解（go 等）
-    let letters: [Character]  // タイル用（answer を大文字配列にしたもの）
-
+    let display: String       // go・went・gone 表示用
+    let answer: String        // 判定用（基本形 go）
+    let letters: [Character]  // タイル用
     let pos: PartOfSpeech
     let meaningJa: String
 
     init(card: WordCard) {
-        display = card.word
+
+        // 不規則動詞の形（動詞のときだけ）
+        let forms: [String]
+        if card.pos == .verb {
+            forms = IrregularVerbBank.forms(for: card.word) ?? []
+        } else {
+            forms = []
+        }
+
+        // 1) 表示用：forms[] があればそれを繋ぐ
+        if !forms.isEmpty {
+            display = forms.joined(separator: "・")
+        } else {
+            display = card.word        // 旧形式との互換
+        }
+
         pos = card.pos
-        meaningJa = card.meaning
 
-        // 「・」より前だけを拾う（不規則動詞カード対応）
-        let raw = card.word.components(separatedBy: "・").first ?? card.word
-        _ = raw.lowercased()
+        // 2) 意味（配列 → とりあえず最初の意味だけ表示）
+        meaningJa = card.meanings.first ?? ""
 
-        // 不規則動詞カードの代表形だけ拾う
+        // 3) 判定用：基本形は forms[0]
         let base: String
-        switch raw {
-        case _ where raw.contains("went"):
-            base = "go"
-        case _ where raw.contains("gone"):
-            base = "go"
-        case _ where raw.contains("ran"):
-            base = "run"
-        case _ where raw.contains("kept"):
-            base = "keep"
-        // 必要なものをここに追加
-        default:
-            // "keep・kept・kept" みたいなやつは "・" より前だけ取る
-            base = raw.components(separatedBy: ["・", " "]).first ?? raw
+        if let first = forms.first {
+            base = first          // go / run / write
+        } else {
+            // 旧形式 fallback：word の一番左を使う（go・went・gone → go）
+            let raw = card.word.components(separatedBy: ["・", " "]).first ?? card.word
+            base = raw.lowercased()
         }
 
         answer = base

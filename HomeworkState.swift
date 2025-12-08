@@ -127,11 +127,22 @@ final class HomeworkState: ObservableObject {
     }
 
     init() {
-        let raw = UserDefaults.standard.string(forKey: "hw_history_json") ?? "active"
-        self.status = HomeworkStatus(rawValue: raw) ?? .active
-        self.history = Self.decode(historyRaw)
-    }
+        // ① UserDefaults から“生”の値を読む（self を経由しない）
+        let rawStatus = UserDefaults.standard.string(forKey: "hw_statusRaw")
+            ?? HomeworkStatus.active.rawValue
+        self.status = HomeworkStatus(rawValue: rawStatus) ?? .active
 
+        let rawHistory = UserDefaults.standard.string(forKey: DefaultsKeys.hwHistoryJSON)
+            ?? "[]"
+        self.history = Self.decode(rawHistory)
+
+        // ② HomeworkStateBridge に自分を登録
+        if let bridge = HomeworkStateBridge.shared {
+            bridge.state = self
+        } else {
+            _ = HomeworkStateBridge(state: self)
+        }
+    }
     // 起動/HOME 表示時に呼ぶ
     func refresh(now: Date = Date()) {
         guard status != .none else { return }       // 宿題なし → 進めない
@@ -219,24 +230,60 @@ final class HomeworkState: ObservableObject {
 
 extension HomeworkState {
 
+    /// 品詞ごとの宿題用デッキを返す（最新の HomeworkStore 基準）
     func homeworkWords(for pos: PartOfSpeech) -> [WordCard] {
-        // ① HomeworkStore に “保存されたセット” があればそれを優先
-        if let fixed = HomeworkStore.shared.savedHomeworkSet(for: pos) {
-            return fixed
-        }
+        // HomeworkStore 側の list(for:) が複数意味対応済み
+        HomeworkStore.shared.list(for: pos)
+    }
+}
 
-        // ② なければ従来どおり自動生成
-        let quota = weeklyQuota[pos] ?? 12
-        let cards = HomeworkStore.shared.pickHomeworkWords(
-            for: pos,
-            cycleIndex: cycleIndex,
-            count: quota
-        )
+// MARK: - キャッシュ操作用 extension
 
-        // ③ HomeworkStore に保存して次回から固定
-        HomeworkStore.shared.saveHomeworkSet(cards, for: pos)
+extension HomeworkState {
+    /// HomeworkStore から「キャッシュだけリセット」したいときに呼ぶ
+    func resetCache() {
+        cachedHomework.removeAll()
+    }
+}
 
-        return cards
+// MARK: - HomeworkStateBridge
+/// HomeworkStore から HomeworkState の一部プロパティへ安全にアクセスするための窓口
+final class HomeworkStateBridge {
+
+    /// 共有インスタンス（存在しない間は nil）
+    static var shared: HomeworkStateBridge?
+
+    /// 実体の HomeworkState（App 側の @StateObject）
+    weak var state: HomeworkState?
+
+    init(state: HomeworkState) {
+        self.state = state
+        HomeworkStateBridge.shared = self
     }
 
+    // HomeworkStore.repairHomeworkSets() から呼ばれる API
+
+    func resetCache() {
+        state?.resetCache()
+    }
+
+    var variantNoun: Int {
+        get { state?.variantNoun ?? 0 }
+        set { state?.variantNoun = newValue }
+    }
+
+    var variantAdj: Int {
+        get { state?.variantAdj ?? 0 }
+        set { state?.variantAdj = newValue }
+    }
+
+    var variantVerb: Int {
+        get { state?.variantVerb ?? 0 }
+        set { state?.variantVerb = newValue }
+    }
+
+    var variantAdv: Int {
+        get { state?.variantAdv ?? 0 }
+        set { state?.variantAdv = newValue }
+    }
 }

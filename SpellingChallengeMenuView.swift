@@ -5,9 +5,6 @@
 //  Created by Nami .T on 2025/10/31.
 //
 
-// SpellingChallengeMenuView.swift
-// WordsForest
-
 
 import SwiftUI
 
@@ -25,10 +22,34 @@ struct SpellingChallengeMenuView: View {
     @State private var gameWords: [SpellingWord] = []
 
     // My Collection
+    // My Collection（お気に入り WordCard を構築）
     private var favoriteList: [WordCard] {
-        HomeworkStore.shared.favoriteList()
-    }
 
+        // HomeworkStore に保存されているすべての StoredWord
+        let stored = HomeworkStore.shared.words
+
+        // お気に入りキー（WordKey の集合）
+        let favKeys = HomeworkStore.shared.favorites
+
+        // Favorite に該当する StoredWord だけを残す
+        let favStored = stored.filter { favKeys.contains( HomeworkStore.shared.key(for: $0) ) }
+
+        // 単語ごとに group
+        let grouped = Dictionary(grouping: favStored, by: { $0.word })
+
+        // WordCard に再構成（複数意味まとめ）
+        let cards: [WordCard] = grouped.values.compactMap { group in
+            guard let first = group.first else { return nil }
+            return WordCard(
+                pos: first.pos,                      // ★順番1
+                word: first.word,                    // ★順番2
+                meanings: group.map { $0.meaning }   // ★順番3
+            )
+        }
+
+        // アルファベット順で返す
+        return cards.sorted { $0.word < $1.word }
+    }
     var body: some View {
         NavigationStack {
             List {
@@ -121,3 +142,4 @@ struct SpellingChallengeMenuView: View {
         .buttonStyle(.plain)
     }
 }
+

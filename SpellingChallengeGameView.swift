@@ -5,16 +5,7 @@
 //  Created by Nami .T on 2025/10/31.
 //
 
-// SpellingChallengeGameView.swift
-// WordsForest
-// SpellingChallengeGameView.swift
-// WordsForest
 
-// SpellingChallengeGameView.swift
-// WordsForest
-
-// SpellingChallengeGameView.swift
-// WordsForest
 
 import SwiftUI
 import UniformTypeIdentifiers

@@ -33,7 +33,7 @@ struct MyCollectionSelectionView: View {
                     HStack {
                         VStack(alignment: .leading, spacing: 2) {
                             Text(card.word).font(.headline)
-                            Text("\(card.pos.jaTitle)　\(card.meaning)")
+                            Text("\(card.pos.jaTitle)　\(card.meanings.joined(separator: " / "))")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
