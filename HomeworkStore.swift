@@ -4,7 +4,7 @@
 //
 //  Created by Nami .T on 2025/09/24.
 //
-//  HomeworkStore.swift  （🍊Clément完全版・複数意味対応）💛　→ 12/7 Thinking🍊版
+//  HomeworkStore.swift  （🍊Clément完全版・複数意味対応）💛　→ 12/7 Thinking🍊版→12/12 before5.2版
 
 import Foundation
 
@@ -102,8 +102,8 @@ final class HomeworkStore: ObservableObject {
             }
         }
 
-        // 名詞・動詞・形容詞・副詞ぶん種をまく
-        for pos in PartOfSpeech.homeworkCases {
+        // 名詞・動詞・形容詞・副詞ぶん種をまく(added .others 12/12)
+        for pos in PartOfSpeech.collectionCases {
             seed(from: pos)
         }
 
@@ -111,6 +111,17 @@ final class HomeworkStore: ObservableObject {
         // や homeworkWords(for:) からカードが見えるようになる
     }
 
+    private func ensureStored(_ c: WordCard) {
+        // meanings の先頭だけ store へ（いまの WordKey 方針と揃える）
+        let meaning = c.meanings.first?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        guard !meaning.isEmpty else { return }
+
+        // すでに存在するなら何もしない
+        if exists(word: c.word, meaning: meaning, pos: c.pos) { return }
+
+        // 追加（通知も飛ぶ）
+        _ = add(word: c.word, meaning: meaning, pos: c.pos)
+    }
     // MARK: - WordKey 生成
 
     func key(for c: WordCard) -> WordKey {
@@ -118,7 +129,7 @@ final class HomeworkStore: ObservableObject {
         WordKey(
             pos: c.pos,
             word: norm(c.word),
-            meaning: c.meanings.first?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            meaning: normMeaning(c.meanings.first ?? "")
         )
     }
 
@@ -126,7 +137,7 @@ final class HomeworkStore: ObservableObject {
         WordKey(
             pos: s.pos,
             word: norm(s.word),
-            meaning: s.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+            meaning: normMeaning(s.meaning)
         )
     }
 
@@ -134,6 +145,9 @@ final class HomeworkStore: ObservableObject {
         s.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
     }
 
+    private func normMeaning(_ s: String) -> String {
+        s.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
     // MARK: - CRUD（追加・削除・取得）
 
     /// 追加（完全一致 word + meaning + pos を弾く）
@@ -149,12 +163,12 @@ final class HomeworkStore: ObservableObject {
 
     func exists(word: String, meaning: String, pos: PartOfSpeech) -> Bool {
         let w = norm(word)
-        let m = meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+        let m = normMeaning(meaning)
 
         return words.contains(where: {
             $0.pos == pos &&
             norm($0.word) == w &&
-            $0.meaning.trimmingCharacters(in: .whitespacesAndNewlines) == m
+            normMeaning($0.meaning) == m
         })
     }
 
@@ -165,7 +179,7 @@ final class HomeworkStore: ObservableObject {
         if let i = words.firstIndex(where: {
             $0.pos == k.pos &&
             norm($0.word) == k.word &&
-            $0.meaning.trimmingCharacters(in: .whitespacesAndNewlines) == k.meaning
+            normMeaning($0.meaning) == k.meaning
         }) {
             words.remove(at: i)
             save()
@@ -180,6 +194,7 @@ final class HomeworkStore: ObservableObject {
     }
 
     func setFavorite(_ c: WordCard, enabled: Bool) {
+        ensureStored(c)   // ← 追加
         let k = key(for: c)
         if enabled { favorites.insert(k) }
         else { favorites.remove(k) }
@@ -196,6 +211,7 @@ final class HomeworkStore: ObservableObject {
     }
 
     func setLearned(_ c: WordCard, enabled: Bool) {
+        ensureStored(c)   // ← 追加
         let k = key(for: c)
         if enabled { learned.insert(k) }
         else { learned.remove(k) }
@@ -236,7 +252,7 @@ final class HomeworkStore: ObservableObject {
         return cards.sorted { $0.word < $1.word }
     }
 
-    // MARK: - Favorites / Learned の補助API（HomePage用）
+    // MARK: - Favorites / Learned の補助API (HomePage用)
 
     // お気に入り数（badge用）
     var favoritesCount: Int {
@@ -248,58 +264,7 @@ final class HomeworkStore: ObservableObject {
         learned.count
     }
 
-    // お気に入り一覧（WordCard形式）
-    func favoriteList() -> [WordCard] {
-        let favKeys = favorites
-
-        // favorites に該当する StoredWord を抽出
-        let matched = words.filter { s in
-            favKeys.contains(key(for: s))
-        }
-
-        // WordCard へ統合（複数意味対応）
-        let grouped = Dictionary(grouping: matched, by: { $0.word })
-
-        return grouped.values.compactMap { group in
-            guard let first = group.first else { return nil }
-            let meanings = group.map { $0.meaning }
-
-            return WordCard(
-                id: UUID(),
-                pos: first.pos,
-                word: first.word,
-                meanings: meanings,
-                examples: []   // 例文は外部 ExampleStore が担当
-            )
-        }
-        .sorted { $0.word < $1.word }
-    }
-
-    // 覚えたBOX一覧（WordCard形式）
-    func learnedList() -> [WordCard] {
-        let learnedKeys = learned
-
-        let matched = words.filter { s in
-            learnedKeys.contains(key(for: s))
-        }
-
-        let grouped = Dictionary(grouping: matched, by: { $0.word })
-
-        return grouped.values.compactMap { group in
-            guard let first = group.first else { return nil }
-            let meanings = group.map { $0.meaning }
-
-            return WordCard(
-                id: UUID(),
-                pos: first.pos,
-                word: first.word,
-                meanings: meanings,
-                examples: []   // 例文は外部 ExampleStore が担当
-            )
-        }
-        .sorted { $0.word < $1.word }
-    }
-
+  
     // MARK: - autofill（既存を崩さず追加）
 
     func autofill(for pos: PartOfSpeech, target: Int = 24) {
@@ -378,23 +343,145 @@ extension Notification.Name {
     static let learnedDidChange   = Notification.Name("learnedDidChange")
 }
 
-// MARK: - Safe repair (Nolwenn gentle reset)
+// MARK: - My Collection 用お気に入りヘルパー
+extension HomeworkStore {
 
+    /// My Collection に出すお気に入りカード（全部品詞）
+/*    var collectionFavorites: [WordCard] {
+        PartOfSpeech.allCases         // noun / verb / adj / adv / others ぜんぶ
+            .flatMap { pos in list(for: pos) }
+            .filter { card in
+                isFavorite(card)      // そこでさっきの isFavorite(_:)
+            }
+            .sorted { $0.word < $1.word }  // アルファベット順
+    }
+*/
+
+    /// 品詞ごとに分けたお気に入り（セクション分けしたいとき用）
+/*    var collectionFavoritesByPos: [PartOfSpeech: [WordCard]] {
+        var dict: [PartOfSpeech: [WordCard]] = [:]
+
+        for pos in PartOfSpeech.allCases {
+            let favs = list(for: pos)
+                .filter { isFavorite($0) }
+                .sorted { $0.word < $1.word }
+
+            if !favs.isEmpty {
+                dict[pos] = favs
+            }
+        }
+        return dict
+    }
+*/
+ 
+    /// My Collection の総数表示用（WordCard 単位）
+ /*   var collectionFavoritesCount: Int {
+        collectionFavorites.count
+    }
+  */
+    
+}
+
+// MARK: - My Collection / 覚えたBOX 表示用 集計
+extension HomeworkStore {
+
+    // 共通で使う品詞一覧（noun / verb / adj / adv / others ぜんぶ）
+    private var allCollectionPOS: [PartOfSpeech] {
+        PartOfSpeech.collectionCases
+    }
+    
+    // --- My Collection 用：ハート付きカードの一覧（品詞混在） ---
+    var collectionFavorites: [WordCard] {
+        allCollectionPOS
+            .flatMap { pos in list(for: pos) }   // 各品詞の WordCard を全部つなげる
+            .filter { isFavorite($0) }           // ハート付きだけ
+            .sorted { $0.word < $1.word }        // 英単語でソート
+    }
+
+    // 品詞ごとに分けたお気に入り（必要ならセクション表示用）
+    var collectionFavoritesByPos: [PartOfSpeech: [WordCard]] {
+        var dict: [PartOfSpeech: [WordCard]] = [:]
+
+        for pos in allCollectionPOS {
+            let favs = list(for: pos)
+                .filter { isFavorite($0) }
+                .sorted { $0.word < $1.word }
+
+            if !favs.isEmpty {
+                dict[pos] = favs
+            }
+        }
+        return dict
+    }
+
+    // My Collection バッジ用の総数
+    var collectionFavoritesCount: Int {
+        collectionFavorites.count
+    }
+
+    // --- 覚えたBOX 用：チェック付きカードの一覧（品詞混在） ---
+    var collectionLearned: [WordCard] {
+        allCollectionPOS
+            .flatMap { pos in list(for: pos) }
+            .filter { isLearned($0) }
+            .sorted { $0.word < $1.word }
+    }
+
+    // 品詞ごとに分けた「覚えた」一覧
+    var collectionLearnedByPos: [PartOfSpeech: [WordCard]] {
+        var dict: [PartOfSpeech: [WordCard]] = [:]
+
+        for pos in allCollectionPOS {
+            let learned = list(for: pos)
+                .filter { isLearned($0) }
+                .sorted { $0.word < $1.word }
+
+            if !learned.isEmpty {
+                dict[pos] = learned
+            }
+        }
+        return dict
+    }
+
+    // 覚えたBOX バッジ用の総数
+    var collectionLearnedCount: Int {
+        collectionLearned.count
+    }
+
+    // === 既存ビュー向けの「ラッパー」（古い API 名を残す） ===
+
+    func favoriteList() -> [WordCard] {
+        collectionFavorites
+    }
+
+    func favoriteListByPos() -> [PartOfSpeech: [WordCard]] {
+        collectionFavoritesByPos
+    }
+
+    func learnedList() -> [WordCard] {
+        collectionLearned
+    }
+
+    func learnedListByPos() -> [PartOfSpeech: [WordCard]] {
+        collectionLearnedByPos
+    }
+}
+
+
+// MARK: - Safe repair (Nolwenn gentle reset)
 extension HomeworkStore {
 
     /// データ構造を壊さない「優しい宿題セット修復」
     func repairHomeworkSets() {
-        // 通知抑止したい場合は後でラップしてもOK
 
-        // 1. cachedHomework（HomeworkStateが使うキャッシュ）をリセット
+        // 1. HomeworkState 側のキャッシュをリセット
         if let hw = HomeworkStateBridge.shared {
             hw.resetCache()
         }
 
-        // 2. variant（動物カラー）を補正
-        // 3色ループから外れてるなどの壊れを防ぐ
+        // 2. 動物カラー variant を 0〜2 の範囲に補正
         func fix(_ value: inout Int) {
-            if value < 0 || value > 2 { value = 0 }
+            if value < 0 || value >= 3 { value = 0 }
         }
 
         if let hw = HomeworkStateBridge.shared {
@@ -404,12 +491,48 @@ extension HomeworkStore {
             var d = hw.variantAdv;  fix(&d); hw.variantAdv  = d
         }
 
-        // 3. 必要なら pos ごとに autofill（24語構成が崩れた時など）
-        for pos in [PartOfSpeech.noun, .verb, .adj, .adv] {
+        // 3. 宿題４品詞だけ autofill（others は対象外）
+        for pos in PartOfSpeech.homeworkCases {   // [.noun, .verb, .adj, .adv]
             autofill(for: pos, target: 24)
         }
 
-        // 完了通知
+        // 4. 「お気に入り」と「覚えた」が両方 ON のカードを整理
+        //    → My Collection 優先にして、learned から外す
+        let both = favorites.intersection(learned)
+        if !both.isEmpty {
+            learned.subtract(both)
+            saveLearned()
+        }
+
+        // 5. 完了通知
         NotificationCenter.default.post(name: .storeDidChange, object: nil)
+    }
+}
+
+extension HomeworkStore {
+
+    /// ✅/💗 が付いているのに words 側に実体がないカードを復元する
+    func restoreMissingMarkedCards() {
+        let marked = favorites.union(learned)
+        guard !marked.isEmpty else { return }
+
+        var changed = false
+
+        for k in marked {
+            let pos = k.pos
+            let word = k.word.trimmingCharacters(in: .whitespacesAndNewlines)
+            let meaning = k.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !word.isEmpty, !meaning.isEmpty else { continue }
+
+            if !exists(word: word, meaning: meaning, pos: pos) {
+                words.append(.init(word: word, meaning: meaning, pos: pos))
+                changed = true
+            }
+        }
+
+        if changed {
+            save()
+            NotificationCenter.default.post(name: .storeDidChange, object: nil)
+        }
     }
 }

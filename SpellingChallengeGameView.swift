@@ -12,7 +12,14 @@ import UniformTypeIdentifiers
 
 // ===== DnD 用の独自UTType =====
 extension UTType {
-    static let wfTile = UTType(exportedAs: "app.wordsforest.tile")
+    // アプリ内専用のタグ。外部公開はしないので Info.plist 登録も不要。
+    static let wfTile: UTType = {
+        UTType(
+            tag: "wf-tile",
+            tagClass: .filenameExtension,
+            conformingTo: .data
+        ) ?? .data   // ← 万一 nil でも .data を返す
+    }()
 }
 
 // ===== タイル型 =====
@@ -203,6 +210,7 @@ struct SpellingChallengeGameView: View {
         trashed.removeAll()
         showHeart = false
         showWrongMark = false
+        answerCheckToken += 1
 
         // === タイル幅の決定（正解の文字数だけを見る） ===
         let answerLength = max(word.answer.count, 1)
@@ -223,7 +231,9 @@ struct SpellingChallengeGameView: View {
             tiles.append(Tile(char: extra, isExtra: true))
         }
         
-        return tiles.shuffled()
+        // ランダムシャッフル（元の並びそのままは避ける）
+        let shuffled = tiles.shuffledAvoidingOriginal()
+        return shuffled
     }
     
     // MARK: - ふるまい
@@ -320,6 +330,7 @@ struct SpellingChallengeGameView: View {
         
         if currentIndex + 1 < words.count {
             currentIndex += 1
+            setupTiles()
         } else {
             dismiss()
         }

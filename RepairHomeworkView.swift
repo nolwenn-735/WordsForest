@@ -32,6 +32,17 @@ struct RepairHomeworkView: View {
                     .background(Color.red.opacity(0.15))
                     .cornerRadius(12)
             }
+            
+            Button {
+                            HomeworkStore.shared.restoreMissingMarkedCards()
+                        } label: {
+                            Text("🛠 行方不明（✅/💗）を復元")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.blue.opacity(0.15))
+                                .cornerRadius(12)
+                        }
 
             Spacer()
         }

@@ -22,9 +22,14 @@ struct POSFlashcardView: View {
     let background: Color
     let animalName: String
 
-    /// 行ごとに品詞色を使うかどうか（My Collection / 覚えたBOX など）
-    var perRowAccent: Bool
+    // 行ごとに品詞色を使うどうか（My Collection / 覚えたBOX など）
+    let perRowAccent: Bool
 
+    // 宿題モードなどで、✅したものは行を隠したい画面で true
+    let hideLearned: Bool
+
+    // すでにあればそのまま
+    @ObservedObject private var store = HomeworkStore.shared
     /// ページ単位の英⇄日トグル
     @State private var reversed: Bool
 
@@ -59,7 +64,8 @@ struct POSFlashcardView: View {
         reversed: Bool = false,
         onEdit: @escaping (WordCard) -> Void = { _ in },
         onDataChanged: @escaping () -> Void = {},
-        perRowAccent: Bool = false
+        perRowAccent: Bool = false,
+        hideLearned: Bool = false
     ) {
         self.title = title
         self.cards = cards
@@ -69,7 +75,9 @@ struct POSFlashcardView: View {
         self.onEdit = onEdit
         self.onDataChanged = onDataChanged
         self.perRowAccent = perRowAccent
+        self.hideLearned = hideLearned
         _reversed = State(initialValue: reversed)
+        
     }
 
     // MARK: - body
@@ -154,15 +162,24 @@ struct POSFlashcardView: View {
 
     // MARK: - 行の並び
 
-    @ViewBuilder
-    private func rows(rowHeight: CGFloat) -> some View {
-        let enumerated = Array(cards.enumerated())
-        ForEach(enumerated, id: \.offset) { pair in
-            let i = pair.offset
-            let c = pair.element
-            row(for: c, index: i, rowHeight: rowHeight)
+        @ViewBuilder
+        private func rows(rowHeight: CGFloat) -> some View {
+            let store = HomeworkStore.shared
+
+            // ① 表示対象を1行で決める（if 文にしない）
+            let visibleCards: [WordCard] = hideLearned
+                ? cards.filter { !store.isLearned($0) }
+                : cards
+
+            // ② enumerate して index を作る
+            let enumerated = Array(visibleCards.enumerated())
+
+            ForEach(enumerated, id: \.offset) { pair in
+                let i = pair.offset
+                let c = pair.element
+                row(for: c, index: i, rowHeight: rowHeight)
+            }
         }
-    }
 
     // MARK: - 1 行
     @ViewBuilder
@@ -186,7 +203,6 @@ struct POSFlashcardView: View {
 
         // meanings は [String] なので、表の文字は先頭だけ大きく表示
         let meanings = c.meanings
-        let primaryMeaning = meanings.first ?? ""
 
         // 学習状態
         let isChecked = HomeworkStore.shared.isLearned(c)
@@ -196,6 +212,7 @@ struct POSFlashcardView: View {
         let rowAccent = perRowAccent ? c.pos.accent : accent
 
         POSCardRow(
+            pos: c.pos,
             word: displayWord,
             meanings: meanings,
             examples: examples,
@@ -288,6 +305,7 @@ private struct POSCardRow: View {
     @State private var learnedLocal: Bool = false
     
     // 入力（新データモデル対応）
+    let pos: PartOfSpeech
     let word: String
     let meanings: [String]             // ← [String]
     let examples: [ExampleEntry]       // ← 例文配列
@@ -317,6 +335,64 @@ private struct POSCardRow: View {
     let onEditFromMenu: () -> Void
     let onDeleteFromMenu: () -> Void
     
+    private func splitOthers(_ s: String) -> (tag: String, body: String) {
+        let t = s.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        // 全角スペース（「定冠詞　その〜」）
+        if let r = t.range(of: "　") {
+            let tag  = String(t[..<r.lowerBound]).trimmingCharacters(in: .whitespacesAndNewlines)
+            let body = String(t[r.upperBound...]).trimmingCharacters(in: .whitespacesAndNewlines)
+            if !tag.isEmpty, !body.isEmpty { return (tag, body) }
+        }
+
+        // 半角スペース（「前置詞 〜の上に」）
+        let parts = t.split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
+        if parts.count == 2 {
+            return (String(parts[0]), String(parts[1]))
+        }
+
+        // 「（名詞）バター」
+        if t.hasPrefix("（"), let r = t.range(of: "）") {
+            let tag  = String(t[..<t.index(after: r.lowerBound)]) // "（名詞）"
+            let body = String(t[t.index(after: r.lowerBound)...]).trimmingCharacters(in: .whitespacesAndNewlines)
+            if !body.isEmpty { return (tag, body) }
+        }
+
+        return ("", t)
+    }
+    
+    // 中央：語 or 意味（中央タップで反転）
+    private var primaryMeaning: String {
+        meanings.first ?? ""
+    }
+
+    @ViewBuilder
+    private var frontText: some View {
+        if reversed {
+            if pos == .others {
+                let (tag, bodyMeaning) = splitOthers(primaryMeaning)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    if !tag.isEmpty {
+                        Text(tag)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    Text(bodyMeaning)
+                        .font(.system(size: 28, weight: .bold))
+                        .foregroundStyle(.primary)
+                }
+            } else {
+                Text(primaryMeaning)
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundStyle(.primary)
+            }
+        } else {
+            Text(word)
+                .font(.system(size: 28, weight: .bold))
+                .foregroundStyle(.primary)
+        }
+    }
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             
@@ -337,11 +413,8 @@ private struct POSCardRow: View {
                         }
                         .buttonStyle(.plain)
                         
-                        // 中央：語 or 意味（中央タップで反転）
-                        let primaryMeaning = meanings.first ?? ""
-                        Text(reversed ? primaryMeaning : word)
-                            .font(.system(size: 28, weight: .bold))
-                            .foregroundStyle(.primary)
+
+                        frontText
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .contentShape(Rectangle())
                             .onTapGesture(perform: centerTapped)
@@ -408,5 +481,21 @@ private struct POSCardRow: View {
             .opacity(expanded ? 0 : 1)
             .allowsHitTesting(!expanded)
         }
+    }
+}
+
+extension String {
+    /// "定冠詞　その〜、例の" / "前置詞 〜の上に" を (label, body) に分ける
+    func splitHeadLabel() -> (label: String?, body: String) {
+        let s = self.trimmingCharacters(in: .whitespacesAndNewlines)
+        if s.isEmpty { return (nil, s) }
+
+        // 全角スペース優先 → 半角スペース
+        if let r = s.range(of: "　") ?? s.range(of: " ") {
+            let head = String(s[..<r.lowerBound]).trimmingCharacters(in: .whitespacesAndNewlines)
+            let rest = String(s[r.upperBound...]).trimmingCharacters(in: .whitespacesAndNewlines)
+            return (head.isEmpty ? nil : head, rest)
+        }
+        return (nil, s)
     }
 }

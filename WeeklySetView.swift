@@ -1,3 +1,4 @@
+//WeeklySetView.swift
 //
 import SwiftUI
 
@@ -45,7 +46,8 @@ struct WeeklySetView: View {
             cards: cards,
             accent: pos.accent,
             background: pos.backgroundColor,
-            animalName: animal
+            animalName: animal,
+            hideLearned: true   // ← 追加
             // perRowAccent はデフォルト false なので省略でOK
         )
     }

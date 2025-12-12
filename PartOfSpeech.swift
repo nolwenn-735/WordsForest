@@ -27,7 +27,8 @@ extension PartOfSpeech {
 }
 
 extension PartOfSpeech {
-    static var homeworkCases: [PartOfSpeech] { [.noun, .verb, .adj, .adv] }
+    static let collectionCases: [PartOfSpeech] = [.noun, .verb, .adj, .adv, .others]
+    static let homeworkCases:   [PartOfSpeech] = [.noun, .verb, .adj, .adv]
 }
 
 extension PartOfSpeech {

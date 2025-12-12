@@ -12,9 +12,9 @@ struct HomePage: View {
     @State private var showRecent = false
     @State private var showSpellingMenu = false
 
-    @State private var favCount = HomeworkStore.shared.favoritesCount
-    @State private var learnedCount = HomeworkStore.shared.learnedCount
-
+    @State private var favCount = HomeworkStore.shared.collectionFavoritesCount
+    @State private var learnedCount = HomeworkStore.shared.collectionLearnedCount
+    
     private var favBadgeText: String { favCount > 99 ? "99+" : "\(favCount)" }
     private var learnedBadgeText: String { learnedCount > 99 ? "99+" : "\(learnedCount)" }
 
@@ -120,14 +120,14 @@ struct HomePage: View {
             }
         }
         .onAppear {
-            favCount = HomeworkStore.shared.favoritesCount
-            learnedCount = HomeworkStore.shared.learnedCount
+            favCount = HomeworkStore.shared.collectionFavoritesCount
+            learnedCount = HomeworkStore.shared.collectionLearnedCount
         }
         .onReceive(NotificationCenter.default.publisher(for: .favoritesDidChange)) { _ in
-            favCount = HomeworkStore.shared.favoritesCount
+            favCount = HomeworkStore.shared.collectionFavoritesCount
         }
         .onReceive(NotificationCenter.default.publisher(for: .learnedDidChange)) { _ in
-            learnedCount = HomeworkStore.shared.learnedCount
+            learnedCount = HomeworkStore.shared.collectionLearnedCount
         }
         .safeAreaInset(edge: .bottom) { Color.clear.frame(height: 12) }
     }
@@ -229,13 +229,11 @@ private extension View {
 }
 
 // MARK: - MyCollection / LearnedBox ルート
-// MyCollection ルート
-// MARK: - MyCollection / LearnedBox ルート
 private struct MyCollectionRootView: View {
     @State private var refreshID = UUID()
 
     var body: some View {
-        let cards = HomeworkStore.shared.favoriteList()
+        let cards = HomeworkStore.shared.collectionFavorites
 
         Group {
             if cards.isEmpty {

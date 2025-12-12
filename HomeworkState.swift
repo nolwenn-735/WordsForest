@@ -77,11 +77,12 @@ final class HomeworkState: ObservableObject {
     // 週合計24の内訳（お好みで変更可）
     @Published var weeklyQuota: [PartOfSpeech: Int] = [
         .noun: 12, .verb: 12, .adj: 12, .adv: 12
-    ]
-    // 🔹 今サイクルの宿題セット（品詞ごと）
-    @Published private var cachedHomework: [PartOfSpeech: [WordCard]] = [:]
+    ]    
     // 学習に含める語彙レベル（まずは A1〜B1）
     @Published var allowedLevels: Set<CEFRLevel> = [.A1, .A2, .B1]
+    
+    // 🔹 今サイクルの宿題セット（品詞ごと）
+     private var cachedHomework: [PartOfSpeech: [WordCard]] = [:]
     
    
     // 🆕 今サイクル表示用のラベル
@@ -227,16 +228,48 @@ final class HomeworkState: ObservableObject {
 }
 
 // MARK: - 宿題用デッキの取得
-
 extension HomeworkState {
 
-    /// 品詞ごとの宿題用デッキを返す（最新の HomeworkStore 基準）
+    /// 品詞ごとの宿題用デッキを返す
+    /// - ポイント
+    ///   - HomeworkStore にある単語だけを使う（learned は“出題履歴”とは切り離す）
+    ///   - 1 サイクル中は cachedHomework に固定しておく
+    ///   - 最大で weeklyQuota[pos] 語（デフォルト 12 語）
     func homeworkWords(for pos: PartOfSpeech) -> [WordCard] {
-        // HomeworkStore 側の list(for:) が複数意味対応済み
-        HomeworkStore.shared.list(for: pos)
+
+        // すでに今サイクルぶんが決まっていれば、それをそのまま返す
+        if let cached = cachedHomework[pos], !cached.isEmpty {
+            return cached
+        }
+
+        // この品詞の目標数（デフォルト 12）
+        let quota = weeklyQuota[pos] ?? 12
+
+        // HomeworkStore から、その品詞のカード一覧を取得
+        let allCards = HomeworkStore.shared.list(for: pos)
+
+        // 単語が 0 のときの安全策
+        guard !allCards.isEmpty else {
+            cachedHomework[pos] = []
+            return []
+        }
+
+        let chosen: [WordCard]
+
+        if allCards.count <= quota {
+            // 単語が少ないときは全部
+            chosen = allCards
+        } else {
+            // 🔹ポイント：アルファベット順の「窓」ではなく、
+            //   ランダムに並べ替えて先頭から quota だけ取る
+            chosen = Array(allCards.shuffled().prefix(quota))
+        }
+
+        // 今サイクルのキャッシュとして保持（サイクル中は固定）
+        cachedHomework[pos] = chosen
+        return chosen
     }
 }
-
 // MARK: - キャッシュ操作用 extension
 
 extension HomeworkState {
