@@ -5,7 +5,8 @@ import SwiftUI
 struct HomePage: View {
     @EnvironmentObject var router: Router
     @EnvironmentObject var hw: HomeworkState
-
+    @EnvironmentObject private var teacher: TeacherMode 
+    
     @State private var searchText = ""
     @FocusState private var searchFocused: Bool
 
@@ -111,7 +112,7 @@ struct HomePage: View {
                     NavigationLink("🛠️ 宿題セット修復（デバッグ用）") {
                         RepairHomeworkView()
                     }
-
+                    
                     Spacer(minLength: 8)
                 }
                 .padding(.horizontal, 12)
@@ -130,6 +131,10 @@ struct HomePage: View {
             learnedCount = HomeworkStore.shared.collectionLearnedCount
         }
         .safeAreaInset(edge: .bottom) { Color.clear.frame(height: 12) }
+        .sheet(isPresented: $teacher.showingUnlockSheet) {
+            TeacherUnlockSheet()
+                .environmentObject(teacher)
+        }
     }
 }
 

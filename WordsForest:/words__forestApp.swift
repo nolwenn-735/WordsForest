@@ -12,15 +12,15 @@ import SwiftUI
 struct words__forestApp: App {
     @StateObject private var router = Router()
     @StateObject private var hw = HomeworkState()
+    // ✅ 追加：TeacherMode を1個だけ作って全体に流す
+    @StateObject private var teacher = TeacherMode.shared
 
-    // 追加：表紙の表示フラグ
     @State private var showCover = true
 
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $router.path) {
                 HomePage()
-                    // 遷移先はこれまで通りここに
                     .navigationDestination(for: PartOfSpeech.self) { pos in
                         POSFlashcardListView(
                             pos: pos,
@@ -34,13 +34,18 @@ struct words__forestApp: App {
             .environmentObject(router)
             .environmentObject(hw)
 
-            // ← ここに付ける（NavigationStack の“外側”）
+            // ❌ .environmentObject(Teacher) は消す（Teacherなんて変数が無い）
+            .environmentObject(teacher)   // ✅ これが正解
+
+            // ✅ 解除シートは「ここに1個だけ」置くのが一番事故らない
+            .sheet(isPresented: $teacher.showingUnlockSheet) {
+                TeacherUnlockSheet()
+                    .environmentObject(teacher)
+            }
+
             .fullScreenCover(isPresented: $showCover) {
-                // CoverPage から呼ばれる閉じ処理を配線
                 CoverPageView { showCover = false }
             }
         }
     }
 }
-    
-

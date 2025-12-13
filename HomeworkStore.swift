@@ -148,6 +148,36 @@ final class HomeworkStore: ObservableObject {
     private func normMeaning(_ s: String) -> String {
         s.trimmingCharacters(in: .whitespacesAndNewlines)
     }
+ 
+   // HomeworkStoreの半角debug用func
+    
+    func normalizeStoredMeaningsOnce() {
+        var seen = Set<WordKey>()
+        var newWords: [StoredWord] = []
+
+        for s in words {
+            let fixed = StoredWord(
+                word: s.word,
+                meaning: normMeaning(s.meaning),
+                pos: s.pos
+            )
+
+            let k = WordKey(
+                pos: fixed.pos,
+                word: normWord(fixed.word),
+                meaning: normMeaning(fixed.meaning)
+            )
+
+            if !seen.contains(k) {
+                newWords.append(fixed)
+                seen.insert(k)
+            }
+        }
+
+        words = newWords
+        save()
+        NotificationCenter.default.post(name: .storeDidChange, object: nil)
+    }
     // MARK: - CRUD（追加・削除・取得）
 
     /// 追加（完全一致 word + meaning + pos を弾く）

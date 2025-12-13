@@ -43,7 +43,10 @@ struct RepairHomeworkView: View {
                                 .background(Color.blue.opacity(0.15))
                                 .cornerRadius(12)
                         }
-
+            Button("🧹 保存データの意味を正規化（全角/半角など）") {
+                HomeworkStore.shared.normalizeStoredMeaningsOnce()
+            }
+            
             Spacer()
         }
         .padding()
