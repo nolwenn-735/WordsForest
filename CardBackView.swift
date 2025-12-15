@@ -11,6 +11,9 @@ struct CardBackView: View {
 
     // MARK: - 入力データ
 
+    /// ✅ 追加：品詞
+    let pos: PartOfSpeech
+    
     /// 見出し語（動詞のときは基本形）
     let word: String
 
@@ -136,7 +139,7 @@ struct CardBackView: View {
         .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: 2)
         // 例文編集シート
         .sheet(isPresented: $showingEditor) {
-            ExampleEditorView(word: word)
+            ExampleEditorView(pos: pos, word: word)
         }
     }
 

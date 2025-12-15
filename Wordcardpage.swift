@@ -114,6 +114,8 @@ import AVFoundation
 // MARK: - 1行（表 or 裏）
  struct CardRow: View {
 
+    // 品詞
+    let pos: PartOfSpeech
     // 入力
     let word: String
     let meanings: [String]
@@ -178,6 +180,7 @@ import AVFoundation
 
                 // MARK: 裏カード
                 CardBackView(
+                    pos: pos,
                     word: word,
                     meanings: meanings,
                     examples: examples,

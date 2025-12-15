@@ -2,7 +2,7 @@
 //  WordCard.swift
 //  WordsForest
 //
-//  12/6のrow,POSFlashcardListViewを削除したとりあえず動く緊急パッチ
+//  12/6のrow,POSFlashcardListViewを削除したとりあえず動く緊急パッチ 12/14jason対応前
 //
 
 import Foundation

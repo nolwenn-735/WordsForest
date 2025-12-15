@@ -8,38 +8,55 @@ struct HomeworkBanner: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
 
-            // 1段目：タイトル + ペア表示（ここへ移動）
-            HStack(spacing: 8) {
-                Text("📘 今サイクル").font(.headline)
-                pill(hw.currentPair == .nounAdj ? "名詞＋形容詞" : "動詞＋副詞")
-                Spacer()
-            }
+            // 1段目：📘今サイクル + 動詞＋副詞（ここは上段）
+            // 2段目：🔒Teacher（元のペア位置） + 1週間（ここ） + デバッグ
+            // ✅ 左カラム幅を固定して、(動詞＋副詞) と (1週間) を縦に揃える
 
-            // 2段目：Teacher（元のペア位置） + 1週間（ここへ）
-            HStack(spacing: 8) {
-                Button {
-                    teacher.showingUnlockSheet = true
-                } label: {
-                    Label("Teacher", systemImage: teacher.unlocked ? "lock.open" : "lock")
-                        .font(.caption2)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 6)
-                        .background(.ultraThinMaterial, in: Capsule())
-                        .foregroundStyle(.secondary)
+            let leftColWidth: CGFloat = 92   // ← ここを 88〜100 くらいで微調整してOK
+
+            VStack(alignment: .leading, spacing: 8) {
+
+                // 1段目
+                HStack(spacing: 8) {
+                    Text("📘今サイクル")
+                        .font(.headline)
+                        .frame(width: leftColWidth, alignment: .leading)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.70)
+                        .allowsTightening(true)
+
+                    pill(hw.currentPair == .nounAdj ? "名詞＋形容詞" : "動詞＋副詞")
+
+                    Spacer()
                 }
-                .buttonStyle(.plain)
 
-                pill(hw.daysPerCycle == 14 ? "2週間" : "1週間")
+                // 2段目
+                HStack(spacing: 8) {
+                    Button {
+                        teacher.showingUnlockSheet = true
+                    } label: {
+                        Label("Teacher", systemImage: teacher.unlocked ? "lock.open" : "lock")
+                            .font(.caption2)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 6)
+                            .background(.ultraThinMaterial, in: Capsule())
+                            .foregroundStyle(.secondary)
+                    }
+                    .buttonStyle(.plain)
+                    .frame(width: leftColWidth, alignment: .leading) // ← これで上段と左端を揃える
 
-                #if DEBUG
-                Button("ペア切替テスト") { hw.advanceCycle() }
-                    .font(.caption2)
-                    .tint(.blue)
-                #endif
+                    pill(hw.daysPerCycle == 14 ? "2週間" : "1週間")
 
-                Spacer()
+                    #if DEBUG
+                    Button("ペア切替") { hw.advanceCycle() }
+                        .font(.caption2)
+                        .tint(.blue)
+                        .lineLimit(1)
+                    #endif
+
+                    Spacer()
+                }
             }
-
 
             HStack(spacing: 8) {
                 ToggleButton(title: "▶︎ 宿題あり",

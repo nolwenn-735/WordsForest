@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ExampleEditorView: View {
+    
+    let pos: PartOfSpeech
     let word: String
     @Environment(\.dismiss) private var dismiss
 
@@ -44,6 +46,7 @@ struct ExampleEditorView: View {
                         let noT = note.trimmingCharacters(in: .whitespacesAndNewlines)
 
                         ExampleStore.shared.saveExample(
+                            pos: pos,
                             for: word,
                             en: enT,
                             ja: jaT.isEmpty ? nil : jaT,
@@ -56,13 +59,13 @@ struct ExampleEditorView: View {
                 ToolbarItem(placement: .bottomBar) {
                     Button("この例文を削除", role: .destructive) {
                         // 今は「その単語のすべての例文を削除」する簡易仕様
-                        ExampleStore.shared.removeExample(for: word)
+                        ExampleStore.shared.removeExample(pos: pos, for: word)
                            dismiss()
                     }
                 }
             }
             .onAppear {
-                let saved = ExampleStore.shared.examples(for: word).first
+                let saved = ExampleStore.shared.examples(pos: pos, for: word).first
                 en = saved?.en ?? ""
                 ja = saved?.ja ?? ""
                 note = saved?.note ?? ""

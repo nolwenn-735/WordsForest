@@ -4,7 +4,8 @@
 //
 //  Created by Nami .T on 2025/09/24.
 //
-//  HomeworkStore.swift  （🍊Clément完全版・複数意味対応）💛　→ 12/7 Thinking🍊版→12/12 before5.2版
+//  HomeworkStore.swift  （🍊Clément完全版・複数意味対応）💛　→ 12/7 Thinking🍊版→12/12 before5.2版→12/14jason対応化前→jason12/15対応
+
 
 import Foundation
 
@@ -39,6 +40,7 @@ final class HomeworkStore: ObservableObject {
         load()
         loadFavorites()
         loadLearned()
+        loadRequired()
         migrateIfNeeded()
     }
 
@@ -80,6 +82,18 @@ final class HomeworkStore: ObservableObject {
         }
     }
 
+    private func saveRequired() {
+        let data = try? JSONEncoder().encode(Array(required))
+        UserDefaults.standard.set(data, forKey: requiredKey)
+    }
+
+    private func loadRequired() {
+        if let d = UserDefaults.standard.data(forKey: requiredKey),
+           let arr = try? JSONDecoder().decode([WordKey].self, from: d) {
+            required = Set(arr)
+        }
+    }
+    
     // 今回は migrate の中身は仮。旧データがあればここで変換する。
     private func migrateIfNeeded() {
         // すでに v3 の words が入っていれば何もしない
@@ -253,6 +267,23 @@ final class HomeworkStore: ObservableObject {
         setLearned(c, enabled: !isLearned(c))
     }
 
+    // ===== ここ：MARK: - Favorite / Learned の下あたりに追加 =====
+    func isRequired(_ c: WordCard) -> Bool {
+        required.contains(key(for: c))
+    }
+
+    func setRequired(_ c: WordCard, enabled: Bool) {
+        ensureStored(c)
+        let k = key(for: c)
+        if enabled { required.insert(k) } else { required.remove(k) }
+        saveRequired()
+        NotificationCenter.default.post(name: .storeDidChange, object: nil)
+    }
+
+    func toggleRequired(_ c: WordCard) {
+        setRequired(c, enabled: !isRequired(c))
+    }
+    
     // MARK: - WordCard 一覧（画面用）
 
     /// 画面表示用 WordCard 一覧を（posごとに）作る
@@ -284,6 +315,10 @@ final class HomeworkStore: ObservableObject {
 
     // MARK: - Favorites / Learned の補助API (HomePage用)
 
+    // ===== ここ：favorites / learned の下あたりに追加 =====
+    @Published private(set) var required: Set<WordKey> = []
+    private let requiredKey = "required_v1"
+    
     // お気に入り数（badge用）
     var favoritesCount: Int {
         favorites.count

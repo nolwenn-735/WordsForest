@@ -156,7 +156,7 @@ struct POSFlashcardView: View {
 
         // 例文編集シート（CardRow の「例文」ペンから開く）
         .sheet(item: $editingCard) { card in
-            ExampleEditorView(word: card.word)
+            ExampleEditorView(pos: card.pos, word: card.word)
         }
     }
 
@@ -186,7 +186,7 @@ struct POSFlashcardView: View {
     private func row(for c: WordCard, index i: Int, rowHeight: CGFloat) -> some View {
 
         // 例文（ExampleStore は [ExampleEntry] を返す）
-        let examples = ExampleStore.shared.examples(for: c.word)
+        let examples = ExampleStore.shared.examples(pos: c.pos, for: c.word)
         let note = examples.first?.note ?? ""
 
         // 不規則動詞なら 3 形を表示＆読み上げ対象に
@@ -436,6 +436,7 @@ private struct POSCardRow: View {
                 // ===== 裏 =====
                 // 裏面のUI は CardBackView.swift の現在版に合わせて呼ぶ
                 CardBackView(
+                    pos: pos,
                     word: word,
                     meanings: meanings,
                     examples: examples,
