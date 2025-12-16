@@ -46,6 +46,23 @@ struct HomeworkBanner: View {
                     .frame(width: leftColWidth, alignment: .leading) // ← これで上段と左端を揃える
 
                     pill(hw.daysPerCycle == 14 ? "2週間" : "1週間")
+                    
+                    // ====== ここから挿入（書き出しボタン） ======
+                        if teacher.unlocked {
+                            Button("書き出し") {
+                                let payload = HomeworkPackStore.shared.buildOrLoadFixedPack(
+                                    hw: hw,
+                                    requiredCount: 10,
+                                    totalCount: 24
+                                )
+                                let json = HomeworkPackStore.shared.makePrettyJSONString(payload)
+                                print(json)
+                            }
+                            .font(.caption2)
+                            .buttonStyle(.bordered)
+                            .tint(.blue)
+                            .lineLimit(1)
+                        }
 
                     #if DEBUG
                     Button("ペア切替") { hw.advanceCycle() }

@@ -3,7 +3,7 @@
 //  WordsForest
 //
 // POSFlashcardView.swift
-// 11/27版 Wordcardpage.swift の UI デザインを共通ビューに移植した版
+// 11/27版 Wordcardpage.swift の UI デザインを共通ビューに移植した版 (12/17 .json)
 
 import SwiftUI
 import AVFoundation
@@ -186,8 +186,9 @@ struct POSFlashcardView: View {
     private func row(for c: WordCard, index i: Int, rowHeight: CGFloat) -> some View {
 
         // 例文（ExampleStore は [ExampleEntry] を返す）
-        let examples = ExampleStore.shared.examples(pos: c.pos, for: c.word)
-        let note = examples.first?.note ?? ""
+        let ex = ExampleStore.shared.firstExample(pos: c.pos, word: c.word)
+        let examples: [ExampleEntry] = ex.map { [$0] } ?? []
+        let note = ex?.note ?? ""
 
         // 不規則動詞なら 3 形を表示＆読み上げ対象に
         let isVerb = (c.pos == .verb)

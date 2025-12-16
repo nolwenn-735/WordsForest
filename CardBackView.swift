@@ -1,6 +1,6 @@
 //
 //
-//  CardBackView.swift — 新仕様対応 11/27デザイン版 (2025/12/07)
+//  CardBackView.swift — 新仕様対応 11/27デザイン版 (2025/12/07)(12/17複数意味対応）
 //
 
 import SwiftUI
@@ -13,7 +13,7 @@ struct CardBackView: View {
 
     /// ✅ 追加：品詞
     let pos: PartOfSpeech
-    
+
     /// 見出し語（動詞のときは基本形）
     let word: String
 
@@ -55,7 +55,7 @@ struct CardBackView: View {
 
             Divider().padding(.vertical, 4)
 
-            // 上のボタン列：単語／例文 読み上げ ＋ 編集ペン
+            // 上のボタン列：単語 読み上げ ＋ 編集ペン
             HStack(spacing: 16) {
                 Button(action: speakWord) {
                     HStack(spacing: 6) {
@@ -66,15 +66,6 @@ struct CardBackView: View {
                 .buttonStyle(.plain)
                 .foregroundStyle(Color.blue)
 
-                Button(action: speakExample) {
-                    HStack(spacing: 6) {
-                        Image(systemName: "text.bubble.fill")
-                        Text("例文")
-                    }
-                }
-                .buttonStyle(.plain)
-                .foregroundStyle(Color.blue)
-                
                 Spacer()
 
                 // 生徒には極力触らせたくないので、薄いグレーのペン
@@ -87,32 +78,66 @@ struct CardBackView: View {
             }
             .font(.subheadline)
 
-            // 例文（先頭だけ表示）
-            Group {
+            // 例文表示
+            if meanings.isEmpty {
+                // meanings が空のときだけ救済表示（念のため）
                 if let first = examples.first {
                     VStack(alignment: .leading, spacing: 4) {
-                        if !first.en.isEmpty {
-                            Text(first.en)
-                                .font(.body)
-                        }
-                        if let ja = first.ja, !ja.isEmpty {
-                            Text(ja)
-                                .font(.body)
-                        }
+                        if !first.en.isEmpty { Text(first.en).font(.body) }
+                        if let ja = first.ja, !ja.isEmpty { Text(ja).font(.body) }
                         if let n = first.note, !n.isEmpty {
-                            Text(n)
-                                .font(.footnote)
-                                .foregroundStyle(.secondary)
+                            Text(n).font(.footnote).foregroundStyle(.secondary)
                         }
                     }
-                } else if !note.isEmpty {
-                    Text(note)
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
                 } else {
-                    Text("（例文が未登録です）")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
+                    // ✅ 生徒に見せたくないなら、ここは “何も出さない” でOK
+                    EmptyView()
+                }
+
+            } else {
+                // meanings があるとき：meaningごとに「例文があるものだけ」表示
+                VStack(alignment: .leading, spacing: 10) {
+
+                    ForEach(Array(meanings.enumerated()), id: \.offset) { i, rawM in
+                        let m = rawM.trimmingCharacters(in: .whitespacesAndNewlines)
+
+                        // meaning指定で引く（なければ表示しない）
+                        // 旧データ救済：先頭meaningだけ meaning未指定の例文も拾う
+                        let ex = ExampleStore.shared.firstExample(pos: pos, word: word, meaning: m)
+                            ?? (i == 0 ? ExampleStore.shared.firstExample(pos: pos, word: word) : nil)
+
+                        if let ex {
+                            let ja = ex.ja ?? ""
+                            let note = ex.note ?? ""
+                            let hasAny = !ex.en.isEmpty || !ja.isEmpty || !note.isEmpty
+
+                            if hasAny {
+                                VStack(alignment: .leading, spacing: 6) {
+
+                                    Text("・\(m)")
+                                        .font(.body)
+
+                                    // 💬：各例文の上にだけ置く（青）
+                                    Button {
+                                        speakExample(for: ex)
+                                    } label: {
+                                        Label("例文", systemImage: "text.bubble.fill")
+                                    }
+                                    .buttonStyle(.plain)
+                                    .foregroundStyle(.blue)
+                                    .font(.subheadline)
+
+                                    if !ex.en.isEmpty { Text(ex.en).font(.body) }
+                                    if !ja.isEmpty { Text(ja).font(.body) }
+                                    if !note.isEmpty {
+                                        Text(note)
+                                            .font(.footnote)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
@@ -137,6 +162,7 @@ struct CardBackView: View {
         .background(Color.white)
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: 2)
+
         // 例文編集シート
         .sheet(isPresented: $showingEditor) {
             ExampleEditorView(pos: pos, word: word)
@@ -161,20 +187,26 @@ struct CardBackView: View {
         speak(text, lang: "en-US")
     }
 
-    private func speakExample() {
-        guard let first = examples.first else { return }
-        speak(first.en, lang: "en-US")
+    private func speakExample(for ex: ExampleEntry) {
+        guard !ex.en.isEmpty else { return }
+        speak(ex.en, lang: "en-US")
 
-        if speakBoth, let ja = first.ja, !ja.isEmpty {
+        if speakBoth, let ja = ex.ja, !ja.isEmpty {
             speak(ja, lang: "ja-JP")
         }
     }
-    
+
     private func speak(_ text: String, lang: String) {
         guard !text.isEmpty else { return }
         let u = AVSpeechUtterance(string: text)
         u.voice = AVSpeechSynthesisVoice(language: lang)
         u.rate  = speechFast ? 0.65 : 0.45
         synthesizer.speak(u)
+    }
+}
+
+extension Array {
+    subscript(safe index: Int) -> Element? {
+        indices.contains(index) ? self[index] : nil
     }
 }

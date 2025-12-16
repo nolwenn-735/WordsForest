@@ -141,7 +141,7 @@ final class HomeworkPackStore {
 
         // JSON化（例文は ExampleStore の firstExample(pos:for:)）
         let items: [HomeworkExportCard] = final.map { c in
-            let ex = ExampleStore.shared.firstExample(pos: c.pos, for: c.word)
+            let ex = ExampleStore.shared.firstExample(pos: c.pos, word: c.word)
             let exPayload: HomeworkExportExample? = ex.map {
                 HomeworkExportExample(en: $0.en, ja: $0.ja, note: $0.note)
             }
