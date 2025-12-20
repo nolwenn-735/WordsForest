@@ -33,10 +33,7 @@ struct HomeworkEntry: Identifiable, Codable {
     init(pair: PosPair, wordsCount: Int = 24) {
         self.id = UUID()
         self.date = Date()
-
-        let raw = UserDefaults.standard.string(forKey: DefaultsKeys.hwHistoryJSON) ?? "active"
-        self.status = HomeworkStatus(rawValue: raw) ?? .active
-
+        self.status = .active          // ← ここは素直にactiveでOK
         self.pair = pair
         self.wordsCount = wordsCount
     }
@@ -63,6 +60,8 @@ final class HomeworkState: ObservableObject {
     @AppStorage("hw_daysPerCycle") var daysPerCycle: Int = 7
     @AppStorage("hw_paused") var paused: Bool = false
     @AppStorage("hw_statusRaw") private var statusRaw: String = HomeworkStatus.active.rawValue
+    // 取り込み
+    @AppStorage("hw_lastImportedPayloadID") private var lastImportedPayloadID: String = ""
     // 交互ローテ
     @AppStorage("hw_pairIndex") private var pairIndex: Int = 0
     var currentPair: PosPair { PosPair(rawValue: pairIndex) ?? .nounAdj }
@@ -217,7 +216,47 @@ final class HomeworkState: ObservableObject {
         historyRaw = Self.encode(list)
     }
     
+    // MARK: - Import helper（外部から履歴を刻む用）
+    func logImportedHomework(dateISO: String, pairRaw: Int) {
+        let d = ISO8601DateFormatter().date(from: dateISO) ?? Date()
+        // payloadの pair を currentPair に反映するかは運用次第。ここでは “今の状態のまま刻む” が安全。
+        logNow(d)
+    }
 
+    func addImportedToHistory(payload: HomeworkExportPayload) {
+        let d = ISO8601DateFormatter().date(from: payload.createdAt) ?? Date()
+        let p = PosPair(rawValue: payload.pair) ?? currentPair
+
+        var list = history
+        list.insert(
+            HomeworkEntry(date: d,
+                          status: .active,
+                          pair: p,
+                          wordsCount: payload.totalCount),
+            at: 0
+        )
+
+        if list.count > maxHistoryCount {
+            list.removeLast(list.count - maxHistoryCount)
+        }
+
+        history = list
+        historyRaw = Self.encode(list)
+    }
+    
+    func isAlreadyImported(payload: HomeworkExportPayload) -> Bool {
+        // まずはIDで即判定（最強）
+        if payload.id == lastImportedPayloadID { return true }
+
+        // 保険：履歴にも同じIDを刻んでる場合だけ（任意）
+        // 今のHomeworkEntryにidStringが無いなら、ここは無しでOK
+        return false
+    }
+
+    func markImported(payload: HomeworkExportPayload) {
+        lastImportedPayloadID = payload.id
+    }
+    
     private static func decode(_ raw: String) -> [HomeworkEntry] {
         (try? JSONDecoder().decode([HomeworkEntry].self, from: Data(raw.utf8))) ?? []
     }

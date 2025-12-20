@@ -182,3 +182,38 @@ final class HomeworkPackStore {
         return String(data: data, encoding: .utf8) ?? "{}"
     }
 }
+
+// MARK: - Import（生徒端末でJSONを取り込む）
+
+extension HomeworkPackStore {
+
+    enum ImportError: Error, LocalizedError {
+        case invalidPair(Int)
+
+        var errorDescription: String? {
+            switch self {
+            case .invalidPair(let v):
+                return "pair が不正です: \(v)"
+            }
+        }
+    }
+
+    /// 生徒が受け取ったJSON（HomeworkExportPayload）を取り込み、今サイクルの固定セットとして保存する
+    func importHomeworkPayload(_ payload: HomeworkExportPayload, hw: HomeworkState) throws {
+
+        // payload.pair は Int（PosPair.rawValue の想定）
+        guard let pair = PosPair(rawValue: payload.pair) else {
+            throw ImportError.invalidPair(payload.pair)
+        }
+
+        // 取り込んだ回を、その回のキーに保存
+        save(payload, cycleIndex: payload.cycleIndex, pair: pair)
+
+        // もし「生徒側は今見ている回に入れる」運用なら、ここで「今サイクルにも保存」して保険をかけてもOK
+        //（先生が cycleIndex を合わせて配ってるなら不要。事故りやすいなら保険としておすすめ）
+        save(payload, cycleIndex: hw.currentCycleIndex, pair: hw.currentPair)
+
+        // 履歴に刻みたいならここで呼ぶ（後述の HomeworkState 側の関数を追加した場合）
+        // hw.logImportedHomework(dateISO: payload.createdAt, pairRaw: payload.pair)
+    }
+}

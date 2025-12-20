@@ -1,10 +1,19 @@
+
+
+//HomeworkUI.swift
+
 import SwiftUI
 import Foundation
+import UniformTypeIdentifiers
 
 struct HomeworkBanner: View {
     @EnvironmentObject var hw: HomeworkState
     @EnvironmentObject var teacher: TeacherMode
 
+    // ✅ 追加：書き出し結果のURL（ShareLink用）
+    @State private var exportedURL: URL? = nil
+    @State private var exportErrorMessage: String? = nil
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
 
@@ -46,23 +55,37 @@ struct HomeworkBanner: View {
                     .frame(width: leftColWidth, alignment: .leading) // ← これで上段と左端を揃える
 
                     pill(hw.daysPerCycle == 14 ? "2週間" : "1週間")
-                    
-                    // ====== ここから挿入（書き出しボタン） ======
-                        if teacher.unlocked {
-                            Button("書き出し") {
-                                let payload = HomeworkPackStore.shared.buildOrLoadFixedPack(
-                                    hw: hw,
-                                    requiredCount: 10,
-                                    totalCount: 24
-                                )
-                                let json = HomeworkPackStore.shared.makePrettyJSONString(payload)
-                                print(json)
+                  
+                    // ✅ Teacher解除時だけ「書き出し」
+                    if teacher.unlocked {
+                        if let url = exportedURL {
+                            ShareLink(item: url) {
+                                Label("書き出し", systemImage: "square.and.arrow.up")
+                                    .font(.caption2)
                             }
-                            .font(.caption2)
                             .buttonStyle(.bordered)
-                            .tint(.blue)
-                            .lineLimit(1)
+                        } else {
+                            Button {
+                                do {
+                                    let url = try HomeworkExportFile.exportCurrentHomework(
+                                        hw: hw,
+                                        requiredCount: 10,
+                                        totalCount: 24
+                                    )
+                                    exportedURL = url
+                                    exportErrorMessage = nil
+                                } catch {
+                                    exportErrorMessage = error.localizedDescription
+                                }
+                            } label: {
+                                Label("書き出し", systemImage: "doc.badge.plus")
+                                    .font(.caption2)
+                            }
+                            .buttonStyle(.bordered)
                         }
+                    }
+                    
+                  
 
                     #if DEBUG
                     Button("ペア切替") { hw.advanceCycle() }
@@ -92,6 +115,11 @@ struct HomeworkBanner: View {
                 Button("＋1週延長") { hw.extendOneWeek() }
                     .buttonStyle(.bordered)
                     .tint(.primary)
+            }
+            if let msg = exportErrorMessage {
+                Text("⚠️ \(msg)")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
         }
         .padding()
@@ -129,28 +157,51 @@ private struct ToggleButton: View {
     }
 }
 
+
 struct HomeworkRecentWidget: View {
     @EnvironmentObject var hw: HomeworkState
-
+    
+    @State private var showingImporter = false
+    @State private var importErrorMessage: String? = nil
+    // ✅ 追加：成功/重複メッセージ用
+    @State private var showingImportOK = false
+    @State private var importOKMessage: String = ""
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
+            
+            HStack {
+                          NavigationLink("履歴をすべて見る") {
+                              HomeworkHistoryList()
+                          }
+                          .font(.callout)
+                          .foregroundColor(.blue)
 
-            // 🔥 タイトルは HomePage 側にあるため、ここでは描かない！
+                          Spacer()
 
-            ForEach(hw.history.prefix(4)) { e in
-                HStack {
-                    Text(dateString(e.date))
-                        .foregroundColor(.secondary)
-                    Text(e.titleLine)
-                    Spacer()
-                }
+                          Button("🔵宿題取得") {
+                              showingImporter = true
+                          }
+                          .font(.callout)
+                          .buttonStyle(.bordered)
+                          .tint(.blue)
+                      }
+
+                      ForEach(hw.history.prefix(4)) { e in
+                          HStack {
+                              Text(dateString(e.date))
+                                  .foregroundColor(.secondary)
+                              Text(e.titleLine)
+                              Spacer()
+                          }
+                      }
+
+            
+            if let msg = importErrorMessage {
+                Text("⚠️ \(msg)")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
-
-            NavigationLink("履歴をすべて見る") {
-                HomeworkHistoryList()
-            }
-            .font(.callout)
-            .foregroundColor(.blue)
         }
         .padding()
         .background(Color.white)
@@ -159,8 +210,54 @@ struct HomeworkRecentWidget: View {
             RoundedRectangle(cornerRadius: 12)
                 .stroke(.black.opacity(0.08), lineWidth: 1)
         )
+        .fileImporter(
+            isPresented: $showingImporter,
+            allowedContentTypes: [.json],
+            allowsMultipleSelection: false
+        ) { result in
+            do {
+                let url = try result.get().first!
+                
+                let ok = url.startAccessingSecurityScopedResource()
+                defer { if ok { url.stopAccessingSecurityScopedResource() } }
+                
+                let data = try Data(contentsOf: url)
+                let payload = try JSONDecoder().decode(HomeworkExportPayload.self, from: data)
+                
+                // 既に取得済み？
+                if hw.isAlreadyImported(payload: payload) {
+                    importOKMessage = "最新の宿題は既に取得済みです。\n\n" + makeImportOKMessage(payload)
+                    showingImportOK = true
+                    return
+                }
+                
+                // 通常取り込み
+                try HomeworkPackStore.shared.importHomeworkPayload(payload, hw: hw)
+                hw.addImportedToHistory(payload: payload)
+                hw.markImported(payload: payload)
+                
+                importOKMessage = makeImportOKMessage(payload)
+                showingImportOK = true
+                importErrorMessage = nil
+                
+            } catch {
+                importErrorMessage = error.localizedDescription
+            }
+        }
+        .alert("宿題取得", isPresented: $showingImportOK) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(importOKMessage)
+        }
     }
 }
+private func makeImportOKMessage(_ payload: HomeworkExportPayload) -> String {
+    // payload.createdAt は ISO8601 (例: 2025-12-17T00:00:00Z)
+    let ymd = String(payload.createdAt.prefix(10)).replacingOccurrences(of: "-", with: "/")
+    let pairLabel: String = (payload.pair == 0) ? "名詞＋形容詞" : "動詞＋副詞"
+    return "\(ymd) の宿題（\(pairLabel)）を取得しました。"
+}
+
 struct HomeworkHistoryList: View {
     @EnvironmentObject var hw: HomeworkState
     var body: some View {
