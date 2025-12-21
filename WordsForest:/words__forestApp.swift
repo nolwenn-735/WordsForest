@@ -33,7 +33,7 @@ struct words__forestApp: App {
             }
             .environmentObject(router)
             .environmentObject(hw)
-
+            .environmentObject(ColumnStore.shared)
             // ❌ .environmentObject(Teacher) は消す（Teacherなんて変数が無い）
             .environmentObject(teacher)   // ✅ これが正解
 

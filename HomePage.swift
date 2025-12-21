@@ -15,6 +15,7 @@ struct HomePage: View {
 
     @State private var favCount = HomeworkStore.shared.collectionFavoritesCount
     @State private var learnedCount = HomeworkStore.shared.collectionLearnedCount
+    @StateObject private var columnStore = ColumnStore.shared
     
     private var favBadgeText: String { favCount > 99 ? "99+" : "\(favCount)" }
     private var learnedBadgeText: String { learnedCount > 99 ? "99+" : "\(learnedCount)" }
@@ -97,7 +98,19 @@ struct HomePage: View {
                             ColumnIndexView()
                         }
                         .buttonStyle(ColoredPillButtonStyle(color: .indigo, size: .compact, alpha: 0.20))
-
+                        .overlay(alignment: .trailing) {
+                            if columnStore.shouldShowNewBadge() {
+                                Text("🆕")
+                                    .font(.caption2.bold())
+                                    .padding(.horizontal, 6)
+                                    .padding(.vertical, 3)
+                                    .background(.red.opacity(0.95))
+                                    .foregroundStyle(.white)
+                                    .clipShape(Capsule())
+                                    .padding(.trailing, 14) 
+                            }
+                        }
+                        
                         NavigationLink("🦌 その他品詞") {
                             POSFlashcardListView(
                                 pos: .others,
