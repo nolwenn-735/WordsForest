@@ -49,7 +49,7 @@ struct HomePage: View {
                                 .padding(.top, 8)
                                 .padding(.trailing, 8)
                         }
-
+                    
                     // MARK: 新着
                     recentSection
 
@@ -148,6 +148,31 @@ struct HomePage: View {
             TeacherUnlockSheet()
                 .environmentObject(teacher)
         }
+    }
+}
+
+struct WeeklySetMiniButton: View {
+    @EnvironmentObject var hw: HomeworkState
+
+    var body: some View {
+        let p = hw.currentPair
+
+        NavigationLink {
+            WeeklySetView(pair: p)
+                .environmentObject(hw)
+        } label: {
+            Text("🗓️ 今回分へ →")
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundColor(.blue)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .background(.thinMaterial, in: Capsule())
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+                .allowsTightening(true)
+            
+        }
+        .buttonStyle(.plain)
     }
 }
 
@@ -335,26 +360,6 @@ private extension HomePage {
 }
 
 
-private struct WeeklySetMiniButton: View {
-    @EnvironmentObject var hw: HomeworkState
-
-    var body: some View {
-        let p = hw.currentPair
-
-        NavigationLink {
-            WeeklySetView(pair: p)
-                .environmentObject(hw)
-        } label: {
-            Text("🗓️ 今回分へ →")
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundColor(.blue)
-                .padding(.horizontal, 14)
-                .padding(.vertical, 8)
-                .background(.thinMaterial, in: Capsule())
-        }
-        .buttonStyle(.plain)
-    }
-}
 
 
 

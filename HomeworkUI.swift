@@ -21,7 +21,7 @@ struct HomeworkBanner: View {
             // 2段目：🔒Teacher（元のペア位置） + 1週間（ここ） + デバッグ
             // ✅ 左カラム幅を固定して、(動詞＋副詞) と (1週間) を縦に揃える
 
-            let leftColWidth: CGFloat = 92   // ← ここを 88〜100 くらいで微調整してOK
+            let leftColWidth: CGFloat = 84   // ← ここを 88〜100 くらいで微調整してOK
 
             VStack(alignment: .leading, spacing: 8) {
 
@@ -35,8 +35,13 @@ struct HomeworkBanner: View {
                         .allowsTightening(true)
 
                     pill(hw.currentPair == .nounAdj ? "名詞＋形容詞" : "動詞＋副詞")
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.65)
+                        .allowsTightening(true)
 
-                    Spacer()
+                    Spacer(minLength: 8)
+                    
+
                 }
 
                 // 2段目
@@ -156,6 +161,8 @@ private struct ToggleButton: View {
         .buttonStyle(.plain)
     }
 }
+
+
 
 
 struct HomeworkRecentWidget: View {
