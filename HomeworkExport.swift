@@ -139,22 +139,28 @@ final class HomeworkPackStore {
             }
         }
 
-        // JSON化（例文は ExampleStore の firstExample(pos:for:)）
+        // JSON化
         let items: [HomeworkExportCard] = final.map { c in
-            let ex = ExampleStore.shared.firstExample(pos: c.pos, word: c.word)
+
+            // ✅ どの meaning の例文を詰めるかを安定化：先頭 meaning 優先
+            let m0 = (c.meanings.first ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+
+            let ex = ExampleStore.shared.firstExample(pos: c.pos, word: c.word, meaning: m0)
+                ?? ExampleStore.shared.firstExample(pos: c.pos, word: c.word)
+
             let exPayload: HomeworkExportExample? = ex.map {
                 HomeworkExportExample(en: $0.en, ja: $0.ja, note: $0.note)
             }
 
             return HomeworkExportCard(
-                pos: c.pos.rawValue,                 // "noun"/"verb"/"adj"/"adv"/"others"
+                pos: c.pos.rawValue,
                 word: c.word,
                 meanings: c.meanings,
                 example: exPayload,
                 required: HomeworkStore.shared.isRequired(c)
             )
         }
-
+        
         let id = "\(createdAt.prefix(10))-words-cycle\(cycle)-pair\(pair.rawValue)"
 
         let payload = HomeworkExportPayload(
@@ -210,6 +216,25 @@ extension HomeworkPackStore {
 
         // 今見ている回にも保険で保存（必要なら残す）
         save(payload, cycleIndex: hw.currentCycleIndex, pair: hw.currentPair)
+
+        // ✅ 追加：payload内の例文を ExampleStore に反映
+        for item in payload.items {
+            guard let ex = item.example else { continue }
+            guard let pos = PartOfSpeech(rawValue: item.pos) else { continue }
+
+            let meaning = (item.meanings.first ?? "")
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+            if meaning.isEmpty { continue }
+
+            ExampleStore.shared.saveExample(
+                pos: pos,
+                word: item.word,
+                meaning: meaning,
+                en: ex.en,
+                ja: ex.ja,
+                note: ex.note
+            )
+        }
 
         // ✅ ここが重要：カード（cachedHomework）へ落とし込み
         hw.applyImportedPayload(payload)

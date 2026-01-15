@@ -297,10 +297,14 @@ final class HomeworkStore: ObservableObject {
 
         // WordCard へ変換
         let cards: [WordCard] = grouped.values.compactMap { group in
-            guard let first = group.first else { return nil }
+            // meanings を正規化して確定
+            let meanings = Array(Set(group.map { normMeaning($0.meaning) }))
+                .sorted()
+            guard let firstMeaning = meanings.first else { return nil }
 
-            let meanings = group.map { $0.meaning }
-            let idFav = favorites.contains(key(for: first))
+            // first を「意味が firstMeaning の StoredWord」に固定
+            guard let first = group.first(where: { normMeaning($0.meaning) == firstMeaning }) else { return nil }
+
             return WordCard(
                 id: UUID(),
                 pos: first.pos,

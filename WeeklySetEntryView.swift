@@ -2,7 +2,7 @@
 //  WeeklySetEntryView.swift
 //  WordsForest
 //
-//  Created by Nami .T on 2026/01/05.
+//  Created by Nami .T on 2026/01/05.→01/15card化のためのPayloadView置き換え
 //
 
 import SwiftUI
@@ -14,7 +14,6 @@ struct WeeklySetEntryView: View {
     let pair: PosPair
 
     var body: some View {
-        // 取り込み済み（or 先生側で確定済み）payload があるか？
         let payload = HomeworkPackStore.shared.load(
             cycleIndex: hw.currentCycleIndex,
             pair: pair
@@ -22,8 +21,8 @@ struct WeeklySetEntryView: View {
 
         Group {
             if let payload {
-                // ✅ 取り込み済み：配布された中身を表示
-                WeeklySetPayloadView(payload: payload)
+                // ✅ 取り込み済み：payloadから「カード画面」へ行けるUI
+                WeeklySetPayloadCardsView(payload: payload)
 
             } else if teacher.unlocked {
                 // ✅ 先生だけ：未取り込みでもローカル生成ビューに入れる
@@ -58,32 +57,87 @@ private struct HomeworkNotImportedView: View {
     }
 }
 
-private struct WeeklySetPayloadView: View {
+// MARK: - payload版（ここが「カードにならない問題」を直す）
+private struct WeeklySetPayloadCardsView: View {
+    @EnvironmentObject private var hw: HomeworkState
     let payload: HomeworkExportPayload
 
     var body: some View {
+        let pair = PosPair(rawValue: payload.pair) ?? hw.currentPair
+        let parts = pair.parts
+
         List {
+            Section("今回のセット") {
+                posRow(parts[0])
+                posRow(parts[1])
+            }
+
             Section {
+                NavigationLink("24語まとめて学習") {
+                    combinedWordcardPage(for: parts)
+                }
+            }
+
+            // ついでに情報も見えるように（安心用）
+            Section("情報") {
                 Text("日付: \(String(payload.createdAt.prefix(10)).replacingOccurrences(of: "-", with: "/"))")
                 Text("ペア: \(payload.pair == 0 ? "名詞＋形容詞" : "動詞＋副詞")")
                 Text("語数: \(payload.totalCount)")
             }
+        }
+        .navigationTitle("今回の宿題")
+        .onAppear {
+            // ✅ ここが重要：取り込んだpayloadを HomeworkState のキャッシュに落とす
+            // （WeeklySetView の hw.homeworkWords(...) を動かすための反映）
+            hw.applyImportedPayload(payload)
+        }
+    }
 
-            Section("単語") {
-                ForEach(Array(payload.items.enumerated()), id: \.offset) { _, item in
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(item.word).font(.headline)
-                        if !item.meanings.isEmpty {
-                            Text(item.meanings.joined(separator: ", "))
-                                .foregroundStyle(.secondary)
-                        }
-                        if let ex = item.example {
-                            Text(ex.en).font(.caption).foregroundStyle(.secondary)
-                        }
-                    }
-                    .padding(.vertical, 4)
-                }
-            }
+    @ViewBuilder
+    private func posRow(_ pos: PartOfSpeech) -> some View {
+        NavigationLink("\(pos.jaTitle) 12語") {
+            singleWordcardPage(for: pos)
+        }
+        .foregroundStyle(pos.accent)
+    }
+
+    private func singleWordcardPage(for pos: PartOfSpeech) -> some View {
+        // payload → WordCard[]
+        let cards = hw.homeworkWords(for: pos)   // applyImportedPayload で cachedHomework が入る想定
+        let animal = pos.animalName(forCycle: hw.variantIndex(for: pos))
+
+        return POSFlashcardView(
+            title: pos.jaTitle,
+            cards: cards,
+            accent: pos.accent,
+            background: pos.backgroundColor,
+            animalName: animal,
+            hideLearned: true
+        )
+    }
+
+    @ViewBuilder
+    private func combinedWordcardPage(for parts: [PartOfSpeech]) -> some View {
+        if parts.count < 2 {
+            Text("設定に誤りがあります")
+        } else {
+            let a = hw.homeworkWords(for: parts[0])
+            let b = hw.homeworkWords(for: parts[1])
+            let all = a + b
+
+            let title      = "\(parts[0].jaTitle)+\(parts[1].jaTitle) 24語"
+            let background = Color(.systemGray6)
+            let accent     = Color.primary
+            let mixAnimal  = "index_raccoon_flower"
+
+            POSFlashcardView(
+                title: title,
+                cards: all,
+                accent: accent,
+                background: background,
+                animalName: mixAnimal,
+                hideLearned: true
+            )
         }
     }
 }

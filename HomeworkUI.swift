@@ -247,8 +247,8 @@ struct HomeworkRecentWidget: View {
             }
 
             try HomeworkPackStore.shared.importHomeworkPayload(payload, hw: hw)
+            
             // ✅ 追加：取り込んだ内容を “カード” にしてキャッシュへ反映
-            hw.applyImportedPayload(payload)
             hw.addImportedToHistory(payload: payload)
             hw.markImported(payload: payload)
 
