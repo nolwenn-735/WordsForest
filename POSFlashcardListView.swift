@@ -105,10 +105,6 @@ struct POSFlashcardListView: View {
         }
         .sheet(item: $editingWord) { c in
             AddWordView(pos: pos, editing: c)
-        }
-        .sheet(isPresented: $teacher.showingUnlockSheet) {
-            TeacherUnlockSheet()
-                .environmentObject(teacher)
-        }
+        }       
     }
 }

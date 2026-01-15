@@ -359,3 +359,66 @@ final class HomeworkStateBridge {
         set { state?.variantAdv = newValue }
     }
 }
+
+
+// MARK: - Import payload → cache（宿題カードに落とし込む）
+extension HomeworkState {
+
+    /// 取り込んだ宿題JSONを「今サイクルの宿題カード」として反映する
+    func applyImportedPayload(_ payload: HomeworkExportPayload) {
+
+        // ① 前の宿題が残らないようにキャッシュを消す
+        cachedHomework.removeAll()
+
+        // ② UIの状態も payload 側に寄せる（ペアがズレると「出ない」ので重要）
+        daysPerCycle = payload.daysPerCycle
+        pairIndex = payload.pair          // 0: nounAdj / 1: verbAdv
+        cycleIndex = payload.cycleIndex
+
+        if let d = ISO8601DateFormatter().date(from: payload.createdAt) {
+            cycleStartDate = d
+        }
+
+        // ③ items を pos ごとに分けて WordCard に変換して詰める
+        var byPos: [PartOfSpeech: [WordCard]] = [:]
+
+        for it in payload.items {
+            let pos = mapPOS(it.pos)
+
+            // HomeworkExportCard.example -> WordCard.examples([String])
+            var examples: [String] = []
+            if let ex = it.example {
+                if let ja = ex.ja, !ja.isEmpty {
+                    examples = ["\(ex.en) ・ \(ja)"]
+                } else {
+                    examples = [ex.en]
+                }
+                // ex.note は、WordCard に入れ先が無いので今回は捨てる（必要なら後で拡張）
+            }
+
+            let card = WordCard(
+                pos: pos,
+                word: it.word,
+                meanings: it.meanings,
+                examples: examples
+            )
+
+            byPos[pos, default: []].append(card)
+        }
+
+        // ④ 今サイクルの宿題キャッシュとして固定
+        cachedHomework = byPos
+        objectWillChange.send()
+    }
+
+    /// payload の pos 文字列を PartOfSpeech に寄せる
+    private func mapPOS(_ raw: String) -> PartOfSpeech {
+        switch raw.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() {
+        case "n", "noun": return .noun
+        case "v", "verb": return .verb
+        case "adj", "a", "adjective": return .adj
+        case "adv", "adverb": return .adv
+        default: return .others
+        }
+    }
+}

@@ -1,10 +1,4 @@
 //
-//  HomeworkExportFile.swift
-//  WordsForest
-//
-//  Created by Nami .T on 2025/12/20.
-//
-
 import Foundation
 import SwiftUI
 
@@ -12,25 +6,24 @@ enum HomeworkExportFile {
 
     /// JSONファイル名（例: 2025-12-20-words-cycle3-pair0.json）
     static func makeFileName(for payload: HomeworkExportPayload) -> String {
-        // payload.id は "YYYY-MM-DD-words-cycleX-pairY" みたいにしてある想定
-        return "\(payload.id).json"
+        "\(payload.id).json"
     }
 
-    /// Files（書類フォルダ）に JSON を保存してURLを返す
+    /// Files（書類フォルダ）に JSON(Data) を保存してURLを返す
     @discardableResult
-    static func saveToDocuments(_ json: String, fileName: String) throws -> URL {
-
+    static func saveToDocuments(_ data: Data, fileName: String) throws -> URL {
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let url = dir.appendingPathComponent(fileName)
-
-        guard let data = json.data(using: .utf8) else {
-            throw NSError(domain: "HomeworkExportFile", code: 1, userInfo: [
-                NSLocalizedDescriptionKey: "JSONをUTF-8に変換できませんでした"
-            ])
-        }
-
         try data.write(to: url, options: [.atomic])
         return url
+    }
+
+    /// payload → JSON(Data)（pretty）
+    static func makePrettyJSONData(_ payload: HomeworkExportPayload) throws -> Data {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
+        encoder.dateEncodingStrategy = .iso8601
+        return try encoder.encode(payload)
     }
 
     /// 「今サイクル」を確定→JSON生成→Filesに保存→URL返却
@@ -47,14 +40,13 @@ enum HomeworkExportFile {
             totalCount: totalCount
         )
 
-        // ② JSON文字列へ（pretty）
-        let json = HomeworkPackStore.shared.makePrettyJSONString(payload)
+        // ② JSON(Data)へ（pretty）
+        let data = try makePrettyJSONData(payload)
 
         // ③ Filesへ保存
         let fileName = makeFileName(for: payload)
-        let url = try saveToDocuments(json, fileName: fileName)
+        let url = try saveToDocuments(data, fileName: fileName)
 
         return url
     }
 }
-

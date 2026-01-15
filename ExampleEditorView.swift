@@ -173,3 +173,7 @@ struct ExampleEditorView: View {
         if drafts.isEmpty { drafts = [Draft()] }
     }
 }
+
+#Preview {
+    ExampleEditorView(pos: .noun, word: "test")
+}

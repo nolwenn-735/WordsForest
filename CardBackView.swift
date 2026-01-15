@@ -31,7 +31,7 @@ struct CardBackView: View {
 
     // MARK: - 状態（読み上げ & 編集）
 
-    @State private var speechFast = false      // ゆっくり
+    @State private var speechSlow = false      // ゆっくり
     @State private var speakBoth  = true       // 英＋日
     @State private var showingEditor = false   // 例文編集シート
 
@@ -145,7 +145,7 @@ struct CardBackView: View {
 
             // 下のトグル（ゆっくり／英＋日）
             HStack(spacing: 32) {
-                Toggle(isOn: $speechFast) {
+                Toggle(isOn: $speechSlow) {
                     Text("ゆっくり")
                 }
                 .toggleStyle(.switch)
@@ -198,9 +198,15 @@ struct CardBackView: View {
 
     private func speak(_ text: String, lang: String) {
         guard !text.isEmpty else { return }
+
         let u = AVSpeechUtterance(string: text)
         u.voice = AVSpeechSynthesisVoice(language: lang)
-        u.rate  = speechFast ? 0.65 : 0.45
+
+        let native = AVSpeechUtteranceDefaultSpeechRate
+        let slow   = max(0.35, native * 0.80)   // 好みで 0.70〜0.85 くらい調整OK
+
+        u.rate = speechSlow ? slow : native
+
         synthesizer.speak(u)
     }
 }

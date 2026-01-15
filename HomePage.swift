@@ -153,15 +153,17 @@ struct HomePage: View {
 
 struct WeeklySetMiniButton: View {
     @EnvironmentObject var hw: HomeworkState
+    @EnvironmentObject var teacher: TeacherMode
 
     var body: some View {
         let p = hw.currentPair
 
         NavigationLink {
-            WeeklySetView(pair: p)
+            WeeklySetEntryView(pair: p)
                 .environmentObject(hw)
+                .environmentObject(teacher)
         } label: {
-            Text("🗓️ 今回分へ →")
+            Text("🗓️今回分へ→")
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(.blue)
                 .padding(.horizontal, 12)
@@ -170,12 +172,10 @@ struct WeeklySetMiniButton: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)
                 .allowsTightening(true)
-            
         }
         .buttonStyle(.plain)
     }
 }
-
 // MARK: - 品詞ボタン（名詞・動詞・形容詞・副詞）
 extension HomePage {
     @ViewBuilder

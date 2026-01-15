@@ -296,6 +296,8 @@ struct POSFlashcardView: View {
 /// Wordcardpage.swift 内の CardRow と同じ見た目にするための専用 Row
 private struct POSCardRow: View {
     
+    @EnvironmentObject private var teacher: TeacherMode
+    
     // ==== 一時的なダミー変数（旧コード踏襲）====
     var posLabel: String = ""
     var hasDolphin: Bool = false
@@ -464,10 +466,15 @@ private struct POSCardRow: View {
                     .frame(width: 36, height: 36)
                     .contentShape(Rectangle())
                     .contextMenu {
-                        Button(action: onEditFromMenu) {
+                        Button {
+                            teacher.requestUnlock(runAfterUnlock: onEditFromMenu)
+                        } label: {
                             Label("このカードを編集", systemImage: "square.and.pencil")
                         }
-                        Button(role: .destructive, action: onDeleteFromMenu) {
+
+                        Button(role: .destructive) {
+                            teacher.requestUnlock(runAfterUnlock: onDeleteFromMenu)
+                        } label: {
                             Label("このカードを削除", systemImage: "trash")
                         }
                     }

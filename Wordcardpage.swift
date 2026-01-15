@@ -7,7 +7,7 @@
 
 //
 //
-//  Wordcardpage.swift  — 12/6 完全修復版 🍊💕
+//  Wordcardpage.swift  — 12/6 完全修復版 🍊（💕複数意味対応版）
 //
 
 import SwiftUI
@@ -155,6 +155,16 @@ import AVFoundation
                         Text(word)
                             .font(.system(size: 26, weight: .bold))
                             .foregroundStyle(.primary)
+                        
+                        // ⭐ 不規則動詞（verbのときだけ表示）
+                           if pos == .verb,
+                              let forms = IrregularVerbBank.forms(for: word),
+                              forms.count >= 3 {
+                               Text("\(forms[1])・\(forms[2])")
+                                   .font(.system(size: 13, weight: .semibold))
+                                   .foregroundStyle(.secondary)
+                           }
+
 
                         if let first = meanings.first {
                             Text(first)
