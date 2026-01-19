@@ -1,4 +1,5 @@
-//WeeklySetView.swft 01/15.`26置き換え
+
+//WeeklySetView.swft 01/15.`26置き換え→01/17宿題セット不一致直しの置き換え
 
 
 import SwiftUI
@@ -23,14 +24,16 @@ struct WeeklySetView: View {
             }
         }
         .navigationTitle("今回のセット")
+        .task {
+            hw.requestRestoreFixedPackIfNeeded()
+        }
     }
 
-    @ViewBuilder
     private func posRow(_ pos: PartOfSpeech) -> some View {
         NavigationLink("\(pos.jaTitle) 12語") {
             singleWordcardPage(for: pos)
         }
-        .foregroundStyle(pos.accent)
+        .foregroundStyle(pos.accent)   // ✅ ここは「関数の中」に入れる
     }
 
     // 品詞ごとの12語レッスン

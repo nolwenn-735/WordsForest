@@ -60,8 +60,30 @@ final class HomeworkState: ObservableObject {
     @AppStorage("hw_daysPerCycle") var daysPerCycle: Int = 7
     @AppStorage("hw_paused") var paused: Bool = false
     @AppStorage("hw_statusRaw") private var statusRaw: String = HomeworkStatus.active.rawValue
-    // 取り込み
+    // 取り込み（複数ID対応）
     @AppStorage("hw_lastImportedPayloadID") private var lastImportedPayloadID: String = ""
+    // 取り込み（複数ID対応）
+    @AppStorage("hw_importedPayloadIDs_json") private var importedIDsRaw: String = "[]"
+
+    /// 取得済みpayload.idの集合
+    private var importedIDs: Set<String> {
+        get {
+            guard let data = importedIDsRaw.data(using: .utf8),
+                  let arr = try? JSONDecoder().decode([String].self, from: data) else {
+                return []
+            }
+            return Set(arr)
+        }
+        set {
+            let arr = Array(newValue)
+            if let data = try? JSONEncoder().encode(arr),
+               let s = String(data: data, encoding: .utf8) {
+                importedIDsRaw = s
+            } else {
+                importedIDsRaw = "[]"
+            }
+        }
+    }
     // 交互ローテ
     @AppStorage("hw_pairIndex") private var pairIndex: Int = 0
     var currentPair: PosPair { PosPair(rawValue: pairIndex) ?? .nounAdj }
@@ -83,7 +105,9 @@ final class HomeworkState: ObservableObject {
     // 🔹 今サイクルの宿題セット（品詞ごと）
      private var cachedHomework: [PartOfSpeech: [WordCard]] = [:]
     
-   
+    // restore の多重発火防止
+    private var restoreRequested = false
+    
     // 🆕 今サイクル表示用のラベル
     var currentPairLabel: String {
         switch currentPair {
@@ -135,6 +159,7 @@ final class HomeworkState: ObservableObject {
         let rawHistory = UserDefaults.standard.string(forKey: DefaultsKeys.hwHistoryJSON)
             ?? "[]"
         self.history = Self.decode(rawHistory)
+        sanitizeHistoryIfNeeded()
 
         // ② HomeworkStateBridge に自分を登録
         if let bridge = HomeworkStateBridge.shared {
@@ -196,45 +221,82 @@ final class HomeworkState: ObservableObject {
     private let maxHistoryCount = 50
 
     // MARK: - 履歴保存
+    
+    func logImportedHomework(dateISO: String, pairRaw: Int) {
+        guard let d = parseISO(dateISO) else { return }
+        let p = PosPair(rawValue: pairRaw) ?? currentPair
+        logNowIfNeeded(date: d, status: .active, pair: p, wordsCount: 24) // ここは運用に合わせて
+    }
+    
+    private func parseISO(_ s: String) -> Date? {
+        let f1 = ISO8601DateFormatter()
+        f1.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        if let d = f1.date(from: s) { return d }
+
+        let f2 = ISO8601DateFormatter()
+        return f2.date(from: s)
+    }
+
     private func logNow(_ now: Date = Date()) {
+        logNowIfNeeded(date: now, status: status, pair: currentPair, wordsCount: 24)
+    }
+    
+    private func logNowIfNeeded(date: Date,
+                                status: HomeworkStatus,
+                                pair: PosPair,
+                                wordsCount: Int) {
+        let cal = Calendar.current
         var list = history
 
-        // ① 新しいエントリを先頭に追加（最新が一番上）
-        list.insert(
-            HomeworkEntry(date: now, status: status, pair: currentPair),
-            at: 0
-        )
-
-        // ② 上限を超えた分、末尾（＝古いエントリ）から削除
-        if list.count > maxHistoryCount {
-            let overflow = list.count - maxHistoryCount
-            list.removeLast(overflow)
+        // 同日＋同ペアが既にあるなら「更新」して増殖させない
+        if let i = list.firstIndex(where: { cal.isDate($0.date, inSameDayAs: date) && $0.pair == pair }) {
+            list[i].date = date
+            list[i].status = status
+            list[i].wordsCount = wordsCount
+        } else {
+            list.insert(
+                HomeworkEntry(date: date, status: status, pair: pair, wordsCount: wordsCount),
+                at: 0
+            )
         }
 
-        // ③ 保存
+        // 降順（新しい順）に正規化
+        list.sort { $0.date > $1.date }
+
+        // 上限カット（君の変数名）
+        if list.count > maxHistoryCount {
+            list.removeLast(list.count - maxHistoryCount)
+        }
+
+        // 保存
         history = list
         historyRaw = Self.encode(list)
     }
     
-    // MARK: - Import helper（外部から履歴を刻む用）
-    func logImportedHomework(dateISO: String, pairRaw: Int) {
-        let d = ISO8601DateFormatter().date(from: dateISO) ?? Date()
-        // payloadの pair を currentPair に反映するかは運用次第。ここでは “今の状態のまま刻む” が安全。
-        logNow(d)
-    }
+    // 履歴を起動時に1回だけ整形（重複除去＋降順＋上限カット）
+    private func sanitizeHistoryIfNeeded() {
+        let cal = Calendar.current
 
-    func addImportedToHistory(payload: HomeworkExportPayload) {
-        let d = ISO8601DateFormatter().date(from: payload.createdAt) ?? Date()
-        let p = PosPair(rawValue: payload.pair) ?? currentPair
+        struct Key: Hashable {
+            let day: Date
+            let pair: PosPair
+        }
 
-        var list = history
-        list.insert(
-            HomeworkEntry(date: d,
-                          status: .active,
-                          pair: p,
-                          wordsCount: payload.totalCount),
-            at: 0
-        )
+        var dict: [Key: HomeworkEntry] = [:]
+
+        for e in history {
+            let key = Key(day: cal.startOfDay(for: e.date), pair: e.pair)
+
+            // 同日+同ペアは「新しい方（dateが大きい方）」を残す
+            if let old = dict[key] {
+                if e.date > old.date { dict[key] = e }
+            } else {
+                dict[key] = e
+            }
+        }
+
+        var list = Array(dict.values)
+        list.sort { $0.date > $1.date }
 
         if list.count > maxHistoryCount {
             list.removeLast(list.count - maxHistoryCount)
@@ -244,16 +306,42 @@ final class HomeworkState: ObservableObject {
         historyRaw = Self.encode(list)
     }
     
+    // MARK: - Import helper（外部から履歴を刻む用）
+    func addImportedToHistory(payload: HomeworkExportPayload) {
+
+    #if DEBUG
+    print("[HW] addImportedToHistory called createdAt=\(payload.createdAt)")
+    #endif
+
+        guard let d = parseISO(payload.createdAt) else {
+    #if DEBUG
+            print("[HW] createdAt parse failed: \(payload.createdAt)")
+    #endif
+            return
+        }
+
+        let p = PosPair(rawValue: payload.pair) ?? currentPair
+        logNowIfNeeded(date: d, status: .active, pair: p, wordsCount: payload.totalCount)
+    }
+ 
+    
     func isAlreadyImported(payload: HomeworkExportPayload) -> Bool {
-        // まずはIDで即判定（最強）
+        // ✅ 取得済み集合で判定（複数OK）
+        if importedIDs.contains(payload.id) { return true }
+
+        // 旧方式の保険（残してある場合）
         if payload.id == lastImportedPayloadID { return true }
 
-        // 保険：履歴にも同じIDを刻んでる場合だけ（任意）
-        // 今のHomeworkEntryにidStringが無いなら、ここは無しでOK
         return false
     }
 
     func markImported(payload: HomeworkExportPayload) {
+        // ✅ 集合に追加して永続化
+        var set = importedIDs
+        set.insert(payload.id)
+        importedIDs = set
+
+        // 旧方式も一応更新（残しておくなら）
         lastImportedPayloadID = payload.id
     }
     
@@ -274,8 +362,37 @@ extension HomeworkState {
     ///   - HomeworkStore にある単語だけを使う（learned は“出題履歴”とは切り離す）
     ///   - 1 サイクル中は cachedHomework に固定しておく
     ///   - 最大で weeklyQuota[pos] 語（デフォルト 12 語）
+    
+    // ✅ 外（WeeklySetView）から呼べるように private を外す
+    func requestRestoreFixedPackIfNeeded() {
+
+        // すでにキャッシュがあるなら何もしない
+        if !cachedHomework.isEmpty { return }
+
+        // 多重呼び出し防止
+        guard !restoreRequested else { return }
+        restoreRequested = true
+
+        // ✅ “いまの描画ターン”では更新しない（Publish警告を避ける）
+        Task { @MainActor in
+            await Task.yield()
+            self.restoreFixedPackIfNeeded()   // ← cachedHomework を更新してOK
+        }
+    }
+    
+    private func restoreFixedPackIfNeeded() {
+        if let payload = HomeworkPackStore.shared.load(
+            cycleIndex: currentCycleIndex,
+            pair: currentPair
+        ) {
+            applyImportedPayload(payload)
+        }
+    }
+    
     func homeworkWords(for pos: PartOfSpeech) -> [WordCard] {
 
+        requestRestoreFixedPackIfNeeded()
+        
         // すでに今サイクルぶんが決まっていれば、それをそのまま返す
         if let cached = cachedHomework[pos], !cached.isEmpty {
             return cached
@@ -309,6 +426,15 @@ extension HomeworkState {
         return chosen
     }
 }
+
+extension HomeworkState {
+
+    func resetImportedIDs() {
+        importedIDs = []
+        lastImportedPayloadID = ""
+    }
+}
+
 // MARK: - キャッシュ操作用 extension
 
 extension HomeworkState {
@@ -366,49 +492,49 @@ extension HomeworkState {
 
     /// 取り込んだ宿題JSONを「今サイクルの宿題カード」として反映する
     func applyImportedPayload(_ payload: HomeworkExportPayload) {
+        // View更新中に状態を書き換えると警告が出るので、次のrunloopへ逃がす
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
 
-        // ① 前の宿題が残らないようにキャッシュを消す
-        cachedHomework.removeAll()
+            // ① 前の宿題が残らないようにキャッシュを消す
+            self.cachedHomework.removeAll()
 
-        // ② UIの状態も payload 側に寄せる（ペアがズレると「出ない」ので重要）
-        daysPerCycle = payload.daysPerCycle
-        pairIndex = payload.pair          // 0: nounAdj / 1: verbAdv
-        cycleIndex = payload.cycleIndex
+            // ② UIの状態も payload 側に寄せる
+            self.daysPerCycle = payload.daysPerCycle
+            self.pairIndex = payload.pair
+            self.cycleIndex = payload.cycleIndex
 
-        if let d = ISO8601DateFormatter().date(from: payload.createdAt) {
-            cycleStartDate = d
-        }
+            // ✅ 事故防止：学習サイクル開始は「取り込んだ瞬間」にする
+            self.cycleStartDate = Date()
 
-        // ③ items を pos ごとに分けて WordCard に変換して詰める
-        var byPos: [PartOfSpeech: [WordCard]] = [:]
+            // ③ items を pos ごとに分けて WordCard に変換して詰める
+            var byPos: [PartOfSpeech: [WordCard]] = [:]
 
-        for it in payload.items {
-            let pos = mapPOS(it.pos)
+            for it in payload.items {
+                let pos = self.mapPOS(it.pos)
 
-            // HomeworkExportCard.example -> WordCard.examples([String])
-            var examples: [String] = []
-            if let ex = it.example {
-                if let ja = ex.ja, !ja.isEmpty {
-                    examples = ["\(ex.en) ・ \(ja)"]
-                } else {
-                    examples = [ex.en]
+                var examples: [String] = []
+                if let ex = it.example {
+                    if let ja = ex.ja, !ja.isEmpty {
+                        examples = ["\(ex.en) ・ \(ja)"]
+                    } else {
+                        examples = [ex.en]
+                    }
                 }
-                // ex.note は、WordCard に入れ先が無いので今回は捨てる（必要なら後で拡張）
+
+                let card = WordCard(
+                    pos: pos,
+                    word: it.word,
+                    meanings: it.meanings,
+                    examples: examples
+                )
+
+                byPos[pos, default: []].append(card)
             }
 
-            let card = WordCard(
-                pos: pos,
-                word: it.word,
-                meanings: it.meanings,
-                examples: examples
-            )
-
-            byPos[pos, default: []].append(card)
+            // ④ 今サイクルの宿題キャッシュとして固定
+            self.cachedHomework = byPos
         }
-
-        // ④ 今サイクルの宿題キャッシュとして固定
-        cachedHomework = byPos
-        objectWillChange.send()
     }
 
     /// payload の pos 文字列を PartOfSpeech に寄せる
@@ -422,3 +548,25 @@ extension HomeworkState {
         }
     }
 }
+
+#if DEBUG
+extension HomeworkState {
+
+    /// 履歴をまとめて置き換えて永続化（debug用）
+    func debugReplaceHistory(_ list: [HomeworkEntry]) {
+        history = list
+        historyRaw = Self.encode(list)
+    }
+
+    /// 履歴を空にする（debug用）
+    func debugClearHistory() {
+        debugReplaceHistory([])
+    }
+
+    /// 宿題カードのキャッシュを空にする（debug用）
+    func debugClearCachedHomeworkOnly() {
+        cachedHomework.removeAll()
+        restoreRequested = false
+    }
+}
+#endif

@@ -189,6 +189,22 @@ final class HomeworkPackStore {
     }
 }
 
+#if DEBUG
+extension HomeworkPackStore {
+
+    func clearAll() {
+        let defaults = UserDefaults.standard
+        let dict = defaults.dictionaryRepresentation()
+        for (k, _) in dict where k.hasPrefix(keyPrefix) {
+            defaults.removeObject(forKey: k)
+        }
+    }
+
+    func debugClearAllPacks() {
+        clearAll()
+    }
+}
+#endif
 // MARK: - Import（生徒端末でJSONを取り込む）
 
 extension HomeworkPackStore {
@@ -240,3 +256,5 @@ extension HomeworkPackStore {
         hw.applyImportedPayload(payload)
     }
 }
+
+

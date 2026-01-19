@@ -122,9 +122,11 @@ struct HomePage: View {
                     }
 
                     // デバッグ
+                    #if DEBUG
                     NavigationLink("🛠️ 宿題セット修復（デバッグ用）") {
-                        RepairHomeworkView()
+                        DebugCenterView()
                     }
+                    #endif
                     
                     Spacer(minLength: 8)
                 }
@@ -156,14 +158,13 @@ struct WeeklySetMiniButton: View {
     @EnvironmentObject var teacher: TeacherMode
 
     var body: some View {
-        let p = hw.currentPair
-
         NavigationLink {
-            WeeklySetEntryView(pair: p)
+            WeeklySetEntryView(pair: hw.currentPair)
                 .environmentObject(hw)
                 .environmentObject(teacher)
+                .id(hw.currentPair)   // ← これが効く：ペアが変わったら中身を作り直す
         } label: {
-            Text("🗓️今回分へ→")
+            Text("🗓️今回分へ")
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(.blue)
                 .padding(.horizontal, 12)

@@ -118,7 +118,11 @@ struct HomeworkBanner: View {
         .background(Color.white)
         .cornerRadius(12)
         .overlay(RoundedRectangle(cornerRadius: 12).stroke(.black.opacity(0.08), lineWidth: 1))
-        .onAppear { hw.refresh() }
+        .onAppear {
+            DispatchQueue.main.async {
+                hw.refresh()
+            }
+        }
 
         // ✅ 修飾子チェーン “内側” に置く（ここが重要）
         .fileExporter(
