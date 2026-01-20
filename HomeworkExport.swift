@@ -251,9 +251,11 @@ extension HomeworkPackStore {
                 note: ex.note
             )
         }
-
+        
+        hw.recordImportedPayloadIfNeeded(payload)
         // ✅ ここが重要：カード（cachedHomework）へ落とし込み
         hw.applyImportedPayload(payload)
+        
     }
 }
 

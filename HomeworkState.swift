@@ -1,7 +1,7 @@
 //
 //  WordsForest
 //
-//  Created by Nami .T on 2025/09/15.
+//  Created by Nami .T on 2025/09/15.→01/20履歴閲覧可能版へ
 //
 // HomeworkState.swift
 import SwiftUI
@@ -19,42 +19,79 @@ extension PosPair {
         case .verbAdv: return [.verb, .adv]
         }
     }
+    // 追加：表示名
+    var jaTitle: String {
+        switch self {
+        case .nounAdj: return "名詞＋形容詞"
+        case .verbAdv: return "動詞＋副詞"
+        }
+    }
 }
 enum HomeworkStatus: String, Codable { case active, paused, none }
 enum PosPair: Int, Codable { case nounAdj = 0, verbAdv = 1 }
 
-struct HomeworkEntry: Identifiable, Codable {
+struct HomeworkEntry: Identifiable, Codable,Hashable {
     var id: UUID
     var date: Date
     var status: HomeworkStatus
     var pair: PosPair
     var wordsCount: Int
-    
-    init(pair: PosPair, wordsCount: Int = 24) {
-        self.id = UUID()
-        self.date = Date()
-        self.status = .active          // ← ここは素直にactiveでOK
-        self.pair = pair
-        self.wordsCount = wordsCount
+
+    // ★追加（過去データには無いので decodeIfPresent で拾う）
+    var wordIDs: [UUID]
+
+    private enum CodingKeys: String, CodingKey {
+        case id, date, status, pair, wordsCount, wordIDs
     }
 
-    init(date: Date, status: HomeworkStatus, pair: PosPair, wordsCount: Int = 24) {
-        self.id = UUID()
+    // ふだん作るとき用（新規作成）
+    init(
+        id: UUID = UUID(),
+        date: Date = Date(),
+        status: HomeworkStatus = .active,
+        pair: PosPair,
+        wordsCount: Int = 24,
+        wordIDs: [UUID] = []
+    ) {
+        self.id = id
         self.date = date
         self.status = status
         self.pair = pair
         self.wordsCount = wordsCount
+        self.wordIDs = wordIDs
+    }
+
+    // 過去JSON互換（wordIDs が無くても落ちない）
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.id = try c.decode(UUID.self, forKey: .id)
+        self.date = try c.decode(Date.self, forKey: .date)
+        self.status = try c.decode(HomeworkStatus.self, forKey: .status)
+        self.pair = try c.decode(PosPair.self, forKey: .pair)
+        self.wordsCount = try c.decode(Int.self, forKey: .wordsCount)
+        self.wordIDs = (try? c.decode([UUID].self, forKey: .wordIDs)) ?? []
     }
 
     var statusIcon: String {
-        switch status { case .active: return "🟩"; case .paused: return "⏸️"; case .none: return "⛔️" }
+        switch status {
+        case .active: return "🟩"
+        case .paused: return "⏸️"
+        case .none:   return "⛔️"
+        }
     }
-    var pairLabel: String {
-        switch pair { case .nounAdj: "名詞＋形容詞"; case .verbAdv: "動詞＋副詞" }
-    }
-    var titleLine: String { "\(statusIcon) 宿題：\(pairLabel)（\(wordsCount)語）" }
-}
 
+    var pairLabel: String {
+        switch pair {
+        case .nounAdj: return "名詞＋形容詞"
+        case .verbAdv: return "動詞＋副詞"
+        }
+    }
+
+    var titleLine: String {
+        "\(statusIcon) 宿題：\(pairLabel) (\(wordsCount)語)"
+    }
+}
 final class HomeworkState: ObservableObject {
     // 設定
     @AppStorage("hw_daysPerCycle") var daysPerCycle: Int = 7
@@ -109,12 +146,7 @@ final class HomeworkState: ObservableObject {
     private var restoreRequested = false
     
     // 🆕 今サイクル表示用のラベル
-    var currentPairLabel: String {
-        switch currentPair {
-        case .nounAdj: return "名詞＋形容詞"
-        case .verbAdv: return "動詞＋副詞"
-        }
-    }
+    var currentPairLabel: String { currentPair.jaTitle }
 
     var cycleLengthLabel: String {
         switch daysPerCycle {
@@ -141,7 +173,7 @@ final class HomeworkState: ObservableObject {
     @AppStorage("variant_adv")  var variantAdv:  Int = 0
 
     // 履歴
-    @AppStorage("hw_history_json") private var historyRaw: String = "[]"
+    @AppStorage(DefaultsKeys.hwHistoryJSON) private var historyRaw: String = "[]"
     @Published private(set) var history: [HomeworkEntry] = []
 
     private let iso = ISO8601DateFormatter()
@@ -168,6 +200,7 @@ final class HomeworkState: ObservableObject {
             _ = HomeworkStateBridge(state: self)
         }
     }
+    
     // 起動/HOME 表示時に呼ぶ
     func refresh(now: Date = Date()) {
         guard status != .none else { return }       // 宿題なし → 進めない
@@ -306,6 +339,9 @@ final class HomeworkState: ObservableObject {
         historyRaw = Self.encode(list)
     }
     
+    private func saveHistory() {
+        historyRaw = Self.encode(history)   // AppStorageに保存（＝UserDefaultsにも反映）
+    }
     // MARK: - Import helper（外部から履歴を刻む用）
     func addImportedToHistory(payload: HomeworkExportPayload) {
 
@@ -435,6 +471,55 @@ extension HomeworkState {
     }
 }
 
+extension HomeworkState {
+
+    /// 履歴1件（wordIDs）から WordCard を引き直す
+    func cards(for entry: HomeworkEntry) -> [WordCard] {
+        guard !entry.wordIDs.isEmpty else { return [] }
+
+        // 4品詞ぶん全部から「ID→カード」の辞書を作って引く
+        let allCards = PartOfSpeech.homeworkCases.flatMap { HomeworkStore.shared.list(for: $0) }
+        let dict = Dictionary(uniqueKeysWithValues: allCards.map { ($0.id, $0) })
+
+        return entry.wordIDs.compactMap { dict[$0] }
+    }
+}
+
+extension HomeworkState {
+
+    /// 取り込んだpayloadを「履歴」に1件追加する（wordIDs も可能な範囲で入れる）
+    func recordImportedPayloadIfNeeded(_ payload: HomeworkExportPayload) {
+
+        let pair = PosPair(rawValue: payload.pair) ?? currentPair
+
+        // payload の各 item から「代表meaning」を作って、その StoredWord の id を探す
+        let ids: [UUID] = payload.items.compactMap { item -> UUID? in
+            guard let pos = PartOfSpeech(rawValue: item.pos) else { return nil }
+
+            let meaning = (item.meanings.first ?? "")
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+
+            guard !meaning.isEmpty else { return nil }
+
+            return HomeworkStore.shared.storedWordID(pos: pos, word: item.word, meaning: meaning)
+        }
+
+        let entry = HomeworkEntry(
+            id: UUID(),
+            date: Date(),
+            status: .active,          // ここは運用に合わせてOK（.noneでも可）
+            pair: pair,
+            wordsCount: payload.totalCount,
+            wordIDs: ids
+        )
+
+        // ▼ ここは “あなたの HomeworkState の履歴配列名” に合わせて差し替え
+        history.insert(entry, at: 0)
+
+        // ▼ 保存メソッド名もあなたの実装に合わせて差し替え
+        saveHistory()
+    }
+}
 // MARK: - キャッシュ操作用 extension
 
 extension HomeworkState {

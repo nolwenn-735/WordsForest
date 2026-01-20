@@ -175,11 +175,13 @@ private struct ToggleButton: View {
 
 struct HomeworkRecentWidget: View {
     @EnvironmentObject var hw: HomeworkState
+    @Binding var confirmEntry: HomeworkEntry?   // ✅ 追加
 
     @State private var showingImporter = false
     @State private var showingImportAlert = false
     @State private var importMessage: String = ""
-
+    
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
 
@@ -201,12 +203,21 @@ struct HomeworkRecentWidget: View {
             }
 
             ForEach(hw.history.prefix(4)) { e in
-                HStack {
-                    Text(dateString(e.date))
-                        .foregroundColor(.secondary)
-                    Text(e.titleLine)
-                    Spacer()
+                Button {
+                    confirmEntry = e
+                } label: {
+                    HStack {
+                        Text(dateString(e.date))
+                            .foregroundColor(.secondary)
+                        Text(e.titleLine)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundStyle(.secondary)
+                            .opacity(0.45)
+                    }
+                    .contentShape(Rectangle()) // ← 行全体をタップ領域に
                 }
+                .buttonStyle(.plain)
             }
         }
         .padding()
@@ -308,11 +319,14 @@ private func dateString(_ d: Date) -> String {
 }
 
 #Preview("RecentWidget") {
+    @Previewable @State var confirmEntry: HomeworkEntry? = nil
+
     NavigationStack {
-        HomeworkRecentWidget()
+        HomeworkRecentWidget(confirmEntry: $confirmEntry)
             .environmentObject(HomeworkState())
     }
 }
+
 
 import SwiftUI
 import UniformTypeIdentifiers

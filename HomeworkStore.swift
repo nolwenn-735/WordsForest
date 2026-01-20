@@ -4,7 +4,7 @@
 //
 //  Created by Nami .T on 2025/09/24.
 //
-//  HomeworkStore.swift  （🍊Clément完全版・複数意味対応）💛　→ 12/7 Thinking🍊版→12/12 before5.2版→12/14jason対応化前→jason12/15対応
+//  HomeworkStore.swift  （🍊Clément完全版・複数意味対応）💛　→ 12/7 Thinking🍊版→12/12 before5.2版→12/14jason対応化前→jason12/15対応→2026/01/20最初のmeaningsにID付版
 
 
 import Foundation
@@ -18,9 +18,28 @@ struct WordKey: Hashable, Codable {
 
 // 単語データ本体（保存対象）
 struct StoredWord: Hashable, Codable {
+    var id: UUID
     var word: String
     var meaning: String
     var pos: PartOfSpeech
+
+    // 過去データ互換：id が無い古いJSONでも落ちない
+    private enum CodingKeys: String, CodingKey { case id, word, meaning, pos }
+
+    init(id: UUID = UUID(), word: String, meaning: String, pos: PartOfSpeech) {
+        self.id = id
+        self.word = word
+        self.meaning = meaning
+        self.pos = pos
+    }
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = (try? c.decode(UUID.self, forKey: .id)) ?? UUID()
+        self.word = try c.decode(String.self, forKey: .word)
+        self.meaning = try c.decode(String.self, forKey: .meaning)
+        self.pos = try c.decode(PartOfSpeech.self, forKey: .pos)
+    }
 }
 
 final class HomeworkStore: ObservableObject {
@@ -301,22 +320,59 @@ final class HomeworkStore: ObservableObject {
             let meanings = Array(Set(group.map { normMeaning($0.meaning) }))
                 .sorted()
             guard let firstMeaning = meanings.first else { return nil }
-
+            
             // first を「意味が firstMeaning の StoredWord」に固定
             guard let first = group.first(where: { normMeaning($0.meaning) == firstMeaning }) else { return nil }
-
+            
             return WordCard(
-                id: UUID(),
+                id: first.id,                 // ✅ ここが重要：代表IDにする（安定）
                 pos: first.pos,
                 word: first.word,
                 meanings: meanings,
-                examples: []   // 例文は外部 ExampleStore が担当
+                examples: []                  // 例文は ExampleStore 側で合成する前提でOK
             )
         }
+            // MARK: - History restore helpers（HomeworkEntry.wordIDs 用）
 
+            /// 保存済みIDから StoredWord を引く（代表ID用）
+            func storedWord(for id: UUID) -> StoredWord? {
+                words.first { $0.id == id }
+            }
+
+            /// 履歴用：代表StoredWordを起点に、同じ(pos, word)を集めて WordCard 1枚に再構成
+            func mergedCard(for representative: StoredWord) -> WordCard {
+                let same = words.filter { $0.pos == representative.pos && $0.word == representative.word }
+
+                let mergedMeanings = Array(Set(same.map { normMeaning($0.meaning) }))
+                    .sorted()
+
+                return WordCard(
+                    id: representative.id,          // ✅ 履歴の代表IDを維持
+                    pos: representative.pos,
+                    word: representative.word,
+                    meanings: mergedMeanings,
+                    examples: []                    // 例文は ExampleStore 側で合成する前提なら空でOK
+                )
+            }
+
+            /// 履歴用：wordIDs（24個）から復元（順序はIDs優先・重複は除外）
+            func cards(for ids: [UUID]) -> [WordCard] {
+                var seen = Set<UUID>()
+                var result: [WordCard] = []
+
+                for id in ids {
+                    guard !seen.contains(id) else { continue }
+                    guard let rep = storedWord(for: id) else { continue }
+
+                    seen.insert(id)
+                    result.append(mergedCard(for: rep))
+                }
+                return result
+            }
+                        
         return cards.sorted { $0.word < $1.word }
     }
-
+    
     // MARK: - Favorites / Learned の補助API (HomePage用)
 
     // ===== ここ：favorites / learned の下あたりに追加 =====
@@ -354,6 +410,19 @@ final class HomeworkStore: ObservableObject {
         }
     }
 
+    // MARK: - Lookup (History restore)
+
+    /// (pos, word, meaning) から StoredWord の id を探す（見つからなければ nil）
+    func storedWordID(pos: PartOfSpeech, word: String, meaning: String) -> UUID? {
+        let w = normWord(word)
+        let m = normMeaning(meaning)
+
+        return words.first { s in
+            s.pos == pos &&
+            normWord(s.word) == w &&
+            normMeaning(s.meaning) == m
+        }?.id
+    }
     // MARK: - 既存チェック・更新（AddWordView 用）
 
     /// 同じ品詞・同じ単語で登録済みの「意味」一覧を返す

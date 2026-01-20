@@ -9,7 +9,10 @@ struct HomePage: View {
     
     @State private var searchText = ""
     @FocusState private var searchFocused: Bool
-
+    
+    @State private var confirmEntry: HomeworkEntry?
+    @State private var pushEntry: HomeworkEntry?
+    
     @State private var showRecent = false
     @State private var showSpellingMenu = false
 
@@ -233,7 +236,7 @@ private extension HomePage {
     var recentSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text("🆕 新着情報（直近8件）")
+                Text("🆕 新着情報（直近4件）")
                     .font(.headline)
 
                 Button(showRecent ? "隠す" : "表示") {
@@ -246,15 +249,28 @@ private extension HomePage {
             }
 
             if showRecent {
-                HomeworkRecentWidget()
+                HomeworkRecentWidget(confirmEntry: $confirmEntry)
                     .transition(.move(edge: .top).combined(with: .opacity))
             }
         }
         .padding(.horizontal)
         .padding(.vertical, 4)
+
+        // ✅ ここ！ if の外＝VStack（= recentSection全体）に付ける
+        .navigationDestination(item: $pushEntry) { e in
+            HomeworkHistoryWordsView(entry: e)
+                .environmentObject(hw)
+        }
+        .alert(
+            "この日の宿題を見ますか？",
+            isPresented: .constant(confirmEntry != nil),
+            presenting: confirmEntry
+        ) { e in
+            Button("見る") { pushEntry = e; confirmEntry = nil }
+            Button("キャンセル", role: .cancel) { confirmEntry = nil }
+        }
     }
 }
-
 // MARK: - Badge Overlay modifier
 private extension View {
     func badgeOverlay(count: Int, text: String, color: Color) -> some View {
