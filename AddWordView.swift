@@ -2,7 +2,7 @@
 //  SwiftUIView.swift
 //  WordsForest
 //
-//  Created by Nami .T on 2025/09/24.
+//  Created by Nami .T on 2025/09/24.→2026/01/24
 //
 
 import SwiftUI
@@ -143,9 +143,9 @@ struct AddWordView: View {
     // MARK: - 保存処理
 
     private func save() {
-        let w = trimmedWord
+        let w = IrregularVerbBank.base(from: trimmedWord)
         let m = trimmedMeaning
-
+        
         if let c = editing {
             // 既存カードの更新
             HomeworkStore.shared.update(

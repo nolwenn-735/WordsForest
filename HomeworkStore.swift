@@ -4,7 +4,8 @@
 //
 //  Created by Nami .T on 2025/09/24.
 //
-//  HomeworkStore.swift  （🍊Clément完全版・複数意味対応）💛　→ 12/7 Thinking🍊版→12/12 before5.2版→12/14jason対応化前→jason12/15対応→2026/01/20最初のmeaningsにID付版
+//  HomeworkStore.swift  （🍊Clément完全版・複数意味対応）💛　→ 12/7 Thinking🍊版→12/12 before5.2版→12/14jason対応化前→jason12/15対応→2026/01/20最初のmeaningsにID付版→01/24不規則動詞と宿題履歴
+
 
 
 import Foundation
@@ -190,6 +191,7 @@ final class HomeworkStore: ObservableObject {
 
         for s in words {
             let fixed = StoredWord(
+                id: s.id, // ✅ ここが超大事：履歴のwordIDsを壊さない
                 word: s.word,
                 meaning: normMeaning(s.meaning),
                 pos: s.pos
@@ -197,7 +199,7 @@ final class HomeworkStore: ObservableObject {
 
             let k = WordKey(
                 pos: fixed.pos,
-                word: normWord(fixed.word),
+                word: norm(fixed.word),
                 meaning: normMeaning(fixed.meaning)
             )
 
@@ -211,6 +213,7 @@ final class HomeworkStore: ObservableObject {
         save()
         NotificationCenter.default.post(name: .storeDidChange, object: nil)
     }
+    
     // MARK: - CRUD（追加・削除・取得）
 
     /// 追加（完全一致 word + meaning + pos を弾く）
@@ -444,27 +447,26 @@ final class HomeworkStore: ObservableObject {
     func update(_ original: WordCard, word newWord: String, meaning newMeaning: String) {
         let oldKey = key(for: original)
 
-        let newStored = StoredWord(
-            word: newWord,
-            meaning: newMeaning.trimmingCharacters(in: .whitespacesAndNewlines),
-            pos: original.pos
+        let trimmedMeaning = newMeaning.trimmingCharacters(in: .whitespacesAndNewlines)
+        let newKey = WordKey(
+            pos: original.pos,
+            word: newWord.trimmingCharacters(in: .whitespacesAndNewlines).lowercased(),
+            meaning: trimmedMeaning
         )
-        let newKey = key(for: newStored)
 
-        // 元の StoredWord を探して差し替え（なければ append）
         if let idx = words.firstIndex(where: { key(for: $0) == oldKey }) {
-            words[idx] = newStored
+            // ✅ ここが大事：既存IDを保持
+            let existingID = words[idx].id
+            words[idx] = StoredWord(id: existingID, word: newWord, meaning: trimmedMeaning, pos: original.pos)
         } else {
-            words.append(newStored)
+            // 見つからない時だけ新規（=新ID）
+            words.append(StoredWord(word: newWord, meaning: trimmedMeaning, pos: original.pos))
         }
 
-        // MyCollection / 覚えたBOX のキーも更新
-        if favorites.remove(oldKey) != nil {
-            favorites.insert(newKey)
-        }
-        if learned.remove(oldKey) != nil {
-            learned.insert(newKey)
-        }
+        // favorites / learned を更新（今のままでOK）
+        let oldWordKey = oldKey
+        if favorites.remove(oldWordKey) != nil { favorites.insert(newKey) }
+        if learned.remove(oldWordKey) != nil { learned.insert(newKey) }
 
         save()
         saveFavorites()

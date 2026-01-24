@@ -1,7 +1,7 @@
 //
 //  WordsForest
 //
-//  Created by Nami .T on 2025/09/15.→01/20履歴閲覧可能版へ
+//  Created by Nami .T on 2025/09/15.→01/20履歴閲覧可能版へ→2026/01/24宿題履歴系
 //
 // HomeworkState.swift
 import SwiftUI
@@ -251,7 +251,7 @@ final class HomeworkState: ObservableObject {
 
    
     // 履歴の上限（必要なら好きな件数に変えてOK）
-    private let maxHistoryCount = 50
+    private let maxHistoryCount = 200
 
     // MARK: - 履歴保存
     

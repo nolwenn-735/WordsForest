@@ -3,58 +3,64 @@
 //  WordsForest
 //
 // POSFlashcardView.swift
-// 11/27版 Wordcardpage.swift の UI デザインを共通ビューに移植した版 (12/17 .json)
+// 11/27版 Wordcardpage.swift の UI デザインを共通ビューに移植した版 (12/17 .json)→2026/01/24不規則動詞、履歴対応版
+
 
 import SwiftUI
 import AVFoundation
 
+final class SpeechManager: ObservableObject {
+    let synthesizer = AVSpeechSynthesizer()
+}
+
 /// 単語カード一覧（検索結果・My Collection・覚えたBOX・宿題セットで使用）
 struct POSFlashcardView: View {
-
+    
     // どの画面か（タイトル）
     let title: String
-
+    
     // 表示するカード一覧
     let cards: [WordCard]
-
+    
     // テーマ色・背景色・マスコット
     let accent: Color
     let background: Color
     let animalName: String
-
+    
     // 行ごとに品詞色を使うどうか（My Collection / 覚えたBOX など）
     let perRowAccent: Bool
-
+    
     // 宿題モードなどで、✅したものは行を隠したい画面で true
     let hideLearned: Bool
-
+    
     // すでにあればそのまま
     @ObservedObject private var store = HomeworkStore.shared
     /// ページ単位の英⇄日トグル
     @State private var reversed: Bool
-
+    
     /// 音声関連
+    @StateObject private var speech = SpeechManager()
     @State private var speechFast = false      // ゆっくり
     @State private var speakBoth  = true       // 英＋日
-
+    
     /// 展開中のカード index（nil なら全て表面）
     @State private var expandedIndex: Int? = nil
-
+    
     /// 例文編集シート用
     @State private var editingCard: WordCard? = nil
-
+    
     /// 親側に渡すコールバック
     var onEdit: (WordCard) -> Void
     var onDataChanged: () -> Void
-
+    
     /// レイアウト定数（11/27版と同じ思想）
     private let rowsPerScreen: CGFloat = 4
-
+    
     // TTS
     private let synthesizer = AVSpeechSynthesizer()
-
+    
     // MARK: - init
-
+    
     init(
         title: String,
         cards: [WordCard],
@@ -79,16 +85,16 @@ struct POSFlashcardView: View {
         _reversed = State(initialValue: reversed)
         
     }
-
+    
     // MARK: - body
-
+    
     var body: some View {
         ZStack {
             background.ignoresSafeArea()
-
+            
             GeometryReader { outer in
                 let rowH = max(88, (outer.size.height - 140) / rowsPerScreen)
-
+                
                 ScrollView {
                     VStack(spacing: 16) {
                         rows(rowHeight: rowH)
@@ -97,7 +103,7 @@ struct POSFlashcardView: View {
                     .padding(.horizontal, 16)
                     .padding(.bottom, 140)   // 右下マスコット分
                 }
-
+                
                 // 右下マスコット（固定）
                 VStack {
                     Spacer()
@@ -121,14 +127,14 @@ struct POSFlashcardView: View {
         .toolbarBackground(background, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbarColorScheme(.light, for: .navigationBar)
-
+        
         // 🟡 中央タイトル＋英日トグル（11/27版と同じ見た目）
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack(spacing: 8) {
                     Text(title)
                         .font(.headline)
-
+                    
                     Button {
                         reversed.toggle()
                     } label: {
@@ -153,65 +159,65 @@ struct POSFlashcardView: View {
                 .fixedSize(horizontal: true, vertical: false)
             }
         }
-
+        
         // 例文編集シート（CardRow の「例文」ペンから開く）
         .sheet(item: $editingCard) { card in
             ExampleEditorView(pos: card.pos, word: card.word)
         }
     }
-
+    
     // MARK: - 行の並び
-
-        @ViewBuilder
-        private func rows(rowHeight: CGFloat) -> some View {
-            let store = HomeworkStore.shared
-
-            // ① 表示対象を1行で決める（if 文にしない）
-            let visibleCards: [WordCard] = hideLearned
-                ? cards.filter { !store.isLearned($0) }
-                : cards
-
-            // ② enumerate して index を作る
-            let enumerated = Array(visibleCards.enumerated())
-
-            ForEach(enumerated, id: \.offset) { pair in
-                let i = pair.offset
-                let c = pair.element
-                row(for: c, index: i, rowHeight: rowHeight)
-            }
+    
+    @ViewBuilder
+    private func rows(rowHeight: CGFloat) -> some View {
+        let store = HomeworkStore.shared
+        
+        // ① 表示対象を1行で決める（if 文にしない）
+        let visibleCards: [WordCard] = hideLearned
+        ? cards.filter { !store.isLearned($0) }
+        : cards
+        
+        // ② enumerate して index を作る
+        let enumerated = Array(visibleCards.enumerated())
+        
+        ForEach(enumerated, id: \.offset) { pair in
+            let i = pair.offset
+            let c = pair.element
+            row(for: c, index: i, rowHeight: rowHeight)
         }
-
+    }
+    
     // MARK: - 1 行
     @ViewBuilder
     private func row(for c: WordCard, index i: Int, rowHeight: CGFloat) -> some View {
-
+        
         // 例文（ExampleStore は [ExampleEntry] を返す）
         let ex = ExampleStore.shared.firstExample(pos: c.pos, word: c.word)
         let examples: [ExampleEntry] = ex.map { [$0] } ?? []
         let note = ex?.note ?? ""
-
+        
         // 不規則動詞なら 3 形を表示＆読み上げ対象に
         let isVerb = (c.pos == .verb)
-        let irregularForms: [String] = isVerb ? (IrregularVerbBank.forms(for: c.word) ?? []) : []
-
+        let irregularForms: [String] = isVerb ? (IrregularVerbBank.forms(from: c.word) ?? []) : []
+        
         // 表示用：英面のときだけ3形を表示
         let displayWord = (isVerb && !irregularForms.isEmpty)
-            ? irregularForms.joined(separator: " · ")
-            : c.word
-
+        ? irregularForms.joined(separator: " ・ ")
+        : c.word
+        
         // 読み上げ用：3形あれば全部読む
         let speakForms = (isVerb && !irregularForms.isEmpty) ? irregularForms : [c.word]
-
+        
         // meanings は [String] なので、表の文字は先頭だけ大きく表示
         let meanings = c.meanings
-
+        
         // 学習状態
         let isChecked = HomeworkStore.shared.isLearned(c)
         let isFav     = HomeworkStore.shared.isFavorite(c)
-
+        
         // 行カラー
         let rowAccent = perRowAccent ? c.pos.accent : accent
-
+        
         POSCardRow(
             pos: c.pos,
             word: displayWord,
@@ -268,231 +274,242 @@ struct POSFlashcardView: View {
         )
     }
     // MARK: - TTS helper
-
+    
     private func speakWord(_ text: String) {
         speak(text, lang: "en-US")
     }
-
+    
     private func speakExample(en: String, ja: String) {
         speak(en, lang: "en-US")
         if speakBoth, !ja.isEmpty {
             speak(ja, lang: "ja-JP")
         }
     }
-
+    
+    private func prepareAudioSession() {
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(.playback, mode: .spokenAudio, options: [.duckOthers])
+            try session.setActive(true)
+        } catch {
+            print("AudioSession error:", error)
+        }
+    }
+    
     private func speak(_ text: String, lang: String) {
-        guard !text.isEmpty else { return }
-
-        DispatchQueue.main.async {
-            let u = AVSpeechUtterance(string: text)
-            u.voice = AVSpeechSynthesisVoice(language: lang)
-            u.rate = speechFast ? 0.65 : 0.45
-            synthesizer.speak(u)
-        }
-    }
-}
-
-// MARK: - 1 行のカード（11/27 CardRow の UI を移植）
-/// Wordcardpage.swift 内の CardRow と同じ見た目にするための専用 Row
-private struct POSCardRow: View {
-    
-    @EnvironmentObject private var teacher: TeacherMode
-    
-    // ==== 一時的なダミー変数（旧コード踏襲）====
-    var posLabel: String = ""
-    var hasDolphin: Bool = false
-    var hasGold: Bool = false
-    var isTutor: Bool = true
-    
-    @State private var inCollectionLocal: Bool = false
-    @State private var learnedLocal: Bool = false
-    
-    // 入力（新データモデル対応）
-    let pos: PartOfSpeech
-    let word: String
-    let meanings: [String]             // ← [String]
-    let examples: [ExampleEntry]       // ← 例文配列
-    let note: String
-    let irregularForms: [String]
-    let reversed: Bool
-    
-    let isChecked: Bool
-    let isFav: Bool
-    let expanded: Bool
-    let rowHeight: CGFloat
-    
-    // アクション
-    let checkTapped: () -> Void
-    let heartTapped: () -> Void
-    let centerTapped: () -> Void
-    let speakWordTapped: () -> Void
-    let speakExampleTapped: () -> Void
-    let addExampleTapped: () -> Void
-    let toggleSpeechSpeed: () -> Void
-    let speechFast: Bool
-    let toggleSpeakBoth: () -> Void
-    let speakBoth: Bool
-    let accent: Color
-    
-    // … メニュー用（カード編集／削除はここから）
-    let onEditFromMenu: () -> Void
-    let onDeleteFromMenu: () -> Void
-    
-    private func splitOthers(_ s: String) -> (tag: String, body: String) {
-        let t = s.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        // 全角スペース（「定冠詞　その〜」）
-        if let r = t.range(of: "　") {
-            let tag  = String(t[..<r.lowerBound]).trimmingCharacters(in: .whitespacesAndNewlines)
-            let body = String(t[r.upperBound...]).trimmingCharacters(in: .whitespacesAndNewlines)
-            if !tag.isEmpty, !body.isEmpty { return (tag, body) }
-        }
-
-        // 半角スペース（「前置詞 〜の上に」）
-        let parts = t.split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
-        if parts.count == 2 {
-            return (String(parts[0]), String(parts[1]))
-        }
-
-        // 「（名詞）バター」
-        if t.hasPrefix("（"), let r = t.range(of: "）") {
-            let tag  = String(t[..<t.index(after: r.lowerBound)]) // "（名詞）"
-            let body = String(t[t.index(after: r.lowerBound)...]).trimmingCharacters(in: .whitespacesAndNewlines)
-            if !body.isEmpty { return (tag, body) }
-        }
-
-        return ("", t)
+        let t = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !t.isEmpty else { return }
+        
+        prepareAudioSession()
+        
+        let u = AVSpeechUtterance(string: t)
+        u.voice = AVSpeechSynthesisVoice(language: lang)
+        u.rate = speechFast ? 0.65 : 0.45
+        speech.synthesizer.speak(u)
     }
     
-    // 中央：語 or 意味（中央タップで反転）
-    private var primaryMeaning: String {
-        meanings.first ?? ""
-    }
-
-    @ViewBuilder
-    private var frontText: some View {
-        if reversed {
-            if pos == .others {
-                let (tag, bodyMeaning) = splitOthers(primaryMeaning)
-
-                VStack(alignment: .leading, spacing: 4) {
-                    if !tag.isEmpty {
-                        Text(tag)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+    // MARK: - 1 行のカード（11/27 CardRow の UI を移植）
+    /// Wordcardpage.swift 内の CardRow と同じ見た目にするための専用 Row
+    private struct POSCardRow: View {
+        
+        @EnvironmentObject private var teacher: TeacherMode
+        
+        // ==== 一時的なダミー変数（旧コード踏襲）====
+        var posLabel: String = ""
+        var hasDolphin: Bool = false
+        var hasGold: Bool = false
+        var isTutor: Bool = true
+        
+        @State private var inCollectionLocal: Bool = false
+        @State private var learnedLocal: Bool = false
+        
+        // 入力（新データモデル対応）
+        let pos: PartOfSpeech
+        let word: String
+        let meanings: [String]             // ← [String]
+        let examples: [ExampleEntry]       // ← 例文配列
+        let note: String
+        let irregularForms: [String]
+        let reversed: Bool
+        
+        let isChecked: Bool
+        let isFav: Bool
+        let expanded: Bool
+        let rowHeight: CGFloat
+        
+        // アクション
+        let checkTapped: () -> Void
+        let heartTapped: () -> Void
+        let centerTapped: () -> Void
+        let speakWordTapped: () -> Void
+        let speakExampleTapped: () -> Void
+        let addExampleTapped: () -> Void
+        let toggleSpeechSpeed: () -> Void
+        let speechFast: Bool
+        let toggleSpeakBoth: () -> Void
+        let speakBoth: Bool
+        let accent: Color
+        
+        // … メニュー用（カード編集／削除はここから）
+        let onEditFromMenu: () -> Void
+        let onDeleteFromMenu: () -> Void
+        
+        private func splitOthers(_ s: String) -> (tag: String, body: String) {
+            let t = s.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            // 全角スペース（「定冠詞　その〜」）
+            if let r = t.range(of: "　") {
+                let tag  = String(t[..<r.lowerBound]).trimmingCharacters(in: .whitespacesAndNewlines)
+                let body = String(t[r.upperBound...]).trimmingCharacters(in: .whitespacesAndNewlines)
+                if !tag.isEmpty, !body.isEmpty { return (tag, body) }
+            }
+            
+            // 半角スペース（「前置詞 〜の上に」）
+            let parts = t.split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
+            if parts.count == 2 {
+                return (String(parts[0]), String(parts[1]))
+            }
+            
+            // 「（名詞）バター」
+            if t.hasPrefix("（"), let r = t.range(of: "）") {
+                let tag  = String(t[..<t.index(after: r.lowerBound)]) // "（名詞）"
+                let body = String(t[t.index(after: r.lowerBound)...]).trimmingCharacters(in: .whitespacesAndNewlines)
+                if !body.isEmpty { return (tag, body) }
+            }
+            
+            return ("", t)
+        }
+        
+        // 中央：語 or 意味（中央タップで反転）
+        private var primaryMeaning: String {
+            meanings.first ?? ""
+        }
+        
+        @ViewBuilder
+        private var frontText: some View {
+            if reversed {
+                if pos == .others {
+                    let (tag, bodyMeaning) = splitOthers(primaryMeaning)
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        if !tag.isEmpty {
+                            Text(tag)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        Text(bodyMeaning)
+                            .font(.system(size: 28, weight: .bold))
+                            .foregroundStyle(.primary)
                     }
-                    Text(bodyMeaning)
+                } else {
+                    Text(primaryMeaning)
                         .font(.system(size: 28, weight: .bold))
                         .foregroundStyle(.primary)
                 }
             } else {
-                Text(primaryMeaning)
+                Text(word)
                     .font(.system(size: 28, weight: .bold))
                     .foregroundStyle(.primary)
             }
-        } else {
-            Text(word)
-                .font(.system(size: 28, weight: .bold))
-                .foregroundStyle(.primary)
         }
-    }
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            
-            if !expanded {
-                // ===== 表 =====
-                ZStack(alignment: .topTrailing) {
-                    
-                    // 本体
-                    HStack(alignment: .center, spacing: 12) {
-                        
-                        // 左：チェック
-                        Button(action: checkTapped) {
-                            Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
-                                .font(.title2)
-                                .symbolRenderingMode(.monochrome)
-                                .foregroundStyle(isChecked ? accent : .secondary)
-                                .frame(width: 28, height: 28)
-                        }
-                        .buttonStyle(.plain)
-                        
-
-                        frontText
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .contentShape(Rectangle())
-                            .onTapGesture(perform: centerTapped)
-                        
-                        // 右：ハート
-                        Button(action: heartTapped) {
-                            Image(systemName: isFav ? "heart.fill" : "heart")
-                                .font(.title2)
-                                .symbolRenderingMode(.monochrome)
-                                .foregroundStyle(isFav ? accent : .secondary)
-                                .frame(width: 28, height: 28)
-                        }
-                        .buttonStyle(.plain)
-                    }
-                    .frame(minHeight: rowHeight)
-                }
+        var body: some View {
+            VStack(alignment: .leading, spacing: 10) {
                 
-            } else {
-                // ===== 裏 =====
-                // 裏面のUI は CardBackView.swift の現在版に合わせて呼ぶ
-                CardBackView(
-                    pos: pos,
-                    word: word,
-                    meanings: meanings,
-                    examples: examples,
-                    note: note,
-                    irregularForms: irregularForms,
+                if !expanded {
+                    // ===== 表 =====
+                    ZStack(alignment: .topTrailing) {
+                        
+                        // 本体
+                        HStack(alignment: .center, spacing: 12) {
+                            
+                            // 左：チェック
+                            Button(action: checkTapped) {
+                                Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
+                                    .font(.title2)
+                                    .symbolRenderingMode(.monochrome)
+                                    .foregroundStyle(isChecked ? accent : .secondary)
+                                    .frame(width: 28, height: 28)
+                            }
+                            .buttonStyle(.plain)
+                            
+                            
+                            frontText
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .contentShape(Rectangle())
+                                .onTapGesture(perform: centerTapped)
+                            
+                            // 右：ハート
+                            Button(action: heartTapped) {
+                                Image(systemName: isFav ? "heart.fill" : "heart")
+                                    .font(.title2)
+                                    .symbolRenderingMode(.monochrome)
+                                    .foregroundStyle(isFav ? accent : .secondary)
+                                    .frame(width: 28, height: 28)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                        .frame(minHeight: rowHeight)
+                    }
                     
-                )
-                .contentShape(Rectangle())
-                .onTapGesture(perform: centerTapped)
-            }
-        }
-        // 表裏どちらにも効くカードの枠
-        .padding(.vertical, 14)
-        .padding(.horizontal, 16)
-        .background(Color.white)
-        .cornerRadius(16)
-        .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: 2)
-        
-        // 左下 “…“ メニュー（編集・削除）— 11/27版と同じ
-        .overlay(alignment: .bottomLeading) {
-            ZStack {
-                // 当たり判定
-                Color.clear
-                    .frame(width: 36, height: 36)
+                } else {
+                    // ===== 裏 =====
+                    // 裏面のUI は CardBackView.swift の現在版に合わせて呼ぶ
+                    CardBackView(
+                        pos: pos,
+                        word: word,
+                        meanings: meanings,
+                        examples: examples,
+                        note: note,
+                        irregularForms: irregularForms,
+                        
+                    )
                     .contentShape(Rectangle())
-                    .contextMenu {
-                        Button {
-                            teacher.requestUnlock(runAfterUnlock: onEditFromMenu)
-                        } label: {
-                            Label("このカードを編集", systemImage: "square.and.pencil")
-                        }
-
-                        Button(role: .destructive) {
-                            teacher.requestUnlock(runAfterUnlock: onDeleteFromMenu)
-                        } label: {
-                            Label("このカードを削除", systemImage: "trash")
-                        }
-                    }
-                
-                // 見た目の “…”（薄いグレー）
-                Image(systemName: "ellipsis")
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-                    .opacity(0.7)
+                    .onTapGesture(perform: centerTapped)
+                }
             }
-            .padding(.leading, 6)
-            .padding(.bottom, 4)
-            .opacity(expanded ? 0 : 1)
-            .allowsHitTesting(!expanded)
+            // 表裏どちらにも効くカードの枠
+            .padding(.vertical, 14)
+            .padding(.horizontal, 16)
+            .background(Color.white)
+            .cornerRadius(16)
+            .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: 2)
+            
+            // 左下 “…“ メニュー（編集・削除）— 11/27版と同じ
+            .overlay(alignment: .bottomLeading) {
+                ZStack {
+                    // 当たり判定
+                    Color.clear
+                        .frame(width: 36, height: 36)
+                        .contentShape(Rectangle())
+                        .contextMenu {
+                            Button {
+                                teacher.requestUnlock(runAfterUnlock: onEditFromMenu)
+                            } label: {
+                                Label("このカードを編集", systemImage: "square.and.pencil")
+                            }
+                            
+                            Button(role: .destructive) {
+                                teacher.requestUnlock(runAfterUnlock: onDeleteFromMenu)
+                            } label: {
+                                Label("このカードを削除", systemImage: "trash")
+                            }
+                        }
+                    
+                    // 見た目の “…”（薄いグレー）
+                    Image(systemName: "ellipsis")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                        .opacity(0.7)
+                }
+                .padding(.leading, 6)
+                .padding(.bottom, 4)
+                .opacity(expanded ? 0 : 1)
+                .allowsHitTesting(!expanded)
+            }
         }
     }
 }
-
+    
 extension String {
     /// "定冠詞　その〜、例の" / "前置詞 〜の上に" を (label, body) に分ける
     func splitHeadLabel() -> (label: String?, body: String) {

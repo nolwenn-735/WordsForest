@@ -172,16 +172,14 @@ private struct ToggleButton: View {
 }
 
 // MARK: - Recent Widget（生徒：取り込み）
-
 struct HomeworkRecentWidget: View {
     @EnvironmentObject var hw: HomeworkState
-    @Binding var confirmEntry: HomeworkEntry?   // ✅ 追加
+    @Binding var confirmEntry: HomeworkEntry?     // ← これを追加
 
     @State private var showingImporter = false
     @State private var showingImportAlert = false
     @State private var importMessage: String = ""
-    
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
 
@@ -194,28 +192,19 @@ struct HomeworkRecentWidget: View {
 
                 Spacer()
 
-                Button("🔵宿題取得") {
-                    showingImporter = true
-                }
-                .font(.callout)
-                .buttonStyle(.bordered)
-                .tint(.blue)
+                Button("🔵宿題取得") { showingImporter = true }
+                    .font(.callout)
+                    .buttonStyle(.bordered)
+                    .tint(.blue)
             }
 
             ForEach(hw.history.prefix(4)) { e in
-                Button {
-                    confirmEntry = e
-                } label: {
+                Button { confirmEntry = e } label: {
                     HStack {
-                        Text(dateString(e.date))
-                            .foregroundColor(.secondary)
+                        Text(dateString(e.date)).foregroundColor(.secondary)
                         Text(e.titleLine)
                         Spacer()
-                        Image(systemName: "chevron.right")
-                            .foregroundStyle(.secondary)
-                            .opacity(0.45)
                     }
-                    .contentShape(Rectangle()) // ← 行全体をタップ領域に
                 }
                 .buttonStyle(.plain)
             }
@@ -225,7 +214,7 @@ struct HomeworkRecentWidget: View {
         .cornerRadius(12)
         .overlay(RoundedRectangle(cornerRadius: 12).stroke(.black.opacity(0.08), lineWidth: 1))
 
-        // ✅ 取り込みはこっちに集約（A案）
+        // 取り込み・alert はそのまま
         .fileImporter(
             isPresented: $showingImporter,
             allowedContentTypes: [.json],
@@ -288,16 +277,38 @@ struct HomeworkRecentWidget: View {
 struct HomeworkHistoryList: View {
     @EnvironmentObject var hw: HomeworkState
 
+    @State private var confirmEntry: HomeworkEntry?
+    @State private var pushEntry: HomeworkEntry?
+
     var body: some View {
         List(hw.history) { e in
-            VStack(alignment: .leading, spacing: 4) {
-                Text(dateString(e.date))
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                Text(e.titleLine)
+            Button {
+                confirmEntry = e
+            } label: {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(dateString(e.date))
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Text(e.titleLine)
+                }
             }
+            .buttonStyle(.plain)
         }
         .navigationTitle("宿題の履歴")
+
+        // ✅ 押した後の遷移先（24語）
+        .navigationDestination(item: $pushEntry) { e in
+            HomeworkHistoryWordsView(entry: e)
+                .environmentObject(hw)
+        }
+
+        // ✅ 確認アラート
+        .alert("この日の宿題を見ますか？",
+               isPresented: .constant(confirmEntry != nil),
+               presenting: confirmEntry) { e in
+            Button("見る") { pushEntry = e; confirmEntry = nil }
+            Button("キャンセル", role: .cancel) { confirmEntry = nil }
+        }
     }
 }
 
