@@ -577,47 +577,28 @@ extension HomeworkState {
 
     /// 取り込んだ宿題JSONを「今サイクルの宿題カード」として反映する
     func applyImportedPayload(_ payload: HomeworkExportPayload) {
-        // View更新中に状態を書き換えると警告が出るので、次のrunloopへ逃がす
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
 
-            // ① 前の宿題が残らないようにキャッシュを消す
             self.cachedHomework.removeAll()
 
-            // ② UIの状態も payload 側に寄せる
             self.daysPerCycle = payload.daysPerCycle
             self.pairIndex = payload.pair
             self.cycleIndex = payload.cycleIndex
 
-            // ✅ 事故防止：学習サイクル開始は「取り込んだ瞬間」にする
-            self.cycleStartDate = Date()
-
-            // ③ items を pos ごとに分けて WordCard に変換して詰める
-            var byPos: [PartOfSpeech: [WordCard]] = [:]
-
-            for it in payload.items {
-                let pos = self.mapPOS(it.pos)
-
-                var examples: [String] = []
-                if let ex = it.example {
-                    if let ja = ex.ja, !ja.isEmpty {
-                        examples = ["\(ex.en) ・ \(ja)"]
-                    } else {
-                        examples = [ex.en]
-                    }
-                }
-
-                let card = WordCard(
-                    pos: pos,
-                    word: it.word,
-                    meanings: it.meanings,
-                    examples: examples
-                )
-
-                byPos[pos, default: []].append(card)
+            // ✅ サイクル開始日を「取り込み日」ではなく「先生の書き出し日」に寄せる
+            if let d = self.parseISO(payload.createdAt) {
+                self.cycleStartDate = d
+            } else {
+                self.cycleStartDate = Date() // パース失敗時の保険
             }
 
-            // ④ 今サイクルの宿題キャッシュとして固定
+            var byPos: [PartOfSpeech: [WordCard]] = [:]
+            for it in payload.items {
+                let pos = self.mapPOS(it.pos)
+                let card = WordCard(pos: pos, word: it.word, meanings: it.meanings, examples: [])
+                byPos[pos, default: []].append(card)
+            }
             self.cachedHomework = byPos
         }
     }

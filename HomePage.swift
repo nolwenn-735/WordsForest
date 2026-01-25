@@ -236,9 +236,13 @@ private extension HomePage {
     var recentSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text("🆕 新着情報（直近4件）")
-                    .font(.headline)
-
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("📚取得済宿題（直近4件）")
+                        .font(.headline)
+                    Text("🆕新しい宿題が届いていないか📱を確認しましょう")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
                 Button(showRecent ? "隠す" : "表示") {
                     withAnimation(.snappy) { showRecent.toggle() }
                 }

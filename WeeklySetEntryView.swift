@@ -19,7 +19,10 @@ struct WeeklySetEntryView: View {
             pair: pair
         )
 
-        Group {
+        // ✅ PosPair → PartOfSpeech を取り出す（posA/posB は無いので parts を使う）
+        let parts = pair.parts
+
+        return Group {
             if let payload {
                 // ✅ 取り込み済み：payloadから「カード画面」へ行けるUI
                 WeeklySetPayloadCardsView(payload: payload)
@@ -35,6 +38,21 @@ struct WeeklySetEntryView: View {
         }
         .navigationTitle("今回の宿題")
         .navigationBarTitleDisplayMode(.inline)
+
+        // ✅ ここがポイント：.toolbar(content:) じゃなくて .toolbar { } を使う
+        .toolbar {
+            if teacher.unlocked {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        HomeworkSetEditorView(posA: parts[0], posB: parts[1])
+                            .environmentObject(hw)
+                            .environmentObject(teacher)
+                    } label: {
+                        Text("編集")
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -56,6 +74,7 @@ private struct HomeworkNotImportedView: View {
         .padding()
     }
 }
+
 
 // MARK: - payload版（ここが「カードにならない問題」を直す）
 private struct WeeklySetPayloadCardsView: View {
