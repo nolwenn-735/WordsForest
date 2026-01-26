@@ -38,6 +38,18 @@ struct WeeklySetEntryView: View {
         }
         .navigationTitle("今回の宿題")
         .navigationBarTitleDisplayMode(.inline)
+        .safeAreaInset(edge: .bottom) {
+            HStack {
+                Text("cycle=\(hw.currentCycleIndex)")
+                Spacer()
+                Text("payload=\(payload == nil ? "NO" : "YES")")
+            }
+            .font(.caption2)
+            .foregroundStyle(.secondary)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .background(.ultraThinMaterial)
+        }
 
         // ✅ ここがポイント：.toolbar(content:) じゃなくて .toolbar { } を使う
         .toolbar {
@@ -51,6 +63,14 @@ struct WeeklySetEntryView: View {
                         Text("編集")
                     }
                 }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                Text("WEEK hwID=\(ObjectIdentifier(hw).hashValue) pair=\(hw.currentPairLabel) cycle=\(hw.currentCycleIndex) payload=\(payload != nil ? "YES" : "NO")")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .padding(.top, 8)
             }
         }
     }

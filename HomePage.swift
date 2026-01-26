@@ -52,6 +52,10 @@ struct HomePage: View {
                                 .padding(.top, 8)
                                 .padding(.trailing, 8)
                         }
+                    //判定用
+                    Text("HOME hwID=\(ObjectIdentifier(hw).hashValue) pair=\(hw.currentPairLabel) cycle=\(hw.currentCycleIndex)")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
                     
                     // MARK: 新着
                     recentSection

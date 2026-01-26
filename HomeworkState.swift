@@ -175,6 +175,7 @@ final class HomeworkState: ObservableObject {
     // 履歴
     @AppStorage(DefaultsKeys.hwHistoryJSON) private var historyRaw: String = "[]"
     @Published private(set) var history: [HomeworkEntry] = []
+    @Published var uiTick: Int = 0
 
     private let iso = ISO8601DateFormatter()
     private var cycleStartDate: Date {
@@ -585,6 +586,8 @@ extension HomeworkState {
             self.daysPerCycle = payload.daysPerCycle
             self.pairIndex = payload.pair
             self.cycleIndex = payload.cycleIndex
+            
+            self.uiTick += 1
 
             // ✅ サイクル開始日を「取り込み日」ではなく「先生の書き出し日」に寄せる
             if let d = self.parseISO(payload.createdAt) {

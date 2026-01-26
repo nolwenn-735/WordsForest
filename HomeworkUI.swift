@@ -252,6 +252,8 @@ struct HomeworkRecentWidget: View {
 
             try HomeworkPackStore.shared.importHomeworkPayload(payload, hw: hw)
             
+            // ✅ 取り込んだ payload を「今サイクル」として即反映（cycleIndex/pairIndexも揃う）
+            hw.applyImportedPayload(payload)
             // ✅ 追加：取り込んだ内容を “カード” にしてキャッシュへ反映
             hw.addImportedToHistory(payload: payload)
             hw.markImported(payload: payload)
