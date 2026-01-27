@@ -11,7 +11,7 @@ struct CoverPageView: View {
         GeometryReader { geo in
             ZStack {
                 // 背景（薄いグリーン）
-                Color(.systemGreen).opacity(0.20).ignoresSafeArea()
+                Color.coverMintA.ignoresSafeArea()
 
                 // タイトル＋サブタイトル
                 VStack {
@@ -91,7 +91,7 @@ struct CoverPageView: View {
                 }
                 .allowsHitTesting(false)
             }
-            // ← 指に合わせて横に動く
+            .frame(maxWidth: .infinity, maxHeight: .infinity)   // ✅ これにする
             .offset(x: dragX)
             .gesture(
                 DragGesture(minimumDistance: 24)
@@ -117,7 +117,18 @@ struct CoverPageView: View {
                         }
                     }
             )
-            .interactiveDismissDisabled(true) // 下スワイプで閉じる誤作動を防止
         }
+        .interactiveDismissDisabled(true)// 下スワイプで閉じる誤作動を防止
     }
+}
+
+extension Color {
+    /// Mint A (220,245,232)
+    static let coverMintA = Color(.sRGB, red: 220/255, green: 245/255, blue: 232/255, opacity: 1)
+
+    /// Mint B (202,238,220)
+    static let coverMintB = Color(.sRGB, red: 202/255, green: 238/255, blue: 220/255, opacity: 1)
+
+    /// Mint C (186,232,208)
+    static let coverMintC = Color(.sRGB, red: 186/255, green: 232/255, blue: 208/255, opacity: 1)
 }

@@ -25,9 +25,12 @@ struct HomeworkExportCard: Codable, Hashable {
 
 /// 1回ぶんの“配布パック”（中身JSON）
 struct HomeworkExportPayload: Codable {
-    var id: String                 // 例: "2025-12-14-words-cycle3-verbAdv"
-    var createdAt: String          // ISO8601
-    var pair: Int                  // PosPair.rawValue
+    var schemaVersion: Int        // 例: 1
+    var senderHwID: String        // 先生端末の hwID（文字列でOK）
+
+    var id: String
+    var createdAt: String
+    var pair: Int
     var cycleIndex: Int
     var daysPerCycle: Int
     var requiredCount: Int
@@ -164,6 +167,9 @@ final class HomeworkPackStore {
         let id = "\(createdAt.prefix(10))-words-cycle\(cycle)-pair\(pair.rawValue)"
 
         let payload = HomeworkExportPayload(
+            schemaVersion: 1,
+            senderHwID: "teacher", // ← ここは後で実際の取り方に合わせて直す（ひとまず仮でもOK）
+
             id: id,
             createdAt: createdAt,
             pair: pair.rawValue,
@@ -231,7 +237,9 @@ extension HomeworkPackStore {
         save(payload, cycleIndex: payload.cycleIndex, pair: pair)
 
         // 今見ている回にも保険で保存（必要なら残す）
-        save(payload, cycleIndex: hw.currentCycleIndex, pair: hw.currentPair)
+        if payload.cycleIndex == hw.currentCycleIndex && pair == hw.currentPair {
+            save(payload, cycleIndex: hw.currentCycleIndex, pair: hw.currentPair)
+        }
 
         // ✅ 追加：payload内の例文を ExampleStore に反映
         for item in payload.items {

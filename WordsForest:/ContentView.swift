@@ -6,23 +6,53 @@ import UIKit
 struct ContentView: View {
     @State private var page = 0
 
-    // ✅ 受け取るだけ（作らない！）
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var hw: HomeworkState
     @EnvironmentObject private var teacher: TeacherMode
 
+    /// TabViewの“外側”に敷く背景（白帯対策）
+    private var baseBackground: Color {
+        page == 0
+        ? Color(.systemGreen).opacity(0.20)   // 表紙の薄いグリーン
+        : Color.homeIvory                    // Homeのアイボリー
+    }
+
     var body: some View {
-        TabView(selection: $page) {
-            CoverPageView()
+        ZStack {
+            // ✅ ここが白帯を消す本体：TabViewより後ろで、画面全域を塗る
+            baseBackground.ignoresSafeArea()
+
+            TabView(selection: $page) {
+                // 表紙
+                CoverPageView {
+                    // 表紙側で「開始」したらHomeへ（必要なら）
+                    withAnimation(.easeInOut) { page = 1 }
+                }
                 .tag(0)
 
-            HomePage()
+                // Home（NavigationStackはHome側だけに乗せる）
+                NavigationStack(path: $router.path) {
+                    HomePage()
+                        .navigationDestination(for: PartOfSpeech.self) { pos in
+                            POSFlashcardListView(
+                                pos: pos,
+                                accent: pos.accentColor,
+                                animalName: pos.animalName(
+                                    forCycle: hw.variantIndex(for: pos)
+                                )
+                            )
+                        }
+                }
                 .tag(1)
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 
-        // ✅ 白帯保険：TabView側の地を埋める（各ページ背景が薄色/半透明だと効く）
-        .background(Color(.systemBackground).ignoresSafeArea())
+        // ✅ 解除シートはContentViewで一括管理（どの画面でも出せる）
+        .sheet(isPresented: $teacher.showingUnlockSheet) {
+            TeacherUnlockSheet()
+                .environmentObject(teacher)
+        }
 
         // ✅ 60分ロックの期限チェック（復帰時）
         #if canImport(UIKit)

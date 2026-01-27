@@ -142,6 +142,7 @@ struct HomePage: View {
                 .padding(.bottom, 8)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear {
             favCount = HomeworkStore.shared.collectionFavoritesCount
             learnedCount = HomeworkStore.shared.collectionLearnedCount

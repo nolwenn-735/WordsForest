@@ -13,30 +13,14 @@ struct words__forestApp: App {
     @StateObject private var router = Router()
     @StateObject private var hw = HomeworkState()
     @StateObject private var teacher = TeacherMode.shared
-    @StateObject private var columnStore = ColumnStore.shared
 
     var body: some Scene {
         WindowGroup {
-            NavigationStack(path: $router.path) {
-                ContentView()
-                    .navigationDestination(for: PartOfSpeech.self) { pos in
-                        POSFlashcardListView(
-                            pos: pos,
-                            accent: pos.accentColor,
-                            animalName: pos.animalName(forCycle: hw.variantIndex(for: pos))
-                        )
-                    }
-            }
-            .environmentObject(router)
-            .environmentObject(hw)
-            .environmentObject(teacher)
-            .environmentObject(columnStore)
-
-            // 解除シートはアプリで1個だけ管理（事故らない）
-            .sheet(isPresented: $teacher.showingUnlockSheet) {
-                TeacherUnlockSheet()
-                    .environmentObject(teacher)
-            }
+            ContentView()
+                .environmentObject(router)
+                .environmentObject(hw)
+                .environmentObject(ColumnStore.shared)
+                .environmentObject(teacher)
         }
     }
 }
