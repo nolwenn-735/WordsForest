@@ -56,15 +56,15 @@ struct POSFlashcardListView: View {
                     title: pos.jaTitle,
                     cards: cards,
                     accent: pos.accentColor,
-                    background: pos.backgroundColor.opacity(0.50),
+                    background: pos.backgroundColor,
                     animalName: animalName,
                     onEdit: { c in editingWord = c }
                 )
             }
         }
-        .navigationTitle(pos.jaTitle)
+/*      .navigationTitle(pos.jaTitle)
         .navigationBarTitleDisplayMode(.inline)
-        
+*/
         // 🔧 ツールバー（＋メニュー ＆ ホームへ🏠）
         
         .toolbar {

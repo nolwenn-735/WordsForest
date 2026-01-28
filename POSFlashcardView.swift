@@ -90,20 +90,18 @@ struct POSFlashcardView: View {
     
     var body: some View {
         ZStack {
-            background.ignoresSafeArea()
-            
             GeometryReader { outer in
                 let rowH = max(88, (outer.size.height - 140) / rowsPerScreen)
-                
+
                 ScrollView {
                     VStack(spacing: 16) {
                         rows(rowHeight: rowH)
                         Spacer(minLength: 80)
                     }
                     .padding(.horizontal, 16)
-                    .padding(.bottom, 140)   // 右下マスコット分
+                    .padding(.bottom, 140)
                 }
-                
+
                 // 右下マスコット（固定）
                 VStack {
                     Spacer()
@@ -116,35 +114,34 @@ struct POSFlashcardView: View {
                             .allowsHitTesting(false)
                             .padding(.trailing, 12)
                             .padding(.bottom, 8)
-                            .offset(x: -32)   // 少し左へ寄せる
+                            .offset(x: -32)
                     }
                 }
             }
         }
-        // ZStack の外
+        // ✅ ここで「画面全体（safe area含む）」に背景を敷く
+        .background(background.ignoresSafeArea())
+
+        // ✅ ScrollView の “白い地” を消す（Listじゃないから必須ではないけど残してOK）
         .scrollContentBackground(.hidden)
-        .background(background)
+
+        // ✅ ナビバーもこの画面の色に固定（Homeの設定を上書き）
         .toolbarBackground(background, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbarColorScheme(.light, for: .navigationBar)
-        
-        // 🟡 中央タイトル＋英日トグル（11/27版と同じ見た目）
+
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack(spacing: 8) {
-                    Text(title)
-                        .font(.headline)
-                    
-                    Button {
-                        reversed.toggle()
-                    } label: {
+                    Text(title).font(.headline)
+
+                    Button { reversed.toggle() } label: {
                         HStack(spacing: 6) {
                             Circle()
                                 .fill(accent)
                                 .frame(width: 12, height: 12)
                                 .overlay(
-                                    Circle()
-                                        .stroke(Color.black.opacity(0.45), lineWidth: 1.0)
+                                    Circle().stroke(Color.black.opacity(0.45), lineWidth: 1.0)
                                 )
                             Text("英日")
                                 .font(.caption)
@@ -154,13 +151,11 @@ struct POSFlashcardView: View {
                         .fixedSize()
                     }
                     .buttonStyle(.plain)
-                    .accessibilityLabel("英語と日本語の表示を切り替え")
                 }
                 .fixedSize(horizontal: true, vertical: false)
             }
         }
-        
-        // 例文編集シート（CardRow の「例文」ペンから開く）
+
         .sheet(item: $editingCard) { card in
             ExampleEditorView(pos: card.pos, word: card.word)
         }

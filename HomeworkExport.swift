@@ -4,6 +4,7 @@
 //
 //  Created by Nami .T on 2025/12/15.
 //
+// HomeworkExport.swift
 
 import Foundation
 
@@ -48,6 +49,62 @@ final class HomeworkPackStore {
 
     private init() {}
 
+    // =======================================================
+    // MARK: Required order from HomeworkSetEditorView
+    // =======================================================
+
+    /// HomeworkSetEditorView が UserDefaults に保存した required の並びを読むための DTO
+    /// ※ RequiredItem 型に依存しない（スコープ問題を回避）
+    private struct RequiredItemDTO: Decodable {
+        let posRaw: String
+        let word: String
+        let meaning: String
+
+        enum CodingKeys: String, CodingKey {
+            case posRaw
+            case pos       // 互換用（昔 pos で保存されてた場合）
+            case word
+            case meaning
+        }
+
+        init(from decoder: Decoder) throws {
+            let c = try decoder.container(keyedBy: CodingKeys.self)
+
+            self.posRaw =
+                (try? c.decode(String.self, forKey: .posRaw)) ??
+                (try? c.decode(String.self, forKey: .pos)) ??
+                ""
+
+            self.word = (try? c.decode(String.self, forKey: .word)) ?? ""
+            self.meaning = (try? c.decode(String.self, forKey: .meaning)) ?? ""
+        }
+    }
+
+    private func orderKeyA(posA: PartOfSpeech, posB: PartOfSpeech) -> String {
+        "required_order_v1_\(posA.rawValue)_\(posB.rawValue)_A"
+    }
+    private func orderKeyB(posA: PartOfSpeech, posB: PartOfSpeech) -> String {
+        "required_order_v1_\(posA.rawValue)_\(posB.rawValue)_B"
+    }
+
+    private func loadRequiredOrder(posA: PartOfSpeech, posB: PartOfSpeech) -> (a: [RequiredItemDTO], b: [RequiredItemDTO]) {
+        func loadArray(key: String) -> [RequiredItemDTO] {
+            guard let data = UserDefaults.standard.data(forKey: key),
+                  let arr = try? JSONDecoder().decode([RequiredItemDTO].self, from: data)
+            else { return [] }
+            return arr
+        }
+
+        return (
+            loadArray(key: orderKeyA(posA: posA, posB: posB)),
+            loadArray(key: orderKeyB(posA: posA, posB: posB))
+        )
+    }
+
+    // =======================================================
+    // MARK: Saved pack I/O
+    // =======================================================
+
     /// サイクルごとに固定キーを作る
     private func key(cycleIndex: Int, pair: PosPair) -> String {
         "\(keyPrefix)\(cycleIndex).\(pair.rawValue)"
@@ -72,7 +129,11 @@ final class HomeworkPackStore {
         UserDefaults.standard.removeObject(forKey: k)
     }
 
-    /// 1) 必須10語 + 2) 抽選で残り を“確定”して返す（既に確定済ならそれを返す）
+    // =======================================================
+    // MARK: Build fixed pack
+    // =======================================================
+
+    /// 1) 必須10語（先生が並べた順） + 2) 残り補充 を“確定”して返す（既に確定済ならそれを返す）
     func buildOrLoadFixedPack(
         hw: HomeworkState,
         requiredCount: Int = 10,
@@ -91,6 +152,8 @@ final class HomeworkPackStore {
 
         // 対象品詞（2品詞）
         let parts = pair.parts
+        let posA = parts[0]
+        let posB = parts[1]
 
         // 候補（learned除外）
         func candidates(for pos: PartOfSpeech) -> [WordCard] {
@@ -98,54 +161,125 @@ final class HomeworkPackStore {
                 .filter { !HomeworkStore.shared.isLearned($0) }
         }
 
-        let poolA = candidates(for: parts[0])
-        let poolB = candidates(for: parts[1])
-        let pool = poolA + poolB
+        let poolA = candidates(for: posA)
+        let poolB = candidates(for: posB)
 
-        // required候補
-        let requiredPool = pool.filter { HomeworkStore.shared.isRequired($0) }
-        let nonRequiredPool = pool.filter { !HomeworkStore.shared.isRequired($0) }
+        // 先生が並べた required の順番を読む（posごと）
+        let order = loadRequiredOrder(posA: posA, posB: posB)
+        let requiredOrderA = order.a.filter { $0.posRaw == posA.rawValue }
+        let requiredOrderB = order.b.filter { $0.posRaw == posB.rawValue }
 
-        // 必須を先に確保（足りなければあるだけ）
-        let reqTake = min(requiredCount, requiredPool.count)
-        let pickedRequired = Array(requiredPool.shuffled().prefix(reqTake))
+        // WordCard と RequiredItemDTO の一致判定（word + 先頭meaning）
+        func isSameCard(_ c: WordCard, _ r: RequiredItemDTO) -> Bool {
+            let w1 = c.word.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            let w2 = r.word.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            let m1 = (c.meanings.first ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+            let m2 = r.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+            return (w1 == w2 && m1 == m2)
+        }
 
-        // 残りを抽選
-        let remain = max(0, totalCount - pickedRequired.count)
-        let pickedRest = Array(nonRequiredPool.shuffled().prefix(remain))
+        // 目標：合計 requiredCount を A/B に割り振り
+        let targetReqA = requiredCount / 2
+        let targetReqB = requiredCount - targetReqA
 
-        // word重複防止用の正規化（表記ゆれ・空白事故を吸収）
+        // ① 保存された順で required を拾う
+        var pickedReqA: [WordCard] = requiredOrderA.compactMap { r in
+            poolA.first(where: { isSameCard($0, r) })
+        }
+        var pickedReqB: [WordCard] = requiredOrderB.compactMap { r in
+            poolB.first(where: { isSameCard($0, r) })
+        }
+
+        // ② 足りない場合の保険：requiredフラグから補充（順序は安定ソート）
+        func stableSort(_ cards: [WordCard]) -> [WordCard] {
+            cards.sorted { $0.word.lowercased() < $1.word.lowercased() }
+        }
+
+        if pickedReqA.count < targetReqA {
+            let extra = stableSort(poolA.filter { HomeworkStore.shared.isRequired($0) })
+                .filter { c in !pickedReqA.contains(where: { $0.id == c.id }) }
+            pickedReqA.append(contentsOf: extra.prefix(targetReqA - pickedReqA.count))
+        }
+        if pickedReqB.count < targetReqB {
+            let extra = stableSort(poolB.filter { HomeworkStore.shared.isRequired($0) })
+                .filter { c in !pickedReqB.contains(where: { $0.id == c.id }) }
+            pickedReqB.append(contentsOf: extra.prefix(targetReqB - pickedReqB.count))
+        }
+
+        pickedReqA = Array(pickedReqA.prefix(targetReqA))
+        pickedReqB = Array(pickedReqB.prefix(targetReqB))
+
+        // ここから残り補充：各品詞 12語ずつを目標（totalCount=24想定）
+        let targetPerPos = max(1, totalCount / 2)
+
         func normWord(_ s: String) -> String {
-            s.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).lowercased()
+            s.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         }
 
-        // 合体 → wordで重複しないように守る
+        // グローバル重複防止（A/Bをまたいでも同一wordを避ける）
         var seen = Set<String>()
-        var final: [WordCard] = []
 
-        for c in (pickedRequired + pickedRest) {
-            let k = normWord(c.word)
-            if seen.contains(k) { continue }
-            seen.insert(k)
-            final.append(c)
-            if final.count >= totalCount { break }
+        func buildSide(posPool: [WordCard], requiredPicked: [WordCard]) -> [WordCard] {
+            var result: [WordCard] = []
+            var localSeen = Set<String>()
+
+            // required を順に
+            for c in requiredPicked {
+                let k = normWord(c.word)
+                if seen.contains(k) || localSeen.contains(k) { continue }
+                seen.insert(k)
+                localSeen.insert(k)
+                result.append(c)
+            }
+
+            // 追加候補：まず nonRequired を優先（安定ソート）
+            let nonReq = stableSort(posPool.filter { !HomeworkStore.shared.isRequired($0) })
+            let reqRest = stableSort(posPool.filter { HomeworkStore.shared.isRequired($0) })
+
+            func appendFrom(_ list: [WordCard]) {
+                for c in list {
+                    if result.count >= targetPerPos { break }
+                    let k = normWord(c.word)
+                    if seen.contains(k) || localSeen.contains(k) { continue }
+                    seen.insert(k)
+                    localSeen.insert(k)
+                    result.append(c)
+                }
+            }
+
+            appendFrom(nonReq)
+            appendFrom(reqRest)
+
+            return result
         }
 
-        // 足りない場合、poolから補充（最後の安全網）
+        let sideA = buildSide(posPool: poolA, requiredPicked: pickedReqA)
+        let sideB = buildSide(posPool: poolB, requiredPicked: pickedReqB)
+
+        // A→B の順で最終デッキ
+        var final: [WordCard] = sideA + sideB
+
+        // まだ足りない場合：pool全体から最後の安全網（安定ソート）
         if final.count < totalCount {
-            for c in pool.shuffled() {
+            let poolAll = stableSort(poolA + poolB)
+            for c in poolAll {
+                if final.count >= totalCount { break }
                 let k = normWord(c.word)
                 if seen.contains(k) { continue }
                 seen.insert(k)
                 final.append(c)
-                if final.count >= totalCount { break }
             }
+        }
+
+        // totalCount を超えていたら切る（念のため）
+        if final.count > totalCount {
+            final = Array(final.prefix(totalCount))
         }
 
         // JSON化
         let items: [HomeworkExportCard] = final.map { c in
 
-            // ✅ どの meaning の例文を詰めるかを安定化：先頭 meaning 優先
+            // どの meaning の例文を詰めるかを安定化：先頭 meaning 優先
             let m0 = (c.meanings.first ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
 
             let ex = ExampleStore.shared.firstExample(pos: c.pos, word: c.word, meaning: m0)
@@ -163,13 +297,12 @@ final class HomeworkPackStore {
                 required: HomeworkStore.shared.isRequired(c)
             )
         }
-        
+
         let id = "\(createdAt.prefix(10))-words-cycle\(cycle)-pair\(pair.rawValue)"
 
         let payload = HomeworkExportPayload(
             schemaVersion: 1,
-            senderHwID: "teacher", // ← ここは後で実際の取り方に合わせて直す（ひとまず仮でもOK）
-
+            senderHwID: "unknown", // ひとまず仮（あとで先生端末のIDに差し替えOK）
             id: id,
             createdAt: createdAt,
             pair: pair.rawValue,
@@ -183,6 +316,7 @@ final class HomeworkPackStore {
         save(payload, cycleIndex: cycle, pair: pair)
         return payload
     }
+
     /// JSON文字列を作る（GitHubに置ける形）
     func makePrettyJSONString(_ payload: HomeworkExportPayload) -> String {
         let enc = JSONEncoder()
@@ -194,6 +328,10 @@ final class HomeworkPackStore {
         return String(data: data, encoding: .utf8) ?? "{}"
     }
 }
+
+// =======================================================
+// MARK: - Debug helpers
+// =======================================================
 
 #if DEBUG
 extension HomeworkPackStore {
@@ -211,7 +349,10 @@ extension HomeworkPackStore {
     }
 }
 #endif
+
+// =======================================================
 // MARK: - Import（生徒端末でJSONを取り込む）
+// =======================================================
 
 extension HomeworkPackStore {
 
@@ -241,7 +382,7 @@ extension HomeworkPackStore {
             save(payload, cycleIndex: hw.currentCycleIndex, pair: hw.currentPair)
         }
 
-        // ✅ 追加：payload内の例文を ExampleStore に反映
+        // payload内の例文を ExampleStore に反映
         for item in payload.items {
             guard let ex = item.example else { continue }
             guard let pos = PartOfSpeech(rawValue: item.pos) else { continue }
@@ -259,12 +400,8 @@ extension HomeworkPackStore {
                 note: ex.note
             )
         }
-        
+
         hw.recordImportedPayloadIfNeeded(payload)
-        // ✅ ここが重要：カード（cachedHomework）へ落とし込み
         hw.applyImportedPayload(payload)
-        
     }
 }
-
-

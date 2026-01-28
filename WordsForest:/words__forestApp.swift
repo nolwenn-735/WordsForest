@@ -5,8 +5,10 @@
 //  Created by Nami .T on 2025/08/24.
 //
 
-// words__forestApp.swift
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 @main
 struct words__forestApp: App {
@@ -16,11 +18,23 @@ struct words__forestApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
                 .environmentObject(router)
                 .environmentObject(hw)
                 .environmentObject(ColumnStore.shared)
                 .environmentObject(teacher)
+
+                // ✅ 解除シートは「ここに1個だけ」
+                .sheet(isPresented: $teacher.showingUnlockSheet) {
+                    TeacherUnlockSheet()
+                        .environmentObject(teacher)
+                }
+
+                #if canImport(UIKit)
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                    teacher.refreshLockState()
+                }
+                #endif
         }
     }
 }
