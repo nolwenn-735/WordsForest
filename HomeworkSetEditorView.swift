@@ -2,7 +2,7 @@
 //  HomeworkSetEditorView.swift
 //  WordsForest
 //
-//  Created by Nami .T on 2026/01/25.
+//  Created by Nami .T on 2026/01/25.→01/30.note1つ版に変更
 //
 
 import SwiftUI
@@ -47,6 +47,17 @@ struct HomeworkSetEditorView: View {
     // プレビュー（補充後の確定イメージ）
     @State private var previewA: [WordCard] = []
     @State private var previewB: [WordCard] = []
+
+    // ===== 保存後フロー用 =====
+    @State private var showPostSavePrompt = false
+    @State private var isBulkEditing = false
+    @State private var bulkQueue: [WordCard] = []
+    @State private var bulkIndex: Int = 0
+    @State private var editingCard: WordCard? = nil
+
+    // 保存しましたバナー（任意）
+    @State private var showSavedBanner = false
+    @State private var savedBannerText = "保存しました"
 
     // 保存キー（posペアごとに保存）
     private var orderKeyA: String { "required_order_v1_\(posA.rawValue)_\(posB.rawValue)_A" }
@@ -97,7 +108,8 @@ struct HomeworkSetEditorView: View {
                         // ②（任意）storeの required(Set) へ反映したいならここで反映
                         applyRequiredFlagsToStore()
 
-                        dismiss()
+                        // ✅ 保存後フロー開始（dismissはしない）
+                        afterSaveTapped()
                     }
                 }
             }
@@ -107,6 +119,89 @@ struct HomeworkSetEditorView: View {
             .onAppear {
                 loadRequiredOrder()
             }
+        }
+
+        // ✅ 保存後：編集する？の確認
+        .alert("カード裏面を編集しますか？", isPresented: $showPostSavePrompt) {
+            Button("する") { startBulkEditing() }
+            Button("あとで") { dismiss() }
+        } message: {
+            Text("この宿題セットに入った単語の例文などを、順番に編集できます。")
+        }
+
+        // ✅ 既存の編集画面に統一（pen & square と同じ場所へ）
+        .sheet(item: $editingCard) { card in
+            ExampleEditorView(pos: card.pos, word: card.word)
+        }
+
+        // ✅ iOS17+ 推奨：シグネチャ（黄色⚠️を消す）
+        .onChange(of: editingCard) { _, newValue in
+            // シートが閉じた（nilに戻った）タイミングで次へ
+            guard newValue == nil, isBulkEditing else { return }
+            advanceBulkEditingIfNeeded()
+        }
+
+        // ✅ 保存しましたバナー
+        .overlay(alignment: .top) {
+            if showSavedBanner {
+                Text(savedBannerText)
+                    .font(.callout)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 10)
+                    .background(.ultraThinMaterial, in: Capsule())
+                    .padding(.top, 12)
+            }
+        }
+    }
+
+    // =======================================================
+    // MARK: - 保存後フロー
+    // =======================================================
+
+    private func afterSaveTapped() {
+        // まず「保存しました」を見せる
+        savedBannerText = "保存しました"
+        showSavedBannerNow()
+
+        // ここは「確定セット」なので、最新プレビューを作ってから使う
+        updatePreview()
+
+        let finalCards = previewA + previewB
+        guard !finalCards.isEmpty else {
+            dismiss()
+            return
+        }
+
+        bulkQueue = finalCards
+        bulkIndex = 0
+        showPostSavePrompt = true
+    }
+
+    private func startBulkEditing() {
+        isBulkEditing = true
+        bulkIndex = 0
+        editingCard = bulkQueue.first
+    }
+
+    private func advanceBulkEditingIfNeeded() {
+        guard isBulkEditing else { return }
+
+        let next = bulkIndex + 1
+        if next < bulkQueue.count {
+            bulkIndex = next
+            editingCard = bulkQueue[next]
+        } else {
+            isBulkEditing = false
+            savedBannerText = "編集が完了しました"
+            showSavedBannerNow()
+            dismiss()
+        }
+    }
+
+    private func showSavedBannerNow() {
+        showSavedBanner = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+            showSavedBanner = false
         }
     }
 
@@ -175,7 +270,7 @@ struct HomeworkSetEditorView: View {
     private func pickerSection(pos: PartOfSpeech,
                                query: Binding<String>,
                                required: Binding<[RequiredItem]>) -> some View {
-        let all = store.list(for: pos) // 既存カード一覧（posごと）
+        let all = store.list(for: pos)
         let filtered = all.filter { c in
             let q = query.wrappedValue.trimmingCharacters(in: .whitespacesAndNewlines)
             if q.isEmpty { return true }
@@ -206,6 +301,7 @@ struct HomeworkSetEditorView: View {
                 }
                 .buttonStyle(.plain)
             }
+
             if filtered.isEmpty {
                 Text("該当がありません")
                     .foregroundStyle(.secondary)
@@ -231,7 +327,6 @@ struct HomeworkSetEditorView: View {
     private func addRequired(from card: WordCard, into pos: PartOfSpeech) {
         let w = card.word.trimmingCharacters(in: .whitespacesAndNewlines)
         let m = (card.meanings.first ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
-
         let item = RequiredItem(pos: pos, word: w, meaning: m)
 
         if pos == posA {
@@ -249,9 +344,9 @@ struct HomeworkSetEditorView: View {
     private func same(_ a: RequiredItem, _ b: RequiredItem) -> Bool {
         a.posRaw == b.posRaw &&
         a.word.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-            == b.word.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() &&
+        == b.word.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() &&
         a.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
-            == b.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+        == b.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     // =======================================================
@@ -264,7 +359,6 @@ struct HomeworkSetEditorView: View {
     }
 
     private func buildDeck(pos: PartOfSpeech, required: [RequiredItem], target: Int) -> [WordCard] {
-        // storeから候補一覧
         let all = store.list(for: pos)
 
         // required順でまず確定
@@ -275,12 +369,10 @@ struct HomeworkSetEditorView: View {
             }
         }
 
-        // 足りない分を補充（ここは「既存を崩さず追加」）
+        // 足りない分を補充（順番は安定ソート）
         if result.count < target {
             let existingWords = Set(result.map { $0.word.lowercased() })
             let fillers = all.filter { !existingWords.contains($0.word.lowercased()) }
-
-            // いったん安定ソート（毎回ぐちゃぐちゃにならない）
             let stable = fillers.sorted { $0.word.lowercased() < $1.word.lowercased() }
 
             for c in stable {
@@ -289,7 +381,7 @@ struct HomeworkSetEditorView: View {
             }
         }
 
-        // requiredが多い場合は targetを超える → そのまま返す（=揺れを許容）
+        // requiredが多い場合は target超え → そのまま返す
         return result
     }
 
@@ -331,9 +423,7 @@ struct HomeworkSetEditorView: View {
     // MARK: HomeworkStore の required(Set) へ反映（必要なら）
     // =======================================================
 
-    /// 「required(Set)」をあなたの既存ロジックに活かしたい場合だけ使う
     private func applyRequiredFlagsToStore() {
-        // posA / posB 以外は触らない（安全）
         applyRequiredFor(pos: posA, required: requiredA)
         applyRequiredFor(pos: posB, required: requiredB)
     }
@@ -342,9 +432,7 @@ struct HomeworkSetEditorView: View {
         let all = store.list(for: pos)
 
         // いったん全部OFF
-        for c in all {
-            store.setRequired(c, enabled: false)
-        }
+        for c in all { store.setRequired(c, enabled: false) }
 
         // requiredだけON
         for r in required {
@@ -354,7 +442,6 @@ struct HomeworkSetEditorView: View {
         }
     }
 
-    // required(Set)も全消ししたい場合の補助（必要なら使う）
     private func clearRequiredFlagsInStore() {
         [posA, posB].forEach { pos in
             store.list(for: pos).forEach { store.setRequired($0, enabled: false) }

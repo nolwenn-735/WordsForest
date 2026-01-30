@@ -2,9 +2,8 @@
 //  ExampleEditorView.swift
 //  WordsForest
 //
-//  Created by Nami .T on 2025/09/23.　(12/17 .jason)
+//  Created by Nami .T on 2025/09/23.　(12/17 .jason)→(2026/01/30カード裏面のnote1つに変更版)
 //
-
 import SwiftUI
 
 struct ExampleEditorView: View {
@@ -19,15 +18,15 @@ struct ExampleEditorView: View {
         var meaning: String = ""
         var en: String = ""
         var ja: String = ""
-        var note: String = ""
     }
 
     @State private var drafts: [Draft] = [Draft()]
-    @State private var showSavedToast = false
+    @State private var wordNoteText: String = ""
 
     var body: some View {
         NavigationStack {
             Form {
+
                 // 先頭：単語
                 Section {
                     HStack {
@@ -36,6 +35,12 @@ struct ExampleEditorView: View {
                         Text(word)
                             .foregroundStyle(.secondary)
                     }
+                }
+
+                // ✅ 単語ノート（全体）
+                Section("単語ノート（全体）") {
+                    TextEditor(text: $wordNoteText)
+                        .frame(minHeight: 140)
                 }
 
                 // 意味ブロック（縦に増える）
@@ -49,9 +54,6 @@ struct ExampleEditorView: View {
                             .textInputAutocapitalization(.sentences)
 
                         TextField("日本語訳（任意）", text: $d.ja)
-
-                        TextEditor(text: $d.note)
-                            .frame(minHeight: 120)
                     } header: {
                         HStack {
                             Text("意味＋例文")
@@ -73,6 +75,7 @@ struct ExampleEditorView: View {
             }
             .navigationTitle("例文を編集")
             .toolbar {
+
                 // 左：戻る
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("戻る") { dismiss() }
@@ -110,6 +113,9 @@ struct ExampleEditorView: View {
     // MARK: - Load
 
     private func loadExisting() {
+        // ✅ 単語ノート（全体）を読む
+        wordNoteText = ExampleStore.shared.wordNote(pos: pos, word: word) ?? ""
+
         // 既存 meaning を HomeworkStore から拾う（複数意味の“正”はここ）
         let meanings = HomeworkStore.shared.existingMeanings(for: word, pos: pos)
 
@@ -123,8 +129,7 @@ struct ExampleEditorView: View {
             return Draft(
                 meaning: m,
                 en: ex?.en ?? "",
-                ja: ex?.ja ?? "",
-                note: ex?.note ?? ""
+                ja: ex?.ja ?? ""
             )
         }
     }
@@ -132,6 +137,10 @@ struct ExampleEditorView: View {
     // MARK: - Save
 
     private func saveAll() {
+        // ✅ 単語ノート（全体）を保存（空なら削除）
+        let wn = wordNoteText.trimmingCharacters(in: .whitespacesAndNewlines)
+        ExampleStore.shared.saveWordNote(pos: pos, word: word, note: wn.isEmpty ? nil : wn)
+
         for d in drafts {
             let meaning = d.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
             if meaning.isEmpty { continue }
@@ -142,9 +151,8 @@ struct ExampleEditorView: View {
             // ② 例文（全部空なら“削除”扱いにする）
             let enT = d.en.trimmingCharacters(in: .whitespacesAndNewlines)
             let jaT = d.ja.trimmingCharacters(in: .whitespacesAndNewlines)
-            let noT = d.note.trimmingCharacters(in: .whitespacesAndNewlines)
 
-            let hasAny = !enT.isEmpty || !jaT.isEmpty || !noT.isEmpty
+            let hasAny = !enT.isEmpty || !jaT.isEmpty
             if hasAny {
                 ExampleStore.shared.saveExample(
                     pos: pos,
@@ -152,7 +160,7 @@ struct ExampleEditorView: View {
                     meaning: meaning,
                     en: enT,
                     ja: jaT.isEmpty ? nil : jaT,
-                    note: noT.isEmpty ? nil : noT
+                    note: nil // ✅ note は単語全体に集約
                 )
             } else {
                 ExampleStore.shared.removeExample(pos: pos, word: word, meaning: meaning)

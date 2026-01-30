@@ -4,13 +4,22 @@
 //
 //  Created by Nami .T on 2025/12/15.
 //
-// HomeworkExport.swift
+// HomeworkExport.swift 2026/01/30複数例文対応版
 
 import Foundation
 
+// =======================================================
 // MARK: - Export JSON Schema（配布用）
+// =======================================================
 
 struct HomeworkExportExample: Codable, Hashable {
+    var en: String
+    var ja: String?
+    var note: String?
+}
+
+struct HomeworkExportExampleByMeaning: Codable, Hashable {
+    var meaning: String
     var en: String
     var ja: String?
     var note: String?
@@ -20,18 +29,21 @@ struct HomeworkExportCard: Codable, Hashable {
     var pos: String          // "noun" "verb" "adj" "adv" "others"
     var word: String
     var meanings: [String]
+    var required: Bool       // 先生側の印（生徒UIには出さない想定）
+
+    // v1互換（任意）
     var example: HomeworkExportExample?
-    var required: Bool       // 先生の印（生徒UIには出さない）
+
+    // ✅ v2本命：meaningごとの例文（キーが無い古いJSONでもデコードできるようデフォルト空配列）
+    var examplesByMeaning: [HomeworkExportExampleByMeaning] = []
 }
 
-/// 1回ぶんの“配布パック”（中身JSON）
 struct HomeworkExportPayload: Codable {
-    var schemaVersion: Int        // 例: 1
-    var senderHwID: String        // 先生端末の hwID（文字列でOK）
-
+    var schemaVersion: Int        // 例: 2
+    var senderHwID: String        // 先生端末ID（文字列でOK）
     var id: String
     var createdAt: String
-    var pair: Int
+    var pair: Int                 // PosPair.rawValue
     var cycleIndex: Int
     var daysPerCycle: Int
     var requiredCount: Int
@@ -39,7 +51,9 @@ struct HomeworkExportPayload: Codable {
     var items: [HomeworkExportCard]
 }
 
+// =======================================================
 // MARK: - Freeze store（確定セットをサイクル中固定で保持）
+// =======================================================
 
 final class HomeworkPackStore {
     static let shared = HomeworkPackStore()
@@ -278,31 +292,47 @@ final class HomeworkPackStore {
 
         // JSON化
         let items: [HomeworkExportCard] = final.map { c in
+            // meanings（複数）それぞれに例文を付ける
+            let examplesByMeaning: [HomeworkExportExampleByMeaning] = c.meanings.compactMap { meaning in
+                let m = meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !m.isEmpty else { return nil }
 
-            // どの meaning の例文を詰めるかを安定化：先頭 meaning 優先
-            let m0 = (c.meanings.first ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+                // meaning指定を優先して取得
+                let ex = ExampleStore.shared.firstExample(pos: c.pos, word: c.word, meaning: m)
+                guard let ex else { return nil }
 
-            let ex = ExampleStore.shared.firstExample(pos: c.pos, word: c.word, meaning: m0)
-                ?? ExampleStore.shared.firstExample(pos: c.pos, word: c.word)
-
-            let exPayload: HomeworkExportExample? = ex.map {
-                HomeworkExportExample(en: $0.en, ja: $0.ja, note: $0.note)
+                return HomeworkExportExampleByMeaning(
+                    meaning: m,
+                    en: ex.en,
+                    ja: ex.ja,
+                    note: ex.note
+                )
             }
+
+            // v1互換：代表例文を1つだけ入れるなら先頭meaning
+            let fallbackExample: HomeworkExportExample? = {
+                let m0 = (c.meanings.first ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !m0.isEmpty,
+                      let ex0 = ExampleStore.shared.firstExample(pos: c.pos, word: c.word, meaning: m0)
+                else { return nil }
+                return HomeworkExportExample(en: ex0.en, ja: ex0.ja, note: ex0.note)
+            }()
 
             return HomeworkExportCard(
                 pos: c.pos.rawValue,
                 word: c.word,
                 meanings: c.meanings,
-                example: exPayload,
-                required: HomeworkStore.shared.isRequired(c)
+                required: HomeworkStore.shared.isRequired(c),
+                example: fallbackExample,
+                examplesByMeaning: examplesByMeaning
             )
         }
 
         let id = "\(createdAt.prefix(10))-words-cycle\(cycle)-pair\(pair.rawValue)"
 
         let payload = HomeworkExportPayload(
-            schemaVersion: 1,
-            senderHwID: "unknown", // ひとまず仮（あとで先生端末のIDに差し替えOK）
+            schemaVersion: 2,
+            senderHwID: "teacher",
             id: id,
             createdAt: createdAt,
             pair: pair.rawValue,
@@ -317,7 +347,7 @@ final class HomeworkPackStore {
         return payload
     }
 
-    /// JSON文字列を作る（GitHubに置ける形）
+    /// JSON文字列を作る（GitHubに置ける形）→ 方針変更：GitHubには置かない
     func makePrettyJSONString(_ payload: HomeworkExportPayload) -> String {
         let enc = JSONEncoder()
         enc.outputFormatting = [.prettyPrinted, .sortedKeys]
@@ -335,7 +365,6 @@ final class HomeworkPackStore {
 
 #if DEBUG
 extension HomeworkPackStore {
-
     func clearAll() {
         let defaults = UserDefaults.standard
         let dict = defaults.dictionaryRepresentation()
@@ -382,25 +411,45 @@ extension HomeworkPackStore {
             save(payload, cycleIndex: hw.currentCycleIndex, pair: hw.currentPair)
         }
 
-        // payload内の例文を ExampleStore に反映
+        // ✅ payload内の例文を ExampleStore に反映（v2優先、v1も救済）
         for item in payload.items {
-            guard let ex = item.example else { continue }
             guard let pos = PartOfSpeech(rawValue: item.pos) else { continue }
 
-            let meaning = (item.meanings.first ?? "")
-                .trimmingCharacters(in: .whitespacesAndNewlines)
-            if meaning.isEmpty { continue }
+            // --- v2: meaningごとの例文 ---
+            if !item.examplesByMeaning.isEmpty {
+                for ex in item.examplesByMeaning {
+                    let meaning = ex.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+                    guard !meaning.isEmpty else { continue }
 
-            ExampleStore.shared.saveExample(
-                pos: pos,
-                word: item.word,
-                meaning: meaning,
-                en: ex.en,
-                ja: ex.ja,
-                note: ex.note
-            )
+                    ExampleStore.shared.saveExample(
+                        pos: pos,
+                        word: item.word,
+                        meaning: meaning,
+                        en: ex.en,
+                        ja: ex.ja,
+                        note: ex.note
+                    )
+                }
+                continue
+            }
+
+            // --- v1救済: example が1個だけある場合 ---
+            if let ex1 = item.example {
+                let meaning = (item.meanings.first ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !meaning.isEmpty else { continue }
+
+                ExampleStore.shared.saveExample(
+                    pos: pos,
+                    word: item.word,
+                    meaning: meaning,
+                    en: ex1.en,
+                    ja: ex1.ja,
+                    note: ex1.note
+                )
+            }
         }
 
+        // ✅ これは残す（生徒側の状態反映）
         hw.recordImportedPayloadIfNeeded(payload)
         hw.applyImportedPayload(payload)
     }
