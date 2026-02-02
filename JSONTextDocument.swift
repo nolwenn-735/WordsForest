@@ -2,21 +2,29 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-/// JSON を Files に書き出すためのドキュメント（Data版：文字化け回避）
-struct JSONDataDocument: FileDocument {
+struct JSONTextDocument: FileDocument {
     static var readableContentTypes: [UTType] { [.json] }
 
-    var data: Data
+    var text: String
 
-    init(data: Data) {
-        self.data = data
+    init(text: String = "") {
+        self.text = text
     }
 
     init(configuration: ReadConfiguration) throws {
-        self.data = configuration.file.regularFileContents ?? Data()
+        guard let data = configuration.file.regularFileContents else {
+            self.text = ""
+            return
+        }
+        // 読み込みも一応UTF-8優先（念のためUTF-16もフォールバック）
+        self.text = String(data: data, encoding: .utf8)
+            ?? String(data: data, encoding: .utf16)
+            ?? ""
     }
 
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-        .init(regularFileWithContents: data)
+        // ★ここが重要：UTF-8で保存
+        let data = text.data(using: .utf8) ?? Data()
+        return FileWrapper(regularFileWithContents: data)
     }
 }

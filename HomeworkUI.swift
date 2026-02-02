@@ -42,6 +42,7 @@ struct HomeworkBanner: View {
                 }
 
                 // 2段目
+                // 2段目
                 HStack(spacing: 8) {
                     Button {
                         teacher.showingUnlockSheet = true
@@ -58,15 +59,23 @@ struct HomeworkBanner: View {
 
                     pill(hw.daysPerCycle == 14 ? "2週間" : "1週間")
 
-                    // 先生解除時だけ書き出し（Filesに保存 → Files側で共有リンクをLINE送付）
+                    // 先生解除時だけ：書き出し + （DEBUG時だけ）🔁
                     if teacher.unlocked {
+
                         Button {
+                            print("✅ EXPORT BUTTON TAP") 
+                            
                             let payload = HomeworkPackStore.shared.buildOrLoadFixedPack(
                                 hw: hw,
                                 requiredCount: 10,
                                 totalCount: 24
                             )
 
+                            // ✅ ここに入れる（確認ログ）
+                            print("items count:", payload.items.count)
+
+                            let firstJA = payload.items.first?.example?.ja
+                            print("JA EXAMPLE:", firstJA ?? "nil")
                             let json = HomeworkPackStore.shared.makePrettyJSONString(payload)
 
                             exportDoc = JSONTextDocument(text: json)
@@ -79,6 +88,27 @@ struct HomeworkBanner: View {
                         }
                         .buttonStyle(.bordered)
                         .tint(.blue)
+
+                        #if DEBUG
+                        Button {
+                            HomeworkPackStore.shared.clear(
+                                cycleIndex: hw.currentCycleIndex,
+                                pair: hw.currentPair
+                            )
+                            print("✅ cleared pack")
+                        } label: {
+                            Image(systemName: "arrow.clockwise")
+                                .font(.system(size: 16, weight: .semibold))
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 6)
+                                .background(.ultraThinMaterial, in: Capsule())
+                                .foregroundStyle(.secondary)
+                                .frame(minWidth: 44, minHeight: 44)  // ←押しやすさ
+                                .contentShape(Rectangle())           // ←判定拡張
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("今回分の固定パックを消す（先生）")
+                        #endif
                     }
 
                     Spacer()
@@ -124,7 +154,6 @@ struct HomeworkBanner: View {
             }
         }
 
-        // ✅ 修飾子チェーン “内側” に置く（ここが重要）
         .fileExporter(
             isPresented: $showingExporter,
             document: exportDoc ?? JSONTextDocument(text: "{}"),
@@ -132,10 +161,12 @@ struct HomeworkBanner: View {
             defaultFilename: exportFileName
         ) { result in
             switch result {
-            case .success:
+            case .success(let url):
                 exportErrorMessage = nil
+                print("✅ exported:", url)
             case .failure(let err):
                 exportErrorMessage = err.localizedDescription
+                print("❌ export error:", err)
             }
         }
     }

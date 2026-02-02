@@ -164,25 +164,28 @@ struct HomePage: View {
 struct WeeklySetMiniButton: View {
     @EnvironmentObject var hw: HomeworkState
     @EnvironmentObject var teacher: TeacherMode
-
+    
     var body: some View {
-        NavigationLink {
-            WeeklySetEntryView(pair: hw.currentPair)
-                .environmentObject(hw)
-                .environmentObject(teacher)
-                .id(hw.currentPair)   // ← これが効く：ペアが変わったら中身を作り直す
-        } label: {
-            Text("🗓️今回分へ")
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundColor(.blue)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8)
-                .background(.thinMaterial, in: Capsule())
-                .lineLimit(1)
-                .minimumScaleFactor(0.8)
-                .allowsTightening(true)
+        HStack(spacing: 10) {
+            
+            NavigationLink {
+                WeeklySetEntryView(pair: hw.currentPair)
+                    .environmentObject(hw)
+                    .environmentObject(teacher)
+                    .id(hw.currentPair)
+            } label: {
+                Text("🗓️今回分へ")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(.blue)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(.thinMaterial, in: Capsule())
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+                    .allowsTightening(true)
+            }
+            .buttonStyle(.plain)                       
         }
-        .buttonStyle(.plain)
     }
 }
 // MARK: - 品詞ボタン（名詞・動詞・形容詞・副詞）
