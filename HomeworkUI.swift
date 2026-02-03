@@ -17,126 +17,57 @@ struct HomeworkBanner: View {
     @State private var showingExporter = false
     @State private var exportErrorMessage: String? = nil
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+    // 🔁消去確認
+    @State private var showClearConfirm = false
 
+    var body: some View {
+        bannerCard
+            .fileExporter(
+                isPresented: $showingExporter,
+                document: exportDoc ?? JSONTextDocument(text: "{}"),
+                contentType: .json,
+                defaultFilename: exportFileName
+            ) { result in
+                switch result {
+                case .success(let url):
+                    exportErrorMessage = nil
+                    print("✅ exported:", url)
+                case .failure(let err):
+                    exportErrorMessage = err.localizedDescription
+                    print("❌ export error:", err)
+                }
+            }
+            .alert("固定パックを消しますか？", isPresented: $showClearConfirm) {
+                Button("消す", role: .destructive) {
+                    HomeworkPackStore.shared.clear(
+                        cycleIndex: hw.currentCycleIndex,
+                        pair: hw.currentPair
+                    )
+                    print("✅ cleared pack")
+
+                    // ✅ 追加：HomeworkState 側のキャッシュも全部捨てる
+                    hw.clearCachedHomeworkAll()
+                    print("✅ cleared cachedHomework(all)")
+
+                    // ✅ 既存の refresh は残してOK
+                    hw.refresh()
+                }
+                Button("やめる", role: .cancel) { }
+            } message: {
+                Text("このサイクルの「今回分」固定パックを削除します。")
+            }
+    }
+    
+    private var bannerCard: some View {
+        VStack(alignment: .leading, spacing: 10) {
             let leftColWidth: CGFloat = 84
 
             VStack(alignment: .leading, spacing: 8) {
-
-                // 1段目
-                HStack(spacing: 8) {
-                    Text("📘今サイクル")
-                        .font(.headline)
-                        .frame(width: leftColWidth, alignment: .leading)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.70)
-                        .allowsTightening(true)
-
-                    pill(hw.currentPair == .nounAdj ? "名詞＋形容詞" : "動詞＋副詞")
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.65)
-                        .allowsTightening(true)
-
-                    Spacer(minLength: 8)
-                }
-
-                // 2段目
-                // 2段目
-                HStack(spacing: 8) {
-                    Button {
-                        teacher.showingUnlockSheet = true
-                    } label: {
-                        Label("Teacher", systemImage: teacher.unlocked ? "lock.open" : "lock")
-                            .font(.caption2)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 6)
-                            .background(.ultraThinMaterial, in: Capsule())
-                            .foregroundStyle(.secondary)
-                    }
-                    .buttonStyle(.plain)
-                    .frame(width: leftColWidth, alignment: .leading)
-
-                    pill(hw.daysPerCycle == 14 ? "2週間" : "1週間")
-
-                    // 先生解除時だけ：書き出し + （DEBUG時だけ）🔁
-                    if teacher.unlocked {
-
-                        Button {
-                            print("✅ EXPORT BUTTON TAP") 
-                            
-                            let payload = HomeworkPackStore.shared.buildOrLoadFixedPack(
-                                hw: hw,
-                                requiredCount: 10,
-                                totalCount: 24
-                            )
-
-                            // ✅ ここに入れる（確認ログ）
-                            print("items count:", payload.items.count)
-
-                            let firstJA = payload.items.first?.example?.ja
-                            print("JA EXAMPLE:", firstJA ?? "nil")
-                            let json = HomeworkPackStore.shared.makePrettyJSONString(payload)
-
-                            exportDoc = JSONTextDocument(text: json)
-                            exportFileName = HomeworkExportFile.makeFileName(for: payload)
-                            exportErrorMessage = nil
-                            showingExporter = true
-                        } label: {
-                            Label("書き出し", systemImage: "square.and.arrow.down")
-                                .font(.caption2)
-                        }
-                        .buttonStyle(.bordered)
-                        .tint(.blue)
-
-                        #if DEBUG
-                        Button {
-                            HomeworkPackStore.shared.clear(
-                                cycleIndex: hw.currentCycleIndex,
-                                pair: hw.currentPair
-                            )
-                            print("✅ cleared pack")
-                        } label: {
-                            Image(systemName: "arrow.clockwise")
-                                .font(.system(size: 16, weight: .semibold))
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 6)
-                                .background(.ultraThinMaterial, in: Capsule())
-                                .foregroundStyle(.secondary)
-                                .frame(minWidth: 44, minHeight: 44)  // ←押しやすさ
-                                .contentShape(Rectangle())           // ←判定拡張
-                        }
-                        .buttonStyle(.plain)
-                        .accessibilityLabel("今回分の固定パックを消す（先生）")
-                        #endif
-                    }
-
-                    Spacer()
-                }
+                firstRow(leftColWidth: leftColWidth)
+                secondRow(leftColWidth: leftColWidth)
             }
 
-            HStack(spacing: 8) {
-                ToggleButton(title: "▶︎ 宿題あり",
-                             isOn: hw.status == .active,
-                             onTap: { hw.setActive() },
-                             color: .green)
-
-                ToggleButton(title: "⏸ ストップ",
-                             isOn: hw.status == .paused,
-                             onTap: { hw.setPaused() },
-                             color: .orange)
-
-                ToggleButton(title: "⛔️ 宿題なし",
-                             isOn: hw.status == .none,
-                             onTap: { hw.setNone() },
-                             color: .red)
-
-                Spacer()
-
-                Button("＋1週延長") { hw.extendOneWeek() }
-                    .buttonStyle(.bordered)
-                    .tint(.primary)
-            }
+            thirdRow
 
             if let msg = exportErrorMessage {
                 Text("⚠️ \(msg)")
@@ -149,28 +80,125 @@ struct HomeworkBanner: View {
         .cornerRadius(12)
         .overlay(RoundedRectangle(cornerRadius: 12).stroke(.black.opacity(0.08), lineWidth: 1))
         .onAppear {
-            DispatchQueue.main.async {
-                hw.refresh()
-            }
-        }
-
-        .fileExporter(
-            isPresented: $showingExporter,
-            document: exportDoc ?? JSONTextDocument(text: "{}"),
-            contentType: .json,
-            defaultFilename: exportFileName
-        ) { result in
-            switch result {
-            case .success(let url):
-                exportErrorMessage = nil
-                print("✅ exported:", url)
-            case .failure(let err):
-                exportErrorMessage = err.localizedDescription
-                print("❌ export error:", err)
-            }
+            DispatchQueue.main.async { hw.refresh() }
         }
     }
 
+    private func firstRow(leftColWidth: CGFloat) -> some View {
+        HStack(spacing: 8) {
+            Text("📘今サイクル")
+                .font(.headline)
+                .frame(width: leftColWidth, alignment: .leading)
+                .lineLimit(1)
+                .minimumScaleFactor(0.70)
+                .allowsTightening(true)
+
+            pill(hw.currentPair == .nounAdj ? "名詞＋形容詞" : "動詞＋副詞")
+                .lineLimit(1)
+                .minimumScaleFactor(0.65)
+                .allowsTightening(true)
+
+            Spacer(minLength: 8)
+        }
+    }
+
+    private func secondRow(leftColWidth: CGFloat) -> some View {
+        HStack(spacing: 8) {
+            Button {
+                teacher.showingUnlockSheet = true
+            } label: {
+                Label("Teacher", systemImage: teacher.unlocked ? "lock.open" : "lock")
+                    .font(.caption2)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .background(.ultraThinMaterial, in: Capsule())
+                    .foregroundStyle(.secondary)
+            }
+            .buttonStyle(.plain)
+            .frame(width: leftColWidth, alignment: .leading)
+
+            pill(hw.daysPerCycle == 14 ? "2週間" : "1週間")
+
+            if teacher.unlocked {
+                exportButton
+                #if DEBUG
+                clearButton
+                #endif
+            }
+
+            Spacer()
+        }
+    }
+
+    private var exportButton: some View {
+        Button {
+            print("✅ EXPORT BUTTON TAP")
+
+            let payload = HomeworkPackStore.shared.buildOrLoadFixedPack(
+                hw: hw,
+                requiredCount: 10,
+                totalCount: 24
+            )
+
+            print("items count:", payload.items.count)
+            let firstJA = payload.items.first?.example?.ja
+            print("JA EXAMPLE:", firstJA ?? "nil")
+
+            let json = HomeworkPackStore.shared.makePrettyJSONString(payload)
+            exportDoc = JSONTextDocument(text: json)
+            exportFileName = HomeworkExportFile.makeFileName(for: payload)
+            exportErrorMessage = nil
+            showingExporter = true
+        } label: {
+            Label("書き出し", systemImage: "square.and.arrow.down")
+                .font(.caption2)
+        }
+        .buttonStyle(.bordered)
+        .tint(.blue)
+    }
+
+    private var clearButton: some View {
+        Button {
+            // ✅ いつでも確認を出す
+            showClearConfirm = true
+        } label: {
+            Image(systemName: "arrow.clockwise")
+                .font(.system(size: 16, weight: .semibold))
+                .padding(.horizontal, 10)
+                .padding(.vertical, 6)
+                .background(.ultraThinMaterial, in: Capsule())
+                .foregroundStyle(.secondary)
+                .frame(minWidth: 44, minHeight: 44)
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("今回分の固定パックを消す（先生）")
+    }
+
+    private var thirdRow: some View {
+        HStack(spacing: 8) {
+            ToggleButton(title: "▶︎ 宿題あり",
+                         isOn: hw.status == .active,
+                         onTap: { hw.setActive() },
+                         color: .green)
+
+            ToggleButton(title: "⏸ ストップ",
+                         isOn: hw.status == .paused,
+                         onTap: { hw.setPaused() },
+                         color: .orange)
+
+            ToggleButton(title: "⛔️ 宿題なし",
+                         isOn: hw.status == .none,
+                         onTap: { hw.setNone() },
+                         color: .red)
+
+            Spacer()
+
+            Button("＋1週延長") { hw.extendOneWeek() }
+                .buttonStyle(.bordered)
+                .tint(.primary)
+        }
+    }
     private func pill(_ t: String) -> some View {
         Text(t)
             .padding(.vertical, 6)
@@ -203,9 +231,10 @@ private struct ToggleButton: View {
 }
 
 // MARK: - Recent Widget（生徒：取り込み）
+
 struct HomeworkRecentWidget: View {
     @EnvironmentObject var hw: HomeworkState
-    @Binding var confirmEntry: HomeworkEntry?     // ← これを追加
+    @Binding var confirmEntry: HomeworkEntry?
 
     @State private var showingImporter = false
     @State private var showingImportAlert = false
@@ -217,6 +246,7 @@ struct HomeworkRecentWidget: View {
             HStack {
                 NavigationLink("履歴をすべて見る") {
                     HomeworkHistoryList()
+                        .environmentObject(hw)
                 }
                 .font(.callout)
                 .foregroundColor(.blue)
@@ -245,7 +275,6 @@ struct HomeworkRecentWidget: View {
         .cornerRadius(12)
         .overlay(RoundedRectangle(cornerRadius: 12).stroke(.black.opacity(0.08), lineWidth: 1))
 
-        // 取り込み・alert はそのまま
         .fileImporter(
             isPresented: $showingImporter,
             allowedContentTypes: [.json],
@@ -282,10 +311,9 @@ struct HomeworkRecentWidget: View {
             }
 
             try HomeworkPackStore.shared.importHomeworkPayload(payload, hw: hw)
-            
-            // ✅ 取り込んだ payload を「今サイクル」として即反映（cycleIndex/pairIndexも揃う）
+
+            // ✅ 即反映
             hw.applyImportedPayload(payload)
-            // ✅ 追加：取り込んだ内容を “カード” にしてキャッシュへ反映
             hw.addImportedToHistory(payload: payload)
             hw.markImported(payload: payload)
 
@@ -329,18 +357,27 @@ struct HomeworkHistoryList: View {
         }
         .navigationTitle("宿題の履歴")
 
-        // ✅ 押した後の遷移先（24語）
         .navigationDestination(item: $pushEntry) { e in
             HomeworkHistoryWordsView(entry: e)
                 .environmentObject(hw)
         }
 
-        // ✅ 確認アラート
-        .alert("この日の宿題を見ますか？",
-               isPresented: .constant(confirmEntry != nil),
-               presenting: confirmEntry) { e in
-            Button("見る") { pushEntry = e; confirmEntry = nil }
-            Button("キャンセル", role: .cancel) { confirmEntry = nil }
+        // ✅ isPresented: .constant(...) だと挙動が微妙になるので Bindingで出す
+        .alert("この日の宿題を見ますか？", isPresented: Binding(
+            get: { confirmEntry != nil },
+            set: { if !$0 { confirmEntry = nil } }
+        )) {
+            Button("見る") {
+                if let e = confirmEntry {
+                    pushEntry = e
+                }
+                confirmEntry = nil
+            }
+            Button("キャンセル", role: .cancel) {
+                confirmEntry = nil
+            }
+        } message: {
+            Text("履歴の宿題（24語）を開きます。")
         }
     }
 }
@@ -359,21 +396,17 @@ private func dateString(_ d: Date) -> String {
 #Preview("Banner") {
     HomeworkBanner()
         .environmentObject(HomeworkState())
-        .environmentObject(TeacherMode.shared) // private init 対策：shared を使う
+        .environmentObject(TeacherMode.shared) // private init 対策
 }
 
 #Preview("RecentWidget") {
-    @Previewable @State var confirmEntry: HomeworkEntry? = nil
-
     NavigationStack {
-        HomeworkRecentWidget(confirmEntry: $confirmEntry)
+        HomeworkRecentWidget(confirmEntry: .constant(nil))
             .environmentObject(HomeworkState())
     }
 }
 
-
-import SwiftUI
-import UniformTypeIdentifiers
+// MARK: - JSON FileDocument（同居OK）
 
 struct JSONTextDocument: FileDocument {
     static var readableContentTypes: [UTType] { [.json] }
@@ -397,4 +430,3 @@ struct JSONTextDocument: FileDocument {
         return .init(regularFileWithContents: data)
     }
 }
-

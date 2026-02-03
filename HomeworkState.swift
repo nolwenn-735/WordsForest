@@ -428,41 +428,50 @@ extension HomeworkState {
     
     func homeworkWords(for pos: PartOfSpeech) -> [WordCard] {
 
+        // ✅ まず「固定パック（Import済 / 保存済）」を復元する必要があれば復元
         requestRestoreFixedPackIfNeeded()
-        
-        // すでに今サイクルぶんが決まっていれば、それをそのまま返す
+
+        // ✅ すでに今サイクルぶんが決まっていれば、それをそのまま返す（サイクル中は固定）
         if let cached = cachedHomework[pos], !cached.isEmpty {
             return cached
         }
 
-        // この品詞の目標数（デフォルト 12）
+        // ✅ この品詞の目標数（デフォルト 12）
         let quota = weeklyQuota[pos] ?? 12
 
-        // HomeworkStore から、その品詞のカード一覧を取得
+        // ✅ HomeworkStore から、その品詞のカード一覧を取得
         let allCards = HomeworkStore.shared.list(for: pos)
 
-        // 単語が 0 のときの安全策
+        // ✅ 単語が 0 のときの安全策
         guard !allCards.isEmpty else {
             cachedHomework[pos] = []
             return []
         }
 
+        // ✅ 選ぶ
         let chosen: [WordCard]
-
         if allCards.count <= quota {
-            // 単語が少ないときは全部
             chosen = allCards
         } else {
-            // 🔹ポイント：アルファベット順の「窓」ではなく、
-            //   ランダムに並べ替えて先頭から quota だけ取る
+            // 🔹ポイント：ランダムに並べ替えて先頭から quota だけ取る
             chosen = Array(allCards.shuffled().prefix(quota))
         }
 
-        // 今サイクルのキャッシュとして保持（サイクル中は固定）
+        // ✅ 今サイクルのキャッシュとして保持（サイクル中は固定）
         cachedHomework[pos] = chosen
         return chosen
     }
+    
+    // ✅ “今サイクル”のキャッシュを全部捨てる（確実に効く版）
+    func clearCachedHomeworkAll() {
+        cachedHomework.removeAll()
+    }
+    // ✅ 今サイクルのキャッシュ（名詞+形容詞 or 動詞+副詞）だけ捨てる
+   
+    
 }
+
+
 
 extension HomeworkState {
 
