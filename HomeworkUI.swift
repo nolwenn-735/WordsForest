@@ -117,7 +117,7 @@ struct HomeworkBanner: View {
             .buttonStyle(.plain)
             .frame(width: leftColWidth, alignment: .leading)
 
-            pill(hw.daysPerCycle == 14 ? "2週間" : "1週間")
+            cycleLengthCapsule
 
             if teacher.unlocked {
                 exportButton
@@ -127,6 +127,21 @@ struct HomeworkBanner: View {
             }
 
             Spacer()
+        }
+    }
+    
+    @ViewBuilder
+    private var cycleLengthCapsule: some View {
+        if teacher.unlocked {
+            Menu {
+                Button("1週間") { hw.daysPerCycle = 7 }
+                Button("2週間") { hw.daysPerCycle = 14 }
+            } label: {
+                // 見た目を既存の pill に合わせる（おすすめ）
+                pill(hw.cycleLengthLabel)
+            }
+        } else {
+            pill(hw.cycleLengthLabel)
         }
     }
 
@@ -199,6 +214,7 @@ struct HomeworkBanner: View {
                 .tint(.primary)
         }
     }
+    
     private func pill(_ t: String) -> some View {
         Text(t)
             .padding(.vertical, 6)

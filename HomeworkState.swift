@@ -92,10 +92,14 @@ struct HomeworkEntry: Identifiable, Codable,Hashable {
         "\(statusIcon) 宿題：\(pairLabel) (\(wordsCount)語)"
     }
 }
+
+
 final class HomeworkState: ObservableObject {
     // 設定
     @AppStorage("hw_daysPerCycle") var daysPerCycle: Int = 7
     @AppStorage("hw_paused") var paused: Bool = false
+    // ✅ 自動サイクル更新をするか（あなたの運用では false 推奨）
+    @AppStorage("hw_autoAdvanceByDate") private var autoAdvanceByDate: Bool = false
     @AppStorage("hw_statusRaw") private var statusRaw: String = HomeworkStatus.active.rawValue
     // 取り込み（複数ID対応）
     @AppStorage("hw_lastImportedPayloadID") private var lastImportedPayloadID: String = ""
@@ -139,11 +143,13 @@ final class HomeworkState: ObservableObject {
     // 学習に含める語彙レベル（まずは A1〜B1）
     @Published var allowedLevels: Set<CEFRLevel> = [.A1, .A2, .B1]
     
-    // 🔹 今サイクルの宿題セット（品詞ごと）
-     private var cachedHomework: [PartOfSpeech: [WordCard]] = [:]
-    
-    // restore の多重発火防止
+    // 🔷 今サイクルの宿題セット（品詞ごと）
+    //    画面に反映させたいので @Published にする
+    @Published private(set) var cachedHomework: [PartOfSpeech: [WordCard]] = [:]
+
+    // restore / build の多重実行防止
     private var restoreRequested = false
+    private var buildRequested = false
     
     // 🆕 今サイクル表示用のラベル
     var currentPairLabel: String { currentPair.jaTitle }
@@ -182,6 +188,12 @@ final class HomeworkState: ObservableObject {
         get { iso.date(from: cycleStartISO) ?? Date() }
         set { cycleStartISO = iso.string(from: newValue) }
     }
+    
+    // ✅ 期限切れ“表示用”（中身は変えない）
+    var isCycleExpired: Bool {
+        let elapsed = Calendar.current.dateComponents([.day], from: cycleStartDate, to: Date()).day ?? 0
+        return elapsed >= daysPerCycle
+    }
 
     init() {
         // ① UserDefaults から“生”の値を読む（self を経由しない）
@@ -204,14 +216,18 @@ final class HomeworkState: ObservableObject {
     
     // 起動/HOME 表示時に呼ぶ
     func refresh(now: Date = Date()) {
-        guard status != .none else { return }       // 宿題なし → 進めない
-        guard !paused && status != .paused else { return } // ストップ中 → 進めない
-        let elapsed = Calendar.current.dateComponents([.day], from: cycleStartDate, to: now).day ?? 0
-        if elapsed >= daysPerCycle {
-            advanceCycle(from: now)
-        }
-    }
+        // ✅ 方針：日数経過で自動的に新パックへ進めない
+        // 宿題は「取り込み」か「先生が明示操作」した時だけ変わる
 
+        // 宿題なし or 停止なら何もしない（これはそのまま）
+        guard status != .none else { return }
+        guard !paused && status != .paused else { return }
+
+        // ✅ ここで elapsed を見て advanceCycle しない
+        // let elapsed = ...
+        // if elapsed >= daysPerCycle { advanceCycle(from: now) }
+    }
+    
     func advanceCycle(from now: Date = Date()) {
         // 🔹 新しいサイクルに入るので宿題セットをリセット
         cachedHomework.removeAll()
@@ -346,22 +362,17 @@ final class HomeworkState: ObservableObject {
     // MARK: - Import helper（外部から履歴を刻む用）
     func addImportedToHistory(payload: HomeworkExportPayload) {
 
-    #if DEBUG
-    print("[HW] addImportedToHistory called createdAt=\(payload.createdAt)")
-    #endif
+        #if DEBUG
+        print("[HW] addImportedToHistory called createdAt=\(payload.createdAt)")
+        #endif
 
-        guard let d = parseISO(payload.createdAt) else {
-    #if DEBUG
-            print("[HW] createdAt parse failed: \(payload.createdAt)")
-    #endif
-            return
-        }
+        // ✅ 履歴日付は「生徒が取り込んだ日」
+        let now = Date()
 
         let p = PosPair(rawValue: payload.pair) ?? currentPair
-        logNowIfNeeded(date: d, status: .active, pair: p, wordsCount: payload.totalCount)
+        logNowIfNeeded(date: now, status: .active, pair: p, wordsCount: payload.totalCount)
     }
  
-    
     func isAlreadyImported(payload: HomeworkExportPayload) -> Bool {
         // ✅ 取得済み集合で判定（複数OK）
         if importedIDs.contains(payload.id) { return true }
@@ -394,13 +405,7 @@ final class HomeworkState: ObservableObject {
 // MARK: - 宿題用デッキの取得
 extension HomeworkState {
 
-    /// 品詞ごとの宿題用デッキを返す
-    /// - ポイント
-    ///   - HomeworkStore にある単語だけを使う（learned は“出題履歴”とは切り離す）
-    ///   - 1 サイクル中は cachedHomework に固定しておく
-    ///   - 最大で weeklyQuota[pos] 語（デフォルト 12 語）
-    
-    // ✅ 外（WeeklySetView）から呼べるように private を外す
+    // ✅ 外（WeeklySetView）から呼べるように public（= private外す）
     func requestRestoreFixedPackIfNeeded() {
 
         // すでにキャッシュがあるなら何もしない
@@ -413,22 +418,48 @@ extension HomeworkState {
         // ✅ “いまの描画ターン”では更新しない（Publish警告を避ける）
         Task { @MainActor in
             await Task.yield()
-            self.restoreFixedPackIfNeeded()   // ← cachedHomework を更新してOK
+            self.restoreFixedPackIfNeeded()
         }
     }
-    
+
     private func restoreFixedPackIfNeeded() {
         if let payload = HomeworkPackStore.shared.load(
             cycleIndex: currentCycleIndex,
             pair: currentPair
         ) {
+            // ここで cachedHomework が埋まる想定
             applyImportedPayload(payload)
         }
     }
-    
+
+    // ✅ 「固定パックがまだ無い」ケースでも、1回だけ作って保存→次回起動で復元されるようにする
+    private func requestBuildFixedPackIfNeeded() {
+
+        // すでにキャッシュがあるなら不要
+        if !cachedHomework.isEmpty { return }
+
+        // 多重実行防止
+        guard !buildRequested else { return }
+        buildRequested = true
+
+        Task { @MainActor in
+            await Task.yield()
+
+            // buildOrLoadFixedPack が「無ければ作って保存」する想定
+            let payload = HomeworkPackStore.shared.buildOrLoadFixedPack(
+                hw: self,
+                requiredCount: 10,
+                totalCount: 24
+            )
+
+            // これで cachedHomework が埋まる想定
+            applyImportedPayload(payload)
+        }
+    }
+
     func homeworkWords(for pos: PartOfSpeech) -> [WordCard] {
 
-        // ✅ まず「固定パック（Import済 / 保存済）」を復元する必要があれば復元
+        // ✅ まず復元を試す（保存済みがあればここで復活する）
         requestRestoreFixedPackIfNeeded()
 
         // ✅ すでに今サイクルぶんが決まっていれば、それをそのまま返す（サイクル中は固定）
@@ -436,41 +467,20 @@ extension HomeworkState {
             return cached
         }
 
-        // ✅ この品詞の目標数（デフォルト 12）
-        let quota = weeklyQuota[pos] ?? 12
+        // ✅ 保存済みが無い場合は「作って保存」を1回だけ走らせる
+        requestBuildFixedPackIfNeeded()
 
-        // ✅ HomeworkStore から、その品詞のカード一覧を取得
-        let allCards = HomeworkStore.shared.list(for: pos)
-
-        // ✅ 単語が 0 のときの安全策
-        guard !allCards.isEmpty else {
-            cachedHomework[pos] = []
-            return []
-        }
-
-        // ✅ 選ぶ
-        let chosen: [WordCard]
-        if allCards.count <= quota {
-            chosen = allCards
-        } else {
-            // 🔹ポイント：ランダムに並べ替えて先頭から quota だけ取る
-            chosen = Array(allCards.shuffled().prefix(quota))
-        }
-
-        // ✅ 今サイクルのキャッシュとして保持（サイクル中は固定）
-        cachedHomework[pos] = chosen
-        return chosen
+        // ✅ まだ埋まってない描画ターンは空で返す（@Published があるので後で埋まったら画面が更新される）
+        return cachedHomework[pos] ?? []
     }
-    
+
     // ✅ “今サイクル”のキャッシュを全部捨てる（確実に効く版）
     func clearCachedHomeworkAll() {
         cachedHomework.removeAll()
+        restoreRequested = false
+        buildRequested = false
     }
-    // ✅ 今サイクルのキャッシュ（名詞+形容詞 or 動詞+副詞）だけ捨てる
-   
-    
 }
-
 
 
 extension HomeworkState {
@@ -598,12 +608,9 @@ extension HomeworkState {
             
             self.uiTick += 1
 
-            // ✅ サイクル開始日を「取り込み日」ではなく「先生の書き出し日」に寄せる
-            if let d = self.parseISO(payload.createdAt) {
-                self.cycleStartDate = d
-            } else {
-                self.cycleStartDate = Date() // パース失敗時の保険
-            }
+            // ✅ サイクル開始日は「取り込んだ日」にする（運用的に自然）
+            // ※payload.createdAt は履歴表示などで別に使う
+            self.cycleStartDate = Date()
 
             var byPos: [PartOfSpeech: [WordCard]] = [:]
             for it in payload.items {
