@@ -117,18 +117,19 @@ struct HomeworkBanner: View {
             .buttonStyle(.plain)
             .frame(width: leftColWidth, alignment: .leading)
 
-            cycleLengthCapsule
+            // ✅ ここを置き換え
+                    cycleLengthCapsule
 
-            if teacher.unlocked {
-                exportButton
-                #if DEBUG
-                clearButton
-                #endif
+                    if teacher.unlocked {
+                        exportButton
+                        #if DEBUG
+                        clearButton
+                        #endif
+                    }
+
+                    Spacer()
+                }
             }
-
-            Spacer()
-        }
-    }
     
     @ViewBuilder
     private var cycleLengthCapsule: some View {
@@ -137,11 +138,18 @@ struct HomeworkBanner: View {
                 Button("1週間") { hw.daysPerCycle = 7 }
                 Button("2週間") { hw.daysPerCycle = 14 }
             } label: {
-                // 見た目を既存の pill に合わせる（おすすめ）
-                pill(hw.cycleLengthLabel)
+                Text(hw.cycleLengthLabel)
+                    .font(.headline)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(.ultraThinMaterial, in: Capsule())
             }
         } else {
-            pill(hw.cycleLengthLabel)
+            Text(hw.cycleLengthLabel)
+                .font(.headline)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .background(.ultraThinMaterial, in: Capsule())
         }
     }
 
@@ -190,29 +198,48 @@ struct HomeworkBanner: View {
         .accessibilityLabel("今回分の固定パックを消す（先生）")
     }
 
+    @ViewBuilder
     private var thirdRow: some View {
-        HStack(spacing: 8) {
-            ToggleButton(title: "▶︎ 宿題あり",
-                         isOn: hw.status == .active,
-                         onTap: { hw.setActive() },
-                         color: .green)
-
-            ToggleButton(title: "⏸ ストップ",
-                         isOn: hw.status == .paused,
-                         onTap: { hw.setPaused() },
-                         color: .orange)
-
-            ToggleButton(title: "⛔️ 宿題なし",
-                         isOn: hw.status == .none,
-                         onTap: { hw.setNone() },
-                         color: .red)
-
-            Spacer()
-
-            Button("＋1週延長") { hw.extendOneWeek() }
-                .buttonStyle(.bordered)
-                .tint(.primary)
+        HStack(spacing: 10) {
+            ToggleButton(
+                title: "▶︎ 宿題あり",
+                isOn: hw.status == .active,
+                onTap: { hw.setActive() },
+                color: .green
+            )
+            
+            ToggleButton(
+                title: "⏸ ストップ",
+                isOn: hw.status == .paused,
+                onTap: { hw.setPaused() },
+                color: .orange
+            )
+            
+            ToggleButton(
+                title: "⛔️ 宿題なし",
+                isOn: hw.status == .none,
+                onTap: { hw.setNone() },
+                color: .red
+            )
+            
+            Button("+1週延長") {
+                guard teacher.unlocked else { return }   // ←薄くしない保険
+                hw.extendOneWeek()
+            }
+            .buttonStyle(.borderedProminent) // これは固定でOK
+            .tint(hw.isExtended ? Color.yellow.opacity(0.85) : Color.gray.opacity(0.25))
+            .foregroundColor(hw.isExtended ? .black : .primary)
+            .overlay(alignment: .trailing) {
+                if let t = hw.extensionLabel {
+                    Text(t)
+                        .font(.caption2)
+                        .foregroundStyle(.blue)
+                        .padding(.leading, 8)
+                        .offset(x: 6, y: 0)
+                }
+            }
         }
+        .allowsHitTesting(teacher.unlocked)  // ←生徒は“反応ゼロ”
     }
     
     private func pill(_ t: String) -> some View {

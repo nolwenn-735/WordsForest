@@ -97,6 +97,11 @@ struct HomeworkEntry: Identifiable, Codable,Hashable {
 final class HomeworkState: ObservableObject {
     // 設定
     @AppStorage("hw_daysPerCycle") var daysPerCycle: Int = 7
+    // 当初の設定（先生が「今回は1週/2週」って決めた値）
+    @AppStorage("hw_baseDaysPerCycle") private var baseDaysPerCycle: Int = 7
+
+    // 延長した週数（0,1,2...）
+    @AppStorage("hw_extensionWeeks") private var extensionWeeks: Int = 0
     @AppStorage("hw_paused") var paused: Bool = false
     // ✅ 自動サイクル更新をするか（あなたの運用では false 推奨）
     @AppStorage("hw_autoAdvanceByDate") private var autoAdvanceByDate: Bool = false
@@ -214,18 +219,32 @@ final class HomeworkState: ObservableObject {
         }
     }
     
-    // 起動/HOME 表示時に呼ぶ
+    // ✅ 方針：日数経過で自動的に新パックへ進めない
+    // 宿題は「先生が明示操作」した時だけ変わる
+    
     func refresh(now: Date = Date()) {
-        // ✅ 方針：日数経過で自動的に新パックへ進めない
-        // 宿題は「取り込み」か「先生が明示操作」した時だけ変わる
-
-        // 宿題なし or 停止なら何もしない（これはそのまま）
+        
+            #if DEBUG
+            print("extensionWeeks =", extensionWeeks,
+                  "baseDaysPerCycle =", baseDaysPerCycle,
+                  "daysPerCycle =", daysPerCycle)
+            #endif
+            
         guard status != .none else { return }
         guard !paused && status != .paused else { return }
 
-        // ✅ ここで elapsed を見て advanceCycle しない
-        // let elapsed = ...
-        // if elapsed >= daysPerCycle { advanceCycle(from: now) }
+        // ✅ あなたの運用：自動更新しない
+        guard autoAdvanceByDate else { return }
+
+        let elapsed = Calendar.current.dateComponents([.day], from: cycleStartDate, to: now).day ?? 0
+        if elapsed >= daysPerCycle {
+            advanceCycle(from: now)
+        }
+    }
+    
+    func resetExtension() {
+        extensionWeeks = 0
+        daysPerCycle = baseDaysPerCycle
     }
     
     func advanceCycle(from now: Date = Date()) {
@@ -249,11 +268,45 @@ final class HomeworkState: ObservableObject {
         logNow(now) // サイクル切替も履歴に刻む
     }
 
+    // 表示用：当初の「1週間/2週間」
+    var baseCycleLengthLabel: String {
+        switch baseDaysPerCycle {
+        case 7:  return "1週間"
+        case 14: return "2週間"
+        default:
+            if baseDaysPerCycle % 7 == 0 { return "\(baseDaysPerCycle / 7)週間" }
+            return "\(baseDaysPerCycle)日"
+        }
+    }
+
+    // 表示用：延長が入ってるときだけ出す
+    var extensionLabel: String? {
+        extensionWeeks > 0 ? "+\(extensionWeeks)週延長" : nil
+    }
+
+    var isExtended: Bool { extensionWeeks > 0 }
+    
+    // 先生が当初設定を切り替える（延長はリセット）
+    func setBaseDaysPerCycle(_ days: Int) {
+        
+       #if DEBUG
+       print("setBaseDaysPerCycle called ->", days, " (reset extension)")
+       #endif
+        baseDaysPerCycle = days
+        extensionWeeks = 0
+        daysPerCycle = days
+    }
+    
+    // 先生が「＋1週延長」を押した
+    func extendOneWeek() {
+        extensionWeeks += 1
+        daysPerCycle = baseDaysPerCycle + extensionWeeks * 7
+    }
     // 操作系（ワンタップ）
     func setActive() { status = .active; paused = false }
     func setPaused() { status = .paused; paused = true }
     func setNone()   { status = .none;   paused = false }
-    func extendOneWeek() { daysPerCycle = 14 } // “今回だけ”にしたければ advanceCycle() 時に 7 に戻す処理を追加
+    
 
     // 起点色の参照（WordCardPageへ）
     func variantIndex(for pos: PartOfSpeech) -> Int {
@@ -605,6 +658,9 @@ extension HomeworkState {
             self.daysPerCycle = payload.daysPerCycle
             self.pairIndex = payload.pair
             self.cycleIndex = payload.cycleIndex
+            self.baseDaysPerCycle = payload.daysPerCycle
+            self.extensionWeeks = 0
+            self.daysPerCycle = payload.daysPerCycle
             
             self.uiTick += 1
 
