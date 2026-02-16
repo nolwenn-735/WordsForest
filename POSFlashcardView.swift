@@ -189,7 +189,7 @@ struct POSFlashcardView: View {
         // 例文（ExampleStore は [ExampleEntry] を返す）
         let ex = ExampleStore.shared.firstExample(pos: c.pos, word: c.word)
         let examples: [ExampleEntry] = ex.map { [$0] } ?? []
-        let note = ex?.note ?? ""
+        let note = ExampleStore.shared.wordNote(pos: c.pos, word: c.word)
         
         // 不規則動詞なら 3 形を表示＆読み上げ対象に
         let isVerb = (c.pos == .verb)

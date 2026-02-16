@@ -1,5 +1,5 @@
 //
-//  ExampleStore.swift
+//  ExampleStore.swift 2026/02/16全置換版
 //  WordsForest
 //
 import Foundation
@@ -12,11 +12,19 @@ final class ExampleStore: ObservableObject {
     /// key = "pos|word|meaning" → [ExampleEntry]
     @Published private(set) var examples: [String: [ExampleEntry]] = [:]
 
+    /// ✅ 単語ノート（meaningに依存しない）
+    /// key = "pos|word" → note
+    @Published private(set) var wordNotes: [String: String] = [:]
+
     private let key = "example_store_v2"
+    private let notesKey = "word_notes_v1"
 
-    private init() { load() }
+    private init() {
+        load()
+        loadNotes()
+    }
 
-    // MARK: - Key
+    // MARK: - Normalize / Key
 
     private func normWord(_ s: String) -> String {
         s.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
@@ -30,13 +38,29 @@ final class ExampleStore: ObservableObject {
         "\(pos.rawValue)|\(normWord(word))|\(normMeaning(meaning))"
     }
 
+    private func makeWordKey(pos: PartOfSpeech, word: String) -> String {
+        "\(pos.rawValue)|\(normWord(word))"
+    }
+
     // MARK: - CRUD（意味ごと）
 
     /// 1 meaning = 1例文（上書き）
-    func saveExample(pos: PartOfSpeech, word: String, meaning: String, en: String, ja: String?, note: String?) {
+    /// ✅ noteは「単語ノート」に寄せる（meaning分裂させない）
+    func saveExample(pos: PartOfSpeech,
+                     word: String,
+                     meaning: String,
+                     en: String,
+                     ja: String?,
+                     note: String?) {
+
         let k = makeKey(pos: pos, word: word, meaning: meaning)
-        examples[k] = [ExampleEntry(en: en, ja: ja, note: note)]
+
+        // 例文はmeaningごとに保存（ExampleEntry.noteは使わない）
+        examples[k] = [ExampleEntry(en: en, ja: ja, note: nil)]
         save()
+
+        // noteは単語単位で保存
+        saveWordNote(pos: pos, word: word, note: note)
     }
 
     func removeExample(pos: PartOfSpeech, word: String, meaning: String) {
@@ -64,8 +88,26 @@ final class ExampleStore: ObservableObject {
         return nil
     }
 
-  
-    // MARK: - Save / Load
+    // MARK: - ✅ 単語ノート（wordNotes）
+
+    func saveWordNote(pos: PartOfSpeech, word: String, note: String?) {
+        let k = makeWordKey(pos: pos, word: word)
+        let trimmed = (note ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if trimmed.isEmpty {
+            wordNotes.removeValue(forKey: k)
+        } else {
+            wordNotes[k] = trimmed
+        }
+        saveNotes()
+    }
+
+    /// 空なら "" を返す（UI側が楽）
+    func wordNote(pos: PartOfSpeech, word: String) -> String {
+        wordNotes[makeWordKey(pos: pos, word: word)] ?? ""
+    }
+
+    // MARK: - Save / Load（examples）
 
     private func save() {
         if let data = try? JSONEncoder().encode(examples) {
@@ -80,8 +122,24 @@ final class ExampleStore: ObservableObject {
             examples = decoded
         }
     }
-}
 
+    // MARK: - Save / Load（wordNotes）
+
+    private func saveNotes() {
+        if let data = try? JSONEncoder().encode(wordNotes) {
+            UserDefaults.standard.set(data, forKey: notesKey)
+            // 表示更新したいなら同じ通知でOK
+            NotificationCenter.default.post(name: .examplesDidChange, object: nil)
+        }
+    }
+
+    private func loadNotes() {
+        if let data = UserDefaults.standard.data(forKey: notesKey),
+           let decoded = try? JSONDecoder().decode([String: String].self, from: data) {
+            wordNotes = decoded
+        }
+    }
+}
 
 extension Notification.Name {
     static let examplesDidChange = Notification.Name("examplesDidChange")

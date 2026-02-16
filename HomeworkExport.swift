@@ -33,7 +33,7 @@ struct HomeworkExportCard: Codable, Hashable {
 
     // v1互換（任意）
     var example: HomeworkExportExample?
-
+    var note: String? = nil   // ✅ 追加（単語ノート：単語単位で1つ）
     // ✅ v2本命：meaningごとの例文（キーが無い古いJSONでもデコードできるようデフォルト空配列）
     var examplesByMeaning: [HomeworkExportExampleByMeaning] = []
 }
