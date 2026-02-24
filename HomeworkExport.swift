@@ -310,9 +310,10 @@ final class HomeworkPackStore {
             }
 
             // ✅ 単語ノート（全体）
+            // ✅ 単語ノート（全体）
             let note: String? = {
-                let n = (ExampleStore.shared.wordNote(pos: c.pos, word: c.word))
-                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                let raw = ExampleStore.shared.wordNote(pos: c.pos, word: c.word)
+                let n = raw.trimmingCharacters(in: .whitespacesAndNewlines)
                 return n.isEmpty ? nil : n
             }()
             // v1互換：代表例文を1つだけ入れるなら先頭meaning
@@ -434,9 +435,8 @@ extension HomeworkPackStore {
             if let nRaw = item.note {
                 let n = nRaw.trimmingCharacters(in: .whitespacesAndNewlines)
                 if !n.isEmpty {
-                    let existing = (ExampleStore.shared.wordNote(pos: pos, word: item.word))
-                        .trimmingCharacters(in: .whitespacesAndNewlines)
-
+                    let existingRaw = ExampleStore.shared.wordNote(pos: pos, word: item.word)
+                    let existing = existingRaw.trimmingCharacters(in: .whitespacesAndNewlines)
                     // preferPayload=true: 常にpayloadで上書き
                     // preferPayload=false: 既存が空なら入れる
                     if preferPayload || existing.isEmpty {

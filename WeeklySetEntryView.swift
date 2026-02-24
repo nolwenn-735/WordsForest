@@ -19,9 +19,13 @@ struct WeeklySetEntryView: View {
             pair: pair
         )
 
-        // ✅ PosPair → PartOfSpeech を取り出す（posA/posB は無いので parts を使う）
+        // ✅ 表示（今回分）は引数 pair のまま
         let parts = pair.parts
 
+        // ✅ 先生の「編集」は “次回分” を編集したいので nextPair を作る
+        let nextPair = pair.next
+        let nextParts = nextPair.parts
+        
         return Group {
             if let payload {
                 // ✅ 取り込み済み：payloadから「カード画面」へ行けるUI
@@ -56,11 +60,11 @@ struct WeeklySetEntryView: View {
             if teacher.unlocked {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
-                        HomeworkSetEditorView(posA: parts[0], posB: parts[1])
+                        HomeworkSetEditorView(posA: nextParts[0], posB: nextParts[1])
                             .environmentObject(hw)
                             .environmentObject(teacher)
                     } label: {
-                        Text("編集")
+                        Text("編集（次回）")
                     }
                 }
             }

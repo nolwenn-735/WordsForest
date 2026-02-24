@@ -39,10 +39,24 @@ struct HomeworkBanner: View {
             }
             .alert("固定パックを消しますか？", isPresented: $showClearConfirm) {
                 Button("消す", role: .destructive) {
+
+                    #if DEBUG
+                    print("🧹 clear pack (DEBUG) cycle=\(hw.currentCycleIndex) pair=\(hw.currentPair.rawValue)")
+                    #endif
+
                     HomeworkPackStore.shared.clear(
                         cycleIndex: hw.currentCycleIndex,
                         pair: hw.currentPair
                     )
+                    print("✅ cleared pack")
+
+                    // ✅ HomeworkState 側のキャッシュも全部捨てる
+                    hw.clearCachedHomeworkAll()
+                    print("✅ cleared cachedHomework(all)")
+
+                    // ✅ 既存の refresh は残してOK
+                    hw.refresh()
+                    
                     print("✅ cleared pack")
 
                     // ✅ 追加：HomeworkState 側のキャッシュも全部捨てる
@@ -157,21 +171,24 @@ struct HomeworkBanner: View {
         Button {
             print("✅ EXPORT BUTTON TAP")
 
-            let payload = HomeworkPackStore.shared.buildOrLoadFixedPack(
-                hw: hw,
-                requiredCount: 10,
-                totalCount: 24
-            )
+            do {
+                let result = try HomeworkExportFile.makeCurrentHomeworkJSONData(
+                    hw: hw,
+                    requiredCount: 10,
+                    totalCount: 24
+                )
 
-            print("items count:", payload.items.count)
-            let firstJA = payload.items.first?.example?.ja
-            print("JA EXAMPLE:", firstJA ?? "nil")
+                let json = String(data: result.data, encoding: .utf8) ?? "{}"
+                exportDoc = JSONTextDocument(text: json)
+                exportFileName = HomeworkExportFile.makeFileName(for: result.payload)
+                exportErrorMessage = nil
+                showingExporter = true
 
-            let json = HomeworkPackStore.shared.makePrettyJSONString(payload)
-            exportDoc = JSONTextDocument(text: json)
-            exportFileName = HomeworkExportFile.makeFileName(for: payload)
-            exportErrorMessage = nil
-            showingExporter = true
+            } catch {
+                exportErrorMessage = "JSON生成失敗: \(error.localizedDescription)"
+                print("❌ export error:", error)
+            }
+
         } label: {
             Label("書き出し", systemImage: "square.and.arrow.down")
                 .font(.caption2)

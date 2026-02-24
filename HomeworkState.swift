@@ -6,12 +6,14 @@
 // HomeworkState.swift
 import SwiftUI
 
-// CEFR レベル（必要なら別ファイルでもOK）
 enum CEFRLevel: String, CaseIterable, Hashable {
     case A1, A2, B1, B2, C1, C2
 }
 
-// 既存の PosPair に、対応する品詞配列を返すヘルパー
+enum HomeworkStatus: String, Codable { case active, paused, none }
+enum PosPair: Int, Codable { case nounAdj = 0, verbAdv = 1 }
+
+// ✅ PosPair を宣言した「後」に extension を置く
 extension PosPair {
     var parts: [PartOfSpeech] {
         switch self {
@@ -19,7 +21,9 @@ extension PosPair {
         case .verbAdv: return [.verb, .adv]
         }
     }
-    // 追加：表示名
+
+    var next: PosPair { self == .nounAdj ? .verbAdv : .nounAdj }
+
     var jaTitle: String {
         switch self {
         case .nounAdj: return "名詞＋形容詞"
@@ -27,8 +31,6 @@ extension PosPair {
         }
     }
 }
-enum HomeworkStatus: String, Codable { case active, paused, none }
-enum PosPair: Int, Codable { case nounAdj = 0, verbAdv = 1 }
 
 struct HomeworkEntry: Identifiable, Codable,Hashable {
     var id: UUID
