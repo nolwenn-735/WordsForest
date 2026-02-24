@@ -292,12 +292,12 @@ final class HomeworkPackStore {
 
         // JSON化
         let items: [HomeworkExportCard] = final.map { c in
+
             // meanings（複数）それぞれに例文を付ける
             let examplesByMeaning: [HomeworkExportExampleByMeaning] = c.meanings.compactMap { meaning in
                 let m = meaning.trimmingCharacters(in: .whitespacesAndNewlines)
                 guard !m.isEmpty else { return nil }
 
-                // meaning指定を優先して取得
                 let ex = ExampleStore.shared.firstExample(pos: c.pos, word: c.word, meaning: m)
                 guard let ex else { return nil }
 
@@ -309,6 +309,12 @@ final class HomeworkPackStore {
                 )
             }
 
+            // ✅ 単語ノート（全体）
+            let note: String? = {
+                let n = (ExampleStore.shared.wordNote(pos: c.pos, word: c.word))
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                return n.isEmpty ? nil : n
+            }()
             // v1互換：代表例文を1つだけ入れるなら先頭meaning
             let fallbackExample: HomeworkExportExample? = {
                 let m0 = (c.meanings.first ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
@@ -324,10 +330,10 @@ final class HomeworkPackStore {
                 meanings: c.meanings,
                 required: HomeworkStore.shared.isRequired(c),
                 example: fallbackExample,
+                note: note,                         // ✅ ここが差分
                 examplesByMeaning: examplesByMeaning
             )
         }
-
         let id = "\(createdAt.prefix(10))-words-cycle\(cycle)-pair\(pair.rawValue)"
 
         let payload = HomeworkExportPayload(
@@ -397,7 +403,14 @@ extension HomeworkPackStore {
     }
 
     /// 生徒が受け取ったJSON（HomeworkExportPayload）を取り込み、今サイクルの固定セットとして保存する
-    func importHomeworkPayload(_ payload: HomeworkExportPayload, hw: HomeworkState) throws {
+    /// - Parameter preferPayload:
+    ///   true  → payloadを常に優先（既存があっても上書き）
+    ///   false → 既存が空のときだけ入れる（おすすめデフォルト）
+    func importHomeworkPayload(
+        _ payload: HomeworkExportPayload,
+        hw: HomeworkState,
+        preferPayload: Bool = false
+    ) throws {
 
         guard let pair = PosPair(rawValue: payload.pair) else {
             throw ImportError.invalidPair(payload.pair)
@@ -411,41 +424,96 @@ extension HomeworkPackStore {
             save(payload, cycleIndex: hw.currentCycleIndex, pair: hw.currentPair)
         }
 
-        // ✅ payload内の例文を ExampleStore に反映（v2優先、v1も救済）
+        // ✅ payload内の「例文 + 単語ノート」を ExampleStore に反映（v2優先、v1も救済）
         for item in payload.items {
             guard let pos = PartOfSpeech(rawValue: item.pos) else { continue }
 
-            // --- v2: meaningごとの例文 ---
+            // -------------------------------------------------------
+            // A) 単語ノート（全体）: HomeworkExportCard.note → ExampleStore.wordNote
+            // -------------------------------------------------------
+            if let nRaw = item.note {
+                let n = nRaw.trimmingCharacters(in: .whitespacesAndNewlines)
+                if !n.isEmpty {
+                    let existing = (ExampleStore.shared.wordNote(pos: pos, word: item.word))
+                        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+                    // preferPayload=true: 常にpayloadで上書き
+                    // preferPayload=false: 既存が空なら入れる
+                    if preferPayload || existing.isEmpty {
+                        ExampleStore.shared.saveWordNote(pos: pos, word: item.word, note: n)
+                    }
+                }
+            }
+
+            // -------------------------------------------------------
+            // B) v2: meaningごとの例文（examplesByMeaning）
+            // -------------------------------------------------------
             if !item.examplesByMeaning.isEmpty {
                 for ex in item.examplesByMeaning {
                     let meaning = ex.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
                     guard !meaning.isEmpty else { continue }
 
-                    ExampleStore.shared.saveExample(
-                        pos: pos,
-                        word: item.word,
-                        meaning: meaning,
-                        en: ex.en,
-                        ja: ex.ja,
-                        note: ex.note
-                    )
+                    let enT = ex.en.trimmingCharacters(in: .whitespacesAndNewlines)
+                    let jaT = (ex.ja ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+
+                    // payload側が空なら触らない（削除はしない運用）
+                    let incomingHasAny = !enT.isEmpty || !jaT.isEmpty
+                    guard incomingHasAny else { continue }
+
+                    let existingEx = ExampleStore.shared.firstExample(pos: pos, word: item.word, meaning: meaning)
+                    let existingHasAny: Bool = {
+                        guard let e = existingEx else { return false }
+                        let eEn = e.en.trimmingCharacters(in: .whitespacesAndNewlines)
+                        let eJa = (e.ja ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+                        return !eEn.isEmpty || !eJa.isEmpty
+                    }()
+
+                    if preferPayload || !existingHasAny {
+                        ExampleStore.shared.saveExample(
+                            pos: pos,
+                            word: item.word,
+                            meaning: meaning,
+                            en: enT,
+                            ja: jaT.isEmpty ? nil : jaT,
+                            note: nil   // ✅ noteは単語全体に集約
+                        )
+                    }
                 }
                 continue
             }
 
-            // --- v1救済: example が1個だけある場合 ---
+            // -------------------------------------------------------
+            // C) v1救済: example が1個だけある場合（先頭meaningに紐づけ）
+            // -------------------------------------------------------
             if let ex1 = item.example {
-                let meaning = (item.meanings.first ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+                let meaning = (item.meanings.first ?? "")
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
                 guard !meaning.isEmpty else { continue }
 
-                ExampleStore.shared.saveExample(
-                    pos: pos,
-                    word: item.word,
-                    meaning: meaning,
-                    en: ex1.en,
-                    ja: ex1.ja,
-                    note: ex1.note
-                )
+                let enT = ex1.en.trimmingCharacters(in: .whitespacesAndNewlines)
+                let jaT = (ex1.ja ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+
+                let incomingHasAny = !enT.isEmpty || !jaT.isEmpty
+                guard incomingHasAny else { continue }
+
+                let existingEx = ExampleStore.shared.firstExample(pos: pos, word: item.word, meaning: meaning)
+                let existingHasAny: Bool = {
+                    guard let e = existingEx else { return false }
+                    let eEn = e.en.trimmingCharacters(in: .whitespacesAndNewlines)
+                    let eJa = (e.ja ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+                    return !eEn.isEmpty || !eJa.isEmpty
+                }()
+
+                if preferPayload || !existingHasAny {
+                    ExampleStore.shared.saveExample(
+                        pos: pos,
+                        word: item.word,
+                        meaning: meaning,
+                        en: enT,
+                        ja: jaT.isEmpty ? nil : jaT,
+                        note: nil
+                    )
+                }
             }
         }
 

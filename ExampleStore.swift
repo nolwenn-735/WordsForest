@@ -144,3 +144,156 @@ final class ExampleStore: ObservableObject {
 extension Notification.Name {
     static let examplesDidChange = Notification.Name("examplesDidChange")
 }
+
+// =======================================================
+// MARK: - Import merge（宿題JSON → ExampleStore 反映）
+// =======================================================
+
+extension ExampleStore {
+
+    /// 宿題JSONに含まれる「例文」「単語ノート」を ExampleStore に取り込む
+    /// - preferPayload: true なら payload を優先して上書き（空のときは上書きしない）
+    func mergeImportedPayload(_ payload: HomeworkExportPayload, preferPayload: Bool = true) {
+
+        func trim(_ s: String?) -> String {
+            (s ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+
+        for item in payload.items {
+            guard let pos = PartOfSpeech(rawValue: item.pos) else { continue }
+
+            // ---------------------------
+            // ① 単語ノート（全体）
+            // ---------------------------
+            let incomingNote = trim(item.note)
+
+            if !incomingNote.isEmpty {
+                // ⚠️ ここは ExampleStore.wordNote の戻り型に合わせてどちらかにしてね：
+                // A) wordNote が String? の場合:
+                // let existing = trim(self.wordNote(pos: pos, word: item.word))
+                //
+                // B) wordNote が String の場合（いま ExampleEditorView 側のエラー的にこっちっぽい）:
+                let existing = self.wordNote(pos: pos, word: item.word).trimmingCharacters(in: .whitespacesAndNewlines)
+
+                if preferPayload || existing.isEmpty {
+                    self.saveWordNote(pos: pos, word: item.word, note: incomingNote)
+                }
+            }
+
+            // ---------------------------
+            // ② 例文（v2: meaningごと）
+            // ---------------------------
+            if !item.examplesByMeaning.isEmpty {
+                for ex in item.examplesByMeaning {
+                    mergeOneExample(
+                        pos: pos,
+                        word: item.word,
+                        meaning: ex.meaning,
+                        en: ex.en,
+                        ja: ex.ja,
+                        note: ex.note,
+                        preferPayload: preferPayload
+                    )
+                }
+                continue
+            }
+
+            // ---------------------------
+            // ③ v1救済（代表例文が1個だけ）
+            // ---------------------------
+            if let ex1 = item.example {
+                let m0 = trim(item.meanings.first)
+                guard !m0.isEmpty else { continue }
+
+                mergeOneExample(
+                    pos: pos,
+                    word: item.word,
+                    meaning: m0,
+                    en: ex1.en,
+                    ja: ex1.ja,
+                    note: ex1.note,
+                    preferPayload: preferPayload
+                )
+            }
+        }
+    }
+
+    // 1 meaning の例文を「上書き or 空だけ補完」で取り込む
+    private func mergeOneExample(
+        pos: PartOfSpeech,
+        word: String,
+        meaning: String,
+        en: String,
+        ja: String?,
+        note: String?,
+        preferPayload: Bool
+    ) {
+        func trim(_ s: String?) -> String {
+            (s ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+
+        let m = trim(meaning)
+        guard !m.isEmpty else { return }
+
+        let enT = trim(en)
+        let jaT = trim(ja)
+        let noteT = trim(note)
+
+        // payload が空なら「削除」扱いにはしない（既存を守る）
+        let incomingHasAny = !enT.isEmpty || !jaT.isEmpty || !noteT.isEmpty
+        guard incomingHasAny else { return }
+
+        let existing = self.firstExample(pos: pos, word: word, meaning: m)
+
+        // 既存が無い or 既存が空っぽ なら必ず入れる
+        if existing == nil {
+            self.saveExample(
+                pos: pos,
+                word: word,
+                meaning: m,
+                en: enT,
+                ja: jaT.isEmpty ? nil : jaT,
+                note: noteT.isEmpty ? nil : noteT
+            )
+            return
+        }
+
+        // 既存がある場合：
+        // preferPayload=true なら payload で上書き（ただし payload が空のフィールドは消さない）
+        if preferPayload, let ex = existing {
+            let finalEn = enT.isEmpty ? ex.en : enT
+            let finalJa = jaT.isEmpty ? ex.ja : jaT
+            let finalNote = noteT.isEmpty ? ex.note : noteT
+
+            self.saveExample(
+                pos: pos,
+                word: word,
+                meaning: m,
+                en: finalEn,
+                ja: (finalJa ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : finalJa,
+                note: (finalNote ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : finalNote
+            )
+            return
+        }
+
+        // preferPayload=false（既存優先）なら「空だけ補完」
+        if let ex = existing {
+            var finalEn = ex.en
+            var finalJa = ex.ja
+            var finalNote = ex.note
+
+            if trim(ex.en).isEmpty, !enT.isEmpty { finalEn = enT }
+            if trim(ex.ja).isEmpty, !jaT.isEmpty { finalJa = jaT }
+            if trim(ex.note).isEmpty, !noteT.isEmpty { finalNote = noteT }
+
+            self.saveExample(
+                pos: pos,
+                word: word,
+                meaning: m,
+                en: finalEn,
+                ja: trim(finalJa).isEmpty ? nil : finalJa,
+                note: trim(finalNote).isEmpty ? nil : finalNote
+            )
+        }
+    }
+}

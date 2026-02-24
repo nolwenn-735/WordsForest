@@ -114,7 +114,7 @@ struct ExampleEditorView: View {
 
     private func loadExisting() {
         // ✅ 単語ノート（全体）を読む
-        wordNoteText = ExampleStore.shared.wordNote(pos: pos, word: word) ?? ""
+        wordNoteText = ExampleStore.shared.wordNote(pos: pos, word: word) 
 
         // 既存 meaning を HomeworkStore から拾う（複数意味の“正”はここ）
         let meanings = HomeworkStore.shared.existingMeanings(for: word, pos: pos)

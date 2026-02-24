@@ -353,10 +353,13 @@ struct HomeworkRecentWidget: View {
                 return
             }
 
-            try HomeworkPackStore.shared.importHomeworkPayload(payload, hw: hw)
-
-            // ✅ 即反映
+            try HomeworkPackStore.shared.importHomeworkPayload(payload, hw: hw, preferPayload: true)
+            
+            // ✅ 即反映(宿題キャッシュ）
             hw.applyImportedPayload(payload)
+            // ✅ ここで「各品詞ストア」にも入れる（新規）
+            HomeworkStore.shared.mergeImportedPayload(payload)
+            // 履歴・重複取り込み管理
             hw.addImportedToHistory(payload: payload)
             hw.markImported(payload: payload)
 

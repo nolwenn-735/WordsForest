@@ -33,19 +33,26 @@ enum HomeworkExportFile {
         totalCount: Int = 24
     ) throws -> URL {
 
-        // ① 24語確定（既に確定済なら同じものが返る）
+        print("✅✅ exportCurrentHomework ENTER")
+        print("  cycleIndex =", hw.currentCycleIndex)
+        print("  pair =", hw.currentPair.rawValue)
+
         let payload = HomeworkPackStore.shared.buildOrLoadFixedPack(
             hw: hw,
             requiredCount: requiredCount,
             totalCount: totalCount
         )
 
-        // ② JSON(Data)へ（pretty）
-        let data = try makePrettyJSONData(payload)
+        print("✅✅ payload made")
+        print("  payload.createdAt =", payload.createdAt)
+        print("  payload.id =", payload.id)
+        print("  items count =", payload.items.count)
 
-        // ③ Filesへ保存
+        let data = try makePrettyJSONData(payload)
         let fileName = makeFileName(for: payload)
         let url = try saveToDocuments(data, fileName: fileName)
+
+        print("✅ EXPORT SAVED fileName=\(fileName)")
 
         return url
     }

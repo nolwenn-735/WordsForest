@@ -156,6 +156,26 @@ final class HomeworkStore: ObservableObject {
         // 追加（通知も飛ぶ）
         _ = add(word: c.word, meaning: meaning, pos: c.pos)
     }
+    
+    // 宿題で取り込んだ payload を「本体ストア(words)」へ upsert
+    func mergeImportedPayload(_ payload: HomeworkExportPayload) {
+        for it in payload.items {
+            // pos（Int）→ PartOfSpeech
+            guard let pos = PartOfSpeech(rawValue: it.pos) else { continue }
+
+            // meanings の先頭だけ store へ（いまの WordKey 方針と揃える）
+            let meaning = it.meanings.first?
+                .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            guard !meaning.isEmpty else { continue }
+
+            // すでに存在するなら何もしない
+            if exists(word: it.word, meaning: meaning, pos: pos) { continue }
+
+            // 追加（add() 側で save + 通知が飛ぶ想定）
+            _ = add(word: it.word, meaning: meaning, pos: pos)
+        }
+    }
+    
     // MARK: - WordKey 生成
 
     func key(for c: WordCard) -> WordKey {
@@ -335,7 +355,8 @@ final class HomeworkStore: ObservableObject {
                 examples: []                  // 例文は ExampleStore 側で合成する前提でOK
             )
         }
-            // MARK: - History restore helpers（HomeworkEntry.wordIDs 用）
+        
+        // MARK: - History restore helpers（HomeworkEntry.wordIDs 用）
 
             /// 保存済みIDから StoredWord を引く（代表ID用）
             func storedWord(for id: UUID) -> StoredWord? {

@@ -10,11 +10,11 @@ import Foundation
 enum SampleDeck {
     static func filtered(by pos: PartOfSpeech) -> [WordCard] {
         if let all = loadCSV(), !all.isEmpty {
-            return all.filter { $0.pos == pos }
+            let f = all.filter { $0.pos == pos }
+            return f.isEmpty ? builtin(by: pos) : f
         }
-        return builtin(by: pos) // ← いまのハードコードにフォールバック
+        return builtin(by: pos)
     }
-
     // ここに“いまの配列”をそのまま移植
     private static func builtin(by pos: PartOfSpeech) -> [WordCard] {
         switch pos {
@@ -22,7 +22,7 @@ enum SampleDeck {
             return [
                 
                 //week1
-                WordCard(word: "apple",  meaning: "りんご", pos: .noun),
+                WordCard(word: "appleTEST",  meaning: "りんご", pos: .noun),
                 WordCard(word: "river",  meaning: "川",    pos: .noun),
                 WordCard(word: "forest", meaning: "森",    pos: .noun),
                 WordCard(word: "music",  meaning: "音楽",  pos: .noun),
