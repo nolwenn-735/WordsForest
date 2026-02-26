@@ -11,6 +11,9 @@ struct HomeworkBanner: View {
     @EnvironmentObject var hw: HomeworkState
     @EnvironmentObject var teacher: TeacherMode
 
+    // 宿題編集（先生用）
+    @State private var showHomeworkEditPicker = false
+    @State private var editingTargetPair: PosPair? = nil
     // Filesへ書き出し用
     @State private var exportDoc: JSONTextDocument? = nil
     @State private var exportFileName: String = "homework.json"
@@ -70,6 +73,29 @@ struct HomeworkBanner: View {
             } message: {
                 Text("このサイクルの「今回分」固定パックを削除します。")
             }
+            .confirmationDialog(
+                "宿題編集",
+                isPresented: $showHomeworkEditPicker,
+                titleVisibility: .visible
+            ) {
+                Button("今回分を編集（\(hw.currentPair.jaTitle)）") {
+                    editingTargetPair = hw.currentPair
+                }
+                Button("次回分を編集（\(hw.currentPair.next.jaTitle)）") {
+                    editingTargetPair = hw.currentPair.next
+                }
+                Button("キャンセル", role: .cancel) { }
+            } message: {
+                Text("編集したい宿題セットを選んでください。")
+            }
+            .sheet(item: $editingTargetPair) { pair in
+                let parts = pair.parts
+                NavigationStack {
+                    HomeworkSetEditorView(posA: parts[0], posB: parts[1])
+                        .environmentObject(hw)
+                        .environmentObject(teacher)
+                }
+            }
     }
     
     private var bannerCard: some View {
@@ -117,7 +143,7 @@ struct HomeworkBanner: View {
     }
 
     private func secondRow(leftColWidth: CGFloat) -> some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 6) {
             Button {
                 teacher.showingUnlockSheet = true
             } label: {
@@ -131,19 +157,26 @@ struct HomeworkBanner: View {
             .buttonStyle(.plain)
             .frame(width: leftColWidth, alignment: .leading)
 
-            // ✅ ここを置き換え
-                    cycleLengthCapsule
+            cycleLengthCapsule
+                .layoutPriority(0.5)
 
-                    if teacher.unlocked {
-                        exportButton
-                        #if DEBUG
-                        clearButton
-                        #endif
-                    }
+            if teacher.unlocked {
+                HStack(spacing: 4) {
+                    homeworkEditButton
+                    exportButton
 
-                    Spacer()
+                    #if DEBUG
+                    clearButton
+                    #endif
                 }
+                .layoutPriority(1)
+
+                Spacer(minLength: 0)
+            } else {
+                Spacer(minLength: 0)
             }
+        }
+    }
     
     @ViewBuilder
     private var cycleLengthCapsule: some View {
@@ -154,19 +187,50 @@ struct HomeworkBanner: View {
             } label: {
                 Text(hw.cycleLengthLabel)
                     .font(.headline)
-                    .padding(.horizontal, 12)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.75)
+                    .allowsTightening(true)
+                    .frame(minWidth: 70)   // ← ここが効く（6.1対策）
+                    .padding(.horizontal, 10)
                     .padding(.vertical, 8)
                     .background(.ultraThinMaterial, in: Capsule())
+                    .foregroundStyle(.blue)
             }
+            .buttonStyle(.plain)
         } else {
             Text(hw.cycleLengthLabel)
                 .font(.headline)
-                .padding(.horizontal, 12)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+                .allowsTightening(true)
+                .frame(minWidth: 70)   // ← 生徒側も見た目合わせ
+                .padding(.horizontal, 10)
                 .padding(.vertical, 8)
                 .background(.ultraThinMaterial, in: Capsule())
         }
     }
 
+    private var homeworkEditButton: some View {
+        Button {
+            showHomeworkEditPicker = true
+        } label: {
+            VStack(spacing: 2) {
+                Image(systemName: "square.and.pencil")
+                    .font(.system(size: 13, weight: .semibold))
+                Text("宿題編集")
+                    .font(.system(size: 10.5, weight: .medium))
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
+                    .minimumScaleFactor(0.8)
+            }
+            .foregroundStyle(.teal)
+            .frame(width: 54, height: 54)   // ← export と揃える
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+    }
+    
     private var exportButton: some View {
         Button {
             print("✅ EXPORT BUTTON TAP")
@@ -190,11 +254,20 @@ struct HomeworkBanner: View {
             }
 
         } label: {
-            Label("書き出し", systemImage: "square.and.arrow.down")
-                .font(.caption2)
+            VStack(spacing: 2) {
+                Image(systemName: "square.and.arrow.down")
+                    .font(.system(size: 13, weight: .semibold))
+                Text("書き出し")
+                    .font(.system(size: 11, weight: .medium))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+            }
+            .foregroundStyle(.blue)
+            .frame(width: 54, height: 54)   // ←ここで固定
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
+            .contentShape(Rectangle())
         }
-        .buttonStyle(.bordered)
-        .tint(.blue)
+        .buttonStyle(.plain)
     }
 
     private var clearButton: some View {
@@ -204,11 +277,11 @@ struct HomeworkBanner: View {
         } label: {
             Image(systemName: "arrow.clockwise")
                 .font(.system(size: 16, weight: .semibold))
-                .padding(.horizontal, 10)
+                .padding(.horizontal, 8)
                 .padding(.vertical, 6)
                 .background(.ultraThinMaterial, in: Capsule())
                 .foregroundStyle(.secondary)
-                .frame(minWidth: 44, minHeight: 44)
+                .frame(width: 34, height: 34)
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -217,46 +290,57 @@ struct HomeworkBanner: View {
 
     @ViewBuilder
     private var thirdRow: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 8) {
             ToggleButton(
-                title: "▶︎ 宿題あり",
+                title: "▶︎宿題あり",
                 isOn: hw.status == .active,
                 onTap: { hw.setActive() },
                 color: .green
             )
-            
+
             ToggleButton(
-                title: "⏸ ストップ",
+                title: "⏸️ ストップ",
                 isOn: hw.status == .paused,
                 onTap: { hw.setPaused() },
                 color: .orange
             )
-            
+
             ToggleButton(
-                title: "⛔️ 宿題なし",
+                title: "⛔️宿題なし",
                 isOn: hw.status == .none,
                 onTap: { hw.setNone() },
                 color: .red
             )
-            
+
             Button("+1週延長") {
-                guard teacher.unlocked else { return }   // ←薄くしない保険
+                guard teacher.unlocked else { return }
                 hw.extendOneWeek()
             }
-            .buttonStyle(.borderedProminent) // これは固定でOK
-            .tint(hw.isExtended ? Color.yellow.opacity(0.85) : Color.gray.opacity(0.25))
-            .foregroundColor(hw.isExtended ? .black : .primary)
+            .font(.system(size: 14, weight: .semibold))
+            .lineLimit(1)
+            .minimumScaleFactor(0.78)
+            .frame(maxWidth: .infinity, minHeight: 56)
+            .padding(.horizontal, 8)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(hw.isExtended ? Color.yellow.opacity(0.85) : Color.gray.opacity(0.25))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(.black.opacity(0.15), lineWidth: 1)
+            )
+            .foregroundStyle(hw.isExtended ? .black : .primary)
             .overlay(alignment: .trailing) {
                 if let t = hw.extensionLabel {
                     Text(t)
                         .font(.caption2)
                         .foregroundStyle(.blue)
-                        .padding(.leading, 8)
-                        .offset(x: 6, y: 0)
+                        .padding(.trailing, 6)
+                        .offset(y: -16)
                 }
             }
         }
-        .allowsHitTesting(teacher.unlocked)  // ←生徒は“反応ゼロ”
+        .allowsHitTesting(teacher.unlocked)
     }
     
     private func pill(_ t: String) -> some View {
@@ -279,12 +363,18 @@ private struct ToggleButton: View {
         Button(action: onTap) {
             Text(title)
                 .font(.system(size: 14, weight: .semibold))
-                .padding(.vertical, 8)
-                .padding(.horizontal, 12)
+                .lineLimit(1)                 // ← 1行固定
+                .minimumScaleFactor(0.72)     // ← 幅足りない時だけ少し縮む
+                .allowsTightening(true)
+                .frame(maxWidth: .infinity, minHeight: 56)
+                .padding(.horizontal, 8)
                 .background(isOn ? color.opacity(0.9) : Color.white)
                 .foregroundColor(isOn ? .white : .black)
                 .cornerRadius(10)
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(.black.opacity(0.15), lineWidth: 1))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(.black.opacity(0.15), lineWidth: 1)
+                )
         }
         .buttonStyle(.plain)
     }

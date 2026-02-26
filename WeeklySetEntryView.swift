@@ -20,7 +20,7 @@ struct WeeklySetEntryView: View {
         )
 
         // ✅ 表示（今回分）は引数 pair のまま
-        let parts = pair.parts
+     //   let parts = pair.parts
 
         // ✅ 先生の「編集」は “次回分” を編集したいので nextPair を作る
         let nextPair = pair.next

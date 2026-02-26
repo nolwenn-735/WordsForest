@@ -144,6 +144,37 @@ final class HomeworkPackStore {
     }
 
     // =======================================================
+    // MARK: Draft pack I/O（次回分の作り置き）
+    // =======================================================
+
+    /// pairごとのドラフト箱キー（cycleに縛らない）
+    private func draftKey(pair: PosPair) -> String {
+        "\(keyPrefix)draft.\(pair.rawValue)"
+    }
+
+    /// 次回用ドラフトを読む（未保存なら nil）
+    func loadDraft(pair: PosPair) -> HomeworkExportPayload? {
+        let k = draftKey(pair: pair)
+        guard let data = UserDefaults.standard.data(forKey: k) else { return nil }
+        return try? JSONDecoder().decode(HomeworkExportPayload.self, from: data)
+    }
+
+    /// 次回用ドラフトを保存（payloadそのものを保存）
+    func saveDraft(_ payload: HomeworkExportPayload, pair: PosPair) {
+        let k = draftKey(pair: pair)
+        if let data = try? JSONEncoder().encode(payload) {
+            UserDefaults.standard.set(data, forKey: k)
+        }
+    }
+
+    /// 次回用ドラフトを削除（必要時）
+    func clearDraft(pair: PosPair) {
+        let k = draftKey(pair: pair)
+        UserDefaults.standard.removeObject(forKey: k)
+    }
+    
+    
+    // =======================================================
     // MARK: Build fixed pack
     // =======================================================
 
@@ -354,6 +385,82 @@ final class HomeworkPackStore {
         return payload
     }
 
+    /// 編集画面の previewカード列から「次回用ドラフトpayload」を作る
+    /// - Note: cycle固定パックとは別保存（draftKey）に入れる前提
+    func makeDraftPayload(
+        hw: HomeworkState,
+        pair: PosPair,
+        cards: [WordCard],
+        requiredCount: Int = 10,
+        totalCount: Int = 24
+    ) -> HomeworkExportPayload? {
+        guard !cards.isEmpty else { return nil }
+
+        let now = Date()
+        let createdAt = iso.string(from: now)
+
+        // cards -> export items（buildOrLoadFixedPack のJSON化部分と同じ考え方）
+        let items: [HomeworkExportCard] = cards.map { c in
+
+            let examplesByMeaning: [HomeworkExportExampleByMeaning] = c.meanings.compactMap { meaning in
+                let m = meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !m.isEmpty else { return nil }
+
+                let ex = ExampleStore.shared.firstExample(pos: c.pos, word: c.word, meaning: m)
+                guard let ex else { return nil }
+
+                return HomeworkExportExampleByMeaning(
+                    meaning: m,
+                    en: ex.en,
+                    ja: ex.ja,
+                    note: ex.note
+                )
+            }
+
+            // 単語ノート（全体）
+            let note: String? = {
+                let n = ExampleStore.shared.wordNote(pos: c.pos, word: c.word)
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                return n.isEmpty ? nil : n
+            }()
+
+            // v1互換（先頭meaningの代表例文）
+            let fallbackExample: HomeworkExportExample? = {
+                let m0 = (c.meanings.first ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !m0.isEmpty,
+                      let ex0 = ExampleStore.shared.firstExample(pos: c.pos, word: c.word, meaning: m0)
+                else { return nil }
+                return HomeworkExportExample(en: ex0.en, ja: ex0.ja, note: ex0.note)
+            }()
+
+            return HomeworkExportCard(
+                pos: c.pos.rawValue,
+                word: c.word,
+                meanings: c.meanings,
+                required: HomeworkStore.shared.isRequired(c),
+                example: fallbackExample,
+                note: note,
+                examplesByMeaning: examplesByMeaning
+            )
+        }
+
+        // ドラフトID：固定パックIDと区別しやすい名前にする
+        let id = "\(createdAt.prefix(10))-draft-pair\(pair.rawValue)"
+
+        return HomeworkExportPayload(
+            schemaVersion: 2,
+            senderHwID: "teacher",
+            id: id,
+            createdAt: createdAt,
+            pair: pair.rawValue,
+            cycleIndex: hw.currentCycleIndex,   // ひとまず現在値を入れる（後で配布時に確定し直してもOK）
+            daysPerCycle: hw.daysPerCycle,
+            requiredCount: requiredCount,
+            totalCount: totalCount,
+            items: items
+        )
+    }
+    
     /// JSON文字列を作る（GitHubに置ける形）→ 方針変更：GitHubには置かない
     func makePrettyJSONString(_ payload: HomeworkExportPayload) -> String {
         let enc = JSONEncoder()

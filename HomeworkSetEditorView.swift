@@ -18,6 +18,7 @@ struct HomeworkSetEditorView: View {
     var targetPerPos: Int = 12
 
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var hw: HomeworkState
     @ObservedObject private var store = HomeworkStore.shared
 
     // required（順番付き）を UserDefaults に保存するためのDTO
@@ -101,12 +102,20 @@ struct HomeworkSetEditorView: View {
                     Button("閉じる") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("保存") {
+                    Button("保存🧪") {
+                        #if DEBUG
+                        print("🟣 SAVE BUTTON tapped in HomeworkSetEditorView")
+                        #endif
+
                         // ① required順を保存
                         saveRequiredOrder()
 
                         // ②（任意）storeの required(Set) へ反映したいならここで反映
                         applyRequiredFlagsToStore()
+
+                        #if DEBUG
+                        print("🟣 before afterSaveTapped()")
+                        #endif
 
                         // ✅ 保存後フロー開始（dismissはしない）
                         afterSaveTapped()
@@ -159,6 +168,9 @@ struct HomeworkSetEditorView: View {
     // =======================================================
 
     private func afterSaveTapped() {
+#if DEBUG
+print("🟥 afterSaveTapped ENTER")
+#endif
         // まず「保存しました」を見せる
         savedBannerText = "保存しました"
         showSavedBannerNow()
@@ -167,6 +179,8 @@ struct HomeworkSetEditorView: View {
         updatePreview()
 
         let finalCards = previewA + previewB
+        saveDraftForEditedPair(from: finalCards)
+        
         guard !finalCards.isEmpty else {
             dismiss()
             return
@@ -205,6 +219,58 @@ struct HomeworkSetEditorView: View {
         }
     }
 
+    private func saveDraftForEditedPair(from cards: [WordCard]) {
+        #if DEBUG
+        print("🟦 saveDraftForEditedPair entered")
+        print("   cards =", cards.count)
+        print("   posA =", posA.rawValue, "posB =", posB.rawValue)
+        #endif
+
+        guard !cards.isEmpty else {
+            #if DEBUG
+            print("⚠️ draft save skipped: cards empty")
+            #endif
+            return
+        }
+
+        let editPair: PosPair
+        if posA == .noun && posB == .adj {
+            editPair = .nounAdj
+        } else if posA == .verb && posB == .adv {
+            editPair = .verbAdv
+        } else {
+            #if DEBUG
+            print("⚠️ draft save skipped: unsupported pos pair \(posA.rawValue)+\(posB.rawValue)")
+            #endif
+            return
+        }
+
+        #if DEBUG
+        print("🟦 draft target pair =", editPair.rawValue)
+        #endif
+
+        guard let draft = HomeworkPackStore.shared.makeDraftPayload(
+            hw: hw,
+            pair: editPair,
+            cards: cards,
+            requiredCount: 10,
+            totalCount: cards.count
+        ) else {
+            #if DEBUG
+            print("❌ makeDraftPayload returned nil")
+            #endif
+            return
+        }
+
+        HomeworkPackStore.shared.saveDraft(draft, pair: editPair)
+
+        #if DEBUG
+        print("✅ draft saved pair=\(editPair.rawValue)")
+        print("   id =", draft.id)
+        print("   items =", draft.items.count)
+        #endif
+    }
+    
     // =======================================================
     // MARK: UI parts
     // =======================================================

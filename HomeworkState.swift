@@ -11,8 +11,7 @@ enum CEFRLevel: String, CaseIterable, Hashable {
 }
 
 enum HomeworkStatus: String, Codable { case active, paused, none }
-enum PosPair: Int, Codable { case nounAdj = 0, verbAdv = 1 }
-
+enum PosPair: Int, Codable, Identifiable { case nounAdj = 0, verbAdv = 1 }
 // ✅ PosPair を宣言した「後」に extension を置く
 extension PosPair {
     var parts: [PartOfSpeech] {
@@ -30,6 +29,9 @@ extension PosPair {
         case .verbAdv: return "動詞＋副詞"
         }
     }
+    
+    var id: Int { rawValue }
+    
 }
 
 struct HomeworkEntry: Identifiable, Codable,Hashable {
