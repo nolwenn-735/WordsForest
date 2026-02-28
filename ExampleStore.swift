@@ -55,14 +55,26 @@ final class ExampleStore: ObservableObject {
 
         let k = makeKey(pos: pos, word: word, meaning: meaning)
 
+        #if DEBUG
+        if word.lowercased() == "run" {
+            print("🟩 saveExample word=\(word) meaning=[\(meaning)] en=[\(en)] ja=[\(ja ?? "")] note=[\(note ?? "")]")
+        }
+        #endif
+
         // 例文はmeaningごとに保存（ExampleEntry.noteは使わない）
         examples[k] = [ExampleEntry(en: en, ja: ja, note: nil)]
         save()
 
         // noteは単語単位で保存
-        saveWordNote(pos: pos, word: word, note: note)
+        // ✅ 空/nil のときは既存ノートを消さない（例文保存でノートを巻き添え削除しない）
+        if let note {
+            let trimmed = note.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !trimmed.isEmpty {
+                saveWordNote(pos: pos, word: word, note: trimmed)
+            }
+        }
     }
-
+    
     func removeExample(pos: PartOfSpeech, word: String, meaning: String) {
         let k = makeKey(pos: pos, word: word, meaning: meaning)
         examples[k] = []
@@ -94,12 +106,25 @@ final class ExampleStore: ObservableObject {
         let k = makeWordKey(pos: pos, word: word)
         let trimmed = (note ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
 
+        #if DEBUG
+        if word.lowercased() == "run" {
+            print("🟩 saveWordNote word=\(word) key=\(k) trimmed=[\(trimmed)]")
+        }
+        #endif
+
         if trimmed.isEmpty {
             wordNotes.removeValue(forKey: k)
         } else {
             wordNotes[k] = trimmed
         }
         saveNotes()
+
+        #if DEBUG
+        if word.lowercased() == "run" {
+            print("🟩 wordNotes.count(after save)=\(wordNotes.count)")
+            print("🟩 wordNotes[k] after save = [\(wordNotes[k] ?? "(nil)")]")
+        }
+        #endif
     }
 
     /// 空なら "" を返す（UI側が楽）
@@ -138,9 +163,17 @@ final class ExampleStore: ObservableObject {
            let decoded = try? JSONDecoder().decode([String: String].self, from: data) {
             wordNotes = decoded
         }
+            
+#if DEBUG
+            let debugKey = makeWordKey(pos: .verb, word: "run")
+            let debugRunNote = wordNotes[debugKey] ?? "(nil)"
+            print("🟨 loadNotes notesKey=\(notesKey)")
+            print("🟨 debugKey(run,verb)=\(debugKey)")
+            print("🟨 wordNotes.count=\(wordNotes.count)")
+            print("🟨 loaded run note=[\(debugRunNote)]")
+#endif
+        }
     }
-}
-
 extension Notification.Name {
     static let examplesDidChange = Notification.Name("examplesDidChange")
 }

@@ -345,27 +345,17 @@ print("🟥 afterSaveTapped ENTER")
             return w.contains(q.lowercased()) || m.contains(q.lowercased())
         }
 
+        #if DEBUG
+        print("🟦 pickerSection pos=\(pos.rawValue) filtered.count=\(filtered.count)")
+        #endif
+
         return VStack(alignment: .leading, spacing: 8) {
             TextField("検索（word / meaning）", text: query)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
 
-            ForEach(filtered, id: \.id) { c in
-                Button {
-                    addRequired(from: c, into: pos)
-                } label: {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(c.word).font(.body)
-                            Text(c.meanings.first ?? "")
-                                .font(.footnote)
-                                .foregroundStyle(.secondary)
-                        }
-                        Spacer()
-                        Image(systemName: "plus.circle")
-                    }
-                }
-                .buttonStyle(.plain)
+            ForEach(filtered) { c in
+                pickerCandidateRow(c: c, pos: pos)
             }
 
             if filtered.isEmpty {
@@ -375,6 +365,77 @@ print("🟥 afterSaveTapped ENTER")
         }
     }
 
+    @ViewBuilder
+    private func pickerCandidateRow(c: WordCard, pos: PartOfSpeech) -> some View {
+        let firstMeaning = (c.meanings.first ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+
+        let hasExample: Bool = {
+            guard !firstMeaning.isEmpty else { return false }
+            return ExampleStore.shared.firstExample(pos: c.pos, word: c.word, meaning: firstMeaning) != nil
+        }()
+
+        let hasWordNote: Bool = {
+            let note = ExampleStore.shared.wordNote(pos: c.pos, word: c.word)
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+            return !note.isEmpty
+        }()
+
+        let _ = debugPickerRun(c: c, firstMeaning: firstMeaning, hasExample: hasExample, hasWordNote: hasWordNote)
+
+        
+        Button {
+            addRequired(from: c, into: pos)
+        } label: {
+            HStack(alignment: .center, spacing: 10) {
+                VStack(alignment: .leading, spacing: 3) {
+                    HStack(spacing: 6) {
+                        Text(c.word)
+                            .font(.body)
+
+                        if hasExample {
+                            Image(systemName: "text.quote")
+                                .font(.caption)
+                                .foregroundStyle(.blue)
+                                .accessibilityLabel("例文あり")
+                        }
+
+                        if hasWordNote {
+                            Image(systemName: "note.text")
+                                .font(.caption)
+                                .foregroundStyle(.orange)
+                                .accessibilityLabel("ノートあり")
+                        }
+                    }
+
+                    Text(c.meanings.first ?? "")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+
+                Spacer()
+
+                Image(systemName: "plus.circle")
+                    .foregroundStyle(.primary)
+            }
+        }
+        .buttonStyle(.plain)
+    }
+ 
+    private func debugPickerRun(
+        c: WordCard,
+        firstMeaning: String,
+        hasExample: Bool,
+        hasWordNote: Bool
+    ) {
+        #if DEBUG
+        guard c.word.lowercased() == "run" else { return }
+        print("🟧 picker run firstMeaning=[\(firstMeaning)]")
+        print("🟧 picker run hasExample=\(hasExample)")
+        print("🟧 picker run note=[\(ExampleStore.shared.wordNote(pos: c.pos, word: c.word))]")
+        print("🟧 picker run hasWordNote=\(hasWordNote)")
+        #endif
+    }
+    
     private func previewBlock(title: String, cards: [WordCard]) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(title).font(.headline)
