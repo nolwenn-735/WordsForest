@@ -4,13 +4,13 @@
 //
 //  Created by Nami .T on 2025/09/24.
 //
-//  HomeworkStore.swift  （🍊Clément完全版・複数意味対応）💛　→ 12/7 Thinking🍊版→12/12 before5.2版→12/14jason対応化前→jason12/15対応→2026/01/20最初のmeaningsにID付版→01/24不規則動詞と宿題履歴
+//  HomeworkStore.swift  （🍊Clément完全版・複数意味対応）💛　→ 12/7 Thinking🍊版→12/12 before5.2版→12/14jason対応化前→jason12/15対応→2026/01/20最初のmeaningsにID付版→01/24不規則動詞と宿題履歴→UUID方式に変更🌿🍊
 
 
 
 import Foundation
 
-// 品詞・単語・意味を合わせたキー（重複判定用）
+// 旧データ互換・移行用キー（過去の favorites/learned 保存形式）
 struct WordKey: Hashable, Codable {
     var pos: PartOfSpeech
     var word: String
@@ -49,9 +49,9 @@ final class HomeworkStore: ObservableObject {
 
     // 保存対象
     @Published private(set) var words: [StoredWord] = []
-    @Published private(set) var favorites: Set<WordKey> = []
-    @Published private(set) var learned: Set<WordKey> = []
-
+    @Published private(set) var favoriteIDs: Set<UUID> = []
+    @Published private(set) var learnedIDs: Set<UUID> = []
+    
     private let key = "homework_v3"
     private let favKey = "favorites_v3"
     private let learnedKey = "learned_v3"
@@ -70,7 +70,7 @@ final class HomeworkStore: ObservableObject {
         let data = try? JSONEncoder().encode(words)
         UserDefaults.standard.set(data, forKey: key)
     }
-
+    
     private func load() {
         if let d = UserDefaults.standard.data(forKey: key),
            let arr = try? JSONDecoder().decode([StoredWord].self, from: d) {
@@ -79,38 +79,61 @@ final class HomeworkStore: ObservableObject {
     }
 
     private func saveFavorites() {
-        let data = try? JSONEncoder().encode(Array(favorites))
+        let data = try? JSONEncoder().encode(Array(favoriteIDs))
         UserDefaults.standard.set(data, forKey: favKey)
     }
 
     private func loadFavorites() {
-        if let d = UserDefaults.standard.data(forKey: favKey),
-           let arr = try? JSONDecoder().decode([WordKey].self, from: d) {
-            favorites = Set(arr)
+        guard let d = UserDefaults.standard.data(forKey: favKey) else { return }
+
+        // 新方式 [UUID]
+        if let arr = try? JSONDecoder().decode([UUID].self, from: d) {
+            favoriteIDs = Set(arr)
+            return
+        }
+
+        // 旧方式 [WordKey] -> UUID に移行
+        if let legacy = try? JSONDecoder().decode([WordKey].self, from: d) {
+            favoriteIDs = ids(fromLegacyKeys: legacy)
+            saveFavorites()
         }
     }
 
     private func saveLearned() {
-        let data = try? JSONEncoder().encode(Array(learned))
+        let data = try? JSONEncoder().encode(Array(learnedIDs))
         UserDefaults.standard.set(data, forKey: learnedKey)
     }
 
     private func loadLearned() {
-        if let d = UserDefaults.standard.data(forKey: learnedKey),
-           let arr = try? JSONDecoder().decode([WordKey].self, from: d) {
-            learned = Set(arr)
+        guard let d = UserDefaults.standard.data(forKey: learnedKey) else { return }
+
+        if let arr = try? JSONDecoder().decode([UUID].self, from: d) {
+            learnedIDs = Set(arr)
+            return
+        }
+
+        if let legacy = try? JSONDecoder().decode([WordKey].self, from: d) {
+            learnedIDs = ids(fromLegacyKeys: legacy)
+            saveLearned()
         }
     }
 
     private func saveRequired() {
-        let data = try? JSONEncoder().encode(Array(required))
+        let data = try? JSONEncoder().encode(Array(requiredIDs))
         UserDefaults.standard.set(data, forKey: requiredKey)
     }
 
     private func loadRequired() {
-        if let d = UserDefaults.standard.data(forKey: requiredKey),
-           let arr = try? JSONDecoder().decode([WordKey].self, from: d) {
-            required = Set(arr)
+        guard let d = UserDefaults.standard.data(forKey: requiredKey) else { return }
+
+        if let arr = try? JSONDecoder().decode([UUID].self, from: d) {
+            requiredIDs = Set(arr)
+            return
+        }
+
+        if let legacy = try? JSONDecoder().decode([WordKey].self, from: d) {
+            requiredIDs = ids(fromLegacyKeys: legacy)
+            saveRequired()
         }
     }
     
@@ -273,17 +296,16 @@ final class HomeworkStore: ObservableObject {
         }
     }
 
-    // MARK: - Favorite / Learned
+    // MARK: - Favorite / Learned (UUID-based)
 
     func isFavorite(_ c: WordCard) -> Bool {
-        favorites.contains(key(for: c))
+        favoriteIDs.contains(c.id)
     }
 
     func setFavorite(_ c: WordCard, enabled: Bool) {
-        ensureStored(c)   // ← 追加
-        let k = key(for: c)
-        if enabled { favorites.insert(k) }
-        else { favorites.remove(k) }
+        ensureStored(c)
+        if enabled { favoriteIDs.insert(c.id) }
+        else { favoriteIDs.remove(c.id) }
         saveFavorites()
         NotificationCenter.default.post(name: .favoritesDidChange, object: nil)
     }
@@ -293,14 +315,13 @@ final class HomeworkStore: ObservableObject {
     }
 
     func isLearned(_ c: WordCard) -> Bool {
-        learned.contains(key(for: c))
+        learnedIDs.contains(c.id)
     }
 
     func setLearned(_ c: WordCard, enabled: Bool) {
-        ensureStored(c)   // ← 追加
-        let k = key(for: c)
-        if enabled { learned.insert(k) }
-        else { learned.remove(k) }
+        ensureStored(c)
+        if enabled { learnedIDs.insert(c.id) }
+        else { learnedIDs.remove(c.id) }
         saveLearned()
         NotificationCenter.default.post(name: .learnedDidChange, object: nil)
     }
@@ -309,15 +330,14 @@ final class HomeworkStore: ObservableObject {
         setLearned(c, enabled: !isLearned(c))
     }
 
-    // ===== ここ：MARK: - Favorite / Learned の下あたりに追加 =====
     func isRequired(_ c: WordCard) -> Bool {
-        required.contains(key(for: c))
+        requiredIDs.contains(c.id)
     }
 
     func setRequired(_ c: WordCard, enabled: Bool) {
         ensureStored(c)
-        let k = key(for: c)
-        if enabled { required.insert(k) } else { required.remove(k) }
+        if enabled { requiredIDs.insert(c.id) }
+        else { requiredIDs.remove(c.id) }
         saveRequired()
         NotificationCenter.default.post(name: .storeDidChange, object: nil)
     }
@@ -397,20 +417,32 @@ final class HomeworkStore: ObservableObject {
         return cards.sorted { $0.word < $1.word }
     }
     
+    // MARK: - Legacy WordKey -> UUID migration helpers
+
+    private func id(forLegacyKey k: WordKey) -> UUID? {
+        words.first {
+            $0.pos == k.pos &&
+            $0.word == k.word &&
+            normMeaning($0.meaning) == normMeaning(k.meaning)
+        }?.id
+    }
+
+    private func ids(fromLegacyKeys keys: [WordKey]) -> Set<UUID> {
+        Set(keys.compactMap { id(forLegacyKey: $0) })
+    }
     // MARK: - Favorites / Learned の補助API (HomePage用)
 
     // ===== ここ：favorites / learned の下あたりに追加 =====
-    @Published private(set) var required: Set<WordKey> = []
+    @Published private(set) var requiredIDs: Set<UUID> = []
     private let requiredKey = "required_v1"
     
     // お気に入り数（badge用）
     var favoritesCount: Int {
-        favorites.count
+        favoriteIDs.count
     }
 
-    // 覚えた数（badge用）
     var learnedCount: Int {
-        learned.count
+        learnedIDs.count
     }
 
   
@@ -483,11 +515,6 @@ final class HomeworkStore: ObservableObject {
             // 見つからない時だけ新規（=新ID）
             words.append(StoredWord(word: newWord, meaning: trimmedMeaning, pos: original.pos))
         }
-
-        // favorites / learned を更新（今のままでOK）
-        let oldWordKey = oldKey
-        if favorites.remove(oldWordKey) != nil { favorites.insert(newKey) }
-        if learned.remove(oldWordKey) != nil { learned.insert(newKey) }
 
         save()
         saveFavorites()
@@ -659,9 +686,9 @@ extension HomeworkStore {
 
         // 4. 「お気に入り」と「覚えた」が両方 ON のカードを整理
         //    → My Collection 優先にして、learned から外す
-        let both = favorites.intersection(learned)
+        let both = favoriteIDs.intersection(learnedIDs)
         if !both.isEmpty {
-            learned.subtract(both)
+            learnedIDs.subtract(both)
             saveLearned()
         }
 
@@ -672,28 +699,23 @@ extension HomeworkStore {
 
 extension HomeworkStore {
 
-    /// ✅/💗 が付いているのに words 側に実体がないカードを復元する
     func restoreMissingMarkedCards() {
-        let marked = favorites.union(learned)
-        guard !marked.isEmpty else { return }
+        // UUID方式では、WordKeyのように pos/word/meaning から復元はできない。
+        // 代わりに、words に実体のないマークIDを掃除する。
+        let existingIDs = Set(words.map(\.id))
 
-        var changed = false
+        let beforeFav = favoriteIDs.count
+        let beforeLearned = learnedIDs.count
+        let beforeRequired = requiredIDs.count
 
-        for k in marked {
-            let pos = k.pos
-            let word = k.word.trimmingCharacters(in: .whitespacesAndNewlines)
-            let meaning = k.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
-            guard !word.isEmpty, !meaning.isEmpty else { continue }
+        favoriteIDs = favoriteIDs.intersection(existingIDs)
+        learnedIDs = learnedIDs.intersection(existingIDs)
+        requiredIDs = requiredIDs.intersection(existingIDs)
 
-            if !exists(word: word, meaning: meaning, pos: pos) {
-                words.append(.init(word: word, meaning: meaning, pos: pos))
-                changed = true
-            }
-        }
+        if favoriteIDs.count != beforeFav { saveFavorites() }
+        if learnedIDs.count != beforeLearned { saveLearned() }
+        if requiredIDs.count != beforeRequired { saveRequired() }
 
-        if changed {
-            save()
-            NotificationCenter.default.post(name: .storeDidChange, object: nil)
-        }
+        NotificationCenter.default.post(name: .storeDidChange, object: nil)
     }
 }

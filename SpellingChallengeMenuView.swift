@@ -28,22 +28,20 @@ struct SpellingChallengeMenuView: View {
         // HomeworkStore に保存されているすべての StoredWord
         let stored = HomeworkStore.shared.words
 
-        // お気に入りキー（WordKey の集合）
-        let favKeys = HomeworkStore.shared.favorites
-
-        // Favorite に該当する StoredWord だけを残す
-        let favStored = stored.filter { favKeys.contains( HomeworkStore.shared.key(for: $0) ) }
-
-        // 単語ごとに group
-        let grouped = Dictionary(grouping: favStored, by: { $0.word })
+        let favIDs = HomeworkStore.shared.favoriteIDs
+        let favStored = stored.filter { favIDs.contains($0.id) }
+        let grouped = Dictionary(grouping: favStored, by: { "\($0.pos.rawValue)|\($0.word)" })
 
         // WordCard に再構成（複数意味まとめ）
         let cards: [WordCard] = grouped.values.compactMap { group in
             guard let first = group.first else { return nil }
+            let meanings = group.map(\.meaning).sorted()
+
             return WordCard(
-                pos: first.pos,                      // ★順番1
-                word: first.word,                    // ★順番2
-                meanings: group.map { $0.meaning }   // ★順番3
+                id: first.id,          // ← これ大事（UUID引き継ぎ）
+                pos: first.pos,
+                word: first.word,
+                meanings: meanings
             )
         }
 
