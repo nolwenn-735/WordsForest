@@ -93,6 +93,7 @@ struct ExampleEditorView: View {
                 // 右：保存
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("保存") {
+                        print("🧪 ExampleEditor save target pos=\(pos.rawValue) word=\(word) note=[\(wordNoteText)]")
                         saveAll()
                         dismiss()
                     }

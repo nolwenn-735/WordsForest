@@ -99,6 +99,30 @@ struct CardBackView: View {
                 }
             }
 
+            // 単語ノート（全体）
+            let trimmedNote = note.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !trimmedNote.isEmpty {
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "note.text")
+                            .foregroundStyle(.orange)
+                        Text("ノート")
+                            .font(.headline)
+                            .foregroundStyle(.orange)
+                    }
+
+                    Text(trimmedNote)
+                        .font(.body)
+                        .foregroundStyle(.primary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color.orange.opacity(0.08))
+                        )
+                }
+            }
+            
             Spacer(minLength: 8)
 
             // 下のトグル（ゆっくり／英＋日）

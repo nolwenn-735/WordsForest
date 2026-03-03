@@ -106,11 +106,12 @@ final class ExampleStore: ObservableObject {
         let k = makeWordKey(pos: pos, word: word)
         let trimmed = (note ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
 
-        #if DEBUG
-        if word.lowercased() == "run" {
-            print("🟩 saveWordNote word=\(word) key=\(k) trimmed=[\(trimmed)]")
-        }
-        #endif
+#if DEBUG
+let lw = word.lowercased()
+if lw == "run" || lw == "look" {
+    print("🟩 saveWordNote word=\(word) key=\(k) trimmed=[\(trimmed)]")
+}
+#endif
 
         if trimmed.isEmpty {
             wordNotes.removeValue(forKey: k)
@@ -119,12 +120,15 @@ final class ExampleStore: ObservableObject {
         }
         saveNotes()
 
-        #if DEBUG
-        if word.lowercased() == "run" {
-            print("🟩 wordNotes.count(after save)=\(wordNotes.count)")
-            print("🟩 wordNotes[k] after save = [\(wordNotes[k] ?? "(nil)")]")
-        }
-        #endif
+#if DEBUG
+let lw2 = word.lowercased()
+if lw2 == "run" || lw2 == "look" {
+    print("🟩 wordNotes.count(after save)=\(wordNotes.count)")
+    print("🟩 wordNotes[k] after save = [\(wordNotes[k] ?? "(nil)")]")
+    print("🟩 all wordNotes.keys = \(wordNotes.keys.sorted())")
+}
+#endif
+        
     }
 
     /// 空なら "" を返す（UI側が楽）
@@ -171,6 +175,8 @@ final class ExampleStore: ObservableObject {
             print("🟨 debugKey(run,verb)=\(debugKey)")
             print("🟨 wordNotes.count=\(wordNotes.count)")
             print("🟨 loaded run note=[\(debugRunNote)]")
+            print("🟨 wordNotes.keys=\(wordNotes.keys.sorted())")
+            print("🟨 wordNotes.all=\(wordNotes)")
 #endif
         }
     }
@@ -193,6 +199,12 @@ extension ExampleStore {
         }
 
         for item in payload.items {
+#if DEBUG
+let dbgWord = item.word.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+if dbgWord == "run" || dbgWord == "look" {
+    print("🟪 mergeImportedPayload item word=\(item.word) pos=\(item.pos) note=[\(item.note ?? "")] meanings=\(item.meanings)")
+}
+#endif
             guard let pos = PartOfSpeech(rawValue: item.pos) else { continue }
 
             // ---------------------------
@@ -209,6 +221,11 @@ extension ExampleStore {
                 let existing = self.wordNote(pos: pos, word: item.word).trimmingCharacters(in: .whitespacesAndNewlines)
 
                 if preferPayload || existing.isEmpty {
+#if DEBUG
+if dbgWord == "run" || dbgWord == "look" {
+    print("🟪 mergeImportedPayload -> saveWordNote word=\(item.word) incomingNote=[\(incomingNote)] preferPayload=\(preferPayload)")
+}
+#endif
                     self.saveWordNote(pos: pos, word: item.word, note: incomingNote)
                 }
             }
@@ -286,7 +303,7 @@ extension ExampleStore {
                 meaning: m,
                 en: enT,
                 ja: jaT.isEmpty ? nil : jaT,
-                note: noteT.isEmpty ? nil : noteT
+                note: nil
             )
             return
         }
@@ -296,7 +313,7 @@ extension ExampleStore {
         if preferPayload, let ex = existing {
             let finalEn = enT.isEmpty ? ex.en : enT
             let finalJa = jaT.isEmpty ? ex.ja : jaT
-            let finalNote = noteT.isEmpty ? ex.note : noteT
+            
 
             self.saveExample(
                 pos: pos,
@@ -304,7 +321,7 @@ extension ExampleStore {
                 meaning: m,
                 en: finalEn,
                 ja: (finalJa ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : finalJa,
-                note: (finalNote ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : finalNote
+                note: nil
             )
             return
         }
@@ -313,11 +330,9 @@ extension ExampleStore {
         if let ex = existing {
             var finalEn = ex.en
             var finalJa = ex.ja
-            var finalNote = ex.note
 
             if trim(ex.en).isEmpty, !enT.isEmpty { finalEn = enT }
             if trim(ex.ja).isEmpty, !jaT.isEmpty { finalJa = jaT }
-            if trim(ex.note).isEmpty, !noteT.isEmpty { finalNote = noteT }
 
             self.saveExample(
                 pos: pos,
@@ -325,7 +340,7 @@ extension ExampleStore {
                 meaning: m,
                 en: finalEn,
                 ja: trim(finalJa).isEmpty ? nil : finalJa,
-                note: trim(finalNote).isEmpty ? nil : finalNote
+                note: nil
             )
         }
     }
