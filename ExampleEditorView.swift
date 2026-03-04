@@ -22,6 +22,17 @@ struct ExampleEditorView: View {
 
     @State private var drafts: [Draft] = [Draft()]
     @State private var wordNoteText: String = ""
+    @State private var showOverwriteAlert = false
+
+    // 初期ロード時のスナップショット（上書き判定用）
+    @State private var initialWordNoteText: String = ""
+    @State private var initialDraftsSnapshot: [DraftSnapshot] = []
+    
+    struct DraftSnapshot: Hashable {
+        var meaning: String
+        var en: String
+        var ja: String
+    }
 
     var body: some View {
         NavigationStack {
@@ -94,8 +105,7 @@ struct ExampleEditorView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("保存") {
                         print("🧪 ExampleEditor save target pos=\(pos.rawValue) word=\(word) note=[\(wordNoteText)]")
-                        saveAll()
-                        dismiss()
+                        attemptSave()
                     }
                 }
 
@@ -107,7 +117,19 @@ struct ExampleEditorView: View {
                     }
                 }
             }
+            
             .onAppear { loadExisting() }
+            .alert("既にある内容を上書きしますか？", isPresented: $showOverwriteAlert) {
+                Button("する", role: .destructive) {
+                    saveAll()
+                    dismiss()
+                }
+                Button("しない", role: .cancel) {
+                    // 何もしない（既存のまま）
+                }
+            } message: {
+                Text("この単語には既存の例文またはノートがあります。今回の入力内容を保存すると、その内容が上書きされます。")
+            }
         }
     }
 
@@ -122,6 +144,8 @@ struct ExampleEditorView: View {
 
         if meanings.isEmpty {
             drafts = [Draft()]
+            initialWordNoteText = normalizedText(wordNoteText)
+            initialDraftsSnapshot = makeDraftSnapshots(from: drafts)
             return
         }
 
@@ -133,8 +157,98 @@ struct ExampleEditorView: View {
                 ja: ex?.ja ?? ""
             )
         }
+        initialWordNoteText = normalizedText(wordNoteText)
+        initialDraftsSnapshot = makeDraftSnapshots(from: drafts)
+    }
+    
+    
+    private func attemptSave() {
+        let hasExisting = hasAnyExistingContentNow()
+        let isChangingExisting = hasOverwriteRiskComparedToInitial()
+
+        if hasExisting && isChangingExisting {
+            showOverwriteAlert = true
+        } else {
+            saveAll()
+            dismiss()
+        }
+    }
+    
+    private func hasAnyExistingContentNow() -> Bool {
+        // 単語ノート（既存）
+        let existingNote = ExampleStore.shared.wordNote(pos: pos, word: word)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if !existingNote.isEmpty {
+            return true
+        }
+
+        // 既存 meaning ごとの例文
+        let meanings = HomeworkStore.shared.existingMeanings(for: word, pos: pos)
+        for m in meanings {
+            let meaning = m.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !meaning.isEmpty else { continue }
+
+            if let ex = ExampleStore.shared.firstExample(pos: pos, word: word, meaning: meaning) {
+                let en = ex.en.trimmingCharacters(in: .whitespacesAndNewlines)
+                let ja = (ex.ja ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+                let note = (ex.note ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+
+                if !en.isEmpty || !ja.isEmpty || !note.isEmpty {
+                    return true
+                }
+            }
+        }
+
+        return false
+    }
+    
+    private func hasOverwriteRiskComparedToInitial() -> Bool {
+        // 単語ノート差分（既存ノートがあって内容が変わる）
+        let currentNote = normalizedText(wordNoteText)
+        if !initialWordNoteText.isEmpty && currentNote != initialWordNoteText {
+            return true
+        }
+
+        // meaningごとの例文差分（既存があるmeaningだけ確認）
+        let currentMap = Dictionary(
+            uniqueKeysWithValues: makeDraftSnapshots(from: drafts).map { ($0.meaning, $0) }
+        )
+        let initialMap = Dictionary(
+            uniqueKeysWithValues: initialDraftsSnapshot.map { ($0.meaning, $0) }
+        )
+
+        for (meaning, initial) in initialMap {
+            let initialHasAny = !initial.en.isEmpty || !initial.ja.isEmpty
+            guard initialHasAny else { continue }
+
+            let current = currentMap[meaning] ?? DraftSnapshot(meaning: meaning, en: "", ja: "")
+
+            if current.en != initial.en || current.ja != initial.ja {
+                return true
+            }
+        }
+
+        return false
     }
 
+    private func makeDraftSnapshots(from drafts: [Draft]) -> [DraftSnapshot] {
+        drafts
+            .map { d in
+                DraftSnapshot(
+                    meaning: normalizedText(d.meaning),
+                    en: normalizedText(d.en),
+                    ja: normalizedText(d.ja)
+                )
+            }
+            .filter { !$0.meaning.isEmpty }
+            .sorted { $0.meaning < $1.meaning }
+    }
+
+    private func normalizedText(_ s: String) -> String {
+        s.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
     // MARK: - Save
 
     private func saveAll() {
@@ -182,7 +296,7 @@ struct ExampleEditorView: View {
         if drafts.isEmpty { drafts = [Draft()] }
     }
 }
-
 #Preview {
     ExampleEditorView(pos: .noun, word: "test")
 }
+

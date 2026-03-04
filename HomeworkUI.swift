@@ -1,6 +1,6 @@
-
+//
 // HomeworkUI.swift
-
+//
 import SwiftUI
 import Foundation
 import UniformTypeIdentifiers
@@ -560,7 +560,7 @@ private func dateString(_ d: Date) -> String {
 }
 
 // MARK: - JSON FileDocument（同居OK）
-
+/*
 struct JSONTextDocument: FileDocument {
     static var readableContentTypes: [UTType] { [.json] }
 
@@ -583,3 +583,4 @@ struct JSONTextDocument: FileDocument {
         return .init(regularFileWithContents: data)
     }
 }
+*/
