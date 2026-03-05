@@ -19,6 +19,7 @@ struct HomeworkBanner: View {
     @State private var exportFileName: String = "homework.json"
     @State private var showingExporter = false
     @State private var exportErrorMessage: String? = nil
+    @State private var showExportPicker = false
 
     // 🔁消去確認
     @State private var showClearConfirm = false
@@ -87,6 +88,23 @@ struct HomeworkBanner: View {
                 Button("キャンセル", role: .cancel) { }
             } message: {
                 Text("編集したい宿題セットを選んでください。")
+            }
+            .confirmationDialog(
+                "書き出す宿題を選んでください",
+                isPresented: $showExportPicker,
+                titleVisibility: .visible
+            ) {
+                Button("今回分を書き出し（\(hw.currentPair.jaTitle)）") {
+                    exportCurrentPack()
+                }
+
+                Button("次回分ドラフトを書き出し（\(hw.currentPair.next.jaTitle)）") {
+                    exportNextDraft()
+                }
+
+                Button("キャンセル", role: .cancel) { }
+            } message: {
+                Text("今回分の固定パック、または次回分として編集済みのドラフトを選べます。")
             }
             .sheet(item: $editingTargetPair) { pair in
                 let parts = pair.parts
@@ -233,26 +251,7 @@ struct HomeworkBanner: View {
     
     private var exportButton: some View {
         Button {
-            print("✅ EXPORT BUTTON TAP")
-
-            do {
-                let result = try HomeworkExportFile.makeCurrentHomeworkJSONData(
-                    hw: hw,
-                    requiredCount: 10,
-                    totalCount: 24
-                )
-
-                let json = String(data: result.data, encoding: .utf8) ?? "{}"
-                exportDoc = JSONTextDocument(text: json)
-                exportFileName = HomeworkExportFile.makeFileName(for: result.payload)
-                exportErrorMessage = nil
-                showingExporter = true
-
-            } catch {
-                exportErrorMessage = "JSON生成失敗: \(error.localizedDescription)"
-                print("❌ export error:", error)
-            }
-
+            showExportPicker = true
         } label: {
             VStack(spacing: 2) {
                 Image(systemName: "square.and.arrow.down")
@@ -270,6 +269,55 @@ struct HomeworkBanner: View {
         .buttonStyle(.plain)
     }
 
+    private func exportCurrentPack() {
+        print("✅ EXPORT CURRENT PACK TAP")
+
+        do {
+            let result = try HomeworkExportFile.makeCurrentHomeworkJSONData(
+                hw: hw,
+                requiredCount: 10,
+                totalCount: 24
+            )
+
+            let json = String(data: result.data, encoding: .utf8) ?? "{}"
+            exportDoc = JSONTextDocument(text: json)
+            exportFileName = HomeworkExportFile.makeFileName(for: result.payload)
+            exportErrorMessage = nil
+            showingExporter = true
+
+        } catch {
+            exportErrorMessage = "JSON生成失敗: \(error.localizedDescription)"
+            print("❌ export current error:", error)
+        }
+    }
+    
+    private func exportNextDraft() {
+        print("✅ EXPORT NEXT DRAFT TAP")
+
+        let nextPair = hw.currentPair.next
+
+        guard let draft = HomeworkPackStore.shared.loadDraft(pair: nextPair) else {
+            exportErrorMessage = "次回分ドラフト（\(nextPair.jaTitle)）が見つかりません。先に「宿題編集」で保存してください。"
+            print("⚠️ no draft for pair=\(nextPair.rawValue)")
+            return
+        }
+
+        do {
+            let data = try HomeworkExportFile.makePrettyJSONData(draft)
+            let json = String(data: data, encoding: .utf8) ?? "{}"
+
+            exportDoc = JSONTextDocument(text: json)
+            exportFileName = HomeworkExportFile.makeFileName(for: draft)
+            exportErrorMessage = nil
+            showingExporter = true
+
+            print("✅ draft export prepared id=\(draft.id) items=\(draft.items.count)")
+        } catch {
+            exportErrorMessage = "ドラフトJSON生成失敗: \(error.localizedDescription)"
+            print("❌ export draft error:", error)
+        }
+    }
+    
     private var clearButton: some View {
         Button {
             // ✅ いつでも確認を出す
