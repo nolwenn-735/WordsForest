@@ -51,12 +51,7 @@ struct ContentView: View {
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 
-        // ✅ 解除シートはContentViewで一括管理
-        .sheet(isPresented: $teacher.showingUnlockSheet) {
-            TeacherUnlockSheet()
-                .environmentObject(teacher)
-        }
-
+        
         #if canImport(UIKit)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             teacher.refreshLockState()

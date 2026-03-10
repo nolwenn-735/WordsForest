@@ -150,10 +150,6 @@ struct HomePage: View {
             learnedCount = HomeworkStore.shared.collectionLearnedCount
         }
         .safeAreaInset(edge: .bottom) { Color.clear.frame(height: 12) }
-        .sheet(isPresented: $teacher.showingUnlockSheet) {
-            TeacherUnlockSheet()
-                .environmentObject(teacher)
-        }
     }
 }
 

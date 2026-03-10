@@ -1,6 +1,8 @@
 //
 // HomeworkUI.swift
 //
+//2026/03/05(宿題書き出しcurrent or draft 選択可logic実装）
+
 import SwiftUI
 import Foundation
 import UniformTypeIdentifiers
