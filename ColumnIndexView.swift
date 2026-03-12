@@ -2,73 +2,61 @@
 //  ColumnIndexView.swift
 //  WordsForest
 //
-//  Created by Nami .T on 2025/10/30.
+//  Created by Nami .T on 2025/10/30.→2026/3/12 TeacherLock対応
 //
 
 import SwiftUI
 
 struct ColumnIndexView: View {
-   
     @StateObject private var store = ColumnStore.shared
+    @EnvironmentObject private var teacher: TeacherMode
+
     @State private var searchText = ""
     @State private var showNewestFirst = true
-    
-    @State private var showingEditor = false
+
     @State private var editingArticle: ColumnArticle? = nil
     @State private var editorIsNew = false
-    
+
     @State private var showingDeleteConfirm = false
     @State private var deletingArticle: ColumnArticle? = nil
+    @State private var pendingCreate = false
+    @State private var pendingEditArticle: ColumnArticle? = nil
+    @State private var pendingDeleteArticle: ColumnArticle? = nil
+    
+    @State private var exportDoc: JSONTextDocument? = nil
+    @State private var exportFileName: String = "column.json"
+    @State private var showingExporter = false
+    @State private var exportErrorMessage: String? = nil
 
+    @State private var pendingExportArticle: ColumnArticle? = nil
 
+    private var filtered: [ColumnArticle] {
+        filteredArticles()
+    }
+    
     var body: some View {
-        let filtered = filteredArticles()
-
         ZStack(alignment: .bottomLeading) {
             Color("othersLavender").ignoresSafeArea()
 
             List {
                 ForEach(filtered) { article in
-                    NavigationLink {
-                        ColumnArticleView(
-                            title: "No.\(article.id)  \(article.title)",
-                            content: article.body
-                        )
-                    } label: {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("No.\(article.id)")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                            Text(article.title)
-                                .foregroundStyle(.blue)
-                        }
-                        .padding(.vertical, 4)
-                    }
-                    // ✅ 長押しメニューで編集
-                    .contextMenu {
-                        Button("編集…") {
-                            editorIsNew = false
-                            editingArticle = article
-                            showingEditor = true
-                        }
-                        Button(role: .destructive) {
-                                deletingArticle = article
-                                showingDeleteConfirm = true
-                            } label: {
-                                Text("削除")
-                            }
-                    }
+                    articleRow(article)
                 }
+                
+
             }
-            .confirmationDialog("このコラムを削除しますか？",
-                                isPresented: $showingDeleteConfirm,
-                                titleVisibility: .visible) {
+            .confirmationDialog(
+                "このコラムを削除しますか？",
+                isPresented: $showingDeleteConfirm,
+                titleVisibility: .visible
+            ) {
                 Button("削除", role: .destructive) {
                     if let a = deletingArticle {
-                               store.delete(a)   // ← ColumnStore に delete を作る
+                        store.delete(a)
                     }
                     deletingArticle = nil
                 }
+
                 Button("キャンセル", role: .cancel) {
                     deletingArticle = nil
                 }
@@ -78,34 +66,104 @@ struct ColumnIndexView: View {
             .navigationTitle("🐺 コラム一覧")
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
-
-                    // ✅ ＋：新規作成
                     Button {
-                        let nextID = (store.articles.map { $0.id }.max() ?? 0) + 1
-                        editorIsNew = true
-                        editingArticle = ColumnArticle(id: nextID, title: "", body: "", tags: [])
+                        pendingCreate = true
                     } label: {
                         Image(systemName: "plus")
                     }
 
-                    // ✅ 並び替え
                     Button(showNewestFirst ? "最新→古い" : "古い→最新") {
-                        withAnimation { showNewestFirst.toggle() }
+                        withAnimation {
+                            showNewestFirst.toggle()
+                        }
                     }
                 }
             }
             .onAppear {
-                store.markAsSeen()   // ✅ 一覧を開いたら既読扱い（🆕消す）
+                store.markAsSeen()
             }
-            // ✅ これが白紙対策の本体
+            .onChange(of: pendingCreate) { _, newValue in
+                guard newValue else { return }
+                teacher.requestUnlock {
+                    let nextID = store.nextID()
+                    editorIsNew = true
+                    editingArticle = ColumnArticle(
+                        id: nextID,
+                        title: "",
+                        body: "",
+                        tags: []
+                    )
+                }
+                pendingCreate = false
+            }
+            .onChange(of: pendingEditArticle) { _, article in
+                guard let article else { return }
+                teacher.requestUnlock {
+                    editorIsNew = false
+                    editingArticle = article
+                }
+                pendingEditArticle = nil
+            }
+            .onChange(of: pendingDeleteArticle) { _, article in
+                guard let article else { return }
+                teacher.requestUnlock {
+                    deletingArticle = article
+                    showingDeleteConfirm = true
+                }
+                pendingDeleteArticle = nil
+            }
+            .onChange(of: pendingExportArticle) { _, article in
+                guard let article else { return }
+                teacher.requestUnlock {
+                    do {
+                        let result = try ColumnExportFile.makeExportDocument(for: article)
+                        exportDoc = result.doc
+                        exportFileName = result.fileName
+                        exportErrorMessage = nil
+                        showingExporter = true
+                    } catch {
+                        exportErrorMessage = "コラムJSON生成失敗: \(error.localizedDescription)"
+                        print("❌ column export error:", error)
+                    }
+                }
+                pendingExportArticle = nil
+            }
             .sheet(item: $editingArticle) { article in
                 ColumnEditorView(
                     initial: article,
                     isNew: editorIsNew,
                     onSave: { updated in
-                        store.upsert(updated)   // ✅ 保存して一覧に反映
+                        store.upsert(updated)
                     }
                 )
+            }
+            .fileExporter(
+                isPresented: $showingExporter,
+                document: exportDoc ?? JSONTextDocument(text: "{}"),
+                contentType: .json,
+                defaultFilename: exportFileName
+            ) { result in
+                switch result {
+                case .success(let url):
+                    exportErrorMessage = nil
+                    print("✅ column exported:", url)
+                case .failure(let err):
+                    exportErrorMessage = err.localizedDescription
+                    print("❌ column export error:", err)
+                }
+            }
+            .alert(
+                "書き出しエラー",
+                isPresented: Binding(
+                    get: { exportErrorMessage != nil },
+                    set: { if !$0 { exportErrorMessage = nil } }
+                )
+            ) {
+                Button("OK", role: .cancel) {
+                    exportErrorMessage = nil
+                }
+            } message: {
+                Text(exportErrorMessage ?? "")
             }
 
             Image("tutor_husky_down")
@@ -117,6 +175,60 @@ struct ColumnIndexView: View {
         }
     }
 
+    @ViewBuilder
+    private func articleRow(_ article: ColumnArticle) -> some View {
+        let placeholder = isPlaceholder(article)
+
+        NavigationLink {
+            ColumnArticleView(
+                title: "No.\(article.id)  \(article.title)",
+                content: article.body
+            )
+        } label: {
+            VStack(alignment: .leading, spacing: 6) {
+                HStack(spacing: 8) {
+                    Text("No.\(article.id)")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+
+                    if placeholder {
+                        Text("準備中")
+                            .font(.caption2.bold())
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(.gray.opacity(0.18))
+                            .clipShape(Capsule())
+                            .foregroundStyle(.secondary)
+                    }
+                }
+
+                Text(article.title)
+                    .foregroundColor(placeholder ? .secondary : .blue)
+                if !article.tags.isEmpty {
+                    Text(article.tags.joined(separator: "・"))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .padding(.vertical, 4)
+        }
+        .contextMenu {
+            Button("書き出し") {
+                pendingExportArticle = article
+            }
+
+            Button("編集…") {
+                pendingEditArticle = article
+            }
+
+            Button(role: .destructive) {
+                pendingDeleteArticle = article
+            } label: {
+                Text("削除")
+            }
+        }
+    }
+    
     private func filteredArticles() -> [ColumnArticle] {
         var base = store.articles
 
@@ -134,10 +246,16 @@ struct ColumnIndexView: View {
             || $0.tags.contains(where: { $0.localizedCaseInsensitiveContains(searchText) })
         }
     }
+
+    private func isPlaceholder(_ article: ColumnArticle) -> Bool {
+        let trimmed = article.body.trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmed.isEmpty || trimmed == "ここに本文を書きます…"
+    }
 }
 
 #Preview {
     NavigationStack {
         ColumnIndexView()
+            .environmentObject(TeacherMode.preview(unlocked: true))
     }
 }
