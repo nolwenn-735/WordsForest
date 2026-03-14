@@ -29,6 +29,8 @@ struct ColumnIndexView: View {
     @State private var exportErrorMessage: String? = nil
 
     @State private var pendingExportArticle: ColumnArticle? = nil
+    @State private var showingImporter = false
+    @State private var importErrorMessage: String? = nil
 
     private var filtered: [ColumnArticle] {
         filteredArticles()
@@ -38,31 +40,33 @@ struct ColumnIndexView: View {
         ZStack(alignment: .bottomLeading) {
             Color("othersLavender").ignoresSafeArea()
 
-            List {
-                ForEach(filtered) { article in
-                    articleRow(article)
-                }
-                
+            VStack(spacing: 0) {
+                importHeader
 
-            }
-            .confirmationDialog(
-                "このコラムを削除しますか？",
-                isPresented: $showingDeleteConfirm,
-                titleVisibility: .visible
-            ) {
-                Button("削除", role: .destructive) {
-                    if let a = deletingArticle {
-                        store.delete(a)
+                List {
+                    ForEach(filtered) { article in
+                        articleRow(article)
                     }
-                    deletingArticle = nil
                 }
+                .confirmationDialog(
+                    "このコラムを削除しますか？",
+                    isPresented: $showingDeleteConfirm,
+                    titleVisibility: .visible
+                ) {
+                    Button("削除", role: .destructive) {
+                        if let a = deletingArticle {
+                            store.delete(a)
+                        }
+                        deletingArticle = nil
+                    }
 
-                Button("キャンセル", role: .cancel) {
-                    deletingArticle = nil
+                    Button("キャンセル", role: .cancel) {
+                        deletingArticle = nil
+                    }
                 }
+                .listStyle(.plain)
+                .searchable(text: $searchText, prompt: "コラムを検索")
             }
-            .listStyle(.plain)
-            .searchable(text: $searchText, prompt: "コラムを検索")
             .navigationTitle("🐺 コラム一覧")
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
@@ -134,8 +138,39 @@ struct ColumnIndexView: View {
                     isNew: editorIsNew,
                     onSave: { updated in
                         store.upsert(updated)
+                    },
+                    onDelete: { target in
+                        store.delete(target)
                     }
                 )
+            }
+            .fileImporter(
+                isPresented: $showingImporter,
+                allowedContentTypes: [.json],
+                allowsMultipleSelection: false
+            ) { result in
+                switch result {
+                case .success(let urls):
+                    guard let url = urls.first else { return }
+                    importSelectedColumnFile(from: url)
+
+                case .failure(let error):
+                    importErrorMessage = "コラム取得失敗: \(error.localizedDescription)"
+                    print("❌ column import picker error:", error)
+                }
+            }
+            .alert(
+                "取得エラー",
+                isPresented: Binding(
+                    get: { importErrorMessage != nil },
+                    set: { if !$0 { importErrorMessage = nil } }
+                )
+            ) {
+                Button("OK", role: .cancel) {
+                    importErrorMessage = nil
+                }
+            } message: {
+                Text(importErrorMessage ?? "")
             }
             .fileExporter(
                 isPresented: $showingExporter,
@@ -226,6 +261,56 @@ struct ColumnIndexView: View {
             } label: {
                 Text("削除")
             }
+        }
+    }
+    
+    private var importHeader: some View {
+        HStack {
+            Button {
+                showingImporter = true
+            } label: {
+                HStack(spacing: 8) {
+                    Text("🟣")
+                    Text("新規取得")
+                        .font(.system(size: 15, weight: .semibold))
+                }
+                .foregroundStyle(.purple)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 10)
+                .background(
+                    RoundedRectangle(cornerRadius: 14)
+                        .fill(Color.purple.opacity(0.10))
+                )
+            }
+            .buttonStyle(.plain)
+
+            Spacer()
+        }
+        .padding(.horizontal, 16)
+        .padding(.top, 8)
+        .padding(.bottom, 6)
+    }
+    
+    private func importSelectedColumnFile(from url: URL) {
+        let didStartAccessing = url.startAccessingSecurityScopedResource()
+        defer {
+            if didStartAccessing {
+                url.stopAccessingSecurityScopedResource()
+            }
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+            let payload = try JSONDecoder().decode(ColumnExportPayload.self, from: data)
+
+            try store.importPayload(payload)
+
+            print("✅ column imported payload id =", payload.id)
+            print("✅ imported items =", payload.items.count)
+
+        } catch {
+            importErrorMessage = "コラムJSONの読み込みに失敗しました: \(error.localizedDescription)"
+            print("❌ column import error:", error)
         }
     }
     
