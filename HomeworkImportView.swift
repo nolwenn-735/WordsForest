@@ -79,6 +79,8 @@ struct HomeworkImportButton: View {
             hw.addImportedToHistory(payload: payload)
             hw.markImported(payload: payload)
             hw.resetCache()
+            
+            UserDefaults.standard.set(payload.id, forKey: DefaultsKeys.lastImportedHomeworkPayloadID)
 
             let date = payload.createdAt.prefix(10)
             let pairLabel = (PosPair(rawValue: payload.pair) ?? hw.currentPair).parts

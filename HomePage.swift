@@ -1,6 +1,7 @@
 //HomePage.swift
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct HomePage: View {
     @EnvironmentObject var router: Router
@@ -9,6 +10,7 @@ struct HomePage: View {
     
     @State private var searchText = ""
     @FocusState private var searchFocused: Bool
+    @State private var submittedSearchText = ""
     
     @State private var confirmEntry: HomeworkEntry?
     @State private var pushEntry: HomeworkEntry?
@@ -19,6 +21,18 @@ struct HomePage: View {
     @State private var favCount = HomeworkStore.shared.collectionFavoritesCount
     @State private var learnedCount = HomeworkStore.shared.collectionLearnedCount
     @StateObject private var columnStore = ColumnStore.shared
+    @State private var showingManifestImporter = false
+    @State private var manifestImportErrorMessage: String? = nil
+
+    @AppStorage("manifest_latestHomeworkPayloadID") private var manifestLatestHomeworkPayloadID: String = ""
+    @AppStorage("manifest_latestHomeworkDateText") private var manifestLatestHomeworkDateText: String = ""
+    @AppStorage("manifest_latestHomeworkLabel") private var manifestLatestHomeworkLabel: String = ""
+    @AppStorage("manifest_latestHomeworkCount") private var manifestLatestHomeworkCount: Int = 0
+    @AppStorage("manifest_latestColumnArticleID") private var manifestLatestColumnArticleID: Int = 0
+    @AppStorage("manifest_updatedAtISO") private var manifestUpdatedAtISO: String = ""
+    @AppStorage(DefaultsKeys.lastImportedHomeworkPayloadID)
+    
+    private var lastImportedHomeworkPayloadID: String = ""
     
     private var favBadgeText: String { favCount > 99 ? "99+" : "\(favCount)" }
     private var learnedBadgeText: String { learnedCount > 99 ? "99+" : "\(learnedCount)" }
@@ -150,6 +164,69 @@ struct HomePage: View {
             learnedCount = HomeworkStore.shared.collectionLearnedCount
         }
         .safeAreaInset(edge: .bottom) { Color.clear.frame(height: 12) }
+        .fileImporter(
+            isPresented: $showingManifestImporter,
+            allowedContentTypes: [.json],
+            allowsMultipleSelection: false
+        ) { result in
+            switch result {
+            case .success(let urls):
+                guard let url = urls.first else { return }
+                importSelectedManifestFile(from: url)
+
+            case .failure(let error):
+                manifestImportErrorMessage = "新着確認ファイルの読み込みに失敗しました: \(error.localizedDescription)"
+                print("❌ manifest picker error:", error)
+            }
+        }
+        .alert(
+            "新着確認エラー",
+            isPresented: Binding(
+                get: { manifestImportErrorMessage != nil },
+                set: { if !$0 { manifestImportErrorMessage = nil } }
+            )
+        ) {
+            Button("OK", role: .cancel) {
+                manifestImportErrorMessage = nil
+            }
+        } message: {
+            Text(manifestImportErrorMessage ?? "")
+        }
+    }
+        
+    private func importSelectedManifestFile(from url: URL) {
+        let didStartAccessing = url.startAccessingSecurityScopedResource()
+        defer {
+            if didStartAccessing {
+                url.stopAccessingSecurityScopedResource()
+            }
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+            let manifest = try JSONDecoder().decode(DeliveryManifest.self, from: data)
+
+            manifestLatestHomeworkPayloadID = manifest.latestHomeworkPayloadID ?? ""
+            manifestLatestHomeworkDateText = manifest.latestHomeworkDateText ?? ""
+            manifestLatestHomeworkLabel = manifest.latestHomeworkLabel ?? ""
+            manifestLatestHomeworkCount = manifest.latestHomeworkCount ?? 0
+            manifestLatestColumnArticleID = manifest.latestColumnArticleID ?? 0
+            manifestUpdatedAtISO = manifest.updatedAtISO
+
+            manifestImportErrorMessage = nil
+
+            print("✅ manifest imported")
+            print("  latestHomeworkPayloadID =", manifestLatestHomeworkPayloadID)
+            print("  latestHomeworkDateText =", manifestLatestHomeworkDateText)
+            print("  latestHomeworkLabel =", manifestLatestHomeworkLabel)
+            print("  latestHomeworkCount =", manifestLatestHomeworkCount)
+            print("  latestColumnArticleID =", manifestLatestColumnArticleID)
+            print("  updatedAtISO =", manifestUpdatedAtISO)
+
+        } catch {
+            manifestImportErrorMessage = "新着確認ファイルの読み込みに失敗しました: \(error.localizedDescription)"
+            print("❌ manifest import error:", error)
+        }
     }
 }
 
@@ -207,25 +284,43 @@ private extension HomePage {
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
                 .focused($searchFocused)
+                .submitLabel(.done)
+                .onSubmit {
+                    searchFocused = false
+                }
                 .padding(10)
                 .background(.white)
                 .cornerRadius(12)
                 .shadow(color: .black.opacity(0.05), radius: 2, y: 1)
 
-            NavigationLink("検索") {
-                let q = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-                let cards = searchAllCards(query: q)
+            NavigationLink {
+                let cards = searchAllCards(query: submittedSearchText)
 
                 POSFlashcardView(
                     title: "検索結果",
                     cards: cards,
                     accent: .gray.opacity(0.6),
                     background: Color(.systemGray6),
-                    animalName: "index_raccoon_stand",
+                    animalName: "index_raccoon_stand"
                 )
+            } label: {
+                Text("検索")
             }
+            .simultaneousGesture(TapGesture().onEnded {
+                submittedSearchText = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+                searchText = ""
+                searchFocused = false
+            })
             .buttonStyle(.borderedProminent)
             .tint(.blue)
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("閉じる") {
+                    searchFocused = false
+                }
+            }
         }
         .padding(.horizontal, 4)
         .padding(.top, 4)
@@ -236,13 +331,32 @@ private extension HomePage {
     var recentSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("📚取得済宿題（直近4件）")
-                        .font(.headline)
-                    Text("🆕新しい宿題が届いていないか📱を確認しましょう")
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(spacing: 8) {
+                        Text("📚新しい宿題")
+                            .font(.headline)
+
+                        Button {
+                            showingManifestImporter = true
+                        } label: {
+                            HStack(spacing: 4) {
+                                Text("🔔")
+                                Text("新着確認")
+                            }
+                            .font(.caption.weight(.semibold))
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(.blue.opacity(0.10), in: Capsule())
+                            .foregroundStyle(.blue)
+                        }
+                        .buttonStyle(.plain)
+                    }
+
+                    Text("🆕新しい宿題が届いていないか確認しましょう")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
+
                 Button(showRecent ? "隠す" : "表示") {
                     withAnimation(.snappy) { showRecent.toggle() }
                 }
@@ -253,14 +367,18 @@ private extension HomePage {
             }
 
             if showRecent {
-                HomeworkRecentWidget(confirmEntry: $confirmEntry)
-                    .transition(.move(edge: .top).combined(with: .opacity))
+                VStack(spacing: 10) {
+                    if hasUnclaimedHomeworkFromManifest {
+                        manifestHomeworkPreviewCard
+                    }
+
+                    HomeworkRecentWidget(confirmEntry: $confirmEntry)
+                }
+                .transition(.move(edge: .top).combined(with: .opacity))
             }
         }
         .padding(.horizontal)
         .padding(.vertical, 4)
-
-        // ✅ ここ！ if の外＝VStack（= recentSection全体）に付ける
         .navigationDestination(item: $pushEntry) { e in
             HomeworkHistoryWordsView(entry: e)
                 .environmentObject(hw)
@@ -270,10 +388,66 @@ private extension HomePage {
             isPresented: .constant(confirmEntry != nil),
             presenting: confirmEntry
         ) { e in
-            Button("見る") { pushEntry = e; confirmEntry = nil }
-            Button("キャンセル", role: .cancel) { confirmEntry = nil }
+            Button("見る") {
+                pushEntry = e
+                confirmEntry = nil
+            }
+            Button("キャンセル", role: .cancel) {
+                confirmEntry = nil
+            }
+        } message: { _ in
+            Text("この日の宿題を表示します。")
         }
     }
+    private var hasUnclaimedHomeworkFromManifest: Bool {
+        !manifestLatestHomeworkPayloadID.isEmpty &&
+        manifestLatestHomeworkPayloadID != lastImportedHomeworkPayloadID &&
+        !manifestLatestHomeworkDateText.isEmpty &&
+        !manifestLatestHomeworkLabel.isEmpty &&
+        manifestLatestHomeworkCount > 0
+    }
+
+    private var manifestHomeworkPreviewCard: some View {
+                    
+        HStack(alignment: .top, spacing: 10) {
+            Text("🆕")
+                .font(.caption.bold())
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color.red.opacity(0.92), in: Capsule())
+                .foregroundStyle(.white)
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(manifestLatestHomeworkDateText)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+
+                Text("宿題：\(manifestLatestHomeworkLabel)")
+                    .font(.body.weight(.semibold))
+                    .foregroundStyle(.primary)
+
+                Text("(\(manifestLatestHomeworkCount)語)")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+
+            Spacer()
+        }
+        .padding(14)
+        .background(
+            RoundedRectangle(cornerRadius: 18)
+                .fill(Color.blue.opacity(0.08))
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 18)
+                .stroke(Color.blue.opacity(0.18), lineWidth: 1)
+        )
+        .padding(.horizontal, 4)
+    }
+
+    
+
+
 }
 // MARK: - Badge Overlay modifier
 private extension View {
@@ -345,41 +519,76 @@ private struct LearnedBoxRootView: View {
 }
 
 // MARK: - 検索ロジック
-private extension HomePage {
-    func searchAllCards(query q: String) -> [WordCard] {
-        guard !q.isEmpty else { return [] }
+func searchAllCards(query q: String) -> [WordCard] {
+    guard !q.isEmpty else { return [] }
 
-        // 検索対象になる品詞
-        let allPOS = PartOfSpeech.homeworkCases + [.others]
+    let allPOS = PartOfSpeech.homeworkCases + [.others]
 
-        // HomeworkStore + SampleDeck
-        let cards =
-            allPOS.flatMap { HomeworkStore.shared.list(for: $0) } +
-            allPOS.flatMap { SampleDeck.filtered(by: $0) }
+    let rawCards =
+        allPOS.flatMap { HomeworkStore.shared.list(for: $0) } +
+        allPOS.flatMap { SampleDeck.filtered(by: $0) }
 
-        return cards
-            .uniqued(by: { "\($0.pos)|\($0.word.lowercased())|\($0.meanings.joined(separator: ","))" })
-            .filter { c in
-
-                // ① 英単語
-                if c.word.localizedCaseInsensitiveContains(q) { return true }
-
-                // ② 意味（複数）
-                if c.meanings.contains(where: { $0.localizedCaseInsensitiveContains(q) }) {
-                    return true
-                }
-
-                // ③ 不規則動詞の形
-                if (IrregularVerbBank.forms(for: c.word) ?? [])
-                    .contains(where: { $0.localizedCaseInsensitiveContains(q) }) {
-                    return true
-                }
-
-                return false
-            }
+    func key(_ c: WordCard) -> String {
+        "\(c.pos.rawValue)|\(c.word.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())"
     }
-}
 
+    func mergedUniqueStrings(_ lhs: [String], _ rhs: [String]) -> [String] {
+        var seen = Set<String>()
+        var result: [String] = []
+
+        for s in lhs + rhs {
+            let trimmed = s.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !trimmed.isEmpty else { continue }
+            if !seen.contains(trimmed) {
+                seen.insert(trimmed)
+                result.append(trimmed)
+            }
+        }
+        return result
+    }
+
+    func mergeCards(base: WordCard, incoming: WordCard) -> WordCard {
+        WordCard(
+            id: base.id,
+            pos: base.pos,
+            word: base.word,
+            meanings: mergedUniqueStrings(base.meanings, incoming.meanings),
+            examples: mergedUniqueStrings(base.examples, incoming.examples)
+        )
+    }
+
+    var merged: [String: WordCard] = [:]
+
+    for c in rawCards {
+        let k = key(c)
+        if let existing = merged[k] {
+            merged[k] = mergeCards(base: existing, incoming: c)
+        } else {
+            merged[k] = c
+        }
+    }
+
+    return merged.values
+        .filter { c in
+            if c.word.localizedCaseInsensitiveContains(q) { return true }
+
+            if c.meanings.contains(where: { $0.localizedCaseInsensitiveContains(q) }) {
+                return true
+            }
+
+            if c.examples.contains(where: { $0.localizedCaseInsensitiveContains(q) }) {
+                return true
+            }
+
+            if (IrregularVerbBank.forms(for: c.word) ?? [])
+                .contains(where: { $0.localizedCaseInsensitiveContains(q) }) {
+                return true
+            }
+
+            return false
+        }
+        .sorted { $0.word.localizedCaseInsensitiveCompare($1.word) == .orderedAscending }
+}
 
 
 
