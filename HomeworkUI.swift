@@ -181,13 +181,10 @@ struct HomeworkBanner: View {
                 .layoutPriority(0.5)
 
             if teacher.unlocked {
-                HStack(spacing: 4) {
+                HStack(spacing: 3) {
                     homeworkEditButton
                     exportButton
-
-                    #if DEBUG
-                    clearButton
-                    #endif
+                    noticeButton                    
                 }
                 .layoutPriority(1)
 
@@ -244,7 +241,7 @@ struct HomeworkBanner: View {
                     .minimumScaleFactor(0.8)
             }
             .foregroundStyle(.teal)
-            .frame(width: 54, height: 54)   // ← export と揃える
+            .frame(width: 50, height: 54)   // ← export と揃える
             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
             .contentShape(Rectangle())
         }
@@ -271,6 +268,27 @@ struct HomeworkBanner: View {
         .buttonStyle(.plain)
     }
 
+    private var noticeButton: some View {
+        NavigationLink {
+            NoticeFileEditorView()
+        } label: {
+            VStack(spacing: 2) {
+                Image(systemName: "bell.badge")
+                    .font(.system(size: 13, weight: .semibold))
+
+                Text("通知")
+                    .font(.system(size: 11, weight: .medium))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+            }
+            .foregroundStyle(.blue)
+            .frame(width: 54, height: 54)
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+    }
+    
     private func exportCurrentPack() {
         print("✅ EXPORT CURRENT PACK TAP")
 
@@ -436,13 +454,10 @@ struct HomeworkRecentWidget: View {
     @EnvironmentObject var hw: HomeworkState
     @Binding var confirmEntry: HomeworkEntry?
 
-    @State private var showingImporter = false
-    @State private var showingImportAlert = false
-    @State private var importMessage: String = ""
+    let onImportTap: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-
             HStack {
                 NavigationLink("履歴をすべて見る") {
                     HomeworkHistoryList()
@@ -453,16 +468,21 @@ struct HomeworkRecentWidget: View {
 
                 Spacer()
 
-                Button("🔵宿題取得") { showingImporter = true }
-                    .font(.callout)
-                    .buttonStyle(.bordered)
-                    .tint(.blue)
+                Button("🔵宿題取得") {
+                    onImportTap()
+                }
+                .font(.callout)
+                .buttonStyle(.bordered)
+                .tint(.blue)
             }
 
             ForEach(hw.history.prefix(4)) { e in
-                Button { confirmEntry = e } label: {
+                Button {
+                    confirmEntry = e
+                } label: {
                     HStack {
-                        Text(dateString(e.date)).foregroundColor(.secondary)
+                        Text(dateString(e.date))
+                            .foregroundColor(.secondary)
                         Text(e.titleLine)
                         Spacer()
                     }
@@ -473,69 +493,12 @@ struct HomeworkRecentWidget: View {
         .padding()
         .background(Color.white)
         .cornerRadius(12)
-        .overlay(RoundedRectangle(cornerRadius: 12).stroke(.black.opacity(0.08), lineWidth: 1))
-
-        .fileImporter(
-            isPresented: $showingImporter,
-            allowedContentTypes: [.json],
-            allowsMultipleSelection: false
-        ) { result in
-            switch result {
-            case .success(let urls):
-                guard let url = urls.first else { return }
-                importFromURL(url)
-            case .failure(let err):
-                importMessage = "ファイル選択に失敗: \(err.localizedDescription)"
-                showingImportAlert = true
-            }
-        }
-        .alert("宿題取得", isPresented: $showingImportAlert) {
-            Button("OK", role: .cancel) { }
-        } message: {
-            Text(importMessage)
-        }
-    }
-
-    private func importFromURL(_ url: URL) {
-        let gotAccess = url.startAccessingSecurityScopedResource()
-        defer { if gotAccess { url.stopAccessingSecurityScopedResource() } }
-
-        do {
-            let data = try Data(contentsOf: url)
-            let payload = try JSONDecoder().decode(HomeworkExportPayload.self, from: data)
-
-            if hw.isAlreadyImported(payload: payload) {
-                importMessage = "最新の宿題は既に取得済みです。\n" + makeImportOKMessage(payload)
-                showingImportAlert = true
-                return
-            }
-
-            try HomeworkPackStore.shared.importHomeworkPayload(payload, hw: hw, preferPayload: true)
-            
-            // ✅ 即反映(宿題キャッシュ）
-            hw.applyImportedPayload(payload)
-            // ✅ ここで「各品詞ストア」にも入れる（新規）
-            HomeworkStore.shared.mergeImportedPayload(payload)
-            // 履歴・重複取り込み管理
-            hw.addImportedToHistory(payload: payload)
-            hw.markImported(payload: payload)
-
-            importMessage = makeImportOKMessage(payload)
-            showingImportAlert = true
-
-        } catch {
-            importMessage = "取り込みに失敗: \(error.localizedDescription)"
-            showingImportAlert = true
-        }
-    }
-
-    private func makeImportOKMessage(_ payload: HomeworkExportPayload) -> String {
-        let ymd = String(payload.createdAt.prefix(10)).replacingOccurrences(of: "-", with: "/")
-        let pairLabel = (payload.pair == 0) ? "名詞＋形容詞" : "動詞＋副詞"
-        return "\(ymd) の宿題（\(pairLabel)）を取得しました。"
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(.black.opacity(0.08), lineWidth: 1)
+        )
     }
 }
-
 // MARK: - History List
 
 struct HomeworkHistoryList: View {
@@ -599,13 +562,16 @@ private func dateString(_ d: Date) -> String {
 #Preview("Banner") {
     HomeworkBanner()
         .environmentObject(HomeworkState())
-        .environmentObject(TeacherMode.shared) // private init 対策
+        .environmentObject(TeacherMode.shared)
 }
 
 #Preview("RecentWidget") {
     NavigationStack {
-        HomeworkRecentWidget(confirmEntry: .constant(nil))
-            .environmentObject(HomeworkState())
+        HomeworkRecentWidget(
+            confirmEntry: .constant(nil),
+            onImportTap: {}
+        )
+        .environmentObject(HomeworkState())
     }
 }
 

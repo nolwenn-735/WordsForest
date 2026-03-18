@@ -30,8 +30,19 @@ struct DebugCenterView: View {
             }
 
             Section("固定パック（危険）") {
+                Button("今回分の固定パックを消去") {
+                    HomeworkPackStore.shared.clear(
+                        cycleIndex: hw.currentCycleIndex,
+                        pair: hw.currentPair
+                    )
+                    hw.clearCachedHomeworkAll()
+                    hw.refresh()
+                }
+
                 Button("固定パックを全消去") {
                     HomeworkPackStore.shared.debugClearAllPacks()
+                    hw.clearCachedHomeworkAll()
+                    hw.refresh()
                 }
             }
         }

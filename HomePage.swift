@@ -23,6 +23,9 @@ struct HomePage: View {
     @StateObject private var columnStore = ColumnStore.shared
     @State private var showingManifestImporter = false
     @State private var manifestImportErrorMessage: String? = nil
+    @State private var showingHomeworkImporter = false
+    @State private var homeworkImportErrorMessage: String? = nil
+    
 
     @AppStorage("manifest_latestHomeworkPayloadID") private var manifestLatestHomeworkPayloadID: String = ""
     @AppStorage("manifest_latestHomeworkDateText") private var manifestLatestHomeworkDateText: String = ""
@@ -66,85 +69,88 @@ struct HomePage: View {
                                 .padding(.top, 8)
                                 .padding(.trailing, 8)
                         }
-                                       
+                        .padding(.horizontal, 4)
+
                     // MARK: 新着
                     recentSection
 
-                    // MARK: 品詞別レッスン
-                    Text("『単語カード学習』各品詞へ")
-                        .font(.headline)
-                        .padding(.leading, 4)
+                    Group {
+                        // MARK: 品詞別レッスン
+                        Text("『単語カード学習』各品詞へ")
+                            .font(.headline)
 
-                    posRow(.noun, title: "🐻名詞", color: .pink)
-                    posRow(.verb, title: "🐈動詞", color: .blue)
-                    posRow(.adj, title: "🐇形容詞", color: .green)
-                    posRow(.adv, title: "🦙副詞", color: .orange)
+                        posRow(.noun, title: "🐻名詞", color: .pink)
+                        posRow(.verb, title: "🐈動詞", color: .blue)
+                        posRow(.adj, title: "🐇形容詞", color: .green)
+                        posRow(.adv, title: "🦙副詞", color: .orange)
 
-                    // MARK: スペリング
-                    Button {
-                        showSpellingMenu = true
-                    } label: {
-                        Text("✏️ スペリング・チャレンジ")
-                    }
-                    .buttonStyle(ColoredPillButtonStyle(color: .purple, size: .compact, alpha: 0.20))
-                    .sheet(isPresented: $showSpellingMenu) {
-                        SpellingChallengeMenuView()
-                    }
-
-                    // MARK: My Collection
-                    NavigationLink {
-                        MyCollectionRootView()
-                    } label: {
-                        Text("💗  My Collection（覚えにくい単語）")
-                    }
-                    .buttonStyle(ColoredPillButtonStyle(color: .pink, size: .compact, alpha: 0.20))
-                    .badgeOverlay(count: favCount, text: favBadgeText, color: .red)
-
-                    // MARK: 覚えたBOX
-                    NavigationLink {
-                        LearnedBoxRootView()
-                    } label: {
-                        Text("📦  覚えたBOX")
-                    }
-                    .buttonStyle(ColoredPillButtonStyle(color: .green, size: .compact, alpha: 0.20))
-                    .badgeOverlay(count: learnedCount, text: learnedBadgeText, color: .green)
-
-                    // MARK: その他品詞
-                    HStack {
-                        NavigationLink("🐺 コラム ") {
-                            ColumnIndexView()
+                        // MARK: スペリング
+                        Button {
+                            showSpellingMenu = true
+                        } label: {
+                            Text("✏️ スペリング・チャレンジ")
                         }
-                        .buttonStyle(ColoredPillButtonStyle(color: .indigo, size: .compact, alpha: 0.20))
-                        .overlay(alignment: .trailing) {
-                            if columnStore.shouldShowNewBadge() {
-                                Text("🆕")
-                                    .font(.caption2.bold())
-                                    .padding(.horizontal, 6)
-                                    .padding(.vertical, 3)
-                                    .background(.red.opacity(0.95))
-                                    .foregroundStyle(.white)
-                                    .clipShape(Capsule())
-                                    .padding(.trailing, 14) 
+                        .buttonStyle(ColoredPillButtonStyle(color: .purple, size: .compact, alpha: 0.20))
+                        .sheet(isPresented: $showSpellingMenu) {
+                            SpellingChallengeMenuView()
+                        }
+
+                        // MARK: My Collection
+                        NavigationLink {
+                            MyCollectionRootView()
+                        } label: {
+                            Text("💗  My Collection（覚えにくい単語）")
+                        }
+                        .buttonStyle(ColoredPillButtonStyle(color: .pink, size: .compact, alpha: 0.20))
+                        .badgeOverlay(count: favCount, text: favBadgeText, color: .red)
+
+                        // MARK: 覚えたBOX
+                        NavigationLink {
+                            LearnedBoxRootView()
+                        } label: {
+                            Text("📦  覚えたBOX")
+                        }
+                        .buttonStyle(ColoredPillButtonStyle(color: .green, size: .compact, alpha: 0.20))
+                        .badgeOverlay(count: learnedCount, text: learnedBadgeText, color: .green)
+
+                        // MARK: その他品詞
+                        HStack(spacing: 8) {
+                            NavigationLink("🐺 コラム ") {
+                                ColumnIndexView()
                             }
-                        }
-                        
-                        NavigationLink("🦌 その他品詞") {
-                            POSFlashcardListView(
-                                pos: .others,
-                                accent: .purple,
-                                animalName: PartOfSpeech.others.animalName(forCycle: hw.variantIndex(for: .others))
-                            )
-                        }
-                        .buttonStyle(ColoredPillButtonStyle(color: .orange, size: .compact, alpha: 0.20))
-                    }
+                            .buttonStyle(ColoredPillButtonStyle(color: .indigo, size: .compact, alpha: 0.20))
+                            .overlay(alignment: .trailing) {
+                                if columnStore.shouldShowNewBadge() {
+                                    Text("🆕")
+                                        .font(.caption2.bold())
+                                        .padding(.horizontal, 6)
+                                        .padding(.vertical, 3)
+                                        .background(.red.opacity(0.95))
+                                        .foregroundStyle(.white)
+                                        .clipShape(Capsule())
+                                        .padding(.trailing, 14)
+                                }
+                            }
 
-                    // デバッグ
-                    #if DEBUG
-                    NavigationLink("🛠️ 宿題セット修復（デバッグ用）") {
-                        DebugCenterView()
+                            NavigationLink("🦌 その他品詞") {
+                                POSFlashcardListView(
+                                    pos: .others,
+                                    accent: .purple,
+                                    animalName: PartOfSpeech.others.animalName(forCycle: hw.variantIndex(for: .others))
+                                )
+                            }
+                            .buttonStyle(ColoredPillButtonStyle(color: .orange, size: .compact, alpha: 0.20))
+                        }
+
+                        // デバッグ
+                        #if DEBUG
+                        NavigationLink("🛠️ 宿題セット修復（デバッグ用）") {
+                            DebugCenterView()
+                        }
+                        #endif
                     }
-                    #endif
-                    
+                    .padding(.horizontal, 6)
+
                     Spacer(minLength: 8)
                 }
                 .padding(.horizontal, 12)
@@ -322,7 +328,7 @@ private extension HomePage {
                 }
             }
         }
-        .padding(.horizontal, 4)
+        .padding(.horizontal, 8)
         .padding(.top, 4)
     }
 }
@@ -335,7 +341,7 @@ private extension HomePage {
                     HStack(spacing: 8) {
                         Text("📚新しい宿題")
                             .font(.headline)
-
+                        
                         Button {
                             showingManifestImporter = true
                         } label: {
@@ -351,28 +357,33 @@ private extension HomePage {
                         }
                         .buttonStyle(.plain)
                     }
-
+                    
                     Text("🆕新しい宿題が届いていないか確認しましょう")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
-
+                
                 Button(showRecent ? "隠す" : "表示") {
                     withAnimation(.snappy) { showRecent.toggle() }
                 }
                 .font(.callout.weight(.semibold))
                 .foregroundColor(.blue)
-
+                
                 Spacer()
             }
-
+            
             if showRecent {
                 VStack(spacing: 10) {
                     if hasUnclaimedHomeworkFromManifest {
                         manifestHomeworkPreviewCard
                     }
-
-                    HomeworkRecentWidget(confirmEntry: $confirmEntry)
+                    
+                    HomeworkRecentWidget(
+                        confirmEntry: $confirmEntry,
+                        onImportTap: {
+                            showingHomeworkImporter = true
+                        }
+                    )
                 }
                 .transition(.move(edge: .top).combined(with: .opacity))
             }
@@ -406,9 +417,9 @@ private extension HomePage {
         !manifestLatestHomeworkLabel.isEmpty &&
         manifestLatestHomeworkCount > 0
     }
-
+    
     private var manifestHomeworkPreviewCard: some View {
-                    
+        
         HStack(alignment: .top, spacing: 10) {
             Text("🆕")
                 .font(.caption.bold())
@@ -416,21 +427,21 @@ private extension HomePage {
                 .padding(.vertical, 4)
                 .background(Color.red.opacity(0.92), in: Capsule())
                 .foregroundStyle(.white)
-
+            
             VStack(alignment: .leading, spacing: 4) {
                 Text(manifestLatestHomeworkDateText)
                     .font(.caption)
                     .foregroundStyle(.secondary)
-
+                
                 Text("宿題：\(manifestLatestHomeworkLabel)")
                     .font(.body.weight(.semibold))
                     .foregroundStyle(.primary)
-
+                
                 Text("(\(manifestLatestHomeworkCount)語)")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
-
+            
             Spacer()
         }
         .padding(14)
@@ -444,11 +455,11 @@ private extension HomePage {
         )
         .padding(.horizontal, 4)
     }
-
+}
     
 
 
-}
+
 // MARK: - Badge Overlay modifier
 private extension View {
     func badgeOverlay(count: Int, text: String, color: Color) -> some View {
