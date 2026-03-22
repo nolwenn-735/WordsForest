@@ -43,10 +43,10 @@ struct HomePage: View {
     var body: some View {
         ZStack {
             Color.homeIvory.ignoresSafeArea()
-
+            
             ScrollView {
                 VStack(alignment: .leading, spacing: 8) {
-
+                    
                     // MARK: タイトル
                     HStack {
                         Spacer()
@@ -58,10 +58,10 @@ struct HomePage: View {
                     }
                     .padding(.horizontal, 16)
                     .padding(.top, 12)
-
+                    
                     // MARK: 検索
                     searchSection
-
+                    
                     // MARK: 今サイクル
                     HomeworkBanner()
                         .overlay(alignment: .topTrailing) {
@@ -70,20 +70,20 @@ struct HomePage: View {
                                 .padding(.trailing, 8)
                         }
                         .padding(.horizontal, 4)
-
+                    
                     // MARK: 新着
                     recentSection
-
+                    
                     Group {
                         // MARK: 品詞別レッスン
                         Text("『単語カード学習』各品詞へ")
                             .font(.headline)
-
+                        
                         posRow(.noun, title: "🐻名詞", color: .pink)
                         posRow(.verb, title: "🐈動詞", color: .blue)
                         posRow(.adj, title: "🐇形容詞", color: .green)
                         posRow(.adv, title: "🦙副詞", color: .orange)
-
+                        
                         // MARK: スペリング
                         Button {
                             showSpellingMenu = true
@@ -94,7 +94,7 @@ struct HomePage: View {
                         .sheet(isPresented: $showSpellingMenu) {
                             SpellingChallengeMenuView()
                         }
-
+                        
                         // MARK: My Collection
                         NavigationLink {
                             MyCollectionRootView()
@@ -103,7 +103,7 @@ struct HomePage: View {
                         }
                         .buttonStyle(ColoredPillButtonStyle(color: .pink, size: .compact, alpha: 0.20))
                         .badgeOverlay(count: favCount, text: favBadgeText, color: .red)
-
+                        
                         // MARK: 覚えたBOX
                         NavigationLink {
                             LearnedBoxRootView()
@@ -112,7 +112,7 @@ struct HomePage: View {
                         }
                         .buttonStyle(ColoredPillButtonStyle(color: .green, size: .compact, alpha: 0.20))
                         .badgeOverlay(count: learnedCount, text: learnedBadgeText, color: .green)
-
+                        
                         // MARK: その他品詞
                         HStack(spacing: 8) {
                             NavigationLink("🐺 コラム ") {
@@ -131,7 +131,7 @@ struct HomePage: View {
                                         .padding(.trailing, 14)
                                 }
                             }
-
+                            
                             NavigationLink("🦌 その他品詞") {
                                 POSFlashcardListView(
                                     pos: .others,
@@ -141,16 +141,16 @@ struct HomePage: View {
                             }
                             .buttonStyle(ColoredPillButtonStyle(color: .orange, size: .compact, alpha: 0.20))
                         }
-
+                        
                         // デバッグ
-                        #if DEBUG
+#if DEBUG
                         NavigationLink("🛠️ 宿題セット修復（デバッグ用）") {
                             DebugCenterView()
                         }
-                        #endif
+#endif
                     }
                     .padding(.horizontal, 6)
-
+                    
                     Spacer(minLength: 8)
                 }
                 .padding(.horizontal, 12)
@@ -179,7 +179,7 @@ struct HomePage: View {
             case .success(let urls):
                 guard let url = urls.first else { return }
                 importSelectedManifestFile(from: url)
-
+                
             case .failure(let error):
                 manifestImportErrorMessage = "新着確認ファイルの読み込みに失敗しました: \(error.localizedDescription)"
                 print("❌ manifest picker error:", error)
@@ -198,8 +198,37 @@ struct HomePage: View {
         } message: {
             Text(manifestImportErrorMessage ?? "")
         }
-    }
         
+        
+        .fileImporter(
+            isPresented: $showingHomeworkImporter,
+            allowedContentTypes: [.json],
+            allowsMultipleSelection: false
+        ) { result in
+            switch result {
+            case .success(let urls):
+                guard let url = urls.first else { return }
+                importSelectedHomeworkFile(from: url)
+                
+            case .failure(let error):
+                homeworkImportErrorMessage = "宿題ファイルの読み込みに失敗しました: \(error.localizedDescription)"
+                print("❌ homework picker error:", error)
+            }
+        }
+        .alert(
+            "宿題取得",
+            isPresented: Binding(
+                get: { homeworkImportErrorMessage != nil },
+                set: { if !$0 { homeworkImportErrorMessage = nil } }
+            )
+        ) {
+            Button("OK", role: .cancel) {
+                homeworkImportErrorMessage = nil
+            }
+        } message: {
+            Text(homeworkImportErrorMessage ?? "")
+        }
+    }
     private func importSelectedManifestFile(from url: URL) {
         let didStartAccessing = url.startAccessingSecurityScopedResource()
         defer {
@@ -234,6 +263,41 @@ struct HomePage: View {
             print("❌ manifest import error:", error)
         }
     }
+    private func importSelectedHomeworkFile(from url: URL) {
+        let gotAccess = url.startAccessingSecurityScopedResource()
+        defer { if gotAccess { url.stopAccessingSecurityScopedResource() } }
+
+        do {
+            let data = try Data(contentsOf: url)
+            let payload = try JSONDecoder().decode(HomeworkExportPayload.self, from: data)
+
+            if hw.isAlreadyImported(payload: payload) {
+                let ymd = String(payload.createdAt.prefix(10)).replacingOccurrences(of: "-", with: "/")
+                let pairLabel = (payload.pair == 0) ? "名詞＋形容詞" : "動詞＋副詞"
+                homeworkImportErrorMessage = "最新の宿題は既に取得済みです。\n\(ymd) の宿題（\(pairLabel)）"
+                return
+            }
+
+            try HomeworkPackStore.shared.importHomeworkPayload(payload, hw: hw, preferPayload: true)
+
+            hw.applyImportedPayload(payload)
+            HomeworkStore.shared.mergeImportedPayload(payload)
+            hw.addImportedToHistory(payload: payload)
+            hw.markImported(payload: payload)
+            hw.resetCache()
+
+            UserDefaults.standard.set(payload.id, forKey: DefaultsKeys.lastImportedHomeworkPayloadID)
+
+            let ymd = String(payload.createdAt.prefix(10)).replacingOccurrences(of: "-", with: "/")
+            let pairLabel = (payload.pair == 0) ? "名詞＋形容詞" : "動詞＋副詞"
+            homeworkImportErrorMessage = "\(ymd) の宿題（\(pairLabel)）を取得しました。"
+
+        } catch {
+            homeworkImportErrorMessage = "取り込みに失敗: \(error.localizedDescription)"
+            print("❌ homework import error:", error)
+        }
+    }
+    
 }
 
 struct WeeklySetMiniButton: View {
