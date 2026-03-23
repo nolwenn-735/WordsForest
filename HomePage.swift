@@ -25,8 +25,14 @@ struct HomePage: View {
     @State private var manifestImportErrorMessage: String? = nil
     @State private var showingHomeworkImporter = false
     @State private var homeworkImportErrorMessage: String? = nil
+    @State private var showingSharedImporter = false
+    @State private var importerMode: ImporterMode? = nil
     
-
+    private enum ImporterMode {
+        case manifest
+        case homework
+    }
+    
     @AppStorage("manifest_latestHomeworkPayloadID") private var manifestLatestHomeworkPayloadID: String = ""
     @AppStorage("manifest_latestHomeworkDateText") private var manifestLatestHomeworkDateText: String = ""
     @AppStorage("manifest_latestHomeworkLabel") private var manifestLatestHomeworkLabel: String = ""
@@ -34,7 +40,7 @@ struct HomePage: View {
     @AppStorage("manifest_latestColumnArticleID") private var manifestLatestColumnArticleID: Int = 0
     @AppStorage("manifest_updatedAtISO") private var manifestUpdatedAtISO: String = ""
     @AppStorage(DefaultsKeys.lastImportedHomeworkPayloadID)
-    
+        
     private var lastImportedHomeworkPayloadID: String = ""
     
     private var favBadgeText: String { favCount > 99 ? "99+" : "\(favCount)" }
@@ -171,19 +177,44 @@ struct HomePage: View {
         }
         .safeAreaInset(edge: .bottom) { Color.clear.frame(height: 12) }
         .fileImporter(
-            isPresented: $showingManifestImporter,
+            isPresented: $showingSharedImporter,
             allowedContentTypes: [.json],
             allowsMultipleSelection: false
         ) { result in
             switch result {
             case .success(let urls):
-                guard let url = urls.first else { return }
-                importSelectedManifestFile(from: url)
-                
+                guard let url = urls.first else {
+                    importerMode = nil
+                    return
+                }
+
+                switch importerMode {
+                case .manifest:
+                    importSelectedManifestFile(from: url)
+
+                case .homework:
+                    importSelectedHomeworkFile(from: url)
+
+                case nil:
+                    break
+                }
+
             case .failure(let error):
-                manifestImportErrorMessage = "新着確認ファイルの読み込みに失敗しました: \(error.localizedDescription)"
-                print("❌ manifest picker error:", error)
+                switch importerMode {
+                case .manifest:
+                    manifestImportErrorMessage = "新着確認ファイルの読み込みに失敗しました: \(error.localizedDescription)"
+                    print("❌ manifest picker error:", error)
+
+                case .homework:
+                    homeworkImportErrorMessage = "宿題ファイルの読み込みに失敗しました: \(error.localizedDescription)"
+                    print("❌ homework picker error:", error)
+
+                case nil:
+                    break
+                }
             }
+
+            importerMode = nil
         }
         .alert(
             "新着確認エラー",
@@ -197,23 +228,6 @@ struct HomePage: View {
             }
         } message: {
             Text(manifestImportErrorMessage ?? "")
-        }
-        
-        
-        .fileImporter(
-            isPresented: $showingHomeworkImporter,
-            allowedContentTypes: [.json],
-            allowsMultipleSelection: false
-        ) { result in
-            switch result {
-            case .success(let urls):
-                guard let url = urls.first else { return }
-                importSelectedHomeworkFile(from: url)
-                
-            case .failure(let error):
-                homeworkImportErrorMessage = "宿題ファイルの読み込みに失敗しました: \(error.localizedDescription)"
-                print("❌ homework picker error:", error)
-            }
         }
         .alert(
             "宿題取得",
@@ -285,9 +299,8 @@ struct HomePage: View {
             hw.addImportedToHistory(payload: payload)
             hw.markImported(payload: payload)
             hw.resetCache()
-
-            UserDefaults.standard.set(payload.id, forKey: DefaultsKeys.lastImportedHomeworkPayloadID)
-
+            lastImportedHomeworkPayloadID = payload.id
+            
             let ymd = String(payload.createdAt.prefix(10)).replacingOccurrences(of: "-", with: "/")
             let pairLabel = (payload.pair == 0) ? "名詞＋形容詞" : "動詞＋副詞"
             homeworkImportErrorMessage = "\(ymd) の宿題（\(pairLabel)）を取得しました。"
@@ -407,7 +420,8 @@ private extension HomePage {
                             .font(.headline)
                         
                         Button {
-                            showingManifestImporter = true
+                            importerMode = .manifest
+                            showingSharedImporter = true
                         } label: {
                             HStack(spacing: 4) {
                                 Text("🔔")
@@ -445,7 +459,8 @@ private extension HomePage {
                     HomeworkRecentWidget(
                         confirmEntry: $confirmEntry,
                         onImportTap: {
-                            showingHomeworkImporter = true
+                            importerMode = .homework
+                            showingSharedImporter = true
                         }
                     )
                 }

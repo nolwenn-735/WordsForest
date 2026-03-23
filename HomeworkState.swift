@@ -423,11 +423,16 @@ final class HomeworkState: ObservableObject {
         print("[HW] addImportedToHistory called createdAt=\(payload.createdAt)")
         #endif
 
-        // ✅ 履歴日付は「生徒が取り込んだ日」
-        let now = Date()
+        let iso = ISO8601DateFormatter()
+        let payloadDate = iso.date(from: payload.createdAt) ?? Date()
 
         let p = PosPair(rawValue: payload.pair) ?? currentPair
-        logNowIfNeeded(date: now, status: .active, pair: p, wordsCount: payload.totalCount)
+        logNowIfNeeded(
+            date: payloadDate,
+            status: .active,
+            pair: p,
+            wordsCount: payload.totalCount
+        )
     }
  
     func isAlreadyImported(payload: HomeworkExportPayload) -> Bool {
