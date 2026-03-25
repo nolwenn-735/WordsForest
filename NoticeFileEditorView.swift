@@ -2,7 +2,7 @@
 //  NoticeFileEditorView.swift
 //  WordsForest
 //
-//  Created by Nami .T on 2026/03/19.
+//  Created by Nami .T on 2026/03/19.→03/25🔔通知自動化
 //
 
 import SwiftUI
@@ -11,34 +11,48 @@ import UniformTypeIdentifiers
 struct NoticeFileEditorView: View {
     @Environment(\.dismiss) private var dismiss
 
-    @State private var homeworkPayloadID: String = ""
-    @State private var homeworkDateText: String = ""
-    @State private var homeworkLabel: String = ""
-    @State private var homeworkCountText: String = ""
-    @State private var latestColumnIDText: String = ""
+    @State private var homeworkPayloadID: String
+    @State private var homeworkDateText: String
+    @State private var homeworkLabel: String
+    @State private var homeworkCountText: String
+    @State private var latestColumnIDText: String
 
     @State private var exportDoc: JSONTextDocument? = nil
     @State private var exportFileName: String = "wf-manifest.json"
     @State private var showingExporter = false
     @State private var errorMessage: String? = nil
 
+    init(
+        initialHomeworkPayloadID: String = "",
+        initialHomeworkDateText: String = "",
+        initialHomeworkLabel: String = "",
+        initialHomeworkCount: Int? = nil,
+        initialLatestColumnID: Int? = nil
+    ) {
+        _homeworkPayloadID = State(initialValue: initialHomeworkPayloadID)
+        _homeworkDateText = State(initialValue: initialHomeworkDateText)
+        _homeworkLabel = State(initialValue: initialHomeworkLabel)
+        _homeworkCountText = State(initialValue: initialHomeworkCount.map(String.init) ?? "")
+        _latestColumnIDText = State(initialValue: initialLatestColumnID.map(String.init) ?? "")
+    }
+
     var body: some View {
         NavigationStack {
             Form {
-                Section("新しい宿題のお知らせ") {
+                Section("新しい宿題の通知") {
                     TextField("宿題ファイルID", text: $homeworkPayloadID)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
 
-                    TextField("日付（例: 2026/03/19）", text: $homeworkDateText)
+                    TextField("日付（例: 2026/03/25）", text: $homeworkDateText)
 
-                    TextField("宿題名（例: 動詞＋副詞）", text: $homeworkLabel)
+                    TextField("宿題名（例: 名詞＋形容詞）", text: $homeworkLabel)
 
                     TextField("語数（例: 24）", text: $homeworkCountText)
                         .keyboardType(.numberPad)
                 }
 
-                Section("コラムのお知らせ") {
+                Section("コラムの通知") {
                     TextField("最新コラム番号（例: 25）", text: $latestColumnIDText)
                         .keyboardType(.numberPad)
                 }
@@ -49,19 +63,19 @@ struct NoticeFileEditorView: View {
                     } label: {
                         HStack {
                             Text("🔔")
-                            Text("お知らせファイルを書き出す")
+                            Text("通知ファイルを書き出す")
                         }
                     }
                     .disabled(!canExport)
                 }
 
                 Section {
-                    Text("生徒に送るのは、宿題JSONやコラムJSONに加えて、この「お知らせファイル」です。")
+                    Text("生徒に送るのは、宿題JSONやコラムJSONに加えて、この「通知ファイル」です。")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
             }
-            .navigationTitle("お知らせを作る")
+            .navigationTitle("通知を作る")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -129,7 +143,7 @@ struct NoticeFileEditorView: View {
             errorMessage = nil
             showingExporter = true
         } catch {
-            errorMessage = "お知らせファイルを作れませんでした: \(error.localizedDescription)"
+            errorMessage = "通知ファイルを作れませんでした: \(error.localizedDescription)"
         }
     }
 

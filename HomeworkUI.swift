@@ -1,7 +1,7 @@
 //
 // HomeworkUI.swift
 //
-//2026/03/05(宿題書き出しcurrent or draft 選択可logic実装）
+//2026/03/05(宿題書き出しcurrent or draft 選択可logic実装）03/25manifest自動化
 
 import SwiftUI
 import Foundation
@@ -22,7 +22,13 @@ struct HomeworkBanner: View {
     @State private var showingExporter = false
     @State private var exportErrorMessage: String? = nil
     @State private var showExportPicker = false
-
+  
+    @AppStorage("notice_lastHomeworkPayloadID") private var lastExportedHomeworkPayloadID: String = ""
+    @AppStorage("notice_lastHomeworkDateText") private var lastExportedHomeworkDateText: String = ""
+    @AppStorage("notice_lastHomeworkLabel") private var lastExportedHomeworkLabel: String = ""
+    @AppStorage("notice_lastHomeworkCount") private var lastExportedHomeworkCount: Int = 0
+    @AppStorage("notice_lastColumnID") private var lastExportedColumnID: Int = 0
+    
     // 🔁消去確認
     @State private var showClearConfirm = false
 
@@ -268,46 +274,80 @@ struct HomeworkBanner: View {
         .buttonStyle(.plain)
     }
 
+    private func currentNoticeSeed() -> (
+        payloadID: String,
+        dateText: String,
+        label: String,
+        count: Int
+    ) {
+        let pair = hw.currentPair
+
+        if let payload = HomeworkPackStore.shared.loadCurrentPayload(pair: pair) {
+            let ymd = String(payload.createdAt.prefix(10)).replacingOccurrences(of: "-", with: "/")
+            let label = pair.parts.map(\.jaTitle).joined(separator: "＋")
+            return (
+                payloadID: payload.id,
+                dateText: ymd,
+                label: label,
+                count: payload.totalCount
+            )
+        }
+
+        return (
+            payloadID: "",
+            dateText: "",
+            label: pair.parts.map(\.jaTitle).joined(separator: "＋"),
+            count: 24
+        )
+    }
+    
     private var noticeButton: some View {
-        NavigationLink {
-            NoticeFileEditorView()
+        let seed = currentNoticeSeed()
+
+        return NavigationLink {
+            NoticeFileEditorView(
+                initialHomeworkPayloadID: seed.payloadID,
+                initialHomeworkDateText: seed.dateText,
+                initialHomeworkLabel: seed.label,
+                initialHomeworkCount: seed.count,
+                initialLatestColumnID: lastExportedColumnID == 0 ? nil : lastExportedColumnID
+            )
         } label: {
             VStack(spacing: 2) {
                 Image(systemName: "bell.badge")
                     .font(.system(size: 13, weight: .semibold))
-
                 Text("通知")
                     .font(.system(size: 11, weight: .medium))
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
             }
             .foregroundStyle(.blue)
-            .frame(width: 54, height: 54)
+            .frame(width: 50, height: 54)
             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .simultaneousGesture(TapGesture().onEnded {
+            updateNoticeDraftFromLatestColumn()
+        })
     }
     
-    private func exportCurrentPack() {
-        print("✅ EXPORT CURRENT PACK TAP")
+    //MARK: - 通知の初期値づくり
+    private func updateNoticeDraft(from payload: HomeworkExportPayload) {
+        lastExportedHomeworkPayloadID = payload.id
 
-        do {
-            let result = try HomeworkExportFile.makeCurrentHomeworkJSONData(
-                hw: hw,
-                requiredCount: 10,
-                totalCount: 24
-            )
+        let ymd = String(payload.createdAt.prefix(10)).replacingOccurrences(of: "-", with: "/")
+        lastExportedHomeworkDateText = ymd
 
-            let json = String(data: result.data, encoding: .utf8) ?? "{}"
-            exportDoc = JSONTextDocument(text: json)
-            exportFileName = HomeworkExportFile.makeFileName(for: result.payload)
-            exportErrorMessage = nil
-            showingExporter = true
+        let pairLabel = (payload.pair == 0) ? "名詞＋形容詞" : "動詞＋副詞"
+        lastExportedHomeworkLabel = pairLabel
 
-        } catch {
-            exportErrorMessage = "JSON生成失敗: \(error.localizedDescription)"
-            print("❌ export current error:", error)
+        lastExportedHomeworkCount = payload.totalCount
+    }
+  
+    private func updateNoticeDraftFromLatestColumn() {
+        if let latest = ColumnStore.shared.articles.map(\.id).max() {
+            lastExportedColumnID = latest
         }
     }
     
@@ -321,6 +361,8 @@ struct HomeworkBanner: View {
             print("⚠️ no draft for pair=\(nextPair.rawValue)")
             return
         }
+        
+            updateNoticeDraft(from: draft)
 
         do {
             let data = try HomeworkExportFile.makePrettyJSONData(draft)
@@ -335,6 +377,30 @@ struct HomeworkBanner: View {
         } catch {
             exportErrorMessage = "ドラフトJSON生成失敗: \(error.localizedDescription)"
             print("❌ export draft error:", error)
+        }
+    }
+    
+    private func exportCurrentPack() {
+        print("✅ EXPORT CURRENT PACK TAP")
+
+        do {
+            let result = try HomeworkExportFile.makeCurrentHomeworkJSONData(
+                hw: hw,
+                requiredCount: 10,
+                totalCount: 24
+            )
+            
+            updateNoticeDraft(from: result.payload)
+
+            let json = String(data: result.data, encoding: .utf8) ?? "{}"
+            exportDoc = JSONTextDocument(text: json)
+            exportFileName = HomeworkExportFile.makeFileName(for: result.payload)
+            exportErrorMessage = nil
+            showingExporter = true
+
+        } catch {
+            exportErrorMessage = "JSON生成失敗: \(error.localizedDescription)"
+            print("❌ export current error:", error)
         }
     }
     

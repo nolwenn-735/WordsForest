@@ -158,6 +158,12 @@ final class HomeworkPackStore {
         guard let data = UserDefaults.standard.data(forKey: k) else { return nil }
         return try? JSONDecoder().decode(HomeworkExportPayload.self, from: data)
     }
+    
+    func loadCurrentPayload(pair: PosPair) -> HomeworkExportPayload? {
+        let key = keyPrefix + "current.\(pair.rawValue)"
+        guard let data = UserDefaults.standard.data(forKey: key) else { return nil }
+        return try? JSONDecoder().decode(HomeworkExportPayload.self, from: data)
+    }
 
     /// 次回用ドラフトを保存（payloadそのものを保存）
     func saveDraft(_ payload: HomeworkExportPayload, pair: PosPair) {
