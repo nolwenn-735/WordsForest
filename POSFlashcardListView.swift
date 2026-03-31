@@ -18,7 +18,15 @@ struct POSFlashcardListView: View {
     
     @State private var showingAdd = false
     @State private var editingWord: WordCard? = nil
+    @State private var displayedCards: [WordCard] = []
+ 
+    private func reloadCards() {
+        displayedCards = homeworkStore.list(for: pos)
+            .filter { !homeworkStore.isLearned($0) }
+            .sorted { $0.word.localizedCaseInsensitiveCompare($1.word) == .orderedAscending }
+    }
     
+/*
     private var mergedCards: [WordCard] {
         let store = homeworkStore.list(for: pos)
         let deck  = SampleDeck.filtered(by: pos)
@@ -73,11 +81,11 @@ struct POSFlashcardListView: View {
             .filter { !homeworkStore.isLearned($0) }
             .sorted { $0.word.localizedCaseInsensitiveCompare($1.word) == .orderedAscending }
     }
-    
+*/
     
     var body: some View {
-        let cards = mergedCards
-        
+        let cards = displayedCards
+
         Group {
             if cards.isEmpty {
                 // まだ単語がないとき
@@ -90,15 +98,17 @@ struct POSFlashcardListView: View {
                     accent: pos.accentColor,
                     background: pos.backgroundColor,
                     animalName: animalName,
-                    onEdit: { c in editingWord = c }
+                    onEdit: { c in editingWord = c },
+                    onDataChanged: {
+                        reloadCards()
+                    }
                 )
             }
         }
-/*      .navigationTitle(pos.jaTitle)
-        .navigationBarTitleDisplayMode(.inline)
-*/
+    /*      .navigationTitle(pos.jaTitle)
+            .navigationBarTitleDisplayMode(.inline)
+    */
         // 🔧 ツールバー（＋メニュー ＆ ホームへ🏠）
-        
         .toolbar {
             ToolbarItemGroup(placement: .topBarLeading) {
                 Menu {
@@ -107,10 +117,11 @@ struct POSFlashcardListView: View {
                     } label: {
                         Text("単語を追加")
                     }
-                    
+
                     if pos != .others {
                         GuardedButton {
                             HomeworkStore.shared.autofill(for: pos, target: 24)
+                            reloadCards()
                         } label: {
                             Text("不足分を自動追加（24まで）")
                         }
@@ -121,7 +132,7 @@ struct POSFlashcardListView: View {
                         .opacity(0.45)
                 }
             }
-            
+
             ToolbarItemGroup(placement: .topBarTrailing) {
                 Button { dismiss() } label: {
                     Text("ホームへ🏠")
@@ -131,12 +142,28 @@ struct POSFlashcardListView: View {
                 .background(.ultraThinMaterial, in: Capsule())
             }
         }
+        .onAppear {
+            reloadCards()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .favoritesDidChange)) { _ in
+            reloadCards()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .learnedDidChange)) { _ in
+            reloadCards()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .storeDidChange)) { _ in
+            reloadCards()
+        }
         // ✅ toolbar の外に sheet を置く
-        .sheet(isPresented: $showingAdd) {
+        .sheet(isPresented: $showingAdd, onDismiss: {
+            reloadCards()
+        }) {
             AddWordView(pos: pos)
         }
-        .sheet(item: $editingWord) { c in
+        .sheet(item: $editingWord, onDismiss: {
+            reloadCards()
+        }) { c in
             AddWordView(pos: pos, editing: c)
-        }       
+        }
     }
 }

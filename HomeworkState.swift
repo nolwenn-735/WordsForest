@@ -142,7 +142,7 @@ final class HomeworkState: ObservableObject {
     @AppStorage("hw_cycleIndex") private var cycleIndex: Int = 0
     var currentCycleIndex: Int { cycleIndex }
     @Published var status: HomeworkStatus {
-        didSet { statusRaw = status.rawValue; logNow() }
+        didSet { statusRaw = status.rawValue }
     }
     @Published var variantOthers = 0
     // 週合計24の内訳（お好みで変更可）
@@ -269,7 +269,6 @@ final class HomeworkState: ObservableObject {
             variantAdv  = (variantAdv  + 1) % 3
         }
         cycleStartDate = now
-        logNow(now) // サイクル切替も履歴に刻む
     }
 
     // 表示用：当初の「1週間/2週間」
@@ -418,13 +417,19 @@ final class HomeworkState: ObservableObject {
     }
     // MARK: - Import helper（外部から履歴を刻む用）
     func addImportedToHistory(payload: HomeworkExportPayload) {
-
         #if DEBUG
         print("[HW] addImportedToHistory called createdAt=\(payload.createdAt)")
         #endif
 
-        let iso = ISO8601DateFormatter()
-        let payloadDate = iso.date(from: payload.createdAt) ?? Date()
+        let dayText = String(payload.createdAt.prefix(10))
+
+        let f = DateFormatter()
+        f.calendar = Calendar(identifier: .gregorian)
+        f.locale = Locale(identifier: "en_US_POSIX")
+        f.timeZone = TimeZone(identifier: "Asia/Tokyo")
+        f.dateFormat = "yyyy-MM-dd"
+
+        let payloadDate = f.date(from: dayText) ?? Date()
 
         let p = PosPair(rawValue: payload.pair) ?? currentPair
         logNowIfNeeded(
@@ -569,7 +574,10 @@ extension HomeworkState {
 
 extension HomeworkState {
 
-    /// 取り込んだpayloadを「履歴」に1件追加する（wordIDs も可能な範囲で入れる）
+    func recordImportedPayloadIfNeeded(_ payload: HomeworkExportPayload) {
+        // 履歴追加は addImportedToHistory(payload:) に一本化する
+    }
+/*    /// 取り込んだpayloadを「履歴」に1件追加する（wordIDs も可能な範囲で入れる）
     func recordImportedPayloadIfNeeded(_ payload: HomeworkExportPayload) {
 
         let pair = PosPair(rawValue: payload.pair) ?? currentPair
@@ -601,6 +609,7 @@ extension HomeworkState {
         // ▼ 保存メソッド名もあなたの実装に合わせて差し替え
         saveHistory()
     }
+ */
 }
 // MARK: - キャッシュ操作用 extension
 
@@ -670,23 +679,29 @@ extension HomeworkState {
             self.baseDaysPerCycle = payload.daysPerCycle
             self.extensionWeeks = 0
             self.daysPerCycle = payload.daysPerCycle
-            
             self.uiTick += 1
 
-            // ✅ サイクル開始日は「取り込んだ日」にする（運用的に自然）
-            // ※payload.createdAt は履歴表示などで別に使う
+            // 取り込んだ日をサイクル開始日にする運用はそのまま維持
             self.cycleStartDate = Date()
 
             var byPos: [PartOfSpeech: [WordCard]] = [:]
+
             for it in payload.items {
                 let pos = self.mapPOS(it.pos)
-                let card = WordCard(pos: pos, word: it.word, meanings: it.meanings, examples: [])
-                byPos[pos, default: []].append(card)
+
+                // payload由来の単語は、必ず HomeworkStore 側の安定IDカードで拾う
+                if let stableCard = HomeworkStore.shared.card(
+                    word: it.word,
+                    meanings: it.meanings,
+                    pos: pos
+                ) {
+                    byPos[pos, default: []].append(stableCard)
+                }
             }
+
             self.cachedHomework = byPos
         }
     }
-
     /// payload の pos 文字列を PartOfSpeech に寄せる
     private func mapPOS(_ raw: String) -> PartOfSpeech {
         switch raw.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() {

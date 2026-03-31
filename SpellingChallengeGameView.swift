@@ -5,7 +5,7 @@
 //  Created by Nami .T on 2025/10/31.
 //
 
-
+//SpellingChallengeGameView.swift
 
 import SwiftUI
 import UniformTypeIdentifiers
@@ -258,50 +258,56 @@ struct SpellingChallengeGameView: View {
     
     // 自動判定：答えの長さに揃ったら「正解のときだけ」♥️
     private func evaluateAnswerIfReady() {
-            guard !words.isEmpty else { return }
+        guard !words.isEmpty else { return }
 
-            let targetIndex = safeIndex
-            let word = words[targetIndex]
+        let targetIndex = safeIndex
+        let word = words[targetIndex]
 
-            // 現在の並びから回答文字列を作成
-            let usedTiles = tiles.filter { !trashed.contains($0) }
-            let answer = String(usedTiles.map(\.char)).lowercased()
+        // 現在の並びから回答文字列を作成
+        let usedTiles = tiles.filter { !trashed.contains($0) }
+        let answer = String(usedTiles.map(\.char)).lowercased()
 
-            // まだ文字数が揃っていない → 何もしない（途中経過）
-            guard answer.count == word.answer.count else { return }
-
-            // 🔹この瞬間の状態に対する「チェック予約」を作る
-            // 新しいチェックごとにトークンをインクリメント
-            let token = answerCheckToken + 1
-            answerCheckToken = token
-
-            // 少し待ってから（例: 4.5秒）もう一度状態を確認
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
-                // その間に別の操作がされたら token が変わっているのでキャンセル
-                guard token == answerCheckToken else { return }
-
-                // 問題が切り替わっていたらキャンセル
-                guard targetIndex == safeIndex,
-                      targetIndex < words.count else { return }
-
-                let latestWord = words[targetIndex]
-
-                // 最新の並びを取り直す
-                let latestUsed = tiles.filter { !trashed.contains($0) }
-                let latestAnswer = String(latestUsed.map(\.char)).lowercased()
-
-                // まだ揃っていなければやっぱり判定しない
-                guard latestAnswer.count == latestWord.answer.count else { return }
-
-                if latestAnswer == latestWord.answer {
-                    // ❤️ 正解：次の問題へ
-                    showCorrectAndNext()
-                } else {
-                    // ❌ 不正解：Xを出してこの問題だけリセット
-                    showWrongAndReset()
-                }
-            }
+        // まだ文字数が揃っていない → 何もしない
+        guard answer.count == word.answer.count else {
+            // 途中で文字数が変わったら、予約中の誤答判定を無効化
+            answerCheckToken += 1
+            return
         }
+
+        // ✅ 正解は即時
+        if answer == word.answer {
+            // 予約中の誤答判定があれば無効化
+            answerCheckToken += 1
+            showCorrectAndNext()
+            return
+        }
+
+        // ❌ 不正解は少し待つ
+        // まだ並べ替え途中の可能性があるので、短い猶予を置く
+        let token = answerCheckToken + 1
+        answerCheckToken = token
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            // その間に別の操作があったらキャンセル
+            guard token == answerCheckToken else { return }
+
+            // 問題が切り替わっていたらキャンセル
+            guard targetIndex == safeIndex,
+                  targetIndex < words.count else { return }
+
+            let latestWord = words[targetIndex]
+            let latestUsed = tiles.filter { !trashed.contains($0) }
+            let latestAnswer = String(latestUsed.map(\.char)).lowercased()
+
+            // 文字数が崩れていたらまだ途中なので何もしない
+            guard latestAnswer.count == latestWord.answer.count else { return }
+
+            // この時点で正解になっていれば何もしない
+            guard latestAnswer != latestWord.answer else { return }
+
+            showWrongAndReset()
+        }
+    }
     
     // ❤️ 正解のとき → ハート表示して次の問題へ
     private func showCorrectAndNext() {

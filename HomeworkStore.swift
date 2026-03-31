@@ -296,6 +296,44 @@ final class HomeworkStore: ObservableObject {
         }
     }
 
+//03/31追加部分
+    func card(word: String, meanings: [String], pos: PartOfSpeech) -> WordCard? {
+        let w = norm(word)
+        let normalizedMeanings = meanings
+            .map { normMeaning($0) }
+            .filter { !$0.isEmpty }
+
+        guard !normalizedMeanings.isEmpty else { return nil }
+
+        let matched = words.filter {
+            $0.pos == pos &&
+            norm($0.word) == w &&
+            normalizedMeanings.contains(normMeaning($0.meaning))
+        }
+
+        guard !matched.isEmpty else { return nil }
+
+        // 代表IDは最初の1件を使う
+        let representative = matched[0]
+
+        // storeにある意味順を保ちつつ重複除去
+        var merged: [String] = []
+        for item in matched {
+            let m = item.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !m.isEmpty && !merged.contains(m) {
+                merged.append(m)
+            }
+        }
+
+        return WordCard(
+            id: representative.id,
+            pos: pos,
+            word: representative.word,
+            meanings: merged,
+            examples: []
+        )
+    }
+    
     // MARK: - Favorite / Learned (UUID-based)
 
     func isFavorite(_ c: WordCard) -> Bool {

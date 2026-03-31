@@ -155,6 +155,9 @@ private struct WeeklySetPayloadCardsView: View {
             accent: pos.accent,
             background: pos.backgroundColor,
             animalName: animal,
+            onDataChanged: {
+                hw.objectWillChange.send()
+            },
             hideLearned: true
         )
     }
@@ -179,6 +182,9 @@ private struct WeeklySetPayloadCardsView: View {
                 accent: accent,
                 background: background,
                 animalName: mixAnimal,
+                onDataChanged: {
+                    hw.objectWillChange.send()
+                },
                 hideLearned: true
             )
         }

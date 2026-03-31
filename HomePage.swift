@@ -294,7 +294,6 @@ struct HomePage: View {
 
             try HomeworkPackStore.shared.importHomeworkPayload(payload, hw: hw, preferPayload: true)
 
-            hw.applyImportedPayload(payload)
             HomeworkStore.shared.mergeImportedPayload(payload)
             hw.addImportedToHistory(payload: payload)
             hw.markImported(payload: payload)

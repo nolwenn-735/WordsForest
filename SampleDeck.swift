@@ -21,8 +21,8 @@ enum SampleDeck {
         case .noun:
             return [
                 
-                //week1
-                WordCard(word: "appleTEST",  meaning: "りんご", pos: .noun),
+                
+                WordCard(word: "apple",  meaning: "りんご", pos: .noun),
                 WordCard(word: "river",  meaning: "川",    pos: .noun),
                 WordCard(word: "forest", meaning: "森",    pos: .noun),
                 WordCard(word: "music",  meaning: "音楽",  pos: .noun),
@@ -34,7 +34,6 @@ enum SampleDeck {
                 WordCard(word: "moon", meaning: "月", pos: .noun),
                 WordCard(word: "tree", meaning: "木", pos: .noun),
                 WordCard(word: "cloud", meaning: "雲", pos: .noun),
-                //week2
                 WordCard(word: "book", meaning: "本", pos: .noun),
                 WordCard(word: "school", meaning: "学校", pos: .noun),
                 WordCard(word: "bird", meaning: "鳥", pos: .noun),
@@ -47,7 +46,6 @@ enum SampleDeck {
                 WordCard(word: "story", meaning: "物語", pos: .noun),
                 WordCard(word: "window", meaning: "窓", pos: .noun),
                 WordCard(word: "garden", meaning: "庭", pos: .noun),
-                //week3
                 WordCard(word: "kitchen", meaning: "台所", pos: .noun),
                 WordCard(word: "pencil", meaning: "鉛筆", pos: .noun),
                 WordCard(word: "street", meaning: "通り", pos: .noun),
@@ -60,7 +58,6 @@ enum SampleDeck {
                 WordCard(word: "cup", meaning: "コップ", pos: .noun),
                 WordCard(word: "bed", meaning: "ベッド", pos: .noun),
                 WordCard(word: "shirt", meaning: "シャツ", pos: .noun),
-                //week4
                 WordCard(word: "shoes", meaning: "靴", pos: .noun),
                 WordCard(word: "hat", meaning: "帽子", pos: .noun),
                 WordCard(word: "water", meaning: "水", pos: .noun),
@@ -73,7 +70,6 @@ enum SampleDeck {
                 WordCard(word: "train", meaning: "電車", pos: .noun),
                 WordCard(word: "bus", meaning: "バス", pos: .noun),
                 WordCard(word: "key", meaning: "鍵", pos: .noun),
-                //week5
                 WordCard(word: "door", meaning: "ドア", pos: .noun),
                 WordCard(word: "house", meaning: "家", pos: .noun),
                 WordCard(word: "mirror", meaning: "鏡", pos: .noun),
@@ -89,7 +85,7 @@ enum SampleDeck {
             ]
         case .verb:
             return [
-                //week1
+                
                 WordCard(word: "run",   meaning: "走る", pos: .verb),
                 WordCard(word: "fly",   meaning: "飛ぶ", pos: .verb),
                 WordCard(word: "write", meaning: "書く", pos: .verb),
@@ -102,7 +98,6 @@ enum SampleDeck {
                 WordCard(word: "watch", meaning: "見る", pos: .verb),
                 WordCard(word: "draw", meaning: "描く", pos: .verb),
                 WordCard(word: "build", meaning: "作る", pos: .verb),
-                //week2
                 WordCard(word: "swim", meaning: "泳ぐ", pos: .verb),
                 WordCard(word: "walk", meaning: "歩く", pos: .verb),
                 WordCard(word: "smile", meaning: "微笑む", pos: .verb),
@@ -115,7 +110,6 @@ enum SampleDeck {
                 WordCard(word: "wait", meaning: "待つ", pos: .verb),
                 WordCard(word: "hope", meaning: "望む", pos: .verb),
                 WordCard(word: "learn", meaning: "学ぶ", pos: .verb),
-                //week3
                 WordCard(word: "sell", meaning: "売る", pos: .verb),
                  WordCard(word: "use", meaning: "使う", pos: .verb),
                  WordCard(word: "carry", meaning: "運ぶ", pos: .verb),
@@ -128,7 +122,6 @@ enum SampleDeck {
                  WordCard(word: "meet", meaning: "会う", pos: .verb),
                  WordCard(word: "study", meaning: "勉強する", pos: .verb),
                  WordCard(word: "play", meaning: "遊ぶ", pos: .verb),
-                //week4
                  WordCard(word: "paint", meaning: "塗る", pos: .verb),
                  WordCard(word: "dance", meaning: "踊る", pos: .verb),
                  WordCard(word: "drink", meaning: "飲む", pos: .verb),
@@ -141,7 +134,6 @@ enum SampleDeck {
                  WordCard(word: "bring", meaning: "持ってくる", pos: .verb),
                  WordCard(word: "take", meaning: "持っていく", pos: .verb),
                  WordCard(word: "show", meaning: "見せる", pos: .verb),
-                //week5
                  WordCard(word: "teach", meaning: "教える", pos: .verb),
                  WordCard(word: "love", meaning: "愛する", pos: .verb),
                  WordCard(word: "like", meaning: "好き", pos: .verb),
@@ -157,7 +149,6 @@ enum SampleDeck {
             ]
         case .adj:
             return [
-                //week1
                 WordCard(word: "gentle", meaning: "優しい",   pos: .adj),
                 WordCard(word: "quiet",  meaning: "静かな",   pos: .adj),
                 WordCard(word: "bright", meaning: "明るい",   pos: .adj),
@@ -170,7 +161,6 @@ enum SampleDeck {
                 WordCard(word: "large", meaning: "大きい", pos: .adj),
                 WordCard(word: "fast", meaning: "速い", pos: .adj),
                 WordCard(word: "slow", meaning: "遅い", pos: .adj),
-                //week2
                 WordCard(word: "old", meaning: "古い", pos: .adj),
                 WordCard(word: "new", meaning: "新しい", pos: .adj),
                 WordCard(word: "kind", meaning: "親切な", pos: .adj),
@@ -183,7 +173,6 @@ enum SampleDeck {
                 WordCard(word: "sharp", meaning: "鋭い", pos: .adj),
                 WordCard(word: "soft", meaning: "柔らかい", pos: .adj),
                 WordCard(word: "strong", meaning: "強い", pos: .adj),
-                // week3
                 WordCard(word: "tall", meaning: "背の高い", pos: .adj),
                 WordCard(word: "short", meaning: "背の低い", pos: .adj),
                 WordCard(word: "warm", meaning: "暖かい", pos: .adj),
@@ -196,7 +185,6 @@ enum SampleDeck {
                 WordCard(word: "salty", meaning: "しょっぱい", pos: .adj),
                 WordCard(word: "tired", meaning: "疲れた", pos: .adj),
                 WordCard(word: "sleepy", meaning: "眠い", pos: .adj),
-                //week4
                 WordCard(word: "hungry", meaning: "お腹が空いた", pos: .adj),
                 WordCard(word: "thirsty", meaning: "喉が渇いた", pos: .adj),
                 WordCard(word: "busy", meaning: "忙しい", pos: .adj),
@@ -209,7 +197,6 @@ enum SampleDeck {
                 WordCard(word: "thin", meaning: "細い", pos: .adj),
                 WordCard(word: "fat", meaning: "太った", pos: .adj),
                 WordCard(word: "young", meaning: "若い", pos: .adj),
-                //week5
                 WordCard(word: "angry", meaning: "怒っている", pos: .adj),
                 WordCard(word: "easy", meaning: "簡単な", pos: .adj),
                 WordCard(word: "difficult", meaning: "難しい", pos: .adj),
@@ -225,7 +212,7 @@ enum SampleDeck {
             ]
         case .adv:
             return [
-                //week1
+    
                 WordCard(word: "slowly",   meaning: "ゆっくり", pos: .adv),
                 WordCard(word: "quickly",  meaning: "素早く",   pos: .adv),
                 WordCard(word: "carefully",meaning: "注意深く", pos: .adv),
@@ -238,7 +225,6 @@ enum SampleDeck {
                 WordCard(word: "eagerly", meaning: "熱心に", pos: .adv),
                 WordCard(word: "gently", meaning: "優しく", pos: .adv),
                 WordCard(word: "bravely", meaning: "勇敢に", pos: .adv),
-                //week2
                 WordCard(word: "brightly", meaning: "明るく", pos: .adv),
                 WordCard(word: "calmly", meaning: "落ち着いて", pos: .adv),
                 WordCard(word: "early", meaning: "早く", pos: .adv),
@@ -251,7 +237,6 @@ enum SampleDeck {
                 WordCard(word: "somewhere", meaning: "どこかで", pos: .adv),
                 WordCard(word: "outside", meaning: "外で", pos: .adv),
                 WordCard(word: "inside", meaning: "中で", pos: .adv),
-                //week3
                 WordCard(word: "slowly",    meaning: "ゆっくり",       pos: .adv),
                 WordCard(word: "quickly",   meaning: "素早く",         pos: .adv),
                 WordCard(word: "carefully", meaning: "注意深く",       pos: .adv),
@@ -264,7 +249,6 @@ enum SampleDeck {
                 WordCard(word: "eagerly",   meaning: "熱心に",         pos: .adv),
                 WordCard(word: "gently",    meaning: "優しく",         pos: .adv),
                 WordCard(word: "bravely",   meaning: "勇敢に",         pos: .adv),
-                //week4
                 WordCard(word: "brightly",  meaning: "明るく",         pos: .adv),
                 WordCard(word: "calmly",    meaning: "落ち着いて",     pos: .adv),
                 WordCard(word: "early",     meaning: "早く",           pos: .adv),
@@ -277,7 +261,6 @@ enum SampleDeck {
                 WordCard(word: "somewhere", meaning: "どこかで",       pos: .adv),
                 WordCard(word: "outside",   meaning: "外で",           pos: .adv),
                 WordCard(word: "inside",    meaning: "中で",           pos: .adv),
-                //week5
                 WordCard(word: "easily",    meaning: "簡単に",         pos: .adv),
                 WordCard(word: "really",    meaning: "本当に",         pos: .adv),
                 WordCard(word: "maybe",     meaning: "たぶん",         pos: .adv),
