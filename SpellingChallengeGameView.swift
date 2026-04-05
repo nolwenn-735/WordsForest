@@ -66,6 +66,7 @@ typealias Tile = GameTile
 struct SpellingChallengeGameView: View {
     let words: [SpellingWord]
     let difficulty: SpellingDifficulty
+    let moveSpeed: SpellingMoveSpeed
     
     @Environment(\.dismiss) private var dismiss
     
@@ -73,10 +74,17 @@ struct SpellingChallengeGameView: View {
     @State private var currentIndex = 0
     @State private var showHeart = false
     @State private var showWrongMark = false
+    @State private var timeRemaining: Double = 0
+    @State private var moveTimer: Timer? = nil
+    @State private var questionStartToken = 0
+
+    @State private var correctCount = 0
+    @State private var showResult = false
     
     // タイル状態
     @State private var tiles: [Tile] = []
     @State private var trashed = Set<Tile>()
+    @State private var trashHistory: [Tile] = []
     @State private var answerCheckToken = 0
     @State private var tileWidth: CGFloat = 40
     
@@ -90,8 +98,7 @@ struct SpellingChallengeGameView: View {
         GeometryReader { geo in
             let h = geo.size.height
             let w = geo.size.width
-            
-            // ★ 万一単語がない異常時だけ表示（通常ルートでは来ない想定）
+
             if words.isEmpty {
                 Text("※ 単語が渡されていません（My Collection から選んでね）")
                     .foregroundStyle(.secondary)
@@ -99,29 +106,31 @@ struct SpellingChallengeGameView: View {
             } else {
                 let index = safeIndex
                 let current = words[index]
-                
+
                 ZStack {
-                    // ===== タイトル／日本語意味 =====
-                    VStack(spacing: 4) {
+                    // 上部情報
+                    VStack(spacing: 10) {
                         Text("問題 \(index + 1) / \(words.count)")
                             .font(.system(size: 30, weight: .semibold))
+
                         Text("\(current.pos.jaTitle)　\(current.meaningJa)")
                             .font(.title3)
                             .foregroundStyle(.primary)
-                            .padding(.top, 16)
+
+                        Text("のこり \(max(0, Int(ceil(timeRemaining))))秒")
+                            .font(.headline)
+                            .foregroundStyle(.secondary)
+                            .monospacedDigit()
                     }
                     .frame(maxWidth: .infinity)
-                    .position(x: w / 2, y: h * 0.12)
-                    
-                    // ===== タイル列＋スキップボタン =====
+                    .position(x: w / 2, y: h * 0.13)
+
+                    // タイル列
                     VStack(spacing: 16) {
-                        let visible = tiles.filter { !trashed.contains($0) }
-                        let tileW = tileWidth
-                        
-                        HStack(spacing: 8) {
+                        HStack(spacing: 4) {
                             ForEach(tiles) { t in
                                 let isHidden = trashed.contains(t)
-                                
+
                                 Text(String(t.char))
                                     .font(.title2)
                                     .frame(width: tileWidth, height: tileWidth)
@@ -129,7 +138,6 @@ struct SpellingChallengeGameView: View {
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
                                     .opacity(isHidden ? 0.18 : 1.0)
-                                // 並べ替え用 DnD
                                     .modifier(DraggableIfAvailable(tile: t))
                                     .modifier(DropReorderIfAvailable(tile: t) { from, to in
                                         moveTile(from: from, to: to)
@@ -137,18 +145,11 @@ struct SpellingChallengeGameView: View {
                             }
                         }
                         .padding(.horizontal, 16)
-                        
-                        // ★ 分からないとき用スキップボタン
-                        Button("スキップ") {
-                            skipQuestion()
-                        }
-                        .padding(.top, 4)
-                        .tint(.blue)
                     }
                     .frame(maxWidth: .infinity)
-                    .position(x: w / 2, y: h * 0.40)
-                    
-                    // ===== ハスキー＋❤️／❌ =====
+                    .position(x: w / 2, y: h * 0.42)
+
+                    // ハスキー＋演出
                     VStack {
                         Spacer()
                         ZStack {
@@ -156,7 +157,7 @@ struct SpellingChallengeGameView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 180)
-                            
+
                             if showHeart {
                                 Image(systemName: "heart.fill")
                                     .font(.system(size: 42))
@@ -164,6 +165,7 @@ struct SpellingChallengeGameView: View {
                                     .offset(x: 60, y: -70)
                                     .transition(.scale.combined(with: .opacity))
                             }
+
                             if showWrongMark {
                                 Image(systemName: "xmark.circle.fill")
                                     .font(.system(size: 48))
@@ -176,23 +178,91 @@ struct SpellingChallengeGameView: View {
                         .padding(.bottom, 12)
                     }
                 }
-                // ===== ライフサイクル =====
-                .onAppear(perform: setupTiles)
+                .onAppear {
+                    setupTiles()
+                }
                 .onChange(of: currentIndex) {
                     setupTiles()
                 }
+                .onDisappear {
+                    stopMoveTimer()
+                }
                 .animation(.easeInOut, value: showHeart)
                 .animation(.easeInOut, value: showWrongMark)
-                // ===== 右下ゴミ箱 =====
-                .overlay(alignment: .bottomTrailing) {
-                    TrashButton()
+                .overlay(alignment: .bottom) {
+                    HStack(alignment: .center) {
+                        Button("スキップ") {
+                            skipQuestion()
+                        }
+                        .font(.body)
+                        .foregroundStyle(.blue)
+                        .lineLimit(1)
+                        .fixedSize(horizontal: true, vertical: false)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 10)
+                        .background(Capsule().fill(Color(.systemBackground).opacity(0.92)))
+                        .overlay(
+                            Capsule().stroke(Color.blue.opacity(0.25), lineWidth: 1)
+                        )
+
+                        Spacer()
+
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 24)
+                                .fill(Color.clear)
+                                .frame(width: 170, height: 90)
+
+                            TrashButton()
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            restoreLastTrashedTile()
+                        }
                         .modifier(DropDestinationIfAvailable { items in
                             items.forEach { attemptTrash($0) }
                             return true
                         })
-                        .scaleEffect(0.98)
-                        .padding(.trailing, 32)
-                        .padding(.bottom, h * 0.42)
+                    }
+                    .padding(.horizontal, 28)
+                    .padding(.bottom, h * 0.33)
+                }
+                .sheet(isPresented: $showResult, onDismiss: {
+                    dismiss()
+                }) {
+                    NavigationStack {
+                        VStack(spacing: 20) {
+                            if correctCount >= 4 {
+                                Text("💮")
+                                    .font(.system(size: 170))
+
+                                Text("やったね!")
+                                    .font(.largeTitle.bold())
+                            } else {
+                                Text("😃")
+                                    .font(.system(size: 150))
+
+                                Text("がんばりました！")
+                                    .font(.largeTitle.bold())
+                            }
+
+                            Text("\(words.count)問中 \(correctCount)問 正解")
+                                .font(.title2)
+
+                            Text(resultMessage)
+                                .font(.body)
+                                .foregroundStyle(.secondary)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal)
+
+                            Button("閉じる") {
+                                showResult = false
+                            }
+                            .buttonStyle(.borderedProminent)
+                        }
+                        .padding()
+                        .navigationTitle("結果")
+                        .navigationBarTitleDisplayMode(.inline)
+                    }
                 }
             }
         }
@@ -202,22 +272,23 @@ struct SpellingChallengeGameView: View {
     
     private func setupTiles() {
         guard !words.isEmpty else { return }
-        
+
         let word = words[safeIndex]
 
-        // タイル生成（⭐️⭐️の余分タイル含む）
         tiles = buildTiles(for: word)
         trashed.removeAll()
+        trashHistory.removeAll()
         showHeart = false
         showWrongMark = false
         answerCheckToken += 1
+        questionStartToken += 1
 
-        // === タイル幅の決定（正解の文字数だけを見る） ===
-        let answerLength = max(word.answer.count, 1)
-        let calculated = 300 / CGFloat(answerLength)
+        let totalTileCount = max(tiles.count, 1)
+        let availableWidth = UIScreen.main.bounds.width - 24
+        let calculated = availableWidth / CGFloat(totalTileCount) - 4
+        tileWidth = min(42, max(28, calculated))
 
-        // 40 を上限、24 を下限（短すぎ/長すぎを防ぐ）
-        tileWidth = min(40, max(24, calculated))
+        startMoveTimer()
     }
     
     // SpellingWord に合わせたタイル生成
@@ -237,126 +308,145 @@ struct SpellingChallengeGameView: View {
     }
     
     // MARK: - ふるまい
-    
+
     // ゴミ箱に入ったタイルだけ「捨てた」扱い
     private func attemptTrash(_ t: Tile) {
+        guard !trashed.contains(t) else { return }
         trashed.insert(t)
+        trashHistory.append(t)
         evaluateAnswerIfReady()
     }
-    
+
     // タイルの並べ替え（DnD）
     private func moveTile(from: Tile, to: Tile) {
         guard let fromIndex = tiles.firstIndex(of: from),
               let toIndex = tiles.firstIndex(of: to),
               fromIndex != toIndex else { return }
-        
+
         let item = tiles.remove(at: fromIndex)
         tiles.insert(item, at: toIndex)
-        
+
         evaluateAnswerIfReady()
     }
-    
+
     // 自動判定：答えの長さに揃ったら「正解のときだけ」♥️
     private func evaluateAnswerIfReady() {
         guard !words.isEmpty else { return }
 
-        let targetIndex = safeIndex
-        let word = words[targetIndex]
-
-        // 現在の並びから回答文字列を作成
+        let word = words[safeIndex]
         let usedTiles = tiles.filter { !trashed.contains($0) }
         let answer = String(usedTiles.map(\.char)).lowercased()
 
-        // まだ文字数が揃っていない → 何もしない
-        guard answer.count == word.answer.count else {
-            // 途中で文字数が変わったら、予約中の誤答判定を無効化
-            answerCheckToken += 1
-            return
-        }
+        // まだ文字数が足りない → 何もしない
+        guard answer.count == word.answer.count else { return }
 
-        // ✅ 正解は即時
+        // 正解だけ即時
         if answer == word.answer {
-            // 予約中の誤答判定があれば無効化
-            answerCheckToken += 1
             showCorrectAndNext()
-            return
-        }
-
-        // ❌ 不正解は少し待つ
-        // まだ並べ替え途中の可能性があるので、短い猶予を置く
-        let token = answerCheckToken + 1
-        answerCheckToken = token
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-            // その間に別の操作があったらキャンセル
-            guard token == answerCheckToken else { return }
-
-            // 問題が切り替わっていたらキャンセル
-            guard targetIndex == safeIndex,
-                  targetIndex < words.count else { return }
-
-            let latestWord = words[targetIndex]
-            let latestUsed = tiles.filter { !trashed.contains($0) }
-            let latestAnswer = String(latestUsed.map(\.char)).lowercased()
-
-            // 文字数が崩れていたらまだ途中なので何もしない
-            guard latestAnswer.count == latestWord.answer.count else { return }
-
-            // この時点で正解になっていれば何もしない
-            guard latestAnswer != latestWord.answer else { return }
-
-            showWrongAndReset()
         }
     }
-    
+
     // ❤️ 正解のとき → ハート表示して次の問題へ
     private func showCorrectAndNext() {
+        stopMoveTimer()
         showWrongMark = false
+        correctCount += 1
+
         withAnimation { showHeart = true }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
             showHeart = false
             goNextQuestion()
         }
     }
-    
-    // ❌ 不正解のとき → バツを出して同じ問題をやり直し
-    private func showWrongAndReset() {
+
+    private func showWrongAndNext() {
+        stopMoveTimer()
         showHeart = false
+
         withAnimation { showWrongMark = true }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
             showWrongMark = false
-            setupTiles()
+            goNextQuestion()
         }
     }
     // 次の問題へ（通常の正解 or スキップ後に使用）
     private func goNextQuestion() {
+        stopMoveTimer()
         trashed.removeAll()
         showHeart = false
         showWrongMark = false
-        
+
         if currentIndex + 1 < words.count {
             currentIndex += 1
-            setupTiles()
         } else {
-            dismiss()
+            showResult = true
         }
     }
-    
-    // 分からないとき用スキップ
+
     private func skipQuestion() {
-        // 進行中の判定を無効化
+        stopMoveTimer()
         answerCheckToken += 1
         showHeart = false
         showWrongMark = false
         goNextQuestion()
     }
+
+    private func startMoveTimer() {
+        stopMoveTimer()
+
+        timeRemaining = moveSpeed.timeLimit
+        let token = questionStartToken
+
+        moveTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+            DispatchQueue.main.async {
+                guard token == questionStartToken else {
+                    timer.invalidate()
+                    return
+                }
+
+                timeRemaining -= 0.1
+
+                if timeRemaining <= 0 {
+                    timer.invalidate()
+                    moveTimer = nil
+                    timeRemaining = 0
+                    showWrongAndNext()
+                }
+            }
+        }
+    }
+
+    private func stopMoveTimer() {
+        moveTimer?.invalidate()
+        moveTimer = nil
+    }
+    
+    private func restoreLastTrashedTile() {
+        guard let last = trashHistory.popLast() else { return }
+        trashed.remove(last)
+        evaluateAnswerIfReady()
+    }
+
+    private var resultMessage: String {
+        switch correctCount {
+        case words.count:
+            return "すばらしいです。全問正解でした。"
+        case max(1, words.count - 1)...:
+            return "とてもよくできました。"
+        case 2...(words.count / 2):
+            return "がんばりました。もう一回やると、もっとよくなりそうです。"
+        default:
+            return "最後までよく取り組みました。少しずつ慣れていきましょう。"
+        }
+    }
+    
     // ===== 見た目だけのゴミ箱ボタン =====
     private struct TrashButton: View {
         var body: some View {
             Label("ゴミ箱", systemImage: "trash")
-                .font(.subheadline)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8)
+                .font(.headline)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
                 .background(Capsule().fill(Color(.systemGray6)))
                 .overlay(Capsule().stroke(Color.blue.opacity(0.28), lineWidth: 2))
                 .foregroundStyle(.blue)

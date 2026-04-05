@@ -3,6 +3,7 @@
 //  WordsForest
 //  Created by Nami .T on 2025/11/04.
 //
+//SpellingwWord.swift
 //  modified ver. 2025/12/06  （WordCard 複数意味対応版）
 
 import Foundation

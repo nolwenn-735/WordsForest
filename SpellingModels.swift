@@ -5,7 +5,7 @@
 //  Created by Nami .T on 2025/10/31.
 //
 // SpellingModels.swift
-// WordsForest
+// 
 import Foundation
 
 enum SpellingDifficulty: String, Identifiable {
@@ -14,6 +14,29 @@ enum SpellingDifficulty: String, Identifiable {
 
     var id: String { rawValue }
 }
+
+enum SpellingMoveSpeed: String, Identifiable {
+    case relaxed
+    case quick
+
+    var id: String { rawValue }
+
+    var label: String {
+        switch self {
+        case .relaxed: return "ゆっくり"
+        case .quick:   return "速め"
+        }
+    }
+
+    /// 1回の操作ごとの制限時間
+    var timeLimit: TimeInterval {
+        switch self {
+        case .relaxed: return 45
+        case .quick:   return 30
+        }
+    }
+}
+
 
 // MARK: - シャッフルしても「元の並び」と同じにはしないヘルパー
 
