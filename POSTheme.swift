@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 extension PartOfSpeech {
 
@@ -20,18 +21,18 @@ extension PartOfSpeech {
         }
     }
 
-    // アクセント色（ボタンなど）
+    // アクセント色（ボタン、ハート、チェックなど）
     var accentColor: Color {
         switch self {
-        case .noun:   return .pink
-        case .verb:   return .blue
-        case .adj:    return .green
-        case .adv:    return .yellow
-        case .others: return Color("othersPurple")
+        case .noun:   return Color("nounAccent")
+        case .verb:   return Color("verbAccent")
+        case .adj:    return Color("adjAccent")
+        case .adv:    return Color("advAccent")
+        case .others: return Color("othersAccent")
         }
     }
 
-    // 互換用（過去に pos.accent を使っていた呼び出しを生かす）
+    // 互換用（過去の pos.accent 呼び出し）
     var accent: Color { accentColor }
 
     // サイクル番号から、表示する動物画像名を 1 つ選ぶ
@@ -53,19 +54,9 @@ extension PartOfSpeech {
     }
 }
 
-// どこでもOK（例：POSTheme.swift の下など）
-import Foundation
-
 struct SampleDeckFilter {
-    // あなたの SampleDeck にレベル情報が無い場合、
-    // この関数は「pos だけでフィルタ → そのまま返す」にフォールバックします。
     static func by(pos: PartOfSpeech, levels: Set<CEFRLevel>?) -> [WordCard] {
-        // 既存のヘルパがあるならそれを使用（無い場合は適宜差し替え）
-        // 例: SampleDeck.filtered(by: pos)
         let base = SampleDeck.filtered(by: pos)
-
-        // いまは levels を無視（SampleDeck に載せてない前提）
-        // 後で SampleDeck に `level: CEFRLevel` を足したらここで絞り込めばOK
         return base
     }
 }

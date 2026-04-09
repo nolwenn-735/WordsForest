@@ -128,7 +128,7 @@ struct POSFlashcardView: View {
         // ✅ ナビバーもこの画面の色に固定（Homeの設定を上書き）
         .toolbarBackground(background, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
-        .toolbarColorScheme(.light, for: .navigationBar)
+ //     .toolbarColorScheme(.light, for: .navigationBar)
 
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -141,7 +141,7 @@ struct POSFlashcardView: View {
                                 .fill(accent)
                                 .frame(width: 12, height: 12)
                                 .overlay(
-                                    Circle().stroke(Color.black.opacity(0.45), lineWidth: 1.0)
+                                    Circle().stroke(Color(.separator), lineWidth: 1.0)
                                 )
                             Text("英日")
                                 .font(.caption)
@@ -211,7 +211,7 @@ struct POSFlashcardView: View {
         let isFav     = HomeworkStore.shared.isFavorite(c)
         
         // 行カラー
-        let rowAccent = perRowAccent ? c.pos.accent : accent
+        let rowAccent = perRowAccent ? c.pos.accentColor : accent
         
         POSCardRow(
             pos: c.pos,
@@ -465,7 +465,7 @@ struct POSFlashcardView: View {
             // 表裏どちらにも効くカードの枠
             .padding(.vertical, 14)
             .padding(.horizontal, 16)
-            .background(Color.white)
+            .background(Color(.secondarySystemBackground))
             .cornerRadius(16)
             .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: 2)
             

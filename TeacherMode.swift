@@ -263,11 +263,23 @@ struct TeacherUnlockSheet: View {
 
     // MARK: - Menu
 
+    // MARK: - Menu
+
     private var unlockedMenuSection: some View {
         Group {
             Section {
                 Text("Teacher は現在解除中です。")
                     .foregroundStyle(.secondary)
+            }
+
+            Section {
+                Button("このページを閉じる") {
+                    teacher.showingUnlockSheet = false
+                }
+
+                Button("今すぐ再ロックする") {
+                    teacher.lock()
+                }
             }
 
             Section("設定") {
@@ -278,20 +290,10 @@ struct TeacherUnlockSheet: View {
                     confirmCode = ""
                     changeErrorMessage = ""
                 }
-
-                Button("ロックする", role: .destructive) {
-                    teacher.lock()
-                }
-            }
-
-            Section {
-                Button("閉じる") {
-                    teacher.showingUnlockSheet = false
-                }
+                .foregroundStyle(.secondary)
             }
         }
     }
-
     // MARK: - Change Passcode
 
     private var changePasscodeSection: some View {
