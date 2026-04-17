@@ -185,37 +185,38 @@ struct POSFlashcardView: View {
     // MARK: - 1 行
     @ViewBuilder
     private func row(for c: WordCard, index i: Int, rowHeight: CGFloat) -> some View {
-        
+
         // 例文（ExampleStore は [ExampleEntry] を返す）
         let ex = ExampleStore.shared.firstExample(pos: c.pos, word: c.word)
         let examples: [ExampleEntry] = ex.map { [$0] } ?? []
         let note = ExampleStore.shared.wordNote(pos: c.pos, word: c.word)
-        
+
         // 不規則動詞なら 3 形を表示＆読み上げ対象に
         let isVerb = (c.pos == .verb)
         let irregularForms: [String] = isVerb ? (IrregularVerbBank.forms(from: c.word) ?? []) : []
-        
+
         // 表示用：英面のときだけ3形を表示
         let displayWord = (isVerb && !irregularForms.isEmpty)
-        ? irregularForms.joined(separator: " ・ ")
-        : c.word
-        
+            ? irregularForms.joined(separator: " ・ ")
+            : c.word
+
         // 読み上げ用：3形あれば全部読む
         let speakForms = (isVerb && !irregularForms.isEmpty) ? irregularForms : [c.word]
-        
+
         // meanings は [String] なので、表の文字は先頭だけ大きく表示
         let meanings = c.meanings
-        
+
         // 学習状態
         let isChecked = HomeworkStore.shared.isLearned(c)
-        let isFav     = HomeworkStore.shared.isFavorite(c)
-        
+        let isFav = HomeworkStore.shared.isFavorite(c)
+
         // 行カラー
-        let rowAccent = perRowAccent ? c.pos.accentColor : accent
-        
+        let rowAccent = perRowAccent ? c.pos.accent : accent
+
         POSCardRow(
             pos: c.pos,
-            word: displayWord,
+            baseWord: c.word,
+            displayWord: displayWord,
             meanings: meanings,
             examples: examples,
             note: note,
@@ -242,7 +243,6 @@ struct POSFlashcardView: View {
                 speakForms.forEach { speakWord($0) }
             },
             speakExampleTapped: {
-                // 裏面の「例文」読み上げボタン
                 let exEn = examples.first?.en ?? ""
                 let exJa = examples.first?.ja ?? ""
                 speakExample(en: exEn, ja: exJa)
@@ -320,7 +320,8 @@ struct POSFlashcardView: View {
         
         // 入力（新データモデル対応）
         let pos: PartOfSpeech
-        let word: String
+        let baseWord: String
+        let displayWord: String
         let meanings: [String]             // ← [String]
         let examples: [ExampleEntry]       // ← 例文配列
         let note: String
@@ -402,7 +403,7 @@ struct POSFlashcardView: View {
                         .foregroundStyle(.primary)
                 }
             } else {
-                Text(word)
+                Text(displayWord)
                     .font(.system(size: 28, weight: .bold))
                     .foregroundStyle(.primary)
             }
@@ -451,7 +452,7 @@ struct POSFlashcardView: View {
                     // 裏面のUI は CardBackView.swift の現在版に合わせて呼ぶ
                     CardBackView(
                         pos: pos,
-                        word: word,
+                        word: baseWord,
                         meanings: meanings,
                         examples: examples,
                         note: note,

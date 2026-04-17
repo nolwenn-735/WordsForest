@@ -48,7 +48,7 @@ struct HomePage: View {
 
     var body: some View {
         ZStack {
-            Color.homeIvory.ignoresSafeArea()
+            Color("homeIvory").ignoresSafeArea()
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 8) {
@@ -330,7 +330,10 @@ struct WeeklySetMiniButton: View {
                     .foregroundColor(.blue)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 8)
-                    .background(.thinMaterial, in: Capsule())
+                    .background(
+                        Color(red: 0.92, green: 0.92, blue: 0.94),
+                        in: Capsule()
+                    )
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
                     .allowsTightening(true)
@@ -371,7 +374,7 @@ private extension HomePage {
                     searchFocused = false
                 }
                 .padding(10)
-                .background(.white)
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(12)
                 .shadow(color: .black.opacity(0.05), radius: 2, y: 1)
 
@@ -382,7 +385,7 @@ private extension HomePage {
                     title: "検索結果",
                     cards: cards,
                     accent: .gray.opacity(0.6),
-                    background: Color(.systemGray6),
+                    background: Color(.systemBackground),
                     animalName: "index_raccoon_stand"
                 )
             } label: {

@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  AddWordView.swift
 //  WordsForest
 //
 //  Created by Nami .T on 2025/09/24.→2026/01/24

@@ -154,12 +154,14 @@ struct HomeworkBanner: View {
         HStack(spacing: 8) {
             Text("📘今サイクル")
                 .font(.headline)
+                .foregroundStyle(.black)
                 .frame(width: leftColWidth, alignment: .leading)
                 .lineLimit(1)
                 .minimumScaleFactor(0.70)
                 .allowsTightening(true)
 
             pill(hw.currentPair == .nounAdj ? "名詞＋形容詞" : "動詞＋副詞")
+                .foregroundStyle(.black)
                 .lineLimit(1)
                 .minimumScaleFactor(0.65)
                 .allowsTightening(true)
@@ -177,12 +179,16 @@ struct HomeworkBanner: View {
                     .font(.caption2)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
-                    .background(.ultraThinMaterial, in: Capsule())
-                    .foregroundStyle(.secondary)
+                    .background(
+                        Color(red: 0.92, green: 0.92, blue: 0.94),
+                        in: Capsule()
+                    )
+                    .foregroundStyle(
+                        Color(red: 0.38, green: 0.38, blue: 0.42)
+                    )
             }
             .buttonStyle(.plain)
             .frame(width: leftColWidth, alignment: .leading)
-
             cycleLengthCapsule
                 .layoutPriority(0.5)
 
@@ -213,10 +219,13 @@ struct HomeworkBanner: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
                     .allowsTightening(true)
-                    .frame(minWidth: 70)   // ← ここが効く（6.1対策）
+                    .frame(minWidth: 70)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 8)
-                    .background(.ultraThinMaterial, in: Capsule())
+                    .background(
+                        Color(red: 0.92, green: 0.92, blue: 0.94),
+                        in: Capsule()
+                    )
                     .foregroundStyle(.blue)
             }
             .buttonStyle(.plain)
@@ -226,13 +235,16 @@ struct HomeworkBanner: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
                 .allowsTightening(true)
-                .frame(minWidth: 70)   // ← 生徒側も見た目合わせ
+                .frame(minWidth: 70)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 8)
-                .background(.ultraThinMaterial, in: Capsule())
+                .background(
+                    Color(red: 0.92, green: 0.92, blue: 0.94),
+                    in: Capsule()
+                )
+                .foregroundStyle(.black)
         }
     }
-
     private var homeworkEditButton: some View {
         Button {
             showHomeworkEditPicker = true
@@ -248,12 +260,15 @@ struct HomeworkBanner: View {
             }
             .foregroundStyle(.teal)
             .frame(width: 50, height: 54)   // ← export と揃える
-            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
+            .background(
+                Color(red: 0.92, green: 0.92, blue: 0.94),
+                in: RoundedRectangle(cornerRadius: 12)
+            )
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
     }
-    
+
     private var exportButton: some View {
         Button {
             showExportPicker = true
@@ -268,7 +283,10 @@ struct HomeworkBanner: View {
             }
             .foregroundStyle(.blue)
             .frame(width: 54, height: 54)   // ←ここで固定
-            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
+            .background(
+                Color(red: 0.92, green: 0.92, blue: 0.94),
+                in: RoundedRectangle(cornerRadius: 12)
+            )
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -300,7 +318,7 @@ struct HomeworkBanner: View {
             count: 24
         )
     }
-    
+
     private var noticeButton: some View {
         let seed = currentNoticeSeed()
 
@@ -323,7 +341,10 @@ struct HomeworkBanner: View {
             }
             .foregroundStyle(.blue)
             .frame(width: 50, height: 54)
-            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
+            .background(
+                Color(red: 0.92, green: 0.92, blue: 0.94),
+                in: RoundedRectangle(cornerRadius: 12)
+            )
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -457,13 +478,17 @@ struct HomeworkBanner: View {
             .padding(.horizontal, 8)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(hw.isExtended ? Color.yellow.opacity(0.85) : Color.gray.opacity(0.25))
+                    .fill(
+                        hw.isExtended
+                        ? Color.yellow.opacity(0.85)
+                        : Color(red: 0.92, green: 0.92, blue: 0.94)
+                    )
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(.black.opacity(0.15), lineWidth: 1)
             )
-            .foregroundStyle(hw.isExtended ? .black : .primary)
+            .foregroundStyle(.black)
             .overlay(alignment: .trailing) {
                 if let t = hw.extensionLabel {
                     Text(t)

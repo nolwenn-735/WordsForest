@@ -8,33 +8,57 @@
 
 import SwiftUI
 
-// MARK: - Palette (共通色)
-extension Color {
-    static let homeIvory = Color(red: 0.99, green: 0.95, blue: 0.86)
-}
 
 // MARK: - 共通ボタンスタイルなど
 
 // 例: Commonstyles.swift
+import SwiftUI
+
 struct ColoredPillButtonStyle: ButtonStyle {
     enum Size { case regular, compact }
+
     var color: Color
     var size: Size = .regular
     var alpha: Double = 0.22
 
     func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .font(.headline)
-            .lineLimit(1)
-            .minimumScaleFactor(0.9)      // 長い文言でも1行で少しだけ縮小
-            .padding(.vertical, 8)
-            .padding(.horizontal, 16)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(
-                Capsule()
-                    .fill(color.opacity(configuration.isPressed ? alpha + 0.08 : alpha))
+        PillBody(
+            configuration: configuration,
+            color: color,
+            size: size,
+            alpha: alpha
         )
-            .overlay(Capsule().stroke(color.opacity(0.35)))
-            .foregroundStyle(.primary)
+    }
+
+    private struct PillBody: View {
+        let configuration: Configuration
+        let color: Color
+        let size: Size
+        let alpha: Double
+
+        @Environment(\.colorScheme) private var colorScheme
+
+        var body: some View {
+            configuration.label
+                .font(.headline)
+                .lineLimit(1)
+                .minimumScaleFactor(0.9)
+                .padding(.vertical, size == .compact ? 8 : 12)
+                .padding(.horizontal, 16)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(
+                    Capsule()
+                        .fill(color.opacity(configuration.isPressed ? alpha + 0.08 : alpha))
+                )
+                .overlay(
+                    Capsule()
+                        .stroke(color.opacity(0.35), lineWidth: 1)
+                )
+                .foregroundStyle(textColor)
+        }
+
+        private var textColor: Color {
+            colorScheme == .dark ? .white : .primary
+        }
     }
 }

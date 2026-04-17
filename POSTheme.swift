@@ -24,11 +24,11 @@ extension PartOfSpeech {
     // アクセント色（ボタン、ハート、チェックなど）
     var accentColor: Color {
         switch self {
-        case .noun:   return Color("nounAccent")
-        case .verb:   return Color("verbAccent")
-        case .adj:    return Color("adjAccent")
-        case .adv:    return Color("advAccent")
-        case .others: return Color("othersAccent")
+        case .noun:   return .pink
+        case .verb:   return .blue
+        case .adj:    return .green
+        case .adv:    return .yellow
+        case .others: return .purple
         }
     }
 

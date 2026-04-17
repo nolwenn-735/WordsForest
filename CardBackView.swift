@@ -1,5 +1,3 @@
-//
-//
 //  CardBackView.swift新仕様対応11/27デザイン版//(2025/12/07)(12/17複数意味対応）（2026/01/15書出し、編集、両対応）
 //
 
@@ -23,11 +21,10 @@ struct CardBackView: View {
     @State private var speechSlow = false      // ゆっくり
     @State private var speakBoth  = true       // 英＋日
     @State private var showingEditor = false   // 例文編集シート
-    
+
     @State private var didActivateAudioSession = false
 
     private let synthesizer = AVSpeechSynthesizer()
-    
     private let speechDelegate = SpeechDelegate()
 
     // MARK: - 本体
@@ -38,10 +35,12 @@ struct CardBackView: View {
             VStack(alignment: .leading, spacing: 6) {
                 Text(displayTitle)
                     .font(.system(size: 26, weight: .bold))
+                    .foregroundStyle(.primary)
 
                 ForEach(meanings.indices, id: \.self) { idx in
                     Text("・\(meanings[idx])")
                         .font(.body)
+                        .foregroundStyle(.primary)
                 }
             }
 
@@ -77,7 +76,6 @@ struct CardBackView: View {
                 if let first = examples.first {
                     exampleBlock(first, showDivider: false)
                 } else {
-                    // 生徒に見せたくないなら、ここは “何も出さない” でOK
                     EmptyView()
                 }
 
@@ -87,8 +85,6 @@ struct CardBackView: View {
                     ForEach(Array(meanings.enumerated()), id: \.offset) { i, rawM in
                         let m = rawM.trimmingCharacters(in: .whitespacesAndNewlines)
 
-                        // meaning指定で引く（なければ表示しない）
-                        // 旧データ救済：先頭meaningだけ meaning未指定の例文も拾う
                         let ex = ExampleStore.shared.firstExample(pos: pos, word: word, meaning: m)
                             ?? (i == 0 ? ExampleStore.shared.firstExample(pos: pos, word: word) : nil)
 
@@ -122,38 +118,42 @@ struct CardBackView: View {
                         )
                 }
             }
-            
+
             Spacer(minLength: 8)
 
             // 下のトグル（ゆっくり／英＋日）
             HStack(spacing: 32) {
-                Toggle(isOn: $speechSlow) { Text("ゆっくり") }
-                    .toggleStyle(.switch)
+                Toggle(isOn: $speechSlow) {
+                    Text("ゆっくり")
+                        .foregroundStyle(.primary)
+                }
+                .toggleStyle(.switch)
 
-                Toggle(isOn: $speakBoth) { Text("英＋日") }
-                    .toggleStyle(.switch)
+                Toggle(isOn: $speakBoth) {
+                    Text("英＋日")
+                        .foregroundStyle(.primary)
+                }
+                .toggleStyle(.switch)
             }
             .font(.subheadline)
         }
         .padding(.vertical, 14)
         .padding(.horizontal, 16)
-        .background(Color.white)
+        .background(Color(.secondarySystemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.06), radius: 4, x: 0, y: 2)
 
-        // 例文編集シート（先生のみボタン表示だが、sheet自体は置いてOK）
+        // 例文編集シート
         .sheet(isPresented: $showingEditor) {
             ExampleEditorView(pos: pos, word: word)
         }
         .onAppear {
             synthesizer.delegate = speechDelegate
             speechDelegate.onQueueEmpty = {
-                // ✅ キューが空になった最後だけ解除
                 deactivateAudioSessionIfNeeded()
             }
         }
         .onDisappear {
-            // 画面離脱時も保険で解除
             deactivateAudioSessionIfNeeded()
         }
     }
@@ -168,7 +168,6 @@ struct CardBackView: View {
         if hasAny {
             VStack(alignment: .leading, spacing: 6) {
 
-                // 例文読み上げ（英→必要なら日）
                 Button { speakExample(for: ex) } label: {
                     Label("例文", systemImage: "text.bubble.fill")
                 }
@@ -176,8 +175,17 @@ struct CardBackView: View {
                 .foregroundStyle(.blue)
                 .font(.subheadline)
 
-                if !ex.en.isEmpty { Text(ex.en).font(.body) }
-                if !ja.isEmpty { Text(ja).font(.body) }
+                if !ex.en.isEmpty {
+                    Text(ex.en)
+                        .font(.body)
+                        .foregroundStyle(.primary)
+                }
+
+                if !ja.isEmpty {
+                    Text(ja)
+                        .font(.body)
+                        .foregroundStyle(.primary)
+                }
 
                 if !n.isEmpty {
                     Text(n)
@@ -187,7 +195,7 @@ struct CardBackView: View {
 
                 if showDivider {
                     Divider()
-                        .padding(.top, 10)     // 「私は毎日走ります」↔ 次の意味ブロックを離す主役
+                        .padding(.top, 10)
                         .padding(.bottom, 4)
                 }
             }
@@ -201,13 +209,12 @@ struct CardBackView: View {
     }
 
     // MARK: - 読み上げ
-    
+
     private func activateAudioSessionIfNeeded() {
         guard !didActivateAudioSession else { return }
 
         let session = AVAudioSession.sharedInstance()
         do {
-            // ✅ 遮断して英語に集中 / 消音スイッチに従う
             try session.setCategory(.soloAmbient, mode: .spokenAudio, options: [])
             try session.setActive(true)
             didActivateAudioSession = true
@@ -221,14 +228,13 @@ struct CardBackView: View {
 
         let session = AVAudioSession.sharedInstance()
         do {
-            // ✅ 終わったら他アプリへ「再開してOK」を通知
             try session.setActive(false, options: [.notifyOthersOnDeactivation])
         } catch {
             print("AudioSession deactivate error:", error)
         }
         didActivateAudioSession = false
     }
-    
+
     private func speakWord() {
         let forms = irregularForms.isEmpty ? [word] : irregularForms
         let text  = forms.joined(separator: ", ")
@@ -247,12 +253,10 @@ struct CardBackView: View {
     private func speak(_ text: String, lang: String) {
         guard !text.isEmpty else { return }
 
-        // ✅ すでに喋ってる途中なら一旦止めてキューをクリア
         if synthesizer.isSpeaking {
             synthesizer.stopSpeaking(at: .immediate)
         }
 
-        // ✅ セッション開始（遮断して集中 / 消音スイッチに従う）
         activateAudioSessionIfNeeded()
 
         let u = AVSpeechUtterance(string: text)
@@ -263,9 +267,6 @@ struct CardBackView: View {
         u.rate = speechSlow ? slow : native
 
         synthesizer.speak(u)
-
-        // ✅ ここで「すぐ解除」はしない！
-        //    didFinish で "キューが空なら" 解除する
     }
 }
 
@@ -273,7 +274,6 @@ final class SpeechDelegate: NSObject, AVSpeechSynthesizerDelegate {
     var onQueueEmpty: (() -> Void)?
 
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        // ✅ まだキューが残ってたら解除しない（英→日など）
         if !synthesizer.isSpeaking {
             onQueueEmpty?()
         }

@@ -139,7 +139,7 @@ struct POSFlashcardListView: View {
                 }
                 .foregroundStyle(.blue)
                 .buttonStyle(.plain)
-                .background(.ultraThinMaterial, in: Capsule())
+                
             }
         }
         .onAppear {
