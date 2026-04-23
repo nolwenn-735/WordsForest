@@ -573,8 +573,11 @@ struct HomeworkRecentWidget: View {
                 } label: {
                     HStack {
                         Text(dateString(e.date))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.black.opacity(0.55))
+
                         Text(e.titleLine)
+                            .foregroundColor(.black)
+
                         Spacer()
                     }
                 }
@@ -606,7 +609,7 @@ struct HomeworkHistoryList: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(dateString(e.date))
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(Color.black.opacity(0.55))
                     Text(e.titleLine)
                 }
             }
