@@ -350,7 +350,8 @@ final class HomeworkState: ObservableObject {
     private func logNowIfNeeded(date: Date,
                                 status: HomeworkStatus,
                                 pair: PosPair,
-                                wordsCount: Int) {
+                                wordsCount: Int,
+                                wordIDs: [UUID] = []) {
         let cal = Calendar.current
         var list = history
 
@@ -359,9 +360,21 @@ final class HomeworkState: ObservableObject {
             list[i].date = date
             list[i].status = status
             list[i].wordsCount = wordsCount
+
+            // ✅ 新しいUUIDが取れているときだけ上書き
+            // 古い履歴をうっかり空配列で潰さないため
+            if !wordIDs.isEmpty {
+                list[i].wordIDs = wordIDs
+            }
         } else {
             list.insert(
-                HomeworkEntry(date: date, status: status, pair: pair, wordsCount: wordsCount),
+                HomeworkEntry(
+                    date: date,
+                    status: status,
+                    pair: pair,
+                    wordsCount: wordsCount,
+                    wordIDs: wordIDs
+                ),
                 at: 0
             )
         }
@@ -369,7 +382,7 @@ final class HomeworkState: ObservableObject {
         // 降順（新しい順）に正規化
         list.sort { $0.date > $1.date }
 
-        // 上限カット（君の変数名）
+        // 上限カット
         if list.count > maxHistoryCount {
             list.removeLast(list.count - maxHistoryCount)
         }
@@ -430,13 +443,34 @@ final class HomeworkState: ObservableObject {
         f.dateFormat = "yyyy-MM-dd"
 
         let payloadDate = f.date(from: dayText) ?? Date()
-
         let p = PosPair(rawValue: payload.pair) ?? currentPair
+
+        // ✅ payload.items から HomeworkStore 内の StoredWord UUID を引く
+        let ids: [UUID] = payload.items.compactMap { item in
+            guard let pos = PartOfSpeech(rawValue: item.pos) else { return nil }
+
+            let meaning = item.meanings.first?
+                .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+
+            guard !meaning.isEmpty else { return nil }
+
+            return HomeworkStore.shared.storedWordID(
+                pos: pos,
+                word: item.word,
+                meaning: meaning
+            )
+        }
+
+        #if DEBUG
+        print("[HW] history wordIDs count =", ids.count, "/", payload.items.count)
+        #endif
+
         logNowIfNeeded(
             date: payloadDate,
             status: .active,
             pair: p,
-            wordsCount: payload.totalCount
+            wordsCount: payload.totalCount,
+            wordIDs: ids
         )
     }
  

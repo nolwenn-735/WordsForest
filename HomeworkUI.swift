@@ -609,8 +609,9 @@ struct HomeworkHistoryList: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(dateString(e.date))
                         .font(.caption)
-                        .foregroundStyle(Color.black.opacity(0.55))
+                        .foregroundStyle(.secondary)
                     Text(e.titleLine)
+                        .foregroundStyle(.primary)
                 }
             }
             .buttonStyle(.plain)

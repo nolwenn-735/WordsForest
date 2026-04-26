@@ -20,6 +20,7 @@ struct HomeworkSetEditorView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var hw: HomeworkState
     @ObservedObject private var store = HomeworkStore.shared
+    @Environment(\.colorScheme) private var colorScheme
 
     // required（順番付き）を UserDefaults に保存するためのDTO
     struct RequiredItem: Identifiable, Codable, Hashable {
@@ -87,6 +88,8 @@ struct HomeworkSetEditorView: View {
                     if previewA.isEmpty && previewB.isEmpty {
                         Text("まだプレビューがありません。下の「プレビュー更新」を押してください。")
                             .foregroundStyle(.secondary)
+                            .font(.footnote)
+                            .padding(.vertical, 4)
                     } else {
                         previewBlock(title: "\(posA.displayName) \(previewA.count)語", cards: previewA)
                         previewBlock(title: "\(posB.displayName) \(previewB.count)語", cards: previewB)
@@ -102,7 +105,7 @@ struct HomeworkSetEditorView: View {
                     Button("閉じる") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("保存🧪") {
+                    Button("保存") {
                         #if DEBUG
                         print("🟣 SAVE BUTTON tapped in HomeworkSetEditorView")
                         #endif
@@ -281,8 +284,16 @@ print("🟥 afterSaveTapped ENTER")
                 updatePreview()
             } label: {
                 Label("プレビュー更新", systemImage: "arrow.triangle.2.circlepath")
+                    .font(.callout.weight(.semibold))
+                    .foregroundStyle(.blue)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 10)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color(.secondarySystemBackground))
+                    )
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(.plain)
 
             Button(role: .destructive) {
                 requiredA.removeAll()
@@ -294,14 +305,22 @@ print("🟥 afterSaveTapped ENTER")
                 // clearRequiredFlagsInStore()
             } label: {
                 Label("必須をクリア", systemImage: "trash")
+                    .font(.callout.weight(.semibold))
+                    .foregroundStyle(.red)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 10)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color(.secondarySystemBackground))
+                    )
             }
-            .buttonStyle(.bordered)
+            .buttonStyle(.plain)
         }
         .padding(.horizontal)
         .padding(.vertical, 10)
         .background(.ultraThinMaterial)
     }
-
+    
     private func requiredListSection(required: Binding<[RequiredItem]>, pos: PartOfSpeech) -> some View {
         let items = required.wrappedValue
 
@@ -351,8 +370,18 @@ print("🟥 afterSaveTapped ENTER")
 
         return VStack(alignment: .leading, spacing: 8) {
             TextField("検索（word / meaning）", text: query)
+                .textFieldStyle(.plain)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
+                .foregroundStyle(colorScheme == .dark ? .white : .primary)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 10)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(colorScheme == .dark
+                              ? Color(red: 0.16, green: 0.16, blue: 0.17)
+                              : Color(.secondarySystemBackground))
+                )
 
             ForEach(filtered) { c in
                 pickerCandidateRow(c: c, pos: pos)
@@ -391,6 +420,7 @@ print("🟥 afterSaveTapped ENTER")
                     HStack(spacing: 6) {
                         Text(c.word)
                             .font(.body)
+                            .foregroundStyle(.primary)
 
                         if hasExample {
                             Image(systemName: "text.quote")

@@ -262,6 +262,9 @@ struct POSFlashcardView: View {
             onEditFromMenu: {
                 onEdit(c)
             },
+            onEditExamplesFromMenu: {
+                editingCard = c
+            },
             onDeleteFromMenu: {
                 HomeworkStore.shared.delete(c)
                 onDataChanged()
@@ -346,8 +349,9 @@ struct POSFlashcardView: View {
         let speakBoth: Bool
         let accent: Color
         
-        // … メニュー用（カード編集／削除はここから）
+        // … メニュー用（カード編集／例文ノート編集／削除はここから）
         let onEditFromMenu: () -> Void
+        let onEditExamplesFromMenu: () -> Void
         let onDeleteFromMenu: () -> Void
         
         private func splitOthers(_ s: String) -> (tag: String, body: String) {
@@ -482,6 +486,12 @@ struct POSFlashcardView: View {
                                 teacher.requestUnlock(runAfterUnlock: onEditFromMenu)
                             } label: {
                                 Label("このカードを編集", systemImage: "square.and.pencil")
+                            }
+
+                            Button {
+                                teacher.requestUnlock(runAfterUnlock: onEditExamplesFromMenu)
+                            } label: {
+                                Label("例文・ノートを編集", systemImage: "text.bubble")
                             }
                             
                             Button(role: .destructive) {
