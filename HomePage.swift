@@ -137,16 +137,17 @@ struct HomePage: View {
                                         .padding(.trailing, 14)
                                 }
                             }
-                            
+
                             NavigationLink("🦌 その他品詞") {
                                 POSFlashcardListView(
                                     pos: .others,
                                     accent: .purple,
-                                    animalName: PartOfSpeech.others.animalName(forCycle: hw.variantIndex(for: .others))
+                                    animalName: PartOfSpeech.others.dailyAnimalName
                                 )
                             }
                             .buttonStyle(ColoredPillButtonStyle(color: .orange, size: .compact, alpha: 0.20))
-                        }
+                        
+                     }
                         
                         // デバッグ
 #if DEBUG
@@ -491,9 +492,10 @@ private extension HomePage {
             Text("この日の宿題を表示します。")
         }
     }
+
     private var hasUnclaimedHomeworkFromManifest: Bool {
         !manifestLatestHomeworkPayloadID.isEmpty &&
-        manifestLatestHomeworkPayloadID != lastImportedHomeworkPayloadID &&
+        !hw.isImportedPayloadID(manifestLatestHomeworkPayloadID) &&
         !manifestLatestHomeworkDateText.isEmpty &&
         !manifestLatestHomeworkLabel.isEmpty &&
         manifestLatestHomeworkCount > 0

@@ -42,6 +42,10 @@ extension PartOfSpeech {
         return list[cycle % list.count]
     }
 
+    var dailyAnimalName: String {
+        let day = Calendar.current.ordinality(of: .day, in: .era, for: Date()) ?? 0
+        return animalName(forCycle: day)
+    }
     // 品詞ごとの画像名リスト（Assets の名前）
     private var animalVariants: [String] {
         switch self {

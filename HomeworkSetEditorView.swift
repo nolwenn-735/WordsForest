@@ -64,6 +64,9 @@ struct HomeworkSetEditorView: View {
     // 保存キー（posペアごとに保存）
     private var orderKeyA: String { "required_order_v1_\(posA.rawValue)_\(posB.rawValue)_A" }
     private var orderKeyB: String { "required_order_v1_\(posA.rawValue)_\(posB.rawValue)_B" }
+    // 作業途中の下書きキー（中断→再開用）
+    private var draftKeyA: String { "homework_editor_draft_v1_\(posA.rawValue)_\(posB.rawValue)_A" }
+    private var draftKeyB: String { "homework_editor_draft_v1_\(posA.rawValue)_\(posB.rawValue)_B" }
 
     var body: some View {
         NavigationStack {
@@ -115,6 +118,9 @@ struct HomeworkSetEditorView: View {
 
                         // ②（任意）storeの required(Set) へ反映したいならここで反映
                         applyRequiredFlagsToStore()
+                        
+                        // ✅ 正式保存できたので、作業途中ドラフトは削除
+                        clearEditorDraft()
 
                         #if DEBUG
                         print("🟣 before afterSaveTapped()")
@@ -129,7 +135,13 @@ struct HomeworkSetEditorView: View {
                 bottomBar
             }
             .onAppear {
-                loadRequiredOrder()
+                loadEditorDraftIfNeeded()
+            }
+            .onChange(of: requiredA) { _, _ in
+                saveEditorDraft()
+            }
+            .onChange(of: requiredB) { _, _ in
+                saveEditorDraft()
             }
         }
 
@@ -304,7 +316,7 @@ print("🟥 afterSaveTapped ENTER")
                 // storeのrequired(Set)もクリアしたければ下も呼ぶ
                 // clearRequiredFlagsInStore()
             } label: {
-                Label("必須をクリア", systemImage: "trash")
+                Label("必須選択をクリア", systemImage: "trash")
                     .font(.callout.weight(.semibold))
                     .foregroundStyle(.red)
                     .frame(maxWidth: .infinity)
@@ -562,6 +574,32 @@ print("🟥 afterSaveTapped ENTER")
     private func saveRequiredOrder() {
         saveArray(requiredA, key: orderKeyA)
         saveArray(requiredB, key: orderKeyB)
+    }
+    
+    // MARK: - 編集途中ドラフト（中断→再開）
+
+    private func loadEditorDraftIfNeeded() {
+        let draftA: [RequiredItem] = loadArray(key: draftKeyA)
+        let draftB: [RequiredItem] = loadArray(key: draftKeyB)
+
+        // 下書きがあれば下書きを優先
+        if !draftA.isEmpty || !draftB.isEmpty {
+            requiredA = draftA
+            requiredB = draftB
+        } else {
+            // 下書きがなければ、従来の保存済み required を読む
+            loadRequiredOrder()
+        }
+    }
+
+    private func saveEditorDraft() {
+        saveArray(requiredA, key: draftKeyA)
+        saveArray(requiredB, key: draftKeyB)
+    }
+
+    private func clearEditorDraft() {
+        UserDefaults.standard.removeObject(forKey: draftKeyA)
+        UserDefaults.standard.removeObject(forKey: draftKeyB)
     }
 
     private func loadArray(key: String) -> [RequiredItem] {

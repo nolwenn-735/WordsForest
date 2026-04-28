@@ -322,6 +322,17 @@ final class HomeworkState: ObservableObject {
         }
     }
 
+    func advanceAnimalVariants(for pair: PosPair) {
+        switch pair {
+        case .nounAdj:
+            variantNoun = (variantNoun + 1) % 3
+            variantAdj  = (variantAdj  + 1) % 3
+
+        case .verbAdv:
+            variantVerb = (variantVerb + 1) % 3
+            variantAdv  = (variantAdv  + 1) % 3
+        }
+    }
    
     // 履歴の上限（必要なら好きな件数に変えてOK）
     private let maxHistoryCount = 200
@@ -444,6 +455,8 @@ final class HomeworkState: ObservableObject {
 
         let payloadDate = f.date(from: dayText) ?? Date()
         let p = PosPair(rawValue: payload.pair) ?? currentPair
+        
+        advanceAnimalVariants(for: p)
 
         // ✅ payload.items から HomeworkStore 内の StoredWord UUID を引く
         let ids: [UUID] = payload.items.compactMap { item in
@@ -492,6 +505,15 @@ final class HomeworkState: ObservableObject {
 
         // 旧方式も一応更新（残しておくなら）
         lastImportedPayloadID = payload.id
+    }
+    
+    func isImportedPayloadID(_ id: String) -> Bool {
+        guard !id.isEmpty else { return false }
+
+        if importedIDs.contains(id) { return true }
+        if id == lastImportedPayloadID { return true }
+
+        return false
     }
     
     private static func decode(_ raw: String) -> [HomeworkEntry] {

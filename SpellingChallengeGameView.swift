@@ -254,10 +254,17 @@ struct SpellingChallengeGameView: View {
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal)
 
-                            Button("閉じる") {
+                            Button {
                                 showResult = false
+                            } label: {
+                                Text("閉じる")
+                                    .font(.headline)
+                                    .foregroundStyle(.white)
+                                    .padding(.horizontal, 22)
+                                    .padding(.vertical, 10)
+                                    .background(Color.blue, in: RoundedRectangle(cornerRadius: 10))
                             }
-                            .buttonStyle(.borderedProminent)
+                            .buttonStyle(.plain)
                         }
                         .padding()
                         .navigationTitle("結果")

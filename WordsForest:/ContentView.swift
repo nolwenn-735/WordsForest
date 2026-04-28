@@ -40,9 +40,9 @@ struct ContentView: View {
                             POSFlashcardListView(
                                 pos: pos,
                                 accent: pos.accentColor,
-                                animalName: pos.animalName(
-                                    forCycle: hw.variantIndex(for: pos)
-                                )
+                                animalName: pos == .others
+                                    ? pos.dailyAnimalName
+                                    : pos.animalName(forCycle: hw.variantIndex(for: pos))
                             )
                         }
                 }
