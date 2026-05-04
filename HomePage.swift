@@ -33,6 +33,7 @@ struct HomePage: View {
         case homework
     }
     
+    @AppStorage(DefaultsKeys.showMascots) private var showMascots: Bool = true
     @AppStorage("manifest_latestHomeworkPayloadID") private var manifestLatestHomeworkPayloadID: String = ""
     @AppStorage("manifest_latestHomeworkDateText") private var manifestLatestHomeworkDateText: String = ""
     @AppStorage("manifest_latestHomeworkLabel") private var manifestLatestHomeworkLabel: String = ""
@@ -85,10 +86,10 @@ struct HomePage: View {
                         Text("『単語カード学習』各品詞へ")
                             .font(.headline)
                         
-                        posRow(.noun, title: "🐻名詞", color: .pink)
-                        posRow(.verb, title: "🐈動詞", color: .blue)
-                        posRow(.adj, title: "🐇形容詞", color: .green)
-                        posRow(.adv, title: "🦙副詞", color: .orange)
+                        posRow(.noun, title: showMascots ? "🐻名詞" : "🔴名詞", color: .pink)
+                        posRow(.verb, title: showMascots ? "🐈動詞" : "🔵動詞", color: .blue)
+                        posRow(.adj, title: showMascots ? "🐇形容詞" : "🟢形容詞", color: .green)
+                        posRow(.adv, title: showMascots ? "🦙副詞" : "🟠副詞", color: .orange)
                         
                         // MARK: スペリング
                         Button {
@@ -121,7 +122,7 @@ struct HomePage: View {
                         
                         // MARK: その他品詞
                         HStack(spacing: 8) {
-                            NavigationLink("🐺 コラム ") {
+                            NavigationLink(showMascots ? "🐺 コラム " : "⚫️ コラム ") {
                                 ColumnIndexView()
                             }
                             .buttonStyle(ColoredPillButtonStyle(color: .indigo, size: .compact, alpha: 0.20))
@@ -138,7 +139,7 @@ struct HomePage: View {
                                 }
                             }
 
-                            NavigationLink("🦌 その他品詞") {
+                            NavigationLink(showMascots ? "🦌 その他品詞" : "🟣 その他品詞") {
                                 POSFlashcardListView(
                                     pos: .others,
                                     accent: .purple,
@@ -146,15 +147,30 @@ struct HomePage: View {
                                 )
                             }
                             .buttonStyle(ColoredPillButtonStyle(color: .orange, size: .compact, alpha: 0.20))
-                        
-                     }
-                        
-                        // デバッグ
-#if DEBUG
-                        NavigationLink("🛠️ 宿題セット修復（デバッグ用）") {
-                            DebugCenterView()
                         }
-#endif
+                        
+                        // MARK: 表示設定 / 先生用修復
+                        HStack(spacing: 8) {
+                            NavigationLink {
+                                DisplaySettingsView()
+                            } label: {
+                                Text("⚙️ 表示設定")
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(ColoredPillButtonStyle(color: .gray, size: .compact, alpha: 0.14))
+
+                            #if DEBUG
+                            if teacher.unlocked {
+                                NavigationLink {
+                                    DebugCenterView()
+                                } label: {
+                                    Text("🛠️ 宿題修復")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(ColoredPillButtonStyle(color: .gray, size: .compact, alpha: 0.10))
+                            }
+                            #endif
+                        }
                     }
                     .padding(.horizontal, 6)
                     

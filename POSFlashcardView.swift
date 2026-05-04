@@ -35,6 +35,11 @@ struct POSFlashcardView: View {
     
     // すでにあればそのまま
     @ObservedObject private var store = HomeworkStore.shared
+    
+    // 表示設定：動物マスコット
+
+    @AppStorage(DefaultsKeys.showMascots) private var showMascots: Bool = true
+    
     /// ページ単位の英⇄日トグル
     @State private var reversed: Bool
     
@@ -103,18 +108,20 @@ struct POSFlashcardView: View {
                 }
 
                 // 右下マスコット（固定）
-                VStack {
-                    Spacer()
-                    HStack {
+                if showMascots {
+                    VStack {
                         Spacer()
-                        Image(animalName)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 140, height: 140)
-                            .allowsHitTesting(false)
-                            .padding(.trailing, 12)
-                            .padding(.bottom, 8)
-                            .offset(x: -32)
+                        HStack {
+                            Spacer()
+                            Image(animalName)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 140, height: 140)
+                                .allowsHitTesting(false)
+                                .padding(.trailing, 12)
+                                .padding(.bottom, 8)
+                                .offset(x: -32)
+                        }
                     }
                 }
             }
