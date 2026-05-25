@@ -149,28 +149,40 @@ struct HomePage: View {
                             .buttonStyle(ColoredPillButtonStyle(color: .orange, size: .compact, alpha: 0.20))
                         }
                         
-                        // MARK: 表示設定 / 先生用修復
+                        // MARK: 使い方 / 表示設定
                         HStack(spacing: 8) {
                             NavigationLink {
-                                DisplaySettingsView()
+                                HelpView()
                             } label: {
-                                Text("⚙️ 表示設定")
+                                Text("❓ アプリの使い方")
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.8)
                                     .frame(maxWidth: .infinity)
                             }
                             .buttonStyle(ColoredPillButtonStyle(color: .gray, size: .compact, alpha: 0.14))
 
-                            #if DEBUG
-                            if teacher.unlocked {
-                                NavigationLink {
-                                    DebugCenterView()
-                                } label: {
-                                    Text("🛠️ 宿題修復")
-                                        .frame(maxWidth: .infinity)
-                                }
-                                .buttonStyle(ColoredPillButtonStyle(color: .gray, size: .compact, alpha: 0.10))
+                            NavigationLink {
+                                DisplaySettingsView()
+                            } label: {
+                                Text("⚙️ 表示設定")
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.8)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
-                            #endif
+                            .buttonStyle(ColoredPillButtonStyle(color: .gray, size: .compact, alpha: 0.14))
                         }
+
+                        #if DEBUG
+                        if teacher.unlocked {
+                            NavigationLink {
+                                DebugCenterView()
+                            } label: {
+                                Text("🛠️ 宿題修復")
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(ColoredPillButtonStyle(color: .gray, size: .compact, alpha: 0.10))
+                        }
+                        #endif
                     }
                     .padding(.horizontal, 6)
                     
