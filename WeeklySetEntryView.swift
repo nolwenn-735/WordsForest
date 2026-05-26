@@ -64,7 +64,7 @@ struct WeeklySetEntryView: View {
                             .environmentObject(hw)
                             .environmentObject(teacher)
                     } label: {
-                        Text("編集（次回）")
+                        Text("次回分編集")
                     }
                 }
             }

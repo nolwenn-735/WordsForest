@@ -1,3 +1,6 @@
+//CoverPageView.swift
+//
+
 import SwiftUI
 import Foundation
 
@@ -11,7 +14,7 @@ struct CoverPageView: View {
         GeometryReader { geo in
             ZStack {
                 // 背景（薄いグリーン）
-                Color.coverMintA.ignoresSafeArea()
+                Color.coverMintB.ignoresSafeArea()
 
                 // タイトル＋サブタイトル
                 VStack {
@@ -19,7 +22,7 @@ struct CoverPageView: View {
                         .font(.title)
                         .foregroundColor(Color(.systemGreen))
                         .shadow(color: .black.opacity(0.25), radius: 2, x: 1, y: 1)
-                        .padding(.top, 70)
+                        .padding(.top, 95)
 
                     Text("A gentle vocabulary journey")
                         .font(.subheadline)
@@ -73,7 +76,7 @@ struct CoverPageView: View {
                             .scaledToFit()
                             .frame(width: 140)
                             .padding(.trailing, 16)
-                            .padding(.bottom, 16)
+                            .padding(.bottom, max(54, geo.safeAreaInsets.bottom + 34))
                     }
                 }
 
@@ -82,10 +85,11 @@ struct CoverPageView: View {
                     Spacer()
                     HStack {
                         Text("← スワイプして HOME へ")
-                            .font(.footnote)
-                            .foregroundColor(.secondary)
-                            .padding(.leading, 16)
-                            .padding(.bottom, 12)
+                            .font(.footnote.weight(.medium))
+                            .foregroundColor(Color.black.opacity(0.42))
+                            .padding(.leading, 24)
+                            .padding(.bottom, max(46, geo.safeAreaInsets.bottom + 28))
+
                         Spacer()
                     }
                 }

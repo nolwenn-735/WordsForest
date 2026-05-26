@@ -273,7 +273,7 @@ struct TeacherUnlockSheet: View {
             }
 
             Section {
-                Button("このページを閉じる") {
+                Button("このページを閉じ1時間解錠") {
                     teacher.showingUnlockSheet = false
                 }
 

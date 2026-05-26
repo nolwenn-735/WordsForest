@@ -298,25 +298,52 @@ struct HomeworkBanner: View {
         label: String,
         count: Int
     ) {
+        // ✅ 1. 直近に書き出した宿題JSONの情報を最優先
+        let lastID = normalizedHomeworkPayloadID(lastExportedHomeworkPayloadID)
+        let lastDate = lastExportedHomeworkDateText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let lastLabel = lastExportedHomeworkLabel.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if !lastID.isEmpty || !lastDate.isEmpty || !lastLabel.isEmpty || lastExportedHomeworkCount > 0 {
+            return (
+                payloadID: lastID,
+                dateText: lastDate,
+                label: lastLabel,
+                count: lastExportedHomeworkCount > 0 ? lastExportedHomeworkCount : 24
+            )
+        }
+
+        // ✅ 2. 直近書き出しが無い場合だけ、現在サイクルのpayloadを見る
         let pair = hw.currentPair
 
         if let payload = HomeworkPackStore.shared.loadCurrentPayload(pair: pair) {
             let ymd = String(payload.createdAt.prefix(10)).replacingOccurrences(of: "-", with: "/")
             let label = pair.parts.map(\.jaTitle).joined(separator: "＋")
+
             return (
-                payloadID: payload.id,
+                payloadID: normalizedHomeworkPayloadID(payload.id),
                 dateText: ymd,
                 label: label,
                 count: payload.totalCount
             )
         }
 
+        // ✅ 3. 何も無い場合の最低限の初期値
         return (
             payloadID: "",
             dateText: "",
             label: pair.parts.map(\.jaTitle).joined(separator: "＋"),
             count: 24
         )
+    }
+    
+    private func normalizedHomeworkPayloadID(_ raw: String) -> String {
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if trimmed.lowercased().hasSuffix(".json") {
+            return String(trimmed.dropLast(5))
+        }
+
+        return trimmed
     }
 
     private var noticeButton: some View {
@@ -355,7 +382,7 @@ struct HomeworkBanner: View {
     
     //MARK: - 通知の初期値づくり
     private func updateNoticeDraft(from payload: HomeworkExportPayload) {
-        lastExportedHomeworkPayloadID = payload.id
+        lastExportedHomeworkPayloadID = normalizedHomeworkPayloadID(payload.id)
 
         let ymd = String(payload.createdAt.prefix(10)).replacingOccurrences(of: "-", with: "/")
         lastExportedHomeworkDateText = ymd

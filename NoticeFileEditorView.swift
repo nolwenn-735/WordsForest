@@ -40,11 +40,14 @@ struct NoticeFileEditorView: View {
         NavigationStack {
             Form {
                 Section("新しい宿題の通知") {
-                    TextField("宿題ファイルID", text: $homeworkPayloadID)
+                    TextField("宿題ID（例: 2026-05-24-draft-pair1）", text: $homeworkPayloadID)
+                    Text("宿題JSONの id と同じ文字列を入れます。.json は付ける必要はありません。")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
 
-                    TextField("日付（例: 2026/03/25）", text: $homeworkDateText)
+                    TextField("日付（例: 2026/05/24）", text: $homeworkDateText)
 
                     TextField("宿題名（例: 名詞＋形容詞）", text: $homeworkLabel)
 
@@ -128,14 +131,13 @@ struct NoticeFileEditorView: View {
         let latestColumnID = Int(latestColumnIDText.trimmingCharacters(in: .whitespacesAndNewlines))
 
         let manifest = DeliveryManifest(
-            latestHomeworkPayloadID: nonEmptyOrNil(homeworkPayloadID),
+            latestHomeworkPayloadID: normalizedHomeworkID(homeworkPayloadID),
             latestHomeworkDateText: nonEmptyOrNil(homeworkDateText),
             latestHomeworkLabel: nonEmptyOrNil(homeworkLabel),
             latestHomeworkCount: homeworkCount,
             latestColumnArticleID: latestColumnID,
             updatedAtISO: ISO8601DateFormatter().string(from: Date())
         )
-
         do {
             let result = try DeliveryManifestFile.makeExportDocument(manifest)
             exportDoc = result.doc
@@ -145,6 +147,17 @@ struct NoticeFileEditorView: View {
         } catch {
             errorMessage = "通知ファイルを作れませんでした: \(error.localizedDescription)"
         }
+    }
+    
+    private func normalizedHomeworkID(_ s: String) -> String? {
+        let trimmed = s.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+
+        if trimmed.lowercased().hasSuffix(".json") {
+            return String(trimmed.dropLast(5))
+        }
+
+        return trimmed
     }
 
     private func nonEmptyOrNil(_ s: String) -> String? {
