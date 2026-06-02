@@ -19,6 +19,12 @@ struct DebugCenterView: View {
                 }
             }
 
+            Section("コラム（注意）") {
+                Button("コラムを初期状態に戻す") {
+                    ColumnStore.shared.resetToSeedForDebug()
+                }
+            }
+
             Section("宿題（注意）") {
                 Button("履歴を全消去") {
                     hw.debugClearHistory()

@@ -23,6 +23,8 @@ struct ColumnEditorView: View {
     @State private var showingExporter = false
     @State private var exportErrorMessage: String? = nil
     @State private var showingDeleteConfirm = false
+    @AppStorage("notice_lastColumnID") private var lastExportedColumnID: Int = 0
+    @State private var pendingExportedColumnID: Int? = nil
 
     init(
         initial: ColumnArticle,
@@ -73,9 +75,9 @@ struct ColumnEditorView: View {
                             let result = try ColumnExportFile.makeExportDocument(for: articleForExport)
                             exportDoc = result.doc
                             exportFileName = result.fileName
+                            pendingExportedColumnID = articleForExport.id
                             exportErrorMessage = nil
                             showingExporter = true
-
                         } catch {
                             exportErrorMessage = "コラムJSON生成失敗: \(error.localizedDescription)"
                             print("❌ column export error:", error)
@@ -129,9 +131,14 @@ struct ColumnEditorView: View {
             ) { result in
                 switch result {
                 case .success(let url):
+                    if let id = pendingExportedColumnID {
+                        lastExportedColumnID = id
+                    }
+                    pendingExportedColumnID = nil
                     exportErrorMessage = nil
                     print("✅ column exported:", url)
                 case .failure(let err):
+                    pendingExportedColumnID = nil
                     exportErrorMessage = err.localizedDescription
                     print("❌ column export error:", err)
                 }

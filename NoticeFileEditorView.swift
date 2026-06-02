@@ -56,10 +56,13 @@ struct NoticeFileEditorView: View {
                 }
 
                 Section("コラムの通知") {
-                    TextField("最新コラム番号（例: 25）", text: $latestColumnIDText)
+                    TextField("最新コラム番号（例: 1）", text: $latestColumnIDText)
                         .keyboardType(.numberPad)
-                }
 
+                    Text("新しいコラムを配布するときは、そのコラム番号を入れます。")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
                 Section {
                     Button {
                         exportNoticeFile()

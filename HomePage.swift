@@ -127,7 +127,7 @@ struct HomePage: View {
                             }
                             .buttonStyle(ColoredPillButtonStyle(color: .indigo, size: .compact, alpha: 0.20))
                             .overlay(alignment: .trailing) {
-                                if columnStore.shouldShowNewBadge() {
+                                if columnStore.shouldShowNewBadge() || hasUnclaimedColumnFromManifest {
                                     Text("🆕")
                                         .font(.caption2.bold())
                                         .padding(.horizontal, 6)
@@ -138,7 +138,6 @@ struct HomePage: View {
                                         .padding(.trailing, 14)
                                 }
                             }
-
                             NavigationLink(showMascots ? "🦌 その他品詞" : "🟣 その他品詞") {
                                 POSFlashcardListView(
                                     pos: .others,
@@ -527,6 +526,11 @@ private extension HomePage {
         !manifestLatestHomeworkDateText.isEmpty &&
         !manifestLatestHomeworkLabel.isEmpty &&
         manifestLatestHomeworkCount > 0
+    }
+    
+    private var hasUnclaimedColumnFromManifest: Bool {
+        manifestLatestColumnArticleID > 0 &&
+        !columnStore.articles.contains { $0.id == manifestLatestColumnArticleID }
     }
     
     private var manifestHomeworkPreviewCard: some View {

@@ -102,5 +102,15 @@ final class ColumnStore: ObservableObject {
         list.removeAll { $0.id == article.id }
         persist(list)
     }
+    
+    // ✅ 開発用：コラムを ColumnData の初期状態に戻す
+    func resetToSeedForDebug() {
+        lastImportedPayloadID = ""
+        hasNew = false
+        newUntilISO = ""
+
+        let seeded = ColumnData.all.sorted { $0.id > $1.id }
+        persist(seeded)
+    }
 }
 
