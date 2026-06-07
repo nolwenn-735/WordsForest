@@ -55,11 +55,11 @@ struct NoticeFileEditorView: View {
                         .keyboardType(.numberPad)
                 }
 
-                Section("コラムの通知") {
-                    TextField("最新コラム番号（例: 1）", text: $latestColumnIDText)
+                Section("最新コラムのNo.") {
+                    TextField("最新コラムNo.（例: 1）", text: $latestColumnIDText)
                         .keyboardType(.numberPad)
 
-                    Text("新しいコラムを配布するときは、そのコラム番号を入れます。")
+                    Text("現在配布済みの最新コラムのナンバーです。")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
@@ -76,7 +76,7 @@ struct NoticeFileEditorView: View {
                 }
 
                 Section {
-                    Text("生徒に送るのは、宿題JSONやコラムJSONに加えて、この「通知ファイル」です。")
+                    Text("生徒に送るのは、宿題JSONに加えて、この「通知ファイル」です。")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }

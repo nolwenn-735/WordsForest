@@ -25,6 +25,10 @@ struct ColumnEditorView: View {
     @State private var showingDeleteConfirm = false
     @AppStorage("notice_lastColumnID") private var lastExportedColumnID: Int = 0
     @State private var pendingExportedColumnID: Int? = nil
+    @AppStorage("notice_lastHomeworkPayloadID") private var lastExportedHomeworkPayloadID: String = ""
+    @AppStorage("notice_lastHomeworkDateText") private var lastExportedHomeworkDateText: String = ""
+    @AppStorage("notice_lastHomeworkLabel") private var lastExportedHomeworkLabel: String = ""
+    @AppStorage("notice_lastHomeworkCount") private var lastExportedHomeworkCount: Int = 0
 
     init(
         initial: ColumnArticle,
@@ -75,7 +79,7 @@ struct ColumnEditorView: View {
                             let result = try ColumnExportFile.makeExportDocument(for: articleForExport)
                             exportDoc = result.doc
                             exportFileName = result.fileName
-                            pendingExportedColumnID = articleForExport.id
+                            lastExportedColumnID = articleForExport.id
                             exportErrorMessage = nil
                             showingExporter = true
                         } catch {
@@ -84,7 +88,7 @@ struct ColumnEditorView: View {
                         }
                     } label: {
                         HStack {
-                            Text("書き出し")
+                            Text("コラムJSON書き出し")
                         }
                         .foregroundStyle(.blue)
                     }
@@ -97,6 +101,29 @@ struct ColumnEditorView: View {
                         }
                     }
                 }
+                
+                Section {
+                    NavigationLink {
+                        NoticeFileEditorView(
+                            initialHomeworkPayloadID: lastExportedHomeworkPayloadID,
+                            initialHomeworkDateText: lastExportedHomeworkDateText,
+                            initialHomeworkLabel: lastExportedHomeworkLabel,
+                            initialHomeworkCount: lastExportedHomeworkCount == 0 ? nil : lastExportedHomeworkCount,
+                            initialLatestColumnID: initial.id
+                        )
+                    } label: {
+                        HStack {
+                            Text("🔔")
+                            Text("通知ファイルを作る")
+                        }
+                        .foregroundStyle(.blue)
+                    }
+
+                    Text("コラムを配布するときは、コラムJSONを書き出したあと、この通知ファイルも書き出します。")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+                
             }
             .navigationTitle(isNew ? "コラム追加" : "コラム編集")
             .navigationBarTitleDisplayMode(.inline)

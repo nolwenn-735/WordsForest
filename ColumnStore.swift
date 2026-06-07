@@ -67,8 +67,16 @@ final class ColumnStore: ObservableObject {
 
     // ✅ 取り込み（JSONファイル）
     func importPayload(_ payload: ColumnExportPayload) throws {
-        // 同じpayloadを2回入れたら無反応（既に取り込み済み）
-        if payload.id == lastImportedPayloadID { return }
+        // 同じpayloadでも、記事本体が端末内に無ければ再取り込みする
+        if payload.id == lastImportedPayloadID {
+            let allItemsAlreadyExist = payload.items.allSatisfy { incoming in
+                articles.contains { $0.id == incoming.id }
+            }
+
+            if allItemsAlreadyExist {
+                return
+            }
+        }
 
         // 既存 + 新規をidでマージ（同idは上書き＝更新）
         var dict = Dictionary(uniqueKeysWithValues: articles.map { ($0.id, $0) })

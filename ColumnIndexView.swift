@@ -11,6 +11,8 @@ struct ColumnIndexView: View {
     @StateObject private var store = ColumnStore.shared
     @EnvironmentObject private var teacher: TeacherMode
 
+    @AppStorage(DefaultsKeys.showMascots) private var showMascots: Bool = true
+
     @State private var searchText = ""
     @State private var showNewestFirst = true
 
@@ -22,7 +24,7 @@ struct ColumnIndexView: View {
     @State private var pendingCreate = false
     @State private var pendingEditArticle: ColumnArticle? = nil
     @State private var pendingDeleteArticle: ColumnArticle? = nil
-    
+
     @State private var exportDoc: JSONTextDocument? = nil
     @State private var exportFileName: String = "column.json"
     @State private var showingExporter = false
@@ -35,10 +37,11 @@ struct ColumnIndexView: View {
     private var filtered: [ColumnArticle] {
         filteredArticles()
     }
-    
+
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            Color("othersLavender").ignoresSafeArea()
+            Color("othersLavender")
+                .ignoresSafeArea()
 
             VStack(spacing: 0) {
                 importHeader
@@ -67,146 +70,149 @@ struct ColumnIndexView: View {
                 .listStyle(.plain)
                 .searchable(text: $searchText, prompt: "コラムを検索")
             }
-            .navigationTitle("🐺 コラム一覧")
-            .toolbar {
-                ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button {
-                        pendingCreate = true
-                    } label: {
-                        Image(systemName: "plus")
-                    }
 
-                    Button(showNewestFirst ? "最新→古い" : "古い→最新") {
-                        withAnimation {
-                            showNewestFirst.toggle()
-                        }
+            if showMascots {
+                Image("tutor_husky_stand")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 120)
+                    .padding(.leading, 16)
+                    .padding(.bottom, 12)
+                    .accessibilityHidden(true)
+            }
+        }
+        .navigationTitle("🐺 コラム一覧")
+        .toolbar {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button {
+                    pendingCreate = true
+                } label: {
+                    Image(systemName: "plus")
+                }
+
+                Button(showNewestFirst ? "最新→古い" : "古い→最新") {
+                    withAnimation {
+                        showNewestFirst.toggle()
                     }
                 }
             }
-            .onAppear {
-                store.markAsSeen()
-            }
-            .onChange(of: pendingCreate) { _, newValue in
-                guard newValue else { return }
-                teacher.requestUnlock {
-                    let nextID = store.nextID()
-                    editorIsNew = true
-                    editingArticle = ColumnArticle(
-                        id: nextID,
-                        title: "",
-                        body: "",
-                        tags: []
-                    )
-                }
-                pendingCreate = false
-            }
-            .onChange(of: pendingEditArticle) { _, article in
-                guard let article else { return }
-                teacher.requestUnlock {
-                    editorIsNew = false
-                    editingArticle = article
-                }
-                pendingEditArticle = nil
-            }
-            .onChange(of: pendingDeleteArticle) { _, article in
-                guard let article else { return }
-                teacher.requestUnlock {
-                    deletingArticle = article
-                    showingDeleteConfirm = true
-                }
-                pendingDeleteArticle = nil
-            }
-            .onChange(of: pendingExportArticle) { _, article in
-                guard let article else { return }
-                teacher.requestUnlock {
-                    do {
-                        let result = try ColumnExportFile.makeExportDocument(for: article)
-                        exportDoc = result.doc
-                        exportFileName = result.fileName
-                        exportErrorMessage = nil
-                        showingExporter = true
-                    } catch {
-                        exportErrorMessage = "コラムJSON生成失敗: \(error.localizedDescription)"
-                        print("❌ column export error:", error)
-                    }
-                }
-                pendingExportArticle = nil
-            }
-            .sheet(item: $editingArticle) { article in
-                ColumnEditorView(
-                    initial: article,
-                    isNew: editorIsNew,
-                    onSave: { updated in
-                        store.upsert(updated)
-                    },
-                    onDelete: { target in
-                        store.delete(target)
-                    }
+        }
+        .onAppear {
+            store.markAsSeen()
+        }
+        .onChange(of: pendingCreate) { _, newValue in
+            guard newValue else { return }
+            teacher.requestUnlock {
+                let nextID = store.nextID()
+                editorIsNew = true
+                editingArticle = ColumnArticle(
+                    id: nextID,
+                    title: "",
+                    body: "",
+                    tags: []
                 )
             }
-            .fileImporter(
-                isPresented: $showingImporter,
-                allowedContentTypes: [.json],
-                allowsMultipleSelection: false
-            ) { result in
-                switch result {
-                case .success(let urls):
-                    guard let url = urls.first else { return }
-                    importSelectedColumnFile(from: url)
-
-                case .failure(let error):
-                    importErrorMessage = "コラム取得失敗: \(error.localizedDescription)"
-                    print("❌ column import picker error:", error)
-                }
+            pendingCreate = false
+        }
+        .onChange(of: pendingEditArticle) { _, article in
+            guard let article else { return }
+            teacher.requestUnlock {
+                editorIsNew = false
+                editingArticle = article
             }
-            .alert(
-                "取得エラー",
-                isPresented: Binding(
-                    get: { importErrorMessage != nil },
-                    set: { if !$0 { importErrorMessage = nil } }
-                )
-            ) {
-                Button("OK", role: .cancel) {
-                    importErrorMessage = nil
-                }
-            } message: {
-                Text(importErrorMessage ?? "")
+            pendingEditArticle = nil
+        }
+        .onChange(of: pendingDeleteArticle) { _, article in
+            guard let article else { return }
+            teacher.requestUnlock {
+                deletingArticle = article
+                showingDeleteConfirm = true
             }
-            .fileExporter(
-                isPresented: $showingExporter,
-                document: exportDoc ?? JSONTextDocument(text: "{}"),
-                contentType: .json,
-                defaultFilename: exportFileName
-            ) { result in
-                switch result {
-                case .success(let url):
+            pendingDeleteArticle = nil
+        }
+        .onChange(of: pendingExportArticle) { _, article in
+            guard let article else { return }
+            teacher.requestUnlock {
+                do {
+                    let result = try ColumnExportFile.makeExportDocument(for: article)
+                    exportDoc = result.doc
+                    exportFileName = result.fileName
                     exportErrorMessage = nil
-                    print("✅ column exported:", url)
-                case .failure(let err):
-                    exportErrorMessage = err.localizedDescription
-                    print("❌ column export error:", err)
+                    showingExporter = true
+                } catch {
+                    exportErrorMessage = "コラムJSON生成失敗: \(error.localizedDescription)"
+                    print("❌ column export error:", error)
                 }
             }
-            .alert(
-                "書き出しエラー",
-                isPresented: Binding(
-                    get: { exportErrorMessage != nil },
-                    set: { if !$0 { exportErrorMessage = nil } }
-                )
-            ) {
-                Button("OK", role: .cancel) {
-                    exportErrorMessage = nil
+            pendingExportArticle = nil
+        }
+        .sheet(item: $editingArticle) { article in
+            ColumnEditorView(
+                initial: article,
+                isNew: editorIsNew,
+                onSave: { updated in
+                    store.upsert(updated)
+                },
+                onDelete: { target in
+                    store.delete(target)
                 }
-            } message: {
-                Text(exportErrorMessage ?? "")
-            }
+            )
+        }
+        .fileImporter(
+            isPresented: $showingImporter,
+            allowedContentTypes: [.json],
+            allowsMultipleSelection: false
+        ) { result in
+            switch result {
+            case .success(let urls):
+                guard let url = urls.first else { return }
+                importSelectedColumnFile(from: url)
 
-            Image("tutor_husky_down")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 120)
-                .padding(.leading, 16)
-                .padding(.bottom, 12)
+            case .failure(let error):
+                importErrorMessage = "コラム取得失敗: \(error.localizedDescription)"
+                print("❌ column import picker error:", error)
+            }
+        }
+        .alert(
+            "取得エラー",
+            isPresented: Binding(
+                get: { importErrorMessage != nil },
+                set: { if !$0 { importErrorMessage = nil } }
+            )
+        ) {
+            Button("OK", role: .cancel) {
+                importErrorMessage = nil
+            }
+        } message: {
+            Text(importErrorMessage ?? "")
+        }
+        .fileExporter(
+            isPresented: $showingExporter,
+            document: exportDoc ?? JSONTextDocument(text: "{}"),
+            contentType: .json,
+            defaultFilename: exportFileName
+        ) { result in
+            switch result {
+            case .success(let url):
+                exportErrorMessage = nil
+                print("✅ column exported:", url)
+            case .failure(let err):
+                exportErrorMessage = err.localizedDescription
+                print("❌ column export error:", err)
+            }
+        }
+        .alert(
+            "書き出しエラー",
+            isPresented: Binding(
+                get: { exportErrorMessage != nil },
+                set: { if !$0 { exportErrorMessage = nil } }
+            )
+        ) {
+            Button("OK", role: .cancel) {
+                exportErrorMessage = nil
+            }
+        } message: {
+            Text(exportErrorMessage ?? "")
         }
     }
 
@@ -239,6 +245,7 @@ struct ColumnIndexView: View {
 
                 Text(article.title)
                     .foregroundColor(placeholder ? .secondary : .blue)
+
                 if !article.tags.isEmpty {
                     Text(article.tags.joined(separator: "・"))
                         .font(.caption)
@@ -263,7 +270,7 @@ struct ColumnIndexView: View {
             }
         }
     }
-    
+
     private var importHeader: some View {
         HStack {
             Button {
@@ -290,7 +297,7 @@ struct ColumnIndexView: View {
         .padding(.top, 8)
         .padding(.bottom, 6)
     }
-    
+
     private func importSelectedColumnFile(from url: URL) {
         let didStartAccessing = url.startAccessingSecurityScopedResource()
         defer {
@@ -313,7 +320,7 @@ struct ColumnIndexView: View {
             print("❌ column import error:", error)
         }
     }
-    
+
     private func filteredArticles() -> [ColumnArticle] {
         var base = store.articles
 
@@ -338,9 +345,11 @@ struct ColumnIndexView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        ColumnIndexView()
-            .environmentObject(TeacherMode.preview(unlocked: true))
+struct ColumnIndexView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            ColumnIndexView()
+                .environmentObject(TeacherMode.preview(unlocked: true))
+        }
     }
 }
