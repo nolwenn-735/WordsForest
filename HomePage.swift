@@ -34,16 +34,36 @@ struct HomePage: View {
     }
     
     @AppStorage(DefaultsKeys.showMascots) private var showMascots: Bool = true
-    @AppStorage("manifest_latestHomeworkPayloadID") private var manifestLatestHomeworkPayloadID: String = ""
-    @AppStorage("manifest_latestHomeworkDateText") private var manifestLatestHomeworkDateText: String = ""
-    @AppStorage("manifest_latestHomeworkLabel") private var manifestLatestHomeworkLabel: String = ""
-    @AppStorage("manifest_latestHomeworkCount") private var manifestLatestHomeworkCount: Int = 0
-    @AppStorage("manifest_latestColumnArticleID") private var manifestLatestColumnArticleID: Int = 0
+
+    @AppStorage("manifest_latestHomeworkPayloadID") private var
+    manifestLatestHomeworkPayloadID: String = ""
+
+    @AppStorage("manifest_latestHomeworkDateText") private var
+    manifestLatestHomeworkDateText: String = ""
+
+    @AppStorage("manifest_latestHomeworkLabel") private var
+    manifestLatestHomeworkLabel: String = ""
+
+    @AppStorage("manifest_latestHomeworkCount") private var
+    manifestLatestHomeworkCount: Int = 0
+
+    @AppStorage("manifest_homeworkStatus") private var
+    manifestHomeworkStatus: String = ""
+
+    @AppStorage("manifest_homeworkCycleWeeks") private var
+    manifestHomeworkCycleWeeks: Int = 0
+
+    @AppStorage("manifest_homeworkExtensionWeeks") private var
+    manifestHomeworkExtensionWeeks: Int = 0
+
+    @AppStorage("manifest_latestColumnArticleID") private var
+    manifestLatestColumnArticleID: Int = 0
+
     @AppStorage("manifest_updatedAtISO") private var manifestUpdatedAtISO: String = ""
+
     @AppStorage(DefaultsKeys.lastImportedHomeworkPayloadID)
-        
-    private var lastImportedHomeworkPayloadID: String = ""
     
+    private var lastImportedHomeworkPayloadID: String = ""
     private var favBadgeText: String { favCount > 99 ? "99+" : "\(favCount)" }
     private var learnedBadgeText: String { learnedCount > 99 ? "99+" : "\(learnedCount)" }
 
@@ -287,6 +307,11 @@ struct HomePage: View {
             manifestLatestHomeworkDateText = manifest.latestHomeworkDateText ?? ""
             manifestLatestHomeworkLabel = manifest.latestHomeworkLabel ?? ""
             manifestLatestHomeworkCount = manifest.latestHomeworkCount ?? 0
+
+            manifestHomeworkStatus = manifest.homeworkStatus ?? ""
+            manifestHomeworkCycleWeeks = manifest.homeworkCycleWeeks ?? 0
+            manifestHomeworkExtensionWeeks = manifest.homeworkExtensionWeeks ?? 0
+
             manifestLatestColumnArticleID = manifest.latestColumnArticleID ?? 0
             manifestUpdatedAtISO = manifest.updatedAtISO
 
@@ -297,6 +322,9 @@ struct HomePage: View {
             print("  latestHomeworkDateText =", manifestLatestHomeworkDateText)
             print("  latestHomeworkLabel =", manifestLatestHomeworkLabel)
             print("  latestHomeworkCount =", manifestLatestHomeworkCount)
+            print("  homeworkStatus =", manifestHomeworkStatus)
+            print("  homeworkCycleWeeks =", manifestHomeworkCycleWeeks)
+            print("  homeworkExtensionWeeks =", manifestHomeworkExtensionWeeks)
             print("  latestColumnArticleID =", manifestLatestColumnArticleID)
             print("  updatedAtISO =", manifestUpdatedAtISO)
 
@@ -343,31 +371,56 @@ struct HomePage: View {
 struct WeeklySetMiniButton: View {
     @EnvironmentObject var hw: HomeworkState
     @EnvironmentObject var teacher: TeacherMode
-    
+
+    @AppStorage("manifest_homeworkStatus") private var manifestHomeworkStatus: String = ""
+
+    @State private var showNoHomeworkAlert = false
+
+    private var shouldBlockCurrentHomework: Bool {
+        !teacher.unlocked && manifestHomeworkStatus == "none"
+    }
+
     var body: some View {
         HStack(spacing: 10) {
-            
-            NavigationLink {
-                WeeklySetEntryView(pair: hw.currentPair)
-                    .environmentObject(hw)
-                    .environmentObject(teacher)
-                    .id(hw.currentPair)
-            } label: {
-                Text("🗓️今回分へ")
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(.blue)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(
-                        Color(red: 0.92, green: 0.92, blue: 0.94),
-                        in: Capsule()
-                    )
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.8)
-                    .allowsTightening(true)
+            if shouldBlockCurrentHomework {
+                Button {
+                    showNoHomeworkAlert = true
+                } label: {
+                    buttonLabel
+                }
+                .buttonStyle(.plain)
+                .alert("現在、宿題はありません", isPresented: $showNoHomeworkAlert) {
+                    Button("OK", role: .cancel) {}
+                } message: {
+                    Text("次の新着通知が来るまでは自習しましょう。")
+                }
+            } else {
+                NavigationLink {
+                    WeeklySetEntryView(pair: hw.currentPair)
+                        .environmentObject(hw)
+                        .environmentObject(teacher)
+                        .id(hw.currentPair)
+                } label: {
+                    buttonLabel
+                }
+                .buttonStyle(.plain)
             }
-            .buttonStyle(.plain)                       
         }
+    }
+
+    private var buttonLabel: some View {
+        Text("🗓️今回分へ")
+            .font(.system(size: 16, weight: .semibold))
+            .foregroundColor(.blue)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .background(
+                Color(red: 0.92, green: 0.92, blue: 0.94),
+                in: Capsule()
+            )
+            .lineLimit(1)
+            .minimumScaleFactor(0.8)
+            .allowsTightening(true)
     }
 }
 // MARK: - 品詞ボタン（名詞・動詞・形容詞・副詞）

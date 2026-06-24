@@ -24,6 +24,22 @@ struct DeliveryManifest: Codable, Equatable {
     /// 例: 24
     var latestHomeworkCount: Int?
 
+    /// 宿題状態
+    /// active: 宿題あり
+    /// paused: 新規出題停止。ただし取得済みの今回分は見られる
+    /// none: 宿題なし
+    var homeworkStatus: String?
+
+    /// 宿題サイクル
+    /// 1: 1週間
+    /// 2: 2週間
+    var homeworkCycleWeeks: Int?
+
+    /// 延長週数
+    /// 0: 延長なし
+    /// 1: +1週延長
+    var homeworkExtensionWeeks: Int?
+
     /// 最新コラム番号
     /// 例: 25
     var latestColumnArticleID: Int?
@@ -36,6 +52,9 @@ struct DeliveryManifest: Codable, Equatable {
         latestHomeworkDateText: String? = nil,
         latestHomeworkLabel: String? = nil,
         latestHomeworkCount: Int? = nil,
+        homeworkStatus: String? = nil,
+        homeworkCycleWeeks: Int? = nil,
+        homeworkExtensionWeeks: Int? = nil,
         latestColumnArticleID: Int? = nil,
         updatedAtISO: String = ISO8601DateFormatter().string(from: Date())
     ) {
@@ -43,6 +62,9 @@ struct DeliveryManifest: Codable, Equatable {
         self.latestHomeworkDateText = latestHomeworkDateText
         self.latestHomeworkLabel = latestHomeworkLabel
         self.latestHomeworkCount = latestHomeworkCount
+        self.homeworkStatus = homeworkStatus
+        self.homeworkCycleWeeks = homeworkCycleWeeks
+        self.homeworkExtensionWeeks = homeworkExtensionWeeks
         self.latestColumnArticleID = latestColumnArticleID
         self.updatedAtISO = updatedAtISO
     }

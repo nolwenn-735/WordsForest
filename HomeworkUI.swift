@@ -28,6 +28,10 @@ struct HomeworkBanner: View {
     @AppStorage("notice_lastHomeworkLabel") private var lastExportedHomeworkLabel: String = ""
     @AppStorage("notice_lastHomeworkCount") private var lastExportedHomeworkCount: Int = 0
     @AppStorage("notice_lastColumnID") private var lastExportedColumnID: Int = 0
+    @AppStorage("manifest_latestHomeworkLabel") private var manifestLatestHomeworkLabel: String = ""
+    @AppStorage("manifest_homeworkStatus") private var manifestHomeworkStatus: String = ""
+    @AppStorage("manifest_homeworkCycleWeeks") private var manifestHomeworkCycleWeeks: Int = 0
+    @AppStorage("manifest_homeworkExtensionWeeks") private var manifestHomeworkExtensionWeeks: Int = 0
     
     // 🔁消去確認
     @State private var showClearConfirm = false
@@ -150,6 +154,68 @@ struct HomeworkBanner: View {
         }
     }
 
+    private var localHomeworkLabel: String {
+        hw.currentPair == .nounAdj ? "名詞＋形容詞" : "動詞＋副詞"
+    }
+
+    private var displayHomeworkStatus: String {
+        if teacher.unlocked {
+            return currentHomeworkStatusForManifest()
+        }
+
+        return manifestHomeworkStatus.isEmpty
+        ? currentHomeworkStatusForManifest()
+        : manifestHomeworkStatus
+    }
+
+    private var displayHomeworkLabel: String {
+        if !teacher.unlocked {
+            if displayHomeworkStatus == "none" {
+                return "宿題なし"
+            }
+
+            let trimmed = manifestLatestHomeworkLabel.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !trimmed.isEmpty {
+                return trimmed
+            }
+        }
+
+        return localHomeworkLabel
+    }
+
+    private var displayCycleLengthLabel: String {
+        let weeks: Int
+
+        if teacher.unlocked {
+            weeks = hw.manifestHomeworkCycleWeeks
+        } else if manifestHomeworkCycleWeeks > 0 {
+            weeks = manifestHomeworkCycleWeeks
+        } else {
+            weeks = hw.manifestHomeworkCycleWeeks
+        }
+
+        switch weeks {
+        case 1:
+            return "1週間"
+        case 2:
+            return "2週間"
+        default:
+            return hw.cycleLengthLabel
+        }
+    }
+
+    private var displayExtensionWeeks: Int {
+        if teacher.unlocked {
+            return hw.manifestHomeworkExtensionWeeks
+        }
+
+        return manifestHomeworkExtensionWeeks
+    }
+
+    private var displayExtensionLabel: String? {
+        displayExtensionWeeks > 0 ? "+\(displayExtensionWeeks)週延長" : nil
+    }
+    
     private func firstRow(leftColWidth: CGFloat) -> some View {
         HStack(spacing: 8) {
             Text("📘今サイクル")
@@ -160,7 +226,7 @@ struct HomeworkBanner: View {
                 .minimumScaleFactor(0.70)
                 .allowsTightening(true)
 
-            pill(hw.currentPair == .nounAdj ? "名詞＋形容詞" : "動詞＋副詞")
+            pill(displayHomeworkLabel)
                 .foregroundStyle(.black)
                 .lineLimit(1)
                 .minimumScaleFactor(0.65)
@@ -211,10 +277,10 @@ struct HomeworkBanner: View {
     private var cycleLengthCapsule: some View {
         if teacher.unlocked {
             Menu {
-                Button("1週間") { hw.daysPerCycle = 7 }
-                Button("2週間") { hw.daysPerCycle = 14 }
+                Button("1週間") { hw.setBaseDaysPerCycle(7) }
+                Button("2週間") { hw.setBaseDaysPerCycle(14) }
             } label: {
-                Text(hw.cycleLengthLabel)
+                Text(displayCycleLengthLabel)
                     .font(.headline)
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
@@ -230,7 +296,7 @@ struct HomeworkBanner: View {
             }
             .buttonStyle(.plain)
         } else {
-            Text(hw.cycleLengthLabel)
+            Text(displayCycleLengthLabel)
                 .font(.headline)
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
@@ -355,6 +421,9 @@ struct HomeworkBanner: View {
                 initialHomeworkDateText: seed.dateText,
                 initialHomeworkLabel: seed.label,
                 initialHomeworkCount: seed.count,
+                initialHomeworkStatus: currentHomeworkStatusForManifest(),
+                initialHomeworkCycleWeeks: currentHomeworkCycleWeeksForManifest(),
+                initialHomeworkExtensionWeeks: hw.manifestHomeworkExtensionWeeks,
                 initialLatestColumnID: lastExportedColumnID == 0 ? nil : lastExportedColumnID
             )
         } label: {
@@ -391,6 +460,20 @@ struct HomeworkBanner: View {
         lastExportedHomeworkLabel = pairLabel
 
         lastExportedHomeworkCount = payload.totalCount
+    }
+    private func currentHomeworkStatusForManifest() -> String {
+        switch hw.status {
+        case .active:
+            return "active"
+        case .paused:
+            return "paused"
+        case .none:
+            return "none"
+        }
+    }
+
+    private func currentHomeworkCycleWeeksForManifest() -> Int? {
+        hw.manifestHomeworkCycleWeeks
     }
   
     private func updateNoticeDraftFromLatestColumn() {
@@ -475,21 +558,21 @@ struct HomeworkBanner: View {
         HStack(spacing: 8) {
             ToggleButton(
                 title: "▶︎宿題あり",
-                isOn: hw.status == .active,
+                isOn: displayHomeworkStatus == "active",
                 onTap: { hw.setActive() },
                 color: .green
             )
 
             ToggleButton(
                 title: "⏸️ ストップ",
-                isOn: hw.status == .paused,
+                isOn: displayHomeworkStatus == "paused",
                 onTap: { hw.setPaused() },
                 color: .orange
             )
 
             ToggleButton(
                 title: "⛔️宿題なし",
-                isOn: hw.status == .none,
+                isOn: displayHomeworkStatus == "paused",
                 onTap: { hw.setNone() },
                 color: .red
             )
@@ -506,7 +589,7 @@ struct HomeworkBanner: View {
             .background(
                 RoundedRectangle(cornerRadius: 10)
                     .fill(
-                        hw.isExtended
+                        displayExtensionWeeks > 0
                         ? Color.yellow.opacity(0.85)
                         : Color(red: 0.92, green: 0.92, blue: 0.94)
                     )
@@ -517,7 +600,7 @@ struct HomeworkBanner: View {
             )
             .foregroundStyle(.black)
             .overlay(alignment: .trailing) {
-                if let t = hw.extensionLabel {
+                if let t = displayExtensionLabel {
                     Text(t)
                         .font(.caption2)
                         .foregroundStyle(.blue)

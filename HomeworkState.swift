@@ -289,6 +289,21 @@ final class HomeworkState: ObservableObject {
 
     var isExtended: Bool { extensionWeeks > 0 }
     
+    // MARK: - Manifest export values
+
+    var manifestHomeworkCycleWeeks: Int {
+        switch baseDaysPerCycle {
+        case 14:
+            return 2
+        default:
+            return 1
+        }
+    }
+
+    var manifestHomeworkExtensionWeeks: Int {
+        max(0, extensionWeeks)
+    }
+    
     // 先生が当初設定を切り替える（延長はリセット）
     func setBaseDaysPerCycle(_ days: Int) {
         
