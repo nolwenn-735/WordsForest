@@ -216,6 +216,8 @@ struct HomePage: View {
         .onAppear {
             favCount = HomeworkStore.shared.collectionFavoritesCount
             learnedCount = HomeworkStore.shared.collectionLearnedCount
+
+            importSavedManifestFile(showMissingAlert: false)
         }
         .onReceive(NotificationCenter.default.publisher(for: .favoritesDidChange)) { _ in
             favCount = HomeworkStore.shared.collectionFavoritesCount
@@ -291,6 +293,106 @@ struct HomePage: View {
             Text(homeworkImportErrorMessage ?? "")
         }
     }
+    
+    private func importSavedManifestFile(showMissingAlert: Bool) {
+        let fileManager = FileManager.default
+
+        guard let documentsURL = fileManager.urls(
+            for: .documentDirectory,
+            in: .userDomainMask
+        ).first else {
+            if showMissingAlert {
+                manifestImportErrorMessage =
+                    "WordsForestの保存フォルダを確認できませんでした。"
+            }
+            return
+        }
+        
+#if DEBUG
+let markerURL = documentsURL.appendingPathComponent("wf-container-check.txt")
+
+do {
+    try "WordsForest current app container"
+        .write(
+            to: markerURL,
+            atomically: true,
+            encoding: .utf8
+        )
+
+    print("✅ container marker created:", markerURL.path)
+} catch {
+    print("❌ container marker error:", error)
+}
+
+print(
+    "📦 UIFileSharingEnabled:",
+    Bundle.main.object(
+        forInfoDictionaryKey: "UIFileSharingEnabled"
+    ) ?? "nil"
+)
+
+print(
+    "📦 LSSupportsOpeningDocumentsInPlace:",
+    Bundle.main.object(
+        forInfoDictionaryKey: "LSSupportsOpeningDocumentsInPlace"
+    ) ?? "nil"
+)
+#endif
+        
+
+        let fileNames: [String]
+
+        do {
+            fileNames = try fileManager.contentsOfDirectory(
+                atPath: documentsURL.path
+            )
+        } catch {
+            if showMissingAlert {
+                manifestImportErrorMessage =
+                    "WordsForestフォルダの中身を確認できませんでした:\n\(error.localizedDescription)"
+            }
+            return
+        }
+
+        #if DEBUG
+        print("📂 App Documents path:", documentsURL.path)
+        print("📄 App Documents contents:", fileNames)
+        #endif
+
+        let expectedName = DeliveryManifestFile.makeFileName()
+            .precomposedStringWithCanonicalMapping
+
+        let actualManifestName = fileNames.first { fileName in
+            fileName
+                .precomposedStringWithCanonicalMapping
+                .caseInsensitiveCompare(expectedName) == .orderedSame
+        }
+
+        guard let actualManifestName else {
+            if showMissingAlert {
+                let listing = fileNames.isEmpty
+                    ? "（ファイルなし）"
+                    : fileNames.sorted().joined(separator: "\n")
+
+                manifestImportErrorMessage = """
+                「このiPhone内 ＞ WordsForest」に
+                wf-manifest.json が見つかりません。
+
+                アプリから見えているファイル：
+                \(listing)
+                """
+            }
+            return
+        }
+
+
+        
+        let manifestURL = documentsURL
+            .appendingPathComponent(actualManifestName)
+
+        importSelectedManifestFile(from: manifestURL)
+    }
+    
     private func importSelectedManifestFile(from url: URL) {
         let didStartAccessing = url.startAccessingSecurityScopedResource()
         defer {
@@ -503,8 +605,7 @@ private extension HomePage {
                             .font(.headline)
                         
                         Button {
-                            importerMode = .manifest
-                            showingSharedImporter = true
+                            importSavedManifestFile(showMissingAlert: true)
                         } label: {
                             HStack(spacing: 4) {
                                 Text("🔔")
@@ -574,6 +675,7 @@ private extension HomePage {
     }
 
     private var hasUnclaimedHomeworkFromManifest: Bool {
+        manifestHomeworkStatus == "active" &&
         !manifestLatestHomeworkPayloadID.isEmpty &&
         !hw.isImportedPayloadID(manifestLatestHomeworkPayloadID) &&
         !manifestLatestHomeworkDateText.isEmpty &&

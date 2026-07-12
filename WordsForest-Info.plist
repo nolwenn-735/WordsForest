@@ -4,5 +4,7 @@
 <dict>
 	<key>Privacy - Microphone Usage Description</key>
 	<string>$(MARKETING_VERSION)</string>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 </dict>
 </plist>
