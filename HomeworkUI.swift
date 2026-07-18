@@ -572,14 +572,53 @@ struct HomeworkBanner: View {
 
             ToggleButton(
                 title: "⛔️宿題なし",
-                isOn: displayHomeworkStatus == "paused",
+                isOn: displayHomeworkStatus == "none",
                 onTap: { hw.setNone() },
                 color: .red
             )
 
-            Button("+1週延長") {
-                guard teacher.unlocked else { return }
-                hw.extendOneWeek()
+            Menu {
+                Button("延長なし") {
+                    guard teacher.unlocked else { return }
+                    hw.setExtensionWeeks(0)
+                }
+
+                Button("+1週延長") {
+                    hw.setExtensionWeeks(1)
+                }
+
+                Button("+2週延長") {
+                    hw.setExtensionWeeks(2)
+                }
+
+            } label: {
+                Text("+1週延長")
+                    .font(.system(size: 14, weight: .semibold))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.78)
+                    .frame(maxWidth: .infinity, minHeight: 56)
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(
+                        displayExtensionWeeks > 0
+                        ? Color.yellow.opacity(0.85)
+                        : Color(red: 0.92, green: 0.92, blue: 0.94)
+                    )
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(.black.opacity(0.15), lineWidth: 1)
+            )
+            .foregroundStyle(.black)
+            .overlay(alignment: .trailing) {
+                if let t = displayExtensionLabel {
+                    Text(t)
+                        .font(.caption2)
+                        .foregroundStyle(.blue)
+                        .padding(.trailing, 6)
+                        .offset(y: -16)
+                }
             }
             .font(.system(size: 14, weight: .semibold))
             .lineLimit(1)

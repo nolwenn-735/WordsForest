@@ -316,8 +316,8 @@ final class HomeworkState: ObservableObject {
     }
     
     // 先生が「＋1週延長」を押した
-    func extendOneWeek() {
-        extensionWeeks += 1
+    func setExtensionWeeks(_ weeks: Int) {
+        extensionWeeks = min(max(weeks, 0), 2)
         daysPerCycle = baseDaysPerCycle + extensionWeeks * 7
     }
     // 操作系（ワンタップ）
