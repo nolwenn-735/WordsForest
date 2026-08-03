@@ -562,91 +562,71 @@ struct HomeworkBanner: View {
                 onTap: { hw.setActive() },
                 color: .green
             )
-
+            
             ToggleButton(
                 title: "⏸️ ストップ",
                 isOn: displayHomeworkStatus == "paused",
                 onTap: { hw.setPaused() },
                 color: .orange
             )
-
+            
             ToggleButton(
                 title: "⛔️宿題なし",
                 isOn: displayHomeworkStatus == "none",
                 onTap: { hw.setNone() },
                 color: .red
             )
-
+            
             Menu {
                 Button("延長なし") {
                     guard teacher.unlocked else { return }
                     hw.setExtensionWeeks(0)
                 }
-
+                
                 Button("+1週延長") {
+                    guard teacher.unlocked else { return }
                     hw.setExtensionWeeks(1)
                 }
-
+                
                 Button("+2週延長") {
+                    guard teacher.unlocked else { return }
                     hw.setExtensionWeeks(2)
                 }
-
+                
             } label: {
-                Text("+1週延長")
-                    .font(.system(size: 14, weight: .semibold))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.78)
-                    .frame(maxWidth: .infinity, minHeight: 56)
-            }
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(
-                        displayExtensionWeeks > 0
-                        ? Color.yellow.opacity(0.85)
-                        : Color(red: 0.92, green: 0.92, blue: 0.94)
-                    )
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(.black.opacity(0.15), lineWidth: 1)
-            )
-            .foregroundStyle(.black)
-            .overlay(alignment: .trailing) {
-                if let t = displayExtensionLabel {
-                    Text(t)
-                        .font(.caption2)
-                        .foregroundStyle(.blue)
-                        .padding(.trailing, 6)
-                        .offset(y: -16)
+                ZStack(alignment: .trailing) {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(
+                            displayExtensionWeeks > 0
+                            ? Color.yellow.opacity(0.85)
+                            : Color(red: 0.92, green: 0.92, blue: 0.94)
+                        )
+                    
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(.black.opacity(0.15), lineWidth: 1)
+                    
+                    Text("+1週延長")
+                        .font(.system(size: 14, weight: .semibold))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.78)
+                        .allowsTightening(true)
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 8)
+                        .foregroundStyle(.black)
+                    
+                    if let t = displayExtensionLabel {
+                        Text(t)
+                            .font(.caption2)
+                            .foregroundStyle(.blue)
+                            .padding(.trailing, 6)
+                            .offset(y: -16)
+                    }
                 }
+                .frame(maxWidth: .infinity, minHeight: 56)
+                .contentShape(RoundedRectangle(cornerRadius: 10))
             }
-            .font(.system(size: 14, weight: .semibold))
-            .lineLimit(1)
-            .minimumScaleFactor(0.78)
-            .frame(maxWidth: .infinity, minHeight: 56)
-            .padding(.horizontal, 8)
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(
-                        displayExtensionWeeks > 0
-                        ? Color.yellow.opacity(0.85)
-                        : Color(red: 0.92, green: 0.92, blue: 0.94)
-                    )
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(.black.opacity(0.15), lineWidth: 1)
-            )
-            .foregroundStyle(.black)
-            .overlay(alignment: .trailing) {
-                if let t = displayExtensionLabel {
-                    Text(t)
-                        .font(.caption2)
-                        .foregroundStyle(.blue)
-                        .padding(.trailing, 6)
-                        .offset(y: -16)
-                }
-            }
+            .buttonStyle(.plain)
+            .frame(maxWidth: .infinity)
         }
         .allowsHitTesting(teacher.unlocked)
     }

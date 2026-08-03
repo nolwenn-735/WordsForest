@@ -23,6 +23,8 @@ struct HomePage: View {
     @StateObject private var columnStore = ColumnStore.shared
     @State private var showingManifestImporter = false
     @State private var manifestImportErrorMessage: String? = nil
+    @State private var showingManifestSuccessAlert = false
+    @State private var manifestSuccessMessage = ""
     @State private var showingHomeworkImporter = false
     @State private var homeworkImportErrorMessage: String? = nil
     @State private var showingSharedImporter = false
@@ -390,10 +392,16 @@ print(
         let manifestURL = documentsURL
             .appendingPathComponent(actualManifestName)
 
-        importSelectedManifestFile(from: manifestURL)
+        importSelectedManifestFile(
+            from: manifestURL,
+            showSuccessAlert: showMissingAlert
+        )
     }
     
-    private func importSelectedManifestFile(from url: URL) {
+    private func importSelectedManifestFile(
+        from url: URL,
+        showSuccessAlert: Bool = false
+    ) {
         let didStartAccessing = url.startAccessingSecurityScopedResource()
         defer {
             if didStartAccessing {
@@ -418,6 +426,15 @@ print(
             manifestUpdatedAtISO = manifest.updatedAtISO
 
             manifestImportErrorMessage = nil
+
+            if showSuccessAlert {
+                manifestSuccessMessage = manifestStatusSummary(
+                    status: manifestHomeworkStatus,
+                    cycleWeeks: manifestHomeworkCycleWeeks,
+                    extensionWeeks: manifestHomeworkExtensionWeeks
+                )
+                showingManifestSuccessAlert = true
+            }
 
             print("✅ manifest imported")
             print("  latestHomeworkPayloadID =", manifestLatestHomeworkPayloadID)
@@ -596,6 +613,79 @@ private extension HomePage {
 }
 // MARK: - 新着
 private extension HomePage {
+    func manifestStatusSummary(
+
+        status: String,
+
+        cycleWeeks: Int,
+
+        extensionWeeks: Int
+
+    ) -> String {
+
+        switch status {
+
+        case "active":
+
+            var parts = ["宿題あり"]
+
+            if cycleWeeks == 1 || cycleWeeks == 2 {
+
+                parts.append("\(cycleWeeks)週間")
+
+            }
+
+            if extensionWeeks > 0 {
+
+                parts.append("＋\(extensionWeeks)週延長")
+
+            }
+
+            return parts.joined(separator: "・")
+
+        case "paused":
+
+            var details: [String] = []
+
+            if cycleWeeks == 1 || cycleWeeks == 2 {
+
+                details.append("\(cycleWeeks)週間")
+
+            }
+
+            if extensionWeeks > 0 {
+
+                details.append("＋\(extensionWeeks)週延長")
+
+            }
+
+            if details.isEmpty {
+
+                return "宿題は一時停止中です"
+
+            } else {
+
+                return "宿題は一時停止中です\n"
+
+                    + details.joined(separator: "・")
+
+            }
+
+        case "none":
+
+            return "現在、宿題はありません"
+
+        default:
+
+            return "新着通知ファイルを読み込みました"
+
+        }
+
+    }
+
+
+    
+    
     var recentSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
@@ -618,6 +708,14 @@ private extension HomePage {
                             .foregroundStyle(.blue)
                         }
                         .buttonStyle(.plain)
+                        .alert(
+                            "新着通知を読み込みました",
+                            isPresented: $showingManifestSuccessAlert
+                        ) {
+                            Button("OK", role: .cancel) {}
+                        } message: {
+                            Text(manifestSuccessMessage)
+                        }
                     }
                     
                     Text("🆕新しい宿題が届いていないか確認しましょう")
