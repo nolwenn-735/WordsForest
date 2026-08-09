@@ -37,10 +37,12 @@ struct CardBackView: View {
                     .font(.system(size: 26, weight: .bold))
                     .foregroundStyle(.primary)
 
-                ForEach(meanings.indices, id: \.self) { idx in
-                    Text("・\(meanings[idx])")
-                        .font(.body)
-                        .foregroundStyle(.primary)
+                if pos != .others {
+                    ForEach(meanings.indices, id: \.self) { idx in
+                        Text("・\(meanings[idx])")
+                            .font(.body)
+                            .foregroundStyle(.primary)
+                    }
                 }
             }
 
@@ -71,7 +73,45 @@ struct CardBackView: View {
             .font(.subheadline)
 
             // 例文表示
-            if meanings.isEmpty {
+            if pos == .others {
+
+                // 🦌 その他品詞：
+                // 「品詞＋意味」の直下に、そのmeaning専用の例文を表示
+                VStack(alignment: .leading, spacing: 12) {
+                    ForEach(Array(meanings.enumerated()), id: \.offset) { i, rawM in
+
+                        let m = rawM.trimmingCharacters(in: .whitespacesAndNewlines)
+
+                        if !m.isEmpty {
+                            VStack(alignment: .leading, spacing: 8) {
+
+                                Text("・\(m)")
+                                    .font(.body)
+                                    .foregroundStyle(.primary)
+
+                                let ex = ExampleStore.shared.firstExample(
+                                    pos: pos,
+                                    word: word,
+                                    meaning: m
+                                ) ?? (i == 0
+                                      ? ExampleStore.shared.firstExample(pos: pos, word: word)
+                                      : nil)
+
+                                if let ex {
+                                    exampleBlock(ex, showDivider: false)
+                                }
+                            }
+
+                            if i != meanings.count - 1 {
+                                Divider()
+                                    .padding(.vertical, 2)
+                            }
+                        }
+                    }
+                }
+
+            } else if meanings.isEmpty {
+
                 // meanings が空のときだけ救済表示（念のため）
                 if let first = examples.first {
                     exampleBlock(first, showDivider: false)
@@ -80,16 +120,26 @@ struct CardBackView: View {
                 }
 
             } else {
-                // meanings があるとき：meaningごとに「例文があるものだけ」表示
+
+                // 主要4品詞は今まで通り
                 VStack(alignment: .leading, spacing: 10) {
                     ForEach(Array(meanings.enumerated()), id: \.offset) { i, rawM in
+
                         let m = rawM.trimmingCharacters(in: .whitespacesAndNewlines)
 
-                        let ex = ExampleStore.shared.firstExample(pos: pos, word: word, meaning: m)
-                            ?? (i == 0 ? ExampleStore.shared.firstExample(pos: pos, word: word) : nil)
+                        let ex = ExampleStore.shared.firstExample(
+                            pos: pos,
+                            word: word,
+                            meaning: m
+                        ) ?? (i == 0
+                              ? ExampleStore.shared.firstExample(pos: pos, word: word)
+                              : nil)
 
                         if let ex {
-                            exampleBlock(ex, showDivider: i != meanings.count - 1)
+                            exampleBlock(
+                                ex,
+                                showDivider: i != meanings.count - 1
+                            )
                         }
                     }
                 }

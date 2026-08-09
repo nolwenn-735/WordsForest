@@ -321,8 +321,6 @@ struct POSFlashcardView: View {
         
         // ==== 一時的なダミー変数（旧コード踏襲）====
         var posLabel: String = ""
-        var hasDolphin: Bool = false
-        var hasGold: Bool = false
         var isTutor: Bool = true
         
         @State private var inCollectionLocal: Bool = false

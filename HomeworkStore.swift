@@ -295,6 +295,58 @@ final class HomeworkStore: ObservableObject {
             NotificationCenter.default.post(name: .storeDidChange, object: nil)
         }
     }
+    
+    // 🦌 その他品詞：追加したmeaning 1件だけを削除
+    // 最初に登録されたmeaning（代表ID）は保護する
+    @discardableResult
+    func deleteOtherMeaning(word: String, meaning: String) -> Bool {
+        let w = norm(word)
+        let m = normMeaning(meaning)
+
+        let group = words.filter {
+            $0.pos == .others &&
+            norm($0.word) == w
+        }
+
+        // 最後の1件は消さない
+        guard group.count > 1 else { return false }
+
+        // 最初に登録されたmeaning = 代表ID は保護
+        guard let representativeID = group.first?.id else { return false }
+
+        guard let index = words.firstIndex(where: {
+            $0.pos == .others &&
+            norm($0.word) == w &&
+            normMeaning($0.meaning) == m
+        }) else {
+            return false
+        }
+
+        let deletedID = words[index].id
+
+        // 代表meaningは削除しない
+        guard deletedID != representativeID else {
+            return false
+        }
+
+        words.remove(at: index)
+
+        // 念のためUUIDの残骸も掃除
+        favoriteIDs.remove(deletedID)
+        learnedIDs.remove(deletedID)
+        requiredIDs.remove(deletedID)
+
+        save()
+        saveFavorites()
+        saveLearned()
+        saveRequired()
+
+        NotificationCenter.default.post(name: .storeDidChange, object: nil)
+        NotificationCenter.default.post(name: .favoritesDidChange, object: nil)
+        NotificationCenter.default.post(name: .learnedDidChange, object: nil)
+
+        return true
+    }
 
 //03/31追加部分
     func card(word: String, meanings: [String], pos: PartOfSpeech) -> WordCard? {
@@ -400,10 +452,29 @@ final class HomeworkStore: ObservableObject {
             // meanings を正規化して確定
             let meanings = Array(Set(group.map { normMeaning($0.meaning) }))
                 .sorted()
-            guard let firstMeaning = meanings.first else { return nil }
-            
-            // first を「意味が firstMeaning の StoredWord」に固定
-            guard let first = group.first(where: { normMeaning($0.meaning) == firstMeaning }) else { return nil }
+
+            guard !meanings.isEmpty else { return nil }
+
+            // 🦌 その他品詞だけは、最初に登録されたStoredWordを代表IDにする
+            // → meaningを追加しても代表IDが変わりにくい
+            let first: StoredWord
+
+            if pos == .others {
+                guard let originalFirst = group.first else { return nil }
+                first = originalFirst
+            } else {
+                // 主要4品詞は今までの代表IDルールを維持
+                guard
+                    let firstMeaning = meanings.first,
+                    let existingFirst = group.first(where: {
+                        normMeaning($0.meaning) == firstMeaning
+                    })
+                else {
+                    return nil
+                }
+
+                first = existingFirst
+            }
             
             return WordCard(
                 id: first.id,                 // ✅ ここが重要：代表IDにする（安定）

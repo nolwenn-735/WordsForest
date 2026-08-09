@@ -252,9 +252,50 @@ struct ExampleEditorView: View {
     // MARK: - Save
 
     private func saveAll() {
+
+        // 🦌 その他品詞：
+        // 編集開始時にはあったのに、保存時には消えているmeaningを削除
+        if pos == .others {
+            let initialMeanings = Set(
+                initialDraftsSnapshot
+                    .map { normalizedText($0.meaning) }
+                    .filter { !$0.isEmpty }
+            )
+
+            let currentMeanings = Set(
+                drafts
+                    .map { normalizedText($0.meaning) }
+                    .filter { !$0.isEmpty }
+            )
+
+            let removedMeanings = initialMeanings.subtracting(currentMeanings)
+
+            for meaning in removedMeanings {
+                let didDelete = HomeworkStore.shared.deleteOtherMeaning(
+                    word: word,
+                    meaning: meaning
+                )
+
+                // HomeworkStoreから本当に削除できたmeaningだけ、
+                // 対応する例文も削除する
+                if didDelete {
+                    ExampleStore.shared.removeExample(
+                        pos: pos,
+                        word: word,
+                        meaning: meaning
+                    )
+                }
+            }
+        }
+
         // ✅ 単語ノート（全体）を保存（空なら削除）
         let wn = wordNoteText.trimmingCharacters(in: .whitespacesAndNewlines)
-        ExampleStore.shared.saveWordNote(pos: pos, word: word, note: wn.isEmpty ? nil : wn)
+
+        ExampleStore.shared.saveWordNote(
+            pos: pos,
+            word: word,
+            note: wn.isEmpty ? nil : wn
+        )
 
         for d in drafts {
             let meaning = d.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
