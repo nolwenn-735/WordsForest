@@ -275,18 +275,57 @@ struct HomeworkBanner: View {
     
     @ViewBuilder
     private var cycleLengthCapsule: some View {
+
+        let shortCycleLabel: String = {
+            switch hw.daysPerCycle {
+            case 7:
+                return "1週"
+            case 14:
+                return "2週"
+            default:
+                return "\(hw.daysPerCycle)日"
+            }
+        }()
+
+        let displayText = teacher.unlocked
+            ? "\(shortCycleLabel)・\(hw.totalCount)"
+            : "\(shortCycleLabel)・\(hw.totalCount)語"
+        
         if teacher.unlocked {
             Menu {
-                Button("1週間") { hw.setBaseDaysPerCycle(7) }
-                Button("2週間") { hw.setBaseDaysPerCycle(14) }
+
+                Section("期間") {
+                    Button("1週間") {
+                        hw.setBaseDaysPerCycle(7)
+                    }
+
+                    Button("2週間") {
+                        hw.setBaseDaysPerCycle(14)
+                    }
+                }
+
+                Section("語数") {
+                    Button("24語") {
+                        hw.totalCount = 24
+                    }
+
+                    Button("48語") {
+                        hw.totalCount = 48
+                    }
+
+                    Button("60語") {
+                        hw.totalCount = 60
+                    }
+                }
+
             } label: {
-                Text(displayCycleLengthLabel)
+                Text(displayText)
                     .font(.headline)
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
                     .allowsTightening(true)
-                    .frame(minWidth: 70)
-                    .padding(.horizontal, 10)
+                    .frame(minWidth: 76)
+                    .padding(.horizontal, 7)
                     .padding(.vertical, 8)
                     .background(
                         Color(red: 0.92, green: 0.92, blue: 0.94),
@@ -295,13 +334,14 @@ struct HomeworkBanner: View {
                     .foregroundStyle(.blue)
             }
             .buttonStyle(.plain)
+
         } else {
-            Text(displayCycleLengthLabel)
+            Text(displayText)
                 .font(.headline)
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
                 .allowsTightening(true)
-                .frame(minWidth: 70)
+                .frame(minWidth: 88)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 8)
                 .background(
@@ -311,6 +351,7 @@ struct HomeworkBanner: View {
                 .foregroundStyle(.black)
         }
     }
+    
     private var homeworkEditButton: some View {
         Button {
             showHomeworkEditPicker = true

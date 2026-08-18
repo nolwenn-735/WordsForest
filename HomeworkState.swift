@@ -141,16 +141,17 @@ final class HomeworkState: ObservableObject {
     // 🆕 サイクル番号（0,1,2,...）
     @AppStorage("hw_cycleIndex") private var cycleIndex: Int = 0
     var currentCycleIndex: Int { cycleIndex }
+
+    // 🆕 1回の宿題語数
+    @AppStorage("hw_totalCount") var totalCount: Int = 24
+
     @Published var status: HomeworkStatus {
         didSet { statusRaw = status.rawValue }
     }
     @Published var variantOthers = 0
-    // 週合計24の内訳（お好みで変更可）
-    @Published var weeklyQuota: [PartOfSpeech: Int] = [
-        .noun: 12, .verb: 12, .adj: 12, .adv: 12
-    ]    
-    // 学習に含める語彙レベル（まずは A1〜B1）
-    @Published var allowedLevels: Set<CEFRLevel> = [.A1, .A2, .B1]
+  
+    // 学習に含める語彙レベル（A1〜C2）
+    @Published var allowedLevels: Set<CEFRLevel> = [.A1, .A2, .B1, .B2, .C1, .C2]
     
     // 🔷 今サイクルの宿題セット（品詞ごと）
     //    画面に反映させたいので @Published にする
@@ -214,12 +215,32 @@ final class HomeworkState: ObservableObject {
             ?? "[]"
         self.history = Self.decode(rawHistory)
         sanitizeHistoryIfNeeded()
+        
+        //✅保存されている古い期間値を現行仕様へ修正
+        sanitizeCycleLengthIfNeeded()
 
         // ② HomeworkStateBridge に自分を登録
         if let bridge = HomeworkStateBridge.shared {
             bridge.state = self
         } else {
             _ = HomeworkStateBridge(state: self)
+        }
+    }
+
+    private func sanitizeCycleLengthIfNeeded() {
+        // 当初設定は 1週 or 2週だけ
+        if baseDaysPerCycle != 7 && baseDaysPerCycle != 14 {
+            baseDaysPerCycle = 7
+        }
+
+        // 延長は 0〜2週
+        extensionWeeks = min(max(extensionWeeks, 0), 2)
+
+        // 現在日数は base + 延長 から再計算
+        let expectedDays = baseDaysPerCycle + extensionWeeks * 7
+
+        if daysPerCycle != expectedDays {
+            daysPerCycle = expectedDays
         }
     }
     
