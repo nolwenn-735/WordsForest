@@ -559,7 +559,7 @@ struct HomeworkBanner: View {
             let result = try HomeworkExportFile.makeCurrentHomeworkJSONData(
                 hw: hw,
                 requiredCount: 10,
-                totalCount: 24
+                totalCount: hw.totalCount
             )
             
             updateNoticeDraft(from: result.payload)

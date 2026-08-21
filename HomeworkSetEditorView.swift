@@ -15,10 +15,13 @@ struct HomeworkSetEditorView: View {
 
     let posA: PartOfSpeech
     let posB: PartOfSpeech
-    var targetPerPos: Int = 12
 
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var hw: HomeworkState
+
+    private var targetPerPos: Int {
+        max(1, hw.totalCount / 2)
+    }
     @ObservedObject private var store = HomeworkStore.shared
     @Environment(\.colorScheme) private var colorScheme
 
@@ -286,6 +289,7 @@ print("🟥 afterSaveTapped ENTER")
         #endif
     }
     
+    
     // =======================================================
     // MARK: UI parts
     // =======================================================
@@ -369,11 +373,29 @@ print("🟥 afterSaveTapped ENTER")
                                required: Binding<[RequiredItem]>) -> some View {
         let all = store.list(for: pos)
         let filtered = all.filter { c in
-            let q = query.wrappedValue.trimmingCharacters(in: .whitespacesAndNewlines)
-            if q.isEmpty { return true }
+
+            // すでに必須に入っているカードは追加候補から除外
+            let alreadyRequired = required.wrappedValue.contains { r in
+                isSameCard(c, r)
+            }
+
+            if alreadyRequired {
+                return false
+            }
+
+            // 検索文字で絞り込み
+            let q = query.wrappedValue
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+                .lowercased()
+
+            if q.isEmpty {
+                return true
+            }
+
             let w = c.word.lowercased()
             let m = (c.meanings.first ?? "").lowercased()
-            return w.contains(q.lowercased()) || m.contains(q.lowercased())
+
+            return w.contains(q) || m.contains(q)
         }
 
         #if DEBUG
