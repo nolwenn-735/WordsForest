@@ -10,6 +10,9 @@ struct WeeklySetView: View {
 
     var body: some View {
         let parts = pair.parts   // [.noun, .adj] など
+        let totalCount =
+            hw.homeworkWords(for: parts[0]).count
+            + hw.homeworkWords(for: parts[1]).count
 
         List {
             Section("今回のセット") {
@@ -18,7 +21,7 @@ struct WeeklySetView: View {
             }
 
             Section {
-                NavigationLink("24語まとめて学習") {
+                NavigationLink("\(totalCount)語まとめて学習") {
                     combinedWordcardPage(for: parts)
                 }
             }
@@ -30,12 +33,13 @@ struct WeeklySetView: View {
     }
 
     private func posRow(_ pos: PartOfSpeech) -> some View {
-        NavigationLink("\(pos.jaTitle) 12語") {
+        let count = hw.homeworkWords(for: pos).count
+
+        return NavigationLink("\(pos.jaTitle) \(count)語") {
             singleWordcardPage(for: pos)
         }
-        .foregroundStyle(pos.accent)   // ✅ ここは「関数の中」に入れる
+        .foregroundStyle(pos.accent)
     }
-
     // 品詞ごとの12語レッスン
     private func singleWordcardPage(for pos: PartOfSpeech) -> some View {
         let cards  = hw.homeworkWords(for: pos)
@@ -51,7 +55,7 @@ struct WeeklySetView: View {
         )
     }
 
-    // 2品詞ぶん 24語まとめて
+    // 2品詞ぶん まとめて
     @ViewBuilder
     private func combinedWordcardPage(for parts: [PartOfSpeech]) -> some View {
         if parts.count < 2 {
@@ -64,7 +68,7 @@ struct WeeklySetView: View {
             let cardsB   = hw.homeworkWords(for: secondPos)
             let allCards = cardsA + cardsB
 
-            let title      = "\(firstPos.jaTitle)+\(secondPos.jaTitle) 24語"
+            let title = "\(parts[0].jaTitle)+\(parts[1].jaTitle) \(allCards.count)語"
             let background = Color(.systemGray6)
             let accent     = Color.primary
             let mixAnimal  = "index_raccoon_flower"
@@ -75,6 +79,7 @@ struct WeeklySetView: View {
                 accent: accent,
                 background: background,
                 animalName: mixAnimal,
+                showPOSSectionHeaders: true,
                 hideLearned: true
             )
         }

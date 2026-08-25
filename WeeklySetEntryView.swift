@@ -116,7 +116,7 @@ private struct WeeklySetPayloadCardsView: View {
             }
 
             Section {
-                NavigationLink("24語まとめて学習") {
+                NavigationLink("\(payload.items.count)語まとめて学習") {
                     combinedWordcardPage(for: parts)
                 }
             }
@@ -138,7 +138,9 @@ private struct WeeklySetPayloadCardsView: View {
 
     @ViewBuilder
     private func posRow(_ pos: PartOfSpeech) -> some View {
-        NavigationLink("\(pos.jaTitle) 12語") {
+        let count = payload.items.filter { $0.pos == pos.rawValue }.count
+
+        NavigationLink("\(pos.jaTitle) \(count)語") {
             singleWordcardPage(for: pos)
         }
         .foregroundStyle(pos.accent)
@@ -171,7 +173,7 @@ private struct WeeklySetPayloadCardsView: View {
             let b = hw.homeworkWords(for: parts[1])
             let all = a + b
 
-            let title      = "\(parts[0].jaTitle)+\(parts[1].jaTitle) 24語"
+            let title = "\(parts[0].jaTitle)+\(parts[1].jaTitle) \(all.count)語"
             let background = Color(.systemGray6)
             let accent     = Color.primary
             let mixAnimal  = "index_raccoon_flower"
@@ -185,6 +187,7 @@ private struct WeeklySetPayloadCardsView: View {
                 onDataChanged: {
                     hw.objectWillChange.send()
                 },
+                showPOSSectionHeaders: true,
                 hideLearned: true
             )
         }

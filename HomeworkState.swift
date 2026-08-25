@@ -765,14 +765,16 @@ extension HomeworkState {
 
             self.cachedHomework.removeAll()
 
-            self.daysPerCycle = payload.daysPerCycle
+            self.cachedHomework.removeAll()
+
             self.pairIndex = payload.pair
             self.cycleIndex = payload.cycleIndex
-            self.baseDaysPerCycle = payload.daysPerCycle
-            self.extensionWeeks = 0
-            self.daysPerCycle = payload.daysPerCycle
-            self.uiTick += 1
 
+            // 古い保存値が残っていても、現行仕様の期間へ補正
+            self.sanitizeCycleLengthIfNeeded()
+
+            self.uiTick += 1
+            
             // 取り込んだ日をサイクル開始日にする運用はそのまま維持
             self.cycleStartDate = Date()
 

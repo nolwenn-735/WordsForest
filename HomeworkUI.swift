@@ -205,7 +205,17 @@ struct HomeworkBanner: View {
         }
     }
     
-    
+    private var displayHomeworkCount: Int {
+        if teacher.unlocked {
+            return hw.totalCount
+        }
+
+        if manifestLatestHomeworkCount > 0 {
+            return manifestLatestHomeworkCount
+        }
+
+        return hw.totalCount
+    }
 
     private var displayExtensionWeeks: Int {
         if teacher.unlocked {

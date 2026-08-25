@@ -29,7 +29,10 @@ struct POSFlashcardView: View {
     
     // 行ごとに品詞色を使うどうか（My Collection / 覚えたBOX など）
     let perRowAccent: Bool
-    
+
+    // 複数品詞をまとめて表示するとき、品詞の境目に見出しを出す
+    let showPOSSectionHeaders: Bool
+
     // 宿題モードなどで、✅したものは行を隠したい画面で true
     let hideLearned: Bool
     
@@ -76,6 +79,7 @@ struct POSFlashcardView: View {
         onEdit: @escaping (WordCard) -> Void = { _ in },
         onDataChanged: @escaping () -> Void = {},
         perRowAccent: Bool = false,
+        showPOSSectionHeaders: Bool = false,
         hideLearned: Bool = false
     ) {
         self.title = title
@@ -86,6 +90,7 @@ struct POSFlashcardView: View {
         self.onEdit = onEdit
         self.onDataChanged = onDataChanged
         self.perRowAccent = perRowAccent
+        self.showPOSSectionHeaders = showPOSSectionHeaders
         self.hideLearned = hideLearned
         _reversed = State(initialValue: reversed)
         
@@ -185,10 +190,33 @@ struct POSFlashcardView: View {
         ForEach(enumerated, id: \.offset) { pair in
             let i = pair.offset
             let c = pair.element
+
+            if showPOSSectionHeaders &&
+                (i == 0 || visibleCards[i - 1].pos != c.pos) {
+
+                posSectionHeader(for: c.pos)
+            }
+
             row(for: c, index: i, rowHeight: rowHeight)
         }
     }
-    
+    @ViewBuilder
+    private func posSectionHeader(for pos: PartOfSpeech) -> some View {
+        HStack(spacing: 8) {
+            Circle()
+                .fill(pos.accent)
+                .frame(width: 12, height: 12)
+
+            Text(pos.jaTitle)
+                .font(.headline)
+                .foregroundStyle(pos.accent)
+
+            Spacer()
+        }
+        .padding(.horizontal, 8)
+        .padding(.top, 8)
+        .padding(.bottom, 2)
+    }
     // MARK: - 1 行
     @ViewBuilder
     private func row(for c: WordCard, index i: Int, rowHeight: CGFloat) -> some View {
