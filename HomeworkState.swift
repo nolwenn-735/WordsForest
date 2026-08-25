@@ -375,10 +375,10 @@ final class HomeworkState: ObservableObject {
 
     // MARK: - 履歴保存
     
-    func logImportedHomework(dateISO: String, pairRaw: Int) {
+    func logImportedHomework(dateISO: String, pairRaw: Int, wordsCount: Int) {
         guard let d = parseISO(dateISO) else { return }
         let p = PosPair(rawValue: pairRaw) ?? currentPair
-        logNowIfNeeded(date: d, status: .active, pair: p, wordsCount: 24) // ここは運用に合わせて
+        logNowIfNeeded(date: d, status: .active, pair: p, wordsCount: wordsCount) // ここは運用に合わせて
     }
     
     private func parseISO(_ s: String) -> Date? {
@@ -391,7 +391,7 @@ final class HomeworkState: ObservableObject {
     }
 
     private func logNow(_ now: Date = Date()) {
-        logNowIfNeeded(date: now, status: status, pair: currentPair, wordsCount: 24)
+        logNowIfNeeded(date: now, status: status, pair: currentPair, wordsCount: totalCount)
     }
     
     private func logNowIfNeeded(date: Date,

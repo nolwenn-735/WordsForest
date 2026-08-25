@@ -29,6 +29,7 @@ struct HomeworkBanner: View {
     @AppStorage("notice_lastHomeworkCount") private var lastExportedHomeworkCount: Int = 0
     @AppStorage("notice_lastColumnID") private var lastExportedColumnID: Int = 0
     @AppStorage("manifest_latestHomeworkLabel") private var manifestLatestHomeworkLabel: String = ""
+    @AppStorage("manifest_latestHomeworkCount") private var manifestLatestHomeworkCount: Int = 0
     @AppStorage("manifest_homeworkStatus") private var manifestHomeworkStatus: String = ""
     @AppStorage("manifest_homeworkCycleWeeks") private var manifestHomeworkCycleWeeks: Int = 0
     @AppStorage("manifest_homeworkExtensionWeeks") private var manifestHomeworkExtensionWeeks: Int = 0
@@ -203,6 +204,8 @@ struct HomeworkBanner: View {
             return hw.cycleLengthLabel
         }
     }
+    
+    
 
     private var displayExtensionWeeks: Int {
         if teacher.unlocked {
@@ -439,7 +442,7 @@ struct HomeworkBanner: View {
             payloadID: "",
             dateText: "",
             label: pair.parts.map(\.jaTitle).joined(separator: "＋"),
-            count: 24
+            count: hw.totalCount
         )
     }
     
