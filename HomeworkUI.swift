@@ -821,7 +821,7 @@ struct HomeworkHistoryList: View {
                 confirmEntry = nil
             }
         } message: {
-            Text("履歴の宿題（24語）を開きます。")
+            Text("履歴の宿題（\(confirmEntry?.wordsCount ?? 0)語）を開きます。")
         }
     }
 }

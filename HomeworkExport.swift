@@ -260,7 +260,7 @@ final class HomeworkPackStore {
         pickedReqA = Array(pickedReqA.prefix(targetReqA))
         pickedReqB = Array(pickedReqB.prefix(targetReqB))
 
-        // ここから残り補充：各品詞 12語ずつを目標（totalCount=24想定）
+        // ここから残り補充：各品詞 （totalCount/ 2 語を目標）
         let targetPerPos = max(1, totalCount / 2)
 
         func normWord(_ s: String) -> String {

@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-/// 宿題確定後に「24語の確認＆例文編集入口」を出す画面
+/// 宿題確定後に「宿題セットの確認＆例文編集入口」を出す画面
 struct HomeworkPackReviewView: View {
 
     let title: String
-    let cards: [WordCard]          // 24語（pos混在でもOK）
+    let cards: [WordCard]          // 宿題セット（pos混在でもOK）
 
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var teacher: TeacherMode

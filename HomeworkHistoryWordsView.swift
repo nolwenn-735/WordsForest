@@ -29,7 +29,7 @@ struct HomeworkHistoryWordsView: View {
                 .navigationTitle("宿題（履歴）")
             } else {
                 POSFlashcardView(
-                    title: "\(entry.pair.jaTitle) 24語",
+                    title: "\(entry.pair.jaTitle) \(entry.wordsCount)語",
                     cards: cards,
                     accent: Color.primary,
                     background: Color(.systemGray6),

@@ -63,6 +63,9 @@ struct HomeworkSetEditorView: View {
     // 保存しましたバナー（任意）
     @State private var showSavedBanner = false
     @State private var savedBannerText = "保存しました"
+    
+    // 必須語の選択上限メッセージ
+    @State private var requiredLimitMessage: String? = nil
 
     // 保存キー（posペアごとに保存）
     private var orderKeyA: String { "required_order_v1_\(posA.rawValue)_\(posB.rawValue)_A" }
@@ -521,25 +524,55 @@ print("🟥 afterSaveTapped ENTER")
         let item = RequiredItem(pos: pos, word: w, meaning: m)
 
         if pos == posA {
-            if !requiredA.contains(where: { same($0, item) }) { requiredA.append(item) }
+
+            // 同じカードなら何もしない
+            guard !requiredA.contains(where: { same($0, item) }) else {
+                return
+            }
+
+            // この品詞の上限を超えない
+            guard requiredA.count < targetPerPos else {
+                requiredLimitMessage = "\(pos.jaTitle)は\(targetPerPos)語まで選択できます。"
+                return
+            }
+
+            requiredA.append(item)
+
         } else if pos == posB {
-            if !requiredB.contains(where: { same($0, item) }) { requiredB.append(item) }
+
+            // 同じカードなら何もしない
+            guard !requiredB.contains(where: { same($0, item) }) else {
+                return
+            }
+
+            // この品詞の上限を超えない
+            guard requiredB.count < targetPerPos else {
+                requiredLimitMessage = "\(pos.jaTitle)は\(targetPerPos)語まで選択できます。"
+                return
+            }
+
+            requiredB.append(item)
         }
     }
 
     private func removeRequired(_ item: RequiredItem, from pos: PartOfSpeech) {
-        if pos == posA { requiredA.removeAll { same($0, item) } }
-        if pos == posB { requiredB.removeAll { same($0, item) } }
+        if pos == posA {
+            requiredA.removeAll { same($0, item) }
+        }
+
+        if pos == posB {
+            requiredB.removeAll { same($0, item) }
+        }
     }
 
     private func same(_ a: RequiredItem, _ b: RequiredItem) -> Bool {
         a.posRaw == b.posRaw &&
         a.word.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-        == b.word.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() &&
+            == b.word.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() &&
         a.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
-        == b.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
+            == b.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
     }
-
+    
     // =======================================================
     // MARK: プレビュー作成（required + 補充）
     // =======================================================

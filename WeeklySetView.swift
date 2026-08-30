@@ -40,7 +40,7 @@ struct WeeklySetView: View {
         }
         .foregroundStyle(pos.accent)
     }
-    // 品詞ごとの12語レッスン
+    // 品詞ごとの宿題レッスン
     private func singleWordcardPage(for pos: PartOfSpeech) -> some View {
         let cards  = hw.homeworkWords(for: pos)
         let animal = pos.animalName(forCycle: hw.variantIndex(for: pos))

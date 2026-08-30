@@ -608,7 +608,7 @@ extension HomeworkState {
             let payload = HomeworkPackStore.shared.buildOrLoadFixedPack(
                 hw: self,
                 requiredCount: 10,
-                totalCount: 24
+                totalCount: totalCount
             )
 
             // これで cachedHomework が埋まる想定
