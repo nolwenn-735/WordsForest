@@ -151,6 +151,21 @@ struct HomeworkSetEditorView: View {
             }
         }
 
+        // ✅ 必須語の選択上限
+        .alert(
+            "選択できる語数の上限です",
+            isPresented: Binding(
+                get: { requiredLimitMessage != nil },
+                set: { if !$0 { requiredLimitMessage = nil } }
+            )
+        ) {
+            Button("OK", role: .cancel) {
+                requiredLimitMessage = nil
+            }
+        } message: {
+            Text(requiredLimitMessage ?? "")
+        }
+        
         // ✅ 保存後：編集する？の確認
         .alert("カード裏面を編集しますか？", isPresented: $showPostSavePrompt) {
             Button("する") { startBulkEditing() }
