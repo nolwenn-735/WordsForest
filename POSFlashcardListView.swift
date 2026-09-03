@@ -15,6 +15,7 @@ struct POSFlashcardListView: View {
     @ObservedObject private var homeworkStore = HomeworkStore.shared
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var teacher: TeacherMode
+    @EnvironmentObject private var router: Router
     
     @State private var showingAdd = false
     @State private var editingWord: WordCard? = nil
@@ -134,7 +135,9 @@ struct POSFlashcardListView: View {
             }
 
             ToolbarItemGroup(placement: .topBarTrailing) {
-                Button { dismiss() } label: {
+                Button {
+                    router.goHome()
+                } label: {
                     Text("ホームへ🏠")
                 }
                 .foregroundStyle(.blue)

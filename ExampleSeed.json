@@ -1,0 +1,55 @@
+//
+//  ExampleSeed.json
+//  WordsForest
+//
+//  Created by Nami .T on 2026/09/03.
+//
+
+[
+  {
+    "pos": "verb",
+    "word": "find",
+    "wordNote": "find は何かを見つける・発見するという意味から、さらに「〜が分かる、〜だと知る」という意味にも広がります。",
+    "meanings": [
+      {
+        "meaning": "分かる",
+        "en": "I found this tool really helpful.",
+        "ja": "この道具はとても役に立つと分かった。"
+      },
+      {
+        "meaning": "見つける",
+        "en": "They found a small café near the station.",
+        "ja": "彼らは駅の近くで小さなカフェを見つけた。"
+      }
+    ]
+  },
+  {
+    "pos": "verb",
+    "word": "run",
+    "wordNote": null,
+    "meanings": [
+      {
+        "meaning": "走る",
+        "en": "I run every morning.",
+        "ja": "私は毎朝走ります。"
+      }
+    ]
+  },
+  {
+    "pos": "others",
+    "word": "after",
+    "wordNote": "前置詞では「〜のあとに」、接続詞では「〜したあとで」のように使います。どちらも「ある出来事より後」という共通イメージがあります。",
+    "meanings": [
+      {
+        "meaning": "〜のあとに",
+        "en": "Can we talk after class?",
+        "ja": "授業のあと話せる？"
+      },
+      {
+        "meaning": "〜したあとで",
+        "en": "Call me after you get home.",
+        "ja": "家に着いたら電話して。"
+      }
+    ]
+  }
+]
