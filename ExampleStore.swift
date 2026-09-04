@@ -22,8 +22,8 @@ final class ExampleStore: ObservableObject {
     private init() {
         load()
         loadNotes()
+        seedBundledExamplesIfNeeded()
     }
-
     // MARK: - Normalize / Key
 
     private func normWord(_ s: String) -> String {
@@ -180,6 +180,190 @@ if lw2 == "run" || lw2 == "look" {
 #endif
         }
     }
+
+// MARK: - Bundled Seed
+
+extension ExampleStore {
+
+    func seedBundledExamplesIfNeeded() {
+        let seedVersionKey = "example_seed_version"
+        let currentSeedVersion = 1
+
+        let savedVersion = UserDefaults.standard.integer(forKey: seedVersionKey)
+
+        guard savedVersion < currentSeedVersion else {
+            return
+        }
+
+        guard let url = Bundle.main.url(
+            forResource: "ExampleSeed",
+            withExtension: "json"
+        ),
+        let data = try? Data(contentsOf: url),
+        let items = try? JSONDecoder().decode(
+            [ExampleSeedItem].self,
+            from: data
+        )
+        else {
+#if DEBUG
+            print("🟥 ExampleSeed.json の読み込みに失敗")
+#endif
+            return
+        }
+
+        for item in items {
+            guard let pos = PartOfSpeech.parse(item.pos) else {
+                continue
+            }
+
+            let word = item.word
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+
+            guard !word.isEmpty else {
+                continue
+            }
+
+            // ---------------------------
+            // ① 例文
+            // 既存がある場合は絶対に上書きしない
+            // ---------------------------
+            for seedMeaning in item.meanings {
+                let meaning = seedMeaning.meaning
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+
+                let en = seedMeaning.en
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+
+                let ja = seedMeaning.ja?
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+
+                guard !meaning.isEmpty, !en.isEmpty else {
+                    continue
+                }
+
+                let existing = self.firstExample(
+                    pos: pos,
+                    word: word,
+                    meaning: meaning
+                )
+
+                guard existing == nil else {
+                    continue
+                }
+
+                self.saveExample(
+                    pos: pos,
+                    word: word,
+                    meaning: meaning,
+                    en: en,
+                    ja: (ja?.isEmpty == true ? nil : ja),
+                    note: nil
+                )
+            }
+
+            // ---------------------------
+            // ② 単語note
+            // 既存noteがある場合は絶対に上書きしない
+            // ---------------------------
+            let existingNote = self.wordNote(
+                pos: pos,
+                word: word
+            )
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+            if existingNote.isEmpty,
+               let note = item.wordNote?
+                .trimmingCharacters(in: .whitespacesAndNewlines),
+               !note.isEmpty {
+
+                self.saveWordNote(
+                    pos: pos,
+                    word: word,
+                    note: note
+                )
+            }
+        }
+
+        UserDefaults.standard.set(
+            currentSeedVersion,
+            forKey: seedVersionKey
+        )
+
+#if DEBUG
+        print("🟩 ExampleSeed v\(currentSeedVersion) を安全に読み込みました")
+#endif
+    }
+}
+
+// MARK: - Emergency Backup
+// ExampleStore に現在残っている例文・単語ノートを
+// Documents フォルダへ丸ごと退避するための一時救出コード
+
+private struct ExampleStoreEmergencyBackup: Codable {
+    let exportedAt: Date
+    let examples: [String: [ExampleEntry]]
+    let wordNotes: [String: String]
+}
+
+extension ExampleStore {
+
+    @discardableResult
+    func exportEmergencyBackup() -> URL? {
+
+        let backup = ExampleStoreEmergencyBackup(
+            exportedAt: Date(),
+            examples: examples,
+            wordNotes: wordNotes
+        )
+
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        encoder.dateEncodingStrategy = .iso8601
+
+        do {
+            let data = try encoder.encode(backup)
+
+            let formatter = DateFormatter()
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
+
+            let timestamp = formatter.string(from: Date())
+
+            let fileName = "ExampleStore-Backup-\(timestamp).json"
+
+            let documentsURL = FileManager.default.urls(
+                for: .documentDirectory,
+                in: .userDomainMask
+            )[0]
+
+            let fileURL = documentsURL.appendingPathComponent(fileName)
+
+            try data.write(
+                to: fileURL,
+                options: .atomic
+            )
+
+#if DEBUG
+            print("🛟 ExampleStore backup created")
+            print("🛟 examples keys = \(examples.count)")
+            print("🛟 wordNotes keys = \(wordNotes.count)")
+            print("🛟 backup path = \(fileURL.path)")
+#endif
+
+            return fileURL
+
+        } catch {
+
+#if DEBUG
+            print("🟥 ExampleStore backup failed: \(error)")
+#endif
+
+            return nil
+        }
+    }
+}
+
+
 extension Notification.Name {
     static let examplesDidChange = Notification.Name("examplesDidChange")
 }
