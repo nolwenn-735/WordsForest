@@ -22,7 +22,10 @@ final class ExampleStore: ObservableObject {
     private init() {
         load()
         loadNotes()
-        seedBundledExamplesIfNeeded()
+
+        DispatchQueue.main.async { [weak self] in
+            self?.seedBundledExamplesIfNeeded()
+        }
     }
     // MARK: - Normalize / Key
 
@@ -187,7 +190,7 @@ extension ExampleStore {
 
     func seedBundledExamplesIfNeeded() {
         let seedVersionKey = "example_seed_version"
-        let currentSeedVersion = 1
+        let currentSeedVersion = 3
 
         let savedVersion = UserDefaults.standard.integer(forKey: seedVersionKey)
 
@@ -198,16 +201,53 @@ extension ExampleStore {
         guard let url = Bundle.main.url(
             forResource: "ExampleSeed",
             withExtension: "json"
-        ),
-        let data = try? Data(contentsOf: url),
-        let items = try? JSONDecoder().decode(
-            [ExampleSeedItem].self,
-            from: data
-        )
-        else {
-#if DEBUG
-            print("🟥 ExampleSeed.json の読み込みに失敗")
-#endif
+        ) else {
+        #if DEBUG
+            print("🟥 ExampleSeed.json がBundle内に見つかりません")
+        #endif
+            return
+        }
+
+        #if DEBUG
+        print("🟦 ExampleSeed URL = \(url.path)")
+        #endif
+
+        let data: Data
+
+        do {
+            data = try Data(contentsOf: url)
+
+        #if DEBUG
+            print("🟦 ExampleSeed data size = \(data.count) bytes")
+        #endif
+
+        } catch {
+
+        #if DEBUG
+            print("🟥 ExampleSeed.json のData読み込み失敗: \(error)")
+        #endif
+
+            return
+        }
+
+        let items: [ExampleSeedItem]
+
+        do {
+            items = try JSONDecoder().decode(
+                [ExampleSeedItem].self,
+                from: data
+            )
+
+        #if DEBUG
+            print("🟦 ExampleSeed decode成功: \(items.count) words")
+        #endif
+
+        } catch {
+
+        #if DEBUG
+            print("🟥 ExampleSeed decode失敗: \(error)")
+        #endif
+
             return
         }
 
@@ -241,6 +281,28 @@ extension ExampleStore {
                     continue
                 }
 
+                // ---------------------------
+                // meaning本体
+                // HomeworkStoreに無いmeaningだけ安全に補完
+                // ---------------------------
+                let homeworkStore = HomeworkStore.shared
+
+                if !homeworkStore.exists(
+                    word: word,
+                    meaning: meaning,
+                    pos: pos
+                ) {
+                    _ = homeworkStore.add(
+                        word: word,
+                        meaning: meaning,
+                        pos: pos
+                    )
+
+                #if DEBUG
+                    print("🌱 Seed meaning追加 word=\(word) meaning=[\(meaning)]")
+                #endif
+                }
+                
                 let existing = self.firstExample(
                     pos: pos,
                     word: word,

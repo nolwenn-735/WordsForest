@@ -1,55 +1,453 @@
-//
-//  ExampleSeed.json
-//  WordsForest
-//
-//  Created by Nami .T on 2026/09/03.
-//
+    [
+      {
+        "pos": "adjective",
+        "word": "angry",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "怒っている",
+            "en": "When I kicked the door, Mom got angry.",
+            "ja": "ドアをキックしたらママが怒った。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "beautiful",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "美しい",
+            "en": "The roses are in full bloom and look beautiful.",
+            "ja": "バラがたくさん咲いてきれいだ。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "bitter",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "苦い",
+            "en": "This coffee is too bitter for me.",
+            "ja": "このコーヒーは私には苦すぎる。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "blue",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "青い",
+            "en": "Can you see the house with the blue roof?",
+            "ja": "青い屋根の家が見える？"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "boring",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "退屈な",
+            "en": "Math class is always boring.",
+            "ja": "いつも数学の授業は退屈なんだよ。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "clean",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "きれいな",
+            "en": "Keep your room clean.",
+            "ja": "部屋を綺麗にしておきなさいね。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "easy",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "簡単な",
+            "en": "This exam was easier than I thought.",
+            "ja": "今回の試験は思っていたより簡単だった。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "kind",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "親切な",
+            "en": "He is kind to the elderly.",
+            "ja": "彼はお年寄りに優しい。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "animal",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "動物",
+            "en": "There are a lot of animals in the forest.",
+            "ja": "この森にはたくさんの動物がいるんだよ。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "apple",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "りんご",
+            "en": "There are about 7,000 varieties of apples in the world.",
+            "ja": "世界には約7000種類のりんごがある。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "bag",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "かばん",
+            "en": "My sister bought a small yellow bag yesterday.",
+            "ja": "私の姉は昨日小さな黄色のバッグを買いました。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "bed",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "ベッド",
+            "en": "He goes to bed at 11 p.m. every day.",
+            "ja": "彼は毎日11時に寝ます。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "bird",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "鳥",
+            "en": "I saw a large white bird flying.",
+            "ja": "白い大きな鳥が飛んでいるのを見たよ。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "book",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "本",
+            "en": "You have to read four books during summer vacation.",
+            "ja": "夏休み中に本を4冊読まなければならないよ。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "bread",
+        "wordNote": "「パン」を英語だと思っている人が時々いますがフランス語です。\n英語ではbreadです。間違えないようにしましょう。\n\n基本的にネイティブの感覚ではパンは大きなかたまりの中の一部としてとらえるので1個2個と数えない不可算名詞です。\n\nロールパンなどと種類に言及する時には可算名詞として考えます。\n\n少しややこしいですがこういったタイプの単語はcheeseなど他にもあるので覚えましょう。\n\n言語が違うと物の数え方の感覚も違うのが面白いですね。",
+        "meanings": [
+          {
+            "meaning": "パン",
+            "en": "I eat some bread for breakfast every morning.",
+            "ja": "私は毎朝朝食にパンを食べるよ。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "car",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "車",
+            "en": "I need to get my car repaired.",
+            "ja": "車を修理してもらう必要があるんだ。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "clock",
+        "wordNote": "日本では時計は｢時計」という１つの言葉で、種類を分けて言うには｢腕時計」「壁かけ時計」と言う必要がありますね。\n\n英語では壁かけ時計はclock,腕時計はwatchと別々の単語です。",
+        "meanings": [
+          {
+            "meaning": "時計",
+            "en": "The big clock on the wall is my grandpa's.",
+            "ja": "かべにかかっている大きな時計はおじいちゃんのなんだ。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "egg",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "卵",
+            "en": "I eat eggs for breakfast every morning.",
+            "ja": "私は毎朝、朝食に卵を食べます。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "forest",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "森",
+            "en": "There are many wild animals in this forest.",
+            "ja": "この森には野生動物がたくさんいる。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "hat",
+        "wordNote": "英語では「帽子」は主にhat とcapに分けて表現します。ふちの付いたものはhat,ふちの無い野球帽のようにひさしの付いたものやニットのものはcapです。\nまた、赤ちゃんが被るようなあごのところでひもを結ぶ帽子はbonnetといいます。",
+        "meanings": [
+          {
+            "meaning": "帽子",
+            "en": "He always wears a cool hat.",
+            "ja": "彼はいつもかっこいい帽子を被っている。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "pink",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "ピンク色",
+            "en": "I like this pink shirt.",
+            "ja": "私はこのピンクのシャツが好きです。"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "after",
+        "wordNote": "after は前置詞・副詞・接続詞として使われます。\n\n後ろに名詞が続くか、単独で使われるか、節が続くかに注目すると判別しやすいよ。",
+        "meanings": [
+          {
+            "meaning": "前置詞　〜の後で",
+            "en": "We went home after dinner.",
+            "ja": "夕食後、私たちは家に帰った。"
+          },
+          {
+            "meaning": "副詞  …後に",
+            "en": "in 2000 and after",
+            "ja": "2000年以降"
+          },
+          {
+            "meaning": "接続詞  〜したあとで",
+            "en": "I’ll let you know after I’ve decided where to go tomorrow.",
+            "ja": "明日どこに行くか決めたら知らせるよ。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "bake",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "焼く",
+            "en": "Mom often bakes bread on weekends.",
+            "ja": "ママはよく週末にパンを焼くよ。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "bring",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "持ってくる",
+            "en": "Can you bring me my baggage?",
+            "ja": "私の荷物を持ってきてくれる？"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "call",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "呼ぶ",
+            "en": "She calls her dog Curly.",
+            "ja": "彼女は彼女の犬をカーリーと呼ぶ。"
+          },
+          {
+            "meaning": "電話する",
+            "en": "I'll call you later.",
+            "ja": "あとで電話するね。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "carry",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "運ぶ",
+            "en": "I carry my iPhone everywhere.",
+            "ja": "僕はiPhoneをどこにでも持ち歩いてるよ。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "climb",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "登る",
+            "en": "My grandpa used to climb mountains.",
+            "ja": "僕のおじいちゃんはよく山に登っていたよ。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "close",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "閉じる",
+            "en": "She closed the door quietly.",
+            "ja": "彼女はドアを静かに閉じた。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "draw",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "描く",
+            "en": "Lisa likes drawing pictures.",
+            "ja": "リザは絵を描くのが好き。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "find",
+        "wordNote": "findは何かを見つける、発見するという意味から、さらに｢〜が分かる、〜だということを知る」という意味の広がりがあります。今まで知らなかったことを見つけるという感覚です。",
+        "meanings": [
+          {
+            "meaning": "分かる",
+            "en": "I found this tool really helpful.",
+            "ja": "この道具は自分にすごく役に立つことが分かった。"
+          },
+          {
+            "meaning": "見つける",
+            "en": "Some people found a broken treehouse in the wood.",
+            "ja": "ある人たちがその林で壊れたツリーハウスを見つけた。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "help",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "助ける",
+            "en": "Can you help me with my homework?",
+            "ja": "宿題を手伝ってもらえる？"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "hope",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "望む",
+            "en": "I hope you get well soon.",
+            "ja": "早くよくなるといいね。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "look",
+        "wordNote": "日本語では｢見る」は１つの単語で表現されますが、英語にはそれに相当する単語がいくつかあります。\nlookは視線を何かに向ける、振り返るなどの動作をしてわざわざそれを見るという時に使います。\n見る動作を指すのがlookです。",
+        "meanings": [
+          {
+            "meaning": "見る",
+            "en": "Look at the blackboard.",
+            "ja": "黒板を見なさい。"
+          },
+          {
+            "meaning": "診察する",
+            "en": "I had a doctor look at my ears.",
+            "ja": "耳を診察してもらったよ。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "run",
+        "wordNote": "runという動詞の持つ基本の感覚は｢何かに力を加えて動かす」です。\n身体を動かして走る、色々な作業をしてお店を経営する、こう考えるとどちらもrunですね。",
+        "meanings": [
+          {
+            "meaning": "走る",
+            "en": "I run every morning.",
+            "ja": "私は毎朝走ります。"
+          },
+          {
+            "meaning": "運営する",
+            "en": "He runs two restaurants.",
+            "ja": "彼は2軒のレストランを経営している。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "show",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "見せる",
+            "en": "I'll show you some pictures of my dogs.",
+            "ja": "君に僕の犬たちの写真を見せるよ。"
+          }
+        ]
+      }
+    ]
 
-[
-  {
-    "pos": "verb",
-    "word": "find",
-    "wordNote": "find は何かを見つける・発見するという意味から、さらに「〜が分かる、〜だと知る」という意味にも広がります。",
-    "meanings": [
-      {
-        "meaning": "分かる",
-        "en": "I found this tool really helpful.",
-        "ja": "この道具はとても役に立つと分かった。"
-      },
-      {
-        "meaning": "見つける",
-        "en": "They found a small café near the station.",
-        "ja": "彼らは駅の近くで小さなカフェを見つけた。"
-      }
-    ]
-  },
-  {
-    "pos": "verb",
-    "word": "run",
-    "wordNote": null,
-    "meanings": [
-      {
-        "meaning": "走る",
-        "en": "I run every morning.",
-        "ja": "私は毎朝走ります。"
-      }
-    ]
-  },
-  {
-    "pos": "others",
-    "word": "after",
-    "wordNote": "前置詞では「〜のあとに」、接続詞では「〜したあとで」のように使います。どちらも「ある出来事より後」という共通イメージがあります。",
-    "meanings": [
-      {
-        "meaning": "〜のあとに",
-        "en": "Can we talk after class?",
-        "ja": "授業のあと話せる？"
-      },
-      {
-        "meaning": "〜したあとで",
-        "en": "Call me after you get home.",
-        "ja": "家に着いたら電話して。"
-      }
-    ]
-  }
-]
