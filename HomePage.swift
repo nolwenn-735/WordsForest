@@ -133,14 +133,42 @@ struct HomePage: View {
                         .buttonStyle(ColoredPillButtonStyle(color: .pink, size: .compact, alpha: 0.20))
                         .badgeOverlay(count: favCount, text: favBadgeText, color: .red)
                         
-                        // MARK: 覚えたBOX
-                        NavigationLink {
-                            LearnedBoxRootView()
-                        } label: {
-                            Text("📦  覚えたBOX")
+                        // MARK: 覚えたBOX ＋ メモ
+                        HStack(spacing: 8) {
+
+                            NavigationLink {
+                                LearnedBoxRootView()
+                            } label: {
+                                Text("📦  覚えたBOX")
+                            }
+                            .buttonStyle(
+                                ColoredPillButtonStyle(
+                                    color: .green,
+                                    size: .compact,
+                                    alpha: 0.20
+                                )
+                            )
+                            .badgeOverlay(
+                                count: learnedCount,
+                                text: learnedBadgeText,
+                                color: .green
+                            )
+
+                            NavigationLink {
+                                StudentMemoListView(
+                                    store: StudentMemoStore.shared
+                                )
+                            } label: {
+                                Text("📝  メモ")
+                            }
+                            .buttonStyle(
+                                ColoredPillButtonStyle(
+                                    color: .yellow,
+                                    size: .compact,
+                                    alpha: 0.20
+                                )
+                            )
                         }
-                        .buttonStyle(ColoredPillButtonStyle(color: .green, size: .compact, alpha: 0.20))
-                        .badgeOverlay(count: learnedCount, text: learnedBadgeText, color: .green)
                         
                         // MARK: その他品詞
                         HStack(spacing: 8) {

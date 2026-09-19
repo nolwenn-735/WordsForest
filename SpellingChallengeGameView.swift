@@ -309,11 +309,21 @@ struct SpellingChallengeGameView: View {
             tiles.append(Tile(char: extra, isExtra: true))
         }
         
-        // ランダムシャッフル（元の並びそのままは避ける）
-        let shuffled = tiles.shuffledAvoidingOriginal()
+        // ランダムシャッフル
+        // UUIDではなく「見えている文字の並び」で正解順を避ける
+        let answerChars = word.letters
+        
+        var shuffled = tiles.shuffled()
+        var attempts = 0
+        
+        while shuffled.filter({ !$0.isExtra }).map(\.char) == answerChars,
+              attempts < 20 {
+            shuffled = tiles.shuffled()
+            attempts += 1
+        }
+        
         return shuffled
     }
-    
     // MARK: - ふるまい
 
     // ゴミ箱に入ったタイルだけ「捨てた」扱い
