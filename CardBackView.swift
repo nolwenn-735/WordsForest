@@ -21,6 +21,7 @@ struct CardBackView: View {
     @State private var speechSlow = false      // ゆっくり
     @State private var speakBoth  = true       // 英＋日
     @State private var showingEditor = false   // 例文編集シート
+    @State private var showingMemoDestination = false
 
     @State private var didActivateAudioSession = false
 
@@ -168,7 +169,27 @@ struct CardBackView: View {
                         )
                 }
             }
-
+            
+            // メモにコピー
+            Button {
+                showingMemoDestination = true
+            } label: {
+                Text("「📝　メモ」にコピー")
+                    .font(.headline)
+                    .foregroundStyle(.blue)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 10)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.blue.opacity(0.12))
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.blue.opacity(0.22), lineWidth: 1)
+                    )
+            }
+            .buttonStyle(.plain)
+            .padding(.top, 6)
             Spacer(minLength: 8)
 
             // 下のトグル（ゆっくり／英＋日）
@@ -196,6 +217,17 @@ struct CardBackView: View {
         // 例文編集シート
         .sheet(isPresented: $showingEditor) {
             ExampleEditorView(pos: pos, word: word)
+        }
+        .sheet(isPresented: $showingMemoDestination) {
+            StudentMemoDestinationView(
+                memoTitle: word,
+                memoText: StudentMemoCardFormatter.makeText(
+                    pos: pos,
+                    word: word,
+                    meanings: meanings
+                ),
+                store: StudentMemoStore.shared
+            )
         }
         .onAppear {
             synthesizer.delegate = speechDelegate

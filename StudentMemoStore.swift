@@ -53,15 +53,57 @@ final class StudentMemoStore: ObservableObject {
     // MARK: - 新しいページを作る
 
     @discardableResult
-    func createPage() -> UUID {
-        let page = StudentMemoPage()
+    func createPage(
+        title: String = "",
+        body: String = ""
+    ) -> UUID {
+        let page = StudentMemoPage(
+            title: title,
+            body: body
+        )
 
         pages.insert(page, at: 0)
         save()
 
         return page.id
     }
+    
+    // MARK: - 既存ページの末尾へ追記
 
+    func appendToPage(
+        id: UUID,
+        text: String
+    ) {
+        guard let index = pages.firstIndex(where: { $0.id == id }) else {
+            return
+        }
+
+        let newText = text
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        guard !newText.isEmpty else {
+            return
+        }
+
+        let currentBody = pages[index].body
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if currentBody.isEmpty {
+            pages[index].body = newText
+        } else {
+            pages[index].body += """
+
+
+
+            ────────────
+
+            \(newText)
+            """
+        }
+
+        pages[index].updatedAt = Date()
+        save()
+    }
 
     // MARK: - ページを取得
 
