@@ -14,6 +14,9 @@ struct StudentMemoListView: View {
     @State private var pendingDeleteID: UUID?
     @State private var showDeleteConfirmation = false
     @State private var newlyCreatedPageID: UUID?
+    @State private var showBackupExporter = false
+    @State private var backupFile = StudentMemoBackupFile(data: Data())
+    @State private var backupErrorMessage: String?
 
     var body: some View {
         List {
@@ -99,6 +102,23 @@ struct StudentMemoListView: View {
             Text("削除したメモは元に戻せません。")
         }
         .toolbar {
+
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button {
+                        exportBackup()
+                    } label: {
+                        Label(
+                            "メモをバックアップ",
+                            systemImage: "externaldrive"
+                        )
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                }
+                .accessibilityLabel("メモのその他の操作")
+            }
+
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     createNewPage()
@@ -107,6 +127,37 @@ struct StudentMemoListView: View {
                 }
                 .accessibilityLabel("新しいメモ")
             }
+        }
+        .fileExporter(
+            isPresented: $showBackupExporter,
+            document: backupFile,
+            contentType: .json,
+            defaultFilename: backupFileName
+        ) { result in
+            switch result {
+            case .success:
+                break
+
+            case .failure(let error):
+                backupErrorMessage = error.localizedDescription
+            }
+        }
+        .alert(
+            "バックアップできませんでした",
+            isPresented: Binding(
+                get: { backupErrorMessage != nil },
+                set: { newValue in
+                    if !newValue {
+                        backupErrorMessage = nil
+                    }
+                }
+            )
+        ) {
+            Button("OK", role: .cancel) {
+                backupErrorMessage = nil
+            }
+        } message: {
+            Text(backupErrorMessage ?? "")
         }
     }
 
@@ -125,5 +176,32 @@ struct StudentMemoListView: View {
 
     private func createNewPage() {
         newlyCreatedPageID = store.createPage()
+    }
+    // MARK: - メモのバックアップ
+
+    private func exportBackup() {
+        do {
+            let data = try store.makeBackupData()
+
+            backupFile = StudentMemoBackupFile(
+                data: data
+            )
+
+            showBackupExporter = true
+
+        } catch {
+            backupErrorMessage = error.localizedDescription
+        }
+    }
+
+
+    private var backupFileName: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd"
+
+        let dateText = formatter.string(from: Date())
+
+        return "WordsForest-Memo-Backup-\(dateText)"
     }
 }

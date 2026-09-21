@@ -611,11 +611,6 @@ final class HomeworkStore: ObservableObject {
         let oldKey = key(for: original)
 
         let trimmedMeaning = newMeaning.trimmingCharacters(in: .whitespacesAndNewlines)
-        let newKey = WordKey(
-            pos: original.pos,
-            word: newWord.trimmingCharacters(in: .whitespacesAndNewlines).lowercased(),
-            meaning: trimmedMeaning
-        )
 
         if let idx = words.firstIndex(where: { key(for: $0) == oldKey }) {
             // ✅ ここが大事：既存IDを保持

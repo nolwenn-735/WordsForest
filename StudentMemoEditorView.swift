@@ -39,10 +39,10 @@ struct StudentMemoEditorView: View {
         .onAppear {
             loadPage()
         }
-        .onChange(of: title) { _ in
+        .onChange(of: title) {
             savePage()
         }
-        .onChange(of: bodyText) { _ in
+        .onChange(of: bodyText) {
             savePage()
         }
     }

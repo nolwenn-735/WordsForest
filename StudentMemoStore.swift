@@ -33,6 +33,13 @@ struct StudentMemoPage: Identifiable, Codable, Hashable {
     }
 }
 
+// MARK: - メモのバックアップ形式
+
+struct StudentMemoBackupPayload: Codable {
+    let formatVersion: Int
+    let exportedAt: Date
+    let pages: [StudentMemoPage]
+}
 
 // MARK: - メモ保存Store
 
@@ -138,7 +145,70 @@ final class StudentMemoStore: ObservableObject {
         save()
     }
 
+    // MARK: - バックアップ作成
 
+    func makeBackupData() throws -> Data {
+        let payload = StudentMemoBackupPayload(
+            formatVersion: 1,
+            exportedAt: Date(),
+            pages: pages
+        )
+
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [
+            .prettyPrinted,
+            .sortedKeys
+        ]
+        encoder.dateEncodingStrategy = .iso8601
+
+        return try encoder.encode(payload)
+    }
+
+
+    // MARK: - バックアップから復元
+
+    @discardableResult
+    func restoreBackup(from data: Data) throws -> Int {
+
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+
+        let payload = try decoder.decode(
+            StudentMemoBackupPayload.self,
+            from: data
+        )
+
+        guard payload.formatVersion == 1 else {
+            throw StudentMemoBackupError.unsupportedVersion
+        }
+
+        var merged = Dictionary(
+            uniqueKeysWithValues: pages.map { ($0.id, $0) }
+        )
+
+        for backupPage in payload.pages {
+
+            if let existing = merged[backupPage.id] {
+
+                // 同じメモがすでにある場合は、
+                // 更新日時が新しい方を残す
+                if backupPage.updatedAt > existing.updatedAt {
+                    merged[backupPage.id] = backupPage
+                }
+
+            } else {
+                merged[backupPage.id] = backupPage
+            }
+        }
+
+        pages = merged.values.sorted {
+            $0.updatedAt > $1.updatedAt
+        }
+
+        save()
+
+        return payload.pages.count
+    }
     // MARK: - Application Support の保存先
 
     private var fileURL: URL? {
@@ -250,4 +320,15 @@ final class StudentMemoStore: ObservableObject {
     }
 }
 
+// MARK: - Backup Error
 
+enum StudentMemoBackupError: LocalizedError {
+    case unsupportedVersion
+
+    var errorDescription: String? {
+        switch self {
+        case .unsupportedVersion:
+            return "このメモバックアップは現在のWordsForestでは読み込めません。"
+        }
+    }
+}
