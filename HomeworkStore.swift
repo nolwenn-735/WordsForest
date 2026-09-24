@@ -803,24 +803,97 @@ extension HomeworkStore {
 }
 
 extension HomeworkStore {
-
+    
     func restoreMissingMarkedCards() {
         // UUID方式では、WordKeyのように pos/word/meaning から復元はできない。
         // 代わりに、words に実体のないマークIDを掃除する。
         let existingIDs = Set(words.map(\.id))
-
+        
         let beforeFav = favoriteIDs.count
         let beforeLearned = learnedIDs.count
         let beforeRequired = requiredIDs.count
-
+        
         favoriteIDs = favoriteIDs.intersection(existingIDs)
         learnedIDs = learnedIDs.intersection(existingIDs)
         requiredIDs = requiredIDs.intersection(existingIDs)
-
+        
         if favoriteIDs.count != beforeFav { saveFavorites() }
         if learnedIDs.count != beforeLearned { saveLearned() }
         if requiredIDs.count != beforeRequired { saveRequired() }
-
+        
         NotificationCenter.default.post(name: .storeDidChange, object: nil)
+    }
+}
+    // MARK: - WordsForest Backup support
+
+    extension HomeworkStore {
+
+        /// 統合バックアップへ渡す単語データ
+        var backupWords: [StoredWord] {
+            words
+        }
+
+        /// 統合バックアップへ渡す My Collection のUUID
+        var backupFavoriteIDs: [UUID] {
+            Array(favoriteIDs)
+        }
+
+        /// 統合バックアップへ渡す 覚えたBOX のUUID
+        var backupLearnedIDs: [UUID] {
+            Array(learnedIDs)
+        }
+    }
+
+// MARK: - WordsForest Backup restore support
+
+extension HomeworkStore {
+
+    /// 統合バックアップから
+    /// 単語本体・My Collection・覚えたBOX を復元する
+    ///
+    /// ※ この関数は、復元処理が正式に実行されたときだけ呼ぶ
+    func restoreFromWordsForestBackup(
+        words restoredWords: [StoredWord],
+        favoriteIDs restoredFavoriteIDs: [UUID],
+        learnedIDs restoredLearnedIDs: [UUID]
+    ) {
+
+        // 単語本体をバックアップ時点の状態へ戻す
+        words = restoredWords
+
+        // 復元されたwordsに実在するUUIDだけを有効にする
+        let existingIDs = Set(restoredWords.map(\.id))
+
+        favoriteIDs = Set(restoredFavoriteIDs)
+            .intersection(existingIDs)
+
+        learnedIDs = Set(restoredLearnedIDs)
+            .intersection(existingIDs)
+
+        // requiredIDs は統合バックアップ対象外。
+        // 復元後に存在しないUUIDだけ掃除する。
+        requiredIDs = requiredIDs.intersection(existingIDs)
+
+        // 永続保存
+        save()
+        saveFavorites()
+        saveLearned()
+        saveRequired()
+
+        // 画面更新
+        NotificationCenter.default.post(
+            name: .storeDidChange,
+            object: nil
+        )
+
+        NotificationCenter.default.post(
+            name: .favoritesDidChange,
+            object: nil
+        )
+
+        NotificationCenter.default.post(
+            name: .learnedDidChange,
+            object: nil
+        )
     }
 }

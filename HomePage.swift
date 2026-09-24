@@ -213,7 +213,7 @@ struct HomePage: View {
                             NavigationLink {
                                 DisplaySettingsView()
                             } label: {
-                                Text("⚙️ 表示設定")
+                                Text("⚙️ 設定")
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.8)
                                     .frame(maxWidth: .infinity, alignment: .leading)

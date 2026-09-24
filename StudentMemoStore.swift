@@ -332,3 +332,57 @@ enum StudentMemoBackupError: LocalizedError {
         }
     }
 }
+
+// MARK: - WordsForest Backup support
+
+extension StudentMemoStore {
+
+    /// 統合バックアップへ渡す生徒メモ
+    var backupMemoPages: [StudentMemoPage] {
+        pages
+    }
+}
+
+// MARK: - WordsForest Backup restore support
+
+extension StudentMemoStore {
+
+    /// 統合バックアップからメモを復元する
+    ///
+    /// 同じUUIDのメモがある場合は、
+    /// 更新日時が新しい方を残す。
+    func restoreFromWordsForestBackup(
+        memoPages restoredPages: [StudentMemoPage]
+    ) {
+
+        var merged: [UUID: StudentMemoPage] = [:]
+
+        // 現在のメモを先に入れる
+        for page in pages {
+            merged[page.id] = page
+        }
+
+        // バックアップのメモを合流
+        for restoredPage in restoredPages {
+
+            if let existing = merged[restoredPage.id] {
+
+                if restoredPage.updatedAt > existing.updatedAt {
+                    merged[restoredPage.id] = restoredPage
+                }
+
+            } else {
+
+                merged[restoredPage.id] = restoredPage
+            }
+        }
+
+        // 新しく更新されたものから並べ直す
+        pages = merged.values.sorted {
+            $0.updatedAt > $1.updatedAt
+        }
+
+        // 永続保存
+        save()
+    }
+}

@@ -122,3 +122,37 @@ final class ColumnStore: ObservableObject {
     }
 }
 
+// MARK: - WordsForest Backup support
+
+extension ColumnStore {
+
+    /// 統合バックアップへ渡すコラム記事
+    var backupArticles: [ColumnArticle] {
+        articles
+    }
+}
+
+// MARK: - WordsForest Backup restore support
+
+extension ColumnStore {
+
+    /// 統合バックアップからコラム記事を復元する
+    ///
+    /// ※ 🆕表示などの一時的なUI状態は復元しない
+    func restoreFromWordsForestBackup(
+        articles restoredArticles: [ColumnArticle]
+    ) {
+
+        let restored = restoredArticles.sorted {
+            $0.id > $1.id
+        }
+
+        // 記事本体をバックアップ時点へ戻す
+        persist(restored)
+
+        // 🆕関連はバックアップ対象外なのでリセット
+        lastImportedPayloadID = ""
+        hasNew = false
+        newUntilISO = ""
+    }
+}

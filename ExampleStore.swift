@@ -591,3 +591,41 @@ if dbgWord == "run" || dbgWord == "look" {
         }
     }
 }
+
+// MARK: - WordsForest Backup support
+
+extension ExampleStore {
+
+    /// 統合バックアップへ渡す例文データ
+    var backupExamples: [String: [ExampleEntry]] {
+        examples
+    }
+
+    /// 統合バックアップへ渡す単語ノート
+    var backupWordNotes: [String: String] {
+        wordNotes
+    }
+}
+
+// MARK: - WordsForest Backup restore support
+
+extension ExampleStore {
+
+    /// 統合バックアップから
+    /// 例文・和訳・単語ノートを復元する
+    ///
+    /// ※ この関数は、復元処理が正式に実行されたときだけ呼ぶ
+    func restoreFromWordsForestBackup(
+        examples restoredExamples: [String: [ExampleEntry]],
+        wordNotes restoredWordNotes: [String: String]
+    ) {
+
+        // バックアップ時点の状態へ戻す
+        examples = restoredExamples
+        wordNotes = restoredWordNotes
+
+        // 永続保存
+        save()
+        saveNotes()
+    }
+}
