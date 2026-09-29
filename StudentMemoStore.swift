@@ -9,11 +9,28 @@ import Combine
 
 // MARK: - 1ページ分のメモ
 
+enum StudentMemoMarkerColor: String, Codable, CaseIterable, Hashable {
+    case yellow
+    case pink
+    case green
+    case blue
+    case purple
+}
+
+struct StudentMemoMarkerRange: Codable, Hashable {
+    var location: Int
+    var length: Int
+    var color: StudentMemoMarkerColor
+}
+
 struct StudentMemoPage: Identifiable, Codable, Hashable {
     let id: UUID
-
     var title: String
     var body: String
+
+    // マーカー情報
+    // nil は、旧バージョンで作られたメモとの互換用
+    var markerRanges: [StudentMemoMarkerRange]?
 
     let createdAt: Date
     var updatedAt: Date
@@ -22,12 +39,14 @@ struct StudentMemoPage: Identifiable, Codable, Hashable {
         id: UUID = UUID(),
         title: String = "",
         body: String = "",
+        markerRanges: [StudentMemoMarkerRange]? = nil,
         createdAt: Date = Date(),
         updatedAt: Date = Date()
     ) {
         self.id = id
         self.title = title
         self.body = body
+        self.markerRanges = markerRanges
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
@@ -137,7 +156,21 @@ final class StudentMemoStore: ObservableObject {
         save()
     }
 
+    func updatePage(
+        id: UUID,
+        title: String,
+        body: String,
+        markerRanges: [StudentMemoMarkerRange]
+    ) {
+        guard let index = pages.firstIndex(where: { $0.id == id }) else { return }
 
+        pages[index].title = title
+        pages[index].body = body
+        pages[index].markerRanges = markerRanges
+        pages[index].updatedAt = Date()
+
+        save()
+    }
     // MARK: - ページを削除
 
     func deletePage(id: UUID) {
