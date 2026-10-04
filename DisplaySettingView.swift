@@ -4,6 +4,8 @@
 //
 //  Created by Nami .T on 2026/05/04.
 //
+//  DisplaySettingView.swift
+
 
 import SwiftUI
 import UniformTypeIdentifiers

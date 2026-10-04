@@ -4,6 +4,8 @@
 //
 //  Created by Nami .T on 2026/03/19.→03/25🔔通知自動化
 //
+//  NoticeFileEditorView.swift
+
 
 import SwiftUI
 import UniformTypeIdentifiers
@@ -47,7 +49,11 @@ struct NoticeFileEditorView: View {
 
         _homeworkStatus = State(initialValue: initialHomeworkStatus ?? "")
         _homeworkCycleWeeks = State(initialValue: (cycle == 1 || cycle == 2) ? cycle : 0)
-        _homeworkExtensionWeeks = State(initialValue: extensionWeeks == 1 ? 1 : 0)
+        _homeworkExtensionWeeks = State(
+            initialValue: (extensionWeeks == 1 || extensionWeeks == 2)
+                ? extensionWeeks
+                : 0
+        )
 
         _latestColumnIDText = State(initialValue: initialLatestColumnID.map(String.init) ?? "")
     }
@@ -80,7 +86,7 @@ struct NoticeFileEditorView: View {
                         Text("⛔️ 宿題なし").tag("none")
                     }
 
-                    Picker("基本期間", selection: $homeworkCycleWeeks) {
+                    Picker("元の出題期間", selection: $homeworkCycleWeeks) {
                         Text("未指定").tag(0)
                         Text("1週間").tag(1)
                         Text("2週間").tag(2)
@@ -89,9 +95,10 @@ struct NoticeFileEditorView: View {
                     Picker("延長", selection: $homeworkExtensionWeeks) {
                         Text("延長なし").tag(0)
                         Text("+1週延長").tag(1)
+                        Text("+2週延長").tag(2)
                     }
-
-                    Text("⏸️は新規出題停止、⛔️は宿題なしです。+1週延長は、1週間宿題なら2週目まで、2週間宿題なら3週目まで延長します。")
+                    
+                    Text("⏸️は新規出題停止、⛔️は宿題なしです。延長を設定すると、元の出題期間に+1週または+2週を追加できます。")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }

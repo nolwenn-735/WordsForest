@@ -92,27 +92,29 @@ struct HomeworkBanner: View {
                 isPresented: $showHomeworkEditPicker,
                 titleVisibility: .visible
             ) {
-                Button("今回分を編集（\(hw.currentPair.jaTitle)）") {
-                    editingTargetPair = hw.currentPair
-                }
                 Button("次回分を編集（\(hw.currentPair.next.jaTitle)）") {
                     editingTargetPair = hw.currentPair.next
                 }
+
+                Button("⚠️ 今回分を修正（\(hw.currentPair.jaTitle)）") {
+                    editingTargetPair = hw.currentPair
+                }
+
                 Button("キャンセル", role: .cancel) { }
             } message: {
-                Text("編集したい宿題セットを選んでください。")
+                Text("新しい宿題を作るときは「次回分を編集」を選んでください。")
             }
             .confirmationDialog(
                 "書き出す宿題を選んでください",
                 isPresented: $showExportPicker,
                 titleVisibility: .visible
             ) {
-                Button("今回分を書き出し（\(hw.currentPair.jaTitle)）") {
-                    exportCurrentPack()
+                Button("次回分を書き出し（\(hw.currentPair.next.jaTitle)）") {
+                    exportNextDraft()
                 }
 
-                Button("次回分ドラフトを書き出し（\(hw.currentPair.next.jaTitle)）") {
-                    exportNextDraft()
+                Button("⚠️ 今回分を書き出し（\(hw.currentPair.jaTitle)）") {
+                    exportCurrentPack()
                 }
 
                 Button("キャンセル", role: .cancel) { }
