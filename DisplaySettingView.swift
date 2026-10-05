@@ -139,7 +139,7 @@ struct DisplaySettingsView: View {
             """)
         }
 
-        }   // ← body の最後の }
+        }
     
     // MARK: - 統合バックアップ保存
 

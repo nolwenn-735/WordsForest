@@ -58,11 +58,6 @@ final class ExampleStore: ObservableObject {
 
         let k = makeKey(pos: pos, word: word, meaning: meaning)
 
-        #if DEBUG
-        if word.lowercased() == "run" {
-            print("🟩 saveExample word=\(word) meaning=[\(meaning)] en=[\(en)] ja=[\(ja ?? "")] note=[\(note ?? "")]")
-        }
-        #endif
 
         // 例文はmeaningごとに保存（ExampleEntry.noteは使わない）
         examples[k] = [ExampleEntry(en: en, ja: ja, note: nil)]
@@ -171,16 +166,7 @@ if lw2 == "run" || lw2 == "look" {
             wordNotes = decoded
         }
             
-#if DEBUG
-            let debugKey = makeWordKey(pos: .verb, word: "run")
-            let debugRunNote = wordNotes[debugKey] ?? "(nil)"
-            print("🟨 loadNotes notesKey=\(notesKey)")
-            print("🟨 debugKey(run,verb)=\(debugKey)")
-            print("🟨 wordNotes.count=\(wordNotes.count)")
-            print("🟨 loaded run note=[\(debugRunNote)]")
-            print("🟨 wordNotes.keys=\(wordNotes.keys.sorted())")
-            print("🟨 wordNotes.all=\(wordNotes)")
-#endif
+
         }
     }
 

@@ -249,11 +249,7 @@ final class HomeworkState: ObservableObject {
     
     func refresh(now: Date = Date()) {
         
-            #if DEBUG
-            print("extensionWeeks =", extensionWeeks,
-                  "baseDaysPerCycle =", baseDaysPerCycle,
-                  "daysPerCycle =", daysPerCycle)
-            #endif
+
             
         guard status != .none else { return }
         guard !paused && status != .paused else { return }

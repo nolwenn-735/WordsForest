@@ -338,36 +338,7 @@ struct HomePage: View {
             return
         }
         
-#if DEBUG
-let markerURL = documentsURL.appendingPathComponent("wf-container-check.txt")
 
-do {
-    try "WordsForest current app container"
-        .write(
-            to: markerURL,
-            atomically: true,
-            encoding: .utf8
-        )
-
-    print("✅ container marker created:", markerURL.path)
-} catch {
-    print("❌ container marker error:", error)
-}
-
-print(
-    "📦 UIFileSharingEnabled:",
-    Bundle.main.object(
-        forInfoDictionaryKey: "UIFileSharingEnabled"
-    ) ?? "nil"
-)
-
-print(
-    "📦 LSSupportsOpeningDocumentsInPlace:",
-    Bundle.main.object(
-        forInfoDictionaryKey: "LSSupportsOpeningDocumentsInPlace"
-    ) ?? "nil"
-)
-#endif
         
 
         let fileNames: [String]

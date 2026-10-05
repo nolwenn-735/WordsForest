@@ -104,47 +104,6 @@ extension WordsForestBackup {
     }
 }
 
-// MARK: - Temporary Backup File
-
-extension WordsForestBackup {
-
-    /// バックアップ用の日時入りファイル名
-    private var backupFileName: String {
-
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.calendar = Calendar(identifier: .gregorian)
-        formatter.timeZone = .current
-        formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
-
-        let timestamp = formatter.string(from: exportedAt)
-
-        return "WordsForest-Backup-\(timestamp).json"
-    }
-
-
-    /// iOSの保存画面へ渡すための一時JSONファイルを作る
-    func makeTemporaryFile() throws -> URL {
-
-        // ① さきほど作ったEncoderでJSON化
-        let data = try encodedData()
-
-        // ② アプリの一時領域
-        let temporaryDirectory = FileManager.default.temporaryDirectory
-
-        // ③ 日時入りファイル名を付ける
-        let fileURL = temporaryDirectory
-            .appendingPathComponent(backupFileName)
-
-        // ④ 一時ファイルとして書き出す
-        try data.write(
-            to: fileURL,
-            options: .atomic
-        )
-
-        return fileURL
-    }
-}
 
 // MARK: - Backup Decoder
 

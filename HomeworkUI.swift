@@ -73,15 +73,7 @@ struct HomeworkBanner: View {
 
                     // ✅ 既存の refresh は残してOK
                     hw.refresh()
-                    
-                    print("✅ cleared pack")
 
-                    // ✅ 追加：HomeworkState 側のキャッシュも全部捨てる
-                    hw.clearCachedHomeworkAll()
-                    print("✅ cleared cachedHomework(all)")
-
-                    // ✅ 既存の refresh は残してOK
-                    hw.refresh()
                 }
                 Button("やめる", role: .cancel) { }
             } message: {
@@ -153,8 +145,11 @@ struct HomeworkBanner: View {
         .cornerRadius(12)
         .overlay(RoundedRectangle(cornerRadius: 12).stroke(.black.opacity(0.08), lineWidth: 1))
         .onAppear {
-            DispatchQueue.main.async { hw.refresh() }
+            DispatchQueue.main.async {
+                hw.refresh()
+            }
         }
+
     }
 
     private var localHomeworkLabel: String {
