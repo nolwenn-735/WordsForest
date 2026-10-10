@@ -4,6 +4,7 @@
 //
 //  Created by Nami .T on 2026/01/25.→01/30.note1つ版に変更
 //
+//  HomeworkSetEditorView.swift
 
 import SwiftUI
 
@@ -289,7 +290,9 @@ print("🟥 afterSaveTapped ENTER")
             hw: hw,
             pair: editPair,
             cards: cards,
-            requiredCount: 10,
+            requiredCount: cards.filter {
+                HomeworkStore.shared.isRequired($0)
+            }.count,
             totalCount: cards.count
         ) else {
             #if DEBUG
