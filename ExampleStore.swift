@@ -104,12 +104,7 @@ final class ExampleStore: ObservableObject {
         let k = makeWordKey(pos: pos, word: word)
         let trimmed = (note ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
 
-#if DEBUG
-let lw = word.lowercased()
-if lw == "run" || lw == "look" {
-    print("🟩 saveWordNote word=\(word) key=\(k) trimmed=[\(trimmed)]")
-}
-#endif
+
 
         if trimmed.isEmpty {
             wordNotes.removeValue(forKey: k)
@@ -118,14 +113,7 @@ if lw == "run" || lw == "look" {
         }
         saveNotes()
 
-#if DEBUG
-let lw2 = word.lowercased()
-if lw2 == "run" || lw2 == "look" {
-    print("🟩 wordNotes.count(after save)=\(wordNotes.count)")
-    print("🟩 wordNotes[k] after save = [\(wordNotes[k] ?? "(nil)")]")
-    print("🟩 all wordNotes.keys = \(wordNotes.keys.sorted())")
-}
-#endif
+
         
     }
 
