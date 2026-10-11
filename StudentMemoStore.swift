@@ -219,10 +219,7 @@ final class StudentMemoStore: ObservableObject {
         }
 
         guard FileManager.default.fileExists(atPath: url.path) else {
-#if DEBUG
-            print("📝 StudentMemo: まだ保存ファイルはありません")
-            print("📝 StudentMemo path = \(url.path)")
-#endif
+
             return
         }
 
@@ -237,10 +234,6 @@ final class StudentMemoStore: ObservableObject {
                 from: data
             )
 
-#if DEBUG
-            print("🟩 StudentMemo 読み込み成功: \(pages.count) pages")
-            print("📝 StudentMemo path = \(url.path)")
-#endif
 
         } catch {
 #if DEBUG
@@ -272,9 +265,7 @@ final class StudentMemoStore: ObservableObject {
                 options: .atomic
             )
 
-#if DEBUG
-            print("📝 StudentMemo 保存: \(pages.count) pages")
-#endif
+
 
         } catch {
 #if DEBUG

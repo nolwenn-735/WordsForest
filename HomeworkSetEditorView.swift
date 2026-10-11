@@ -116,9 +116,7 @@ struct HomeworkSetEditorView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("保存") {
-                        #if DEBUG
-                        print("🟣 SAVE BUTTON tapped in HomeworkSetEditorView")
-                        #endif
+
 
                         // ① required順を保存
                         saveRequiredOrder()
@@ -129,9 +127,6 @@ struct HomeworkSetEditorView: View {
                         // ✅ 正式保存できたので、作業途中ドラフトは削除
                         clearEditorDraft()
 
-                        #if DEBUG
-                        print("🟣 before afterSaveTapped()")
-                        #endif
 
                         // ✅ 保存後フロー開始（dismissはしない）
                         afterSaveTapped()
@@ -205,9 +200,7 @@ struct HomeworkSetEditorView: View {
     // =======================================================
 
     private func afterSaveTapped() {
-#if DEBUG
-print("🟥 afterSaveTapped ENTER")
-#endif
+
         // まず「保存しました」を見せる
         savedBannerText = "保存しました"
         showSavedBannerNow()
@@ -257,11 +250,6 @@ print("🟥 afterSaveTapped ENTER")
     }
 
     private func saveDraftForEditedPair(from cards: [WordCard]) {
-        #if DEBUG
-        print("🟦 saveDraftForEditedPair entered")
-        print("   cards =", cards.count)
-        print("   posA =", posA.rawValue, "posB =", posB.rawValue)
-        #endif
 
         guard !cards.isEmpty else {
             #if DEBUG
@@ -282,9 +270,6 @@ print("🟥 afterSaveTapped ENTER")
             return
         }
 
-        #if DEBUG
-        print("🟦 draft target pair =", editPair.rawValue)
-        #endif
 
         guard let draft = HomeworkPackStore.shared.makeDraftPayload(
             hw: hw,
@@ -303,11 +288,7 @@ print("🟥 afterSaveTapped ENTER")
 
         HomeworkPackStore.shared.saveDraft(draft, pair: editPair)
 
-        #if DEBUG
-        print("✅ draft saved pair=\(editPair.rawValue)")
-        print("   id =", draft.id)
-        print("   items =", draft.items.count)
-        #endif
+
     }
     
     
@@ -419,9 +400,6 @@ print("🟥 afterSaveTapped ENTER")
             return w.contains(q) || m.contains(q)
         }
 
-        #if DEBUG
-        print("🟦 pickerSection pos=\(pos.rawValue) filtered.count=\(filtered.count)")
-        #endif
 
         return VStack(alignment: .leading, spacing: 8) {
             TextField("検索（word / meaning）", text: query)
@@ -464,7 +442,6 @@ print("🟥 afterSaveTapped ENTER")
             return !note.isEmpty
         }()
 
-        let _ = debugPickerRun(c: c, firstMeaning: firstMeaning, hasExample: hasExample, hasWordNote: hasWordNote)
 
         
         Button {
@@ -506,20 +483,7 @@ print("🟥 afterSaveTapped ENTER")
         .buttonStyle(.plain)
     }
  
-    private func debugPickerRun(
-        c: WordCard,
-        firstMeaning: String,
-        hasExample: Bool,
-        hasWordNote: Bool
-    ) {
-        #if DEBUG
-        guard c.word.lowercased() == "run" else { return }
-        print("🟧 picker run firstMeaning=[\(firstMeaning)]")
-        print("🟧 picker run hasExample=\(hasExample)")
-        print("🟧 picker run note=[\(ExampleStore.shared.wordNote(pos: c.pos, word: c.word))]")
-        print("🟧 picker run hasWordNote=\(hasWordNote)")
-        #endif
-    }
+
     
     private func previewBlock(title: String, cards: [WordCard]) -> some View {
         VStack(alignment: .leading, spacing: 6) {
