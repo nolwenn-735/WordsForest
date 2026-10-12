@@ -639,39 +639,7 @@ extension Notification.Name {
 // MARK: - My Collection 用お気に入りヘルパー
 extension HomeworkStore {
 
-    /// My Collection に出すお気に入りカード（全部品詞）
-/*    var collectionFavorites: [WordCard] {
-        PartOfSpeech.allCases         // noun / verb / adj / adv / others ぜんぶ
-            .flatMap { pos in list(for: pos) }
-            .filter { card in
-                isFavorite(card)      // そこでさっきの isFavorite(_:)
-            }
-            .sorted { $0.word < $1.word }  // アルファベット順
-    }
-*/
 
-    /// 品詞ごとに分けたお気に入り（セクション分けしたいとき用）
-/*    var collectionFavoritesByPos: [PartOfSpeech: [WordCard]] {
-        var dict: [PartOfSpeech: [WordCard]] = [:]
-
-        for pos in PartOfSpeech.allCases {
-            let favs = list(for: pos)
-                .filter { isFavorite($0) }
-                .sorted { $0.word < $1.word }
-
-            if !favs.isEmpty {
-                dict[pos] = favs
-            }
-        }
-        return dict
-    }
-*/
- 
-    /// My Collection の総数表示用（WordCard 単位）
- /*   var collectionFavoritesCount: Int {
-        collectionFavorites.count
-    }
-  */
     
 }
 

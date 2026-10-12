@@ -665,39 +665,7 @@ extension HomeworkState {
     func recordImportedPayloadIfNeeded(_ payload: HomeworkExportPayload) {
         // 履歴追加は addImportedToHistory(payload:) に一本化する
     }
-/*    /// 取り込んだpayloadを「履歴」に1件追加する（wordIDs も可能な範囲で入れる）
-    func recordImportedPayloadIfNeeded(_ payload: HomeworkExportPayload) {
 
-        let pair = PosPair(rawValue: payload.pair) ?? currentPair
-
-        // payload の各 item から「代表meaning」を作って、その StoredWord の id を探す
-        let ids: [UUID] = payload.items.compactMap { item -> UUID? in
-            guard let pos = PartOfSpeech(rawValue: item.pos) else { return nil }
-
-            let meaning = (item.meanings.first ?? "")
-                .trimmingCharacters(in: .whitespacesAndNewlines)
-
-            guard !meaning.isEmpty else { return nil }
-
-            return HomeworkStore.shared.storedWordID(pos: pos, word: item.word, meaning: meaning)
-        }
-
-        let entry = HomeworkEntry(
-            id: UUID(),
-            date: Date(),
-            status: .active,          // ここは運用に合わせてOK（.noneでも可）
-            pair: pair,
-            wordsCount: payload.totalCount,
-            wordIDs: ids
-        )
-
-        // ▼ ここは “あなたの HomeworkState の履歴配列名” に合わせて差し替え
-        history.insert(entry, at: 0)
-
-        // ▼ 保存メソッド名もあなたの実装に合わせて差し替え
-        saveHistory()
-    }
- */
 }
 // MARK: - キャッシュ操作用 extension
 

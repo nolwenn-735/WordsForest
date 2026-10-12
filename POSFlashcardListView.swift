@@ -27,62 +27,7 @@ struct POSFlashcardListView: View {
             .sorted { $0.word.localizedCaseInsensitiveCompare($1.word) == .orderedAscending }
     }
     
-/*
-    private var mergedCards: [WordCard] {
-        let store = homeworkStore.list(for: pos)
-        let deck  = SampleDeck.filtered(by: pos)
 
-        func key(_ c: WordCard) -> String {
-            "\(c.pos.rawValue)|\(normWord(c.word))"
-        }
-
-        func mergedUniqueStrings(_ lhs: [String], _ rhs: [String]) -> [String] {
-            var seen = Set<String>()
-            var result: [String] = []
-
-            for s in lhs + rhs {
-                let trimmed = s.trimmingCharacters(in: .whitespacesAndNewlines)
-                guard !trimmed.isEmpty else { continue }
-                if !seen.contains(trimmed) {
-                    seen.insert(trimmed)
-                    result.append(trimmed)
-                }
-            }
-            return result
-        }
-
-        func mergeCards(base: WordCard, incoming: WordCard) -> WordCard {
-            WordCard(
-                id: base.id,
-                pos: base.pos,
-                word: base.word,
-                meanings: mergedUniqueStrings(base.meanings, incoming.meanings),
-                examples: mergedUniqueStrings(base.examples, incoming.examples)
-            )
-        }
-
-        var dict: [String: WordCard] = [:]
-
-        // 先に SampleDeck を入れる
-        for c in deck {
-            dict[key(c)] = c
-        }
-
-        // HomeworkStore 側は「上書き」ではなく「統合」
-        for c in store {
-            let k = key(c)
-            if let existing = dict[k] {
-                dict[k] = mergeCards(base: existing, incoming: c)
-            } else {
-                dict[k] = c
-            }
-        }
-
-        return dict.values
-            .filter { !homeworkStore.isLearned($0) }
-            .sorted { $0.word.localizedCaseInsensitiveCompare($1.word) == .orderedAscending }
-    }
-*/
     
     var body: some View {
         let cards = displayedCards
@@ -106,9 +51,7 @@ struct POSFlashcardListView: View {
                 )
             }
         }
-    /*      .navigationTitle(pos.jaTitle)
-            .navigationBarTitleDisplayMode(.inline)
-    */
+
         // 🔧 ツールバー（＋メニュー ＆ ホームへ🏠）
         .toolbar {
             ToolbarItemGroup(placement: .topBarLeading) {
