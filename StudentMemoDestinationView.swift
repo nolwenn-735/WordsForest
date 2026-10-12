@@ -15,6 +15,7 @@ struct StudentMemoDestinationView: View {
     @ObservedObject var store: StudentMemoStore
 
     @Environment(\.dismiss) private var dismiss
+    @State private var showingCopyCompletedAlert = false
 
     var body: some View {
         NavigationStack {
@@ -72,6 +73,11 @@ struct StudentMemoDestinationView: View {
                     }
                 }
             }
+            .alert("コピーが完了しました", isPresented: $showingCopyCompletedAlert) {
+                Button("OK") {
+                    dismiss()
+                }
+            }
         }
     }
 
@@ -84,7 +90,7 @@ struct StudentMemoDestinationView: View {
             body: memoText
         )
 
-        dismiss()
+        showingCopyCompletedAlert = true
     }
 
 
@@ -96,7 +102,7 @@ struct StudentMemoDestinationView: View {
             text: memoText
         )
 
-        dismiss()
+        showingCopyCompletedAlert = true
     }
 
 

@@ -14,7 +14,10 @@ struct ColumnArticleView: View {
     private let huskyImages = ["tutor_husky_stand", "tutor_husky_sit", "tutor_husky_down"]
     
     @State private var mascotName = "tutor_husky_down"
+    @State private var showingMemoDestination = false
     @AppStorage(DefaultsKeys.showMascots) private var showMascots: Bool = true
+    
+    
     
     @Environment(\.dismiss) private var dismiss
     var body: some View {
@@ -30,6 +33,27 @@ struct ColumnArticleView: View {
             // 本文
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
+                    
+                    Button {
+                        showingMemoDestination = true
+                    } label: {
+                        Text("「📝　メモ」にコピー")
+                            .font(.headline)
+                            .foregroundStyle(.blue)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.blue.opacity(0.12))
+                            )
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.blue.opacity(0.22), lineWidth: 1)
+                            )
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.bottom, 6)
+                    
                     Text(title)
                         .font(.system(size: 22, weight: .semibold))
                         .foregroundStyle(.indigo)
@@ -85,6 +109,13 @@ struct ColumnArticleView: View {
             .padding(.top, 8)
             .padding(.bottom, 8)
             .background(.clear)
+        }
+        .sheet(isPresented: $showingMemoDestination) {
+            StudentMemoDestinationView(
+                memoTitle: title,
+                memoText: content,
+                store: StudentMemoStore.shared
+            )
         }
         .onAppear {
             if let pick = huskyImages.randomElement() {
