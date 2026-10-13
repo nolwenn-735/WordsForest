@@ -253,7 +253,8 @@ struct HomeworkBanner: View {
             } label: {
                 Label("Teacher", systemImage: teacher.unlocked ? "lock.open" : "lock")
                     .font(.caption2)
-                    .padding(.horizontal, 10)
+                    .lineLimit(1)
+                    .padding(.horizontal, 8)
                     .padding(.vertical, 6)
                     .background(
                         Color(red: 0.92, green: 0.92, blue: 0.94),
