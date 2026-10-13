@@ -164,7 +164,7 @@ extension ExampleStore {
 
     func seedBundledExamplesIfNeeded() {
         let seedVersionKey = "example_seed_version"
-        let currentSeedVersion = 3
+        let currentSeedVersion = 6
 
         let savedVersion = UserDefaults.standard.integer(forKey: seedVersionKey)
 
@@ -283,7 +283,18 @@ extension ExampleStore {
                     meaning: meaning
                 )
 
-                guard existing == nil else {
+                // v6で初期例文を更新する既存語。
+                // 今回は angry / boring / kind の3語だけ新版へ置き換える。
+                let shouldReplaceV6SeedExample =
+                    savedVersion < 6 &&
+                    item.pos
+                        .trimmingCharacters(in: .whitespacesAndNewlines)
+                        .lowercased() == "adjective" &&
+                    ["angry", "boring", "kind"].contains(
+                        word.lowercased()
+                    )
+
+                if existing != nil && !shouldReplaceV6SeedExample {
                     continue
                 }
 

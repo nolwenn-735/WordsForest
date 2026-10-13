@@ -451,8 +451,16 @@ final class HomeworkStore: ObservableObject {
         // WordCard へ変換
         let cards: [WordCard] = grouped.values.compactMap { group in
             // meanings を正規化して確定
-            let meanings = Array(Set(group.map { normMeaning($0.meaning) }))
-                .sorted()
+            var meanings: [String] = []
+            var seenMeanings = Set<String>()
+
+            for storedWord in group {
+                let meaning = normMeaning(storedWord.meaning)
+
+                if !meaning.isEmpty, seenMeanings.insert(meaning).inserted {
+                    meanings.append(meaning)
+                }
+            }
 
             guard !meanings.isEmpty else { return nil }
 
@@ -466,7 +474,7 @@ final class HomeworkStore: ObservableObject {
             } else {
                 // 主要4品詞は今までの代表IDルールを維持
                 guard
-                    let firstMeaning = meanings.first,
+                    let firstMeaning = meanings.sorted().first,
                     let existingFirst = group.first(where: {
                         normMeaning($0.meaning) == firstMeaning
                     })
@@ -497,8 +505,16 @@ final class HomeworkStore: ObservableObject {
             func mergedCard(for representative: StoredWord) -> WordCard {
                 let same = words.filter { $0.pos == representative.pos && $0.word == representative.word }
 
-                let mergedMeanings = Array(Set(same.map { normMeaning($0.meaning) }))
-                    .sorted()
+                var mergedMeanings: [String] = []
+                var seenMeanings = Set<String>()
+
+                for storedWord in same {
+                    let meaning = normMeaning(storedWord.meaning)
+
+                    if !meaning.isEmpty, seenMeanings.insert(meaning).inserted {
+                        mergedMeanings.append(meaning)
+                    }
+                }
 
                 return WordCard(
                     id: representative.id,          // ✅ 履歴の代表IDを維持

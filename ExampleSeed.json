@@ -1,16 +1,16 @@
     [
-      {
-        "pos": "adjective",
-        "word": "angry",
-        "wordNote": null,
-        "meanings": [
-          {
-            "meaning": "怒っている",
-            "en": "When I kicked the door, Mom got angry.",
-            "ja": "ドアをキックしたらママが怒った。"
-          }
-        ]
-      },
+        {
+          "pos": "adjective",
+          "word": "angry",
+          "wordNote": "angry は形容詞なので、angry だけでは文の動詞にはなれません。\n\nそのため、angry を使って文を作るときは be動詞や get などの動詞が必要です。\n\nHe is angry.\n→ 彼は怒っている。\n\nHe got angry.\n→ 彼は怒った。\n\n× He angries ...\nのように、angry 自体を動詞のように使うことはできません。\n\nangry の基本の感覚は「怒っている状態」です。\n\nbe angry は「怒っている」、get angry は「怒る・怒り出す」という意味になります。\n\nまた、angry with 人 で「人に腹を立てている」、angry about 物事 で「物事について腹を立てている」のようにも使います。\n\n日本語では「怒る」と一語で言えるため、angry も動詞のように感じやすいですが、英語では形容詞だと覚えておきましょう。",
+          "meanings": [
+            {
+              "meaning": "怒っている",
+              "en": "Mom got angry when I slammed the door. She told me not to do it again.",
+              "ja": "ドアをバタンと閉めたら、ママが怒った。もうやらないように言われた。"
+            }
+          ]
+        },
       {
         "pos": "adjective",
         "word": "beautiful",
@@ -26,12 +26,17 @@
       {
         "pos": "adjective",
         "word": "bitter",
-        "wordNote": null,
+        "wordNote": "bitter の基本の感覚は「強く、不快な苦さがある」です。\n\n味について「苦い」と言うだけでなく、つらい経験などについて「苦々しく思っている、恨みが残っている」という意味でも使います。\n\nThis coffee is bitter.\n→ このコーヒーは苦い。\n\nHe feels bitter about what happened.\n→ 彼は起きたことを苦々しく思っている。\n\n味の「苦さ」から、気持ちの「苦さ」に意味が広がったと考えると分かりやすいです。",
         "meanings": [
           {
             "meaning": "苦い",
             "en": "This coffee is too bitter for me.",
             "ja": "このコーヒーは私には苦すぎる。"
+          },
+          {
+            "meaning": "苦々しく思っている・恨みが残っている",
+            "en": "He still feels bitter about how the company treated him.",
+            "ja": "彼は会社にされたことを今でも苦々しく思っている。"
           }
         ]
       },
@@ -50,24 +55,24 @@
       {
         "pos": "adjective",
         "word": "boring",
-        "wordNote": null,
+        "wordNote": "boring は「人を退屈させるような」という意味の形容詞です。\n\nboring と bored はよく似ていますが、使い方が違います。\n\nThe class is boring.\n→ その授業は退屈だ。\n\nI'm bored.\n→ 私は退屈している。\n\nboring は「退屈させる側」、bored は「退屈している側」を表します。\n\n× I'm boring.\nと言うと、「私は退屈な人です」という意味になってしまうので注意しましょう。\n\nこの -ing / -ed の違いは、interesting / interested、exciting / excited などにも見られます。",
         "meanings": [
           {
             "meaning": "退屈な",
-            "en": "Math class is always boring.",
-            "ja": "いつも数学の授業は退屈なんだよ。"
+            "en": "The lecture was boring, so I kept checking the clock.",
+            "ja": "その講義は退屈で、何度も時計を見ちゃった。"
           }
         ]
       },
       {
         "pos": "adjective",
         "word": "clean",
-        "wordNote": null,
+        "wordNote": "clean の基本の感覚は「汚れていない」です。\n\n日本語では clean も beautiful も「きれい」と訳すことがありますが、意味は違います。\n\na clean room\n→ 汚れていない、清潔な部屋\n\na beautiful room\n→ 美しい部屋\n\nまた、clean は形容詞だけでなく動詞として「掃除する」という意味でも使えます。\n\nThe room is clean.\n→ 部屋はきれいです。［形容詞］\n\nI cleaned the room.\n→ 部屋を掃除しました。［動詞］\n\n同じ単語でも、文の中での働きによって品詞が変わることがあります。",
         "meanings": [
           {
             "meaning": "きれいな",
             "en": "Keep your room clean.",
-            "ja": "部屋を綺麗にしておきなさいね。"
+            "ja": "部屋をきれいにしておきなさいね。"
           }
         ]
       },
@@ -86,12 +91,332 @@
       {
         "pos": "adjective",
         "word": "kind",
-        "wordNote": null,
+        "wordNote": "kind は「親切な」という意味の形容詞です。\n\n形容詞なので、kind だけでは文の動詞にはなれません。\n\nYou are kind.\n→ あなたは親切です。\n\nBe kind to your brother.\n→ 弟に優しくしてあげて。\n\n× You kind ...\nのように、kind 自体を動詞のように使うことはできません。\n\n「人に親切にする」と言いたいときは、be kind to 人 の形を使います。\n\nShe was kind to me.\n→ 彼女は私に親切にしてくれた。\n\nまた、kind は名詞として使うと「種類」という別の意味になります。\n\nWhat kind of music do you like?\n→ どんな種類の音楽が好き？\n\nつまり、kind to ～ の kind は「親切な」という形容詞、a kind of ～ の kind は「種類」という名詞です。",
         "meanings": [
           {
             "meaning": "親切な",
-            "en": "He is kind to the elderly.",
-            "ja": "彼はお年寄りに優しい。"
+            "en": "She was kind to me when I was new. She showed me around.",
+            "ja": "私が入ったばかりのころ、彼女は親切にしてくれた。いろいろ案内してくれたよ。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "available",
+        "wordNote": "available の基本の感覚は「必要なときに使える・利用できる状態にある」です。\n\n日本語では文脈によって「利用できる」「手に入る」「空いている」「都合がつく」などと訳されます。\n\n物やサービスだけでなく、席や時間、人の予定にも使えます。\n\nIs this seat available? なら「この席は空いていますか？」、I'm available after 4 p.m. なら「4時以降なら都合がつきます」という意味になります。",
+        "meanings": [
+          {
+            "meaning": "利用できる・入手できる",
+            "en": "The new version is available now. You can download it for free.",
+            "ja": "新しいバージョンはもう利用できるよ。無料でダウンロードできるよ。"
+          },
+          {
+            "meaning": "空いている",
+            "en": "Is this seat available? If it is, can I sit here?",
+            "ja": "この席は空いてる？ 空いてたら座ってもいい？"
+          },
+          {
+            "meaning": "都合がつく",
+            "en": "I'm available after 4 p.m. Does that work for you?",
+            "ja": "4時以降なら都合がつくよ。それで大丈夫？"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "careful",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "注意深い・気をつけている",
+            "en": "Be careful with that glass. It's very thin.",
+            "ja": "そのグラス、気をつけて扱ってね。すごく薄いんだ。"
+          },
+          {
+            "meaning": "慎重な",
+            "en": "She's careful about what she posts online. She checks everything before sharing it.",
+            "ja": "彼女はネットに何を投稿するか慎重だよ。シェアする前に全部確認してる。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "common",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "よくある・一般的な",
+            "en": "That's a common mistake. Don't worry, lots of people make it.",
+            "ja": "それはよくある間違いだよ。気にしないで、たくさんの人が間違えるから。"
+          },
+          {
+            "meaning": "共通の",
+            "en": "We have a common interest in music. That's how we became friends.",
+            "ja": "私たちは音楽という共通の趣味があるんだ。それで友達になったの。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "different",
+        "wordNote": "different の基本の感覚は「同じではない」です。\n\ndifferent from ～ で「～とは違う」と比較するときに使うほか、名詞の前に置いて「別の」という意味でもよく使います。\n\nMy answer is different from yours. は「私の答えは君のとは違う」、Let's try a different way. は「別の方法を試してみよう」という意味です。",
+        "meanings": [
+          {
+            "meaning": "異なる・違う",
+            "en": "My answer is different from yours. Let's compare them.",
+            "ja": "私の答えは君のと違うね。比べてみよう。"
+          },
+          {
+            "meaning": "別の",
+            "en": "Let's try a different way. This one isn't working.",
+            "ja": "別の方法を試してみよう。これはうまくいってない。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "important",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "重要な・大切な",
+            "en": "It's important to back up your files. You don't want to lose everything.",
+            "ja": "ファイルをバックアップしておくことは大切だよ。全部なくしたくないでしょ。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "necessary",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "必要な",
+            "en": "Is it really necessary to print this? We can just read it on the screen.",
+            "ja": "これ、本当に印刷する必要ある？ 画面で読めばいいんじゃない？"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "possible",
+        "wordNote": "possible の基本の感覚は「実現したり、起こったりする可能性がある」です。\n\n「可能な、できる」という意味だけでなく、「何かが起こる可能性がある」「あり得る」という意味でもよく使います。\n\nIs it possible to change the date? は「日付を変更することはできますか？」、It's possible that the train will be delayed. は「電車が遅れる可能性もあります」という意味です。\n\n「実現できるかどうか」と「実際に起こり得るかどうか」の両方に使える単語です。",
+        "meanings": [
+          {
+            "meaning": "可能な",
+            "en": "Is it possible to change the date? Friday would work better for me.",
+            "ja": "日付を変更することはできる？ 私は金曜日のほうが都合がいいんだ。"
+          },
+          {
+            "meaning": "あり得る・可能性がある",
+            "en": "It's possible that the train will be delayed. Let's leave a little early.",
+            "ja": "電車が遅れる可能性もあるよ。少し早めに出よう。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "ready",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "準備ができた",
+            "en": "I'm ready to go. Are you coming?",
+            "ja": "出かける準備できたよ。君も来る？"
+          },
+          {
+            "meaning": "できあがった・用意できた",
+            "en": "Dinner is ready. Come and get it while it's hot.",
+            "ja": "夕食できたよ。温かいうちに食べにおいで。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "serious",
+        "wordNote": "serious の基本の感覚は「軽い気持ちではない」です。\n\n問題や状況について使えば「深刻な」、何かに取り組む人について使えば「真剣な」という意味になります。\n\nまた、Are you serious? は会話でとてもよく使われ、「本気なの？」「本当に言ってるの？」という意味です。\n\n日本語では別々の言葉になりますが、どれも「軽くはない」という感覚でつながっています。",
+        "meanings": [
+          {
+            "meaning": "深刻な",
+            "en": "This is a serious problem. We need to deal with it now.",
+            "ja": "これは深刻な問題だよ。今すぐ対応しないと。"
+          },
+          {
+            "meaning": "真剣な",
+            "en": "She's serious about learning English. She practices every day.",
+            "ja": "彼女は英語学習に真剣だよ。毎日練習してる。"
+          },
+          {
+            "meaning": "本気の",
+            "en": "Are you serious? I thought you were joking.",
+            "ja": "本気なの？ 冗談だと思ってた。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "useful",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "役に立つ",
+            "en": "This website is useful when you're planning a trip. I use it to compare train times.",
+            "ja": "このサイトは旅行の計画を立てるときに役に立つよ。私は電車の時間を比べるのに使ってる。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "aware",
+        "wordNote": "aware の基本の感覚は「何かの存在や状況に気づいていて、それを認識している」です。\n\nbe aware of ～ の形で「～を知っている、～に気づいている」とよく使います。\n\n単に知識として知っているだけでなく、「そのことを意識している」というニュアンスがあります。",
+        "meanings": [
+          {
+            "meaning": "気づいている・認識している",
+            "en": "Are you aware of the new rule? It starts next Monday.",
+            "ja": "新しいルールのこと知ってる？ 来週の月曜から始まるよ。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "comfortable",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "快適な",
+            "en": "This chair is really comfortable. I could sit here all day.",
+            "ja": "この椅子、本当に座り心地いいね。一日中座っていられそう。"
+          },
+          {
+            "meaning": "気楽な・抵抗がない",
+            "en": "I don't feel comfortable talking about that. Can we change the subject?",
+            "ja": "その話をするのはちょっと気が進まないな。話題を変えてもいい？"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "confident",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "自信がある",
+            "en": "I'm not confident about my pronunciation yet. I need more practice.",
+            "ja": "まだ発音に自信がないんだ。もう少し練習しないと。"
+          },
+          {
+            "meaning": "確信している",
+            "en": "I'm confident that we'll finish on time. We're almost done.",
+            "ja": "時間までに終わると思うよ。もうほとんど終わってるから。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "familiar",
+        "wordNote": "familiar の基本の感覚は「以前から知っていて、なじみがある」です。\n\nI'm familiar with this app. のように familiar with ～ とすると、「自分が～をよく知っている、～に慣れている」という意味になります。\n\n一方、That name is familiar to me. のように familiar to 人 とすると、「その人にとって見覚え・聞き覚えがある」という意味になります。\n\nwith の後ろには自分が知っている対象、to の後ろには「誰にとってなじみがあるのか」が来ると考えると分かりやすいです。",
+        "meanings": [
+          {
+            "meaning": "見覚え・聞き覚えがある",
+            "en": "His name sounds familiar. Have we met before?",
+            "ja": "彼の名前、聞き覚えがあるな。前に会ったことある？"
+          },
+          {
+            "meaning": "よく知っている・慣れている",
+            "en": "I'm familiar with this app. I can show you how it works.",
+            "ja": "このアプリならよく知ってるよ。使い方を教えるよ。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "likely",
+        "wordNote": "likely の基本の感覚は「そうなる可能性が高い」です。\n\npossible も「可能性がある」という意味ですが、possible は「あり得る」、likely はそこから一歩進んで「起こりそうだ」という感覚です。\n\nIt's possible that it will rain. なら「雨が降る可能性もある」、It's likely to rain. なら「雨が降りそうだ」という違いがあります。",
+        "meanings": [
+          {
+            "meaning": "～しそうな・可能性が高い",
+            "en": "It's likely to rain tonight. You should take an umbrella.",
+            "ja": "今夜は雨が降りそうだよ。傘を持っていった方がいいよ。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "private",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "私的な・個人的な",
+            "en": "That's a private conversation. Please don't share it with anyone.",
+            "ja": "それは個人的な会話だから、誰にも話さないでね。"
+          },
+          {
+            "meaning": "非公開の",
+            "en": "My account is private. Only approved followers can see my posts.",
+            "ja": "私のアカウントは非公開だよ。承認したフォロワーだけ投稿を見られるの。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "public",
+        "wordNote": null,
+        "meanings": [
+          {
+            "meaning": "公共の",
+            "en": "This is a public park. Anyone can use it.",
+            "ja": "ここは公共の公園だよ。誰でも利用できる。"
+          },
+          {
+            "meaning": "公開された・公になった",
+            "en": "The report is now public. You can read it online.",
+            "ja": "その報告書はもう公開されてるよ。オンラインで読める。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "responsible",
+        "wordNote": "responsible の基本の感覚は「自分が引き受けるべき責任や役割がある」です。\n\nbe responsible for ～ は、文脈によって「～の責任がある」と「～を担当している」の両方に使われます。\n\nWho's responsible for this mistake? なら「このミスの責任は誰にあるの？」、I'm responsible for updating the website. なら「ウェブサイトの更新は私の担当です」という意味になります。",
+        "meanings": [
+          {
+            "meaning": "責任がある",
+            "en": "Who's responsible for this mistake? We need to find out what happened.",
+            "ja": "このミスの責任は誰にあるの？ 何が起きたのか確認しないと。"
+          },
+          {
+            "meaning": "担当している",
+            "en": "I'm responsible for updating the website. Let me know if you find an error.",
+            "ja": "ウェブサイトの更新は私の担当だよ。間違いを見つけたら教えて。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "similar",
+        "wordNote": "similar の基本の感覚は「同じではないけれど、よく似ている」です。\n\nsimilar to ～ で「～に似ている」と表します。\n\nsame は「同じ」、similar は「共通点は多いけれど同一ではない」という違いがあります。\n\nOur ideas are similar. と言えば、考え方に似ている部分はありますが、まったく同じという意味ではありません。",
+        "meanings": [
+          {
+            "meaning": "似ている",
+            "en": "Our ideas are similar, but they're not exactly the same. Let's compare them.",
+            "ja": "私たちの考えは似てるけど、まったく同じではないね。比べてみよう。"
+          }
+        ]
+      },
+      {
+        "pos": "adjective",
+        "word": "specific",
+        "wordNote": "specific の基本の感覚は「対象や内容がはっきり絞られている」です。\n\n日本語では concrete とどちらも「具体的な」と訳されることがありますが、少し感覚が違います。\n\nspecific は「曖昧ではなく、何についてなのかがはっきりしている」という意味です。\n\nCan you be more specific? は「もう少し具体的に言ってくれる？」という意味です。\n\nconcrete は「抽象的ではなく、実際の事実や例として示せる」という感覚です。Can you give me a concrete example? なら「具体例を挙げてくれる？」となります。\n\n「もっとはっきり絞る」のが specific、「抽象論ではなく実例にする」のが concrete と考えると分かりやすいです。",
+        "meanings": [
+          {
+            "meaning": "特定の",
+            "en": "I'm looking for a specific book. It's a little-known collection of poems.",
+            "ja": "ある特定の本を探してるんだ。あまり知られていない詩集なんだ。"
+          },
+          {
+            "meaning": "具体的な・明確な",
+            "en": "Can you be more specific? Tell me exactly what happened.",
+            "ja": "もう少し具体的に言ってくれる？ 何が起きたのか正確に教えて。"
           }
         ]
       },
