@@ -164,7 +164,7 @@ extension ExampleStore {
 
     func seedBundledExamplesIfNeeded() {
         let seedVersionKey = "example_seed_version"
-        let currentSeedVersion = 6
+        let currentSeedVersion = 7
 
         let savedVersion = UserDefaults.standard.integer(forKey: seedVersionKey)
 

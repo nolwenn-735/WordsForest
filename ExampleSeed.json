@@ -813,6 +813,7 @@
             }
           ]
         },
+        
         {
           "pos": "adjective",
           "word": "awkward",
@@ -1665,6 +1666,1336 @@
               "meaning": "十分な",
               "en": "We don't have sufficient information to make a decision yet.",
               "ja": "まだ判断するには情報が十分じゃない。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "affordable",
+          "wordNote": "affordable は「手頃な、無理なく買える」という意味の形容詞です。\n\nan affordable apartment\n→ 無理なく払える家賃の物件\n\naffordable prices\n→ 手頃な価格\n\ncheap と似ていますが、affordable は単に「値段が安い」というより、「自分の予算の範囲で買える・払える」という感覚があります。\n\ncheap\n→ 値段そのものが安い\n\naffordable\n→ 無理なく買える価格である\n\nまた、reasonable price は「条件などを考えると妥当な値段」という意味です。\n\ncheap\n→ 安い\n\naffordable\n→ 手が届く\n\nreasonable\n→ 妥当で納得できる\n\nという違いを意識すると使い分けやすくなります。",
+          "meanings": [
+            {
+              "meaning": "手頃な・無理なく買える",
+              "en": "The rent is surprisingly affordable for this area.",
+              "ja": "この辺にしては、家賃が意外と手頃なんだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "formal",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "正式な・かしこまった",
+              "en": "You don't need to wear anything formal. It's a pretty relaxed event.",
+              "ja": "かしこまった服じゃなくて大丈夫だよ。わりと気楽なイベントだから。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "casual",
+          "wordNote": "casual は「気軽な、かしこまっていない」という意味の形容詞です。\n\ncasual clothes\n→ 普段着・カジュアルな服\n\na casual conversation\n→ 気軽な会話\n\na casual meeting\n→ 堅苦しくない集まり\n\n日本語の「カジュアル」は服装について使うことが多いですが、英語では会話・雰囲気・関係・予定などにも広く使います。\n\nLet's keep it casual.\n→ 堅苦しくしないで気楽にやろう。\n\ncasual の中心には、「正式ではなく、あまり堅苦しくない」という感覚があります。\n\nただし文脈によっては「深く考えず軽い気持ちで」という意味になることもあります。",
+          "meanings": [
+            {
+              "meaning": "気軽な・かしこまっていない",
+              "en": "It was just a casual conversation over coffee.",
+              "ja": "コーヒーを飲みながら、ちょっと気軽に話しただけだよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "confused",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "混乱している・よく分からなくなっている",
+              "en": "I'm a little confused. Are we meeting on Thursday or Friday?",
+              "ja": "ちょっと分からなくなってきた。会うの木曜だっけ、金曜だっけ？"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "annoyed",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "いら立っている・うんざりしている",
+              "en": "I was annoyed that they changed the schedule without telling us.",
+              "ja": "何も言わずに予定を変えられて、ちょっと腹が立った。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "upset",
+          "wordNote": "upset は、何かがあって気持ちが乱れている状態を表す形容詞です。\n\nShe looked upset.\n→ 彼女は動揺しているように見えた。\n\nupset は日本語では文脈によって「動揺した」「悲しい」「腹を立てた」「つらい気持ちの」などと訳されます。\n\nそのため、upset = angry と覚えるのは少し違います。\n\nangry\n→ 怒っている\n\nupset\n→ 何かのせいで気持ちが乱れている\n\nたとえば悪い知らせを聞いて悲しくなったときにも、誰かの言動に腹を立てたときにも upset を使うことがあります。\n\nI'm upset about what happened.\n→ 起きたことがつらい。／起きたことに腹を立てている。\n\n何に対してどんな感情なのかは、前後の文脈で決まります。",
+          "meanings": [
+            {
+              "meaning": "動揺した・つらい気持ちの",
+              "en": "She seemed upset after reading the message, so I didn't ask about it.",
+              "ja": "そのメッセージを読んだあと彼女がつらそうだったから、何があったかは聞かなかった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "grateful",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "感謝している",
+              "en": "I'm really grateful for all your help.",
+              "ja": "いろいろ助けてもらって、本当に感謝してるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "strict",
+          "wordNote": "strict は「厳しい、厳格な」という意味の形容詞です。\n\nMy teacher is strict about deadlines.\n→ 先生は締切に厳しい。\n\nbe strict about ～ で「～について厳しい」、be strict with 人 で「人に対して厳しい」という意味になります。\n\nShe's strict with her students.\n→ 彼女は生徒に厳しい。\n\nstrict は、ルールや基準をきちんと守らせる厳しさを表すことが多い語です。\n\nsevere も「厳しい」と訳されることがありますが、意味の中心は少し違います。\n\nstrict\n→ ルール・態度・基準が厳しい\n\nsevere\n→ 程度が非常に激しい、深刻である\n\na strict teacher\n→ 厳しい先生\n\nsevere weather\n→ 激しい悪天候\n\n同じ「厳しい」でも、使う場面が違うので注意しましょう。",
+          "meanings": [
+            {
+              "meaning": "厳しい・厳格な",
+              "en": "My teacher was strict about deadlines, but she was always fair.",
+              "ja": "先生は締切には厳しかったけど、いつも公平だった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "generous",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "気前のよい・寛大な",
+              "en": "They were very generous with their time and stayed late to help us finish.",
+              "ja": "彼らは惜しまず時間を割いて、終わるまで遅くまで手伝ってくれた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "selfish",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "自分勝手な・利己的な",
+              "en": "It would be selfish to expect everyone to change their plans for me.",
+              "ja": "私のためにみんなに予定を変えてもらうのは、自分勝手だと思う。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "low",
+          "wordNote": "low は「低い」という意味の形容詞ですが、高さだけでなく、数値・量・程度などが低いときにも広く使います。\n\na low table\n→ 低いテーブル\n\nlow prices\n→ 低い価格・安い価格\n\nlow battery\n→ バッテリー残量が少ない状態\n\nMy battery is getting low.\n→ バッテリーが少なくなってきた。\n\nまた、人の気分について feel low と言うと、「気分が沈んでいる、元気が出ない」という意味になります。\n\nI've been feeling a little low lately.\n→ 最近ちょっと気分が沈み気味なんだ。\n\nlow の中心は、場所・量・程度などが「下の方にある」という感覚です。",
+          "meanings": [
+            {
+              "meaning": "低い",
+              "en": "The table is too low for this chair.",
+              "ja": "この椅子には、このテーブルちょっと低すぎる。"
+            },
+            {
+              "meaning": "少ない・下がっている",
+              "en": "My phone battery is getting low.",
+              "ja": "スマホの充電が少なくなってきた。"
+            },
+            {
+              "meaning": "気分が沈んだ",
+              "en": "I've been feeling a little low lately.",
+              "ja": "最近ちょっと気分が沈み気味なんだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "high",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "高い",
+              "en": "That shelf is too high for me to reach.",
+              "ja": "あの棚、高すぎて手が届かない。"
+            },
+            {
+              "meaning": "程度・数値が高い",
+              "en": "Prices are especially high during the holiday season.",
+              "ja": "休暇シーズンは特に値段が高い。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "thin",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "薄い・細い",
+              "en": "This fabric is very thin, so you might want to wear something underneath.",
+              "ja": "この生地かなり薄いから、中に何か着た方がいいかも。"
+            },
+            {
+              "meaning": "薄い・まばらな",
+              "en": "His hair has gotten a little thinner over the years.",
+              "ja": "年月とともに、彼の髪は少し薄くなってきた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "thick",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "厚い・太い",
+              "en": "The walls are so thick that I can barely hear the neighbors.",
+              "ja": "壁がすごく厚くて、隣の音はほとんど聞こえない。"
+            },
+            {
+              "meaning": "濃い・密な",
+              "en": "The fog was so thick that we could hardly see the road.",
+              "ja": "霧が濃すぎて、道がほとんど見えなかった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "light",
+          "wordNote": "light は形容詞では「軽い」という意味だけでなく、「淡い、薄い」という意味でもよく使います。\n\na light bag\n→ 軽いバッグ\n\nlight blue\n→ 薄い青・淡い青\n\nlight の反対は、重さなら heavy、色の濃さなら dark になることがあります。\n\na light jacket\n→ 軽いジャケット\n\na light color\n→ 淡い色\n\nまた、食事について a light meal と言うと、「軽めの食事」という意味になります。\n\n同じ light でも、何が「重くない・濃くない」のかによって自然な日本語が変わります。",
+          "meanings": [
+            {
+              "meaning": "軽い",
+              "en": "This laptop is surprisingly light.",
+              "ja": "このノートパソコン、意外と軽いね。"
+            },
+            {
+              "meaning": "薄い・淡い",
+              "en": "I think the light blue one looks better on you.",
+              "ja": "薄い青の方が君には似合うと思う。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "hard",
+          "wordNote": "hard は「硬い」という意味だけでなく、「難しい」という意味でも非常によく使います。\n\na hard surface\n→ 硬い表面\n\nThis bread has gone hard.\n→ このパン、硬くなっちゃった。\n\nIt's hard to explain.\n→ 説明するのが難しい。\n\ndifficult も「難しい」ですが、hard は日常会話でとてもよく使われます。\n\nまた、hard は「大変な、つらい」という意味にもなります。\n\nIt's been a hard week.\n→ 今週は大変だった。\n\n物が硬いことから、簡単にはできない・楽ではないことにも意味が広がっていると考えると分かりやすいです。",
+          "meanings": [
+            {
+              "meaning": "硬い",
+              "en": "This bread has gone hard.",
+              "ja": "このパン、硬くなっちゃった。"
+            },
+            {
+              "meaning": "難しい",
+              "en": "It's hard to explain without showing you an example.",
+              "ja": "例を見せずに説明するのは難しいな。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "soft",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "柔らかい",
+              "en": "These towels are still really soft after several washes.",
+              "ja": "このタオル、何回か洗ってもまだすごく柔らかい。"
+            },
+            {
+              "meaning": "穏やかな・小さな",
+              "en": "She spoke in a soft voice so she wouldn't wake the baby.",
+              "ja": "赤ちゃんを起こさないように、彼女は小さな声で話した。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "sharp",
+          "wordNote": "sharp は「鋭い、よく切れる」という意味の形容詞です。\n\na sharp knife\n→ よく切れるナイフ\n\nただし、物理的な鋭さだけでなく、変化が急なときにも使います。\n\na sharp increase\n→ 急激な増加\n\na sharp drop\n→ 急激な低下\n\nまた、痛みについて sharp pain と言うと、「鋭い痛み」という意味になります。\n\n人の感覚や頭の働きについても使うことがあり、\n\na sharp mind\n→ 頭の切れる人・鋭い頭脳\n\nのように表せます。\n\nsharp の中心には、「先が鋭い」「変化や感覚がはっきり鋭い」という感覚があります。",
+          "meanings": [
+            {
+              "meaning": "鋭い・よく切れる",
+              "en": "Be careful. That knife is really sharp.",
+              "ja": "気をつけて。そのナイフすごくよく切れるよ。"
+            },
+            {
+              "meaning": "急激な",
+              "en": "There was a sharp increase in prices last month.",
+              "ja": "先月、価格が急激に上がった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "close",
+          "wordNote": "close は形容詞では「近い」という意味があります。\n\nIs there a pharmacy close to the station?\n→ 駅の近くに薬局ある？\n\nまた、人間関係について使うと「親しい」という意味になります。\n\nWe're close friends.\n→ 私たちは親しい友達です。\n\n物理的な距離だけでなく、人と人との関係が近いときにも使える語です。\n\nさらに、形容詞の close と動詞の close は発音が違います。\n\nclose［形容詞］\n→ /kloʊs/ 「近い、親しい」\n\nclose［動詞］\n→ /kloʊz/ 「閉める、閉じる」\n\nつづりは同じでも、品詞によって発音が変わるので注意しましょう。",
+          "meanings": [
+            {
+              "meaning": "近い",
+              "en": "Is there a pharmacy close to the station?",
+              "ja": "駅の近くに薬局ある？"
+            },
+            {
+              "meaning": "親しい",
+              "en": "We've been close friends since high school.",
+              "ja": "私たちは高校のころからずっと親しい友達なんだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "fine",
+          "wordNote": "fine は日常会話で「大丈夫な、問題ない」という意味でとてもよく使います。\n\nI'm fine.\n→ 大丈夫だよ。\n\nThat's fine.\n→ それで大丈夫。／それでいいよ。\n\n一方、fine には「細かい、きめの細かい」という意味もあります。\n\nfine powder\n→ 細かい粉\n\nfine details\n→ 細かな部分\n\nさらに、fine weather のように「よい、晴れた」という意味で使われることもあります。\n\nfine は一つの日本語だけで覚えるより、文脈によって「問題ない」「細かい」「よい」などに意味が広がる語だと考えると分かりやすいです。",
+          "meanings": [
+            {
+              "meaning": "大丈夫な・問題ない",
+              "en": "Don't worry about me. I'm fine.",
+              "ja": "私のことは心配しないで。大丈夫だよ。"
+            },
+            {
+              "meaning": "細かい・きめの細かい",
+              "en": "The powder is so fine that it gets everywhere.",
+              "ja": "その粉、ものすごく細かくてあちこちに入り込む。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "real",
+          "wordNote": "real は「本物の、現実の」という意味の形容詞です。\n\na real plant\n→ 本物の植物\n\na real problem\n→ 現実にある問題\n\n似た語に actual、genuine、realistic がありますが、焦点が少しずつ違います。\n\nreal\n→ 偽物・架空ではなく、本当に存在する\n\nactual\n→ 予想や説明ではなく、実際にはどうなのか\n\ngenuine\n→ 偽物ではない本物、本心からの\n\nrealistic\n→ 現実とかけ離れていない、現実的な\n\na real diamond\n→ 本物のダイヤモンド\n\nthe actual cost\n→ 実際にかかった費用\n\na genuine apology\n→ 本心からの謝罪\n\na realistic plan\n→ 現実的な計画\n\n日本語ではどれも「本当の」「実際の」と訳せることがありますが、英語では見る角度が違います。",
+          "meanings": [
+            {
+              "meaning": "本物の",
+              "en": "Is that a real plant or an artificial one?",
+              "ja": "それ、本物の植物？それとも造花？"
+            },
+            {
+              "meaning": "現実の・実在する",
+              "en": "The characters are fictional, but the story is based on real events.",
+              "ja": "登場人物は架空だけど、物語は実際にあった出来事をもとにしてる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "right",
+          "wordNote": "right は形容詞では「正しい」という意味と、「右の」という意味があります。\n\nthe right answer\n→ 正しい答え\n\nthe right side\n→ 右側\n\nまた、right には「その状況に合った、適切な」という感覚もあります。\n\nThis isn't the right time to talk about it.\n→ 今はその話をするタイミングじゃない。\n\nright = 正解、とだけ覚えるより、「間違っていない」「その場に合っている」という広い感覚を持つと使いやすいです。\n\nまた、You're right. は日常会話で非常によく使われ、\n\n→ その通り。\n→ 君の言う通りだね。\n\nという意味になります。",
+          "meanings": [
+            {
+              "meaning": "正しい・合っている",
+              "en": "You were right about the weather. It started raining right after lunch.",
+              "ja": "天気のこと、君の言った通りだったね。昼食のあとすぐ雨が降り始めた。"
+            },
+            {
+              "meaning": "右の",
+              "en": "Take the first door on your right.",
+              "ja": "右側の最初のドアに入って。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "wrong",
+          "wordNote": "wrong は「間違った」という意味だけでなく、「何かがおかしい、問題がある」という意味でもよく使います。\n\nthe wrong answer\n→ 間違った答え\n\nthe wrong address\n→ 間違った住所\n\nSomething is wrong.\n→ 何かおかしい。\n\nSomething is wrong with my phone.\n→ スマホの調子がおかしい。\n\nWhat's wrong?\n→ どうしたの？／何かあった？\n\nこの What's wrong? は、「何が間違っているの？」と直訳するより、相手や状況に問題がありそうなときの「どうしたの？」と考えると自然です。",
+          "meanings": [
+            {
+              "meaning": "間違っている",
+              "en": "I think you have the wrong address. Nobody by that name lives here.",
+              "ja": "住所を間違えてると思うよ。その名前の人はここには住んでない。"
+            },
+            {
+              "meaning": "調子がおかしい・問題がある",
+              "en": "Something is wrong with my phone. It keeps restarting.",
+              "ja": "スマホの調子がおかしい。何度も再起動するんだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "deep",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "深い",
+              "en": "The water gets deep very quickly here, so be careful.",
+              "ja": "ここ、すぐ深くなるから気をつけて。"
+            },
+            {
+              "meaning": "深い・ぐっすりした",
+              "en": "I was in such a deep sleep that I didn't hear the alarm.",
+              "ja": "ぐっすり眠ってて、アラームが聞こえなかった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "flat",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "平らな",
+              "en": "We found a flat place to put the table.",
+              "ja": "テーブルを置ける平らな場所を見つけた。"
+            },
+            {
+              "meaning": "空気が抜けた・パンクした",
+              "en": "I can't ride my bike. One of the tires is flat.",
+              "ja": "自転車乗れない。タイヤが一本パンクしてる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "heavy",
+          "wordNote": "heavy は「重い」という意味ですが、重さ以外にも「量や程度が大きい」という意味で広く使われます。\n\na heavy box\n→ 重い箱\n\nheavy rain\n→ 激しい雨\n\nheavy traffic\n→ 激しい渋滞\n\na heavy workload\n→ 大きな仕事量・重い仕事負担\n\n英語では、雨・交通量・仕事量などが「たくさんある、程度が大きい」ときにも heavy を使います。\n\n日本語では「重い雨」とは言わないので、一語ずつ直訳せず、何の程度が大きいのかを見るのがポイントです。",
+          "meanings": [
+            {
+              "meaning": "重い",
+              "en": "This box is heavier than it looks. Can you help me carry it?",
+              "ja": "この箱、見た目より重いよ。運ぶの手伝ってくれる？"
+            },
+            {
+              "meaning": "激しい・大量の",
+              "en": "We got caught in heavy rain on the way home.",
+              "ja": "帰り道で激しい雨に降られた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "fresh",
+          "wordNote": "fresh は「新鮮な」という意味ですが、食べ物だけに使う語ではありません。\n\nfresh vegetables\n→ 新鮮な野菜\n\nfresh air\n→ 新鮮な空気・外の空気\n\nfresh water\n→ 淡水\n\nまた、fresh idea のように「新しい、今までとは違う」という意味でも使います。\n\nWe need a fresh idea.\n→ 新しい発想が必要だね。\n\nfresh の中心には、「古くなっていない」「使い古されていない」という感覚があります。\n\nそのため、食べ物・空気・考え方など、さまざまなものに使えます。",
+          "meanings": [
+            {
+              "meaning": "新鮮な",
+              "en": "These strawberries are really fresh. I bought them this morning.",
+              "ja": "このイチゴすごく新鮮だよ。今朝買ったんだ。"
+            },
+            {
+              "meaning": "新鮮な・こもっていない",
+              "en": "Let's get some fresh air. It's getting stuffy in here.",
+              "ja": "ちょっと外の空気吸おう。ここ、だんだん空気がこもってきた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "dry",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "乾いた・乾燥した",
+              "en": "My skin gets really dry in winter.",
+              "ja": "冬になると肌がすごく乾燥する。"
+            },
+            {
+              "meaning": "辛口の",
+              "en": "I prefer dry wine to sweet wine.",
+              "ja": "甘いワインより辛口のワインの方が好き。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "open",
+          "wordNote": "open は「開いている」という意味だけでなく、考えや提案を受け入れる姿勢があることも表します。\n\nThe door is open.\n→ ドアが開いている。\n\nI'm open to other ideas.\n→ 他の案も受け入れるよ。／他の案も聞くよ。\n\nbe open to ～ で「～を受け入れる姿勢がある」という意味になります。\n\nI'm open to suggestions.\n→ 提案があれば聞きます。\n\n物理的に「閉じていない」という感覚から、考え方についても「閉ざしていない」という意味に広がっています。\n\nなお、open-minded は「先入観を持たず、いろいろな考えを受け入れる」という意味です。",
+          "meanings": [
+            {
+              "meaning": "開いている",
+              "en": "The window is still open. Could you close it before you leave?",
+              "ja": "窓まだ開いてるよ。出る前に閉めてくれる？"
+            },
+            {
+              "meaning": "受け入れる姿勢がある",
+              "en": "I'm open to other ideas if you have a better one.",
+              "ja": "もっといい案があるなら、他の意見も聞くよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "short",
+          "wordNote": "short は「短い」という意味だけでなく、「必要な量に足りない」という意味でも使います。\n\na short walk\n→ 短い距離の徒歩・歩いてすぐ\n\na short meeting\n→ 短い会議\n\nまた、be short on ～ で「～が不足している」という意味になります。\n\nWe're short on time.\n→ 時間が足りない。\n\nI'm a little short on cash.\n→ ちょっと現金が足りない。\n\n必要な長さや量に届いていない、という感覚でつながっています。\n\nshort は身長について「背が低い」という意味でも使います。\n\nHe's quite short.\n→ 彼はかなり小柄です。",
+          "meanings": [
+            {
+              "meaning": "短い",
+              "en": "It's only a short walk from the station.",
+              "ja": "駅から歩いてすぐだよ。"
+            },
+            {
+              "meaning": "足りない・不足している",
+              "en": "We're a little short on time, so let's keep this brief.",
+              "ja": "ちょっと時間が足りないから、手短にいこう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "true",
+          "wordNote": "true は「本当の、事実に合っている」という意味の形容詞です。\n\nIs that true?\n→ それ本当？\n\nThat's true.\n→ それはそうだね。／確かに。\n\ntrue は、話・情報・考えなどが事実と一致しているかどうかを表します。\n\n似た real は、「偽物や架空ではなく、実在する・本物である」という意味です。\n\na real person\n→ 実在する人物\n\na true story\n→ 実話\n\nreal\n→ 実在する、本物である\n\ntrue\n→ 内容が事実と一致している\n\n日本語ではどちらも「本当の」と訳せることがありますが、見るポイントが違います。\n\nまた、That's true. は会話でとてもよく使われ、「それは確かにそうだね」という相づちにもなります。",
+          "meanings": [
+            {
+              "meaning": "本当の・事実である",
+              "en": "Is it true that they're moving to another city?",
+              "ja": "彼ら、別の街に引っ越すって本当？"
+            },
+            {
+              "meaning": "確かにそうだ",
+              "en": "That's true, but I think there's more to the story.",
+              "ja": "それは確かにそうだけど、話にはまだ続きがあると思う。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "same",
+          "wordNote": "same は「同じ」という意味の形容詞です。\n\nthe same idea\n→ 同じ考え\n\nthe same person\n→ 同じ人\n\n名詞の前で使うときは、ふつう the same + 名詞 の形になります。\n\nWe chose the same color.\n→ 私たちは同じ色を選んだ。\n\nまた、the same as ～ で「～と同じ」という意味になります。\n\nMy answer is the same as yours.\n→ 私の答えは君のと同じです。\n\n会話では次の表現もよく使います。\n\nI feel the same way.\n→ 私も同じように思う。\n\nSame here.\n→ 私も。／こっちも同じ。\n\nsame は単に物が同じというだけでなく、考えや気持ちが同じときにもよく使います。",
+          "meanings": [
+            {
+              "meaning": "同じ",
+              "en": "We ended up ordering the same thing without realizing it.",
+              "ja": "気づかないうちに、結局二人とも同じもの頼んでた。"
+            },
+            {
+              "meaning": "同じ気持ち・同じ考え",
+              "en": "I feel the same way. I just didn't know how to say it.",
+              "ja": "私も同じように思ってる。ただ、どう言えばいいか分からなかった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "sure",
+          "wordNote": "sure は「確信している」という意味の形容詞です。\n\nAre you sure?\n→ 本当に？／確かなの？\n\nI'm sure it'll be fine.\n→ きっと大丈夫だよ。\n\nbe sure that ... で「…だと確信している」という意味になります。\n\n一方、会話では Sure. が返事としてとてもよく使われます。\n\nSure.\n→ もちろん。／いいよ。\n\nSure, I can help.\n→ もちろん、手伝えるよ。\n\nこの場合の sure は、「確信している」と一語ずつ訳すより、相手の依頼や提案を自然に受け入れる返事だと考えると分かりやすいです。\n\nAre you sure? と Sure. はどちらも非常によく使う表現です。",
+          "meanings": [
+            {
+              "meaning": "確信している",
+              "en": "Are you sure this is the right address?",
+              "ja": "本当にこの住所で合ってる？"
+            },
+            {
+              "meaning": "もちろん・いいよ",
+              "en": "Sure, I can help you with that.",
+              "ja": "もちろん、それなら手伝えるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "good",
+          "wordNote": "good は「良い」という意味の非常に基本的な形容詞ですが、会話ではそれ以上に広く使われます。\n\nThat's a good idea.\n→ それ、いい考えだね。\n\nまた、I'm good. は文脈によって「大丈夫」「もう結構です」という意味になります。\n\nDo you want some more coffee?\n— I'm good, thanks.\n→ コーヒーもう少しいる？\n— 大丈夫、ありがとう。\n\nここでの I'm good. は、「私は良い人です」という意味ではありません。\n\n「今の状態で十分」「特に必要ない」という感覚です。\n\nI'm good.\n→ 大丈夫だよ。／もう結構です。\n\nWe're good.\n→ 大丈夫だよ。／問題ないよ。\n\ngood は単に「良い」と覚えるより、会話の中で「問題ない、これで十分」という意味にもなることを知っておくと、とても使いやすくなります。",
+          "meanings": [
+            {
+              "meaning": "良い",
+              "en": "That sounds like a good idea.",
+              "ja": "それ、いい考えだね。"
+            },
+            {
+              "meaning": "大丈夫な・もう十分な",
+              "en": "I'm good, thanks. I don't need anything else.",
+              "ja": "大丈夫、ありがとう。もう他にはいらないよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "bad",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "悪い・ひどい",
+              "en": "The traffic was really bad this morning.",
+              "ja": "今朝は渋滞がひどかった。"
+            },
+            {
+              "meaning": "申し訳なく思っている",
+              "en": "I feel bad about canceling at the last minute.",
+              "ja": "直前にキャンセルしちゃって申し訳なく思ってる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "cool",
+          "wordNote": "cool は「涼しい」という意味の形容詞です。\n\na cool evening\n→ 涼しい夕方\n\nまた、日常会話では「かっこいい、いいね」という意味でもよく使います。\n\nThat's cool.\n→ いいね。／かっこいいね。\n\nさらに、be cool with ～ で「～で構わない、～に賛成だ」という意味になります。\n\nI'm cool with that.\n→ 私はそれでいいよ。\n\nAre you cool with meeting at six?\n→ 6時に会うので大丈夫？\n\nこの cool は、温度の「涼しい」とは関係なく、「その案に抵抗がない、問題ない」という会話表現です。\n\nかなりカジュアルな表現なので、友人同士など気軽な会話でよく使われます。",
+          "meanings": [
+            {
+              "meaning": "涼しい",
+              "en": "It's finally cool enough to open the windows.",
+              "ja": "やっと窓を開けられるくらい涼しくなったね。"
+            },
+            {
+              "meaning": "それで構わない・いいと思う",
+              "en": "I'm cool with that if everyone else agrees.",
+              "ja": "みんなが賛成なら、私はそれでいいよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "single",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "一つだけの・一人の",
+              "en": "There wasn't a single empty seat on the train.",
+              "ja": "電車には空席が一つもなかった。"
+            },
+            {
+              "meaning": "一つ残らず・毎回",
+              "en": "She checks every single detail before she sends anything.",
+              "ja": "彼女は何か送る前に、細かいところまで一つ残らず確認する。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "whole",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "全体の・全部の",
+              "en": "I spent the whole afternoon looking for that file.",
+              "ja": "午後ずっと、そのファイルを探してた。"
+            },
+            {
+              "meaning": "ずっと",
+              "en": "He knew the answer the whole time and didn't tell us.",
+              "ja": "彼、最初からずっと答えを知ってたのに教えてくれなかった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "proper",
+          "wordNote": "proper は「適切な、ふさわしい」という意味の形容詞ですが、日常会話では「ちゃんとした、まともな」という意味でもよく使います。\n\nthe proper way\n→ 適切な方法\n\nthe proper tools\n→ その作業に必要な、ちゃんとした道具\n\nまた、次のような使い方もよくあります。\n\na proper meal\n→ ちゃんとした食事\n\na proper break\n→ きちんとした休憩\n\nI haven't had a proper meal all day.\n→ 今日、一日まともな食事してないんだ。\n\n「適切な」と覚えると少し硬く感じますが、会話では「ちゃんとした」「それらしい」「必要なものがきちんとそろった」という感覚で使われることがあります。\n\nproper は文脈によって、辞書の訳よりぐっと日常的な日本語になる語です。",
+          "meanings": [
+            {
+              "meaning": "適切な・正式な",
+              "en": "You need the proper tools for this job.",
+              "ja": "この作業にはちゃんとした道具が必要だよ。"
+            },
+            {
+              "meaning": "ちゃんとした・まともな",
+              "en": "I haven't had a proper meal all day.",
+              "ja": "今日、一日まともな食事してないんだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "off",
+          "wordNote": "off はとても基本的な語ですが、形容詞的に「いつもと違う、何か変だ」という意味でもよく使います。\n\nSomething feels off.\n→ なんか変だ。\n\nSomething seems off about him today.\n→ 今日の彼、なんかいつもと違う。\n\nこの off は、「正しい位置や状態から少し外れている」という感覚です。\n\nそのため、はっきり原因は分からないけれど、何となく違和感があるときに使えます。\n\nまた、食べ物について off を使うと、「傷んでいる、変なにおいや味がする」という意味になることがあります。\n\nThis milk smells a little off.\n→ この牛乳、ちょっと変なにおいがする。\n\nSomething feels off. は、「理由は説明できないけど、なんか変」というときにとても便利な表現です。",
+          "meanings": [
+            {
+              "meaning": "普段と違う・何か変な",
+              "en": "Something feels off today, but I can't explain what it is.",
+              "ja": "今日なんか変なんだけど、何がおかしいのか説明できない。"
+            },
+            {
+              "meaning": "傷んでいる・状態がおかしい",
+              "en": "This milk smells a little off. I wouldn't drink it.",
+              "ja": "この牛乳ちょっと変なにおいする。飲まない方がいいよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "equal",
+          "wordNote": "equal は「等しい、平等な」という意味の形容詞です。\n\nfour equal pieces\n→ 同じ大きさの4つ\n\nan equal chance\n→ 平等な機会\n\nsame と似ていますが、意味は同じではありません。\n\nsame\n→ 同一である、同じものである\n\nequal\n→ 数・量・価値・権利などが等しい\n\nTwo boxes can be equal in weight without being the same size.\n→ 2つの箱は、大きさが違っても重さが同じことがあります。\n\nつまり equal は「すべてが同じ」というより、比べている点について差がないという感覚です。",
+          "meanings": [
+            {
+              "meaning": "等しい・同じ量の",
+              "en": "We divided the cake into four equal pieces.",
+              "ja": "ケーキを4つの同じ大きさに分けた。"
+            },
+            {
+              "meaning": "平等な",
+              "en": "Everyone should have an equal chance to speak.",
+              "ja": "誰にでも平等に発言する機会があるべきだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "foreign",
+          "wordNote": "foreign は「外国の、外国からの」という意味の形容詞です。\n\na foreign language\n→ 外国語\n\nforeign travel\n→ 海外旅行\n\nまた、「自分にはなじみがない、未知の」という意味でも使います。\n\nThe whole process was foreign to me.\n→ その手順は私にはまったくなじみがなかった。\n\nforeign の中心には、「自分の国・環境・経験の外にある」という感覚があります。\n\n人について foreign people と言うことも文法的にはできますが、文脈によっては「自分たちとは別の外部の人たち」という距離を感じさせることがあります。\n\n単に「他の国の人々」と言いたい場合は、\n\npeople from other countries\n→ 他の国から来た人々\n\nのように言う方が、より中立的で自然な場面も多くあります。\n\nforeign は便利な語ですが、特に人について使うときは、何を「外国の」と表したいのかを意識するとよいでしょう。",
+          "meanings": [
+            {
+              "meaning": "外国の",
+              "en": "She speaks three foreign languages.",
+              "ja": "彼女は外国語を3か国語話せる。"
+            },
+            {
+              "meaning": "なじみのない・未知の",
+              "en": "The whole process was completely foreign to me.",
+              "ja": "その手順は私にはまったくなじみのないものだった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "strong",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "強い",
+              "en": "He's strong enough to lift that box by himself.",
+              "ja": "彼ならその箱を一人で持ち上げられるくらい力がある。"
+            },
+            {
+              "meaning": "濃い・強烈な",
+              "en": "This coffee is a little too strong for me.",
+              "ja": "このコーヒー、私にはちょっと濃すぎる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "weak",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "弱い",
+              "en": "My legs still feel weak after the long hike.",
+              "ja": "長く歩いたあとで、まだ脚に力が入らない。"
+            },
+            {
+              "meaning": "弱い・不十分な",
+              "en": "The signal is too weak to make a call from here.",
+              "ja": "ここだと電波が弱すぎて電話できない。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "rich",
+          "wordNote": "rich は「裕福な」という意味だけでなく、「濃厚な、豊かな」という意味でも使います。\n\na rich family\n→ 裕福な家庭\n\na rich sauce\n→ 濃厚なソース\n\na rich flavor\n→ 豊かな味わい\n\nまた、be rich in ～ で「～を豊富に含んでいる」という意味になります。\n\nThis food is rich in protein.\n→ この食べ物はたんぱく質を豊富に含んでいます。\n\nrich の中心には、「たくさん持っている、内容が豊かである」という感覚があります。\n\nお金だけでなく、味・色・栄養などにも広く使える語です。",
+          "meanings": [
+            {
+              "meaning": "裕福な",
+              "en": "He grew up in a rich family, but he rarely talks about it.",
+              "ja": "彼は裕福な家庭で育ったけど、そのことはほとんど話さない。"
+            },
+            {
+              "meaning": "濃厚な・豊かな",
+              "en": "The sauce is rich, so you don't need very much of it.",
+              "ja": "このソースは濃厚だから、そんなにたくさんいらないよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "poor",
+          "wordNote": "poor は「貧しい」という意味だけでなく、「質が悪い、不十分な」という意味でもよく使います。\n\na poor family\n→ 貧しい家庭\n\npoor sound quality\n→ 悪い音質\n\npoor communication\n→ 不十分な意思疎通\n\npoor performance\n→ 振るわない成績・性能\n\nこの場合の poor は、お金がないという意味ではなく、「期待される水準に達していない」という感覚です。\n\nまた、人や動物について poor を使うと、「かわいそうな、気の毒な」という意味になることがあります。\n\nOh, poor boy!\n→ あらら、かわいそうに。\n\nYou poor thing!\n→ まあ、大変だったね。／かわいそうに。\n\nこの poor は「貧しい」という意味ではなく、つらい目に遭った相手への同情を表しています。\n\npoor は文脈によって、「貧しい」「質が悪い」「かわいそうな」と意味が変わるので、前後の状況を見ることが大切です。",
+          "meanings": [
+            {
+              "meaning": "貧しい",
+              "en": "The family was poor, but they always helped their neighbors.",
+              "ja": "その家族は裕福ではなかったけど、いつも近所の人を助けていた。"
+            },
+            {
+              "meaning": "質が悪い・不十分な",
+              "en": "The sound quality is pretty poor on this recording.",
+              "ja": "この録音、音質がかなり悪い。"
+            },
+            {
+              "meaning": "かわいそうな・気の毒な",
+              "en": "Oh, poor boy! He dropped his ice cream before he even got a bite.",
+              "ja": "あらら、かわいそうに！一口も食べないうちにアイス落としちゃったんだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "regular",
+          "wordNote": "regular は「通常の、いつもの」という意味の形容詞です。\n\nthe regular size\n→ 普通サイズ\n\na regular meeting\n→ 定例の会議\n\nまた、人について使うと「常連の」という意味にもなります。\n\na regular customer\n→ 常連客\n\nHe's a regular here.\n→ 彼はここの常連だよ。\n\nregular の中心には、「特別ではなく、いつもの形・繰り返し現れる」という感覚があります。\n\n日本語の「レギュラー」はスポーツの正選手を思い浮かべやすいですが、英語では「普段の」「定期的な」「常連の」など非常に広く使われます。",
+          "meanings": [
+            {
+              "meaning": "普段の・通常の",
+              "en": "I'll have the regular size, not the large one.",
+              "ja": "大きい方じゃなくて普通サイズにする。"
+            },
+            {
+              "meaning": "常連の",
+              "en": "She's a regular customer, so everyone here knows her.",
+              "ja": "彼女は常連だから、ここの人はみんな彼女を知ってる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "natural",
+          "wordNote": "natural は「自然の、天然の」という意味だけでなく、「不自然ではない」という意味でも使います。\n\nnatural light\n→ 自然光\n\nnatural ingredients\n→ 天然の材料\n\n英語についてもよく使われます。\n\nThat sentence sounds natural.\n→ その文は自然に聞こえる。\n\nIt is grammatically correct, but it doesn't sound natural.\n→ 文法的には正しいけれど、自然な英語には聞こえない。\n\nつまり、correct は「規則として正しい」、natural は「実際にそのように言うのが自然」という違いがあります。\n\n英語では、文法的に間違っていなくても natural ではない表現があります。\n\n英語を「正しいか」だけでなく「実際にそう言うか」で見るときに、とても便利な語です。",
+          "meanings": [
+            {
+              "meaning": "自然の・天然の",
+              "en": "The room gets plenty of natural light in the morning.",
+              "ja": "この部屋、朝は自然光がたっぷり入る。"
+            },
+            {
+              "meaning": "自然な・不自然でない",
+              "en": "The sentence is grammatically correct, but it doesn't sound very natural.",
+              "ja": "その文、文法的には合ってるけど、あまり自然には聞こえない。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "wild",
+          "wordNote": "wild は「野生の」という意味の形容詞です。\n\na wild animal\n→ 野生動物\n\nただし、日常会話では「大胆な、根拠がほとんどない」という意味にも広がります。\n\na wild guess\n→ 当てずっぽう\n\nThis is just a wild guess, but ...\n→ 完全に当てずっぽうなんだけど……\n\nwild guess は、十分な情報や根拠がなく、とりあえず推測してみるときによく使います。\n\nまた、That's wild. のように会話で使うと、\n\n→ すごいね。／それはとんでもないね。\n\nのように、普通ではないことへの驚きを表すこともあります。\n\nwild は「飼いならされていない、普通の範囲に収まっていない」という感覚から、さまざまな意味に広がっています。",
+          "meanings": [
+            {
+              "meaning": "野生の",
+              "en": "We saw a wild deer near the road.",
+              "ja": "道の近くで野生の鹿を見た。"
+            },
+            {
+              "meaning": "当てずっぽうの・大胆な",
+              "en": "This is just a wild guess, but I think she's going to say yes.",
+              "ja": "完全に当てずっぽうだけど、彼女はOKする気がする。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "plain",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "飾り気のない・シンプルな",
+              "en": "I prefer plain shirts without logos or patterns.",
+              "ja": "ロゴや柄のないシンプルなシャツの方が好き。"
+            },
+            {
+              "meaning": "味のついていない・プレーンな",
+              "en": "I usually buy plain yogurt and add fruit myself.",
+              "ja": "普段はプレーンヨーグルトを買って、自分で果物を入れてる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "bright",
+          "wordNote": "bright は「明るい」という意味の形容詞ですが、光の明るさだけに使う語ではありません。\n\na bright room\n→ 明るい部屋\n\n人について bright と言うと、「頭のよい、理解が速い」という意味になります。\n\nShe's very bright.\n→ 彼女はとても頭がいい。\n\nsmart と似ていますが、bright には「理解が速い、知的な力がある」という感じがあります。\n\nまた、未来や見通しについて使うと「明るい、有望な」という意味になります。\n\na bright future\n→ 明るい未来\n\nThe future looks bright.\n→ 先行きは明るそうだ。\n\nbright の中心にある「明るさ」が、光だけでなく、知性や将来への期待にも広がっています。\n\nさらに bright idea は「いいアイデア、うまい考え」という意味ですが、\n\nWhose bright idea was this?\n→ これ誰の名案だったの？\n\nのように、言い方によっては皮肉で「誰がこんなこと考えたんだよ」という意味になることもあります。",
+          "meanings": [
+            {
+              "meaning": "明るい",
+              "en": "This room is bright even on cloudy days.",
+              "ja": "この部屋、曇りの日でも明るいんだ。"
+            },
+            {
+              "meaning": "頭のよい・理解が速い",
+              "en": "She's very bright and picks up new ideas quickly.",
+              "ja": "彼女は頭の回転が速くて、新しいこともすぐ理解する。"
+            },
+            {
+              "meaning": "明るい・有望な",
+              "en": "He has a bright future ahead of him.",
+              "ja": "彼には明るい未来が待っている。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "smart",
+          "wordNote": "smart は「頭のよい、賢い」という意味の形容詞です。\n\na smart student\n→ 頭のよい生徒\n\nただし、人そのものだけでなく、判断や方法についてもよく使います。\n\na smart decision\n→ 賢い判断\n\na smart move\n→ うまい判断・気の利いた行動\n\nbright と似ていますが、\n\nbright\n→ 理解が速い、知的な力がある\n\nsmart\n→ 頭がよく、判断や行動もうまい\n\nという違いが出ることがあります。\n\nThat's a smart idea.\n→ それ、うまい考えだね。\n\nのように、日常会話でもよく使われます。",
+          "meanings": [
+            {
+              "meaning": "頭のよい・賢い",
+              "en": "She's smart enough to notice when something doesn't add up.",
+              "ja": "彼女は、話のつじつまが合わないとちゃんと気づくくらい頭がいい。"
+            },
+            {
+              "meaning": "賢い・気の利いた",
+              "en": "That was a smart way to solve the problem.",
+              "ja": "それ、うまい問題の解き方だったね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "dark",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "暗い",
+              "en": "It gets dark really early here in winter.",
+              "ja": "ここ、冬は本当に日が暮れるの早いね。"
+            },
+            {
+              "meaning": "重い・陰鬱な",
+              "en": "The movie gets pretty dark toward the end.",
+              "ja": "その映画、後半になるとかなり重い展開になるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "warm",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "暖かい",
+              "en": "It's warm enough to sit outside today.",
+              "ja": "今日は外に座っていられるくらい暖かいね。"
+            },
+            {
+              "meaning": "温かみのある・親しみのある",
+              "en": "She gave me a warm welcome when I arrived.",
+              "ja": "着いたとき、彼女はとても温かく迎えてくれた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "cold",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "冷たい・寒い",
+              "en": "My hands are freezing. It's colder than I expected.",
+              "ja": "手が凍えそう。思ってたより寒いよ。"
+            },
+            {
+              "meaning": "よそよそしい・冷淡な",
+              "en": "His reply sounded a little cold.",
+              "ja": "彼の返事、ちょっとよそよそしく聞こえた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "hot",
+          "wordNote": "hot は「熱い、暑い」という意味の形容詞ですが、食べ物について「辛い」という意味でも使います。\n\na hot drink\n→ 熱い飲み物\n\nThis salsa is too hot for me.\n→ このサルサ、私には辛すぎる。\n\n食べ物の hot は、口の中が熱く感じるような辛さを表すことがあります。\n\nspicy も「辛い」と訳されることがありますが、spicy はもともと「香辛料が効いている」という意味です。\n\nspicy food\n→ 香辛料の効いた食べ物\n\nhot food\n→ 辛さが強い食べ物\n\n実際の会話では spicy も「辛い」という意味でよく使われますが、hot は特に舌がヒリヒリするような辛さを表せます。\n\nさらに hot は、日常では「今とても話題の、人気の」という意味にも使われます。\n\na hot restaurant\n→ 今話題のレストラン\n\na hot topic\n→ 注目を集めている話題・議論の熱い話題\n\n温度が高いという感覚から、辛さや、人々の関心・人気が高まっているものにも意味が広がっています。\n\nただし hot は文脈によって「魅力的な」という意味になることもあるので、何について使われているかを見ることが大切です。",
+          "meanings": [
+            {
+              "meaning": "熱い・暑い",
+              "en": "Be careful. The soup is still really hot.",
+              "ja": "気をつけて。スープまだすごく熱いよ。"
+            },
+            {
+              "meaning": "辛い",
+              "en": "This salsa is too hot for me.",
+              "ja": "このサルサ、私には辛すぎる。"
+            },
+            {
+              "meaning": "話題の・人気の",
+              "en": "That restaurant is really hot right now, so it's hard to get a table.",
+              "ja": "あのレストラン今すごく話題だから、なかなか席が取れない。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "sweet",
+          "wordNote": "sweet は「甘い」という意味だけでなく、人の行動について「優しい、思いやりのある」という意味でもよく使います。\n\na sweet dessert\n→ 甘いデザート\n\na sweet person\n→ 優しい人・感じのいい人\n\n特に、\n\nThat's so sweet of you.\n→ そんなことしてくれるなんて、本当に優しいね。\n\nは日常会話でよく使う表現です。\n\nこの sweet は、単に性格が「甘い」という意味ではなく、相手の親切な行動や心遣いに対して使います。\n\n「甘くて心地よい」という感覚が、人の優しさや愛らしさにも広がっていると考えると分かりやすいです。",
+          "meanings": [
+            {
+              "meaning": "甘い",
+              "en": "This tea is a little too sweet for me.",
+              "ja": "この紅茶、私にはちょっと甘すぎる。"
+            },
+            {
+              "meaning": "優しい・思いやりのある",
+              "en": "That was really sweet of you to remember my wedding anniversary.",
+              "ja": "結婚記念日を覚えててくれたなんて、本当に優しいね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "mean",
+          "wordNote": "mean は動詞では「意味する」という意味でよく知られていますが、形容詞では「意地悪な、ひどい」という意味になります。\n\nWhat does this word mean?\n→ この単語はどういう意味？\n\nこれは動詞です。\n\n一方、\n\nThat was mean.\n→ それは意地悪だったよ。／それはひどいよ。\n\nの mean は形容詞です。\n\nbe mean to 人 で「人に意地悪する、冷たく当たる」という意味になります。\n\nDon't be mean to him.\n→ 彼に意地悪しないで。\n\n同じつづりでも、品詞によって意味が大きく変わるので注意しましょう。",
+          "meanings": [
+            {
+              "meaning": "意地悪な",
+              "en": "That was a mean thing to say.",
+              "ja": "そんなこと言うなんて意地悪だよ。"
+            },
+            {
+              "meaning": "ひどい・冷たく当たる",
+              "en": "Don't be mean to your brother. He didn't do anything wrong.",
+              "ja": "弟に意地悪しないの。何も悪いことしてないでしょ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "nice",
+          "wordNote": null,
+          "meanings": [
+            {
+              "meaning": "良い・感じのよい",
+              "en": "We had a really nice time at the café.",
+              "ja": "そのカフェですごく楽しい時間を過ごしたよ。"
+            },
+            {
+              "meaning": "親切な",
+              "en": "It was nice of him to offer to help.",
+              "ja": "手伝おうって言ってくれたの、彼親切だったね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "solid",
+          "wordNote": "solid は「固体の、しっかりした」という意味の形容詞です。\n\nsolid wood\n→ 無垢材・中まで木でできた木材\n\nただし、日常会話では計画・考え・仕事などについて「しっかりした、堅実な、信頼できる」という意味でもよく使います。\n\na solid plan\n→ しっかりした計画\n\nsolid advice\n→ 信頼できる助言\n\na solid performance\n→ 安定したよい出来\n\nThat's a solid idea.\n→ それ、ちゃんとした考えだね。\n\n物が「ぐらつかず、しっかりしている」という感覚が、考えや仕事の質にも広がっています。\n\n「最高！」というより、「土台がしっかりしていて信頼できる」という評価に向いている語です。",
+          "meanings": [
+            {
+              "meaning": "固い・中身が詰まった",
+              "en": "The table is made from solid wood.",
+              "ja": "そのテーブルは無垢材でできている。"
+            },
+            {
+              "meaning": "しっかりした・堅実な",
+              "en": "That's a solid plan. I think it'll work.",
+              "ja": "それ、しっかりした計画だね。うまくいくと思う。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "exact",
+          "wordNote": "exact は「正確な」という意味ですが、accurate や precise とは少し焦点が違います。\n\naccurate\n→ 事実や正しい値と合っている\n\nprecise\n→ 細かいところまで明確で正確\n\nexact\n→ ずれがなく、ぴったり一致している\n\nthe exact time\n→ 正確にその時刻\n\nthe exact same thing\n→ まったく同じもの\n\nexact には「ほぼ同じ」ではなく、「まさにそれ」という感覚があります。",
+          "meanings": [
+            {
+              "meaning": "正確な・ぴったり一致する",
+              "en": "Do you remember the exact time the train left?",
+              "ja": "電車が出た正確な時刻、覚えてる？"
+            },
+            {
+              "meaning": "まさにその・まったく同じ",
+              "en": "That's the exact same problem I had last week.",
+              "ja": "それ、先週私が困ってたのとまったく同じ問題だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "thrilling",
+          "wordNote": "thrilling は「わくわくする、胸が高鳴るような」という意味の形容詞です。\n\n日本語の「スリリング」は、「怖い、危険でハラハラする」という意味で使われることが多いですが、英語の thrilling に怖さは必須ではありません。\n\na thrilling game\n→ 手に汗握る試合\n\na thrilling performance\n→ 胸が高鳴るような素晴らしい演奏\n\na thrilling finish\n→ 最後まで興奮する展開\n\nthrilling の中心にあるのは、「強い興奮や高揚感を感じさせる」という感覚です。\n\n危険な場面について使うこともありますが、スポーツ・音楽・物語など、純粋にわくわくするものにも使えます。\n\nscary\n→ 怖い\n\nthrilling\n→ 興奮して胸が高鳴る\n\nなので、thrilling = scary ではありません。",
+          "meanings": [
+            {
+              "meaning": "わくわくする・胸が高鳴る",
+              "en": "It was a thrilling performance from beginning to end.",
+              "ja": "最初から最後まで、胸が高鳴るような素晴らしい演奏だった。"
+            },
+            {
+              "meaning": "手に汗握る・興奮させる",
+              "en": "It was a thrilling finish to the game.",
+              "ja": "試合は最後まで手に汗握る展開だった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "tight",
+          "wordNote": "tight は「締まっている、きつい」という意味から、時間やお金に「余裕がない」という意味にも広がります。\n\ntight jeans\n→ ぴったりしたジーンズ\n\na tight schedule\n→ 余裕のないスケジュール\n\na tight budget\n→ 限られた予算\n\n物理的に「隙間がない」という感覚が、時間やお金の余裕のなさにもつながっています。",
+          "meanings": [
+            {
+              "meaning": "きつい・ぴったりしている",
+              "en": "These shoes are a little too tight around the toes.",
+              "ja": "この靴、つま先のあたりがちょっときつい。"
+            },
+            {
+              "meaning": "余裕のない",
+              "en": "We're on a tight schedule today.",
+              "ja": "今日はかなり時間に余裕がないんだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "loose",
+          "wordNote": "loose は tight の反対で、「締まっていない、ゆるい」が基本です。\n\na loose screw\n→ ゆるんだネジ\n\nloose clothing\n→ ゆったりした服\n\nさらに、計画やルールについて使うと「細かく決まっていない、大まかな」という意味になります。\n\na loose plan\n→ 大まかな予定\n\n「きっちり固定されていない」という感覚が共通しています。",
+          "meanings": [
+            {
+              "meaning": "ゆるい・しっかり固定されていない",
+              "en": "One of the buttons on my coat is loose.",
+              "ja": "コートのボタンが一つ取れかけてる。"
+            },
+            {
+              "meaning": "大まかな・厳密でない",
+              "en": "We only have a loose plan for the weekend.",
+              "ja": "週末はだいたいの予定しか決めてないよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "smooth",
+          "wordNote": "smooth は、表面にでこぼこがなく「なめらか」という意味です。\n\nそこから、物事が引っかからず進むことにも使います。\n\na smooth transition\n→ スムーズな移行\n\na smooth process\n→ 滞りなく進む手順\n\n日本語の「スムーズ」とかなり近いですが、英語では人の話し方や動きについても「滑らかで自然な」という意味で使えます。",
+          "meanings": [
+            {
+              "meaning": "なめらかな",
+              "en": "The surface feels smooth after you polish it.",
+              "ja": "磨くと表面がすべすべになるよ。"
+            },
+            {
+              "meaning": "順調な・問題のない",
+              "en": "It was a smooth transition to the new system.",
+              "ja": "新しいシステムへの移行は順調だった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "raw",
+          "wordNote": "raw は「まだ加工されていない」という感覚を持つ語です。\n\nraw meat\n→ 生肉\n\nraw data\n→ 加工前のデータ\n\nraw materials\n→ 原材料\n\nさらに、\n\nraw emotion\n→ むき出しの感情\n\nのように、感情が整理・抑制されていない状態にも使います。\n\n日本語の「生の」に近い広がりを持っています。",
+          "meanings": [
+            {
+              "meaning": "生の・加熱していない",
+              "en": "You shouldn't eat raw chicken.",
+              "ja": "生の鶏肉は食べない方がいいよ。"
+            },
+            {
+              "meaning": "加工されていない・そのままの",
+              "en": "Let's look at the raw data before drawing any conclusions.",
+              "ja": "結論を出す前に、まず生のデータを見よう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "odd",
+          "wordNote": "odd は「奇数の」という意味だけでなく、日常会話では「変な、妙な」という意味でもよく使います。\n\nan odd number\n→ 奇数\n\nThat's odd.\n→ 変だな。／おかしいな。\n\nstrange よりも軽く、「なんかいつもと違う」「ちょっと妙だ」と感じたときにも使えます。\n\n数字の意味だけで覚えていると、会話で意外と見落としやすい語です。",
+          "meanings": [
+            {
+              "meaning": "奇数の",
+              "en": "Nine is an odd number.",
+              "ja": "9は奇数です。"
+            },
+            {
+              "meaning": "変な・妙な",
+              "en": "That's odd. I was sure I left my keys here.",
+              "ja": "おかしいな。鍵ここに置いたはずなんだけど。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "even",
+          "wordNote": "even は「偶数の」だけでなく、「平らな、均一な」という意味もあります。\n\nan even number\n→ 偶数\n\nan even surface\n→ 平らな表面\n\nan even layer\n→ 均一な層\n\n「でこぼこや偏りがなく、均等になっている」という感覚が中心です。\n\neven には副詞で「～さえ、さらに」という非常によく使う意味もありますが、それは形容詞とは別の使い方です。",
+          "meanings": [
+            {
+              "meaning": "偶数の",
+              "en": "Ten is an even number.",
+              "ja": "10は偶数です。"
+            },
+            {
+              "meaning": "平らな・均一な",
+              "en": "Make sure the surface is even before you put the shelf on it.",
+              "ja": "棚を置く前に、表面が平らか確認してね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "live",
+          "wordNote": "形容詞の live は /laɪv/ と発音し、「生放送の、生演奏の」という意味になります。\n\na live broadcast\n→ 生放送\n\nlive music\n→ 生演奏\n\n一方、\n\nI live in Tokyo.\n→ 私は東京に住んでいます。\n\nの動詞 live は /lɪv/ と発音します。\n\nつづりは同じでも、品詞によって発音が変わるので注意しましょう。",
+          "meanings": [
+            {
+              "meaning": "生放送の",
+              "en": "We're watching a live broadcast of the match.",
+              "ja": "その試合の生放送を見てる。"
+            },
+            {
+              "meaning": "生演奏の・ライブの",
+              "en": "There's live music at the café on Friday nights.",
+              "ja": "そのカフェ、金曜の夜は生演奏があるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "mild",
+          "wordNote": "mild は「強すぎない、程度が穏やかな」という意味の形容詞です。\n\nmild weather\n→ 穏やかな気候\n\nmild symptoms\n→ 軽い症状\n\na mild flavor\n→ 刺激の強くない味\n\n食べ物では「辛さが控えめな」という意味でもよく使います。\n\nmild curry\n→ 辛さ控えめのカレー\n\n日本語の「マイルド」は味について使う印象が強いですが、英語では天候・症状・性格などにも広く使われます。",
+          "meanings": [
+            {
+              "meaning": "穏やかな・軽度の",
+              "en": "The symptoms were mild, so she rested at home.",
+              "ja": "症状は軽かったので、彼女は家で休んだ。"
+            },
+            {
+              "meaning": "辛さや味が穏やかな",
+              "en": "I ordered the mild curry, but it's still pretty spicy.",
+              "ja": "甘口を頼んだけど、それでも結構辛い。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "false",
+          "wordNote": "false は「事実ではない、正しくない」という意味の形容詞です。\n\nfalse information\n→ 誤った情報\n\na false alarm\n→ 誤報・空騒ぎ\n\na false impression\n→ 誤った印象\n\nfake も「偽物の」と訳されますが、\n\nfalse\n→ 正しくない、事実ではない\n\nfake\n→ 本物のふりをして作られた偽物\n\nという違いがあります。\n\nfalse information は「内容が事実ではない情報」、a fake document は「本物に見せかけて作った偽造書類」のように使えます。",
+          "meanings": [
+            {
+              "meaning": "誤った・事実でない",
+              "en": "The report was based on false information.",
+              "ja": "その報告は誤った情報に基づいていた。"
+            },
+            {
+              "meaning": "偽の・本当ではない",
+              "en": "It turned out to be a false alarm.",
+              "ja": "結局、それは誤報だった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "following",
+          "wordNote": "following は follow からできた語ですが、形容詞では「次の、その後の」という意味でよく使います。\n\nthe following questions\n→ 次の質問\n\nthe following day\n→ 翌日\n\nthe following year\n→ 翌年\n\n特に the following ～ の形でよく使われます。\n\nSNSなどの「フォローしている」という意味だけでなく、「何かに続いて来る」という follow 本来の感覚からできた表現です。",
+          "meanings": [
+            {
+              "meaning": "次の・以下の",
+              "en": "Please answer the following questions.",
+              "ja": "次の質問に答えてください。"
+            },
+            {
+              "meaning": "その次の・その後の",
+              "en": "Sales increased again in the following year.",
+              "ja": "翌年、売上はさらに増えた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "lazy",
+          "wordNote": "lazy は人について使うと「怠けた、面倒くさがる」という意味になります。\n\nHe's lazy.\n→ 彼は怠け者だ。\n\nただし、\n\na lazy Sunday\n→ のんびり過ごす日曜日\n\na lazy afternoon\n→ 何もせずゆったり過ごす午後\n\nのように、時間について使うと必ずしも悪い意味ではありません。\n\n「何かを頑張ってする必要がなく、ゆったりしている」という感じです。",
+          "meanings": [
+            {
+              "meaning": "怠けた・怠惰な",
+              "en": "I'm feeling lazy today, so I don't want to cook.",
+              "ja": "今日はだらけたい気分で、料理したくない。"
+            },
+            {
+              "meaning": "のんびりした・ゆったりした",
+              "en": "We spent a lazy Sunday at home.",
+              "ja": "日曜日は家でのんびり過ごした。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "dead",
+          "wordNote": "dead は「死んでいる」という意味ですが、機械や電池などが完全に動かない状態にもよく使います。\n\nMy phone is dead.\n→ スマホの電池が切れた。\n\nThe battery is dead.\n→ バッテリーが上がっている・電池が切れている。\n\n日本語では「死んでいる」と訳さない場面でも、英語では「もう働かない」という感覚で dead が使われます。",
+          "meanings": [
+            {
+              "meaning": "死んでいる",
+              "en": "The bird was already dead when we found it.",
+              "ja": "見つけたとき、その鳥はもう死んでいた。"
+            },
+            {
+              "meaning": "動かない・電池が切れている",
+              "en": "My phone is dead. Can I borrow your charger?",
+              "ja": "スマホの電池切れた。充電器借りてもいい？"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "present",
+          "wordNote": "形容詞の present には「現在の」と「その場にいる」という意味があります。\n\nmy present job\n→ 今の仕事\n\nEveryone was present.\n→ 全員その場にいた。\n\n名詞の present「プレゼント」と同じつづりなので、日本語話者には意外と見落としやすい語です。\n\npresent の中心には、「今ここにある、存在している」という感覚があります。",
+          "meanings": [
+            {
+              "meaning": "現在の・今の",
+              "en": "I'm happy with my present job.",
+              "ja": "今の仕事には満足してる。"
+            },
+            {
+              "meaning": "その場にいる・出席している",
+              "en": "Everyone was present at the meeting.",
+              "ja": "会議には全員出席していた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "missing",
+          "wordNote": "missing は「あるはずのものがそこにない」という感覚の語です。\n\na missing key\n→ 見つからない鍵\n\na missing page\n→ 抜けているページ\n\nSomething is missing.\n→ 何か足りない。／何か抜けている。\n\n物がなくなった場合だけでなく、説明・情報・材料などが不足しているときにも使えます。",
+          "meanings": [
+            {
+              "meaning": "見つからない・なくなった",
+              "en": "One page is missing from the book.",
+              "ja": "その本、1ページ抜けてる。"
+            },
+            {
+              "meaning": "欠けている・足りない",
+              "en": "Something seems to be missing from this explanation.",
+              "ja": "この説明、何か足りない気がする。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "due",
+          "wordNote": "due は、何かが「決められた時期に来ることになっている」という感覚を持つ語です。\n\nThe report is due on Friday.\n→ レポートは金曜日が締め切りです。\n\nThe train is due at six.\n→ 電車は6時に到着予定です。\n\na baby due in May\n→ 5月に生まれる予定の赤ちゃん\n\ndue to ～「～が原因で」という表現もありますが、それとは別に、due 単独で「期限・予定」を表す使い方も非常によく使われます。",
+          "meanings": [
+            {
+              "meaning": "期限である",
+              "en": "The report is due on Friday.",
+              "ja": "レポートの締め切りは金曜日だよ。"
+            },
+            {
+              "meaning": "到着・発生する予定である",
+              "en": "The train is due at six.",
+              "ja": "電車は6時到着予定です。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "last",
+          "wordNote": "last は「最後の」という意味だけでなく、「直前の、前回の」という意味でもよく使います。\n\nthe last train\n→ 最終電車\n\nour last meeting\n→ 前回の会合・前に会ったとき\n\nlast time\n→ 前回\n\n文脈によって「これで最後」なのか「いちばん最近の一回」なのかが変わります。",
+          "meanings": [
+            {
+              "meaning": "最後の",
+              "en": "This is the last train tonight.",
+              "ja": "これが今夜の最終電車だよ。"
+            },
+            {
+              "meaning": "前回の・この前の",
+              "en": "Our last meeting was in June.",
+              "ja": "前回会ったのは6月だった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "spare",
+          "wordNote": "spare は「今すぐ必要ではなく、余分に取ってある」という感覚の語です。\n\na spare key\n→ 予備の鍵・合鍵\n\na spare room\n→ 空いている部屋\n\nspare time\n→ 空き時間\n\n「不要」というより、「必要なときのために余っている・空いている」という感じです。",
+          "meanings": [
+            {
+              "meaning": "予備の",
+              "en": "Do you have a spare key?",
+              "ja": "合鍵ある？"
+            },
+            {
+              "meaning": "空いている・余った",
+              "en": "I read whenever I have some spare time.",
+              "ja": "時間が空いたときに本を読む。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "alive",
+          "wordNote": "alive は「生きている」という意味ですが、人や動植物だけに使うわけではありません。\n\nThe plant is still alive.\n→ その植物はまだ生きている。\n\nまた、場所や雰囲気について、\n\ncome alive\n→ 活気づく・生き生きしてくる\n\nという表現がよく使われます。\n\nThe city comes alive at night.\n→ 夜になると街が活気づく。\n\n「生命がある」という感覚から、場所・音楽・物語などが急に生き生きして感じられる状態にも意味が広がっています。",
+          "meanings": [
+            {
+              "meaning": "生きている",
+              "en": "The plant is still alive.",
+              "ja": "この植物まだ生きてる。"
+            },
+            {
+              "meaning": "活気のある・生き生きした",
+              "en": "The whole street comes alive at night.",
+              "ja": "夜になると、その通り全体が活気づく。"
             }
           ]
         },
