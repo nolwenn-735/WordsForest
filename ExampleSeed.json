@@ -630,18 +630,6 @@
         },
         {
           "pos": "adjective",
-          "word": "normal",
-          "wordNote": null,
-          "meanings": [
-            {
-              "meaning": "普通の・通常の",
-              "en": "It's normal to feel nervous before an important presentation.",
-              "ja": "大事なプレゼンの前に緊張するのは普通だよ。"
-            }
-          ]
-        },
-        {
-          "pos": "adjective",
           "word": "popular",
           "wordNote": null,
           "meanings": [
@@ -685,18 +673,6 @@
               "meaning": "疲れている",
               "en": "I'm too tired to cook tonight. Let's get something to take home.",
               "ja": "今夜は疲れすぎて料理する気力ないよ。何かテイクアウトしよう。"
-            }
-          ]
-        },
-        {
-          "pos": "adjective",
-          "word": "worried",
-          "wordNote": null,
-          "meanings": [
-            {
-              "meaning": "心配している",
-              "en": "I'm a little worried about the weather tomorrow. Our flight might be delayed.",
-              "ja": "明日の天気がちょっと心配。飛行機が遅れるかもしれない。"
             }
           ]
         },
@@ -2255,23 +2231,6 @@
         },
         {
           "pos": "adjective",
-          "word": "whole",
-          "wordNote": null,
-          "meanings": [
-            {
-              "meaning": "全体の・全部の",
-              "en": "I spent the whole afternoon looking for that file.",
-              "ja": "午後ずっと、そのファイルを探してた。"
-            },
-            {
-              "meaning": "ずっと",
-              "en": "He knew the answer the whole time and didn't tell us.",
-              "ja": "彼、最初からずっと答えを知ってたのに教えてくれなかった。"
-            }
-          ]
-        },
-        {
-          "pos": "adjective",
           "word": "proper",
           "wordNote": "proper は「適切な、ふさわしい」という意味の形容詞ですが、日常会話では「ちゃんとした、まともな」という意味でもよく使います。\n\nthe proper way\n→ 適切な方法\n\nthe proper tools\n→ その作業に必要な、ちゃんとした道具\n\nまた、次のような使い方もよくあります。\n\na proper meal\n→ ちゃんとした食事\n\na proper break\n→ きちんとした休憩\n\nI haven't had a proper meal all day.\n→ 今日、一日まともな食事してないんだ。\n\n「適切な」と覚えると少し硬く感じますが、会話では「ちゃんとした」「それらしい」「必要なものがきちんとそろった」という感覚で使われることがあります。\n\nproper は文脈によって、辞書の訳よりぐっと日常的な日本語になる語です。",
           "meanings": [
@@ -2996,6 +2955,846 @@
               "meaning": "活気のある・生き生きした",
               "en": "The whole street comes alive at night.",
               "ja": "夜になると、その通り全体が活気づく。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "funny",
+          "wordNote": "funny は「面白い、笑える」という意味だけでなく、「変な、妙な」という意味でもよく使います。\n\nThat's funny.\n→ おかしいな。／変だな。\n\nこの funny は、必ずしも「笑える」という意味ではありません。\n\nfunny smell\n→ 変なにおい\n\nfunny feeling\n→ 妙な感じ\n\n日常会話では、「何かいつもと違う」「ちょっと変だ」と感じたときにも使います。",
+          "meanings": [
+            {
+              "meaning": "おかしい・面白い",
+              "en": "That movie was much funnier than I expected.",
+              "ja": "あの映画、思ってたよりずっと面白かった。"
+            },
+            {
+              "meaning": "変な・妙な",
+              "en": "That's funny. I thought I left my phone right here.",
+              "ja": "おかしいな。スマホここに置いたと思ったんだけど。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "tough",
+          "wordNote": "tough は「丈夫な、簡単には壊れない」という意味から、「大変な、乗り越えるのが難しい」という意味にも広がります。\n\ntough material\n→ 丈夫な素材\n\na tough week\n→ 大変な一週間\n\na tough decision\n→ 難しい決断\n\ndifficult よりも、「精神的・体力的にきつい」「簡単には乗り越えられない」という感じが出ることがあります。\n\nThat's tough.\n→ それは大変だね。",
+          "meanings": [
+            {
+              "meaning": "丈夫な・簡単には壊れない",
+              "en": "This material is light but surprisingly tough.",
+              "ja": "この素材、軽いのに意外と丈夫なんだ。"
+            },
+            {
+              "meaning": "大変な・厳しい",
+              "en": "It's been a tough week.",
+              "ja": "今週は大変だったよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "sorry",
+          "wordNote": "sorry は謝るときだけの語ではありません。\n\nI'm sorry.\n→ ごめんなさい。\n\nだけでなく、相手のつらい出来事を聞いて「気の毒に思う、残念に思う」という気持ちも表します。\n\nI'm sorry to hear that.\n→ それは残念だったね。／それは大変だったね。\n\nこの場合、自分が原因でなくても sorry を使えます。\n\nsorry の中心には、「その状況を残念に思う」という感覚があります。",
+          "meanings": [
+            {
+              "meaning": "申し訳なく思って",
+              "en": "I'm sorry I'm late.",
+              "ja": "遅れてごめん。"
+            },
+            {
+              "meaning": "気の毒に思って・残念に思って",
+              "en": "I'm sorry to hear that.",
+              "ja": "それは残念だったね。／それは大変だったね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "mad",
+          "wordNote": "mad は、特にアメリカ英語では「怒っている」という意味で非常によく使います。\n\nAre you mad at me?\n→ 私に怒ってる？\n\n一方、「正気ではない、ばかげた」という意味もあります。\n\nThat's mad.\n→ そんなの無茶だ。／とんでもない。\n\nまた、mad about ～ は文脈によって「～に夢中」という意味にもなります。\n\nShe's mad about music.\n→ 彼女は音楽に夢中だ。\n\nmad は地域や文脈によって意味が変わりやすい語です。",
+          "meanings": [
+            {
+              "meaning": "怒っている",
+              "en": "Are you mad at me?",
+              "ja": "私に怒ってる？"
+            },
+            {
+              "meaning": "正気とは思えない・ばかげた",
+              "en": "You'd be mad to drive in weather like this.",
+              "ja": "こんな天気で運転するなんて無茶だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "firm",
+          "wordNote": "firm は「簡単にへこんだり動いたりしない、しっかりしている」という感覚の語です。\n\na firm mattress\n→ 硬めのマットレス\n\na firm grip\n→ しっかりした握り方\n\n人の態度について使うと、「考えを曲げず、きっぱりした」という意味になります。\n\npolite but firm\n→ 丁寧だが毅然としている\n\nstrict のように「厳しい」のではなく、必要な線をきちんと守る感じです。",
+          "meanings": [
+            {
+              "meaning": "固い・しっかりした",
+              "en": "The mattress is firm but comfortable.",
+              "ja": "このマットレス、しっかり硬めだけど寝心地いいよ。"
+            },
+            {
+              "meaning": "毅然とした・きっぱりした",
+              "en": "She was polite but firm.",
+              "ja": "彼女は丁寧だったけど、態度はきっぱりしていた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "straight",
+          "wordNote": "straight は「まっすぐな」という意味から、「遠回しにしない、率直な」という意味にも広がります。\n\na straight line\n→ 直線\n\na straight answer\n→ はっきりした答え\n\nstraight talk\n→ 率直な話\n\n物理的に曲がっていないという感覚が、話し方や答えの「回りくどくない」にもつながっています。",
+          "meanings": [
+            {
+              "meaning": "まっすぐな",
+              "en": "Go straight for two blocks and turn left.",
+              "ja": "2ブロックまっすぐ行って左に曲がって。"
+            },
+            {
+              "meaning": "率直な・遠回しでない",
+              "en": "Just give me a straight answer.",
+              "ja": "はっきり答えて。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "blank",
+          "wordNote": "blank は「何も書かれていない、空白の」という意味です。\n\na blank page\n→ 白紙のページ\n\na blank space\n→ 空欄\n\nそこから、頭の中に何も浮かばない状態にも使います。\n\nMy mind went blank.\n→ 頭が真っ白になった。\n\n「中身が空っぽ」という感覚が共通しています。",
+          "meanings": [
+            {
+              "meaning": "何も書かれていない・空白の",
+              "en": "Leave this section blank if it doesn't apply to you.",
+              "ja": "当てはまらなければ、この欄は空欄のままでいいよ。"
+            },
+            {
+              "meaning": "頭が真っ白な・何も思い浮かばない",
+              "en": "My mind went completely blank during the interview.",
+              "ja": "面接中、頭が完全に真っ白になった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "complete",
+          "wordNote": "complete は「必要なものがすべてそろっている、完全な」という意味です。\n\na complete list\n→ 完全なリスト\n\nまた、名詞の前で「まったくの、完全な」と強調することがあります。\n\na complete stranger\n→ まったく知らない人\n\na complete surprise\n→ 完全な驚き・まったく予想外のこと\n\nこの complete は「完成した」と訳すより、「100%そうである」という強調として考えると自然です。",
+          "meanings": [
+            {
+              "meaning": "完全な・すべてそろった",
+              "en": "We finally have a complete list of everyone attending.",
+              "ja": "ようやく参加者全員の完全なリストがそろった。"
+            },
+            {
+              "meaning": "まったくの・完全な",
+              "en": "He was a complete stranger to me.",
+              "ja": "彼は私にとってまったく知らない人だった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "professional",
+          "wordNote": "professional は「職業上の、仕事に関する」という意味だけでなく、「プロらしい、きちんとしている」という評価にも使います。\n\nprofessional experience\n→ 職務経験\n\nprofessional behavior\n→ プロらしい振る舞い\n\nHe was very professional.\n→ 彼はとてもきちんとした対応だった。\n\n必ずしも「その人がプロ選手・専門職である」という意味ではなく、仕事として適切で信頼できる態度を表すこともあります。",
+          "meanings": [
+            {
+              "meaning": "仕事上の・職業上の",
+              "en": "Keep your personal and professional accounts separate.",
+              "ja": "個人用と仕事用のアカウントは分けておこう。"
+            },
+            {
+              "meaning": "プロらしい・手際のよい",
+              "en": "She handled the complaint in a very professional way.",
+              "ja": "彼女はその苦情にとてもプロらしく対応した。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "social",
+          "wordNote": "social は「社会の、社会に関する」という意味のほか、人付き合いについても使います。\n\nsocial issues\n→ 社会問題\n\na social event\n→ 人が集まって交流するイベント\n\nHe's very social.\n→ 彼はとても社交的だ。\n\n日本語の「ソーシャル」はSNSを連想しやすいですが、英語の social は、人と関わること全般を表すもっと広い語です。",
+          "meanings": [
+            {
+              "meaning": "社会の・社会的な",
+              "en": "Social changes can happen very quickly.",
+              "ja": "社会の変化はとても速く起こることがある。"
+            },
+            {
+              "meaning": "社交的な・人付き合いの多い",
+              "en": "He's quiet at work but very social outside the office.",
+              "ja": "仕事中は静かだけど、職場の外ではかなり社交的だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "lonely",
+          "wordNote": "lonely は「寂しい、孤独を感じる」という意味です。\n\nalone と似ていますが、\n\nalone\n→ 一人でいる\n\nlonely\n→ 一人で寂しいと感じる\n\nという違いがあります。\n\nYou can be alone without feeling lonely.\n→ 一人でいても、寂しいとは限りません。\n\nまた、場所について使うと「人けのない、寂しい」という意味になることもあります。",
+          "meanings": [
+            {
+              "meaning": "寂しい・孤独な",
+              "en": "I felt a little lonely after everyone went home.",
+              "ja": "みんな帰ったあと、ちょっと寂しくなった。"
+            },
+            {
+              "meaning": "人けのない・寂しい",
+              "en": "It was a lonely road with no houses for miles.",
+              "ja": "何キロも家がない、人けのない道だった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "lovely",
+          "wordNote": "lovely は「素敵な、感じのよい」という意味で、日常会話でもよく使います。\n\na lovely dress\n→ 素敵な服\n\na lovely day\n→ 気持ちのよい一日\n\na lovely person\n→ とても感じのよい人\n\n日本語の「ラブリー」は、かわいらしい見た目を連想しやすいですが、英語の lovely はもっと広く、「素敵」「楽しい」「感じがよい」という意味で使えます。",
+          "meanings": [
+            {
+              "meaning": "素敵な・美しい",
+              "en": "That's a lovely dress.",
+              "ja": "そのワンピース素敵だね。"
+            },
+            {
+              "meaning": "楽しい・心地よい",
+              "en": "We had a lovely evening together.",
+              "ja": "一緒にとても楽しい夜を過ごした。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "international",
+          "wordNote": "international は「国と国との間、または複数の国に関わる」という感覚の語です。\n\nan international company\n→ 国際的な企業\n\nan international flight\n→ 国際線\n\nglobal と似ていますが、\n\ninternational\n→ 国と国との間・複数の国に関わる\n\nglobal\n→ 世界全体を一つの範囲として見る\n\nという違いがあります。\n\ninternational は「国どうし」という視点を持つ語です。",
+          "meanings": [
+            {
+              "meaning": "国際的な",
+              "en": "She works for an international company.",
+              "ja": "彼女は国際的な企業で働いている。"
+            },
+            {
+              "meaning": "複数の国に関わる",
+              "en": "This airport handles both domestic and international flights.",
+              "ja": "この空港には国内線と国際線の両方がある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "global",
+          "wordNote": "global は「世界全体に関わる、世界規模の」という意味です。\n\na global issue\n→ 世界規模の問題\n\na global network\n→ 世界規模のネットワーク\n\ninternational と似ていますが、\n\ninternational\n→ 国と国との間・複数の国に関わる\n\nglobal\n→ 世界全体を一つの範囲として見る\n\nという違いがあります。\n\ninternational flight は「国と国の間を飛ぶ便」、global issue は「世界全体に関わる問題」という違いです。",
+          "meanings": [
+            {
+              "meaning": "世界的な・世界規模の",
+              "en": "Climate change is a global issue.",
+              "ja": "気候変動は世界規模の問題だ。"
+            },
+            {
+              "meaning": "世界全体に展開する",
+              "en": "The company has a global network of offices.",
+              "ja": "その会社は世界各地にオフィスのネットワークを持っている。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "native",
+          "wordNote": "native は「その土地にもともと属している」という感覚の語です。\n\na native language\n→ 母語\n\na native species\n→ 在来種\n\nbe native to ～\n→ ～を原産とする・～に自生する\n\nThis bird is native to Australia.\n→ この鳥はオーストラリア原産です。\n\n人の言語だけでなく、植物や動物についても非常によく使います。",
+          "meanings": [
+            {
+              "meaning": "母語の・生まれ育った土地の",
+              "en": "English is her native language.",
+              "ja": "英語は彼女の母語だ。"
+            },
+            {
+              "meaning": "その土地にもともとある・自生の",
+              "en": "This plant is native to Japan.",
+              "ja": "この植物は日本原産だ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "remote",
+          "wordNote": "remote の基本は「距離が遠く離れている」です。\n\na remote village\n→ 人里離れた村\n\nremote work\n→ 遠隔勤務・リモートワーク\n\n日本語では「リモート」というとオンライン勤務を思い浮かべやすいですが、英語ではもともと物理的に「遠く離れた」という意味があります。",
+          "meanings": [
+            {
+              "meaning": "遠く離れた・人里離れた",
+              "en": "They live in a remote village in the mountains.",
+              "ja": "彼らは山奥の人里離れた村に住んでいる。"
+            },
+            {
+              "meaning": "遠隔の・リモートの",
+              "en": "She has a fully remote job.",
+              "ja": "彼女は完全リモートの仕事をしている。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "central",
+          "wordNote": "central は「中心にある」という意味から、「とても重要な、中心的な」という意味にも広がります。\n\na central location\n→ 中心部の場所\n\nbe central to ～\n→ ～にとって中心的・重要である\n\nTrust is central to teamwork.\n→ チームワークには信頼が欠かせません。\n\n物理的な中心だけでなく、考えや関係の「中心にある重要なもの」にも使えます。",
+          "meanings": [
+            {
+              "meaning": "中央の・中心部の",
+              "en": "The hotel is in a central location.",
+              "ja": "そのホテルは街の中心部にある。"
+            },
+            {
+              "meaning": "中心的な・重要な",
+              "en": "Trust is central to a good relationship.",
+              "ja": "良い関係には信頼がとても重要だ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "shared",
+          "wordNote": "shared は「複数の人が一緒に持つ」という感覚の語です。\n\na shared calendar\n→ 共有カレンダー\n\na shared room\n→ 相部屋・共有する部屋\n\na shared interest\n→ 共通の興味\n\n物を実際に共有する場合だけでなく、経験・興味・考えなどを「共通して持つ」場合にも使います。",
+          "meanings": [
+            {
+              "meaning": "共有の",
+              "en": "We use a shared calendar at work.",
+              "ja": "職場では共有カレンダーを使っている。"
+            },
+            {
+              "meaning": "共通の",
+              "en": "They discovered a shared interest in photography.",
+              "ja": "二人とも写真が好きだと分かった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "urban",
+          "wordNote": "urban は「都市の、都市部の」という意味の形容詞です。\n\nurban areas\n→ 都市部\n\nurban life\n→ 都市生活\n\nrural と対比してよく使われます。\n\nurban\n→ 都市の・都市部の\n\nrural\n→ 田舎の・農村の\n\nurban は場所そのものだけでなく、「都会的な雰囲気」という意味でも使えます。",
+          "meanings": [
+            {
+              "meaning": "都市の・都市部の",
+              "en": "Public transport is usually better in urban areas.",
+              "ja": "都市部では公共交通機関が充実していることが多い。"
+            },
+            {
+              "meaning": "都会的な・都市らしい",
+              "en": "The neighborhood has a very urban feel.",
+              "ja": "その辺りはかなり都会的な雰囲気だ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "rural",
+          "wordNote": "rural は「田舎の、農村の」という意味の形容詞です。\n\nrural areas\n→ 田舎の地域・地方\n\nrural communities\n→ 地方の地域社会\n\nurban の反対に近く、\n\nurban\n→ 都市の・都市部の\n\nrural\n→ 田舎の・農村の\n\nという対比でよく使われます。\n\n日本語の「田舎」は、人によっては「不便」「古い」などの印象を含むことがありますが、rural 自体は基本的に、都市部ではない地域を表す中立的な語です。",
+          "meanings": [
+            {
+              "meaning": "田舎の・農村の",
+              "en": "They moved to a rural area after retiring.",
+              "ja": "退職後、二人は田舎の地域に引っ越した。"
+            },
+            {
+              "meaning": "都市部ではない・地方の",
+              "en": "Public transport can be limited in rural communities.",
+              "ja": "地方では公共交通機関が限られていることがある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "neat",
+          "wordNote": "neat は「きちんとした、整った」という意味の形容詞です。\n\na neat room\n→ きれいに整った部屋\n\nneat handwriting\n→ きれいで読みやすい字\n\nまた、会話ではアイデアや方法について「うまい、気が利いている」という意味でも使います。\n\nThat's a neat idea.\n→ それ、いいアイデアだね。\n\n「すっきりまとまっている」という感覚が、見た目だけでなく考え方や工夫にも広がっています。",
+          "meanings": [
+            {
+              "meaning": "きちんとした・整った",
+              "en": "Your desk looks really neat today.",
+              "ja": "今日、机ずいぶんきれいに片付いてるね。"
+            },
+            {
+              "meaning": "うまい・気の利いた",
+              "en": "That's a neat idea. It would save us a lot of time.",
+              "ja": "それ、うまいアイデアだね。かなり時間を節約できそう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "sudden",
+          "wordNote": "sudden は「前触れなく急に起こる」という意味の形容詞です。\n\na sudden noise\n→ 突然の物音\n\na sudden change\n→ 急激な変化\n\nよく使う表現に、\n\nall of a sudden\n→ 突然、急に\n\nがあります。\n\nEverything went quiet all of a sudden.\n→ 突然、辺りが静かになった。\n\n「予想する時間がないほど急に」という感覚があります。",
+          "meanings": [
+            {
+              "meaning": "突然の",
+              "en": "A sudden noise woke me up in the middle of the night.",
+              "ja": "夜中に突然の物音で目が覚めた。"
+            },
+            {
+              "meaning": "急激な",
+              "en": "There was a sudden change in the weather.",
+              "ja": "天気が急に変わった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "normal",
+          "wordNote": "normal は「普通の、通常の」という意味だけでなく、「正常な、異常のない」という意味でもよく使います。\n\nIt's normal to feel nervous.\n→ 緊張するのは普通です。\n\nEverything looks normal.\n→ 特に異常はなさそうです。\n\n日本語の「普通」と同じように、人や日常についても使えますが、機械・検査結果・状態などについては「正常」という意味になります。\n\nback to normal\n→ 元の正常な状態に戻って\n\nのような表現もよく使います。",
+          "meanings": [
+            {
+              "meaning": "普通の・通常の",
+              "en": "It's normal to feel nervous before an important presentation.",
+              "ja": "大事なプレゼンの前に緊張するのは普通だよ。"
+            },
+            {
+              "meaning": "正常な・異常のない",
+              "en": "Everything looks normal, so I don't think there's a problem.",
+              "ja": "すべて正常に見えるから、問題はなさそうだよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "steady",
+          "wordNote": "steady は「大きく揺れたり変化したりせず、一定している」という感覚の語です。\n\na steady speed\n→ 一定の速度\n\na steady income\n→ 安定した収入\n\nsteady progress\n→ 着実な進歩\n\nstable も「安定した」という意味ですが、stable は状態そのものが崩れにくいこと、steady は動きや進み方が一定して続くことに焦点が置かれることがあります。",
+          "meanings": [
+            {
+              "meaning": "安定した・一定の",
+              "en": "Try to keep a steady speed on this road.",
+              "ja": "この道では一定の速度を保つようにしてね。"
+            },
+            {
+              "meaning": "着実な",
+              "en": "We've made steady progress over the past few weeks.",
+              "ja": "この数週間、着実に進んできた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "gentle",
+          "wordNote": "gentle は「強すぎず、穏やかである」という感覚の語です。\n\na gentle voice\n→ 優しい声\n\na gentle touch\n→ 優しい触れ方\n\na gentle slope\n→ 緩やかな坂\n\n人の性格だけでなく、動き・風・坂・力などが「激しくない」ときにも使えます。",
+          "meanings": [
+            {
+              "meaning": "優しい・穏やかな",
+              "en": "She spoke in a gentle voice so the child wouldn't be scared.",
+              "ja": "子どもが怖がらないように、彼女は優しい声で話した。"
+            },
+            {
+              "meaning": "緩やかな・強くない",
+              "en": "It's a gentle slope, so the walk isn't too difficult.",
+              "ja": "緩やかな坂だから、歩くのもそれほど大変じゃないよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "narrow",
+          "wordNote": "narrow は「幅が狭い」という意味から、選択肢・時間・範囲などが「限られている」という意味にも広がります。\n\na narrow street\n→ 狭い道\n\na narrow range\n→ 狭い範囲\n\na narrow window of time\n→ ごく限られた時間\n\n物理的な幅だけでなく、「使える範囲が小さい」という感覚にも使えます。",
+          "meanings": [
+            {
+              "meaning": "狭い・幅の細い",
+              "en": "The street is too narrow for two cars to pass each other. Let's take a wider road instead.",
+              "ja": "その道は狭すぎて、車2台がすれ違えない。もっと広い道を通って行こう。"
+            },
+            {
+              "meaning": "限られた・わずかな",
+              "en": "We only have a narrow window of time to make a decision.",
+              "ja": "決めるまでの時間がほんの少ししかない。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "broad",
+          "wordNote": "broad は「幅が広い」という意味ですが、話題・知識・範囲などにもよく使います。\n\na broad range\n→ 幅広い範囲\n\nbroad knowledge\n→ 幅広い知識\n\na broad overview\n→ 大まかな全体像\n\nwide が物理的な幅にも広く使われるのに対して、broad は抽象的な「範囲の広さ」にも非常によく使われます。",
+          "meanings": [
+            {
+              "meaning": "広い・幅広い",
+              "en": "The course covers a broad range of topics.",
+              "ja": "その講座では幅広いテーマを扱う。"
+            },
+            {
+              "meaning": "大まかな・全体的な",
+              "en": "Let me give you a broad overview before we go into the details.",
+              "ja": "詳細に入る前に、まず大まかな全体像を説明するね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "brief",
+          "wordNote": "brief は「長く続かない、短い」という意味の形容詞です。\n\na brief meeting\n→ 短い会議\n\na brief conversation\n→ 短い会話\n\nまた、話や説明について「簡潔な、手短な」という意味でも使います。\n\nI'll keep this brief.\n→ 手短に話します。\n\nshort よりも、会議・説明・訪問などが「短時間で簡潔」という場面によく合います。",
+          "meanings": [
+            {
+              "meaning": "短時間の",
+              "en": "We had a brief meeting before lunch.",
+              "ja": "昼食前に短い打ち合わせをした。"
+            },
+            {
+              "meaning": "簡潔な・手短な",
+              "en": "I'll keep this brief because I know you're busy.",
+              "ja": "忙しいと思うから、手短に話すね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "average",
+          "wordNote": "average は「平均の」という意味ですが、人・物・出来について「平均的な、特に目立たない」という意味にも使います。\n\nthe average temperature\n→ 平均気温\n\nan average day\n→ ごく普通の日\n\naverage performance\n→ 平均的な出来\n\n人や作品を average と評価すると、「悪くはないけれど特別によくもない」という少し控えめな評価になることがあります。",
+          "meanings": [
+            {
+              "meaning": "平均の",
+              "en": "The average temperature here is around 20 degrees in May.",
+              "ja": "ここでは5月の平均気温は20度くらいだ。"
+            },
+            {
+              "meaning": "平凡な・特に目立たない",
+              "en": "It was just an average day until I got that message.",
+              "ja": "あのメッセージが来るまでは、ごく普通の一日だった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "fit",
+          "wordNote": "形容詞の fit は「健康で体力がある」という意味だけでなく、「目的に適している」という意味でも使います。\n\nstay fit\n→ 健康・体力を保つ\n\nbe fit for ～\n→ ～に適している\n\nfit for use\n→ 使用に適している\n\nfit for children\n→ 子どもに適している\n\n「必要な条件にぴったり合っている」という感覚から、健康状態と適性の両方に使われます。\n\nなお、服について\n\nThis jacket fits me.\n→ このジャケットは私に合う。\n\nと言うときの fit は動詞です。",
+          "meanings": [
+            {
+              "meaning": "健康で体力のある",
+              "en": "She walks every day to stay fit.",
+              "ja": "彼女は健康と体力を保つために毎日歩いている。"
+            },
+            {
+              "meaning": "適した・ふさわしい",
+              "en": "This room isn't fit for use yet.",
+              "ja": "この部屋はまだ使える状態じゃない。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "rapid",
+          "wordNote": "rapid は「短い時間の中で、速く進んだり変化したりする」という意味の形容詞です。\n\nrapid growth\n→ 急速な成長\n\nrapid change\n→ 急激な変化\n\na rapid increase\n→ 急増\n\nfast や quick と似ていますが、\n\nfast\n→ 動く速さそのものが速い\n\nquick\n→ 短時間ですばやく行う\n\nrapid\n→ 変化や進行が短時間にどんどん起こる\n\nという違いが出ることがあります。\n\nそのため rapid は、growth・change・increase・development などとよく使われます。",
+          "meanings": [
+            {
+              "meaning": "急速な・速い",
+              "en": "The city has seen rapid growth in recent years.",
+              "ja": "その街はここ数年で急速に発展している。"
+            },
+            {
+              "meaning": "急激な",
+              "en": "There was a rapid drop in temperature overnight.",
+              "ja": "一晩で気温が急激に下がった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "super",
+          "wordNote": "super は、カジュアルな英語で「すばらしい、最高の」という意味で使われます。\n\nWe had a super time.\n→ すごく楽しい時間を過ごした。\n\nThat's super!\n→ それ最高だね！\n\nsuper の中心には、「普通の水準を超えている」という感覚があります。\n\nまた、super- が語の前につくと、「通常より大きい・強い・上位の」といった意味を加えます。\n\nsuperhuman\n→ 人間離れした\n\nsuperpower\n→ 超大国・超能力\n\nsupermarket\n→ 大型の食品・日用品店\n\n日本語では supermarket を「スーパー」と略しますが、英語で super とだけ言って「スーパーマーケット」という意味には通常なりません。\n\n日本語の「スーパー」「超～」として広がった使い方の根には、「普通の水準を超える」というイメージがあります。",
+          "meanings": [
+            {
+              "meaning": "すばらしい・最高の",
+              "en": "We had a super time at the festival.",
+              "ja": "お祭りですごく楽しい時間を過ごした。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "quick",
+          "wordNote": "quick は「短い時間で何かが起こる・行われる」という感覚の語です。\n\na quick learner\n→ 飲み込みの早い人\n\na quick chat\n→ ちょっとした短い話\n\na quick look\n→ さっと見ること\n\na quick shower\n→ さっと済ませるシャワー\n\nfast が「動く速さ」に注目することが多いのに対して、quick は「かかる時間が短い」という場面でよく使われます。",
+          "meanings": [
+            {
+              "meaning": "素早い・理解などが速い",
+              "en": "She's a quick learner and rarely needs the same explanation twice.",
+              "ja": "彼女は覚えるのが早くて、同じ説明を二度することはほとんどない。"
+            },
+            {
+              "meaning": "短時間で済む",
+              "en": "Can we have a quick chat before you leave?",
+              "ja": "帰る前にちょっとだけ話せる？"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "calm",
+          "wordNote": "calm は「激しい動きや感情がない、穏やかな」という意味です。\n\na calm sea\n→ 穏やかな海\n\na calm voice\n→ 落ち着いた声\n\nstay calm\n→ 冷静でいる\n\n場所や自然だけでなく、人の気持ちや態度にも使えます。",
+          "meanings": [
+            {
+              "meaning": "穏やかな・静かな",
+              "en": "The sea was calm this morning.",
+              "ja": "今朝は海が穏やかだった。"
+            },
+            {
+              "meaning": "冷静な・落ち着いた",
+              "en": "She stayed calm even when everyone else started to panic.",
+              "ja": "みんなが慌て始めても、彼女は冷静だった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "silent",
+          "wordNote": "silent は「音や言葉がまったくない」という感覚の語です。\n\na silent room\n→ 音のない部屋\n\na silent nod\n→ 無言のうなずき\n\nquiet も「静かな」と訳しますが、\n\nquiet\n→ 音が少ない・騒がしくない\n\nsilent\n→ 音や言葉がない\n\nという違いがあります。\n\nそのため、完全に静まり返った場面では silent がよく合います。",
+          "meanings": [
+            {
+              "meaning": "音のしない・静まり返った",
+              "en": "The room suddenly went silent.",
+              "ja": "部屋が突然静まり返った。"
+            },
+            {
+              "meaning": "無言の・言葉を発しない",
+              "en": "He gave me a silent nod and went back to work.",
+              "ja": "彼は黙ってうなずいて、仕事に戻った。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "extra",
+          "wordNote": "extra は「通常必要な分にさらに加わる」という意味です。\n\nan extra towel\n→ 追加のタオル・予備のタオル\n\nextra time\n→ 追加の時間\n\nan extra charge\n→ 追加料金\n\n日本語の「エクストラ」よりも、英語では日常的な「もう一つ」「追加分」という意味で非常によく使われます。",
+          "meanings": [
+            {
+              "meaning": "追加の・予備の",
+              "en": "Bring an extra towel just in case.",
+              "ja": "念のためタオルをもう1枚持ってきて。"
+            },
+            {
+              "meaning": "追加で必要な・別料金の",
+              "en": "There's an extra charge for delivery.",
+              "ja": "配達には追加料金がかかる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "instant",
+          "wordNote": "instant は「待つ時間がほとんどない、すぐに起こる」という意味です。\n\nan instant reaction\n→ 即座の反応\n\ninstant access\n→ すぐに利用できること\n\ninstant food\n→ すぐに調理できる食品\n\n日本語では「インスタント食品」の印象が強いですが、英語では反応・アクセス・結果などにも広く使われます。",
+          "meanings": [
+            {
+              "meaning": "即座の・すぐに起こる",
+              "en": "The announcement got an instant reaction online.",
+              "ja": "その発表はオンラインですぐに反応を集めた。"
+            },
+            {
+              "meaning": "すぐ作れる・インスタントの",
+              "en": "I keep instant soup at work for busy days.",
+              "ja": "忙しい日のために職場にインスタントスープを置いてる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "original",
+          "wordNote": "original は「最初に存在したもの」という意味と、「他のものをまねしていない」という意味があります。\n\nthe original version\n→ 元のバージョン\n\nthe original design\n→ 当初のデザイン\n\nan original idea\n→ 独創的なアイデア\n\n日本語の「オリジナル」は「自分で作ったもの」という意味で使われることがありますが、英語では「最初のもの」「独創的なもの」という意味が中心です。",
+          "meanings": [
+            {
+              "meaning": "元の・最初の",
+              "en": "I still prefer the original version of the song.",
+              "ja": "その曲はやっぱり元のバージョンの方が好き。"
+            },
+            {
+              "meaning": "独創的な・新しい発想の",
+              "en": "That's a really original idea.",
+              "ja": "それ、すごく独創的なアイデアだね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "official",
+          "wordNote": "official は「正式に認められている、公的な」という意味です。\n\nthe official website\n→ 公式サイト\n\nan official announcement\n→ 公式発表\n\nan official answer\n→ 正式な回答\n\n単に「本当らしい」という意味ではなく、組織や権限のある立場から正式に出されたものを表します。",
+          "meanings": [
+            {
+              "meaning": "公式の",
+              "en": "Check the official website for the latest information.",
+              "ja": "最新情報は公式サイトで確認してね。"
+            },
+            {
+              "meaning": "正式な・公的な",
+              "en": "We haven't received an official answer yet.",
+              "ja": "まだ正式な回答は来ていない。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "final",
+          "wordNote": "last と final はどちらも「最後の」と訳せますが、同じではありません。\n\nfinal\n→ 一連のものがそこで終わる、これ以上続かない\n\nthe final episode\n→ 最終話\n\na final decision\n→ 最終決定\n\nlast は「最後の」という意味のほか、「いちばん最近の、前回の」という意味もあります。\n\nour last meeting\n→ 前回の会合\n\nthe last train\n→ 最終電車\n\nたとえば、\n\nour last meeting\n→ 前回会ったとき\n\nour final meeting\n→ これが最後となる会合\n\nでは意味が違います。\n\nlast は「並びのいちばん後ろ」や「直前のもの」を表せますが、final は「そこで終了する」という終点を強く意識する語です。",
+          "meanings": [
+            {
+              "meaning": "最後の・最終の",
+              "en": "This is the final episode of the series.",
+              "ja": "これがシリーズの最終話だよ。"
+            },
+            {
+              "meaning": "最終決定の・これ以上変わらない",
+              "en": "Is that your final decision?",
+              "ja": "それが最終決定？"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "whole",
+          "wordNote": "whole と all はどちらも「全部」と訳せますが、見方が少し違います。\n\nwhole\n→ 一つのものを、分けずに「丸ごと」見る\n\nall\n→ 複数のものや全体を「残らず全部」見る\n\nthe whole cake\n→ ケーキを丸ごと全部\n\nall the cakes\n→ ケーキを全部\n\nthe whole day\n→ 一日まるごと\n\nall day\n→ 一日中\n\nwhole は通常、単数の可算名詞につけて「その一つ全体」を表します。\n\nI spent the whole afternoon reading.\n→ 午後を丸ごと読書して過ごした。\n\nまた、\n\nthe whole time\n→ その間ずっと\n\nのような非常によく使う表現もあります。\n\n「一個を丸ごと」が whole、「あるものを残らず全部」が all と考えると分かりやすいです。",
+          "meanings": [
+            {
+              "meaning": "全体の・全部の",
+              "en": "I spent the whole afternoon looking for that file.",
+              "ja": "午後ずっと、そのファイルを探してた。"
+            },
+            {
+              "meaning": "ずっと",
+              "en": "He knew the answer the whole time and didn't tell us.",
+              "ja": "彼、最初からずっと答えを知ってたのに教えてくれなかった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "worried",
+          "wordNote": "worried は「心配している」という、人が感じている状態を表します。\n\nI'm worried about him.\n→ 彼のことが心配だ。\n\na worried look\n→ 心配そうな表情\n\n一方、worrying は「人を心配させるような」という意味です。\n\nThat's worrying.\n→ それは心配だね。／それは気がかりだね。\n\nworried\n→ 心配している側\n\nworrying\n→ 心配させるもの・状況\n\nという違いがあります。\n\nbored / boring や interested / interesting と同じように、「感じている側」と「そう感じさせる側」を区別すると分かりやすいです。",
+          "meanings": [
+            {
+              "meaning": "心配している・不安な",
+              "en": "I'm worried about how much time we have left.",
+              "ja": "あとどのくらい時間が残ってるのか心配なんだ。"
+            },
+            {
+              "meaning": "心配そうな",
+              "en": "She had a worried look on her face.",
+              "ja": "彼女は心配そうな顔をしていた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "alone",
+          "wordNote": "alone は「一人でいる、ほかに誰もいない」という状態を表します。\n\nI'm alone.\n→ 私は一人です。\n\nlonely と似ていますが、\n\nalone\n→ 一人でいるという状態\n\nlonely\n→ 寂しいと感じている気持ち\n\nという違いがあります。\n\nYou can be alone without feeling lonely.\n→ 一人でいても、寂しいとは限りません。\n\n一人の時間が好きな人についても alone は普通に使えるので、alone 自体に「寂しい」という意味はありません。",
+          "meanings": [
+            {
+              "meaning": "一人で・ほかに誰もいない",
+              "en": "I'd rather be alone for a while.",
+              "ja": "しばらく一人でいたいな。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "awake",
+          "wordNote": "awake は「眠っていない、目が覚めている」という状態を表します。\n\nAre you awake?\n→ 起きてる？\n\nstay awake\n→ 起きている・眠らずにいる\n\nwake up が「目を覚ます」という動きなのに対して、awake は「すでに目が覚めている状態」です。\n\nsleepy\n→ 眠い\n\nawake\n→ 目が覚めている\n\nという違いもあります。",
+          "meanings": [
+            {
+              "meaning": "目が覚めている・起きている",
+              "en": "Are you still awake?",
+              "ja": "まだ起きてる？"
+            },
+            {
+              "meaning": "すっかり目が覚めた",
+              "en": "I'm fully awake now, so I might as well get up.",
+              "ja": "もう完全に目が覚めちゃったから、起きることにするよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "asleep",
+          "wordNote": "asleep は「眠っている」という状態を表します。\n\nThe baby is asleep.\n→ 赤ちゃんは眠っています。\n\nfall asleep\n→ 眠りにつく・寝落ちする\n\nsleepy は「眠い」、asleep は「すでに眠っている」という違いがあります。\n\nまた、手や足について、\n\nMy foot is asleep.\n→ 足がしびれている。\n\nのように、感覚がなくなった状態を表すこともあります。",
+          "meanings": [
+            {
+              "meaning": "眠っている",
+              "en": "I fell asleep on the sofa while watching TV.",
+              "ja": "テレビを見ながらソファで寝落ちしちゃった。"
+            },
+            {
+              "meaning": "しびれて感覚がない",
+              "en": "My foot is asleep because I've been sitting like this too long.",
+              "ja": "ずっとこの座り方してたから、足がしびれちゃった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "early",
+          "wordNote": "early は「予定や基準より早い時点の」という感覚の語です。\n\nan early train\n→ 早い時間の電車\n\nan early start\n→ 早い時間の出発\n\nまた、物事の最初の段階についても使います。\n\nin the early stages\n→ 初期段階で\n\nつまり、時計の時刻だけでなく、「ある期間の初めの方」という意味にも広がります。",
+          "meanings": [
+            {
+              "meaning": "早い時刻の",
+              "en": "I caught an early train so I wouldn't have to rush.",
+              "ja": "慌てなくて済むように、早い電車に乗った。"
+            },
+            {
+              "meaning": "初期の・初めのころの",
+              "en": "The project is still in its early stages.",
+              "ja": "そのプロジェクトはまだ初期段階だ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "late",
+          "wordNote": "late は「予定された時刻より遅い」という意味だけでなく、「一日の遅い時間の」という意味でも使います。\n\nI'm late.\n→ 遅刻しています。\n\na late dinner\n→ 遅い時間の夕食\n\na late-night call\n→ 深夜の電話\n\nなお、lately は「最近」という意味で、late とは別の語として使われます。\n\nI've been busy lately.\n→ 最近ずっと忙しい。",
+          "meanings": [
+            {
+              "meaning": "遅れた・遅刻した",
+              "en": "Sorry I'm late. The train was delayed.",
+              "ja": "遅れてごめん。電車が遅れてたんだ。"
+            },
+            {
+              "meaning": "遅い時間の",
+              "en": "We had a late dinner after the concert.",
+              "ja": "コンサートのあと、遅い時間に夕食を食べた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "perfect",
+          "wordNote": "perfect は「欠点がなく完璧な」という意味ですが、日常会話では「ちょうどよい、ぴったりの」という意味でも非常によく使います。\n\nperfect weather\n→ 理想的な天気\n\nThis size is perfect for me.\n→ このサイズは私にぴったり。\n\nThat's perfect.\n→ それでちょうどいい。／それ最高。\n\n必ずしも「100点満点で欠点ゼロ」と大げさに評価しているわけではなく、目的や状況に「ちょうど合う」という意味でも自然に使えます。",
+          "meanings": [
+            {
+              "meaning": "完璧な・申し分のない",
+              "en": "The weather was perfect for a walk.",
+              "ja": "散歩には申し分のない天気だった。"
+            },
+            {
+              "meaning": "ぴったりの・ちょうどよい",
+              "en": "This size is perfect for me.",
+              "ja": "このサイズ、私にぴったり。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "terrible",
+          "wordNote": "terrible は「ひどい、とても悪い」という意味の形容詞です。\n\na terrible mistake\n→ ひどい間違い\n\nterrible weather\n→ ひどい天気\n\nまた、be terrible at ～ で「～がとても苦手」という意味でも日常会話でよく使います。\n\nI'm terrible at remembering names.\n→ 人の名前を覚えるのが本当に苦手。\n\nこの使い方では、何かが「恐ろしい」という意味ではなく、自分の不得意さをかなりカジュアルに表しています。",
+          "meanings": [
+            {
+              "meaning": "ひどい・とても悪い",
+              "en": "The weather was terrible, so we stayed inside all day.",
+              "ja": "天気がひどかったから、一日中ずっと中にいた。"
+            },
+            {
+              "meaning": "とても苦手な",
+              "en": "I'm terrible at remembering names.",
+              "ja": "人の名前を覚えるのがほんと苦手。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "wide",
+          "wordNote": "wide は「幅が広い」という意味の形容詞です。\n\na wide road\n→ 幅の広い道\n\nまた、選択肢・範囲・種類などが「幅広い」という意味でもよく使います。\n\na wide range of choices\n→ 幅広い選択肢\n\nbroad も「広い」と訳されますが、wide は物理的な幅にも日常的によく使われ、broad は話題・知識・考えなど抽象的な範囲の広さにもよく使われます。\n\nまた、wide awake で「完全に目が覚めている」という表現もあります。",
+          "meanings": [
+            {
+              "meaning": "幅の広い",
+              "en": "Let's take the wider road. It'll be easier to drive.",
+              "ja": "もっと広い道を通ろう。その方が運転しやすいよ。"
+            },
+            {
+              "meaning": "幅広い・多様な",
+              "en": "The store has a wide range of sizes.",
+              "ja": "その店は幅広いサイズをそろえている。"
             }
           ]
         },
