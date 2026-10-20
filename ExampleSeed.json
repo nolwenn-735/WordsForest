@@ -3798,6 +3798,1026 @@
             }
           ]
         },
+        {
+          "pos": "adjective",
+          "word": "compact",
+          "wordNote": "compact は単に「小さい」というより、「必要なものが無駄なくぎゅっと収まっている」という感覚の語です。\n\na compact camera\n→ 小型でまとまりのよいカメラ\n\na compact apartment\n→ 小さいながら効率よくまとまった部屋\n\na compact summary\n→ 要点を簡潔にまとめたもの\n\nsmall は大きさそのものが小さいことを表しますが、compact には「場所を取らず、うまくまとまっている」という感じがあります。\n\n日本語の「コンパクト」にかなり近いですが、英語では文章や情報が簡潔にまとまっている場合にも使えます。",
+          "meanings": [
+            {
+              "meaning": "小さくまとまった・省スペースの",
+              "en": "It's compact enough to fit in my bag.",
+              "ja": "バッグに入るくらいコンパクトだよ。"
+            },
+            {
+              "meaning": "無駄なくまとまった・簡潔な",
+              "en": "The guide gives a compact summary of the main points.",
+              "ja": "そのガイドは要点を簡潔にまとめている。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "further",
+          "wordNote": "further は「さらに先へ」という感覚から、「追加の、さらなる」という意味でも非常によく使います。\n\nfurther information\n→ 追加情報・さらに詳しい情報\n\nfurther discussion\n→ さらなる話し合い\n\nfurther action\n→ これ以上の対応\n\nfarther も「より遠く」という意味がありますが、距離については farther / further の両方が使われることがあります。\n\n一方、情報・話し合い・対応など、物理的な距離ではない「さらに」という意味では further がよく使われます。",
+          "meanings": [
+            {
+              "meaning": "さらに多くの・追加の",
+              "en": "Please let me know if you need further information.",
+              "ja": "もっと詳しい情報が必要なら教えてください。"
+            },
+            {
+              "meaning": "これ以上の・さらなる",
+              "en": "No further action is needed.",
+              "ja": "これ以上の対応は必要ありません。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "steep",
+          "wordNote": "steep は「傾斜が急な」という意味の形容詞です。\n\na steep hill\n→ 急な坂\n\na steep slope\n→ 急斜面\n\nそこから、値段・増加・減少などが「急で大きい」という意味にも広がります。\n\na steep price\n→ かなり高い値段\n\na steep increase\n→ 急激な増加\n\n値段について steep と言うと、単に expensive というより「思った以上に高い、かなり高い」という感じが出ます。",
+          "meanings": [
+            {
+              "meaning": "急な・傾斜のきつい",
+              "en": "It's a steep hill, so take your time.",
+              "ja": "急な坂だから、ゆっくり行こう。"
+            },
+            {
+              "meaning": "とても高い",
+              "en": "That's a pretty steep price for a small repair. Is there a cheaper option?",
+              "ja": "ちょっとした修理にしては、かなり高いね。もっと安い方法ないかな？"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "faint",
+          "wordNote": "faint は「非常に弱く、はっきりしない」という感覚の語です。\n\na faint sound\n→ かすかな音\n\na faint smell\n→ かすかなにおい\n\na faint light\n→ ほのかな光\n\n人について feel faint と言うと、「気が遠くなりそう、倒れそう」という意味になります。\n\n音・光・においなどが弱い状態と、意識が弱くなりそうな状態に共通するイメージがあります。\n\nなお、日本語の「フェイント」は faint ではなく feint です。\n\nfeint\n→ 相手をだますための見せかけの動き・フェイント\n\na feint in basketball\n→ バスケットボールでのフェイント\n\nfaint\n→ かすかな・弱い／気が遠くなりそうな\n\nfeint\n→ 相手を惑わせる見せかけの動き\n\n発音もつづりも似ていますが、別の語です。",
+          "meanings": [
+            {
+              "meaning": "かすかな・弱い",
+              "en": "I can hear a faint noise upstairs.",
+              "ja": "2階からかすかな音が聞こえる。"
+            },
+            {
+              "meaning": "気が遠くなりそうな",
+              "en": "I'm feeling a little faint. Can we sit down?",
+              "ja": "ちょっと気が遠くなりそう。座ってもいい？"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "slight",
+          "wordNote": "slight は「程度が小さい、わずかな」という意味です。\n\na slight difference\n→ わずかな違い\n\na slight delay\n→ 少しの遅れ\n\na slight headache\n→ 軽い頭痛\n\nminor も「小さい、軽微な」という意味ですが、slight は「ほんの少し」という程度の小ささを表すのに向いています。",
+          "meanings": [
+            {
+              "meaning": "わずかな・少しの",
+              "en": "There's a slight difference between the two. Want me to explain?",
+              "ja": "その2つには少し違いがある。よかったら説明しようか？"
+            },
+            {
+              "meaning": "軽い・程度の小さい",
+              "en": "I have a slight headache, but I'm okay.",
+              "ja": "少し頭痛がするけど、大丈夫。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "dense",
+          "wordNote": "dense は「中身がぎっしり詰まっている」という感覚の語です。\n\ndense fog\n→ 濃い霧\n\na dense forest\n→ 木が密集した森\n\nまた、文章や説明について使うと「情報が詰まりすぎていて読みづらい、理解しづらい」という意味になります。\n\na dense article\n→ 内容が詰まっていて難しい記事\n\n単に difficult というより、「情報量が多くて重い」という感じです。",
+          "meanings": [
+            {
+              "meaning": "密集した・濃い",
+              "en": "There was dense fog this morning.",
+              "ja": "今朝は霧がすごく濃かった。"
+            },
+            {
+              "meaning": "内容が詰まった・理解しづらい",
+              "en": "This article is useful, but it's pretty dense. I could use a summary.",
+              "ja": "この記事、役には立つけどかなり内容が詰まってて読みづらい。要約があると助かるな。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "shallow",
+          "wordNote": "shallow は deep の反対で、「深くない」という意味です。\n\nshallow water\n→ 浅い水\n\na shallow pool\n→ 浅いプール\n\nそこから、考え・説明・理解などについて「表面的な、深みがない」という意味にも広がります。\n\na shallow explanation\n→ 表面的な説明\n\n物理的な深さだけでなく、「考えの深さ」にも使える語です。",
+          "meanings": [
+            {
+              "meaning": "浅い",
+              "en": "The water is shallow here.",
+              "ja": "ここは水が浅いよ。"
+            },
+            {
+              "meaning": "表面的な・深みのない",
+              "en": "That explanation feels a little shallow.",
+              "ja": "その説明、ちょっと表面的な感じがする。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "current",
+          "wordNote": "current は「今この時点で使われている、存在している」という意味です。\n\nmy current job\n→ 現在の仕事\n\nthe current version\n→ 現行バージョン\n\ncurrent information\n→ 現在の情報\n\npresent も「現在の」という意味がありますが、current は特に「今有効なもの、今使われているもの」によく使われます。\n\nsoftware・rules・prices・version などとの相性がよい語です。",
+          "meanings": [
+            {
+              "meaning": "現在の・今の",
+              "en": "I'm happy with my current setup.",
+              "ja": "今の環境で満足してる。"
+            },
+            {
+              "meaning": "現在使われている・現行の",
+              "en": "Make sure you're using the current version.",
+              "ja": "今の最新版を使ってるか確認してね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "entire",
+          "wordNote": "entire は「一つのものを全部、残さず」という意味です。\n\nthe entire day\n→ 一日全部\n\nthe entire building\n→ 建物全体\n\nthe entire family\n→ 家族全員\n\nwhole と非常に近い意味ですが、entire は少し強く「全部、完全に」という響きがあります。\n\nthe whole day\nthe entire day\n\nはどちらも「一日中」という意味で使えます。\n\n日常会話では whole の方が自然な場面も多く、entire は「本当に全部」ということをやや強調したいときにも使われます。",
+          "meanings": [
+            {
+              "meaning": "全体の・全部の",
+              "en": "I spent the entire morning fixing this.",
+              "ja": "午前中ずっとこれを直してた。"
+            },
+            {
+              "meaning": "まるごとの・全体にわたる",
+              "en": "The entire building lost power.",
+              "ja": "建物全体が停電した。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "separate",
+          "wordNote": "separate は「一緒ではなく、分けられている」という感覚の語です。\n\nseparate rooms\n→ 別々の部屋\n\nseparate accounts\n→ 別々のアカウント\n\na separate issue\n→ 別の問題\n\ndifferent は「違っている」ことに注目しますが、separate は「別々に存在している、分けて扱う」という点に注目します。\n\nThat's a separate issue.\n→ それは別問題だよ。\n\nは、話題を切り分けたいときに便利な表現です。",
+          "meanings": [
+            {
+              "meaning": "別々の・分かれた",
+              "en": "Keep work and personal files in separate folders.",
+              "ja": "仕事用と個人用のファイルは別々のフォルダに入れてね。"
+            },
+            {
+              "meaning": "別の・別個の",
+              "en": "That's a separate issue. Let's talk about it later.",
+              "ja": "それは別の問題だね。あとで話そう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "vast",
+          "wordNote": "vast は「非常に広い、非常に大きい」という意味の形容詞です。\n\na vast desert\n→ 広大な砂漠\n\na vast amount of information\n→ 莫大な量の情報\n\nまた、\n\nthe vast majority\n→ 大多数・圧倒的多数\n\nという表現も非常によく使います。\n\nwide や broad が「幅が広い」ことを表すのに対して、vast は「どこまでも広がっている、規模が非常に大きい」という感覚があります。\n\nそのため、土地だけでなく、量・知識・可能性などにも使えます。",
+          "meanings": [
+            {
+              "meaning": "広大な・非常に広い",
+              "en": "They crossed a vast desert with almost no roads.",
+              "ja": "ほとんど道のない広大な砂漠を横断した。"
+            },
+            {
+              "meaning": "莫大な・非常に多い",
+              "en": "The vast majority of users chose the simpler option.",
+              "ja": "利用者の大多数は、よりシンプルな方を選んだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "commercial",
+          "wordNote": "commercial は「商業の、利益を目的とした」という意味の形容詞です。\n\ncommercial use\n→ 商用利用\n\ncommercial purposes\n→ 商業目的\n\na commercial success\n→ 商業的な成功・興行的成功\n\n日本語では「コマーシャル」というとテレビCMを思い浮かべやすいですが、英語の commercial の中心は「商売・利益に関わる」です。\n\nなお、名詞の a commercial は「テレビやラジオなどの広告」という意味になります。\n\ncommercial\n→ 商業の（形容詞）\n\na commercial\n→ CM・広告（名詞）\n\nという違いがあります。",
+          "meanings": [
+            {
+              "meaning": "商業の・ビジネスの",
+              "en": "The building is used for commercial purposes.",
+              "ja": "その建物は商業目的で使われている。"
+            },
+            {
+              "meaning": "商業的な・利益につながる",
+              "en": "The movie was a huge commercial success.",
+              "ja": "その映画は興行的に大成功した。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "dull",
+          "wordNote": "dull の中心には、「鋭さ・鮮やかさ・刺激がない」という感覚があります。\n\na dull meeting\n→ 退屈な会議\n\na dull knife\n→ 切れ味の鈍いナイフ\n\na dull color\n→ くすんだ色\n\na dull pain\n→ 鈍い痛み\n\n日本語ではそれぞれ違う言葉に訳しますが、「鋭くない、はっきりしない、刺激が弱い」というイメージでつながっています。\n\nsharp の反対に近い感覚を持つ語です。",
+          "meanings": [
+            {
+              "meaning": "退屈な・面白みのない",
+              "en": "The meeting was pretty dull, so it was hard to stay focused.",
+              "ja": "会議がかなり退屈で、集中してるのが大変だった。"
+            },
+            {
+              "meaning": "鈍い・はっきりしない",
+              "en": "I've had a dull pain in my shoulder all day.",
+              "ja": "一日中、肩に鈍い痛みがある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "domestic",
+          "wordNote": "domestic は「自分の国の中の」という意味と、「家庭の」という意味があります。\n\na domestic flight\n→ 国内線\n\ndomestic travel\n→ 国内旅行\n\ndomestic chores\n→ 家事\n\ndomestic life\n→ 家庭生活\n\ninternational が「国と国との間」に関わるのに対して、domestic は「国内の」という意味になります。\n\nまた、domestic には「家・家庭に関わる」という意味もあり、そこから domestic chores などの表現が使われます。",
+          "meanings": [
+            {
+              "meaning": "国内の",
+              "en": "This airport handles both domestic and international flights.",
+              "ja": "この空港には国内線と国際線の両方がある。"
+            },
+            {
+              "meaning": "家庭の・家の中の",
+              "en": "They share the domestic chores.",
+              "ja": "二人で家事を分担している。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "critical",
+          "wordNote": "critical は文脈によって意味が大きく変わる語です。\n\ncritical information\n→ 非常に重要な情報\n\na critical moment\n→ 極めて重要な瞬間\n\nbe critical of ～\n→ ～に批判的である\n\nTiming is critical.\n→ タイミングが極めて重要です。\n\nShe was critical of the decision.\n→ 彼女はその決定に批判的だった。\n\ncritical には「結果を大きく左右するほど重要」という意味と、「問題点を厳しく評価する」という意味があります。\n\n「危機的な」という意味になる場合もありますが、critical = 危険だけではありません。",
+          "meanings": [
+            {
+              "meaning": "非常に重要な・重大な",
+              "en": "Timing is critical in this situation.",
+              "ja": "この状況ではタイミングが非常に重要だ。"
+            },
+            {
+              "meaning": "批判的な",
+              "en": "She was critical of the way the problem was handled.",
+              "ja": "彼女はその問題への対応の仕方に批判的だった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "legal",
+          "wordNote": "legal は「法律に関する」という意味と、「法律で認められている」という意味があります。\n\nlegal advice\n→ 法的な助言\n\nlegal action\n→ 法的措置\n\nIs it legal?\n→ それは合法ですか？\n\nlegal\n→ 法律上認められている\n\nillegal\n→ 違法な\n\nという対比でもよく使います。\n\n「法律に関係する」のか「合法である」のかは、文脈で判断します。",
+          "meanings": [
+            {
+              "meaning": "法律上の・法的な",
+              "en": "You should get legal advice before signing anything.",
+              "ja": "何かに署名する前に、法的な助言を受けた方がいいよ。"
+            },
+            {
+              "meaning": "合法の",
+              "en": "Is it legal to park here overnight?",
+              "ja": "ここに一晩駐車しても法律上問題ない？"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "mobile",
+          "wordNote": "mobile の中心には「動くことができる、移動できる」という感覚があります。\n\na mobile unit\n→ 移動可能な設備・部隊\n\nmobile equipment\n→ 移動できる機器\n\nそこから、持ち運んで使える電話や端末にも mobile が使われるようになりました。\n\nmobile phone\n→ 携帯電話\n\nmobile version\n→ モバイル版\n\n日本語では「モバイル＝スマホ関連」という印象が強いですが、英語ではもともと「動ける、移動可能な」という意味を持つ語です。",
+          "meanings": [
+            {
+              "meaning": "移動できる・持ち運べる",
+              "en": "The desk is mobile, so we can move it if we need more space.",
+              "ja": "その机は動かせるから、もっと場所が必要なら移動できるよ。"
+            },
+            {
+              "meaning": "携帯端末向けの・モバイルの",
+              "en": "The mobile version is easier to use.",
+              "ja": "モバイル版の方が使いやすい。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "visible",
+          "wordNote": "visible は「目で見ることができる」という意味です。\n\nclearly visible\n→ はっきり見える\n\nvisible damage\n→ 見た目で分かる損傷\n\nまた、「表面に現れていて分かる」という意味にも使います。\n\nThere was no visible change.\n→ 見たところ変化はなかった。\n\n反対は invisible です。\n\nvisible\n→ 見える\n\ninvisible\n→ 見えない\n\n物理的に見える場合だけでなく、「外から確認できる」という感覚にも使われます。",
+          "meanings": [
+            {
+              "meaning": "見える",
+              "en": "The mountains are clearly visible from here.",
+              "ja": "ここから山がはっきり見える。"
+            },
+            {
+              "meaning": "目立つ・表面に現れている",
+              "en": "There was no visible damage to the screen.",
+              "ja": "画面には見た目で分かる損傷はなかった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "annual",
+          "wordNote": "annual は「1年に1回の」と「1年間の」という意味があります。\n\nan annual meeting\n→ 年1回の会議\n\nan annual checkup\n→ 年1回の健康診断\n\nannual income\n→ 年収\n\nan annual fee\n→ 年会費\n\nつまり、\n\nannual event\n→ 毎年行われるもの\n\nannual income\n→ 1年間の合計\n\nのように、文脈によって「毎年」と「年間」の両方になります。\n\nyearly と近いですが、annual は料金・報告書・行事などでよく使われます。",
+          "meanings": [
+            {
+              "meaning": "毎年の・年1回の",
+              "en": "We have an annual checkup at work.",
+              "ja": "職場で年1回の健康診断がある。"
+            },
+            {
+              "meaning": "1年間の・年間の",
+              "en": "The annual fee is paid in January.",
+              "ja": "年会費は1月に払う。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "digital",
+          "wordNote": "digital は「デジタル方式の、電子的な」という意味です。\n\na digital copy\n→ 電子版・デジタル版\n\ndigital data\n→ デジタルデータ\n\na digital ticket\n→ 電子チケット\n\n日本語でも「デジタル」はよく使いますが、英語では紙や物理的な形式と対比するときにも非常によく使われます。\n\na paper copy\n→ 紙のコピー\n\na digital copy\n→ 電子版\n\ndigital form\n→ 電子形式\n\nのように使えます。\n\n「機械っぽいもの」というより、情報が電子的な形で保存・利用されていることを表す語です。",
+          "meanings": [
+            {
+              "meaning": "デジタルの・電子的な",
+              "en": "I keep a digital copy of important documents.",
+              "ja": "大事な書類はデジタル版も保存してる。"
+            },
+            {
+              "meaning": "電子形式の",
+              "en": "The ticket is available in digital form. Do you want a paper ticket or one on your phone?",
+              "ja": "チケットは電子形式でも利用できるよ。紙のチケットとスマホに入れるの、どっちがいい？"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "informal",
+          "wordNote": "informal は formal の反対で、「形式ばらない、気軽な」という意味です。\n\nan informal meeting\n→ 気軽な打ち合わせ\n\ninformal clothes\n→ カジュアルな服装\n\ninformal language\n→ くだけた言葉遣い\n\nまた、「公式ではない」という意味にも使われます。\n\nan informal agreement\n→ 非公式な取り決め\n\ninformal は「雑」「失礼」という意味ではなく、formal ほど形式を重視しないということです。",
+          "meanings": [
+            {
+              "meaning": "形式ばらない・気軽な",
+              "en": "It was just an informal meeting over coffee.",
+              "ja": "コーヒーを飲みながらの気軽な打ち合わせだった。"
+            },
+            {
+              "meaning": "非公式の",
+              "en": "We had an informal agreement, but nothing was written down.",
+              "ja": "非公式な取り決めはあったけど、書面にはしてなかった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "standard",
+          "wordNote": "standard は「標準の、一般的な」という意味です。\n\na standard size\n→ 標準サイズ\n\nstandard procedure\n→ 通常の手順・標準的な手順\n\nstandard equipment\n→ 標準装備\n\n「特別仕様ではなく、普通に基準として使われているもの」という感覚があります。\n\nnormal が「普通の状態」を表すのに対して、standard は「基準として定められた普通」に近い語です。",
+          "meanings": [
+            {
+              "meaning": "標準の・一般的な",
+              "en": "This is the standard size for most desks.",
+              "ja": "これは一般的な机の標準サイズだよ。"
+            },
+            {
+              "meaning": "基準となる・通常の",
+              "en": "That's the standard procedure for this kind of problem.",
+              "ja": "こういう問題では、それが通常の手順だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "technical",
+          "wordNote": "technical は「技術に関する、専門的な」という意味です。\n\ntechnical information\n→ 技術情報\n\ntechnical terms\n→ 専門用語\n\na technical problem\n→ 技術的な問題\n\nThe explanation is too technical for me.\n→ その説明は私には専門的すぎます。\n\nそんなときは、\n\nCould you explain it in simpler terms?\n→ もう少し分かりやすく説明してくれる？\n\nと言えます。\n\nin simpler terms は、専門用語や難しい説明を避けて「もっと簡単な言葉で」という意味です。\n\n「専門外なので」「その分野には詳しくないので」と長く説明しなくても、in simpler terms で自然にお願いできます。",
+          "meanings": [
+            {
+              "meaning": "技術上の・専門的な",
+              "en": "We ran into a technical problem during the update.",
+              "ja": "アップデート中に技術的な問題が起きた。"
+            },
+            {
+              "meaning": "専門知識を必要とする",
+              "en": "The explanation is a little too technical for me. Could you explain it in simpler terms?",
+              "ja": "その説明、私にはちょっと専門的すぎる。もう少し分かりやすく説明してくれる？"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "academic",
+          "wordNote": "academic は「学問の、学校教育に関する」という意味です。\n\nacademic research\n→ 学術研究\n\nacademic skills\n→ 学習・学術上の技能\n\nまた、「理論上はそうでも、実際にはあまり関係がない」という意味でも使われます。\n\nan academic question\n→ 学問的・理論的な問題\n\n日本語の「アカデミック」より日常的に使われる範囲が広く、学問そのものだけでなく「理論と実際」を対比するときにも使われます。",
+          "meanings": [
+            {
+              "meaning": "学問の・学校教育の",
+              "en": "The course focuses on academic writing.",
+              "ja": "その講座では学術的な文章の書き方を中心に学ぶ。"
+            },
+            {
+              "meaning": "理論的な・実用から離れた",
+              "en": "That's an interesting academic question, but what should we do in practice?",
+              "ja": "学問的には面白いけど、実際にはどうすればいい？"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "internal",
+          "wordNote": "internal は「内部の、内側の」という意味です。\n\ninternal use\n→ 内部利用・社内利用\n\nan internal document\n→ 内部資料・社内資料\n\ninternal communication\n→ 組織内の連絡\n\n会社や組織について使うと、「外部には出さず、内部だけで扱う」という意味になります。\n\nfor internal use only\n→ 内部利用のみ・社外秘\n\nexternal と対になる語です。",
+          "meanings": [
+            {
+              "meaning": "内部の・内側の",
+              "en": "The device has very little internal storage left.",
+              "ja": "その端末、内部ストレージがほとんど残ってない。"
+            },
+            {
+              "meaning": "組織内の・内部向けの",
+              "en": "This document is for internal use only.",
+              "ja": "この資料は内部利用のみです。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "external",
+          "wordNote": "external は「外部の、外側からの」という意味です。\n\nexternal review\n→ 外部による審査・チェック\n\nexternal storage\n→ 外部ストレージ\n\nexternal factors\n→ 外的要因\n\ninternal が「内部の」なのに対して、external は「組織や物の外側にある、外から来る」という感覚です。\n\n人・組織だけでなく、機器や原因などにも広く使われます。",
+          "meanings": [
+            {
+              "meaning": "外部の・外側の",
+              "en": "I keep a backup on an external drive.",
+              "ja": "バックアップは外付けドライブにも保存してる。"
+            },
+            {
+              "meaning": "組織外からの・外部による",
+              "en": "We need an external review before we publish it.",
+              "ja": "公開前に外部のチェックが必要だね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "verbal",
+          "wordNote": "verbal は「言葉による、口頭の」という意味です。\n\na verbal agreement\n→ 口頭での合意・口約束\n\nverbal instructions\n→ 口頭での指示\n\nverbal communication\n→ 言葉によるコミュニケーション\n\n日本語では「バーバル」という語をあまり日常的に使いませんが、英語では「書面ではなく言葉で伝えた」という意味でよく使われます。\n\nなお、verbal abuse は「暴言・言葉による虐待」ですが、verbal 自体に「暴言」という意味があるわけではありません。",
+          "meanings": [
+            {
+              "meaning": "言葉による・口頭の",
+              "en": "The instructions were only verbal, so I wrote them down.",
+              "ja": "指示は口頭だけだったから、書き留めておいた。"
+            },
+            {
+              "meaning": "口頭で交わされた",
+              "en": "We only had a verbal agreement.",
+              "ja": "口約束しかしてなかった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "written",
+          "wordNote": "written は「書かれた、書面による」という意味です。\n\nwritten confirmation\n→ 書面での確認\n\nwritten instructions\n→ 書かれた指示\n\na written agreement\n→ 書面による合意\n\nまた、\n\nCan I get that in writing?\n→ それを書面でもらえますか？\n\nという表現もよく使います。\n\nwritten は「書かれたもの」、in writing は「書面で」という言い方です。",
+          "meanings": [
+            {
+              "meaning": "書かれた・文章の",
+              "en": "The written instructions are much easier to follow.",
+              "ja": "書いてある説明の方がずっと分かりやすい。"
+            },
+            {
+              "meaning": "書面による",
+              "en": "We need written confirmation before we proceed.",
+              "ja": "進める前に書面での確認が必要です。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "spoken",
+          "wordNote": "spoken は「話し言葉の、口頭で使われる」という意味です。\n\nspoken English\n→ 話し言葉の英語\n\nspoken language\n→ 話し言葉\n\nspoken communication\n→ 口頭でのコミュニケーション\n\nwritten English が「書き言葉の英語」なのに対して、spoken English は実際に会話で話される英語です。\n\n教科書では自然でも会話では少し堅い表現があったり、逆に会話では省略された短い表現が多かったりするので、spoken / written の区別は英語学習でも重要です。",
+          "meanings": [
+            {
+              "meaning": "話し言葉の",
+              "en": "Spoken English can sound very different from textbook English.",
+              "ja": "話し言葉の英語は、教科書の英語とかなり違って聞こえることがある。"
+            },
+            {
+              "meaning": "口頭で使われる",
+              "en": "This expression is more common in spoken English.",
+              "ja": "この表現は話し言葉の英語でよく使われる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "financial",
+          "wordNote": "financial は「お金、財務に関する」という意味です。\n\nfinancial support\n→ 経済的な支援\n\nfinancial problems\n→ 金銭的な問題\n\nfinancial information\n→ 財務情報\n\nfinancial stress\n→ お金に関するストレス\n\neconomic も「経済の」という意味ですが、financial は特に「個人・会社のお金や資金」に焦点があります。\n\nfinancial problems\n→ お金の問題\n\neconomic problems\n→ 経済全体に関わる問題\n\nという違いが出ることがあります。",
+          "meanings": [
+            {
+              "meaning": "お金・財務に関する",
+              "en": "We're trying to avoid unnecessary financial stress.",
+              "ja": "不必要なお金の負担は避けたいんだ。"
+            },
+            {
+              "meaning": "金銭的な・経済面での",
+              "en": "They offered financial support to students who needed it.",
+              "ja": "必要としている学生に経済的な支援を提供した。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "fond",
+          "wordNote": "fond は「好きで、好意を持って」という意味ですが、love のような強い感情というより、「親しみや愛着を感じている」という柔らかい好意を表します。\n\nbe fond of ～\n→ ～が好きだ・～に愛着がある\n\nI'm fond of this place.\n→ この場所、けっこう好きなんだ。\n\nまた、\n\nfond memories\n→ 懐かしい、温かい思い出\n\nのようにもよく使います。\n\nfond は「好き」という気持ちだけでなく、「親しみを持って大切に思っている」という感じがあります。",
+          "meanings": [
+            {
+              "meaning": "好きで・好意を持って",
+              "en": "I'm quite fond of this little café.",
+              "ja": "この小さなカフェ、けっこう好きなんだ。"
+            },
+            {
+              "meaning": "懐かしく・愛情を込めた",
+              "en": "I have fond memories of that trip.",
+              "ja": "あの旅行には懐かしい思い出がある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "ideal",
+          "wordNote": "ideal は「理想的な、条件にぴったりの」という意味です。\n\nan ideal place\n→ 理想的な場所\n\nideal conditions\n→ 理想的な条件\n\nまた、会話では\n\nIt's not ideal, but it'll work.\n→ 理想的ではないけど、これで何とかなる。\n\nのような言い方がよく使われます。\n\nnot ideal は「最悪」というほど強くなく、「あまり望ましくはない」「ベストではない」という柔らかい言い方です。\n\nperfect よりも、「目的や条件にちょうど合っている」という感覚で使われることがあります。",
+          "meanings": [
+            {
+              "meaning": "理想的な",
+              "en": "This room is ideal for working from home.",
+              "ja": "この部屋、在宅で仕事するのにちょうどいい。"
+            },
+            {
+              "meaning": "最適な・条件にぴったりの",
+              "en": "It's not ideal, but it'll work for now.",
+              "ja": "理想的ではないけど、今のところはこれでいける。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "principal",
+          "wordNote": "principal は形容詞では「主な、最も重要な」という意味です。\n\nthe principal reason\n→ 主な理由\n\nthe principal concern\n→ 最も重要な懸念・関心事\n\nまた、名詞では\n\na school principal\n→ 校長\n\nという意味になります。\n\nよく似た principle は別の語です。\n\nprincipal\n→ 主な／校長\n\nprinciple\n→ 原則・信条・考え方\n\n「どちらも大事なものに関係しそう」とまとめて覚えてしまいがちですが、意味を自由に行き来できる語ではありません。\n\nprincipal は「中心となる・最も重要なもの」、principle は「判断や行動の土台になる原則」という違いがあります。",
+          "meanings": [
+            {
+              "meaning": "主な・主要な",
+              "en": "The principal reason was the cost.",
+              "ja": "一番大きな理由は費用だった。"
+            },
+            {
+              "meaning": "最も重要な",
+              "en": "Safety is our principal concern.",
+              "ja": "私たちが最も重視しているのは安全です。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "initial",
+          "wordNote": "initial は「最初の、初期の」という意味です。\n\nan initial reaction\n→ 最初の反応\n\nthe initial setup\n→ 初期設定\n\ninitial results\n→ 初期の結果\n\nfirst も「最初の」ですが、initial は「これから続いていく一連の流れの最初の段階」という感じが出やすい語です。\n\nそのため、setup・reaction・stage・result などとよく使われます。\n\nまた、名詞の initial は「名前の最初の文字・頭文字」という意味です。\n\nMy first initial is N.\n→ 私の名前の最初の文字は N です。\n\ninitials\n→ 名前の頭文字\n\nたとえば John Smith なら initials は J.S. です。\n\n「最初の」という意味から、「名前の最初の文字」という意味につながっています。",
+          "meanings": [
+            {
+              "meaning": "最初の・初期の",
+              "en": "My initial reaction was to say no.",
+              "ja": "最初は「無理」って思った。"
+            },
+            {
+              "meaning": "初めの段階の",
+              "en": "The initial setup only takes a few minutes.",
+              "ja": "最初の設定は数分しかかからない。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "mutual",
+          "wordNote": "mutual は「お互いの、双方に共通する」という意味です。\n\na mutual friend\n→ 共通の友達\n\nmutual respect\n→ お互いへの尊敬\n\nmutual understanding\n→ 相互理解\n\na mutual friend は「二人とも知っている友達」という意味で、日常会話でも非常によく使います。\n\nmutual には、一方だけではなく「両方に同じ関係や気持ちがある」という感覚があります。",
+          "meanings": [
+            {
+              "meaning": "お互いの・相互の",
+              "en": "We met through a mutual friend.",
+              "ja": "共通の友達を通じて知り合った。"
+            },
+            {
+              "meaning": "双方に共通する",
+              "en": "There's a lot of mutual respect between them.",
+              "ja": "二人はお互いをとても尊敬している。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "valid",
+          "wordNote": "valid は「有効な」という意味だけでなく、「妥当な、もっともな」という意味でも使います。\n\na valid ticket\n→ 有効なチケット\n\na valid passport\n→ 有効なパスポート\n\na valid reason\n→ 妥当な理由\n\na valid concern\n→ もっともな心配・懸念\n\nつまり valid は、「期限が切れていない」という意味だけではありません。\n\n意見・理由・心配などについて使うと、「ちゃんと根拠がある、筋が通っている」という意味になります。",
+          "meanings": [
+            {
+              "meaning": "有効な",
+              "en": "Is this ticket still valid?",
+              "ja": "このチケット、まだ有効？"
+            },
+            {
+              "meaning": "妥当な・もっともな",
+              "en": "That's a valid concern.",
+              "ja": "それはもっともな心配だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "neutral",
+          "wordNote": "neutral は「どちらにも偏らない、中立の」という意味です。\n\na neutral position\n→ 中立的な立場\n\nstay neutral\n→ 中立を保つ\n\nまた、色・背景・表現などについて「強い印象を与えない、無難な」という意味でも使います。\n\na neutral color\n→ 無難で中立的な色\n\na neutral background\n→ 主張の強くない背景\n\nneutral は政治や議論だけでなく、デザイン・態度・表現にも広く使われます。",
+          "meanings": [
+            {
+              "meaning": "中立の・どちらにも偏らない",
+              "en": "I'm trying to stay neutral in this argument.",
+              "ja": "この言い争いでは、どちらの側にもつかないようにしてる。"
+            },
+            {
+              "meaning": "無難な・中立的な",
+              "en": "Let's use a neutral background.",
+              "ja": "無難な背景にしよう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "overall",
+          "wordNote": "overall は「全体的な、総合的な」という意味です。\n\noverall quality\n→ 全体的な品質\n\nthe overall result\n→ 総合的な結果\n\nthe overall impression\n→ 全体的な印象\n\n一つ一つの部分ではなく、「全部まとめて見たときどうか」という感覚の語です。\n\nThe details aren't perfect, but the overall result is good.\n→ 細かいところは完璧じゃないけど、全体としてはいい。\n\nのように、部分と全体を分けて評価するときにも便利です。",
+          "meanings": [
+            {
+              "meaning": "全体的な・総合的な",
+              "en": "The overall quality is much better now.",
+              "ja": "全体的な品質は今の方がずっといい。"
+            },
+            {
+              "meaning": "全体としての",
+              "en": "I'm happy with the overall result.",
+              "ja": "全体としての出来には満足してる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "prior",
+          "wordNote": "prior は「以前の、その時点より前の」という意味です。\n\nprior experience\n→ 以前の経験・事前経験\n\nprior approval\n→ 事前の承認\n\nprior notice\n→ 事前通知\n\nprevious と近いですが、prior は「ある出来事や時点より前に」という関係を意識する語です。\n\nNo prior experience is required.\n→ 事前の経験は必要ありません。\n\n求人・契約・申込案内などでもよく見かけます。",
+          "meanings": [
+            {
+              "meaning": "以前の・それより前の",
+              "en": "No prior experience is required.",
+              "ja": "事前の経験は必要ありません。"
+            },
+            {
+              "meaning": "事前の",
+              "en": "You need prior approval for that.",
+              "ja": "それには事前の承認が必要だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "apparent",
+          "wordNote": "apparent は少し注意が必要な語で、「見て明らかな」という意味と、「一見そう見える」という意味があります。\n\nno apparent damage\n→ 見たところ損傷はない\n\nan apparent difference\n→ はっきり見える違い\n\napparent confidence\n→ 一見したところの自信\n\nつまり apparent は、「外から見てそう分かる」というのが中心です。\n\n文脈によって、\n\n「明らかな」\nまたは\n「そう見えるだけかもしれない」\n\nのどちらにもなります。\n\n実際に本当かどうかより、「見たところどう見えるか」に注目する語です。",
+          "meanings": [
+            {
+              "meaning": "明らかな・はっきり分かる",
+              "en": "There was no apparent damage.",
+              "ja": "見たところ損傷はなかった。"
+            },
+            {
+              "meaning": "一見～のような・見かけ上の",
+              "en": "His apparent confidence disappeared as soon as the questions started.",
+              "ja": "自信満々に見えたけど、質問が始まるとすぐ崩れた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "adequate",
+          "wordNote": "adequate は「目的に対して必要なだけ十分な」という意味です。\n\nadequate space\n→ 必要なだけのスペース\n\nadequate protection\n→ 十分な保護\n\nan adequate explanation\n→ 必要な内容を満たした説明\n\nadequate は「すばらしい」という意味ではなく、「必要な基準は満たしている」という感じです。\n\nThe room is adequate for one person.\n→ 一人で使うには十分な部屋だ。\n\nという場合、「広くて最高」というより「一人ならこれで足りる」というニュアンスです。\n\nsufficient も「十分な」ですが、adequate は特に「ある目的に使うには十分」という判断に使われます。",
+          "meanings": [
+            {
+              "meaning": "十分な・必要な条件を満たす",
+              "en": "The room is small, but it's adequate for one person.",
+              "ja": "部屋は小さいけど、一人なら十分だよ。"
+            },
+            {
+              "meaning": "必要最低限を満たした",
+              "en": "The protection is adequate for normal use.",
+              "ja": "普通に使う分には、その保護で十分だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "decent",
+          "wordNote": "decent は日本語一語にしにくい便利な語で、「まずまず良い、ちゃんとした、まともな」という感じです。\n\na decent hotel\n→ けっこうちゃんとしたホテル\n\na decent meal\n→ ちゃんとした食事\n\na decent person\n→ まともな人・良識のある人\n\n「最高！」と強く褒める語ではありませんが、「悪くない」よりも肯定的です。\n\nWe found a decent hotel.\n→ ちゃんとしたホテルが見つかった。\n\nのように、「十分満足できる程度に良い」という日常的な評価によく使われます。",
+          "meanings": [
+            {
+              "meaning": "まずまず良い・ちゃんとした",
+              "en": "We found a decent hotel near the station.",
+              "ja": "駅の近くにけっこうちゃんとしたホテル見つけたよ。"
+            },
+            {
+              "meaning": "まともな・良識のある",
+              "en": "He's a decent person.",
+              "ja": "彼はちゃんとした人だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "concise",
+          "wordNote": "concise は「短く、無駄なく要点がまとまっている」という意味です。\n\na concise explanation\n→ 簡潔な説明\n\na concise summary\n→ 簡潔な要約\n\nconcise instructions\n→ 要点を押さえた簡潔な指示\n\n単に short なのではなく、「必要なことは入っているが、余計な部分がない」というのがポイントです。\n\nbrief も「短い」という意味ですが、concise は特に文章・説明・表現が無駄なくまとまっていることを表します。",
+          "meanings": [
+            {
+              "meaning": "簡潔な・要点を押さえた",
+              "en": "Could you keep the explanation concise?",
+              "ja": "説明は簡潔にしてもらえる？"
+            },
+            {
+              "meaning": "短く無駄のない",
+              "en": "The summary is concise but still easy to understand.",
+              "ja": "その要約は簡潔だけど、ちゃんと分かりやすい。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "consistent",
+          "wordNote": "consistent は「一貫している、ばらつきがない」という意味です。\n\nconsistent quality\n→ 安定した品質\n\nconsistent results\n→ 安定した結果\n\na consistent explanation\n→ 一貫した説明\n\n考えや説明について使うと、「前後で矛盾していない」という意味になります。\n\n品質や成績について使うと、「毎回大きく変わらず、安定している」という意味になります。\n\nまた、\n\nbe consistent with ～\n→ ～と一致している・矛盾しない\n\nという形もよく使います。",
+          "meanings": [
+            {
+              "meaning": "一貫した・矛盾のない",
+              "en": "Her explanation is clear and consistent.",
+              "ja": "彼女の説明は分かりやすくて一貫している。"
+            },
+            {
+              "meaning": "安定して同じ水準の",
+              "en": "The quality has been very consistent.",
+              "ja": "品質がずっと安定してる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "accessible",
+          "wordNote": "accessible は「アクセスできる、利用できる」という意味ですが、人が理解しやすいものにも使えます。\n\nan accessible website\n→ 利用しやすいウェブサイト\n\ninformation accessible from any device\n→ どの端末からでも利用できる情報\n\nまた、\n\nan accessible explanation\n→ 分かりやすい説明\n\nan accessible book\n→ とっつきやすく読みやすい本\n\nのようにも使います。\n\nつまり accessible の中心は、「そこまで無理なくたどり着ける」という感覚です。\n\n場所・情報なら「利用できる」、内容なら「理解しやすい」と訳されます。",
+          "meanings": [
+            {
+              "meaning": "利用できる・アクセスできる",
+              "en": "The files are accessible from any device.",
+              "ja": "そのファイルはどの端末からでもアクセスできる。"
+            },
+            {
+              "meaning": "分かりやすい・とっつきやすい",
+              "en": "The book makes a difficult topic accessible.",
+              "ja": "その本は難しいテーマを分かりやすくしている。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "secure",
+          "wordNote": "secure は「簡単には失われたり、壊されたり、外れたりしない」という感覚を持つ語です。\n\na secure account\n→ 安全に保護されたアカウント\n\na secure connection\n→ 安全な接続\n\na secure lid\n→ しっかり固定されたふた\n\nそのため、ネット上の安全だけでなく、「しっかり固定されている」という意味にも使います。\n\nsafe が広く「危険がない」ことを表すのに対して、secure は「守られている、しっかり確保されている」という感じが強い語です。",
+          "meanings": [
+            {
+              "meaning": "安全な・しっかり保護された",
+              "en": "Make sure your account is secure.",
+              "ja": "アカウントがきちんと保護されてるか確認してね。"
+            },
+            {
+              "meaning": "しっかり固定された",
+              "en": "Check that the lid is secure.",
+              "ja": "ふたがしっかり閉まってるか確認して。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "immediate",
+          "wordNote": "immediate は「間に何も挟まず、すぐの・直接の」という感覚の語です。\n\nimmediate action\n→ 即座の対応\n\nimmediate danger\n→ 差し迫った危険\n\nまた、時間だけでなく、関係や場所が「すぐ近い」場合にも使います。\n\nimmediate family\n→ 近親者・ごく近い家族\n\nthe immediate area\n→ すぐ周辺の地域\n\nそのため immediate family は「すぐ家族になる」という意味ではありません。\n\n時間・場所・関係などで、「間に距離や段階がほとんどない」というイメージでつながっています。",
+          "meanings": [
+            {
+              "meaning": "即座の・すぐの",
+              "en": "There's no immediate danger.",
+              "ja": "今すぐ危険というわけではない。"
+            },
+            {
+              "meaning": "すぐ近くの・直接の",
+              "en": "Only immediate family members were invited.",
+              "ja": "近親者だけが招待された。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "frequent",
+          "wordNote": "frequent は「頻繁な、何度も起こる」という意味です。\n\nfrequent problems\n→ 頻繁に起こる問題\n\na frequent visitor\n→ よく来る人\n\nfrequent changes\n→ 頻繁な変更\n\noften が副詞で、\n\nIt often happens.\n→ それはよく起こる。\n\nと言うのに対して、frequent は形容詞なので、\n\nfrequent problems\n→ 頻繁な問題\n\nのように名詞を説明します。\n\nfrequent flyer\n→ 飛行機を頻繁に利用する人\n\nという表現もよく使われます。",
+          "meanings": [
+            {
+              "meaning": "頻繁な・たびたび起こる",
+              "en": "We've had frequent problems with the connection.",
+              "ja": "接続トラブルが何度も起きてる。"
+            },
+            {
+              "meaning": "よく来る・よく利用する",
+              "en": "She's a frequent visitor to this café.",
+              "ja": "彼女はこのカフェによく来る。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "worthwhile",
+          "wordNote": "worthwhile は「時間・労力・お金などを使う価値がある」という意味です。\n\na worthwhile project\n→ 取り組む価値のあるプロジェクト\n\nIt was worthwhile.\n→ やる価値があった。\n\n日本語では「有意義な」と訳されることもありますが、会話では「やってよかった」「手間をかけた甲斐があった」という感覚でも使えます。\n\nworth も「価値がある」という意味ですが、\n\nIt was worth it.\n→ それだけの価値はあった。\n\nIt was worthwhile.\n→ やる価値があった・やってよかった。\n\nのようにどちらもよく使われます。\n\nworthwhile は、それに使った時間や努力を考えても「やる意味があった」と評価するときに便利な語です。",
+          "meanings": [
+            {
+              "meaning": "やる価値のある",
+              "en": "It took a lot of time, but it was worthwhile.",
+              "ja": "かなり時間はかかったけど、やる価値はあったよ。"
+            },
+            {
+              "meaning": "時間や努力をかけるだけの価値がある",
+              "en": "The course is demanding, but it's worthwhile.",
+              "ja": "その講座は大変だけど、受ける価値はあるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "controversial",
+          "wordNote": "controversial は「人によって意見が大きく分かれ、議論を呼ぶ」という意味です。\n\na controversial issue\n→ 賛否の分かれる問題\n\na controversial decision\n→ 議論を呼ぶ決定\n\na controversial topic\n→ 意見の分かれる話題\n\ncontroversial は「間違っている」「悪い」という意味ではありません。\n\n賛成する人と反対する人がいて、強い議論が起こりやすいことを表します。\n\ncontroversy\n→ 論争・議論\n\ncontroversial\n→ 論争を呼ぶ・賛否の分かれる\n\nという関係です。\n\na controversial issue はニュースや英作文でも非常によく使われる組み合わせです。",
+          "meanings": [
+            {
+              "meaning": "議論を呼ぶ・賛否の分かれる",
+              "en": "It's a controversial decision, so people have strong opinions about it.",
+              "ja": "賛否の分かれる決定だから、みんな意見が強い。"
+            },
+            {
+              "meaning": "意見の分かれる",
+              "en": "This is still a controversial issue.",
+              "ja": "これは今でも賛否の分かれる問題だ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "sensible",
+          "wordNote": "sensible は「状況をよく考えた、現実的で賢明な」という意味です。\n\na sensible plan\n→ 現実的で賢明な計画\n\na sensible decision\n→ 妥当で現実的な判断\n\nまた、人の判断だけでなく、\n\nsensible shoes\n→ 歩きやすく、その状況に適した実用的な靴\n\nのようにも使います。\n\n「頭がいい」というより、「その状況を考えると、それが一番まともで実用的」という感覚です。\n\nよく似た sensitive は別の語です。\n\nsensible\n→ 賢明な・現実的な\n\nsensitive\n→ 敏感な・繊細な\n\nつづりが似ていますが、意味はかなり違います。",
+          "meanings": [
+            {
+              "meaning": "賢明な・現実的な",
+              "en": "That sounds like a sensible plan.",
+              "ja": "それ、現実的でいい考えだね。"
+            },
+            {
+              "meaning": "実用的な・状況に合った",
+              "en": "Wear sensible shoes. We'll be walking a lot.",
+              "ja": "たくさん歩くから、歩きやすい靴で来てね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "modest",
+          "wordNote": "modest は、人について使うと「謙虚な、控えめな」という意味です。\n\na modest person\n→ 謙虚な人\n\nまた、量・金額・規模などについて使うと、「大きすぎない、控えめな」という意味になります。\n\na modest income\n→ それほど多くない収入\n\na modest profit\n→ 控えめな利益\n\na modest price\n→ 比較的手頃な価格\n\nmodest は「悪い、少なすぎる」という意味ではなく、「派手でも巨大でもない」という感覚です。",
+          "meanings": [
+            {
+              "meaning": "謙虚な・控えめな",
+              "en": "She's very modest about her achievements.",
+              "ja": "彼女は自分の実績をあまり誇らない。"
+            },
+            {
+              "meaning": "大きすぎない・控えめな",
+              "en": "We made a modest profit this year.",
+              "ja": "今年はそこそこの利益が出た。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "dramatic",
+          "wordNote": "dramatic は「劇的な」という意味ですが、必ずしも感動的だったり芝居がかっていたりするわけではありません。\n\na dramatic improvement\n→ 大幅な改善\n\na dramatic increase\n→ 急激で大きな増加\n\na dramatic change\n→ 目立つほど大きな変化\n\n英語の dramatic は、「誰が見ても分かるほど変化が大きい」という意味でよく使われます。\n\n日本語の「ドラマチック」は感情的・印象的な場面を連想しやすいですが、英語では数字・価格・状況の大きな変化にも普通に使います。",
+          "meanings": [
+            {
+              "meaning": "劇的な・大きな",
+              "en": "There's been a dramatic improvement.",
+              "ja": "ものすごく改善した。"
+            },
+            {
+              "meaning": "急激で目立つ",
+              "en": "We saw a dramatic increase in demand.",
+              "ja": "需要が急激に増えた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "competitive",
+          "wordNote": "competitive は「競争に関係する」という意味から、いくつかの使い方に広がります。\n\na competitive industry\n→ 競争の激しい業界\n\na competitive person\n→ 負けず嫌いで競争心の強い人\n\nまた、\n\ncompetitive prices\n→ 他社と十分に競争できる価格\n\nという表現もよく使います。\n\ncompetitive price は「価格が争っている」という意味ではなく、「他と比べても魅力があり、十分勝負できる価格」ということです。\n\n文脈によって「競争が激しい」と「競争力がある」の両方になります。",
+          "meanings": [
+            {
+              "meaning": "競争の激しい・競争心の強い",
+              "en": "It's a highly competitive industry.",
+              "ja": "かなり競争の激しい業界だ。"
+            },
+            {
+              "meaning": "競争力のある",
+              "en": "Their prices are very competitive.",
+              "ja": "そこの価格はかなり競争力がある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "confidential",
+          "wordNote": "confidential は「他の人に漏らしてはいけない、機密の」という意味です。\n\nconfidential information\n→ 機密情報\n\na confidential document\n→ 機密文書\n\nThis is confidential.\n→ これは内密にしてください。\n\nprivate も「非公開の、個人的な」という意味ですが、confidential は特に「限られた人だけが知るべきで、他人に伝えてはいけない」という感じがあります。\n\nprivate\n→ 個人的・非公開\n\nconfidential\n→ 秘密として扱うべき\n\nという違いがあります。",
+          "meanings": [
+            {
+              "meaning": "機密の・秘密の",
+              "en": "This information is confidential.",
+              "ja": "この情報は機密です。"
+            },
+            {
+              "meaning": "内密の・他人に漏らせない",
+              "en": "The details of the conversation are confidential.",
+              "ja": "その会話の詳しい内容は内密です。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "conscious",
+          "wordNote": "conscious は「意識がある」という意味です。\n\nHe was still conscious.\n→ 彼はまだ意識があった。\n\nまた、「～を意識している、気を配っている」という意味でもよく使います。\n\nbe conscious of ～\n→ ～を意識している\n\nI'm conscious of how much I spend.\n→ 自分がどれくらいお金を使っているか意識している。\n\nこの意味では、「頭の中でちゃんと認識して、気を配っている」という感覚です。\n\nunconscious\n→ 意識を失った・無意識の\n\nも対になる語です。",
+          "meanings": [
+            {
+              "meaning": "意識がある",
+              "en": "He was still conscious when help arrived.",
+              "ja": "助けが来たとき、彼にはまだ意識があった。"
+            },
+            {
+              "meaning": "意識している・気を配っている",
+              "en": "I'm trying to be more conscious of how much I spend.",
+              "ja": "どれくらいお金を使ってるか、もっと意識するようにしてる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "literal",
+          "wordNote": "literal は「文字どおりの、言葉をそのままの意味で取った」という意味です。\n\nthe literal meaning\n→ 文字どおりの意味\n\na literal translation\n→ 直訳\n\n英語学習では特に、\n\nThat's a literal translation, but it doesn't sound natural.\n→ 直訳としてはそうだけど、自然な英語には聞こえない。\n\nのように使えます。\n\nliteral は「間違い」という意味ではありません。\n\n原文の言葉をそのまま移した結果、意味は合っていても自然な表現にならないことがあります。\n\nliteral\n→ 文字どおり\n\nnatural\n→ 実際に自然に使われる言い方\n\nという違いを意識すると便利です。",
+          "meanings": [
+            {
+              "meaning": "文字どおりの",
+              "en": "Don't take that expression too literally.",
+              "ja": "その表現を文字どおりに受け取りすぎないでね。"
+            },
+            {
+              "meaning": "直訳の・言葉どおりの",
+              "en": "That's a literal translation, but it doesn't sound natural.",
+              "ja": "直訳としてはそうだけど、自然な英語には聞こえない。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "conventional",
+          "wordNote": "conventional は「一般的に受け入れられている、従来の」という意味です。\n\na conventional method\n→ 一般的な方法・従来の方法\n\nconventional thinking\n→ 従来型の考え方\n\nthe conventional way\n→ 普通とされているやり方\n\ntraditional と近い場合もありますが、traditional は「長く受け継がれてきた伝統」に注目します。\n\nconventional は「今の社会で普通・標準とされているやり方や考え方」という意味で使われることがあります。",
+          "meanings": [
+            {
+              "meaning": "従来の・一般的な",
+              "en": "It's not the conventional way to do it, but it works.",
+              "ja": "一般的なやり方ではないけど、ちゃんと機能するよ。"
+            },
+            {
+              "meaning": "慣習的な・普通とされている",
+              "en": "She prefers conventional methods.",
+              "ja": "彼女は一般的なやり方の方を好む。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "equivalent",
+          "wordNote": "equivalent は「価値・意味・役割などが同等の、相当する」という意味です。\n\nan equivalent amount\n→ 同等の量\n\nthe English equivalent\n→ 英語でそれに相当するもの\n\nIs there an English equivalent for this expression?\n→ この表現に相当する英語ってある？\n\nequivalent は「まったく同じ」という意味ではありません。\n\n形や言葉が違っていても、意味・役割・価値が同じくらいなら equivalent と言えます。\n\nsame\n→ 同じもの\n\nequivalent\n→ 違う形でも同等のもの\n\nという違いがあります。",
+          "meanings": [
+            {
+              "meaning": "同等の・相当する",
+              "en": "Is there an English equivalent for this expression?",
+              "ja": "この表現に相当する英語ってある？"
+            },
+            {
+              "meaning": "同じ価値・役割を持つ",
+              "en": "These two qualifications are roughly equivalent.",
+              "ja": "この2つの資格はだいたい同等だ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "substantial",
+          "wordNote": "substantial は「かなりの、無視できないほど大きな」という意味でよく使います。\n\nsubstantial progress\n→ かなりの進展\n\na substantial amount\n→ 相当な量\n\na substantial difference\n→ かなり大きな違い\n\n単に big や large と言うより、「十分な量や程度があって、はっきり重要だと分かる」という感じがあります。\n\nそのため substantial progress は、「少し進んだ」ではなく「目に見えてかなり進んだ」という意味になります。",
+          "meanings": [
+            {
+              "meaning": "かなりの・相当な",
+              "en": "We made substantial progress today.",
+              "ja": "今日はかなり進んだ。"
+            },
+            {
+              "meaning": "無視できないほど大きな",
+              "en": "There's a substantial difference in price.",
+              "ja": "価格にはかなり大きな差がある。"
+            }
+          ]
+        },
       {
         "pos": "noun",
         "word": "animal",
