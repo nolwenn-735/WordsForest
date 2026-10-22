@@ -54,6 +54,9 @@ struct POSFlashcardView: View {
     /// 展開中のカード index（nil なら全て表面）
     @State private var expandedIndex: Int? = nil
     
+    /// スクロール中に表示しているカード位置を保持
+    @State private var scrollPosition: Int? = nil
+    
     /// 例文編集シート用
     @State private var editingCard: WordCard? = nil
     
@@ -108,10 +111,12 @@ struct POSFlashcardView: View {
                         rows(rowHeight: rowH)
                         Spacer(minLength: 80)
                     }
+                    .scrollTargetLayout()
                     .padding(.horizontal, 16)
                     .padding(.bottom, 140)
                 }
-
+                .scrollPosition(id: $scrollPosition)
+                
                 // 右下マスコット（固定）
                 if showMascots {
                     VStack {

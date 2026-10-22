@@ -1074,12 +1074,17 @@
         {
           "pos": "adjective",
           "word": "vague",
-          "wordNote": null,
+          "wordNote": "vague は「内容や輪郭がはっきりせず、具体性に欠ける」という意味です。\n\na vague answer\n→ 曖昧な答え\n\na vague memory\n→ ぼんやりした記憶\n\nvague instructions\n→ はっきりしない指示\n\n「何を意味しているのか、どこまで含むのかがぼんやりしている」という感覚があります。\n\nambiguous も「曖昧な」と訳されますが、少し違います。\n\nvague\n→ 情報や輪郭がぼんやりしていて、具体性が足りない\n\nambiguous\n→ 二通り以上に解釈できて、どれなのかはっきりしない\n\nという違いがあります。",
           "meanings": [
             {
               "meaning": "曖昧な・はっきりしない",
-              "en": "His answer was so vague that I still don't know what he meant.",
-              "ja": "彼の答えが曖昧すぎて、結局何を言いたかったのかまだ分からない。"
+              "en": "The instructions are a little vague. Could you be more specific?",
+              "ja": "説明がちょっと曖昧だね。もう少し具体的に言ってくれる？"
+            },
+            {
+              "meaning": "ぼんやりした・明確でない",
+              "en": "I have only a vague memory of that day.",
+              "ja": "あの日のことは、ぼんやりとしか覚えていない。"
             }
           ]
         },
@@ -1206,12 +1211,17 @@
         {
           "pos": "adjective",
           "word": "fragile",
-          "wordNote": null,
+          "wordNote": "fragile は「壊れたり傷ついたりしやすい」という意味です。\n\na fragile glass\n→ 壊れやすいグラス\n\nfragile equipment\n→ 壊れやすい機器\n\nただし、fragile は物だけに使う語ではありません。\n\n回復・経済・関係・和平・状況などについて使うと、「まだ安定しておらず、少しの問題で崩れやすい」という意味になります。\n\na fragile recovery\n→ 不安定な回復\n\na fragile relationship\n→ 壊れやすい関係\n\n「物理的に壊れやすい」から、「状態として崩れやすい」まで同じ感覚でつながっています。",
           "meanings": [
             {
               "meaning": "壊れやすい・もろい",
-              "en": "Be careful with that box. The glass inside is fragile.",
-              "ja": "その箱、気をつけて。中のガラスは割れやすいよ。"
+              "en": "Be careful with that glass. It's very fragile.",
+              "ja": "そのグラス、気をつけて。すごく壊れやすいから。"
+            },
+            {
+              "meaning": "不安定な・崩れやすい",
+              "en": "The recovery is still fragile.",
+              "ja": "回復はまだ不安定だ。"
             }
           ]
         },
@@ -4818,6 +4828,1537 @@
             }
           ]
         },
+        {
+          "pos": "adjective",
+          "word": "economic",
+          "wordNote": "economic は「経済の、経済に関する」という意味です。\n\neconomic growth\n→ 経済成長\n\neconomic problems\n→ 経済問題\n\neconomic policy\n→ 経済政策\n\n国・社会・市場などの「経済」に関係することを表します。\n\nよく似た economical は、「お金や資源を無駄にしない、経済的な」という意味です。\n\neconomic\n→ 経済に関する\n\neconomical\n→ 費用や資源を節約できる\n\nという違いがあります。",
+          "meanings": [
+            {
+              "meaning": "経済の・経済に関する",
+              "en": "The country is facing serious economic problems.",
+              "ja": "その国は深刻な経済問題に直面している。"
+            },
+            {
+              "meaning": "経済上の",
+              "en": "The policy could have a major economic impact.",
+              "ja": "その政策は経済に大きな影響を与える可能性がある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "economical",
+          "wordNote": "economical は「お金・燃料・時間などを無駄にせず、効率よく使える」という意味です。\n\nan economical car\n→ 維持費や燃料費のかかりにくい車\n\nan economical way to travel\n→ 費用を抑えられる旅行方法\n\nThis car is economical to run.\n→ この車は維持費があまりかからない。\n\neconomic が「経済に関する」なのに対して、economical は「出費や資源を抑えられる」という実用的な評価です。\n\n「経済的な」という日本語だけで両方を覚えると混同しやすい語です。",
+          "meanings": [
+            {
+              "meaning": "経済的な・無駄遣いの少ない",
+              "en": "This car is economical to run.",
+              "ja": "この車は維持費があまりかからない。"
+            },
+            {
+              "meaning": "費用や資源を節約できる",
+              "en": "Cooking at home is usually more economical.",
+              "ja": "たいていは家で料理する方が節約になる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "classic",
+          "wordNote": "classic は「長く評価されている名作・定番」という意味と、「典型的な」という意味があります。\n\na classic movie\n→ 長く愛されている名作映画\n\na classic design\n→ 定番のデザイン\n\na classic mistake\n→ 典型的なミス\n\nThat's a classic example.\n→ それは典型的な例だね。\n\n日本語の「クラシック」から古典的なものだけを想像しやすいですが、英語では「いかにもそれらしい、典型的な」という使い方も非常によくあります。",
+          "meanings": [
+            {
+              "meaning": "定番の・長く評価されている",
+              "en": "It's a classic design that still looks good today.",
+              "ja": "今見てもいい感じの、定番のデザインだよ。"
+            },
+            {
+              "meaning": "典型的な",
+              "en": "That's a classic mistake.",
+              "ja": "それ、典型的なミスだね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "classical",
+          "wordNote": "classical は「古典に関する、古典様式の」という意味です。\n\nclassical music\n→ クラシック音楽\n\nclassical literature\n→ 古典文学\n\nclassical architecture\n→ 古典様式の建築\n\nclassic と似ていますが、同じではありません。\n\nclassic\n→ 名作・定番・典型的なもの\n\nclassical\n→ 古典文化や古典様式に関するもの\n\nそのため、\n\na classic car\n→ 名車・クラシックカー\n\nclassical music\n→ クラシック音楽\n\nのように使い分けます。",
+          "meanings": [
+            {
+              "meaning": "古典の・古典様式の",
+              "en": "She studied classical music for years.",
+              "ja": "彼女は何年もクラシック音楽を学んだ。"
+            },
+            {
+              "meaning": "古典文化に関する",
+              "en": "He's interested in classical literature.",
+              "ja": "彼は古典文学に興味がある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "discreet",
+          "wordNote": "discreet は「目立たないように慎重に振る舞う、秘密を漏らさない」という意味です。\n\na discreet place\n→ 人目につきにくい場所\n\na discreet conversation\n→ 人に聞かれないよう配慮した会話\n\nI'll be discreet.\n→ 誰にも言わないようにするよ。\n\n単に quiet なのではなく、「余計な注目を集めない、秘密や相手の事情に配慮する」という感覚があります。\n\nよく似た discrete は別の語です。",
+          "meanings": [
+            {
+              "meaning": "控えめな・目立たない",
+              "en": "They chose a discreet place to talk.",
+              "ja": "二人は人目につきにくい場所を選んで話した。"
+            },
+            {
+              "meaning": "慎重な・口が堅い",
+              "en": "Don't worry. I'll be discreet.",
+              "ja": "大丈夫。誰にも言わないようにするよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "discrete",
+          "wordNote": "discrete は「それぞれが別々に分かれている、個別の」という意味です。\n\ndiscrete parts\n→ 別々の部分\n\ndiscrete categories\n→ はっきり分けられたカテゴリー\n\ndiscrete values\n→ 個別の値\n\ndiscreet と発音は同じですが、意味は違います。\n\ndiscreet\n→ 慎重な・口が堅い\n\ndiscrete\n→ 別々の・個別の\n\n特に数学・科学・技術分野では、「連続していない、個別に分かれている」という意味でもよく使われます。",
+          "meanings": [
+            {
+              "meaning": "別々の・個別の",
+              "en": "The system has three discrete parts.",
+              "ja": "そのシステムは3つの独立した部分からできている。"
+            },
+            {
+              "meaning": "はっきり区別された",
+              "en": "The data is divided into discrete categories.",
+              "ja": "そのデータはいくつかの個別のカテゴリーに分けられている。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "historic",
+          "wordNote": "historic は「歴史に残るほど重要な」という意味です。\n\na historic decision\n→ 歴史的に重要な決定\n\na historic moment\n→ 歴史に残る瞬間\n\na historic victory\n→ 歴史的な勝利\n\n単に「昔起きた」という意味ではなく、「歴史の中で特別な重要性を持つ」という評価が含まれます。\n\nhistorical と混同しやすい語です。",
+          "meanings": [
+            {
+              "meaning": "歴史的に重要な",
+              "en": "It was a historic decision.",
+              "ja": "それは歴史的に重要な決定だった。"
+            },
+            {
+              "meaning": "歴史に残る",
+              "en": "The team celebrated a historic victory.",
+              "ja": "そのチームは歴史に残る勝利を祝った。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "historical",
+          "wordNote": "historical は「歴史に関する、過去に実際に起きた」という意味です。\n\nhistorical records\n→ 歴史資料\n\nhistorical events\n→ 過去の歴史上の出来事\n\nhistorical research\n→ 歴史研究\n\nhistoric が「歴史に残るほど重要」なのに対して、historical は「歴史や過去に関係している」という意味です。\n\nhistoric event\n→ 歴史的に重要な出来事\n\nhistorical event\n→ 過去に起きた歴史上の出来事\n\n同じ出来事が、文脈によって両方に当てはまることもあります。",
+          "meanings": [
+            {
+              "meaning": "歴史に関する",
+              "en": "The museum has a large collection of historical documents.",
+              "ja": "その博物館には多くの歴史資料がある。"
+            },
+            {
+              "meaning": "過去に実際に起きた",
+              "en": "The novel is based on historical events.",
+              "ja": "その小説は史実をもとにしている。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "electric",
+          "wordNote": "electric は、電気を動力として使ったり、電気によって動いたりするものによく使います。\n\nan electric car\n→ 電気自動車\n\nan electric heater\n→ 電気ヒーター\n\nan electric toothbrush\n→ 電動歯ブラシ\n\n「電気で動くもの」という感覚が強い語です。\n\nまた、\n\nan electric atmosphere\n→ 興奮に満ちた雰囲気\n\nのように、比喩的に「しびれるような、非常に刺激的な」という意味で使われることもあります。",
+          "meanings": [
+            {
+              "meaning": "電気で動く・電動の",
+              "en": "We rented an electric car.",
+              "ja": "電気自動車を借りた。"
+            },
+            {
+              "meaning": "興奮に満ちた・刺激的な",
+              "en": "The atmosphere in the stadium was electric.",
+              "ja": "スタジアムはしびれるような熱気に包まれていた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "electrical",
+          "wordNote": "electrical は「電気そのものや、電気系統・配線・設備などに関する」という意味です。\n\nan electrical problem\n→ 電気系統の問題\n\nelectrical equipment\n→ 電気設備\n\nelectrical engineering\n→ 電気工学\n\nelectric が「電気で動くもの」によく使われるのに対して、electrical は「電気に関係する仕組みや分野」を表すことが多い語です。\n\nelectric car\n→ 電気で動く車\n\nelectrical problem\n→ 電気系統の問題\n\nのように考えると分かりやすいです。\n\n実際には重なる場面もありますが、よく使われる組み合わせを覚えるのが近道です。",
+          "meanings": [
+            {
+              "meaning": "電気に関する・電気系統の",
+              "en": "There seems to be an electrical problem.",
+              "ja": "電気系統の問題があるみたい。"
+            },
+            {
+              "meaning": "電気設備・電気分野の",
+              "en": "The building needs new electrical equipment.",
+              "ja": "その建物には新しい電気設備が必要だ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "plausible",
+          "wordNote": "plausible は「話として筋が通っていて、ありそうな」という意味です。\n\na plausible explanation\n→ もっともらしい説明\n\na plausible reason\n→ ありそうな理由\n\nplausible は「本当である」という意味ではありません。\n\nThat sounds plausible.\n→ それならありそうだね。\n\nと言っても、「事実だと確認できた」ということではなく、「少なくとも話としては不自然ではない」という感じです。\n\npossible が「可能性がある」なのに対して、plausible は「説明や話として納得できそう」という感覚があります。",
+          "meanings": [
+            {
+              "meaning": "もっともらしい・ありそうな",
+              "en": "That sounds like a plausible explanation.",
+              "ja": "それなら、ありそうな説明だね。"
+            },
+            {
+              "meaning": "筋が通っていそうな",
+              "en": "It's a plausible theory, but we still need evidence.",
+              "ja": "筋の通った説ではあるけど、まだ証拠が必要だ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "credible",
+          "wordNote": "credible は「信じるに足る、信用できる」という意味です。\n\na credible source\n→ 信頼できる情報源\n\na credible explanation\n→ 信用できそうな説明\n\na credible witness\n→ 信頼できる証人\n\nplausible が「話としてありそう」なのに対して、credible は「その情報や人を信頼できそう」という点に注目します。\n\nplausible\n→ ありそう・筋が通っていそう\n\ncredible\n→ 信用できそう\n\nという違いがあります。",
+          "meanings": [
+            {
+              "meaning": "信頼できる・信じるに足る",
+              "en": "We need a credible source before we share this.",
+              "ja": "これを共有する前に、信頼できる情報源が必要だね。"
+            },
+            {
+              "meaning": "信用できそうな",
+              "en": "Her explanation seemed credible.",
+              "ja": "彼女の説明は信用できそうだった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "legitimate",
+          "wordNote": "legitimate は「正当な、きちんと認められる」という意味です。\n\na legitimate concern\n→ もっともな懸念\n\na legitimate business\n→ 正規の事業\n\na legitimate website\n→ 信用できる正規のウェブサイト\n\nlegal は主に「法律上認められている」という意味ですが、legitimate はもっと広く、「正当な理由や資格がある、怪しいものではない」という感覚があります。\n\nそのため、ウェブサイトや会社について使うと、「ちゃんとした本物のもの」という意味にもなります。",
+          "meanings": [
+            {
+              "meaning": "正当な・もっともな",
+              "en": "That's a legitimate concern.",
+              "ja": "それはもっともな心配だよ。"
+            },
+            {
+              "meaning": "正規の・ちゃんとした",
+              "en": "Make sure the website is legitimate before you enter your card details.",
+              "ja": "カード情報を入力する前に、ちゃんとしたサイトか確認して。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "deliberate",
+          "wordNote": "deliberate は「偶然ではなく、意図して行った」という意味です。\n\na deliberate act\n→ 意図的な行為\n\na deliberate decision\n→ 意識して行った決定\n\nIt was deliberate.\n→ わざとだった。\n\nまた、動作や話し方について「ゆっくり慎重な」という意味になることもあります。\n\na slow, deliberate movement\n→ ゆっくり慎重な動き\n\n中心にあるのは、「勢いや偶然ではなく、意識して行う」という感覚です。",
+          "meanings": [
+            {
+              "meaning": "意図的な・わざとの",
+              "en": "That wasn't an accident. It was deliberate.",
+              "ja": "あれは事故じゃない。わざとだった。"
+            },
+            {
+              "meaning": "よく考えた上での・慎重な",
+              "en": "She made a deliberate choice to wait.",
+              "ja": "彼女はよく考えた上で待つことを選んだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "accidental",
+          "wordNote": "accidental は「意図せず起きた、偶然の」という意味です。\n\naccidental damage\n→ 不慮の損傷\n\nan accidental click\n→ 誤クリック・うっかりしたタップ\n\nan accidental discovery\n→ 偶然の発見\n\ndeliberate が「意図的な」なのに対して、accidental は「そうするつもりではなかった」という意味です。\n\naccident は事故だけでなく、「意図せず起きたこと」という広い感覚を持っています。",
+          "meanings": [
+            {
+              "meaning": "偶然の・意図しない",
+              "en": "The damage was accidental.",
+              "ja": "その損傷は事故によるものだった。"
+            },
+            {
+              "meaning": "うっかりした・誤って起きた",
+              "en": "It was just an accidental tap.",
+              "ja": "ただのうっかりしたタップだったよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "distinct",
+          "wordNote": "distinct は「他のものとはっきり区別できる」という意味です。\n\ntwo distinct styles\n→ はっきり異なる2つのスタイル\n\na distinct difference\n→ はっきりした違い\n\na distinct smell\n→ はっきり感じるにおい\n\ndifferent が単に「違う」ことを表すのに対して、distinct は「違いがはっきり分かる」という感じです。\n\nまた、音・におい・印象などが「明確に感じ取れる」という意味にも使えます。",
+          "meanings": [
+            {
+              "meaning": "はっきり異なる・明確に区別できる",
+              "en": "The two styles are quite distinct.",
+              "ja": "その2つのスタイルはかなりはっきり違う。"
+            },
+            {
+              "meaning": "はっきり感じ取れる",
+              "en": "There was a distinct smell of smoke.",
+              "ja": "はっきり煙のにおいがした。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "vivid",
+          "wordNote": "vivid は「色やイメージが強く、はっきりしている」という意味です。\n\nvivid colors\n→ 鮮やかな色\n\na vivid image\n→ 鮮明なイメージ\n\na vivid memory\n→ 鮮明な記憶\n\n色だけでなく、記憶・描写・想像などにも使えます。\n\nvivid memory は、「細かいところまで今でもはっきり思い出せる記憶」という感じです。\n\n「目に浮かぶほど鮮やか」という感覚でつながっています。",
+          "meanings": [
+            {
+              "meaning": "鮮やかな",
+              "en": "She uses vivid colors in her paintings.",
+              "ja": "彼女は絵に鮮やかな色を使う。"
+            },
+            {
+              "meaning": "鮮明な・生き生きとした",
+              "en": "I still have a vivid memory of that day.",
+              "ja": "あの日のことを今でも鮮明に覚えている。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "tentative",
+          "wordNote": "tentative は「まだ確定していない、様子を見ながらの」という意味です。\n\na tentative plan\n→ 仮の予定\n\na tentative date\n→ 仮の日程\n\nまた、人の動作や態度について使うと、「自信がなく、少しためらいながらの」という意味になります。\n\na tentative smile\n→ 少しためらうような笑顔\n\na tentative step\n→ おそるおそる踏み出す一歩\n\nどちらにも、「まだ完全には決め切っていない」という感覚があります。",
+          "meanings": [
+            {
+              "meaning": "仮の・まだ確定していない",
+              "en": "We have a tentative plan for next week.",
+              "ja": "来週の予定は一応あるけど、まだ仮だよ。"
+            },
+            {
+              "meaning": "ためらいがちな・おそるおそるの",
+              "en": "She gave a tentative smile.",
+              "ja": "彼女は少しためらうように笑った。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "thorough",
+          "wordNote": "thorough は「細かいところまで抜けなく、しっかり行う」という意味です。\n\na thorough check\n→ 念入りな確認\n\na thorough explanation\n→ 詳しく丁寧な説明\n\na thorough review\n→ 徹底した見直し\n\n単に detailed よりも、「必要なところを全部きちんと確認した」という感じがあります。\n\nThanks for the thorough explanation.\n→ 丁寧で詳しい説明ありがとう。\n\nのように、説明を褒めるときにも使えます。",
+          "meanings": [
+            {
+              "meaning": "徹底した・念入りな",
+              "en": "Let's do a thorough check before we send it.",
+              "ja": "送る前にしっかり確認しよう。"
+            },
+            {
+              "meaning": "詳しく丁寧な・抜けのない",
+              "en": "Thanks for the thorough explanation.",
+              "ja": "丁寧で詳しい説明ありがとう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "notable",
+          "wordNote": "notable は「注目する価値があるほど目立つ、特筆すべき」という意味です。\n\na notable improvement\n→ はっきり分かる改善\n\na notable difference\n→ 注目すべき違い\n\na notable feature\n→ 特徴的な点\n\nfamous のように「有名」という意味が中心ではなく、「取り上げるだけの価値があるほど目立っている」という感覚です。\n\nOne notable difference is ...\n→ 特に目立つ違いの一つは～です。\n\nの形は、比較や説明にも便利です。",
+          "meanings": [
+            {
+              "meaning": "注目すべき・目立った",
+              "en": "There's been a notable improvement.",
+              "ja": "はっきり分かるくらい改善してる。"
+            },
+            {
+              "meaning": "特筆すべき",
+              "en": "One notable difference is the battery life.",
+              "ja": "特に目立つ違いの一つはバッテリー持ちだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "coherent",
+          "wordNote": "coherent は「話や考えの各部分がきちんとつながっていて、全体として筋が通っている」という意味です。\n\na coherent explanation\n→ 筋の通った説明\n\na coherent argument\n→ 一貫した議論\n\na coherent story\n→ まとまりのある話\n\nclear が「分かりやすい」ことに注目するのに対して、coherent は「話の前後や各部分がきちんとつながっている」という感覚です。\n\n説明が一つ一つ分かりやすくても、全体のつながりがなければ coherent とは限りません。",
+          "meanings": [
+            {
+              "meaning": "筋が通っている・まとまりのある",
+              "en": "Your explanation is clear and coherent.",
+              "ja": "説明が分かりやすくて、ちゃんと筋が通ってるね。"
+            },
+            {
+              "meaning": "一貫した",
+              "en": "We need a more coherent argument.",
+              "ja": "もう少し筋の通った議論にする必要があるね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "explicit",
+          "wordNote": "explicit は「曖昧にせず、言葉ではっきり示された」という意味です。\n\nexplicit instructions\n→ 明確な指示\n\nexplicit permission\n→ 明確な許可\n\nan explicit warning\n→ はっきりとした警告\n\n「言わなくても分かるだろう」ではなく、必要な内容が明確に言葉や文章で示されているという感覚です。\n\nimplicit が「言葉にはしていないが含まれている」なのに対して、explicit は「きちんと言葉にしてある」という違いがあります。",
+          "meanings": [
+            {
+              "meaning": "明確に述べられた・はっきりした",
+              "en": "The instructions were very explicit.",
+              "ja": "指示はかなりはっきり書かれていた。"
+            },
+            {
+              "meaning": "明白な・明示された",
+              "en": "I didn't give explicit permission to share it.",
+              "ja": "それを共有していいとは明確に許可してないよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "implicit",
+          "wordNote": "implicit は「直接言葉にはされていないが、その中に含まれていたり、暗黙に理解されていたりする」という意味です。\n\nan implicit agreement\n→ 暗黙の了解\n\nimplicit trust\n→ 言葉にしなくても存在する信頼\n\nan implicit message\n→ 言外に含まれたメッセージ\n\nexplicit が「はっきり言葉で示された」なのに対して、implicit は「明言されてはいないが、意味として含まれている」という感覚です。\n\n日本語の「暗黙の」に近いですが、「言外に含まれている」という意味でもよく使います。",
+          "meanings": [
+            {
+              "meaning": "暗黙の・言外に含まれた",
+              "en": "There was an implicit agreement not to mention it.",
+              "ja": "それには触れないという暗黙の了解があった。"
+            },
+            {
+              "meaning": "明言されていないが含まれている",
+              "en": "The message carried an implicit warning.",
+              "ja": "そのメッセージには言外の警告が含まれていた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "arbitrary",
+          "wordNote": "arbitrary は「明確な理由や一貫した基準によらず決められた」という意味です。\n\nan arbitrary rule\n→ 明確な根拠のないルール\n\nan arbitrary limit\n→ 根拠がはっきりしない制限\n\nan arbitrary decision\n→ 恣意的な決定\n\nrandom と似て見えることがありますが、arbitrary は単に「偶然」というより、「なぜその基準・数字・決め方なのか、納得できる理由が見えない」という感覚があります。\n\nThe rule feels arbitrary.\n→ そのルール、どうしてそうなってるのかよく分からない感じがする。\n\nのように、決まりや判断への違和感を表すときにも使えます。",
+          "meanings": [
+            {
+              "meaning": "明確な根拠のない・恣意的な",
+              "en": "The rule feels a little arbitrary.",
+              "ja": "そのルール、ちょっと根拠がよく分からない感じがする。"
+            },
+            {
+              "meaning": "基準がはっきりしない",
+              "en": "The limit seems completely arbitrary.",
+              "ja": "その制限、基準がまったくはっきりしないね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "robust",
+          "wordNote": "robust は「簡単には壊れたり崩れたりせず、問題が起きても機能を保てるほどしっかりしている」という意味です。\n\na robust system\n→ 安定して壊れにくいシステム\n\na robust economy\n→ 強固な経済\n\nrobust evidence\n→ 十分にしっかりした証拠\n\n人や物の単純な「強さ」だけではなく、仕組み・方法・議論などについても使えます。\n\nstrong よりも、「多少の負荷や問題があっても耐えて機能する」という感覚が強い語です。",
+          "meanings": [
+            {
+              "meaning": "丈夫な・しっかりした",
+              "en": "We need a more robust system.",
+              "ja": "もっと安定して壊れにくい仕組みが必要だね。"
+            },
+            {
+              "meaning": "強固な・十分に信頼できる",
+              "en": "The conclusion needs more robust evidence.",
+              "ja": "その結論には、もっとしっかりした証拠が必要だ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "resilient",
+          "wordNote": "resilient は「困難やダメージを受けても、立ち直ったり元の状態に戻ったりできる」という意味です。\n\na resilient person\n→ 立ち直る力のある人\n\na resilient economy\n→ 打撃を受けても回復力のある経済\n\na resilient community\n→ 困難から立ち直る力のある地域社会\n\nstrong が単に「強い」ことを表すのに対して、resilient は「いったん負荷や打撃を受けても、そこから戻ってこられる強さ」に注目します。\n\nrobust\n→ そもそも簡単には崩れない強さ\n\nresilient\n→ 崩れたり傷ついたりしても回復できる強さ\n\nという違いがあります。",
+          "meanings": [
+            {
+              "meaning": "回復力のある・立ち直る力のある",
+              "en": "The local economy has proved surprisingly resilient.",
+              "ja": "地域経済は意外なほど底堅さを見せている。"
+            },
+            {
+              "meaning": "困難に強い",
+              "en": "Children can be remarkably resilient.",
+              "ja": "子どもは驚くほど立ち直る力があることがある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "intuitive",
+          "wordNote": "intuitive は「詳しい説明を読まなくても、感覚的に理解したり使ったりしやすい」という意味です。\n\nan intuitive app\n→ 直感的に使えるアプリ\n\nan intuitive interface\n→ 感覚的に操作しやすい画面\n\nan intuitive understanding\n→ 直感的な理解\n\n「簡単」というより、「見たり触ったりすれば自然にどうすればいいか分かる」という感覚です。\n\nThe app is simple and intuitive.\n→ そのアプリはシンプルで、直感的に使いやすい。\n\nのように、アプリや道具の使いやすさを表すときにもよく使います。",
+          "meanings": [
+            {
+              "meaning": "直感的に分かりやすい",
+              "en": "The app is simple and intuitive.",
+              "ja": "そのアプリはシンプルで、直感的に使いやすい。"
+            },
+            {
+              "meaning": "感覚的に理解しやすい",
+              "en": "The controls are surprisingly intuitive.",
+              "ja": "操作方法は驚くほど直感的に分かりやすい。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "inevitable",
+          "wordNote": "inevitable は「どうしても避けることができず、起こるのがほぼ避けられない」という意味です。\n\nan inevitable result\n→ 避けられない結果\n\ninevitable change\n→ 避けられない変化\n\nSome mistakes are inevitable.\n→ ある程度のミスは避けられない。\n\npossible は「起こる可能性がある」、likely は「起こる可能性が高い」ですが、inevitable はさらに進んで「結局は避けられない」という意味です。\n\n必ずしも悪い出来事だけに使う語ではありません。",
+          "meanings": [
+            {
+              "meaning": "避けられない・必然的な",
+              "en": "Some mistakes are inevitable when you're learning.",
+              "ja": "学んでいる途中なら、ある程度のミスは避けられないよ。"
+            },
+            {
+              "meaning": "起こるのが避けられない",
+              "en": "Some change is inevitable.",
+              "ja": "ある程度の変化は避けられない。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "nuanced",
+          "wordNote": "nuanced は「単純に一つの意味や立場だけでは説明できず、細かな違いや複数の側面を含んでいる」という意味です。\n\na nuanced view\n→ 単純ではない、細かな違いを踏まえた見方\n\na nuanced argument\n→ 複数の側面を丁寧に考えた議論\n\na nuanced understanding\n→ 微妙な違いまで踏まえた理解\n\ncomplex が単に「複雑である」ことを表せるのに対して、nuanced は「白黒では割り切れず、細かな差や事情を考える必要がある」という感覚があります。\n\nThe issue is more nuanced than it first appears.\n→ その問題は、最初に見えるほど単純ではない。\n\nのように、議論や社会問題、言葉の意味などについてよく使われます。",
+          "meanings": [
+            {
+              "meaning": "微妙な違いや複数の側面を含んだ",
+              "en": "The issue is more nuanced than it first appears.",
+              "ja": "その問題は、最初に見えるほど単純ではない。"
+            },
+            {
+              "meaning": "細かな違いを踏まえた",
+              "en": "She gave a nuanced explanation of the problem.",
+              "ja": "彼女はその問題を細かな違いまで踏まえて説明した。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "ambiguous",
+          "wordNote": "ambiguous は「意味や意図が一つに決まらず、複数の解釈ができる」という意味です。\n\nambiguous wording\n→ 複数の意味に取れる曖昧な表現\n\nan ambiguous answer\n→ どちらとも取れる曖昧な答え\n\nvague も「曖昧な」と訳されますが、感覚が少し違います。\n\nvague\n→ 情報や輪郭がぼんやりしていて、具体性が足りない\n\nambiguous\n→ 二通り以上に解釈できて、どれなのかはっきりしない\n\nという違いがあります。\n\nそのため、表現や契約、質問への答えなどが「どちらとも取れる」ときに ambiguous がよく使われます。",
+          "meanings": [
+            {
+              "meaning": "曖昧な・複数の解釈ができる",
+              "en": "The wording is ambiguous. I'm not sure what it means. Could you clarify exactly what you mean?",
+              "ja": "その表現は曖昧で、どういう意味なのかよく分からない。何を言いたいのか、きちんとはっきり説明してくれる？"
+            },
+            {
+              "meaning": "どちらとも取れる",
+              "en": "His answer was deliberately ambiguous.",
+              "ja": "彼の答えは、わざとどちらとも取れるようにしてあった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "feasible",
+          "wordNote": "feasible は「条件や費用などを考えて、実際に実行できる」という意味です。\n\na feasible plan\n→ 実行可能な計画\n\na feasible solution\n→ 現実的に実行できる解決策\n\npossible が「可能性としてできる」ことを広く表すのに対して、feasible は「現実の条件を考えても実行できそう」という感覚があります。\n\nThat sounds good, but is it actually feasible?\n→ それ良さそうだけど、実際に実行できるの？\n\nのように、案や計画が現実的かどうかを考えるときによく使います。",
+          "meanings": [
+            {
+              "meaning": "実行可能な・現実的にできる",
+              "en": "That sounds good, but is it actually feasible?",
+              "ja": "それ良さそうだけど、実際に実行できるの？"
+            },
+            {
+              "meaning": "現実的に実現できる",
+              "en": "We need to find a feasible solution.",
+              "ja": "現実的に実行できる解決策を見つけないと。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "inherent",
+          "wordNote": "inherent は「そのものの性質として、もともと備わっている」という意味です。\n\nan inherent risk\n→ 本質的に伴うリスク\n\nan inherent weakness\n→ もともと内在する弱点\n\nan inherent feature\n→ 固有の特徴\n\n後から付け加わったものではなく、「その性質の中にもともと含まれている」という感覚があります。\n\nThere are inherent risks in any new technology.\n→ 新しい技術には、本質的に避けられないリスクがある。\n\nのように、性質上切り離しにくいものについてよく使います。",
+          "meanings": [
+            {
+              "meaning": "本質的に備わっている・固有の",
+              "en": "There are inherent risks in any new technology.",
+              "ja": "新しい技術には、本質的に避けられないリスクがある。"
+            },
+            {
+              "meaning": "もともと内在する",
+              "en": "The design has an inherent weakness.",
+              "ja": "その設計には、もともと内在する弱点がある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "compelling",
+          "wordNote": "compelling は「強く納得させる、または強く引きつける」という意味です。\n\na compelling argument\n→ 説得力のある主張\n\ncompelling evidence\n→ 非常に説得力のある証拠\n\na compelling story\n→ 引き込まれる話\n\nThat's a compelling argument.\n→ それはかなり説得力のある主張だね。\n\nのように「納得せずにはいられない」という意味にも、\n\nIt's a compelling story.\n→ 引き込まれる話だね。\n\nのように「強く興味を引かれる」という意味にも使えます。",
+          "meanings": [
+            {
+              "meaning": "説得力のある",
+              "en": "That's a compelling argument.",
+              "ja": "それはかなり説得力のある主張だね。"
+            },
+            {
+              "meaning": "強く引きつける",
+              "en": "It's a compelling story. I couldn't stop reading.",
+              "ja": "すごく引き込まれる話だね。読むのをやめられなかった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "pervasive",
+          "wordNote": "pervasive は「広い範囲に行き渡り、あちこちに深く存在している」という意味です。\n\na pervasive problem\n→ 広く蔓延している問題\n\na pervasive influence\n→ 広範囲に及ぶ影響\n\ncommon が「よくある」ことを表すのに対して、pervasive は「広い範囲に入り込んでいる」という感覚が強い語です。\n\nThe problem is more pervasive than we thought.\n→ その問題は思っていたより広く行き渡っている。\n\nのように、問題・考え方・影響などについてよく使います。",
+          "meanings": [
+            {
+              "meaning": "広く行き渡った・蔓延している",
+              "en": "The problem is more pervasive than we thought.",
+              "ja": "その問題は思っていたより広く行き渡っている。"
+            },
+            {
+              "meaning": "広範囲に及ぶ",
+              "en": "Social media has a pervasive influence on daily life.",
+              "ja": "SNSは日常生活に広範囲な影響を及ぼしている。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "redundant",
+          "wordNote": "redundant は「同じ役割や情報がすでにあるため、重複していて不要な」という意味です。\n\na redundant sentence\n→ 内容が重複している文\n\nredundant information\n→ 重複している情報\n\n単に unnecessary なのではなく、「同じものがすでにあるから必要ない」という感覚があります。\n\nThis sentence feels redundant. We already said the same thing.\n→ この文、なくてもよさそう。同じこともう言ってるから。\n\n文章の推敲やシステム設計などでもよく使われます。",
+          "meanings": [
+            {
+              "meaning": "重複していて不要な・余分な",
+              "en": "This sentence feels redundant. We already said the same thing.",
+              "ja": "この文、なくてもよさそう。同じこともう言ってるから。"
+            },
+            {
+              "meaning": "同じ役割がすでにあり不要な",
+              "en": "Some of these steps seem redundant.",
+              "ja": "この手順のいくつかは重複していて不要に見える。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "marginal",
+          "wordNote": "marginal は「全体から見ればごくわずかな、重要性や影響が小さい」という意味です。\n\na marginal difference\n→ ごくわずかな違い\n\na marginal improvement\n→ わずかな改善\n\nThe difference in performance is marginal. I think I'll go with this one, then.\n→ 性能の差はごくわずかだ。それなら、こっちにするよ。\n\nのように、「差はあるけれど、判断を大きく変えるほどではない」という場面で使えます。\n\nsmall よりも、「全体への影響が小さい」という感覚が出やすい語です。",
+          "meanings": [
+            {
+              "meaning": "わずかな・ごく小さい",
+              "en": "The difference in performance is marginal. I think I'll go with this one, then.",
+              "ja": "性能の差はごくわずかだ。それなら、こっちにするよ。"
+            },
+            {
+              "meaning": "影響の小さい・わずかな",
+              "en": "The update brought only a marginal improvement.",
+              "ja": "そのアップデートによる改善はごくわずかだった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "subjective",
+          "wordNote": "subjective は「人それぞれの感じ方や考え方によって変わる、主観的な」という意味です。\n\na subjective opinion\n→ 主観的な意見\n\na subjective judgment\n→ 個人の判断による評価\n\nTaste is subjective. You might love it even if I don't.\n→ 好みは主観的だからね。私が好きじゃなくても、あなたは気に入るかもしれない。\n\n「間違っている」という意味ではなく、「誰が見るかによって判断が変わり得る」ということを表します。",
+          "meanings": [
+            {
+              "meaning": "主観的な",
+              "en": "Taste is subjective. You might love it even if I don't.",
+              "ja": "好みは主観的だからね。私が好きじゃなくても、あなたは気に入るかもしれない。"
+            },
+            {
+              "meaning": "人によって判断が変わる",
+              "en": "Beauty is highly subjective.",
+              "ja": "美しさの感じ方はかなり人それぞれだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "objective",
+          "wordNote": "objective は「個人的な好みや感情から離れて、事実や証拠にもとづいて判断する」という意味です。\n\nan objective view\n→ 客観的な見方\n\nobjective evidence\n→ 客観的な証拠\n\nsubjective が「人によって変わる見方」なのに対して、objective は「できるだけ個人的な感情を入れずに見る」という感覚です。\n\nTry to look at the evidence objectively.\n→ 証拠をできるだけ客観的に見てみよう。",
+          "meanings": [
+            {
+              "meaning": "客観的な",
+              "en": "We need an objective assessment of the situation.",
+              "ja": "その状況を客観的に評価する必要がある。"
+            },
+            {
+              "meaning": "事実にもとづいた・感情に左右されない",
+              "en": "Try to be objective and focus on the facts.",
+              "ja": "できるだけ客観的になって、事実に注目してみよう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "skeptical",
+          "wordNote": "skeptical は「十分な根拠が示されるまでは、簡単には信じない」という意味です。\n\nbe skeptical of ～\n→ ～を疑っている\n\na skeptical reaction\n→ 疑いを持った反応\n\nI'm skeptical of claims like that without evidence.\n→ 証拠なしでそういう主張をされても、ちょっと疑ってしまうな。\n\n単に否定しているのではなく、「本当にそうなのか、納得できる材料が欲しい」という姿勢を表します。",
+          "meanings": [
+            {
+              "meaning": "疑っている・簡単には信じない",
+              "en": "I'm skeptical of claims like that without evidence.",
+              "ja": "証拠なしでそういう主張をされても、ちょっと疑ってしまうな。"
+            },
+            {
+              "meaning": "疑いを持っている",
+              "en": "She was skeptical at first, but the results convinced her.",
+              "ja": "彼女は最初は疑っていたけど、結果を見て納得した。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "transparent",
+          "wordNote": "transparent は、もともと「向こうが透けて見える、透明な」という意味です。\n\ntransparent glass\n→ 透明なガラス\n\nそこから、「中で何をしているかを隠さず、外から分かる」という意味にも広がります。\n\na transparent process\n→ 公開性の高い手続き\n\na transparent organization\n→ 情報公開が明確な組織\n\nThe company needs to be more transparent about how the data is used.\n→ その会社はデータをどう使っているのか、もっと明確に説明する必要がある。\n\n「透明」という物理的な感覚から、「隠し事がなく見える」へつながっています。",
+          "meanings": [
+            {
+              "meaning": "透明な",
+              "en": "The box has a transparent lid, so you can see what's inside.",
+              "ja": "その箱はふたが透明だから、中に何が入っているか見える。"
+            },
+            {
+              "meaning": "公開性が高い・隠し事のない",
+              "en": "The company needs to be more transparent about how the data is used.",
+              "ja": "その会社はデータをどう使っているのか、もっと明確に説明する必要がある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "negligible",
+          "wordNote": "negligible は「小さすぎて、実際にはほとんど気にしなくていい」という意味です。\n\na negligible difference\n→ 無視できるほど小さな違い\n\na negligible effect\n→ ほとんど影響のない効果\n\nThe price difference is negligible.\n→ 値段の差はほとんどない。\n\nsmall よりも、「差や影響は一応あるけれど、判断に大きく影響するほどではない」という感覚があります。",
+          "meanings": [
+            {
+              "meaning": "無視できるほど小さい・ごくわずかな",
+              "en": "The price difference is negligible. I'll choose the one with the better warranty.",
+              "ja": "値段の差はほとんどないね。それなら保証がいい方にするよ。"
+            },
+            {
+              "meaning": "ほとんど影響のない",
+              "en": "The difference in battery use is negligible.",
+              "ja": "バッテリー消費の差はほとんど気にしなくていい程度だ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "prevalent",
+          "wordNote": "prevalent は「ある社会・地域・集団などの中に広く存在している」という意味です。\n\na prevalent problem\n→ 広く見られる問題\n\na prevalent belief\n→ 広く浸透している考え方\n\ncommon も「よくある」という意味ですが、prevalent は「ある範囲の中に広く行き渡っている」という感覚が強い語です。\n\nOnline scams are more prevalent than they used to be.\n→ ネット詐欺は以前よりずっと広く見られるようになっている。\n\nのように、社会的な傾向や問題についてよく使います。",
+          "meanings": [
+            {
+              "meaning": "広く見られる・普及している",
+              "en": "Online scams are more prevalent than they used to be. Check the sender before you click anything.",
+              "ja": "ネット詐欺は以前よりずっと増えてるよ。何か押す前に送信元を確認して。"
+            },
+            {
+              "meaning": "広く行き渡っている",
+              "en": "This type of payment is becoming more prevalent.",
+              "ja": "この支払い方法はだんだん広く普及してきている。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "adverse",
+          "wordNote": "adverse は「悪い影響を与える、不利な、好ましくない」という意味です。\n\nan adverse effect\n→ 悪影響\n\nadverse conditions\n→ 不利な条件\n\nan adverse reaction\n→ 好ましくない反応\n\nbad よりも、結果・影響・条件などが「望ましくない方向に働く」という感覚があります。\n\nThe update doesn't seem to have any adverse effect on battery life.\n→ そのアップデート、バッテリー持ちには特に悪影響なさそう。\n\nのように、製品やサービスの影響についても使えます。",
+          "meanings": [
+            {
+              "meaning": "悪い・不利な・好ましくない",
+              "en": "The update doesn't seem to have any adverse effect on battery life.",
+              "ja": "そのアップデート、バッテリー持ちには特に悪影響なさそう。"
+            },
+            {
+              "meaning": "悪影響を与える",
+              "en": "High temperatures can have an adverse effect on battery performance.",
+              "ja": "高温はバッテリー性能に悪影響を与えることがある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "favorable",
+          "wordNote": "favorable は「好意的な、好ましい、条件が有利な」という意味です。\n\nfavorable reviews\n→ 好意的なレビュー\n\nfavorable conditions\n→ 好条件\n\na favorable response\n→ 好意的な反応\n\n人の評価について使えば「好意的な」、状況や条件について使えば「有利な、好ましい」という意味になります。\n\nThe reviews are mostly favorable. I might give it a try.\n→ レビューはだいたい好評だね。試してみようかな。",
+          "meanings": [
+            {
+              "meaning": "好意的な・好評な",
+              "en": "The reviews are mostly favorable. I might give it a try.",
+              "ja": "レビューはだいたい好評だね。試してみようかな。"
+            },
+            {
+              "meaning": "好ましい・有利な",
+              "en": "The conditions look favorable for an outdoor event.",
+              "ja": "屋外イベントには良さそうな条件だね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "viable",
+          "wordNote": "viable は「現実の条件を考えても、選択肢や計画として成り立つ」という意味です。\n\na viable option\n→ 現実的に成り立つ選択肢\n\na viable plan\n→ 実行可能な計画\n\npossible は「可能である」ことを広く表しますが、viable は「費用・条件・効果などを考えても、実際の選択肢として使える」という感覚があります。\n\nReplacing the battery might be a more viable option than buying a new phone.\n→ 新しいスマホを買うより、バッテリー交換の方が現実的な選択肢かもしれない。",
+          "meanings": [
+            {
+              "meaning": "現実的に成り立つ・実行可能な",
+              "en": "Replacing the battery might be a more viable option than buying a new phone.",
+              "ja": "新しいスマホを買うより、バッテリー交換の方が現実的な選択肢かもしれない。"
+            },
+            {
+              "meaning": "選択肢として成立する",
+              "en": "If the repair cost stays low, this is still a viable option.",
+              "ja": "修理代が安く済むなら、これはまだ十分現実的な選択肢だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "eligible",
+          "wordNote": "eligible は「必要な条件を満たしていて、何かを受けたり参加したりする資格がある」という意味です。\n\neligible for a discount\n→ 割引を受ける資格がある\n\neligible for support\n→ 支援の対象になる\n\neligible to apply\n→ 応募資格がある\n\n単に allowed なのではなく、「決められた条件を満たしている」という感覚があります。\n\nYou may be eligible for a discount. Let's check before we pay.\n→ 割引の対象かもしれないよ。払う前に確認してみよう。",
+          "meanings": [
+            {
+              "meaning": "資格がある・条件を満たしている",
+              "en": "You may be eligible for a discount. Let's check before we pay.",
+              "ja": "割引の対象かもしれないよ。払う前に確認してみよう。"
+            },
+            {
+              "meaning": "対象となる",
+              "en": "This device may be eligible for a free repair.",
+              "ja": "この端末、無償修理の対象かもしれないよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "compatible",
+          "wordNote": "compatible は「二つのものが一緒に問題なく使える、組み合わせられる」という意味です。\n\ncompatible devices\n→ 互換性のある機器\n\ncompatible software\n→ 対応しているソフトウェア\n\nbe compatible with ～\n→ ～と互換性がある・相性がよい\n\nIs this charger compatible with my phone?\n→ この充電器、私のスマホで使える？\n\nのように、機器やソフトウェアについて非常によく使います。\n\n人や考え方について「相性がよい、両立できる」という意味になることもあります。",
+          "meanings": [
+            {
+              "meaning": "互換性がある・一緒に使える",
+              "en": "Is this charger compatible with my phone? I don't want to buy the wrong one.",
+              "ja": "この充電器、私のスマホで使える？ 間違ったの買いたくないんだ。"
+            },
+            {
+              "meaning": "対応している",
+              "en": "This app isn't compatible with the older version of the OS.",
+              "ja": "このアプリは古いOSには対応していない。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "consecutive",
+          "wordNote": "consecutive は「途中で途切れず、連続して続く」という意味です。\n\nthree consecutive days\n→ 3日連続\n\ntwo consecutive wins\n→ 2連勝\n\nconsecutive years\n→ 連続した年\n\n単に複数回起きたという意味ではなく、「間に別のものを挟まず続いている」という点が大切です。\n\nI've worked late for three consecutive days. I need an early night.\n→ 3日連続で遅くまで仕事してる。今日は早く寝ないと。",
+          "meanings": [
+            {
+              "meaning": "連続した",
+              "en": "I've worked late for three consecutive days. I need an early night.",
+              "ja": "3日連続で遅くまで仕事してる。今日は早く寝ないと。"
+            },
+            {
+              "meaning": "途切れず続く",
+              "en": "The app crashed twice on consecutive days.",
+              "ja": "そのアプリ、2日連続で落ちた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "simultaneous",
+          "wordNote": "simultaneous は「二つ以上のことが同じ時に起こる」という意味です。\n\nsimultaneous events\n→ 同時に起こる出来事\n\nsimultaneous access\n→ 同時アクセス\n\nsimultaneous conversations\n→ 同時進行の会話\n\nat the same time と同じ考え方ですが、simultaneous は名詞の前に置いて「同時の～」と表せる形容詞です。\n\nI can't keep up with three simultaneous conversations.\n→ 3つの会話を同時進行されたらついていけないよ。",
+          "meanings": [
+            {
+              "meaning": "同時に起こる・同時の",
+              "en": "I can't keep up with three simultaneous conversations.",
+              "ja": "3つの会話を同時進行されたらついていけないよ。"
+            },
+            {
+              "meaning": "同時進行の",
+              "en": "The app supports simultaneous downloads.",
+              "ja": "そのアプリは複数のダウンロードを同時に行える。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "scarce",
+          "wordNote": "scarce は「必要とされている量に対して少なく、手に入りにくい」という意味です。\n\nscarce resources\n→ 不足している資源\n\nscarce tickets\n→ 手に入りにくいチケット\n\nWater is scarce in this region.\n→ この地域では水が不足している。\n\nfew や little が単純に「少ない」ことを表すのに対して、scarce は「需要に対して足りない、簡単には手に入らない」という感覚があります。\n\nTickets are scarce, so we should book early.\n→ チケットはなかなか取れないから、早めに予約した方がいいよ。",
+          "meanings": [
+            {
+              "meaning": "不足している・手に入りにくい",
+              "en": "Tickets are scarce, so we should book early.",
+              "ja": "チケットはなかなか取れないから、早めに予約した方がいいよ。"
+            },
+            {
+              "meaning": "需要に対して少ない",
+              "en": "Replacement parts are becoming scarce.",
+              "ja": "交換部品がだんだん手に入りにくくなっている。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "prone",
+          "wordNote": "prone は「あることが起こりやすい、ある状態になりがち」という意味です。\n\nbe prone to ～\n→ ～しやすい・～する傾向がある\n\nprone to overheating\n→ 過熱しやすい\n\nprone to errors\n→ エラーが起きやすい\n\n単に possible なのではなく、「そうなる傾向がある」という感覚です。\n\nThis model is prone to overheating when you're gaming.\n→ この機種、ゲームしてると熱くなりやすいんだ。",
+          "meanings": [
+            {
+              "meaning": "～しやすい・～する傾向がある",
+              "en": "This model is prone to overheating when you're gaming.",
+              "ja": "この機種、ゲームしてると熱くなりやすいんだ。"
+            },
+            {
+              "meaning": "～になりがちな",
+              "en": "Older devices can be more prone to performance issues.",
+              "ja": "古い端末は動作の問題が起きやすくなることがある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "susceptible",
+          "wordNote": "susceptible は「外からの影響を受けやすい、影響に弱い」という意味です。\n\nsusceptible to scratches\n→ 傷がつきやすい\n\nsusceptible to damage\n→ 損傷を受けやすい\n\nsusceptible to pressure\n→ 圧力の影響を受けやすい\n\nprone が「そういう状態になりがち」という傾向を表すのに対して、susceptible は「外からの影響を受けやすい」という感覚があります。\n\nThe screen is quite susceptible to scratches, so I'd use a protector.\n→ この画面かなり傷つきやすいから、保護フィルム使った方がいいよ。",
+          "meanings": [
+            {
+              "meaning": "影響を受けやすい・弱い",
+              "en": "The screen is quite susceptible to scratches, so I'd use a protector.",
+              "ja": "この画面かなり傷つきやすいから、保護フィルム使った方がいいよ。"
+            },
+            {
+              "meaning": "損傷などを受けやすい",
+              "en": "This material is susceptible to heat damage.",
+              "ja": "この素材は熱による損傷を受けやすい。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "durable",
+          "wordNote": "durable は「長く使っても壊れにくい、丈夫で長持ちする」という意味です。\n\na durable case\n→ 丈夫なケース\n\ndurable materials\n→ 耐久性のある素材\n\nlightweight and durable\n→ 軽くて丈夫\n\nstrong が単に「強い」ことを表せるのに対して、durable は「使い続けても耐えられる」という耐久性に注目します。\n\nIt's lightweight, but it still feels pretty durable.\n→ 軽いけど、けっこう丈夫そうだね。",
+          "meanings": [
+            {
+              "meaning": "丈夫な・長持ちする",
+              "en": "It's lightweight, but it still feels pretty durable.",
+              "ja": "軽いけど、けっこう丈夫そうだね。"
+            },
+            {
+              "meaning": "耐久性のある",
+              "en": "I want a case that's durable enough for everyday use.",
+              "ja": "普段使いに十分耐えられる丈夫なケースが欲しい。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "portable",
+          "wordNote": "portable は「簡単に持ち運べる、持ち運びに適している」という意味です。\n\na portable charger\n→ 携帯用充電器\n\na portable device\n→ 持ち運びできる機器\n\ncompact and portable\n→ コンパクトで持ち運びやすい\n\n単に small なのではなく、「実際に持ち歩いて使える」という感覚があります。\n\nI want something compact and portable enough to carry every day.\n→ 毎日持ち歩けるくらい、コンパクトで持ち運びやすいものが欲しい。",
+          "meanings": [
+            {
+              "meaning": "持ち運びしやすい・携帯できる",
+              "en": "I want something compact and portable enough to carry every day.",
+              "ja": "毎日持ち歩けるくらい、コンパクトで持ち運びやすいものが欲しい。"
+            },
+            {
+              "meaning": "携帯用の",
+              "en": "This portable charger is small enough to fit in my bag.",
+              "ja": "この携帯用充電器、バッグに入るくらい小さいよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "intermittent",
+          "wordNote": "intermittent は「ずっと続くのではなく、途切れたり再び起きたりする」という意味です。\n\nan intermittent connection\n→ 時々途切れる接続\n\nan intermittent problem\n→ 断続的に起きる問題\n\nintermittent Wi-Fi\n→ 時々切れるWi-Fi\n\n「完全に壊れている」のではなく、「しばらく正常に動いたあと、また問題が出る」という状況にもよく使います。\n\nI'm having an intermittent Wi-Fi issue. It works for a while and then drops again.\n→ Wi-Fiが時々途切れるんだ。しばらく使えるけど、また切れちゃう。",
+          "meanings": [
+            {
+              "meaning": "断続的な・時々途切れる",
+              "en": "I'm having an intermittent Wi-Fi issue. It works for a while and then drops again.",
+              "ja": "Wi-Fiが時々途切れるんだ。しばらく使えるけど、また切れちゃう。"
+            },
+            {
+              "meaning": "時々起こる",
+              "en": "The problem is intermittent, so it's hard to reproduce.",
+              "ja": "その問題は時々しか起きないから、再現するのが難しい。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "persistent",
+          "wordNote": "persistent は「なかなか消えず、しつこく続く」という意味です。\n\na persistent problem\n→ なかなか解消しない問題\n\na persistent error\n→ 何度も続くエラー\n\na persistent notification\n→ ずっと残る通知\n\ncontinuous のように単に「続いている」というより、「消えてほしいのに残り続ける」というニュアンスになることもあります。\n\nThere's a persistent notification that won't go away.\n→ どうしても消えない通知がずっと出てる。",
+          "meanings": [
+            {
+              "meaning": "しつこく続く・なかなか消えない",
+              "en": "There's a persistent notification that won't go away.",
+              "ja": "どうしても消えない通知がずっと出てる。"
+            },
+            {
+              "meaning": "長く続く・繰り返し起こる",
+              "en": "I've been having a persistent connection problem all week.",
+              "ja": "今週ずっと接続の問題が続いてる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "excessive",
+          "wordNote": "excessive は「必要な量や普通の範囲を超えて多すぎる」という意味です。\n\nexcessive heat\n→ 過度な発熱\n\nexcessive battery drain\n→ 異常に速いバッテリー消費\n\nexcessive use\n→ 過度な使用\n\n単に a lot なのではなく、「普通より明らかに多すぎる」という評価が含まれます。\n\nI'm seeing excessive battery drain after the update.\n→ アップデートしてから、バッテリーの減りが異常に早いんだ。",
+          "meanings": [
+            {
+              "meaning": "過度な・必要以上の",
+              "en": "I'm seeing excessive battery drain after the update.",
+              "ja": "アップデートしてから、バッテリーの減りが異常に早いんだ。"
+            },
+            {
+              "meaning": "普通の範囲を超えた",
+              "en": "The phone gets unusually hot during excessive use.",
+              "ja": "使いすぎると、そのスマホは異常に熱くなる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "sufficient",
+          "wordNote": "sufficient は「必要な量や条件を満たすだけ十分な」という意味です。\n\nsufficient storage\n→ 十分な保存容量\n\nsufficient space\n→ 十分な空き容量\n\nsufficient time\n→ 十分な時間\n\nenough と意味は近いですが、sufficient は「必要条件を満たしている」という感覚が少し強く、説明や比較でもよく使われます。\n\n256GB should be sufficient for most people, but it depends on how you use your phone.\n→ 256GBあればたいていの人には十分だと思うけど、使い方次第だね。",
+          "meanings": [
+            {
+              "meaning": "十分な・必要量を満たす",
+              "en": "256GB should be sufficient for most people, but it depends on how you use your phone.",
+              "ja": "256GBあればたいていの人には十分だと思うけど、使い方次第だね。"
+            },
+            {
+              "meaning": "必要な条件を満たすだけの",
+              "en": "Make sure you have sufficient storage before installing the update.",
+              "ja": "アップデートを入れる前に、十分な空き容量があるか確認してね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "mandatory",
+          "wordNote": "mandatory は「規則や条件として必ず必要な、義務づけられた」という意味です。\n\na mandatory update\n→ 必須アップデート\n\nmandatory training\n→ 必須研修\n\nmandatory fields\n→ 必須入力項目\n\nnecessary が「必要である」ことを広く表すのに対して、mandatory は「ルール上、やらなければならない」という感覚が強い語です。\n\nThe update isn't mandatory yet, so I'm going to wait.\n→ そのアップデート、まだ必須じゃないから私は待つことにする。",
+          "meanings": [
+            {
+              "meaning": "必須の・義務づけられた",
+              "en": "The update isn't mandatory yet, so I'm going to wait.",
+              "ja": "そのアップデート、まだ必須じゃないから私は待つことにする。"
+            },
+            {
+              "meaning": "規則上必要な",
+              "en": "Two-factor authentication is mandatory for this account.",
+              "ja": "このアカウントでは二段階認証が必須だ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "optional",
+          "wordNote": "optional は「必須ではなく、選んでも選ばなくてもよい」という意味です。\n\nan optional feature\n→ 任意の機能\n\noptional storage\n→ 必要なら追加できるストレージ\n\noptional settings\n→ 任意設定\n\nmandatory が「必ず必要」なのに対して、optional は「必要なら選べる」という意味です。\n\nThe extra storage is optional. You don't need it unless you're running out of space.\n→ 追加ストレージは任意だよ。容量が足りなくなってないなら必要ない。",
+          "meanings": [
+            {
+              "meaning": "任意の・必須ではない",
+              "en": "The extra storage is optional. You don't need it unless you're running out of space.",
+              "ja": "追加ストレージは任意だよ。容量が足りなくなってないなら必要ない。"
+            },
+            {
+              "meaning": "選択できる",
+              "en": "This feature is optional, so you can turn it off if you don't use it.",
+              "ja": "この機能は任意だから、使わないならオフにしていいよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "seamless",
+          "wordNote": "seamless は「継ぎ目や中断を感じないほど、スムーズにつながっている」という意味です。\n\na seamless transition\n→ 滑らかな移行\n\na seamless experience\n→ 途切れを感じない快適な体験\n\n物理的に「縫い目がない」という意味から、作業・移行・連携などが「引っかからず自然につながる」という意味に広がります。\n\nThe transfer between the two devices was seamless.\n→ 2台の端末間の移行はとてもスムーズだった。\n\nのように、機種変更やサービス連携にもよく使います。",
+          "meanings": [
+            {
+              "meaning": "継ぎ目を感じない・スムーズな",
+              "en": "The transfer between the two devices was seamless. Everything was ready in a few minutes.",
+              "ja": "2台の端末間の移行、すごくスムーズだったよ。数分で全部使えるようになった。"
+            },
+            {
+              "meaning": "途切れのない・自然につながる",
+              "en": "The app offers a seamless experience across devices.",
+              "ja": "そのアプリは端末が変わっても途切れなく使える。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "cumbersome",
+          "wordNote": "cumbersome は「大きさ・手順・仕組みなどのせいで、扱いにくく面倒」という意味です。\n\na cumbersome process\n→ 面倒で手間のかかる手順\n\na cumbersome system\n→ 扱いにくい仕組み\n\ncumbersome equipment\n→ かさばって扱いにくい機器\n\ndifficult のように単に「難しい」のではなく、「手間が多い、重い、かさばるなどの理由で扱うのが面倒」という感覚があります。\n\nThe setup process is too cumbersome. There are way too many steps.\n→ 設定が面倒すぎるよ。手順が多すぎる。",
+          "meanings": [
+            {
+              "meaning": "扱いにくい・面倒な",
+              "en": "The setup process is too cumbersome. There are way too many steps.",
+              "ja": "設定が面倒すぎるよ。手順が多すぎる。"
+            },
+            {
+              "meaning": "かさばる・取り回しにくい",
+              "en": "The old adapter is too cumbersome to carry around every day.",
+              "ja": "その古いアダプター、毎日持ち歩くにはかさばりすぎる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "versatile",
+          "wordNote": "versatile は「一つの用途だけでなく、いろいろな目的に使える」という意味です。\n\na versatile device\n→ 用途の広い端末\n\na versatile tool\n→ いろいろな使い方ができる道具\n\na versatile person\n→ 多方面で能力を発揮できる人\n\n「多才な」という訳で人だけを思い浮かべやすいですが、道具・素材・機器などにもよく使います。\n\nIt's a surprisingly versatile little device.\n→ この小さい端末、意外といろいろ使えるよ。",
+          "meanings": [
+            {
+              "meaning": "用途が広い・いろいろ使える",
+              "en": "It's a surprisingly versatile little device. I use it for work, reading, and travel.",
+              "ja": "この小さい端末、意外といろいろ使えるよ。仕事にも読書にも旅行にも使ってる。"
+            },
+            {
+              "meaning": "多用途の・応用が利く",
+              "en": "This is one of the most versatile tools I own.",
+              "ja": "これは持ってる道具の中でもかなり用途が広いよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "obsolete",
+          "wordNote": "obsolete は「新しい技術や方法に置き換えられ、もう使われなくなった、または使われなくなりつつある」という意味です。\n\nobsolete technology\n→ 時代遅れになった技術\n\nan obsolete format\n→ 使われなくなった形式\n\nold は単に「古い」ことを表しますが、obsolete は「古くなった結果、実用上の役割を失っている」という感覚があります。\n\nThe software still works, but the format is becoming obsolete.\n→ ソフト自体はまだ動くけど、その形式はだんだん使われなくなってきてる。",
+          "meanings": [
+            {
+              "meaning": "時代遅れの・もう使われなくなった",
+              "en": "The software still works, but the format is becoming obsolete.",
+              "ja": "ソフト自体はまだ動くけど、その形式はだんだん使われなくなってきてる。"
+            },
+            {
+              "meaning": "新しいものに置き換えられた",
+              "en": "That connector is almost obsolete now.",
+              "ja": "その端子、今ではほとんど使われなくなってるね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "defective",
+          "wordNote": "defective は「本来あるべき機能や品質に欠陥がある」という意味です。\n\na defective product\n→ 不良品\n\na defective charger\n→ 欠陥のある充電器\n\na defective part\n→ 不良部品\n\nbroken は「壊れている」と広く言えますが、defective は「製品や部品そのものに欠陥がある」という感覚が強い語です。\n\nI think this charger is defective. It stops charging every few minutes.\n→ この充電器、不良品かも。数分おきに充電が止まるんだ。",
+          "meanings": [
+            {
+              "meaning": "欠陥のある・不良の",
+              "en": "I think this charger is defective. It stops charging every few minutes.",
+              "ja": "この充電器、不良品かも。数分おきに充電が止まるんだ。"
+            },
+            {
+              "meaning": "正常に機能しない",
+              "en": "If the unit is defective, you should be able to return it.",
+              "ja": "不良品なら返品できるはずだよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "vulnerable",
+          "wordNote": "vulnerable は「攻撃・損傷・悪影響などを受けやすい」という意味です。\n\nvulnerable to attack\n→ 攻撃を受けやすい\n\nvulnerable to damage\n→ 損傷を受けやすい\n\na vulnerable system\n→ 攻撃や問題に弱いシステム\n\n人について使えば「傷つきやすい、弱い立場にある」、システムやアカウントについて使えば「攻撃されやすい」という意味になります。\n\nWithout two-factor authentication, your account is more vulnerable to attacks.\n→ 二段階認証なしだと、アカウントが攻撃を受けやすくなるよ。",
+          "meanings": [
+            {
+              "meaning": "攻撃や被害を受けやすい",
+              "en": "Without two-factor authentication, your account is more vulnerable to attacks.",
+              "ja": "二段階認証なしだと、アカウントが攻撃を受けやすくなるよ。"
+            },
+            {
+              "meaning": "影響を受けやすい・弱い",
+              "en": "Older systems can be especially vulnerable to security threats.",
+              "ja": "古いシステムは特にセキュリティ上の脅威に弱いことがある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "responsive",
+          "wordNote": "responsive は「入力・要求・連絡などに対して、すぐ反応する」という意味です。\n\na responsive interface\n→ 反応のよい画面\n\na responsive app\n→ 操作への反応が速いアプリ\n\na responsive support team\n→ 対応の早いサポートチーム\n\n機器について使えば「操作への反応が速い」、人や組織について使えば「返事や対応が早い」という意味になります。\n\nThe new version feels much more responsive.\n→ 新しいバージョン、かなり反応が速く感じる。",
+          "meanings": [
+            {
+              "meaning": "反応が速い・すぐ応答する",
+              "en": "The new version feels much more responsive. Apps open almost instantly.",
+              "ja": "新しいバージョン、かなり反応が速く感じる。アプリもほぼ一瞬で開くよ。"
+            },
+            {
+              "meaning": "対応が早い",
+              "en": "Their support team was surprisingly responsive.",
+              "ja": "そこのサポート、驚くほど対応が早かったよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "flexible",
+          "wordNote": "flexible は「状況に合わせて変えたり調整したりできる」という意味です。\n\na flexible schedule\n→ 融通の利く予定\n\nflexible working hours\n→ 柔軟な勤務時間\n\na flexible approach\n→ 柔軟なやり方\n\n物理的に「曲げられる」という意味だけでなく、予定・方法・ルールなどが「固定されすぎておらず調整できる」という意味でもよく使います。\n\nMy schedule is pretty flexible this week.\n→ 今週は予定かなり融通きくよ。",
+          "meanings": [
+            {
+              "meaning": "柔軟な・融通が利く",
+              "en": "My schedule is pretty flexible this week. Just pick a time that works for you.",
+              "ja": "今週は予定かなり融通きくよ。都合のいい時間を選んで。"
+            },
+            {
+              "meaning": "状況に合わせて調整できる",
+              "en": "We need a more flexible plan in case things change.",
+              "ja": "状況が変わっても対応できる、もう少し柔軟な計画が必要だね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "reversible",
+          "wordNote": "reversible は「あとから元の状態に戻せる」という意味です。\n\na reversible change\n→ 元に戻せる変更\n\na reversible process\n→ 元に戻すことのできる過程\n\n日本語では「リバーシブルの服」を思い浮かべやすいですが、設定変更・処理・変化などにも使えます。\n\nThe change is reversible, so we can try it and switch back if it doesn't work.\n→ この変更は元に戻せるから、とりあえず試して、うまくいかなかったら戻せるよ。\n\n「試してダメなら戻せる」という日常的な判断にも使える語です。",
+          "meanings": [
+            {
+              "meaning": "元に戻せる・取り消せる",
+              "en": "The change is reversible, so we can try it and switch back if it doesn't work.",
+              "ja": "この変更は元に戻せるから、とりあえず試して、うまくいかなかったら戻せるよ。"
+            },
+            {
+              "meaning": "元の状態に戻すことができる",
+              "en": "Don't worry. This setting is completely reversible.",
+              "ja": "大丈夫。この設定変更は完全に元に戻せるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "irreversible",
+          "wordNote": "irreversible は「一度起こると、元の状態に戻すことができない」という意味です。\n\nan irreversible change\n→ 元に戻せない変化\n\nirreversible damage\n→ 回復できない損傷\n\nan irreversible process\n→ 元に戻せない過程\n\nreversible が「元に戻せる」なのに対して、irreversible は「あとから取り消したり戻したりできない」という意味です。\n\nSome changes are irreversible, so let's make a backup first.\n→ 元に戻せない変更もあるから、先にバックアップ取っておこう。\n\n設定変更やデータ管理などでも使える語です。",
+          "meanings": [
+            {
+              "meaning": "元に戻せない・取り返しのつかない",
+              "en": "Some changes are irreversible, so let's make a backup first.",
+              "ja": "元に戻せない変更もあるから、先にバックアップ取っておこう。"
+            },
+            {
+              "meaning": "回復・取り消しのできない",
+              "en": "Make sure you're ready before you continue. This action is irreversible.",
+              "ja": "続ける前に本当に大丈夫か確認して。この操作は元に戻せないよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "recoverable",
+          "wordNote": "recoverable は「失われたり壊れたりしたものを、元に戻したり取り戻したりできる」という意味です。\n\nrecoverable data\n→ 復旧可能なデータ\n\na recoverable file\n→ 復元できるファイル\n\nrecoverable damage\n→ 回復可能な損傷\n\nrecover には「回復する」だけでなく、「失ったものを取り戻す」という意味もあります。\n\nThe file is deleted, but it may still be recoverable.\n→ ファイルは削除されてるけど、まだ復旧できるかもしれない。\n\nのように、データやファイルについてもよく使います。",
+          "meanings": [
+            {
+              "meaning": "元に戻せる・復旧可能な",
+              "en": "The file is deleted, but it may still be recoverable. Don't overwrite the drive yet.",
+              "ja": "ファイルは削除されてるけど、まだ復旧できるかもしれない。今はドライブに上書きしないで。"
+            },
+            {
+              "meaning": "回復可能な・取り戻せる",
+              "en": "Most of the lost data was recoverable.",
+              "ja": "失われたデータの大部分は復旧できた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "refundable",
+          "wordNote": "refundable は「支払ったお金を払い戻してもらえる」という意味です。\n\na refundable ticket\n→ 払い戻し可能なチケット\n\na refundable deposit\n→ 返金される保証金\n\nfully refundable\n→ 全額返金可能な\n\nreturnable が「商品を返品できる」ことを表すのに対して、refundable は「支払ったお金が戻ってくる」ことに注目します。\n\nThe ticket is refundable up to 24 hours before departure.\n→ そのチケットは出発24時間前まで払い戻せる。",
+          "meanings": [
+            {
+              "meaning": "払い戻し可能な",
+              "en": "The ticket is refundable up to 24 hours before departure. That makes me feel better about booking now.",
+              "ja": "そのチケット、出発24時間前まで払い戻せるよ。それなら今予約しても安心だね。"
+            },
+            {
+              "meaning": "返金される",
+              "en": "The deposit is fully refundable if you cancel in time.",
+              "ja": "期限内にキャンセルすれば、保証金は全額返金されるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "complimentary",
+          "wordNote": "complimentary は「料金に含まれていて、追加料金なしで提供される」という意味があります。\n\ncomplimentary breakfast\n→ 無料サービスの朝食\n\ncomplimentary Wi-Fi\n→ 無料で利用できるWi-Fi\n\na complimentary drink\n→ サービスで提供される飲み物\n\nまた、「褒める、好意的な」という意味もあります。\n\na complimentary remark\n→ 褒める言葉\n\nよく似た complementary は別の語で、「互いに補い合う」という意味です。\n\ncomplimentary\n→ 無料サービスの・褒める\n\ncomplementary\n→ 互いに補い合う\n\nスペルも意味も混同しやすい語です。",
+          "meanings": [
+            {
+              "meaning": "無料サービスの",
+              "en": "Breakfast is complimentary, so we don't need to pay extra.",
+              "ja": "朝食は無料サービスだから、追加料金いらないよ。"
+            },
+            {
+              "meaning": "褒める・好意的な",
+              "en": "She made a complimentary remark about my presentation.",
+              "ja": "彼女は私のプレゼンについて褒める言葉をかけてくれた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "unauthorized",
+          "wordNote": "unauthorized は「正式な許可を受けていない」という意味です。\n\nunauthorized access\n→ 不正アクセス\n\nan unauthorized charge\n→ 身に覚えのない・許可していない請求\n\nunauthorized use\n→ 無断使用\n\nillegal が「法律に違反している」ことを表すのに対して、unauthorized は「必要な許可を得ていない」という点に注目します。\n\nI spotted an unauthorized charge on my card.\n→ カードに身に覚えのない請求があった。\n\nのように、カードやアカウントのトラブルでもよく使います。",
+          "meanings": [
+            {
+              "meaning": "許可されていない・不正な",
+              "en": "I spotted an unauthorized charge on my card. I'm calling the bank now.",
+              "ja": "カードに身に覚えのない請求があった。今すぐ銀行に連絡するよ。"
+            },
+            {
+              "meaning": "無断の",
+              "en": "The system detected an unauthorized login attempt.",
+              "ja": "システムが不正なログイン試行を検出した。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "encrypted",
+          "wordNote": "encrypted は「他人にはそのまま読めないよう、暗号化された」という意味です。\n\nencrypted data\n→ 暗号化されたデータ\n\nan encrypted backup\n→ 暗号化されたバックアップ\n\nan encrypted message\n→ 暗号化されたメッセージ\n\n単に password-protected というだけではなく、内容そのものが一定の方法で変換され、適切な鍵などがなければ読めない状態を表します。\n\nThe backup is encrypted, so you'll need the password to open it.\n→ バックアップは暗号化されてるから、開くにはパスワードが必要だよ。",
+          "meanings": [
+            {
+              "meaning": "暗号化された",
+              "en": "The backup is encrypted, so you'll need the password to open it.",
+              "ja": "バックアップは暗号化されてるから、開くにはパスワードが必要だよ。"
+            },
+            {
+              "meaning": "暗号で保護された",
+              "en": "Your messages are stored in encrypted form.",
+              "ja": "メッセージは暗号化された状態で保存されている。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "disposable",
+          "wordNote": "disposable は「一度または短期間使ったあと、捨てることを前提とした」という意味です。\n\ndisposable batteries\n→ 使い捨て電池\n\ndisposable cups\n→ 使い捨てカップ\n\na disposable camera\n→ 使い捨てカメラ\n\ndispose of ～ が「～を処分する」という意味なので、「使用後に処分できるもの」という感覚につながります。\n\n反対に、何度も充電して使えるものなら rechargeable と表せます。",
+          "meanings": [
+            {
+              "meaning": "使い捨ての",
+              "en": "I stopped buying disposable batteries and switched to rechargeable ones.",
+              "ja": "使い捨て電池を買うのをやめて、充電式に替えたよ。"
+            },
+            {
+              "meaning": "使用後に処分する",
+              "en": "These gloves are disposable, so use a new pair each time.",
+              "ja": "この手袋は使い捨てだから、毎回新しいものを使ってね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "sustainable",
+          "wordNote": "sustainable は「無理なく長く続けることができる」という意味です。\n\na sustainable lifestyle\n→ 長く続けられる生活スタイル\n\nsustainable growth\n→ 持続可能な成長\n\nsustainable energy\n→ 持続可能なエネルギー\n\n環境問題でよく見かける語ですが、環境だけに使う言葉ではありません。\n\nWorking this late every night isn't sustainable.\n→ 毎晩こんな遅くまで働くのは続かないよ。\n\nのように、仕事・生活・習慣・計画などについて、「このやり方を長期的に続けられるか」という意味でも使えます。\n\n中心にあるのは「今できるか」ではなく、「この状態を続けていけるか」です。",
+          "meanings": [
+            {
+              "meaning": "持続可能な・無理なく続けられる",
+              "en": "Working this late every night isn't sustainable. We need a better routine.",
+              "ja": "毎晩こんな遅くまで働くのは続かないよ。もっといいやり方を考えないと。"
+            },
+            {
+              "meaning": "長期的に維持できる",
+              "en": "We need a schedule that's sustainable in the long run.",
+              "ja": "長く続けられるスケジュールにしないとね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "attainable",
+          "wordNote": "attainable は「努力や工夫によって、実際に到達・達成できる」という意味です。\n\nan attainable goal\n→ 達成可能な目標\n\nan attainable target\n→ 手の届く目標\n\npossible が広く「可能である」ことを表すのに対して、attainable は特に目標や水準などについて「努力すれば手が届く」という感覚があります。\n\nLet's set a target that's challenging but attainable.\n→ 難しいけど、ちゃんと達成できる目標を立てよう。",
+          "meanings": [
+            {
+              "meaning": "達成可能な・手が届く",
+              "en": "Let's set a target that's challenging but attainable.",
+              "ja": "難しいけど、ちゃんと達成できる目標を立てよう。"
+            },
+            {
+              "meaning": "努力すれば実現できる",
+              "en": "The goal is ambitious, but still attainable.",
+              "ja": "その目標は高いけど、まだ十分達成可能だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "decisive",
+          "wordNote": "decisive は「結果や判断をはっきり決めるほど重要な」という意味です。\n\na decisive factor\n→ 決め手となる要因\n\na decisive moment\n→ 結果を左右する決定的な瞬間\n\na decisive victory\n→ 決定的な勝利\n\n「決断力のある」という意味で人について使うこともありますが、日常では「最終的に何かを決める決め手」という意味も便利です。\n\nThe battery life was the decisive factor for me.\n→ 私にはバッテリー持ちが決め手だった。\n\nのように、買い物や選択にも使えます。",
+          "meanings": [
+            {
+              "meaning": "決定的な・決め手となる",
+              "en": "The battery life was the decisive factor for me. That's why I chose this model.",
+              "ja": "私にはバッテリー持ちが決め手だった。それでこの機種にしたんだ。"
+            },
+            {
+              "meaning": "結果を左右する",
+              "en": "Price wasn't the decisive factor this time.",
+              "ja": "今回は価格が決め手ではなかった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "provisional",
+          "wordNote": "provisional は「正式に確定するまで、一時的に決められている」という意味です。\n\na provisional date\n→ 暫定的な日程\n\na provisional booking\n→ 仮予約\n\na provisional agreement\n→ 暫定合意\n\ntentative も「仮の」と訳されますが、少し感覚が違います。\n\ntentative\n→ まだ様子を見ていて、確定していない\n\nprovisional\n→ 正式決定までの間、とりあえず暫定的に設定されている\n\nという違いがあります。\n\nThe booking is provisional until payment is confirmed.\n→ 支払いが確認されるまでは、その予約は仮の状態だよ。",
+          "meanings": [
+            {
+              "meaning": "暫定的な・正式確定前の",
+              "en": "The booking is provisional until payment is confirmed.",
+              "ja": "支払いが確認されるまでは、その予約は仮の状態だよ。"
+            },
+            {
+              "meaning": "仮に設定された",
+              "en": "We have a provisional date, but it may still change.",
+              "ja": "仮の日程は決まってるけど、まだ変更になるかもしれない。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "proprietary",
+          "wordNote": "proprietary は「特定の会社や組織が所有・管理している独自の」という意味です。\n\nproprietary technology\n→ 独自技術\n\na proprietary connector\n→ 独自規格の端子\n\nproprietary software\n→ 独自仕様のソフトウェア\n\n単に original や unique なのではなく、「その会社などが権利を持ち、独自に管理している」という感覚があります。\n\nThis device uses a proprietary connector, so a standard cable won't work.\n→ この端末は独自規格の端子を使ってるから、普通のケーブルじゃ使えないよ。\n\nのように、機器・規格・ソフトウェアについてよく使います。",
+          "meanings": [
+            {
+              "meaning": "独自規格の・専用の",
+              "en": "This device uses a proprietary connector, so a standard cable won't work.",
+              "ja": "この端末は独自規格の端子を使ってるから、普通のケーブルじゃ使えないよ。"
+            },
+            {
+              "meaning": "独自に所有・管理された",
+              "en": "The software uses a proprietary format.",
+              "ja": "そのソフトは独自仕様の形式を使っている。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "reputable",
+          "wordNote": "reputable は「良い評判があり、信頼できる」という意味です。\n\na reputable seller\n→ 評判のよい販売店\n\na reputable company\n→ 信頼できる会社\n\na reputable source\n→ 信頼できる情報源\n\nfamous が「有名である」ことを表すのに対して、reputable は「これまでの実績や評判から信用できる」という感覚があります。\n\nI'd buy it from a reputable seller rather than the cheapest one.\n→ 一番安いところより、ちゃんと評判のいい店から買うかな。",
+          "meanings": [
+            {
+              "meaning": "評判のよい・信頼できる",
+              "en": "I'd buy it from a reputable seller rather than the cheapest one.",
+              "ja": "一番安いところより、ちゃんと評判のいい店から買うかな。"
+            },
+            {
+              "meaning": "信頼できる",
+              "en": "Make sure the information comes from a reputable source.",
+              "ja": "その情報が信頼できる情報源から出ているか確認してね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "authentic",
+          "wordNote": "authentic は「偽物や模倣ではなく、本物である」という意味です。\n\nan authentic product\n→ 正規の本物の商品\n\nauthentic Italian food\n→ 本場らしいイタリア料理\n\nan authentic experience\n→ 本物らしい体験\n\ngenuine と近い意味ですが、authentic は「由来や特徴が本物として正しい」という感覚でもよく使われます。\n\nThe price looks suspiciously low. Are you sure it's authentic?\n→ 値段が怪しいくらい安いね。本物なの？",
+          "meanings": [
+            {
+              "meaning": "本物の・正真正銘の",
+              "en": "The price looks suspiciously low. Are you sure it's authentic?",
+              "ja": "値段が怪しいくらい安いね。本物なの？"
+            },
+            {
+              "meaning": "本場の・本物らしい",
+              "en": "We found a small restaurant serving authentic local food.",
+              "ja": "本場の郷土料理を出す小さな店を見つけた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "counterfeit",
+          "wordNote": "counterfeit は「本物に見せかけて作られた偽物の、偽造された」という意味です。\n\ncounterfeit goods\n→ 偽物の商品\n\ncounterfeit money\n→ 偽札\n\na counterfeit charger\n→ 偽物の充電器\n\nfake も「偽物」と広く言えますが、counterfeit は特に「本物を装って作られた偽物」という意味が強い語です。\n\nBe careful with counterfeit chargers.\n→ 偽物の充電器には気をつけて。\n\nのように、ブランド品・電子機器・紙幣などにも使います。",
+          "meanings": [
+            {
+              "meaning": "偽物の・偽造された",
+              "en": "Be careful with counterfeit chargers. They may not meet the same safety standards.",
+              "ja": "偽物の充電器には気をつけて。同じ安全基準を満たしてないかもしれないよ。"
+            },
+            {
+              "meaning": "本物を装った偽物の",
+              "en": "The site was selling counterfeit products.",
+              "ja": "そのサイトでは偽物の商品が売られていた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "compromised",
+          "wordNote": "compromised は「安全性・信頼性・機能などが損なわれた」という意味です。\n\na compromised account\n→ 不正アクセスなどで安全性が損なわれたアカウント\n\ncompromised data\n→ 漏えいなどの危険にさらされたデータ\n\na compromised system\n→ セキュリティが侵害されたシステム\n\ncompromise は「妥協する」という意味で知られていますが、別の使い方では「安全性や完全性を損なう」という意味があります。\n\nI think my account may be compromised.\n→ アカウントの安全性が侵害されてるかもしれない。\n\nセキュリティの文脈では非常によく使われます。",
+          "meanings": [
+            {
+              "meaning": "安全性が損なわれた・危険にさらされた",
+              "en": "I think my account may be compromised. I'm changing the password now.",
+              "ja": "アカウントの安全性が侵害されてるかもしれない。今パスワード変える。"
+            },
+            {
+              "meaning": "セキュリティが侵害された",
+              "en": "If your password has been compromised, change it immediately.",
+              "ja": "パスワードが漏れている可能性があるなら、すぐ変更して。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "dormant",
+          "wordNote": "dormant は「存在はしているが、しばらく活動していない・使われていない」という意味です。\n\na dormant account\n→ 長期間使われていない休眠アカウント\n\na dormant volcano\n→ 休火山\n\na dormant company\n→ 活動を停止している会社\n\ndead のように完全に終わったわけではなく、「今は活動していないが、再び動く可能性がある」という感覚があります。\n\nI found a dormant account I haven't used in years.\n→ 何年も使ってない休眠アカウント見つけた。\n\n火山だけの単語ではありません。",
+          "meanings": [
+            {
+              "meaning": "休眠状態の・しばらく使われていない",
+              "en": "I found a dormant account I haven't used in years. I should probably close it.",
+              "ja": "何年も使ってない休眠アカウント見つけた。たぶん閉じた方がいいな。"
+            },
+            {
+              "meaning": "活動していない",
+              "en": "The account becomes dormant after a long period of inactivity.",
+              "ja": "そのアカウントは長期間利用がないと休眠状態になる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "premature",
+          "wordNote": "premature は「適切な時期より早すぎる、まだその段階ではない」という意味です。\n\na premature decision\n→ 時期尚早な決定\n\na premature conclusion\n→ 早すぎる結論\n\npremature replacement\n→ まだ必要のない早すぎる交換\n\nearly は単に「早い」ことを表しますが、premature は「まだ十分な条件が整っていないのに早く進めすぎている」という感覚があります。\n\nIt's probably premature to replace the phone before we know what's causing the problem.\n→ 原因が分かる前にスマホを買い替えるのは、まだ早いと思う。",
+          "meanings": [
+            {
+              "meaning": "時期尚早の・早すぎる",
+              "en": "It's probably premature to replace the phone before we know what's causing the problem.",
+              "ja": "原因が分かる前にスマホを買い替えるのは、まだ早いと思う。"
+            },
+            {
+              "meaning": "まだその段階ではない",
+              "en": "It's too soon to celebrate. That would be premature.",
+              "ja": "喜ぶにはまだ早いよ。今は時期尚早だ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "counterintuitive",
+          "wordNote": "counterintuitive は「直感ではそう思えない、一見すると逆に感じる」という意味です。\n\na counterintuitive result\n→ 直感に反する結果\n\na counterintuitive solution\n→ 一見すると逆効果に思える解決策\n\n「理解できない」という意味ではなく、「普通なら逆だと思いそうなのに、実際はそうではない」という場面で使います。\n\nIt sounds counterintuitive, but turning off that feature can actually improve battery life.\n→ 直感には反するけど、その機能を切るとむしろバッテリー持ちが良くなることがあるよ。\n\n「え、普通は逆じゃない？」と思うような話にぴったりの語です。",
+          "meanings": [
+            {
+              "meaning": "直感に反する・一見すると逆に思える",
+              "en": "It sounds counterintuitive, but turning off that feature can actually improve battery life.",
+              "ja": "直感には反するけど、その機能を切るとむしろバッテリー持ちが良くなることがあるよ。"
+            },
+            {
+              "meaning": "予想とは逆に感じる",
+              "en": "The solution seems counterintuitive at first, but it works.",
+              "ja": "その解決策、最初は逆に思えるけど、ちゃんとうまくいくよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "incremental",
+          "wordNote": "incremental は「一度に大きく変わるのではなく、少しずつ段階的に増えたり改善したりする」という意味です。\n\nincremental improvements\n→ 少しずつ積み重なる改善\n\nincremental changes\n→ 段階的な変更\n\nincremental progress\n→ 少しずつの進歩\n\nsmall と違い、「小さな変化が段階的に積み重なっていく」という感覚があります。\n\nThe improvements are incremental, but they add up over time.\n→ 改善は少しずつだけど、積み重なると大きいよ。",
+          "meanings": [
+            {
+              "meaning": "少しずつ段階的な",
+              "en": "The improvements are incremental, but they add up over time.",
+              "ja": "改善は少しずつだけど、積み重なると大きいよ。"
+            },
+            {
+              "meaning": "段階的に増えていく",
+              "en": "We're making incremental changes instead of redesigning everything at once.",
+              "ja": "全部を一度に作り直すんじゃなくて、少しずつ変更してるところだよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "cumulative",
+          "wordNote": "cumulative は「一つ一つが積み重なった結果として、合計が大きくなっていく」という意味です。\n\ncumulative cost\n→ 累積費用\n\na cumulative effect\n→ 積み重なった影響\n\ncumulative total\n→ 累計\n\nincremental が「少しずつ増えていく一つ一つの変化」に注目するのに対して、cumulative は「それらが積み重なった合計や影響」に注目します。\n\nThe monthly fee seems small, but the cumulative cost over a year is pretty high.\n→ 月額は安く見えるけど、1年分を積み上げるとけっこう高いね。",
+          "meanings": [
+            {
+              "meaning": "累積する・積み重なった",
+              "en": "The monthly fee seems small, but the cumulative cost over a year is pretty high.",
+              "ja": "月額は安く見えるけど、1年分を積み上げるとけっこう高いね。"
+            },
+            {
+              "meaning": "積み重なった結果の",
+              "en": "The cumulative effect of these small changes is significant.",
+              "ja": "こうした小さな変化も、積み重なると大きな影響になる。"
+            }
+          ]
+        },
+       
       {
         "pos": "noun",
         "word": "animal",
