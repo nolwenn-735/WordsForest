@@ -6358,7 +6358,863 @@
             }
           ]
         },
-       
+        {
+          "pos": "adjective",
+          "word": "sore",
+          "wordNote": "sore は「痛い、ヒリヒリする、触ったり動かしたりすると痛む」という意味です。\n\na sore throat\n→ 喉の痛み\n\nsore muscles\n→ 筋肉痛の筋肉\n\na sore arm\n→ 痛む腕\n\npainful より日常会話で使いやすく、運動・注射・炎症などのあとに残る痛みにもよく使います。\n\nMy throat is sore, and my arm is still sore from the shot.\n→ 喉が痛くて、注射した腕もまだ痛い。\n\nI feel sore all over.\n→ 全身あちこち痛い。",
+          "meanings": [
+            {
+              "meaning": "痛い・ヒリヒリする",
+              "en": "My throat is sore, so I'm trying to drink something warm.",
+              "ja": "喉が痛いから、温かいものを飲むようにしてる。"
+            },
+            {
+              "meaning": "筋肉などが痛む",
+              "en": "My legs are still sore from yesterday's workout.",
+              "ja": "昨日の運動で、脚がまだ筋肉痛だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "stiff",
+          "wordNote": "stiff は「筋肉や関節などがこわばって、動かしにくい」という意味です。\n\na stiff neck\n→ 首のこり・こわばり\n\nstiff shoulders\n→ 肩のこり\n\nstiff joints\n→ こわばった関節\n\n単に painful なのではなく、「固まった感じで動かしにくい」という感覚があります。\n\nMy neck feels stiff after sitting at my desk all day.\n→ 一日中机に向かってたら、首が凝っちゃった。",
+          "meanings": [
+            {
+              "meaning": "こわばった・凝った",
+              "en": "My neck feels stiff after sitting at my desk all day.",
+              "ja": "一日中机に向かってたら、首が凝っちゃった。"
+            },
+            {
+              "meaning": "動かしにくい",
+              "en": "My knees feel stiff when I first get up.",
+              "ja": "立ち上がった直後は膝がこわばる感じがする。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "swollen",
+          "wordNote": "swollen は「腫れた、むくんだ」という意味です。\n\na swollen ankle\n→ 腫れた足首\n\nswollen eyes\n→ 腫れた目\n\na swollen finger\n→ 腫れた指\n\n動詞 swell「腫れる」の状態を表す形です。\n\nMy ankle is a little swollen, but I can still walk on it.\n→ 足首がちょっと腫れてるけど、歩けはするよ。",
+          "meanings": [
+            {
+              "meaning": "腫れた",
+              "en": "My ankle is a little swollen, but I can still walk on it.",
+              "ja": "足首がちょっと腫れてるけど、歩けはするよ。"
+            },
+            {
+              "meaning": "むくんだ",
+              "en": "My eyes were swollen when I woke up this morning.",
+              "ja": "今朝起きたら目が腫れてた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "tender",
+          "wordNote": "tender は「触ったり押したりすると痛い、敏感になっている」という意味があります。\n\na tender area\n→ 触ると痛い部分\n\ntender skin\n→ 敏感になっている皮膚\n\ntender muscles\n→ 押すと痛む筋肉\n\n「優しい」という意味で知られていますが、身体について使うと「触れると痛い」という意味になります。\n\nThe area around the injection site is still a little tender.\n→ 注射したところの周り、まだちょっと触ると痛い。\n\nsore が広く「痛む状態」を表すのに対して、tender は特に「触ったり押したりすると痛い」という感覚があります。",
+          "meanings": [
+            {
+              "meaning": "触ると痛い・敏感な",
+              "en": "The area around the injection site is still a little tender.",
+              "ja": "注射したところの周り、まだちょっと触ると痛い。"
+            },
+            {
+              "meaning": "押すと痛む",
+              "en": "It's not painful unless I touch it, but the area is still tender.",
+              "ja": "触らなければ痛くないけど、その部分はまだ押すと痛い。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "numb",
+          "wordNote": "numb は「感覚がなくなった、しびれて感覚が鈍い」という意味です。\n\nnumb fingers\n→ 感覚のなくなった指\n\na numb hand\n→ しびれて感覚の鈍い手\n\n寒さ・圧迫・麻酔などで、一時的に感覚がなくなる場合にも使います。\n\nMy fingers went numb from the cold.\n→ 寒さで指の感覚がなくなった。\n\nMy leg went numb from sitting in the same position too long.\n→ 同じ姿勢で座りすぎて、脚がしびれた。",
+          "meanings": [
+            {
+              "meaning": "感覚がない・しびれた",
+              "en": "My fingers went numb from the cold.",
+              "ja": "寒さで指の感覚がなくなった。"
+            },
+            {
+              "meaning": "しびれて感覚が鈍い",
+              "en": "My leg went numb from sitting in the same position too long.",
+              "ja": "同じ姿勢で座りすぎて、脚がしびれた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "dizzy",
+          "wordNote": "dizzy は「めまいがする、ふらふらする」という意味です。\n\nfeel dizzy\n→ めまいがする\n\nget dizzy\n→ めまいがしてくる\n\n「頭が痛い」ではなく、周囲が回る感じや身体がふらつく感覚を表します。\n\nI stood up too quickly and felt dizzy for a second.\n→ 急に立ち上がったら、一瞬ふらっとした。\n\nI feel a little dizzy. I need to sit down.\n→ ちょっとめまいがする。座った方がいいな。",
+          "meanings": [
+            {
+              "meaning": "めまいがする・ふらふらする",
+              "en": "I stood up too quickly and felt dizzy for a second.",
+              "ja": "急に立ち上がったら、一瞬ふらっとした。"
+            },
+            {
+              "meaning": "ふらつく感じがする",
+              "en": "I feel a little dizzy. I need to sit down.",
+              "ja": "ちょっとめまいがする。座った方がいいな。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "hoarse",
+          "wordNote": "hoarse は「声がかすれた、しゃがれた」という意味です。\n\na hoarse voice\n→ かすれた声\n\nsound hoarse\n→ 声がかすれて聞こえる\n\n風邪・喉の炎症・話しすぎなどで声が出しにくくなったときに使います。\n\nMy voice is a little hoarse today, so I'm trying not to talk too much.\n→ 今日はちょっと声がかすれてるから、あまり話さないようにしてる。",
+          "meanings": [
+            {
+              "meaning": "声がかすれた・しゃがれた",
+              "en": "My voice is a little hoarse today, so I'm trying not to talk too much.",
+              "ja": "今日はちょっと声がかすれてるから、あまり話さないようにしてる。"
+            },
+            {
+              "meaning": "声が出にくい",
+              "en": "I sound hoarse because I've been talking all day.",
+              "ja": "一日中話してたから、声がかすれてる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "itchy",
+          "wordNote": "itchy は「かゆい」という意味です。\n\nitchy skin\n→ かゆい肌\n\nan itchy rash\n→ かゆみのある発疹\n\nitch は「かゆみ・かゆい」、itchy は「かゆい状態」を表します。\n\nThis sweater makes my neck itchy.\n→ このセーター着ると首がかゆくなる。\n\nMy skin feels itchy around the bandage.\n→ 絆創膏の周りがかゆい。",
+          "meanings": [
+            {
+              "meaning": "かゆい",
+              "en": "This sweater makes my neck itchy.",
+              "ja": "このセーター着ると首がかゆくなる。"
+            },
+            {
+              "meaning": "かゆみのある",
+              "en": "My skin feels itchy around the bandage.",
+              "ja": "絆創膏の周りがかゆい。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "drowsy",
+          "wordNote": "drowsy は「眠気がある、ぼんやり眠い」という意味です。\n\nfeel drowsy\n→ 眠気を感じる\n\ncause drowsiness\n→ 眠気を引き起こす\n\nsleepy も「眠い」ですが、drowsy は特に薬・疲労・体調などによって、頭がぼんやりして眠気がある状態によく使われます。\n\nThis medicine makes me drowsy, so I shouldn't drive.\n→ この薬を飲むと眠くなるから、私が運転しない方がいいな。\n\n薬の注意書きなどでもよく見かける語です。",
+          "meanings": [
+            {
+              "meaning": "眠気のある・ぼんやり眠い",
+              "en": "This medicine makes me drowsy, so I shouldn't drive. Could you drive instead?",
+              "ja": "この薬を飲むと眠くなるから、私が運転しない方がいいな。代わりに運転してくれる？"
+            },
+            {
+              "meaning": "眠くてぼんやりした",
+              "en": "I felt drowsy for a while after taking the medicine.",
+              "ja": "その薬を飲んだあと、しばらく眠くてぼんやりしてた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "congested",
+          "wordNote": "congested は「詰まった、ふさがった」という意味があります。\n\na congested nose\n→ 鼻が詰まった状態\n\na congested chest\n→ 痰などで胸が詰まった感じの状態\n\nfeel congested\n→ 鼻や胸が詰まっている感じがする\n\n交通について使えば「渋滞した」という意味ですが、身体について使うと鼻や胸の詰まりにも使います。\n\nMy nose is really congested, so I couldn't sleep well.\n→ 鼻がかなり詰まってて、よく眠れなかった。\n\nI have a sore throat and a congested nose.\n→ 喉が痛くて、鼻も詰まってる。",
+          "meanings": [
+            {
+              "meaning": "鼻などが詰まった",
+              "en": "My nose is really congested, so I couldn't sleep well.",
+              "ja": "鼻がかなり詰まってて、よく眠れなかった。"
+            },
+            {
+              "meaning": "詰まった感じのする",
+              "en": "I have a sore throat and a congested nose.",
+              "ja": "喉が痛くて、鼻も詰まってる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "perceptible",
+          "wordNote": "perceptible は「感覚で気づける、感じ取れる程度の」という意味です。\n\na perceptible difference\n→ 感じ取れる違い\n\na perceptible change\n→ 気づける程度の変化\n\na perceptible smell\n→ 感じ取れる程度の匂い\n\n非常に大きな変化というより、「よく見たり聞いたりすれば、ちゃんと分かる」という感覚があります。\n\nThere's a perceptible difference in the sound quality.\n→ 音質には、ちゃんと感じ取れる程度の違いがある。\n\nnoticeable より控えめで、「知覚できる程度には存在する」というニュアンスで使われます。",
+          "meanings": [
+            {
+              "meaning": "感じ取れる・気づける程度の",
+              "en": "There's a perceptible difference in the sound quality.",
+              "ja": "音質には、ちゃんと感じ取れる程度の違いがある。"
+            },
+            {
+              "meaning": "わずかだが分かる",
+              "en": "There was a perceptible change in her tone.",
+              "ja": "彼女の話し方に、わずかだけど分かる変化があった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "noticeable",
+          "wordNote": "noticeable は「気づくほどはっきりした、目立つ」という意味です。\n\na noticeable difference\n→ はっきり分かる違い\n\na noticeable improvement\n→ 目に見えて分かる改善\n\na noticeable change\n→ 気づくほどの変化\n\nperceptible が「注意すれば感じ取れる」程度でも使えるのに対して、noticeable は「普通に気づくくらい分かる」という感覚が強めです。\n\nThe battery life is noticeably better after the update.\n→ アップデート後、バッテリー持ちがはっきり良くなった。",
+          "meanings": [
+            {
+              "meaning": "はっきり分かる・目立つ",
+              "en": "There's a noticeable difference in speed after the update.",
+              "ja": "アップデート後、速度にはっきり分かる違いがある。"
+            },
+            {
+              "meaning": "気づくほどの",
+              "en": "The new version uses noticeably less battery.",
+              "ja": "新しいバージョンは、はっきり分かるくらいバッテリー消費が少ない。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "minimal",
+          "wordNote": "minimal は「必要最低限の、ごくわずかな」という意味です。\n\nminimal effort\n→ 最小限の努力\n\nminimal damage\n→ ごくわずかな損傷\n\na minimal difference\n→ ごく小さな違い\n\nminimum が「最小値・最低限」という基準そのものを表すことが多いのに対して、minimal は「量や程度が非常に小さい」という性質を表します。\n\nThe difference in weight is minimal, so I'd choose based on battery life.\n→ 重さの差はごくわずかだから、バッテリー持ちで選ぶかな。",
+          "meanings": [
+            {
+              "meaning": "ごくわずかな・最小限の",
+              "en": "The difference in weight is minimal, so I'd choose based on battery life.",
+              "ja": "重さの差はごくわずかだから、バッテリー持ちで選ぶかな。"
+            },
+            {
+              "meaning": "必要最低限の",
+              "en": "The setup requires minimal effort.",
+              "ja": "その設定にはほとんど手間がかからない。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "reasonable",
+          "wordNote": "reasonable は「妥当な、無理のない、納得できる」という意味です。\n\na reasonable price\n→ 妥当な価格\n\na reasonable request\n→ 無理のない要求\n\na reasonable explanation\n→ 納得できる説明\n\n「理性的な」という意味もありますが、日常では値段・時間・要求などについて「それならまあ納得できる」という意味でよく使います。\n\nThat seems like a reasonable price for what you get.\n→ 内容を考えれば、それくらいの価格なら妥当だと思う。",
+          "meanings": [
+            {
+              "meaning": "妥当な・納得できる",
+              "en": "That seems like a reasonable price for what you get.",
+              "ja": "内容を考えれば、それくらいの価格なら妥当だと思う。"
+            },
+            {
+              "meaning": "無理のない",
+              "en": "Let's set a reasonable deadline instead of rushing.",
+              "ja": "急ぐんじゃなくて、無理のない締め切りを決めよう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "questionable",
+          "wordNote": "questionable は「正しいか、信頼できるか、適切か疑わしい」という意味です。\n\na questionable website\n→ 怪しいサイト\n\nquestionable information\n→ 信頼性が疑わしい情報\n\na questionable decision\n→ 妥当性に疑問のある判断\n\n単に「質問できる」という意味ではなく、「何か問題がありそうで、そのまま信用しにくい」という感覚があります。\n\nThat website looks questionable. I wouldn't enter my card details there.\n→ そのサイトちょっと怪しいよ。カード情報は入れない方がいい。",
+          "meanings": [
+            {
+              "meaning": "疑わしい・怪しい",
+              "en": "That website looks questionable. I wouldn't enter my card details there.",
+              "ja": "そのサイトちょっと怪しいよ。カード情報は入れない方がいい。"
+            },
+            {
+              "meaning": "妥当性に疑問のある",
+              "en": "That was a questionable decision, given the risks involved.",
+              "ja": "そのリスクを考えると、あの判断にはちょっと疑問がある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "legible",
+          "wordNote": "legible は「文字や印刷が、判読できるくらいはっきりしている」という意味です。\n\nlegible handwriting\n→ 読み取れる字\n\nlegible text\n→ 判読できる文字\n\na legible signature\n→ 読み取れる署名\n\nreadable は「読みやすい文章・読み物」という意味にも広く使えますが、legible は特に「文字の形がちゃんと読み取れるか」に注目します。\n\nThe text is tiny, but it's still legible.\n→ 文字は小さいけど、まだちゃんと読める。",
+          "meanings": [
+            {
+              "meaning": "判読できる・読み取れる",
+              "en": "The text is tiny, but it's still legible.",
+              "ja": "文字は小さいけど、まだちゃんと読める。"
+            },
+            {
+              "meaning": "文字がはっきり読める",
+              "en": "Could you make the label a little more legible?",
+              "ja": "そのラベル、もう少し読みやすくしてくれる？"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "audible",
+          "wordNote": "audible は「耳で聞き取れる、聞こえる」という意味です。\n\nan audible sound\n→ 聞き取れる音\n\nan audible sigh\n→ 聞こえるほどのため息\n\nbarely audible\n→ かろうじて聞こえる\n\n「大きな音」という意味ではなく、「聞こえる程度の音量がある」ということを表します。\n\nThe fan is audible, but it's not distracting.\n→ ファンの音は聞こえるけど、気になるほどじゃない。\n\nガジェットや家電の動作音についても使いやすい語です。",
+          "meanings": [
+            {
+              "meaning": "聞き取れる・聞こえる",
+              "en": "The fan is audible, but it's not distracting.",
+              "ja": "ファンの音は聞こえるけど、気になるほどじゃない。"
+            },
+            {
+              "meaning": "耳で確認できる",
+              "en": "There was a barely audible click when I pressed the button.",
+              "ja": "ボタンを押したとき、かすかにカチッという音が聞こえた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "detectable",
+          "wordNote": "detectable は「存在していることを検出・確認できる」という意味です。\n\na detectable delay\n→ 検出できる程度の遅延\n\ndetectable levels\n→ 検出可能なレベル\n\na detectable change\n→ 確認できる変化\n\nperceptible が人の感覚で「感じ取れる」ことに寄るのに対して、detectable は観察や測定によって「存在を確認できる」場合にも使えます。\n\nThere's a detectable delay when switching between apps.\n→ アプリを切り替えるとき、わずかに遅延があるのが分かる。",
+          "meanings": [
+            {
+              "meaning": "検出できる・確認できる",
+              "en": "There's a detectable delay when switching between apps.",
+              "ja": "アプリを切り替えるとき、わずかに遅延があるのが分かる。"
+            },
+            {
+              "meaning": "測定・観察で分かる",
+              "en": "The change is small, but it's still detectable.",
+              "ja": "変化は小さいけど、ちゃんと確認できる程度ではある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "acceptable",
+          "wordNote": "acceptable は「基準を満たしていて、許容できる」という意味です。\n\nacceptable quality\n→ 許容できる品質\n\nan acceptable level\n→ 許容範囲の水準\n\nan acceptable solution\n→ 受け入れられる解決策\n\nexcellent や good ほど高く評価しているとは限らず、「完璧ではないけれど、これなら問題ない」という場面でもよく使います。\n\nThe quality isn't amazing, but it's acceptable for the price.\n→ 品質はすごく良いわけじゃないけど、この値段なら許容範囲だよ。",
+          "meanings": [
+            {
+              "meaning": "許容できる・受け入れられる",
+              "en": "The quality isn't amazing, but it's acceptable for the price.",
+              "ja": "品質はすごく良いわけじゃないけど、この値段なら許容範囲だよ。"
+            },
+            {
+              "meaning": "基準を満たす",
+              "en": "The performance is acceptable for everyday use.",
+              "ja": "普段使いなら性能は十分許容範囲だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "unacceptable",
+          "wordNote": "unacceptable は「基準を満たさず、到底受け入れられない」という意味です。\n\nunacceptable behavior\n→ 許されない行動\n\nan unacceptable risk\n→ 許容できないリスク\n\nunacceptable quality\n→ 受け入れられない品質\n\n単に bad なのではなく、「これは許容範囲を超えている」という判断を含む語です。\n\nLosing data after an update is unacceptable.\n→ アップデートでデータが消えるのは到底許容できない。\n\nacceptable と対にすると、\n\nacceptable\n→ 完璧ではなくても許容範囲\n\nunacceptable\n→ 許容範囲を超えている\n\nという違いが分かりやすくなります。",
+          "meanings": [
+            {
+              "meaning": "許容できない・受け入れられない",
+              "en": "Losing data after an update is unacceptable.",
+              "ja": "アップデートでデータが消えるのは到底許容できない。"
+            },
+            {
+              "meaning": "許容範囲を超えた",
+              "en": "That level of battery drain is unacceptable.",
+              "ja": "そのレベルのバッテリー消費は許容できないよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "perceptive",
+          "wordNote": "perceptive は「物事の細かな点によく気づき、本質を見抜く力がある」という意味です。\n\na perceptive person\n→ 洞察力のある人\n\na perceptive comment\n→ 鋭い指摘\n\na perceptive observation\n→ 洞察に富んだ観察\n\nperceptible は「感じ取れる」という意味ですが、perceptive は人や発言について「よく気づく、見抜く力がある」という意味です。\n\nThat's a very perceptive comment. You noticed something I completely missed.\n→ それ、かなり鋭い指摘だね。私が完全に見落としてたことに気づいたんだ。",
+          "meanings": [
+            {
+              "meaning": "洞察力のある・よく気づく",
+              "en": "That's a very perceptive comment. You noticed something I completely missed.",
+              "ja": "それ、かなり鋭い指摘だね。私が完全に見落としてたことに気づいたんだ。"
+            },
+            {
+              "meaning": "物事をよく見抜く",
+              "en": "She's very perceptive when it comes to small changes in people's behavior.",
+              "ja": "彼女は人のちょっとした行動の変化によく気づく。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "receptive",
+          "wordNote": "receptive は「新しい考え・意見・提案などを受け入れる姿勢がある」という意味です。\n\nbe receptive to feedback\n→ フィードバックを受け入れる姿勢がある\n\nbe receptive to new ideas\n→ 新しい考えを受け入れる\n\na receptive audience\n→ 話を前向きに受け止める聴衆\n\n単に agree するという意味ではなく、「まず聞いて受け止める姿勢がある」という感覚です。\n\nShe was receptive to the feedback and made a few changes.\n→ 彼女はフィードバックを素直に受け止めて、いくつか修正した。",
+          "meanings": [
+            {
+              "meaning": "受け入れる姿勢のある",
+              "en": "She was receptive to the feedback and made a few changes.",
+              "ja": "彼女はフィードバックを素直に受け止めて、いくつか修正した。"
+            },
+            {
+              "meaning": "新しい考えを受け入れやすい",
+              "en": "They seem receptive to trying a different approach.",
+              "ja": "彼らは別のやり方を試すことにも前向きみたいだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "prospective",
+          "wordNote": "prospective は「将来そうなる可能性がある、見込みの」という意味です。\n\na prospective buyer\n→ 購入を検討している人\n\na prospective student\n→ 入学希望者・入学を検討している人\n\na prospective employer\n→ 就職先候補の雇用主\n\n「すでにそうである」のではなく、「今後そうなる可能性がある」という点がポイントです。\n\nA prospective buyer asked if the battery had ever been replaced.\n→ 購入を検討している人から、バッテリー交換歴があるか聞かれた。",
+          "meanings": [
+            {
+              "meaning": "将来そうなる見込みの",
+              "en": "A prospective buyer asked if the battery had ever been replaced.",
+              "ja": "購入を検討している人から、バッテリー交換歴があるか聞かれた。"
+            },
+            {
+              "meaning": "候補となる・見込みの",
+              "en": "Prospective students can join an online information session.",
+              "ja": "入学を検討している人はオンライン説明会に参加できる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "respective",
+          "wordNote": "respective は「それぞれに対応する、それぞれの」という意味です。\n\ntheir respective roles\n→ それぞれの役割\n\ntheir respective folders\n→ それぞれ対応するフォルダ\n\nin their respective places\n→ それぞれの場所に\n\n複数の人や物について、「一つ一つに対応するものが別々にある」というときに使います。\n\nWe saved the files in their respective folders.\n→ ファイルはそれぞれ対応するフォルダに保存した。",
+          "meanings": [
+            {
+              "meaning": "それぞれの",
+              "en": "We saved the files in their respective folders.",
+              "ja": "ファイルはそれぞれ対応するフォルダに保存した。"
+            },
+            {
+              "meaning": "それぞれに対応する",
+              "en": "The team members returned to their respective tasks.",
+              "ja": "チームのメンバーはそれぞれの作業に戻った。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "deceptive",
+          "wordNote": "deceptive は「見た目や印象が実際とは違い、誤解させるような」という意味です。\n\na deceptive appearance\n→ 誤解を招く見た目\n\na deceptive impression\n→ 実態と違う印象\n\ndeceptive advertising\n→ 誤解を招く広告\n\n単に false なのではなく、「本当とは違う印象を与えてしまう」という感覚があります。\n\nThe box looks small, but its weight is deceptive. It's actually quite heavy.\n→ 箱は小さく見えるけど、見た目に反してけっこう重いよ。",
+          "meanings": [
+            {
+              "meaning": "誤解させるような・見かけに反する",
+              "en": "The box looks small, but its weight is deceptive. It's actually quite heavy.",
+              "ja": "箱は小さく見えるけど、見た目に反してけっこう重いよ。"
+            },
+            {
+              "meaning": "実態と違う印象を与える",
+              "en": "The simple design is deceptive. The app has a lot of advanced features.",
+              "ja": "シンプルな見た目にだまされるけど、そのアプリには高度な機能がたくさんある。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "selective",
+          "wordNote": "selective は「何でも受け入れるのではなく、基準を持って選ぶ」という意味です。\n\nbe selective about ～\n→ ～について選り好みする・慎重に選ぶ\n\nselective admission\n→ 選抜制の入学\n\na selective process\n→ 選別を伴う過程\n\n単に choose するだけでなく、「全部ではなく、条件に合うものだけ選ぶ」という感覚があります。\n\nI'm pretty selective about which apps I allow to send notifications.\n→ 通知を許可するアプリはかなり選んでるよ。",
+          "meanings": [
+            {
+              "meaning": "選り好みする・選択的な",
+              "en": "I'm pretty selective about which apps I allow to send notifications.",
+              "ja": "通知を許可するアプリはかなり選んでるよ。"
+            },
+            {
+              "meaning": "基準を持って選ぶ",
+              "en": "I'm selective about what I install on my phone.",
+              "ja": "スマホに何を入れるかはかなり選んでる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "restrictive",
+          "wordNote": "restrictive は「自由にできる範囲が狭く、制限が厳しい」という意味です。\n\nrestrictive rules\n→ 制限の厳しい規則\n\na restrictive plan\n→ 制約の多いプラン\n\nrestrictive conditions\n→ 厳しい制限条件\n\nrestricted が「制限されている状態」を表すのに対して、restrictive は「制限を多く課す性質がある」という感覚があります。\n\nThe free plan is too restrictive for what I need, so I use the paid plan instead.\n→ 無料プランだと制限が厳しすぎて私の用途には足りないから、代わりに有料プランを使ってる。",
+          "meanings": [
+            {
+              "meaning": "制限の厳しい・自由を狭める",
+              "en": "The free plan is too restrictive for what I need, so I use the paid plan instead.",
+              "ja": "無料プランだと制限が厳しすぎて私の用途には足りないから、代わりに有料プランを使ってる。"
+            },
+            {
+              "meaning": "制約の多い",
+              "en": "The policy feels too restrictive for everyday use.",
+              "ja": "その方針は普段使いには制限が厳しすぎる感じがする。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "constructive",
+          "wordNote": "constructive は「問題を指摘するだけでなく、改善や前進につながる」という意味です。\n\nconstructive criticism\n→ 建設的な批判\n\nconstructive feedback\n→ 改善につながるフィードバック\n\na constructive discussion\n→ 建設的な話し合い\n\npositive と必ずしも同じではなく、内容が厳しくても「改善に役立つ」なら constructive と言えます。\n\nThe criticism was tough, but it was constructive.\n→ 厳しい批評だったけど、改善につながる内容だった。",
+          "meanings": [
+            {
+              "meaning": "建設的な・改善につながる",
+              "en": "The criticism was tough, but it was constructive.",
+              "ja": "厳しい批評だったけど、改善につながる内容だった。"
+            },
+            {
+              "meaning": "前向きで役に立つ",
+              "en": "Let's keep the discussion constructive and focus on possible solutions.",
+              "ja": "話し合いは建設的に進めて、できる解決策に集中しよう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "preventive",
+          "wordNote": "preventive は「問題が起きる前に、それを防ぐための」という意味です。\n\npreventive measures\n→ 予防策\n\npreventive care\n→ 予防医療\n\npreventive maintenance\n→ 予防保守\n\n医療だけでなく、事故・故障・データ消失などを未然に防ぐ場面でも使います。\n\nRegular backups are a simple preventive measure against data loss.\n→ 定期的なバックアップは、データ消失を防ぐシンプルな予防策だよ。",
+          "meanings": [
+            {
+              "meaning": "予防の・未然に防ぐための",
+              "en": "Regular backups are a simple preventive measure against data loss.",
+              "ja": "定期的なバックアップは、データ消失を防ぐシンプルな予防策だよ。"
+            },
+            {
+              "meaning": "問題を防ぐための",
+              "en": "A little preventive maintenance can save you trouble later.",
+              "ja": "ちょっとした予防保守をしておけば、あとで面倒を減らせるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "protective",
+          "wordNote": "protective は「人や物を危険・損傷などから守るための」という意味です。\n\na protective case\n→ 保護ケース\n\nprotective clothing\n→ 防護服\n\na protective layer\n→ 保護層\n\npreventive が「問題そのものを起こりにくくする」のに対して、protective は「危険や損傷から守る」という感覚があります。\n\nI use a protective case because I drop my phone more often than I'd like to admit.\n→ 認めたくないくらいスマホをよく落とすから、保護ケースを使ってる。",
+          "meanings": [
+            {
+              "meaning": "保護するための",
+              "en": "I use a protective case because I drop my phone more often than I'd like to admit.",
+              "ja": "認めたくないくらいスマホをよく落とすから、保護ケースを使ってる。"
+            },
+            {
+              "meaning": "危険や損傷から守る",
+              "en": "This coating adds a protective layer to the screen.",
+              "ja": "このコーティングで画面に保護層が加わる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "straightforward",
+          "wordNote": "straightforward は「複雑ではなく、分かりやすい・簡単に進められる」という意味です。\n\na straightforward process\n→ 分かりやすい手順\n\nstraightforward instructions\n→ 分かりやすい説明\n\na straightforward solution\n→ 単純で分かりやすい解決策\n\n「率直な」という意味でも使いますが、作業・説明・手順について使うと「複雑ではなく、そのまま進められる」という感覚になります。\n\nThe setup is pretty straightforward, so you should be able to do it yourself.\n→ 設定はかなり分かりやすいから、自分でできると思うよ。",
+          "meanings": [
+            {
+              "meaning": "分かりやすい・複雑でない",
+              "en": "The setup is pretty straightforward, so you should be able to do it yourself.",
+              "ja": "設定はかなり分かりやすいから、自分でできると思うよ。"
+            },
+            {
+              "meaning": "簡単に進められる",
+              "en": "The process is straightforward once you know where the setting is.",
+              "ja": "設定の場所さえ分かれば、手順自体は簡単だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "inconvenient",
+          "wordNote": "inconvenient は「不便な、都合が悪い」という意味です。\n\nan inconvenient location\n→ 不便な場所\n\nan inconvenient time\n→ 都合の悪い時間\n\nan inconvenient feature\n→ 使い勝手の悪い機能\n\n単に bad なのではなく、「移動・時間・手間などの面で使いにくい、都合が悪い」という感覚があります。\n\nThe location is a little inconvenient, so let's meet somewhere closer to the station.\n→ その場所ちょっと不便だから、駅に近いところで会おう。",
+          "meanings": [
+            {
+              "meaning": "不便な・都合が悪い",
+              "en": "The location is a little inconvenient, so let's meet somewhere closer to the station.",
+              "ja": "その場所ちょっと不便だから、駅に近いところで会おう。"
+            },
+            {
+              "meaning": "使い勝手の悪い",
+              "en": "The new layout is a little inconvenient, so I changed it back.",
+              "ja": "新しい配置はちょっと使いにくかったから、元に戻したよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "unreliable",
+          "wordNote": "unreliable は「信頼できない、安定して使えない」という意味です。\n\nan unreliable connection\n→ 不安定な接続\n\nan unreliable source\n→ 信頼できない情報源\n\nan unreliable device\n→ 動作が安定しない機器\n\n人について「当てにならない」と言うこともできますが、通信・機器・情報についてもよく使います。\n\nThe connection is too unreliable for video calls, so I'll use my phone instead.\n→ 接続が不安定すぎてビデオ通話には使えないから、代わりにスマホを使うよ。",
+          "meanings": [
+            {
+              "meaning": "信頼できない・安定しない",
+              "en": "The connection is too unreliable for video calls, so I'll use my phone instead.",
+              "ja": "接続が不安定すぎてビデオ通話には使えないから、代わりにスマホを使うよ。"
+            },
+            {
+              "meaning": "当てにならない",
+              "en": "That source has been unreliable before, so I'd double-check the information.",
+              "ja": "その情報源は前にも当てにならなかったから、情報をもう一度確認した方がいいよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "manageable",
+          "wordNote": "manageable は「大変ではあるが、無理なく対処できる・なんとかできる」という意味です。\n\na manageable workload\n→ 対処できる範囲の仕事量\n\na manageable problem\n→ なんとか対処できる問題\n\na manageable amount\n→ 無理なく扱える量\n\n単に easy という意味ではなく、「多少大変でも、自分たちで処理できる範囲」という感覚があります。\n\nThe workload looks heavy, but it's manageable if we split it into smaller tasks.\n→ 作業量は多そうだけど、小分けにすればなんとかできるよ。",
+          "meanings": [
+            {
+              "meaning": "無理なく対処できる・なんとかなる",
+              "en": "The workload looks heavy, but it's manageable if we split it into smaller tasks.",
+              "ja": "作業量は多そうだけど、小分けにすればなんとかできるよ。"
+            },
+            {
+              "meaning": "扱える範囲の",
+              "en": "Let's keep the number of tasks manageable for today.",
+              "ja": "今日は無理なくこなせる量にしておこう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "avoidable",
+          "wordNote": "avoidable は「工夫や注意によって避けたり防いだりできる」という意味です。\n\nan avoidable mistake\n→ 防げたはずのミス\n\navoidable damage\n→ 避けることのできる損傷\n\nan avoidable problem\n→ 防げる問題\n\n「仕方がない」のではなく、「適切に対処すれば起こさずに済む」という感覚があります。\n\nMost of these mistakes are avoidable, so let's check the settings before we start.\n→ こういうミスの大半は防げるから、始める前に設定を確認しよう。",
+          "meanings": [
+            {
+              "meaning": "避けられる・防げる",
+              "en": "Most of these mistakes are avoidable, so let's check the settings before we start.",
+              "ja": "こういうミスの大半は防げるから、始める前に設定を確認しよう。"
+            },
+            {
+              "meaning": "工夫すれば防げる",
+              "en": "The delay was avoidable, so we'll change the process next time.",
+              "ja": "その遅れは防げたはずだから、次回は手順を変えよう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "preferable",
+          "wordNote": "preferable は「他の選択肢と比べて、より望ましい・その方がよい」という意味です。\n\na preferable option\n→ より望ましい選択肢\n\nbe preferable to ～\n→ ～より望ましい\n\nwould be preferable\n→ その方が望ましい\n\n単に good なのではなく、「いくつかの選択肢を比べると、こちらの方がよい」という感覚があります。\n\nA direct flight would be preferable, but I'll take a connection if it's much cheaper.\n→ 直行便の方がいいけど、かなり安いなら乗り継ぎでもいいよ。",
+          "meanings": [
+            {
+              "meaning": "より望ましい・その方がよい",
+              "en": "A direct flight would be preferable, but I'll take a connection if it's much cheaper.",
+              "ja": "直行便の方がいいけど、かなり安いなら乗り継ぎでもいいよ。"
+            },
+            {
+              "meaning": "他より好ましい",
+              "en": "An earlier appointment would be preferable if one is available.",
+              "ja": "空いてるなら、もう少し早い時間の予約の方がいいな。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "time-consuming",
+          "wordNote": "time-consuming は「かなり時間がかかる」という意味です。\n\na time-consuming task\n→ 時間のかかる作業\n\na time-consuming process\n→ 時間を要する手順\n\ntime-consuming paperwork\n→ 時間のかかる事務作業\n\ndifficult とは限らず、「難しくはないけれど、時間をたくさん取られる」という場合にも使います。\n\nEntering everything manually is too time-consuming, so I'm looking for a faster way. Do you know a better way to do it?\n→ 全部手入力するのは時間がかかりすぎるから、もっと速いやり方を探してる。何かもっといい方法知ってる？",
+          "meanings": [
+            {
+              "meaning": "時間のかかる",
+              "en": "Entering everything manually is too time-consuming, so I'm looking for a faster way. Do you know a better way to do it?",
+              "ja": "全部手入力するのは時間がかかりすぎるから、もっと速いやり方を探してる。何かもっといい方法知ってる？"
+            },
+            {
+              "meaning": "時間を多く取られる",
+              "en": "The task isn't difficult, but it's very time-consuming.",
+              "ja": "その作業、難しくはないけどすごく時間がかかるんだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "cost-effective",
+          "wordNote": "cost-effective は「かける費用に対して得られる効果が大きい、費用対効果の高い」という意味です。\n\na cost-effective solution\n→ 費用対効果の高い解決策\n\na cost-effective option\n→ コスパのよい選択肢\n\na cost-effective way\n→ 費用を抑えながら効果を得られる方法\n\ncheap は単に「値段が安い」ことを表しますが、cost-effective は「支払う費用に対して十分な効果や価値が得られる」という意味です。\n\nReplacing the battery is more cost-effective than buying a new phone, so I'll do that first.\n→ 新しいスマホを買うよりバッテリー交換の方が費用対効果がいいから、まずそっちにするよ。",
+          "meanings": [
+            {
+              "meaning": "費用対効果の高い",
+              "en": "Replacing the battery is more cost-effective than buying a new phone, so I'll do that first.",
+              "ja": "新しいスマホを買うよりバッテリー交換の方が費用対効果がいいから、まずそっちにするよ。"
+            },
+            {
+              "meaning": "コストに対して効果の高い",
+              "en": "Buying the larger pack is more cost-effective if you use it regularly.",
+              "ja": "普段から使うなら、大きいパックを買う方がコスパいいよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "adjustable",
+          "wordNote": "adjustable は「必要に応じて高さ・量・強さなどを調整できる」という意味です。\n\nadjustable brightness\n→ 調整可能な明るさ\n\nan adjustable height\n→ 調節できる高さ\n\nan adjustable strap\n→ 長さを調節できるストラップ\n\n物理的なものだけでなく、設定や明るさなどについても使えます。\n\nThe brightness is adjustable, so you can lower it if the screen feels too bright.\n→ 明るさは調整できるから、画面が明るすぎたら下げられるよ。",
+          "meanings": [
+            {
+              "meaning": "調整できる",
+              "en": "The brightness is adjustable, so you can lower it if the screen feels too bright.",
+              "ja": "明るさは調整できるから、画面が明るすぎたら下げられるよ。"
+            },
+            {
+              "meaning": "調節可能な",
+              "en": "The stand is adjustable, so you can change the height to suit your desk.",
+              "ja": "そのスタンドは調節できるから、机に合わせて高さを変えられるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "inefficient",
+          "wordNote": "inefficient は「時間・労力・お金などを無駄に使い、効率が悪い」という意味です。\n\nan inefficient process\n→ 効率の悪い作業工程\n\nan inefficient system\n→ 無駄の多い仕組み\n\nan inefficient way of working\n→ 効率の悪いやり方\n\n単に slow なのではなく、「同じ結果を得るために、必要以上の時間や手間を使っている」という感覚があります。\n\nDoing this manually is too inefficient, so I'm going to automate part of it.\n→ これを手作業でやるのは効率が悪すぎるから、一部を自動化するよ。",
+          "meanings": [
+            {
+              "meaning": "効率の悪い・無駄が多い",
+              "en": "Doing this manually is too inefficient, so I'm going to automate part of it.",
+              "ja": "これを手作業でやるのは効率が悪すぎるから、一部を自動化するよ。"
+            },
+            {
+              "meaning": "時間や労力を無駄にする",
+              "en": "The current process is inefficient, so we need a simpler workflow.",
+              "ja": "今のやり方は効率が悪いから、もっとシンプルな作業手順が必要だね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "effortless",
+          "wordNote": "effortless は「ほとんど努力や手間を感じず、楽にできる」という意味です。\n\nan effortless process\n→ 手間のかからない手順\n\nan effortless transition\n→ とてもスムーズな移行\n\nlook effortless\n→ 簡単そうに見える\n\neasy と似ていますが、effortless は特に「ほとんど力や手間を使わずにできる」という感覚があります。\n\nThe transfer was almost effortless, so I had everything set up in a few minutes.\n→ 移行はほとんど手間がかからなくて、数分で全部設定できた。",
+          "meanings": [
+            {
+              "meaning": "楽々できる・ほとんど手間のかからない",
+              "en": "The transfer was almost effortless, so I had everything set up in a few minutes.",
+              "ja": "移行はほとんど手間がかからなくて、数分で全部設定できた。"
+            },
+            {
+              "meaning": "苦労を感じさせない",
+              "en": "The whole process felt almost effortless.",
+              "ja": "その一連の作業、ほとんど手間がかからない感じだった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "bulky",
+          "wordNote": "bulky は「大きくてかさばる、場所を取って扱いにくい」という意味です。\n\na bulky charger\n→ かさばる充電器\n\nbulky luggage\n→ 大きくて扱いにくい荷物\n\na bulky case\n→ 厚くてかさばるケース\n\n単に large なのではなく、「大きさや厚みのせいで持ち運びにくい・邪魔になる」という感覚があります。\n\nThis charger is too bulky to carry every day, so I'm looking for something smaller.\n→ この充電器は毎日持ち歩くにはかさばりすぎるから、もっと小さいのを探してる。",
+          "meanings": [
+            {
+              "meaning": "大きくてかさばる・持ち運びにくい",
+              "en": "This charger is too bulky to carry every day, so I'm looking for something smaller.",
+              "ja": "この充電器は毎日持ち歩くにはかさばりすぎるから、もっと小さいのを探してる。"
+            },
+            {
+              "meaning": "場所を取る",
+              "en": "The case is protective, but it's a little too bulky for my pocket.",
+              "ja": "そのケースはしっかり守ってくれるけど、ポケットに入れるにはちょっとかさばりすぎる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "cluttered",
+          "wordNote": "cluttered は「物や情報が多すぎて、ごちゃごちゃしている」という意味です。\n\na cluttered desk\n→ 物でごちゃごちゃした机\n\na cluttered screen\n→ 情報が多すぎてごちゃごちゃした画面\n\na cluttered room\n→ 散らかった部屋\n\nmessy と似ていますが、cluttered は特に「物や情報が多すぎて見づらい・使いにくい」という感覚があります。\n\nThe screen feels too cluttered, so I hid a few widgets.\n→ 画面がごちゃごちゃしすぎてるから、ウィジェットをいくつか隠した。",
+          "meanings": [
+            {
+              "meaning": "ごちゃごちゃした",
+              "en": "The screen feels too cluttered, so I hid a few widgets.",
+              "ja": "画面がごちゃごちゃしすぎてるから、ウィジェットをいくつか隠した。"
+            },
+            {
+              "meaning": "物や情報が多すぎて見づらい",
+              "en": "The page looks cluttered, so let's remove a few unnecessary elements.",
+              "ja": "ページがごちゃごちゃして見えるから、不要な要素をいくつか減らそう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "cramped",
+          "wordNote": "cramped は「狭くて窮屈な、身動きしにくい」という意味です。\n\na cramped seat\n→ 窮屈な座席\n\na cramped room\n→ 狭くて窮屈な部屋\n\na cramped workspace\n→ 狭くて作業しにくい場所\n\nsmall は単に「小さい」ことを表しますが、cramped は「狭さのせいで窮屈に感じる」という意味です。\n\nThe seats are pretty cramped, so I'd rather take the next train if it's less crowded.\n→ 座席がかなり窮屈だから、次の電車の方が空いてるならそっちにしたい。",
+          "meanings": [
+            {
+              "meaning": "狭くて窮屈な",
+              "en": "The seats are pretty cramped, so I'd rather take the next train if it's less crowded.",
+              "ja": "座席がかなり窮屈だから、次の電車の方が空いてるならそっちにしたい。"
+            },
+            {
+              "meaning": "身動きしにくい",
+              "en": "The workspace feels cramped with two monitors on the desk.",
+              "ja": "机にモニターを2台置くと、作業スペースがかなり窮屈に感じる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "spacious",
+          "wordNote": "spacious は「十分な広さがあり、ゆったりしている」という意味です。\n\na spacious room\n→ 広々とした部屋\n\na spacious interior\n→ ゆったりした室内\n\na spacious bag\n→ 中が広くたくさん入るバッグ\n\n単に large なのではなく、「中に余裕があって広々感じる」という感覚があります。\n\nThe room is surprisingly spacious, so we could probably fit another desk in here.\n→ この部屋、意外と広いね。もう一つ机置けそう。",
+          "meanings": [
+            {
+              "meaning": "広々とした",
+              "en": "The room is surprisingly spacious, so we could probably fit another desk in here.",
+              "ja": "この部屋、意外と広いね。もう一つ机置けそう。"
+            },
+            {
+              "meaning": "ゆったりした",
+              "en": "The bag looks compact, but the inside is surprisingly spacious.",
+              "ja": "そのバッグ、見た目はコンパクトだけど中は意外と広いよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "flimsy",
+          "wordNote": "flimsy は「薄かったり弱かったりして、壊れやすそうで頼りない」という意味です。\n\na flimsy case\n→ 頼りないケース\n\nflimsy material\n→ 薄くて弱い素材\n\na flimsy structure\n→ もろそうな構造\n\n単に light なのではなく、「強度が足りず、簡単に曲がったり壊れたりしそう」という感覚があります。\n\nThis case feels a little flimsy, so I don't trust it to protect my phone if I drop it. Yours looks much sturdier. Where did you get it?\n→ このケースちょっと頼りなくて、スマホを落としたとき守ってくれる気がしないんだ。君のはもっと丈夫そうだね。どこで買ったの？",
+          "meanings": [
+            {
+              "meaning": "薄っぺらくて頼りない・壊れやすそうな",
+              "en": "This case feels a little flimsy, so I don't trust it to protect my phone if I drop it. Yours looks much sturdier. Where did you get it?",
+              "ja": "このケースちょっと頼りなくて、スマホを落としたとき守ってくれる気がしないんだ。君のはもっと丈夫そうだね。どこで買ったの？"
+            },
+            {
+              "meaning": "もろそうな・強度の低い",
+              "en": "The stand looks nice, but it feels too flimsy for a tablet.",
+              "ja": "そのスタンド見た目はいいけど、タブレット用にはちょっと頼りなさすぎる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "sturdy",
+          "wordNote": "sturdy は「簡単には壊れたり曲がったりせず、しっかりして丈夫な」という意味です。\n\na sturdy case\n→ 丈夫なケース\n\na sturdy table\n→ しっかりしたテーブル\n\na sturdy stand\n→ 安定感のある丈夫なスタンド\n\nstrong と近いですが、sturdy は特に物の作りがしっかりしていて、日常的に安心して使えるという感覚があります。\n\nThis stand feels sturdy enough to hold the tablet, so I'm keeping it.\n→ このスタンドならタブレットを支えられるくらいしっかりしてるから、これ使うよ。\n\nflimsy と対にすると、\n\nflimsy\n→ 弱くて頼りない\n\nsturdy\n→ 丈夫でしっかりしている\n\nという違いが分かりやすくなります。",
+          "meanings": [
+            {
+              "meaning": "丈夫でしっかりした",
+              "en": "This stand feels sturdy enough to hold the tablet, so I'm keeping it.",
+              "ja": "このスタンドならタブレットを支えられるくらいしっかりしてるから、これ使うよ。"
+            },
+            {
+              "meaning": "安定感のある",
+              "en": "The frame feels sturdy, so it should last a long time.",
+              "ja": "フレームがしっかりしてるから、長く使えそうだよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "sluggish",
+          "wordNote": "sluggish は「動きや反応が鈍く、もたついている」という意味です。\n\na sluggish phone\n→ 動作がもたつくスマホ\n\nsluggish performance\n→ 鈍い動作・低調なパフォーマンス\n\nfeel sluggish\n→ 身体がだるく動きが鈍い感じがする\n\n単に slow なのではなく、「本来もっとスムーズに動くはずなのに、反応が鈍い」という感覚があります。\n\nMy phone feels sluggish after the update.\n→ アップデート後、スマホの動きがもたつくんだ。\n\nThat happens sometimes. Try restarting it.\n→ よくあることだよ。再起動してみるといいよ。\n\n端末だけでなく、人の身体が「だるくて動きが鈍い」という場合にも使えます。",
+          "meanings": [
+            {
+              "meaning": "動作が鈍い・もたつく",
+              "en": "My phone feels sluggish after the update.",
+              "ja": "アップデート後、スマホの動きがもたつくんだ。"
+            },
+            {
+              "meaning": "反応が鈍い",
+              "en": "That happens sometimes. Try restarting it.",
+              "ja": "よくあることだよ。再起動してみるといいよ。"
+            },
+            {
+              "meaning": "だるくて動きが鈍い",
+              "en": "I still feel a little sluggish today, so I'm taking it easy.",
+              "ja": "今日はまだちょっと身体がだるいから、無理せず過ごしてる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "overwhelming",
+          "wordNote": "overwhelming は「量・強さ・情報などが多すぎて、圧倒されるような」という意味です。\n\nan overwhelming amount of information\n→ 圧倒されるほど多い情報\n\nan overwhelming number of choices\n→ 多すぎる選択肢\n\nfeel overwhelming\n→ 圧倒されるように感じる\n\n単に large や difficult なのではなく、「多すぎたり強すぎたりして、どう対処すればいいか分からなくなる」という感覚があります。\n\nThere are too many options, and it's a little overwhelming. Can you help me narrow them down?\n→ 選択肢が多すぎてちょっと圧倒される。候補を絞るの手伝ってくれる？",
+          "meanings": [
+            {
+              "meaning": "圧倒されるほど多い・強い",
+              "en": "There are too many options, and it's a little overwhelming. Can you help me narrow them down?",
+              "ja": "選択肢が多すぎてちょっと圧倒される。候補を絞るの手伝ってくれる？"
+            },
+            {
+              "meaning": "手に余るほどの",
+              "en": "The amount of information can feel overwhelming at first, so start with the basics.",
+              "ja": "最初は情報量が多すぎて圧倒されるかもしれないから、まず基本から始めよう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "tedious",
+          "wordNote": "tedious は「単調で時間がかかり、うんざりするような」という意味です。\n\na tedious task\n→ うんざりする単調な作業\n\ntedious paperwork\n→ 面倒で退屈な事務作業\n\na tedious process\n→ 単調で面倒な手順\n\ndifficult とは限りません。簡単な作業でも、同じことを長時間繰り返すような場合に tedious と言えます。\n\nRenaming all these files one by one is tedious. There must be a faster way.\n→ このファイル全部一個ずつ名前変えるの、うんざりする。もっと速いやり方あるはず。",
+          "meanings": [
+            {
+              "meaning": "単調でうんざりする・面倒で退屈な",
+              "en": "Renaming all these files one by one is tedious. There must be a faster way.",
+              "ja": "このファイル全部一個ずつ名前変えるの、うんざりする。もっと速いやり方あるはず。"
+            },
+            {
+              "meaning": "時間がかかって退屈な",
+              "en": "The task is simple, but doing it repeatedly gets tedious.",
+              "ja": "作業自体は簡単だけど、何度も繰り返すとうんざりしてくる。"
+            }
+          ]
+        },
+        
+        
       {
         "pos": "noun",
         "word": "animal",
