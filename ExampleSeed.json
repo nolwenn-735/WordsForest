@@ -7213,8 +7213,703 @@
             }
           ]
         },
-        
-        
+        {
+          "pos": "adjective",
+          "word": "intrusive",
+          "wordNote": "intrusive は「必要以上に入り込んできて、邪魔・不快に感じる」という意味です。\n\nintrusive notifications\n→ 邪魔に感じる通知\n\nintrusive ads\n→ 邪魔な広告\n\nintrusive questions\n→ 踏み込みすぎた質問\n\n単に annoying なのではなく、「自分の時間・空間・プライバシーなどに入り込みすぎる」という感覚があります。\n\nThe notifications are getting too intrusive, so I'm going to turn most of them off.\n→ 通知が邪魔に感じるようになってきたから、ほとんどオフにするよ。",
+          "meanings": [
+            {
+              "meaning": "邪魔に感じる・入り込みすぎる",
+              "en": "The notifications are getting too intrusive, so I'm going to turn most of them off.",
+              "ja": "通知が邪魔に感じるようになってきたから、ほとんどオフにするよ。"
+            },
+            {
+              "meaning": "踏み込みすぎた・出しゃばった",
+              "en": "That question felt a little intrusive, so I didn't answer it.",
+              "ja": "その質問はちょっと踏み込みすぎに感じたから、答えなかった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "customizable",
+          "wordNote": "customizable は「自分の好みや用途に合わせて変更・設定できる」という意味です。\n\na customizable layout\n→ 自由に変更できるレイアウト\n\ncustomizable settings\n→ 自分好みに変更できる設定\n\na customizable interface\n→ カスタマイズ可能な画面\n\nadjustable が高さ・明るさ・量などを「調整できる」という意味なのに対して、customizable は構成や機能などを「自分の用途に合わせて作り変えられる」という感覚があります。\n\nThe layout is highly customizable, so I moved the controls I use most to the front.\n→ レイアウトをかなり自由に変えられるから、よく使う操作を前に持ってきた。",
+          "meanings": [
+            {
+              "meaning": "自分好みに変更できる",
+              "en": "The layout is highly customizable, so I moved the controls I use most to the front.",
+              "ja": "レイアウトをかなり自由に変えられるから、よく使う操作を前に持ってきた。"
+            },
+            {
+              "meaning": "用途に合わせて設定できる",
+              "en": "The shortcuts are customizable, so you can set them up however you like.",
+              "ja": "ショートカットは自由に設定できるから、好きなように組めるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "replaceable",
+          "wordNote": "replaceable は「古くなったり壊れたりしたとき、別のものと交換できる」という意味です。\n\na replaceable battery\n→ 交換可能なバッテリー\n\nreplaceable parts\n→ 交換できる部品\n\na replaceable filter\n→ 交換式フィルター\n\n単に取り外せるという意味ではなく、「別のものに交換して使い続けられる」という点がポイントです。\n\nThe battery is replaceable, so you don't need to replace the whole device when it wears out.\n→ バッテリーは交換できるから、劣化しても端末ごと買い替える必要はないよ。",
+          "meanings": [
+            {
+              "meaning": "交換可能な",
+              "en": "The battery is replaceable, so you don't need to replace the whole device when it wears out.",
+              "ja": "バッテリーは交換できるから、劣化しても端末ごと買い替える必要はないよ。"
+            },
+            {
+              "meaning": "別のものに取り替えられる",
+              "en": "The filter is replaceable, so you can keep using the same machine.",
+              "ja": "フィルターは交換できるから、本体はそのまま使い続けられるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "transferable",
+          "wordNote": "transferable は「人・場所・端末などから別のところへ移したり、譲ったりできる」という意味です。\n\na transferable ticket\n→ 譲渡可能なチケット\n\ntransferable skills\n→ 別の仕事などにも応用できる技能\n\na transferable license\n→ 移行・譲渡可能なライセンス\n\n何を transfer するかによって、「譲渡できる」「移行できる」「応用できる」など意味が変わります。\n\nThe ticket isn't transferable, so you can't give it to someone else if you can't go.\n→ そのチケットは譲渡できないから、行けなくなっても他の人には渡せないよ。",
+          "meanings": [
+            {
+              "meaning": "譲渡可能な・移せる",
+              "en": "The ticket isn't transferable, so you can't give it to someone else if you can't go.",
+              "ja": "そのチケットは譲渡できないから、行けなくなっても他の人には渡せないよ。"
+            },
+            {
+              "meaning": "別の場面にも応用できる",
+              "en": "Those skills are transferable, so they'll be useful in other jobs too.",
+              "ja": "そのスキルは応用が利くから、他の仕事でも役に立つよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "refurbished",
+          "wordNote": "refurbished は「一度使用された製品などを点検・修理・整備し、再び販売できる状態にした」という意味です。\n\na refurbished phone\n→ 整備済みのスマホ\n\na refurbished laptop\n→ 整備済みのノートPC\n\nrefurbished products\n→ 整備済み製品\n\nused は単に「中古の」ですが、refurbished は販売前に点検・修理・整備などが行われていることを表します。\n\nIt's refurbished rather than brand-new, so check what the warranty covers before you buy it.\n→ 新品じゃなくて整備済み品だから、買う前に保証範囲を確認してね。",
+          "meanings": [
+            {
+              "meaning": "整備済みの・再生品の",
+              "en": "It's refurbished rather than brand-new, so check what the warranty covers before you buy it.",
+              "ja": "新品じゃなくて整備済み品だから、買う前に保証範囲を確認してね。"
+            },
+            {
+              "meaning": "点検・修理して再販売された",
+              "en": "A refurbished model can be a good option if it comes with a solid warranty.",
+              "ja": "しっかりした保証が付くなら、整備済みモデルもいい選択肢になり得るよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "misleading",
+          "wordNote": "misleading は「間違った印象や理解を与え、誤解させるような」という意味です。\n\na misleading headline\n→ 誤解を招く見出し\n\nmisleading information\n→ 誤解を招く情報\n\na misleading impression\n→ 誤った印象\n\n情報そのものが完全な false とは限りません。事実の一部だけを見せるなどして、受け手を違う理解へ導く場合にも misleading と言えます。\n\nThe headline is misleading, so I'd read the full article before sharing it.\n→ その見出しは誤解を招くから、シェアする前に記事全文を読んだ方がいいよ。",
+          "meanings": [
+            {
+              "meaning": "誤解を招く",
+              "en": "The headline is misleading, so I'd read the full article before sharing it.",
+              "ja": "その見出しは誤解を招くから、シェアする前に記事全文を読んだ方がいいよ。"
+            },
+            {
+              "meaning": "間違った印象を与える",
+              "en": "The photo is a little misleading. The room is much smaller in person.",
+              "ja": "その写真ちょっと紛らわしいね。実際の部屋はもっと狭いよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "underwhelming",
+          "wordNote": "underwhelming は「期待していたほど良くない、印象的でない、少し物足りない」という意味です。\n\nan underwhelming update\n→ 期待ほどではないアップデート\n\nan underwhelming performance\n→ 期待外れのパフォーマンス\n\nan underwhelming result\n→ 物足りない結果\n\nterrible や bad ほど強い否定ではなく、「期待が大きかったわりには、そこまででもなかった」という感覚があります。\n\nThe upgrade is a little underwhelming, so I'm keeping my current phone for another year.\n→ 今回のアップグレードはちょっと物足りないから、今のスマホをもう一年使うよ。",
+          "meanings": [
+            {
+              "meaning": "期待したほどではない・物足りない",
+              "en": "The upgrade is a little underwhelming, so I'm keeping my current phone for another year.",
+              "ja": "今回のアップグレードはちょっと物足りないから、今のスマホをもう一年使うよ。"
+            },
+            {
+              "meaning": "期待外れの",
+              "en": "The new feature sounded exciting, but the actual experience was underwhelming.",
+              "ja": "新機能は面白そうだったけど、実際に使ってみたらちょっと期待外れだった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "overpriced",
+          "wordNote": "overpriced は「商品の内容や価値に比べて、値段が高すぎる」という意味です。\n\nan overpriced product\n→ 割高な商品\n\nan overpriced hotel\n→ 値段に見合わない高いホテル\n\nfeel overpriced\n→ 割高に感じる\n\nexpensive は単に「値段が高い」ことを表しますが、overpriced には「その価値に対して高すぎる」という判断が含まれます。\n\nIt looks good, but it feels overpriced for what you get, so I'll wait for a sale.\n→ 良さそうだけど内容のわりに高すぎるから、セールまで待つよ。",
+          "meanings": [
+            {
+              "meaning": "値段が高すぎる・割高な",
+              "en": "It looks good, but it feels overpriced for what you get, so I'll wait for a sale.",
+              "ja": "良さそうだけど内容のわりに高すぎるから、セールまで待つよ。"
+            },
+            {
+              "meaning": "価値に対して高すぎる",
+              "en": "The accessories are useful, but they're seriously overpriced.",
+              "ja": "そのアクセサリーは便利だけど、かなり割高だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "removable",
+          "wordNote": "removable は「必要なときに取り外すことができる」という意味です。\n\na removable strap\n→ 取り外し可能なストラップ\n\na removable cover\n→ 取り外せるカバー\n\na removable battery\n→ 取り外し可能なバッテリー\n\nreplaceable が「別のものと交換できる」ことに注目するのに対して、removable は「今ついているものを外せる」ことに注目します。\n\nThe strap is removable, so I take it off when I don't need it.\n→ ストラップは取り外せるから、必要ないときは外してるよ。",
+          "meanings": [
+            {
+              "meaning": "取り外し可能な",
+              "en": "The strap is removable, so I take it off when I don't need it.",
+              "ja": "ストラップは取り外せるから、必要ないときは外してるよ。"
+            },
+            {
+              "meaning": "外すことができる",
+              "en": "The cover is removable, which makes it much easier to clean.",
+              "ja": "カバーは取り外せるから、掃除がずっと楽だよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "hesitant",
+          "wordNote": "hesitant は「どうするべきか決めきれず、ためらっている」という意味です。\n\nbe hesitant to buy\n→ 買うのをためらう\n\nbe hesitant to agree\n→ 同意するのをためらう\n\nseem hesitant\n→ 迷っているように見える\n\nreluctant も「気が進まない」と訳せますが、少し感覚が違います。\n\nhesitant\n→ 不安や迷いがあり、決めきれない\n\nreluctant\n→ やる必要はあるかもしれないが、気が進まない\n\nI'm hesitant to buy it without seeing more reviews, so I'll wait a little longer.\n→ もう少しレビューを見るまでは買うのをためらってるから、もう少し待つよ。",
+          "meanings": [
+            {
+              "meaning": "ためらっている・迷っている",
+              "en": "I'm hesitant to buy it without seeing more reviews, so I'll wait a little longer.",
+              "ja": "もう少しレビューを見るまでは買うのをためらってるから、もう少し待つよ。"
+            },
+            {
+              "meaning": "決めきれない",
+              "en": "I'm still hesitant about the upgrade, so I haven't ordered it yet.",
+              "ja": "まだアップグレードするか迷ってるから、注文してないんだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "fat",
+          "wordNote": "fat は「太った」という意味でよく知られていますが、人以外にも使われます。\n\na fat person\n→ 太った人\n\na fat book\n→ 分厚い本\n\na fat envelope\n→ 分厚い封筒\n\n人について使う場合は直接的で失礼に聞こえることがあるため、相手について不用意に使わない方が安全です。\n\n一方、物については「厚みがある、太い」という意味で使えます。\n\nThat's a pretty fat book. I don't think I'll finish it this weekend.\n→ かなり分厚い本だね。今週末だけじゃ読み終わらなそう。\n\n食べ物について「脂肪の多い」と言いたい場合は、fat より fatty が自然なことも多いです。",
+          "meanings": [
+            {
+              "meaning": "太った",
+              "en": "The cat has gotten a little fat, so we're giving it smaller portions.",
+              "ja": "その猫、ちょっと太ってきたから、ごはんの量を少し減らしてるんだ。"
+            },
+            {
+              "meaning": "太い・分厚い",
+              "en": "That's a pretty fat book. I don't think I'll finish it this weekend.",
+              "ja": "かなり分厚い本だね。今週末だけじゃ読み終わらなそう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "lean",
+          "wordNote": "lean は「脂肪が少ない、引き締まった」という意味です。\n\nlean meat\n→ 脂身の少ない肉\n\na lean body\n→ 引き締まった体\n\nI usually choose lean meat because it's less fatty.\n→ 普段は脂身の少ない肉を選んでる。脂っこくないから。\n\nfat が「脂肪が多い」側を表すのに対して、lean は「余分な脂肪が少ない」という感覚です。\n\nまた、組織や仕組みについて「無駄が少なく効率的な」という意味でも使われます。\n\nThe new workflow is much leaner, so we spend less time on unnecessary steps.\n→ 新しい作業フローはかなり無駄が減って、不要な手順にかける時間が少なくなった。\n\nこの使い方では、「必要なものは残しつつ、余分な部分を減らした」という感覚があります。",
+          "meanings": [
+            {
+              "meaning": "脂肪の少ない・引き締まった",
+              "en": "I usually choose lean meat because it's less fatty.",
+              "ja": "普段は脂身の少ない肉を選んでる。脂っこくないから。"
+            },
+            {
+              "meaning": "無駄が少なく効率的な",
+              "en": "The new workflow is much leaner, so we spend less time on unnecessary steps.",
+              "ja": "新しい作業フローはかなり無駄が減って、不要な手順にかける時間が少なくなった。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "greasy",
+          "wordNote": "greasy は「油や脂が多く、べたつく感じの」という意味です。\n\ngreasy food\n→ 脂っこい食べ物\n\ngreasy hair\n→ 脂っぽい髪\n\ngreasy hands\n→ 油でべたついた手\n\noily と近いですが、greasy は特に「べたべたして不快」という感覚を含むことが多いです。\n\nThis food is a little too greasy for me, so I think I'll order something lighter next time.\n→ これ私にはちょっと脂っこすぎるな。次はもう少し軽いもの頼もうかな。",
+          "meanings": [
+            {
+              "meaning": "脂っこい・油っぽい",
+              "en": "This food is a little too greasy for me, so I think I'll order something lighter next time.",
+              "ja": "これ私にはちょっと脂っこすぎるな。次はもう少し軽いもの頼もうかな。"
+            },
+            {
+              "meaning": "油でべたついた",
+              "en": "My hands are greasy from cooking, so I'll wash them before I touch my phone.",
+              "ja": "料理で手が油っぽくなったから、スマホを触る前に洗ってくるね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "sticky",
+          "wordNote": "sticky は「粘着性がある、べたべたする」という意味です。\n\na sticky table\n→ べたつくテーブル\n\nsticky hands\n→ べたべたする手\n\nsticky tape\n→ 粘着テープ\n\nThe table feels sticky. Could we wipe it down before we eat?\n→ テーブルがべたついてる。食べる前に拭いてもいい？\n\n物理的なべたつきだけでなく、状況が「簡単に処理できない、厄介な」という意味で使われることもあります。\n\nThat's a sticky situation. Maybe we should talk to everyone involved before deciding.\n→ それはちょっと厄介な状況だね。決める前に関係者みんなと話した方がいいかも。\n\n特に sticky situation は、「単に難しい」だけでなく、人間関係や利害などが絡んでいて扱いにくい状況にもよく使われます。",
+          "meanings": [
+            {
+              "meaning": "べたべたする・粘着性のある",
+              "en": "The table feels sticky. Could we wipe it down before we eat?",
+              "ja": "テーブルがべたついてる。食べる前に拭いてもいい？"
+            },
+            {
+              "meaning": "厄介な・扱いにくい",
+              "en": "That's a sticky situation. Maybe we should talk to everyone involved before deciding.",
+              "ja": "それはちょっと厄介な状況だね。決める前に関係者みんなと話した方がいいかも。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "slippery",
+          "wordNote": "slippery は「表面が滑りやすい」という意味です。\n\na slippery floor\n→ 滑りやすい床\n\na slippery road\n→ 滑りやすい道路\n\nslippery shoes\n→ 滑りやすい靴\n\nsmooth が「表面がなめらか」であることを表すのに対して、slippery は「滑って危ない・つかみにくい」という感覚があります。\n\nThe floor is really slippery, so watch your step.\n→ 床かなり滑りやすいから、足元気をつけて。",
+          "meanings": [
+            {
+              "meaning": "滑りやすい",
+              "en": "The floor is really slippery, so watch your step.",
+              "ja": "床かなり滑りやすいから、足元気をつけて。"
+            },
+            {
+              "meaning": "つかみにくい・滑って落としやすい",
+              "en": "The phone is surprisingly slippery without a case, so I'm afraid I'll drop it.",
+              "ja": "そのスマホ、ケースなしだと意外と滑りやすくて、落としそうで怖いんだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "brittle",
+          "wordNote": "brittle は「硬さはあっても、もろくて折れたり割れたりしやすい」という意味です。\n\nbrittle plastic\n→ もろくなったプラスチック\n\nbrittle nails\n→ 割れやすい爪\n\nbrittle material\n→ もろい素材\n\nfragile は広く「壊れやすい」という意味ですが、brittle は特に「柔軟性がなく、パキッと折れたり割れたりしやすい」という感覚があります。\n\nThe plastic has become brittle with age, so I wouldn't bend it too much.\n→ そのプラスチック、古くなってもろくなってるから、あまり曲げない方がいいよ。",
+          "meanings": [
+            {
+              "meaning": "もろくて折れやすい・割れやすい",
+              "en": "The plastic has become brittle with age, so I wouldn't bend it too much.",
+              "ja": "そのプラスチック、古くなってもろくなってるから、あまり曲げない方がいいよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "glossy",
+          "wordNote": "glossy は「表面につやや光沢がある」という意味です。\n\na glossy screen\n→ 光沢のある画面\n\nglossy paper\n→ 光沢紙\n\na glossy finish\n→ つやのある仕上げ\n\n見た目はきれいでも、光を反射しやすいという特徴があります。\n\nThe glossy screen looks nice, but it reflects a lot of light, so I'd prefer a matte one.\n→ 光沢画面はきれいだけどかなり反射するから、私は非光沢の方がいいな。",
+          "meanings": [
+            {
+              "meaning": "光沢のある・つやのある",
+              "en": "The glossy screen looks nice, but it reflects a lot of light, so I'd prefer a matte one.",
+              "ja": "光沢画面はきれいだけどかなり反射するから、私は非光沢の方がいいな。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "matte",
+          "wordNote": "matte は「つやがなく、光をあまり反射しない」という意味です。\n\na matte screen\n→ 非光沢の画面\n\na matte finish\n→ つや消し仕上げ\n\nmatte paint\n→ つや消し塗料\n\nglossy が「光沢のある」なのに対して、matte は「光沢を抑えた」という意味です。\n\nI prefer the matte finish because fingerprints don't show as much.\n→ 指紋があまり目立たないから、私はつや消し仕上げの方が好き。",
+          "meanings": [
+            {
+              "meaning": "つや消しの・光沢のない",
+              "en": "I prefer the matte finish because fingerprints don't show as much.",
+              "ja": "指紋があまり目立たないから、私はつや消し仕上げの方が好き。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "opaque",
+          "wordNote": "opaque は「光を通さず、向こう側が見えない」という意味です。\n\nopaque glass\n→ 不透明なガラス\n\nan opaque case\n→ 不透明なケース\n\nopaque material\n→ 光を通さない素材\n\ntransparent が「透明な」なのに対して、opaque は「向こうが透けて見えない」という意味です。\n\nThe case is opaque, so you can't see the original color of the phone through it.\n→ そのケースは不透明だから、スマホ本体の色は透けて見えないよ。\n\nまた、説明や仕組みについて「分かりにくい、不透明な」という比喩的な意味でも使われます。",
+          "meanings": [
+            {
+              "meaning": "不透明な・向こうが透けない",
+              "en": "The case is opaque, so you can't see the original color of the phone through it.",
+              "ja": "そのケースは不透明だから、スマホ本体の色は透けて見えないよ。"
+            },
+            {
+              "meaning": "分かりにくい・不透明な",
+              "en": "The pricing system is pretty opaque, so I can't tell what the final cost will be.",
+              "ja": "料金体系がかなり分かりにくくて、最終的にいくらかかるのか分からないんだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "porous",
+          "wordNote": "porous は「表面や内部に小さな穴が多く、液体や空気などを通しやすい」という意味です。\n\nporous material\n→ 多孔質の素材\n\nporous stone\n→ 水などを吸いやすい石\n\nporous surface\n→ 小さな穴の多い表面\n\n単に soft なのではなく、「内部に細かな穴があり、吸収しやすい」という性質を表します。\n\nThis material is quite porous, so it absorbs water easily.\n→ この素材はかなり多孔質だから、水を吸いやすいよ。",
+          "meanings": [
+            {
+              "meaning": "多孔質の・小さな穴が多い",
+              "en": "This material is quite porous, so it absorbs water easily.",
+              "ja": "この素材はかなり多孔質だから、水を吸いやすいよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "blurry",
+          "wordNote": "blurry は「輪郭や細部がはっきり見えず、ぼやけた」という意味です。\n\na blurry photo\n→ ぼやけた写真\n\nblurry vision\n→ かすんだ視界\n\nblurry text\n→ ぼやけた文字\n\n写真では、ピントが合っていなかったり、手ぶれしたりして細部がはっきり見えない状態に使えます。\n\nThe photo came out blurry, so could you take another one?\n→ 写真がぼやけちゃったから、もう一枚撮ってくれる？",
+          "meanings": [
+            {
+              "meaning": "ぼやけた・ピンぼけの",
+              "en": "The photo came out blurry, so could you take another one?",
+              "ja": "写真がぼやけちゃったから、もう一枚撮ってくれる？"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "grainy",
+          "wordNote": "grainy は「細かな粒が目立ち、ざらざらしたように見える」という意味です。\n\na grainy photo\n→ 粒子の粗い写真\n\ngrainy video\n→ ざらついた映像\n\ngrainy footage\n→ 粒子の目立つ映像\n\nblurry が「輪郭がぼやけている」状態なのに対して、grainy は画像や映像に細かな粒やノイズが目立つ状態です。暗い場所で撮影した写真や動画などでよく使われます。\n\nThe video gets really grainy in low light, so I'll turn on another lamp.\n→ 暗いところだと動画がかなりざらつくから、もう一つ照明つけるね。",
+          "meanings": [
+            {
+              "meaning": "粒子が粗い・ざらついて見える",
+              "en": "The video gets really grainy in low light, so I'll turn on another lamp.",
+              "ja": "暗いところだと動画がかなりざらつくから、もう一つ照明つけるね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "pixelated",
+          "wordNote": "pixelated は「画素の四角い粒が目立ち、画像がガタガタ・モザイク状に見える」という意味です。\n\na pixelated image\n→ 画素が目立つ画像\n\nlook pixelated\n→ 画像がガタガタに見える\n\n画像を大きく拡大したり、解像度の低い画像を表示したりしたときによく使われます。\n\ngrainy が細かなノイズや粒子の目立つ状態なのに対して、pixelated は画像を構成する画素そのものが目立っている状態です。\n\nThe image looks pixelated when I zoom in, so I need a higher-resolution version.\n→ 拡大すると画像がガタガタに見えるから、もっと高解像度のものが必要だな。",
+          "meanings": [
+            {
+              "meaning": "画素が目立つ・モザイク状になった",
+              "en": "The image looks pixelated when I zoom in, so I need a higher-resolution version.",
+              "ja": "拡大すると画像がガタガタに見えるから、もっと高解像度のものが必要だな。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "crooked",
+          "wordNote": "crooked は「本来まっすぐであるものが曲がっている、傾いている」という意味です。\n\na crooked picture\n→ 傾いた絵\n\na crooked line\n→ 曲がった線\n\na crooked smile\n→ 片方に傾いたような笑い方\n\n物の位置や形がまっすぐでないときによく使います。\n\nThe picture looks a little crooked. Could you straighten it?\n→ その絵ちょっと傾いて見える。まっすぐにしてくれる？",
+          "meanings": [
+            {
+              "meaning": "曲がった・傾いた・まっすぐでない",
+              "en": "The picture looks a little crooked. Could you straighten it?",
+              "ja": "その絵ちょっと傾いて見える。まっすぐにしてくれる？"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "uneven",
+          "wordNote": "uneven は「高さ・表面・色・量などが均一ではない」という意味です。\n\nan uneven floor\n→ でこぼこした床\n\nuneven color\n→ 色むら\n\nuneven surface\n→ 平らでない表面\n\n単に crooked のように「曲がっている」のではなく、場所によって高さや量などにばらつきがある状態を表します。\n\nThe floor is uneven here, so watch where you're walking.\n→ ここ床がでこぼこしてるから、足元気をつけて。",
+          "meanings": [
+            {
+              "meaning": "均一でない・でこぼこの",
+              "en": "The floor is uneven here, so watch where you're walking.",
+              "ja": "ここ床がでこぼこしてるから、足元気をつけて。"
+            },
+            {
+              "meaning": "むらのある",
+              "en": "The color looks uneven, so I think it needs another coat.",
+              "ja": "色にむらがあるから、もう一度塗った方がよさそう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "faded",
+          "wordNote": "faded は「時間や光などによって色が薄くなった、色あせた」という意味です。\n\nfaded colors\n→ 色あせた色\n\na faded shirt\n→ 色あせたシャツ\n\nfaded print\n→ 薄くなった印刷\n\n最初から pale な色なのではなく、以前はもっと鮮やかだったものが徐々に薄くなったという感覚があります。\n\nThe color has faded quite a bit, so I'm thinking of replacing the cover.\n→ かなり色あせてきたから、カバーを替えようかなと思ってる。",
+          "meanings": [
+            {
+              "meaning": "色あせた・薄くなった",
+              "en": "The color has faded quite a bit, so I'm thinking of replacing the cover.",
+              "ja": "かなり色あせてきたから、カバーを替えようかなと思ってる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "stained",
+          "wordNote": "stained は「しみや汚れがついた」という意味です。\n\na stained shirt\n→ しみのついたシャツ\n\nstained teeth\n→ 着色した歯\n\na stained carpet\n→ しみのついたカーペット\n\n単に dirty で全体が汚れているというより、特定の部分に落ちにくい色や汚れが残っている場合によく使います。\n\nThe sleeve is stained, so I'll try washing it before I buy a new one.\n→ 袖にしみがついてるから、新しいのを買う前に洗ってみるよ。",
+          "meanings": [
+            {
+              "meaning": "しみ・汚れがついた",
+              "en": "The sleeve is stained, so I'll try washing it before I buy a new one.",
+              "ja": "袖にしみがついてるから、新しいのを買う前に洗ってみるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "damp",
+          "wordNote": "damp は「完全に濡れてはいないが、少し湿っている」という意味です。\n\na damp towel\n→ 湿ったタオル\n\ndamp clothes\n→ まだ少し湿っている服\n\na damp room\n→ 湿気のある部屋\n\nwet が「濡れている」を広く表すのに対して、damp は水分が少し残っていて、じめっとした感じを表します。\n\nThe towel is still damp, so I'll hang it up for a little longer.\n→ タオルまだ少し湿ってるから、もうちょっと干しておくね。",
+          "meanings": [
+            {
+              "meaning": "少し湿った・じめっとした",
+              "en": "The towel is still damp, so I'll hang it up for a little longer.",
+              "ja": "タオルまだ少し湿ってるから、もうちょっと干しておくね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "musty",
+          "wordNote": "musty は「湿気や長期間閉め切っていたことなどによる、古びたようなかび臭いにおいのする」という意味です。\n\na musty room\n→ かび臭い部屋\n\na musty smell\n→ 湿気を含んだ古いにおい\n\nmusty books\n→ 古く湿ったようなにおいのする本\n\n必ずしも目に見える mold があるとは限らず、「長く閉め切った部屋や古い物にある独特の湿ったにおい」にも使えます。\n\nThe room smells a little musty, so let's open the windows for a while.\n→ 部屋ちょっとかびっぽい古い臭いがするから、しばらく窓開けよう。",
+          "meanings": [
+            {
+              "meaning": "かび臭い・湿気を含んだ古いにおいのする",
+              "en": "The room smells a little musty, so let's open the windows for a while.",
+              "ja": "部屋ちょっとかびっぽい古い臭いがするから、しばらく窓開けよう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "worn",
+          "wordNote": "worn は「長く使ったことで、すり減った・傷んだ」という意味です。\n\na worn strap\n→ すり減ったストラップ\n\nworn shoes\n→ 履き古した靴\n\na worn surface\n→ 摩耗した表面\n\nold が単に「古い」ことを表すのに対して、worn は実際に使われ続けた結果として摩耗や傷みが出ていることを表します。\n\nThe strap is pretty worn, so I should replace it before it breaks.\n→ ストラップかなり傷んでるから、切れる前に替えた方がよさそう。",
+          "meanings": [
+            {
+              "meaning": "使い古した・すり減った",
+              "en": "The strap is pretty worn, so I should replace it before it breaks.",
+              "ja": "ストラップかなり傷んでるから、切れる前に替えた方がよさそう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "scuffed",
+          "wordNote": "scuffed は「表面がこすれて、軽い傷や跡がついた」という意味です。\n\nscuffed shoes\n→ こすれ跡のついた靴\n\na scuffed suitcase\n→ 表面に擦り傷のあるスーツケース\n\na scuffed floor\n→ こすれ跡のある床\n\nscratched が細い引っかき傷を表すのに対して、scuffed は表面をこすったことで白っぽい跡や浅い傷がついた状態によく使われます。\n\nThe shoes are a little scuffed, but I think I can clean them up.\n→ 靴ちょっと擦り傷がついてるけど、きれいにできそう。",
+          "meanings": [
+            {
+              "meaning": "こすれて傷・跡がついた",
+              "en": "The shoes are a little scuffed, but I think I can clean them up.",
+              "ja": "靴ちょっと擦り傷がついてるけど、きれいにできそう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "scratched",
+          "wordNote": "scratched は「表面に引っかき傷や線状の傷がついた」という意味です。\n\na scratched screen\n→ 傷のついた画面\n\nscratched glasses\n→ レンズに傷のついた眼鏡\n\na scratched surface\n→ 引っかき傷のある表面\n\nscuffed よりも、爪・鍵・硬い物などによって線状の傷が入っている感じです。\n\nThe screen is scratched, so I'm going to put a protector on the next one right away.\n→ 画面に傷がついちゃったから、次のはすぐ保護フィルム貼るつもり。",
+          "meanings": [
+            {
+              "meaning": "引っかき傷のついた",
+              "en": "The screen is scratched, so I'm going to put a protector on the next one right away.",
+              "ja": "画面に傷がついちゃったから、次のはすぐ保護フィルム貼るつもり。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "chipped",
+          "wordNote": "chipped は「縁や角などの一部分が小さく欠けた」という意味です。\n\na chipped cup\n→ 縁の欠けたカップ\n\nchipped paint\n→ 一部が剥がれた塗装\n\na chipped tooth\n→ 欠けた歯\n\n物全体が割れたわけではなく、一部分だけが欠け落ちている状態を表します。\n\nThe edge of the cup is chipped, so I don't think we should use it anymore.\n→ カップの縁が欠けてるから、もう使わない方がいいと思う。",
+          "meanings": [
+            {
+              "meaning": "一部が欠けた",
+              "en": "The edge of the cup is chipped, so I don't think we should use it anymore.",
+              "ja": "カップの縁が欠けてるから、もう使わない方がいいと思う。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "dented",
+          "wordNote": "dented は「衝撃などで表面がへこんだ」という意味です。\n\na dented car door\n→ へこんだ車のドア\n\na dented can\n→ へこんだ缶\n\na dented suitcase\n→ へこんだスーツケース\n\n傷や割れではなく、表面が内側へ押し込まれて形が変わった状態です。\n\nMy suitcase got dented during the flight, so I'm going to check whether anything inside was damaged.\n→ 飛行機でスーツケースがへこんだから、中身が壊れてないか確認するよ。",
+          "meanings": [
+            {
+              "meaning": "へこんだ",
+              "en": "My suitcase got dented during the flight, so I'm going to check whether anything inside was damaged.",
+              "ja": "飛行機でスーツケースがへこんだから、中身が壊れてないか確認するよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "warped",
+          "wordNote": "warped は「熱・湿気・圧力などによって、本来の形からゆがんだ、反った」という意味です。\n\nwarped wood\n→ 反った木材\n\na warped lid\n→ ゆがんだふた\n\na warped frame\n→ ゆがんだ枠\n\n単に crooked のように位置が傾いているのではなく、素材そのものの形が変形している状態を表します。\n\nThe lid has warped from the heat, so it doesn't close properly anymore.\n→ 熱でふたがゆがんで、もうちゃんと閉まらないんだ。",
+          "meanings": [
+            {
+              "meaning": "ゆがんだ・反った",
+              "en": "The lid has warped from the heat, so it doesn't close properly anymore.",
+              "ja": "熱でふたがゆがんで、もうちゃんと閉まらないんだ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "frayed",
+          "wordNote": "frayed は「布・ひも・ケーブルなどの端や表面が擦れて、繊維がほつれた」という意味です。\n\na frayed cable\n→ 表面がほつれたケーブル\n\nfrayed sleeves\n→ 擦り切れた袖\n\na frayed rope\n→ ほつれたロープ\n\n単に worn で古くなっているだけでなく、繊維や細い線がばらばらに出始めている状態を表します。\n\nThe charging cable is starting to fray near the connector, so I should replace it soon.\n→ 充電ケーブルがコネクタ付近でほつれ始めてるから、そろそろ替えた方がいいな。",
+          "meanings": [
+            {
+              "meaning": "端がほつれた・擦り切れた",
+              "en": "The charging cable is starting to fray near the connector, so I should replace it soon.",
+              "ja": "充電ケーブルがコネクタ付近でほつれ始めてるから、そろそろ替えた方がいいな。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "tarnished",
+          "wordNote": "tarnished は「金属の表面が酸化などによって、つやを失ったり変色したりした」という意味です。\n\ntarnished silver\n→ くすんだ銀\n\ntarnished jewelry\n→ 変色したアクセサリー\n\na tarnished surface\n→ つやを失った金属表面\n\nrusty が鉄などにできる「さび」を表すのに対して、tarnished は銀や銅などがくすんだり変色した状態にも使われます。\n\nThe silver has tarnished, but it should look better after a good polish.\n→ 銀がくすんでるけど、ちゃんと磨けばきれいになるはず。",
+          "meanings": [
+            {
+              "meaning": "金属のつやが曇った・変色した",
+              "en": "The silver has tarnished, but it should look better after a good polish.",
+              "ja": "銀がくすんでるけど、ちゃんと磨けばきれいになるはず。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "rusty",
+          "wordNote": "rusty は、物については「さびた」という意味です。\n\na rusty hinge\n→ さびた蝶番\n\na rusty bike\n→ さびた自転車\n\nrusty metal\n→ さびた金属\n\nThe hinge is getting rusty, so I'm going to clean it before it gets worse.\n→ 蝶番がさびてきてるから、ひどくなる前に掃除するよ。\n\nまた、しばらく使っていなかった技能について「腕が鈍った、勘が鈍っている」という意味でも非常によく使われます。\n\nMy French is a little rusty, but it'll probably come back once I start using it again.\n→ フランス語ちょっと鈍ってるけど、また使い始めれば戻ってくると思う。\n\nこの使い方では、「できなくなった」のではなく、「しばらく使っていなかったので本来の調子が出ていない」という感覚です。",
+          "meanings": [
+            {
+              "meaning": "さびた",
+              "en": "The hinge is getting rusty, so I'm going to clean it before it gets worse.",
+              "ja": "蝶番がさびてきてるから、ひどくなる前に掃除するよ。"
+            },
+            {
+              "meaning": "久しぶりで腕・勘が鈍った",
+              "en": "My French is a little rusty, but it'll probably come back once I start using it again.",
+              "ja": "フランス語ちょっと鈍ってるけど、また使い始めれば戻ってくると思う。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "wobbly",
+          "wordNote": "wobbly は「安定せず、ぐらぐら揺れる」という意味です。\n\na wobbly table\n→ ぐらぐらするテーブル\n\na wobbly chair\n→ がたつく椅子\n\na wobbly wheel\n→ ぐらつく車輪\n\nunstable より日常的で、実際に触ったり動かしたりすると左右にぐらぐらする状態によく使われます。\n\nThis table is really wobbly. Let's move to another one before something spills.\n→ このテーブルかなりぐらぐらするね。何かこぼす前に別の席に移ろう。",
+          "meanings": [
+            {
+              "meaning": "ぐらぐらする・不安定な",
+              "en": "This table is really wobbly. Let's move to another one before something spills.",
+              "ja": "このテーブルかなりぐらぐらするね。何かこぼす前に別の席に移ろう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "jammed",
+          "wordNote": "jammed は「何かが引っかかったり詰まったりして、動かなくなった」という意味です。\n\na jammed printer\n→ 紙詰まりなどで動かないプリンター\n\na jammed drawer\n→ 引っかかって開かない引き出し\n\na jammed door\n→ 引っかかって動かないドア\n\nbroken のように完全に壊れているとは限らず、「何かが詰まって本来の動作ができない」という状態です。\n\nThe printer is jammed again, so I'll check the paper tray first.\n→ またプリンターが詰まってるから、まず給紙トレイを見てみるね。",
+          "meanings": [
+            {
+              "meaning": "詰まって動かない・引っかかっている",
+              "en": "The printer is jammed again, so I'll check the paper tray first.",
+              "ja": "またプリンターが詰まってるから、まず給紙トレイを見てみるね。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "cracked",
+          "wordNote": "cracked は「表面や物にひびが入った、割れ目ができた」という意味です。\n\na cracked screen\n→ ひびの入った画面\n\ncracked glass\n→ ひびの入ったガラス\n\na cracked plate\n→ ひびの入った皿\n\n完全に割れてばらばらになったとは限らず、まだ形は残っていても、表面や内部に割れ目が入っている状態を表します。\n\nThe screen is cracked, but it still works, so I'm going to get it repaired before it gets worse.\n→ 画面にひびが入ってるけどまだ使えるから、ひどくなる前に修理してもらうよ。",
+          "meanings": [
+            {
+              "meaning": "ひびの入った・割れ目のある",
+              "en": "The screen is cracked, but it still works, so I'm going to get it repaired before it gets worse.",
+              "ja": "画面にひびが入ってるけどまだ使えるから、ひどくなる前に修理してもらうよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "leaky",
+          "wordNote": "leaky は「液体や気体などが、すき間から漏れる」という意味です。\n\na leaky bottle\n→ 液漏れするボトル\n\na leaky faucet\n→ 水漏れする蛇口\n\na leaky roof\n→ 雨漏りする屋根\n\n壊れていること自体よりも、「本来中にあるはずのものが漏れてしまう」状態に注目した語です。\n\nThis bottle is a little leaky, so I wouldn't put it in your bag.\n→ このボトルちょっと漏れるから、バッグには入れない方がいいよ。",
+          "meanings": [
+            {
+              "meaning": "漏れる・水漏れする",
+              "en": "This bottle is a little leaky, so I wouldn't put it in your bag.",
+              "ja": "このボトルちょっと漏れるから、バッグには入れない方がいいよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "clogged",
+          "wordNote": "clogged は「通り道が何かで詰まって、流れにくくなった・通らなくなった」という意味です。\n\na clogged drain\n→ 詰まった排水口\n\na clogged sink\n→ 詰まったシンク\n\nclogged pores\n→ 詰まった毛穴\n\njammed が物や部品などが引っかかって機械や扉が動かない状態によく使われるのに対して、clogged は水・空気などが通る経路がふさがった状態によく使われます。\n\nThe sink seems clogged, so I'll try cleaning the drain first.\n→ シンクが詰まってるみたいだから、まず排水口を掃除してみるよ。",
+          "meanings": [
+            {
+              "meaning": "詰まった・ふさがった",
+              "en": "The sink seems clogged, so I'll try cleaning the drain first.",
+              "ja": "シンクが詰まってるみたいだから、まず排水口を掃除してみるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "flickering",
+          "wordNote": "flickering は「光などが安定せず、ちらちらしたり明滅したりしている」という意味です。\n\na flickering light\n→ ちらつく照明\n\na flickering screen\n→ ちらつく画面\n\na flickering candle\n→ ゆらめくろうそくの火\n\n照明や画面では不具合を表すことがありますが、炎については自然に揺らめいている様子にも使われます。\n\nThe light keeps flickering, so I think the bulb needs to be replaced.\n→ ライトがずっとちらついてるから、電球を替えた方がよさそう。",
+          "meanings": [
+            {
+              "meaning": "ちらつく・明滅している",
+              "en": "The light keeps flickering, so I think the bulb needs to be replaced.",
+              "ja": "ライトがずっとちらついてるから、電球を替えた方がよさそう。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "faulty",
+          "wordNote": "faulty は「欠陥や不具合があり、正常に機能しない」という意味です。\n\na faulty charger\n→ 不具合のある充電器\n\nfaulty equipment\n→ 欠陥のある機器\n\na faulty connection\n→ 正常でない接続\n\nbroken のように完全に壊れているとは限らず、一部の不具合や欠陥によって期待どおりに働かない状態にも使えます。\n\nThe charger may be faulty, so try a different one before you blame the phone.\n→ 充電器の方に不具合があるかもしれないから、スマホを疑う前に別のを試してみて。",
+          "meanings": [
+            {
+              "meaning": "欠陥のある・正常に機能しない",
+              "en": "The charger may be faulty, so try a different one before you blame the phone.",
+              "ja": "充電器の方に不具合があるかもしれないから、スマホを疑う前に別のを試してみて。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "unresponsive",
+          "wordNote": "unresponsive は「操作や呼びかけなどに対して反応しない」という意味です。\n\nan unresponsive screen\n→ 反応しない画面\n\nan unresponsive app\n→ 操作を受け付けないアプリ\n\nan unresponsive button\n→ 押しても反応しないボタン\n\n端末やアプリでは、完全に壊れているとは限らず、一時的に入力を受け付けない状態にも使われます。\n\nThe screen is completely unresponsive, so I'll force-restart the phone and see if that helps.\n→ 画面が全然反応しないから、強制再起動して直るか見てみるよ。\n\n人について使う場合には、「呼びかけなどに反応しない」という意味にもなります。",
+          "meanings": [
+            {
+              "meaning": "反応しない",
+              "en": "The screen is completely unresponsive, so I'll force-restart the phone and see if that helps.",
+              "ja": "画面が全然反応しないから、強制再起動して直るか見てみるよ。"
+            },
+            {
+              "meaning": "呼びかけなどに反応しない",
+              "en": "He was unresponsive when I called his name, so I asked someone for help.",
+              "ja": "名前を呼んでも反応がなかったので、誰かに助けを求めた。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "glitchy",
+          "wordNote": "glitchy は「小さな不具合やバグが頻繁に起きて、動作が不安定な」という意味です。\n\na glitchy app\n→ 挙動が不安定なアプリ\n\nglitchy software\n→ バグっぽい動きをするソフトウェア\n\na glitchy interface\n→ 動作がおかしいインターフェース\n\nカジュアルな表現で、完全に使えないわけではないものの、細かな不具合が繰り返し起きる状態によく使われます。\n\nThe app has been really glitchy since the update, so I'm waiting for the next patch.\n→ アップデート後からアプリの挙動がかなりおかしいから、次の修正を待ってる。",
+          "meanings": [
+            {
+              "meaning": "バグっぽく不安定な・挙動がおかしい",
+              "en": "The app has been really glitchy since the update, so I'm waiting for the next patch.",
+              "ja": "アップデート後からアプリの挙動がかなりおかしいから、次の修正を待ってる。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "tangled",
+          "wordNote": "tangled は「ひも・髪・ケーブルなどが絡み合って、簡単にほどけない」という意味です。\n\ntangled cables\n→ 絡まったケーブル\n\ntangled hair\n→ もつれた髪\n\ntangled strings\n→ 絡まったひも\n\n単に messy で散らかっているのではなく、複数の細長いものなどが互いに絡んでいる状態を表します。\n\nThe cables are completely tangled, so give me a minute to sort them out.\n→ ケーブルが完全に絡まってるから、ちょっと整理させて。",
+          "meanings": [
+            {
+              "meaning": "絡まった・もつれた",
+              "en": "The cables are completely tangled, so give me a minute to sort them out.",
+              "ja": "ケーブルが完全に絡まってるから、ちょっと整理させて。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "wrinkled",
+          "wordNote": "wrinkled は「表面にしわが寄った」という意味です。\n\na wrinkled shirt\n→ しわの寄ったシャツ\n\nwrinkled fabric\n→ しわになった布\n\nwrinkled skin\n→ しわのある皮膚\n\n服や布では、折れたり押されたりして表面が滑らかでなくなった状態を表します。\n\nThis shirt is pretty wrinkled, so I'll steam it before I wear it.\n→ このシャツかなりしわになってるから、着る前にスチームかけるよ。",
+          "meanings": [
+            {
+              "meaning": "しわの寄った",
+              "en": "This shirt is pretty wrinkled, so I'll steam it before I wear it.",
+              "ja": "このシャツかなりしわになってるから、着る前にスチームかけるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adjective",
+          "word": "soggy",
+          "wordNote": "soggy は「水分を吸いすぎて、やわらかくぐにゃっとした・べちゃっとした」という意味です。\n\nsoggy fries\n→ しなしなになったポテト\n\nsoggy bread\n→ 水分を吸ってべちゃっとしたパン\n\nsoggy ground\n→ 水を多く含んだ地面\n\ndamp が「少し湿っている」程度なのに対して、soggy は水分をかなり含み、食感や形まで変わっているような状態を表します。\n\nThe fries have gone soggy, so let's eat them before they get any worse.\n→ ポテトがしなしなになってきたから、これ以上ひどくなる前に食べよう。",
+          "meanings": [
+            {
+              "meaning": "水分を吸ってぐにゃっとした・べちゃべちゃの",
+              "en": "The fries have gone soggy, so let's eat them before they get any worse.",
+              "ja": "ポテトがしなしなになってきたから、これ以上ひどくなる前に食べよう。"
+            }
+          ]
+        },
+ 
+ 
       {
         "pos": "noun",
         "word": "animal",
