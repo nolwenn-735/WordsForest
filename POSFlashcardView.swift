@@ -107,8 +107,28 @@ struct POSFlashcardView: View {
                 let rowH = max(88, (outer.size.height - 140) / rowsPerScreen)
 
                 ScrollView {
-                    VStack(spacing: 16) {
-                        rows(rowHeight: rowH)
+                    LazyVStack(spacing: 16) {
+
+                        if title == "検索結果" && cards.isEmpty {
+                            VStack(spacing: 14) {
+                                Image(systemName: "magnifyingglass")
+                                    .font(.system(size: 34))
+                                    .foregroundStyle(.secondary)
+
+                                Text("この単語は現在登録されていません")
+                                    .font(.headline)
+
+                                Text("必要な場合は、＋（単語カードの追加）\nまたは宿題編集から登録できます。")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                                    .multilineTextAlignment(.center)
+                            }
+                            .padding(.top, 80)
+                            .frame(maxWidth: .infinity)
+                        } else {
+                            rows(rowHeight: rowH)
+                        }
+
                         Spacer(minLength: 80)
                     }
                     .scrollTargetLayout()
@@ -150,9 +170,12 @@ struct POSFlashcardView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack(spacing: 8) {
-                    Text(title).font(.headline)
+                    Text(title)
+                        .font(.headline)
 
-                    Button { reversed.toggle() } label: {
+                    Button {
+                        reversed.toggle()
+                    } label: {
                         HStack(spacing: 6) {
                             Circle()
                                 .fill(accent)
@@ -160,19 +183,21 @@ struct POSFlashcardView: View {
                                 .overlay(
                                     Circle().stroke(Color(.separator), lineWidth: 1.0)
                                 )
-                            Text("英日")
+
+                            Text("英↔︎日")
                                 .font(.caption)
                                 .foregroundStyle(.primary)
                                 .lineLimit(1)
                         }
-                        .fixedSize()
+                        .padding(.horizontal, 8)
+                        .frame(minWidth: 44, minHeight: 44)
+                        .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                 }
                 .fixedSize(horizontal: true, vertical: false)
             }
         }
-
         .sheet(item: $editingCard) { card in
             ExampleEditorView(pos: card.pos, word: card.word)
         }

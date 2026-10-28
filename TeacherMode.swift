@@ -3,8 +3,8 @@
 //  WordsForest
 //
 //  Created by Nami .T on 2025/12/14.→2026/1/5.→1/12🔒機能変更→3/11パスコード変更機能追加
-
 //
+//  TeacherMode.swift
 
 import SwiftUI
 import CryptoKit
@@ -260,8 +260,6 @@ struct TeacherUnlockSheet: View {
             }
         }
     }
-
-    // MARK: - Menu
 
     // MARK: - Menu
 
