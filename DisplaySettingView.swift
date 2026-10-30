@@ -12,6 +12,7 @@ import UniformTypeIdentifiers
 
 struct DisplaySettingsView: View {
     @AppStorage(DefaultsKeys.showMascots) private var showMascots: Bool = true
+    @AppStorage(DefaultsKeys.usageMode) private var usageMode: UsageMode = .classroom
     
     @State private var showBackupFolderPicker = false
     @State private var backupErrorMessage: String?
@@ -21,10 +22,150 @@ struct DisplaySettingsView: View {
     @State private var backupSuccessTitle = ""
     @State private var showRestoreConfirmation = false
     @State private var pendingRestoreFileName = ""
+    @State private var showClassroomSetupNotice = false
+    @ObservedObject private var teacher = TeacherMode.shared
+    @State private var showTeacherInitialSetup = false
+    
+    // MARK: - Initial Teacher Setup
+
+    struct TeacherInitialSetupSheet: View {
+        @ObservedObject var teacher: TeacherMode
+
+        let onComplete: () -> Void
+
+        @Environment(\.dismiss) private var dismiss
+
+        @State private var newCode: String = ""
+        @State private var confirmCode: String = ""
+        @State private var errorMessage: String = ""
+
+        var body: some View {
+            NavigationStack {
+                Form {
+                    Section {
+                        Text("""
+                        教室モードで使用するTeacherパスコードを設定します。
+
+                        このパスコードは、単語カードや宿題の編集、利用モードの変更などに使用します。
+                        """)
+                        .foregroundStyle(.secondary)
+                    }
+
+                    Section("新しいパスコード") {
+                        SecureField("4桁の数字", text: $newCode)
+                            .textContentType(.oneTimeCode)
+                            .keyboardType(.numberPad)
+
+                        SecureField("確認用にもう一度入力", text: $confirmCode)
+                            .textContentType(.oneTimeCode)
+                            .keyboardType(.numberPad)
+                    }
+
+                    if !errorMessage.isEmpty {
+                        Text(errorMessage)
+                            .font(.footnote)
+                            .foregroundStyle(.red)
+                    }
+
+                    Section {
+                        Button("教室モードを設定する") {
+                            completeSetup()
+                        }
+                        .disabled(
+                            newCode.isEmpty ||
+                            confirmCode.isEmpty
+                        )
+
+                        Button("キャンセル", role: .cancel) {
+                            dismiss()
+                        }
+                    }
+                }
+                .navigationTitle("Teacher 事前設定")
+                .navigationBarTitleDisplayMode(.inline)
+            }
+        }
+
+        private func completeSetup() {
+            errorMessage = ""
+
+            guard teacher.isValidPasscodeFormat(newCode) else {
+                errorMessage = "パスコードは4桁の数字で入力してください"
+                return
+            }
+
+            guard newCode == confirmCode else {
+                errorMessage = "入力したパスコードが一致しません"
+                return
+            }
+
+            teacher.setPasscode(newCode)
+            onComplete()
+            dismiss()
+        }
+    }
     
     var body: some View {
         Form {
 
+            Section {
+                HStack(spacing: 6) {
+                    ForEach(UsageMode.allCases) { mode in
+                        Button {
+                            guard mode != usageMode else { return }
+
+                            if mode == .classroom {
+                                if teacher.hasConfiguredPasscode {
+                                    teacher.requestUnlock {
+                                        usageMode = .classroom
+                                    }
+                                } else {
+                                    showClassroomSetupNotice = true
+                                }
+                            } else {
+                                teacher.requestUnlock {
+                                    usageMode = .individual
+                                }
+                            }
+                        } label: {
+                            Text(mode.title)
+                                .font(.body)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 10)
+                                .foregroundStyle(
+                                    usageMode == mode
+                                    ? Color.white
+                                    : Color.primary
+                                )
+                                .background(
+                                    usageMode == mode
+                                    ? Color.green
+                                    : Color(.secondarySystemFill)
+                                )
+                                .clipShape(
+                                    RoundedRectangle(
+                                        cornerRadius: 14,
+                                        style: .continuous
+                                    )
+                                )
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(4)
+                .background(Color(.secondarySystemBackground))
+                .clipShape(
+                    RoundedRectangle(
+                        cornerRadius: 18,
+                        style: .continuous
+                    )
+                )
+            } header: {
+                Text("利用方法を選択してください")
+            } footer: {
+                Text("「個人」では自分で単語カードや宿題を編集できます。「教室」では先生が学習内容を管理し、編集にはTeacherロック解除が必要です。")
+            }
+            
             Section {
                 Toggle("動物マスコットを表示", isOn: $showMascots)
                     .tint(.green)
@@ -59,6 +200,34 @@ struct DisplaySettingsView: View {
             }
         }
         .navigationTitle("設定")
+        .alert(
+            "教室モードの設定",
+            isPresented: $showClassroomSetupNotice
+        ) {
+            Button("戻る", role: .cancel) {
+                showClassroomSetupNotice = false
+            }
+
+            Button("先生が設定する") {
+                showClassroomSetupNotice = false
+                showTeacherInitialSetup = true
+            }
+        } message: {
+            Text("""
+            教室モードを利用する場合は、先生による事前設定が必要です。
+
+            生徒の方は設定を行わず、先生に事前設定をしてもらってから使用してください。
+            """)
+        }
+
+        .sheet(isPresented: $showTeacherInitialSetup) {
+            TeacherInitialSetupSheet(
+                teacher: teacher
+            ) {
+                usageMode = .classroom
+            }
+        }
+
         .sheet(isPresented: $showBackupFolderPicker) {
             BackupFolderPicker { folderURL in
                 showBackupFolderPicker = false

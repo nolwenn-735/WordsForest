@@ -72,12 +72,58 @@ struct HomeworkSetEditorView: View {
     private var orderKeyA: String { "required_order_v1_\(posA.rawValue)_\(posB.rawValue)_A" }
     private var orderKeyB: String { "required_order_v1_\(posA.rawValue)_\(posB.rawValue)_B" }
     // 作業途中の下書きキー（中断→再開用）
-    private var draftKeyA: String { "homework_editor_draft_v1_\(posA.rawValue)_\(posB.rawValue)_A" }
-    private var draftKeyB: String { "homework_editor_draft_v1_\(posA.rawValue)_\(posB.rawValue)_B" }
+    private var draftKeyA: String {
+        "homework_editor_draft_v1_\(posA.rawValue)_\(posB.rawValue)_A"
+    }
+
+    private var draftKeyB: String {
+        "homework_editor_draft_v1_\(posA.rawValue)_\(posB.rawValue)_B"
+    }
+
+    // 次回分を編集中で、さらにその次の宿題が作り置き済みならそのpairを返す
+    private var preparedFollowingDraftPair: PosPair? {
+        let editingPair: PosPair
+
+        if posA == .noun && posB == .adj {
+            editingPair = .nounAdj
+        } else if posA == .verb && posB == .adv {
+            editingPair = .verbAdv
+        } else {
+            return nil
+        }
+
+        // 「今回分を修正」では案内を出さない
+        guard editingPair == hw.currentPair.next else {
+            return nil
+        }
+
+        let followingPair = editingPair.next
+
+        guard HomeworkPackStore.shared.loadDraft(pair: followingPair) != nil else {
+            return nil
+        }
+
+        return followingPair
+    }
 
     var body: some View {
         NavigationStack {
             List {
+
+                if let pair = preparedFollowingDraftPair {
+                    Section {
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("次々回分（\(pair.jaTitle)）は編集済みです。")
+                                .font(.subheadline.weight(.semibold))
+
+                            Text("品詞ペアは交互に出題されます。次回分から順に使用してください。")
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(.vertical, 4)
+                    }
+                }
+
                 Section("🧷 必須（\(posA.displayName)）※並べ替え可") {
                     requiredListSection(required: $requiredA, pos: posA)
                 }

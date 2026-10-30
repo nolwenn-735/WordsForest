@@ -3,13 +3,19 @@
 //  WordsForest
 //
 //  Created by Nami .T on 2026/01/29.
-//
+//  RootView.swift
 
 import SwiftUI
 
 struct RootView: View {
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var hw: HomeworkState
+
+    @AppStorage(DefaultsKeys.usageModeConfigured)
+    private var usageModeConfigured: Bool = false
+
+    @AppStorage(DefaultsKeys.usageMode)
+    private var usageMode: UsageMode = .classroom
 
     @State private var showCover = true
 
@@ -26,6 +32,13 @@ struct RootView: View {
                                 : pos.animalName(forCycle: hw.variantIndex(for: pos))
                         )
                     }
+            }
+
+            if !showCover && !usageModeConfigured {
+                UsageModeSetupView()
+                    .background(Color(.systemBackground))
+                    .ignoresSafeArea()
+                    .zIndex(9)
             }
 
             if showCover {

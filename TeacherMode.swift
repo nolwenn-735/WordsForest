@@ -16,9 +16,11 @@ final class TeacherMode: ObservableObject {
     @Published var unlocked: Bool = false
     @Published var showingUnlockSheet: Bool = false
     @Published var showingChangePasscodeFlow: Bool = false
+    @Published private(set) var hasConfiguredPasscode: Bool = false
 
     private let passHashKey = "teacherPassHash.v1"
     private let unlockUntilKey = "teacherUnlockUntilISO.v1"
+    private let passConfiguredKey = "teacherPassConfigured.v1"
 
     /// 解除の有効時間：60分
     private let unlockDuration: TimeInterval = 60 * 60
@@ -33,7 +35,9 @@ final class TeacherMode: ObservableObject {
         if UserDefaults.standard.string(forKey: passHashKey) == nil {
             UserDefaults.standard.set(hash("0000"), forKey: passHashKey)
         }
-
+        hasConfiguredPasscode =
+            UserDefaults.standard.bool(forKey: passConfiguredKey)
+        
         // アプリ起動時：期限が残っていれば復元
         refreshLockState()
     }
@@ -98,7 +102,10 @@ final class TeacherMode: ObservableObject {
     /// 先生が暗証番号を変える（運用は「解除中だけ呼ぶ」）
     func setPasscode(_ newCode: String) {
         UserDefaults.standard.set(hash(newCode), forKey: passHashKey)
+        UserDefaults.standard.set(true, forKey: passConfiguredKey)
+        hasConfiguredPasscode = true
     }
+    
     func verifyCurrentCode(_ code: String) -> Bool {
         let stored = UserDefaults.standard.string(forKey: passHashKey) ?? ""
         return hash(code) == stored
@@ -368,14 +375,101 @@ struct TeacherUnlockSheet: View {
 
 struct GuardedButton<Label: View>: View {
     @EnvironmentObject private var teacher: TeacherMode
+
+    @AppStorage(DefaultsKeys.usageMode)
+    private var usageMode: UsageMode = .classroom
+
     let action: () -> Void
     @ViewBuilder let label: () -> Label
 
     var body: some View {
         Button {
-            teacher.requestUnlock(runAfterUnlock: action)
+            if usageMode == .individual {
+                action()
+            } else {
+                teacher.requestUnlock(runAfterUnlock: action)
+            }
         } label: {
             label()
         }
+    }
+}
+
+// MARK: - Initial Teacher Setup
+
+struct TeacherInitialSetupSheet: View {
+    @ObservedObject var teacher: TeacherMode
+
+    let onComplete: () -> Void
+
+    @Environment(\.dismiss) private var dismiss
+
+    @State private var newCode: String = ""
+    @State private var confirmCode: String = ""
+    @State private var errorMessage: String = ""
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    Text("""
+                    教室モードで使用するTeacherパスコードを設定します。
+
+                    このパスコードは、単語カードや宿題の編集、利用モードの変更などに使用します。
+                    """)
+                    .foregroundStyle(.secondary)
+                }
+
+                Section("新しいパスコード") {
+                    SecureField("4桁の数字", text: $newCode)
+                        .textContentType(.oneTimeCode)
+                        .keyboardType(.numberPad)
+
+                    SecureField("確認用にもう一度入力", text: $confirmCode)
+                        .textContentType(.oneTimeCode)
+                        .keyboardType(.numberPad)
+                }
+
+                if !errorMessage.isEmpty {
+                    Text(errorMessage)
+                        .font(.footnote)
+                        .foregroundStyle(.red)
+                }
+
+                Section {
+                    Button("教室モードを設定する") {
+                        completeSetup()
+                    }
+                    .disabled(
+                        newCode.isEmpty ||
+                        confirmCode.isEmpty
+                    )
+
+                    Button("キャンセル", role: .cancel) {
+                        dismiss()
+                    }
+                }
+            }
+            .navigationTitle("Teacher 事前設定")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+
+    private func completeSetup() {
+        errorMessage = ""
+
+        guard teacher.isValidPasscodeFormat(newCode) else {
+            errorMessage = "パスコードは4桁の数字で入力してください"
+            return
+        }
+
+        guard newCode == confirmCode else {
+            errorMessage = "入力したパスコードが一致しません"
+            return
+        }
+
+        teacher.setPasscode(newCode)
+        onComplete()
+        dismiss()
     }
 }

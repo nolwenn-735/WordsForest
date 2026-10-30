@@ -178,7 +178,49 @@ final class HomeworkPackStore {
         let k = draftKey(pair: pair)
         UserDefaults.standard.removeObject(forKey: k)
     }
-    
+    /// 次回用ドラフトを「次のサイクルの正式パック」として昇格する
+    /// この段階では draft 自体は削除しない
+    func promoteDraftToNextCycle(
+        hw: HomeworkState
+    ) -> HomeworkExportPayload? {
+
+        let nextPair = hw.currentPair.next
+        let nextCycle = hw.currentCycleIndex + 1
+
+        guard var promoted = loadDraft(pair: nextPair) else {
+            #if DEBUG
+            print("⚠️ promote skipped: no draft for pair=\(nextPair.rawValue)")
+            #endif
+            return nil
+        }
+
+        let now = Date()
+        let createdAt = iso.string(from: now)
+
+        // 正式パック用の身分証へ更新
+        promoted.id =
+            "\(createdAt.prefix(10))-words-cycle\(nextCycle)-pair\(nextPair.rawValue)"
+
+        promoted.createdAt = createdAt
+        promoted.pair = nextPair.rawValue
+        promoted.cycleIndex = nextCycle
+        promoted.daysPerCycle = hw.daysPerCycle
+
+        // 次サイクルの正式固定パックとして保存
+        save(
+            promoted,
+            cycleIndex: nextCycle,
+            pair: nextPair
+        )
+
+        #if DEBUG
+        print(
+            "✅ draft promoted: cycle=\(nextCycle) pair=\(nextPair.rawValue) items=\(promoted.items.count)"
+        )
+        #endif
+
+        return promoted
+    }
     
     // =======================================================
     // MARK: Build fixed pack

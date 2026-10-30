@@ -269,8 +269,8 @@ final class HomeworkState: ObservableObject {
     }
     
     func advanceCycle(from now: Date = Date()) {
-        // 🔹 新しいサイクルに入るので宿題セットをリセット
-        cachedHomework.removeAll()
+        // 🔹 新しいサイクルに入るので宿題セットと復元フラグをリセット
+        clearCachedHomeworkAll()
         // ペア交互
         pairIndex = (pairIndex + 1) % 2
         // 🆕 サイクル番号を進める
@@ -286,6 +286,38 @@ final class HomeworkState: ObservableObject {
             variantAdv  = (variantAdv  + 1) % 3
         }
         cycleStartDate = now
+    }
+    
+    /// 次回ドラフトを正式な「今回分」へ昇格する
+    @discardableResult
+    func promoteNextDraftToCurrent() -> Bool {
+
+        let nextPair = currentPair.next
+
+        // ① 次回ドラフトを次サイクルの正式固定パックとして保存
+        guard let promoted =
+                HomeworkPackStore.shared.promoteDraftToNextCycle(hw: self)
+        else {
+            return false
+        }
+
+        // ② サイクル番号・品詞ペア・動物ローテを次へ進める
+        advanceCycle()
+
+        // ③ 昇格した正式パックを今回分として画面へ反映
+        applyImportedPayload(promoted)
+
+        // ④ 履歴へ記録
+        // 動物ローテは②で進んでいるので、ここでは進めない
+        addImportedToHistory(
+            payload: promoted,
+            advanceVariants: false
+        )
+
+        // ⑤ 全工程が成功したので、使用済みドラフトを削除
+        HomeworkPackStore.shared.clearDraft(pair: nextPair)
+
+        return true
     }
 
     // 表示用：当初の「1週間/2週間」
@@ -472,7 +504,10 @@ final class HomeworkState: ObservableObject {
         historyRaw = Self.encode(history)   // AppStorageに保存（＝UserDefaultsにも反映）
     }
     // MARK: - Import helper（外部から履歴を刻む用）
-    func addImportedToHistory(payload: HomeworkExportPayload) {
+    func addImportedToHistory(
+        payload: HomeworkExportPayload,
+        advanceVariants: Bool = true
+    ) {
         #if DEBUG
         print("[HW] addImportedToHistory called createdAt=\(payload.createdAt)")
         #endif
@@ -488,7 +523,9 @@ final class HomeworkState: ObservableObject {
         let payloadDate = f.date(from: dayText) ?? Date()
         let p = PosPair(rawValue: payload.pair) ?? currentPair
         
-        advanceAnimalVariants(for: p)
+        if advanceVariants {
+            advanceAnimalVariants(for: p)
+        }
 
         // ✅ payload.items から HomeworkStore 内の StoredWord UUID を引く
         let ids: [UUID] = payload.items.compactMap { item in
@@ -726,8 +763,6 @@ extension HomeworkState {
     func applyImportedPayload(_ payload: HomeworkExportPayload) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-
-            self.cachedHomework.removeAll()
 
             self.cachedHomework.removeAll()
 

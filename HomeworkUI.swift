@@ -12,6 +12,8 @@ import UniformTypeIdentifiers
 struct HomeworkBanner: View {
     @EnvironmentObject var hw: HomeworkState
     @EnvironmentObject var teacher: TeacherMode
+    @AppStorage(DefaultsKeys.usageMode)
+    private var usageMode: UsageMode = .classroom
 
     // 宿題編集（先生用）
     @State private var showHomeworkEditPicker = false
@@ -248,10 +250,15 @@ struct HomeworkBanner: View {
 
     private func secondRow(leftColWidth: CGFloat) -> some View {
         HStack(spacing: 6) {
-            Button {
-                teacher.showingUnlockSheet = true
-            } label: {
-                Label("Teacher", systemImage: teacher.unlocked ? "lock.open" : "lock")
+
+            if usageMode == .classroom {
+                Button {
+                    teacher.showingUnlockSheet = true
+                } label: {
+                    Label(
+                        "Teacher",
+                        systemImage: teacher.unlocked ? "lock.open" : "lock"
+                    )
                     .font(.caption2)
                     .lineLimit(1)
                     .padding(.horizontal, 8)
@@ -263,17 +270,19 @@ struct HomeworkBanner: View {
                     .foregroundStyle(
                         Color(red: 0.38, green: 0.38, blue: 0.42)
                     )
+                }
+                .buttonStyle(.plain)
+                .frame(width: leftColWidth, alignment: .leading)
             }
-            .buttonStyle(.plain)
-            .frame(width: leftColWidth, alignment: .leading)
+
             cycleLengthCapsule
                 .layoutPriority(0.5)
 
-            if teacher.unlocked {
+            if usageMode == .individual || teacher.unlocked {
                 HStack(spacing: 3) {
                     homeworkEditButton
                     exportButton
-                    noticeButton                    
+                    noticeButton
                 }
                 .layoutPriority(1)
 
