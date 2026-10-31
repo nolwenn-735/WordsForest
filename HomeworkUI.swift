@@ -10,6 +10,16 @@ import UniformTypeIdentifiers
 // MARK: - Banner（先生：書き出し）
 
 struct HomeworkBanner: View {
+    
+    private struct HomeworkEditTarget: Identifiable {
+        let cycleOffset: Int
+        let pair: PosPair
+
+        var id: String {
+            "\(cycleOffset)-\(pair.rawValue)"
+        }
+    }
+    
     @EnvironmentObject var hw: HomeworkState
     @EnvironmentObject var teacher: TeacherMode
     @AppStorage(DefaultsKeys.usageMode)
@@ -17,7 +27,9 @@ struct HomeworkBanner: View {
 
     // 宿題編集（先生用）
     @State private var showHomeworkEditPicker = false
-    @State private var editingTargetPair: PosPair? = nil
+    @State private var editingTarget: HomeworkEditTarget? = nil
+    @State private var showStartNextConfirm = false
+
     // Filesへ書き出し用
     @State private var exportDoc: JSONTextDocument? = nil
     @State private var exportFileName: String = "homework.json"
@@ -86,41 +98,80 @@ struct HomeworkBanner: View {
                 isPresented: $showHomeworkEditPicker,
                 titleVisibility: .visible
             ) {
-                Button("次回分を編集（\(hw.currentPair.next.jaTitle)）") {
-                    editingTargetPair = hw.currentPair.next
+                Button("⚠️ 今回分を修正（\(hw.currentPair.jaTitle)）") {
+                    editingTarget = HomeworkEditTarget(
+                        cycleOffset: 0,
+                        pair: hw.currentPair
+                    )
                 }
 
-                Button("⚠️ 今回分を修正（\(hw.currentPair.jaTitle)）") {
-                    editingTargetPair = hw.currentPair
+                Button("次回分を編集（\(hw.currentPair.next.jaTitle)）") {
+                    editingTarget = HomeworkEditTarget(
+                        cycleOffset: 1,
+                        pair: hw.currentPair.next
+                    )
+                }
+
+                Button("次々回分を編集（\(hw.currentPair.next.next.jaTitle)）") {
+                    editingTarget = HomeworkEditTarget(
+                        cycleOffset: 2,
+                        pair: hw.currentPair.next.next
+                    )
+                }
+
+                if HomeworkPackStore.shared.loadDraft(
+                    cycleIndex: hw.currentCycleIndex + 1,
+                    pair: hw.currentPair.next
+                ) != nil {
+                    Button("▶︎ 次回分を出題する（\(hw.currentPair.next.jaTitle)）") {
+                        showStartNextConfirm = true
+                    }
                 }
 
                 Button("キャンセル", role: .cancel) { }
+                
             } message: {
-                Text("新しい宿題を作るときは「次回分を編集」を選んでください。")
+                Text("編集する宿題を選んでください。品詞ペアは交互に出題されます。")
             }
-            .confirmationDialog(
-                "書き出す宿題を選んでください",
-                isPresented: $showExportPicker,
-                titleVisibility: .visible
-            ) {
-                Button("次回分を書き出し（\(hw.currentPair.next.jaTitle)）") {
-                    exportNextDraft()
-                }
 
-                Button("⚠️ 今回分を書き出し（\(hw.currentPair.jaTitle)）") {
+            .alert(
+                "次回分を出題しますか？",
+                isPresented: $showStartNextConfirm
+            ) {
+                Button("キャンセル", role: .cancel) { }
+
+                Button("出題する") {
+                    _ = hw.promoteNextDraftToCurrent()
+                }
+            } message: {
+                Text(
+                    "現在の宿題を終了し、次回分「\(hw.currentPair.next.jaTitle)」を新しい今回分として出題します。"
+                )
+            }
+
+            .alert(
+                "今回分を書き出しますか？",
+                isPresented: $showExportPicker
+            ) {
+                Button("キャンセル", role: .cancel) { }
+
+                Button("書き出す") {
                     exportCurrentPack()
                 }
-
-                Button("キャンセル", role: .cancel) { }
             } message: {
-                Text("今回分の固定パック、または次回分として編集済みのドラフトを選べます。")
+                Text("現在出題中の今回分（\(hw.currentPair.jaTitle)）を書き出します。")
             }
-            .sheet(item: $editingTargetPair) { pair in
-                let parts = pair.parts
+            .sheet(item: $editingTarget) { target in
+                let parts = target.pair.parts
+
                 NavigationStack {
-                    HomeworkSetEditorView(posA: parts[0], posB: parts[1])
-                        .environmentObject(hw)
-                        .environmentObject(teacher)
+                    HomeworkSetEditorView(
+                        posA: parts[0],
+                        posB: parts[1],
+                        cycleOffset: target.cycleOffset
+                    )
+                    .environmentObject(hw)
+                    .environmentObject(teacher)
                 }
             }
     }
@@ -543,34 +594,7 @@ struct HomeworkBanner: View {
         }
     }
     
-    private func exportNextDraft() {
-        print("✅ EXPORT NEXT DRAFT TAP")
 
-        let nextPair = hw.currentPair.next
-
-        guard let draft = HomeworkPackStore.shared.loadDraft(pair: nextPair) else {
-            exportErrorMessage = "次回分ドラフト（\(nextPair.jaTitle)）が見つかりません。先に「宿題編集」で保存してください。"
-            print("⚠️ no draft for pair=\(nextPair.rawValue)")
-            return
-        }
-        
-            updateNoticeDraft(from: draft)
-
-        do {
-            let data = try HomeworkExportFile.makePrettyJSONData(draft)
-            let json = String(data: data, encoding: .utf8) ?? "{}"
-
-            exportDoc = JSONTextDocument(text: json)
-            exportFileName = HomeworkExportFile.makeFileName(for: draft)
-            exportErrorMessage = nil
-            showingExporter = true
-
-            print("✅ draft export prepared id=\(draft.id) items=\(draft.items.count)")
-        } catch {
-            exportErrorMessage = "ドラフトJSON生成失敗: \(error.localizedDescription)"
-            print("❌ export draft error:", error)
-        }
-    }
     
     private func exportCurrentPack() {
         print("✅ EXPORT CURRENT PACK TAP")

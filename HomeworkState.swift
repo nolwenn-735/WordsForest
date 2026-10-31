@@ -315,8 +315,10 @@ final class HomeworkState: ObservableObject {
         )
 
         // ⑤ 全工程が成功したので、使用済みドラフトを削除
-        HomeworkPackStore.shared.clearDraft(pair: nextPair)
-
+        HomeworkPackStore.shared.clearDraft(
+            cycleIndex: promoted.cycleIndex,
+            pair: nextPair
+        )
         return true
     }
 

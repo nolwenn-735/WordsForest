@@ -137,6 +137,31 @@ final class HomeworkPackStore {
         }
     }
 
+    /// 「今回分を修正」で編集した内容を正式固定パックとして保存する
+    func saveEditedCurrentPack(
+        _ payload: HomeworkExportPayload,
+        cycleIndex: Int,
+        pair: PosPair
+    ) {
+        var fixed = payload
+
+        let now = Date()
+        let createdAt = iso.string(from: now)
+
+        fixed.id =
+            "\(createdAt.prefix(10))-words-cycle\(cycleIndex)-pair\(pair.rawValue)"
+
+        fixed.createdAt = createdAt
+        fixed.pair = pair.rawValue
+        fixed.cycleIndex = cycleIndex
+
+        save(
+            fixed,
+            cycleIndex: cycleIndex,
+            pair: pair
+        )
+    }
+    
     /// 先生だけが「作り直し」たいとき用（普段は触らない）
     func clear(cycleIndex: Int, pair: PosPair) {
         let k = key(cycleIndex: cycleIndex, pair: pair)
@@ -178,6 +203,62 @@ final class HomeworkPackStore {
         let k = draftKey(pair: pair)
         UserDefaults.standard.removeObject(forKey: k)
     }
+    // MARK: - Cycle-aware Draft
+
+    /// 今回・次回・次々回を cycle + pair で区別するドラフトキー
+    private func draftKey(
+        cycleIndex: Int,
+        pair: PosPair
+    ) -> String {
+        "\(keyPrefix)draft.cycle\(cycleIndex).\(pair.rawValue)"
+    }
+
+    func loadDraft(
+        cycleIndex: Int,
+        pair: PosPair
+    ) -> HomeworkExportPayload? {
+
+        let k = draftKey(
+            cycleIndex: cycleIndex,
+            pair: pair
+        )
+
+        guard let data = UserDefaults.standard.data(forKey: k) else {
+            return nil
+        }
+
+        return try? JSONDecoder().decode(
+            HomeworkExportPayload.self,
+            from: data
+        )
+    }
+
+    func saveDraft(
+        _ payload: HomeworkExportPayload,
+        cycleIndex: Int,
+        pair: PosPair
+    ) {
+        let k = draftKey(
+            cycleIndex: cycleIndex,
+            pair: pair
+        )
+
+        if let data = try? JSONEncoder().encode(payload) {
+            UserDefaults.standard.set(data, forKey: k)
+        }
+    }
+
+    func clearDraft(
+        cycleIndex: Int,
+        pair: PosPair
+    ) {
+        let k = draftKey(
+            cycleIndex: cycleIndex,
+            pair: pair
+        )
+
+        UserDefaults.standard.removeObject(forKey: k)
+    }
     /// 次回用ドラフトを「次のサイクルの正式パック」として昇格する
     /// この段階では draft 自体は削除しない
     func promoteDraftToNextCycle(
@@ -187,10 +268,15 @@ final class HomeworkPackStore {
         let nextPair = hw.currentPair.next
         let nextCycle = hw.currentCycleIndex + 1
 
-        guard var promoted = loadDraft(pair: nextPair) else {
-            #if DEBUG
-            print("⚠️ promote skipped: no draft for pair=\(nextPair.rawValue)")
-            #endif
+        guard var promoted = loadDraft(
+            cycleIndex: nextCycle,
+            pair: nextPair
+        ) else {
+#if DEBUG
+print(
+    "⚠️ promote skipped: no draft for cycle=\(nextCycle) pair=\(nextPair.rawValue)"
+)
+#endif
             return nil
         }
 
@@ -439,6 +525,7 @@ final class HomeworkPackStore {
         hw: HomeworkState,
         pair: PosPair,
         cards: [WordCard],
+        targetCycleIndex: Int? = nil,
         requiredCount: Int = 10,
         totalCount: Int = 24
     ) -> HomeworkExportPayload? {
@@ -501,7 +588,7 @@ final class HomeworkPackStore {
             id: id,
             createdAt: createdAt,
             pair: pair.rawValue,
-            cycleIndex: hw.currentCycleIndex,   // ひとまず現在値を入れる（後で配布時に確定し直してもOK）
+            cycleIndex: targetCycleIndex ?? hw.currentCycleIndex, 
             daysPerCycle: hw.daysPerCycle,
             requiredCount: requiredCount,
             totalCount: totalCount,

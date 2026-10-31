@@ -16,6 +16,17 @@ struct HomeworkSetEditorView: View {
 
     let posA: PartOfSpeech
     let posB: PartOfSpeech
+    let cycleOffset: Int
+
+    init(
+        posA: PartOfSpeech,
+        posB: PartOfSpeech,
+        cycleOffset: Int = 1
+    ) {
+        self.posA = posA
+        self.posB = posB
+        self.cycleOffset = cycleOffset
+    }
 
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var hw: HomeworkState
@@ -68,19 +79,28 @@ struct HomeworkSetEditorView: View {
     // 必須語の選択上限メッセージ
     @State private var requiredLimitMessage: String? = nil
 
-    // 保存キー（posペアごとに保存）
-    private var orderKeyA: String { "required_order_v1_\(posA.rawValue)_\(posB.rawValue)_A" }
-    private var orderKeyB: String { "required_order_v1_\(posA.rawValue)_\(posB.rawValue)_B" }
+    // 保存キー（cycle + posペアごとに保存）
+    private var orderKeyA: String {
+        "required_order_v2_cycle\(targetCycleIndex)_\(posA.rawValue)_\(posB.rawValue)_A"
+    }
+
+    private var orderKeyB: String {
+        "required_order_v2_cycle\(targetCycleIndex)_\(posA.rawValue)_\(posB.rawValue)_B"
+    }
     // 作業途中の下書きキー（中断→再開用）
+    // 今回・次回・次々回をcycle番号で区別する
+    private var targetCycleIndex: Int {
+        hw.currentCycleIndex + cycleOffset
+    }
+
     private var draftKeyA: String {
-        "homework_editor_draft_v1_\(posA.rawValue)_\(posB.rawValue)_A"
+        "homework_editor_draft_v2_cycle\(targetCycleIndex)_\(posA.rawValue)_\(posB.rawValue)_A"
     }
 
     private var draftKeyB: String {
-        "homework_editor_draft_v1_\(posA.rawValue)_\(posB.rawValue)_B"
+        "homework_editor_draft_v2_cycle\(targetCycleIndex)_\(posA.rawValue)_\(posB.rawValue)_B"
     }
 
-    // 次回分を編集中で、さらにその次の宿題が作り置き済みならそのpairを返す
     private var preparedFollowingDraftPair: PosPair? {
         let editingPair: PosPair
 
@@ -92,20 +112,24 @@ struct HomeworkSetEditorView: View {
             return nil
         }
 
-        // 「今回分を修正」では案内を出さない
-        guard editingPair == hw.currentPair.next else {
+        // 「次回分」を編集中のときだけ、次々回の作り置きを確認する
+        guard cycleOffset == 1,
+              editingPair == hw.currentPair.next else {
             return nil
         }
 
         let followingPair = editingPair.next
+        let followingCycleIndex = targetCycleIndex + 1
 
-        guard HomeworkPackStore.shared.loadDraft(pair: followingPair) != nil else {
+        guard HomeworkPackStore.shared.loadDraft(
+            cycleIndex: followingCycleIndex,
+            pair: followingPair
+        ) != nil else {
             return nil
         }
 
         return followingPair
     }
-
     var body: some View {
         NavigationStack {
             List {
@@ -321,6 +345,7 @@ struct HomeworkSetEditorView: View {
             hw: hw,
             pair: editPair,
             cards: cards,
+            targetCycleIndex: targetCycleIndex,
             requiredCount: cards.filter {
                 HomeworkStore.shared.isRequired($0)
             }.count,
@@ -332,8 +357,21 @@ struct HomeworkSetEditorView: View {
             return
         }
 
-        HomeworkPackStore.shared.saveDraft(draft, pair: editPair)
-
+        if cycleOffset == 0 {
+            // ⚠️ 今回分を修正 → 正式固定パックへ上書き
+            HomeworkPackStore.shared.saveEditedCurrentPack(
+                draft,
+                cycleIndex: targetCycleIndex,
+                pair: editPair
+            )
+        } else {
+            // 次回・次々回 → cycle + pair のドラフト棚へ保存
+            HomeworkPackStore.shared.saveDraft(
+                draft,
+                cycleIndex: targetCycleIndex,
+                pair: editPair
+            )
+        }
 
     }
     
@@ -604,7 +642,63 @@ struct HomeworkSetEditorView: View {
     // =======================================================
     // MARK: プレビュー作成（required + 補充）
     // =======================================================
+    
+    private func loadSavedPreviewIfAvailable() {
+        let editPair: PosPair
 
+        if posA == .noun && posB == .adj {
+            editPair = .nounAdj
+        } else if posA == .verb && posB == .adv {
+            editPair = .verbAdv
+        } else {
+            return
+        }
+
+        let payload: HomeworkExportPayload?
+
+        if cycleOffset == 0 {
+            payload = HomeworkPackStore.shared.load(
+                cycleIndex: targetCycleIndex,
+                pair: editPair
+            )
+        } else {
+            payload = HomeworkPackStore.shared.loadDraft(
+                cycleIndex: targetCycleIndex,
+                pair: editPair
+            )
+        }
+
+        guard let payload else {
+            return
+        }
+
+        var restoredA: [WordCard] = []
+        var restoredB: [WordCard] = []
+
+        for item in payload.items {
+            guard let itemPos = PartOfSpeech(rawValue: item.pos),
+                  let card = HomeworkStore.shared.card(
+                    word: item.word,
+                    meanings: item.meanings,
+                    pos: itemPos
+                  )
+            else {
+                continue
+            }
+
+            if itemPos == posA {
+                restoredA.append(card)
+            } else if itemPos == posB {
+                restoredB.append(card)
+            }
+        }
+
+        if !restoredA.isEmpty || !restoredB.isEmpty {
+            previewA = restoredA
+            previewB = restoredB
+        }
+    }
+    
     private func updatePreview() {
         previewA = buildDeck(pos: posA, required: requiredA, target: targetPerPos)
         previewB = buildDeck(pos: posB, required: requiredB, target: targetPerPos)
@@ -665,13 +759,16 @@ struct HomeworkSetEditorView: View {
         let draftA: [RequiredItem] = loadArray(key: draftKeyA)
         let draftB: [RequiredItem] = loadArray(key: draftKeyB)
 
-        // 下書きがあれば下書きを優先
+        // 編集途中の下書きがあれば、そちらを最優先
         if !draftA.isEmpty || !draftB.isEmpty {
             requiredA = draftA
             requiredB = draftB
         } else {
-            // 下書きがなければ、従来の保存済み required を読む
+            // 下書きがなければ、そのcycleの保存済みrequiredを読む
             loadRequiredOrder()
+
+            // 保存済みの確定セットがあれば、previewもそのまま復元
+            loadSavedPreviewIfAvailable()
         }
     }
 
