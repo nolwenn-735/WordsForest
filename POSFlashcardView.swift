@@ -251,11 +251,18 @@ struct POSFlashcardView: View {
     @ViewBuilder
     private func row(for c: WordCard, index i: Int, rowHeight: CGFloat) -> some View {
 
-        // 例文（ExampleStore は [ExampleEntry] を返す）
-        let ex = ExampleStore.shared.firstExample(pos: c.pos, word: c.word)
-        let examples: [ExampleEntry] = ex.map { [$0] } ?? []
-        let note = ExampleStore.shared.wordNote(pos: c.pos, word: c.word)
+        let ex = ExampleStore.shared.firstExample(
+            pos: c.pos,
+            word: c.word
+        )
 
+        let examples: [ExampleEntry] = ex.map { [$0] } ?? []
+
+        let note = ExampleStore.shared.displayWordNote(
+            pos: c.pos,
+            word: c.word
+        )
+        
         // 不規則動詞なら 3 形を表示＆読み上げ対象に
         let isVerb = (c.pos == .verb)
         let irregularForms: [String] = isVerb ? (IrregularVerbBank.forms(from: c.word) ?? []) : []

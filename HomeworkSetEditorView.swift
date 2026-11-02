@@ -67,6 +67,15 @@ struct HomeworkSetEditorView: View {
 
     // ===== 保存後フロー用 =====
     @State private var showPostSavePrompt = false
+
+    // カード裏面編集：対象カード選択
+    @State private var showBulkSelection = false
+    @State private var selectedBulkIndices: Set<Int> = []
+    
+    // カード並べ替え
+    @State private var reorderMode: EditMode = .inactive
+
+    // カード裏面編集：順送り
     @State private var isBulkEditing = false
     @State private var bulkQueue: [WordCard] = []
     @State private var bulkIndex: Int = 0
@@ -148,16 +157,43 @@ struct HomeworkSetEditorView: View {
                     }
                 }
 
-                Section("🧷 必須（\(posA.displayName)）※並べ替え可") {
+                Section {
                     requiredListSection(required: $requiredA, pos: posA)
-                }
+                } header: {
+                    HStack {
+                        Text("🧷 必須（\(posA.displayName)）")
 
+                        Spacer()
+
+                        Button(reorderMode == .active ? "完了" : "並べ替え") {
+                            withAnimation {
+                                reorderMode = reorderMode == .active ? .inactive : .active
+                            }
+                        }
+                        .textCase(nil)
+                        .foregroundStyle(.blue)
+                    }
+                }
                 Section("➕ 追加（\(posA.displayName)）") {
                     pickerSection(pos: posA, query: $queryA, required: $requiredA)
                 }
 
-                Section("🧷 必須（\(posB.displayName)）※並べ替え可") {
+                Section {
                     requiredListSection(required: $requiredB, pos: posB)
+                } header: {
+                    HStack {
+                        Text("🧷 必須（\(posB.displayName)）")
+
+                        Spacer()
+
+                        Button(reorderMode == .active ? "完了" : "並べ替え") {
+                            withAnimation {
+                                reorderMode = reorderMode == .active ? .inactive : .active
+                            }
+                        }
+                        .textCase(nil)
+                        .foregroundStyle(.blue)
+                    }
                 }
 
                 Section("➕ 追加（\(posB.displayName)）") {
@@ -179,7 +215,9 @@ struct HomeworkSetEditorView: View {
                     }
                 }
             }
+            .environment(\.editMode, $reorderMode)
             .navigationTitle("宿題セットを編集")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("閉じる") { dismiss() }
@@ -234,15 +272,98 @@ struct HomeworkSetEditorView: View {
         
         // ✅ 保存後：編集する？の確認
         .alert("カード裏面を編集しますか？", isPresented: $showPostSavePrompt) {
-            Button("する") { startBulkEditing() }
-            Button("あとで") { dismiss() }
+            Button("する") {
+                selectedBulkIndices.removeAll()
+                showBulkSelection = true
+            }
+
+            Button("あとで") {
+                dismiss()
+            }
         } message: {
-            Text("この宿題セットに入った単語の例文などを、順番に編集できます。")
+            Text("編集したい単語カードを選んで、例文やノートを確認・編集できます。")
         }
 
+        .sheet(isPresented: $showBulkSelection) {
+            NavigationStack {
+                List {
+                    ForEach(Array(bulkQueue.enumerated()), id: \.offset) { index, card in
+                        Button {
+                            if selectedBulkIndices.contains(index) {
+                                selectedBulkIndices.remove(index)
+                            } else {
+                                selectedBulkIndices.insert(index)
+                            }
+                        } label: {
+                            HStack(spacing: 12) {
+                                Image(
+                                    systemName: selectedBulkIndices.contains(index)
+                                        ? "checkmark.circle.fill"
+                                        : "circle"
+                                )
+                                .font(.title3)
+
+                                VStack(alignment: .leading, spacing: 3) {
+                                    HStack(spacing: 6) {
+                                        Text(card.word)
+                                            .font(.body.weight(.semibold))
+
+                                        if cardHasExample(card) {
+                                            Image(systemName: "text.quote")
+                                                .font(.caption)
+                                                .foregroundStyle(.blue)
+                                                .accessibilityLabel("例文あり")
+                                        }
+
+                                        if cardHasWordNote(card) {
+                                            Image(systemName: "note.text")
+                                                .font(.caption)
+                                                .foregroundStyle(.orange)
+                                                .accessibilityLabel("ノートあり")
+                                        }
+                                    }
+
+                                    Text(card.pos.displayName)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+
+                                Spacer()
+                            }
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .navigationTitle("カードを選択")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("あとで") {
+                            showBulkSelection = false
+                            dismiss()
+                        }
+                    }
+
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("\(selectedBulkIndices.count)枚を編集") {
+                            startSelectedBulkEditing()
+                        }
+                        .disabled(selectedBulkIndices.isEmpty)
+                    }
+                }
+            }
+        }
+        
         // ✅ 既存の編集画面に統一（pen & square と同じ場所へ）
         .sheet(item: $editingCard) { card in
-            ExampleEditorView(pos: card.pos, word: card.word)
+            ExampleEditorView(
+                pos: card.pos,
+                word: card.word,
+                onExitBulkEditing: {
+                    stopBulkEditing()
+                }
+            )
         }
 
         // ✅ iOS17+ 推奨：シグネチャ（黄色⚠️を消す）
@@ -311,6 +432,71 @@ struct HomeworkSetEditorView: View {
             dismiss()
         }
     }
+    
+    private func stopBulkEditing() {
+        // 自動で次の単語へ進まないよう、先にbulk編集を終了する
+        isBulkEditing = false
+
+        // 現在のカード裏面編集シートを閉じる
+        editingCard = nil
+
+        // 宿題編集フロー自体も終了してHOMEへ戻る
+        dismiss()
+    }
+    
+    private func startSelectedBulkEditing() {
+        let selectedCards = bulkQueue.enumerated().compactMap { index, card in
+            selectedBulkIndices.contains(index) ? card : nil
+        }
+
+        guard !selectedCards.isEmpty else {
+            return
+        }
+
+        bulkQueue = selectedCards
+        bulkIndex = 0
+        isBulkEditing = true
+        showBulkSelection = false
+        editingCard = bulkQueue.first
+    }
+    
+    private func cardHasExample(_ card: WordCard) -> Bool {
+        let firstMeaning = (card.meanings.first ?? "")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        guard !firstMeaning.isEmpty else {
+            return false
+        }
+
+        return ExampleStore.shared.firstExample(
+            pos: card.pos,
+            word: card.word,
+            meaning: firstMeaning
+        ) != nil
+    }
+
+    private func cardHasWordNote(_ card: WordCard) -> Bool {
+        let bundledNote = ExampleStore.shared.bundledWordNote(
+            pos: card.pos,
+            word: card.word
+        )
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        let userNote = ExampleStore.shared.wordNote(
+            pos: card.pos,
+            word: card.word
+        )
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        #if DEBUG
+        print(
+            "NOTE CHECK word=\(card.word) pos=\(card.pos.rawValue) bundled=\(!bundledNote.isEmpty) user=\(!userNote.isEmpty)"
+        )
+        #endif
+
+        return !bundledNote.isEmpty || !userNote.isEmpty
+    }
+    
 
     private func showSavedBannerNow() {
         showSavedBanner = true
@@ -423,33 +609,45 @@ struct HomeworkSetEditorView: View {
         .background(.ultraThinMaterial)
     }
     
-    private func requiredListSection(required: Binding<[RequiredItem]>, pos: PartOfSpeech) -> some View {
+    @ViewBuilder
+    private func requiredListSection(
+        required: Binding<[RequiredItem]>,
+        pos: PartOfSpeech
+    ) -> some View {
         let items = required.wrappedValue
 
-        return VStack(alignment: .leading, spacing: 8) {
-            if items.isEmpty {
-                Text("まだ必須がありません。下のリストから追加してください。")
-                    .foregroundStyle(.secondary)
-            } else {
-                ForEach(items) { it in
-                    HStack {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(it.word).font(.headline)
-                            Text(it.meaning).font(.footnote).foregroundStyle(.secondary)
-                        }
-                        Spacer()
-                        Button {
-                            removeRequired(it, from: pos)
-                        } label: {
-                            Image(systemName: "minus.circle.fill")
-                                .foregroundStyle(.red)
-                        }
-                        .buttonStyle(.plain)
+        if items.isEmpty {
+            Text("まだ必須がありません。下のリストから追加してください。")
+                .foregroundStyle(.secondary)
+        } else {
+            ForEach(items) { it in
+                HStack {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(it.word)
+                            .font(.headline)
+
+                        Text(it.meaning)
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
                     }
+
+                    Spacer()
+
+                    Button {
+                        removeRequired(it, from: pos)
+                    } label: {
+                        Image(systemName: "minus.circle.fill")
+                            .foregroundStyle(.red)
+                    }
+                    .buttonStyle(.plain)
                 }
-                .onMove { from, to in
-                    required.wrappedValue.move(fromOffsets: from, toOffset: to)
-                }
+                .moveDisabled(reorderMode != .active)
+            }
+            .onMove { from, to in
+                required.wrappedValue.move(
+                    fromOffsets: from,
+                    toOffset: to
+                )
             }
         }
     }
@@ -521,9 +719,19 @@ struct HomeworkSetEditorView: View {
         }()
 
         let hasWordNote: Bool = {
-            let note = ExampleStore.shared.wordNote(pos: c.pos, word: c.word)
-                .trimmingCharacters(in: .whitespacesAndNewlines)
-            return !note.isEmpty
+            let bundledNote = ExampleStore.shared.bundledWordNote(
+                pos: c.pos,
+                word: c.word
+            )
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+            let userNote = ExampleStore.shared.wordNote(
+                pos: c.pos,
+                word: c.word
+            )
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+            return !bundledNote.isEmpty || !userNote.isEmpty
         }()
 
 

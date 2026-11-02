@@ -15,6 +15,14 @@ final class ExampleStore: ObservableObject {
     /// ✅ 単語ノート（meaningに依存しない）
     /// key = "pos|word" → note
     @Published private(set) var wordNotes: [String: String] = [:]
+    
+    /// 🔒 アプリ収録の読み取り専用例文
+    /// key = "pos|word|meaning" → [ExampleEntry]
+    @Published private(set) var bundledExamples: [String: [ExampleEntry]] = [:]
+
+    /// 🔒 アプリ収録の読み取り専用単語ノート
+    /// key = "pos|word" → note
+    @Published private(set) var bundledWordNotes: [String: String] = [:]
 
     private let key = "example_store_v2"
     private let notesKey = "word_notes_v1"
@@ -23,9 +31,11 @@ final class ExampleStore: ObservableObject {
         load()
         loadNotes()
 
-        DispatchQueue.main.async { [weak self] in
-            self?.seedBundledExamplesIfNeeded()
-        }
+        // 🔒 ExampleSeed.json を読み取り専用の原本として読み込む
+        loadBundledSeedReadOnly()
+
+        // 旧Storeに残っているSeedのコピーだけを安全に分離する
+        migrateLegacySeedCopiesIfNeeded()
     }
     // MARK: - Normalize / Key
 
@@ -84,8 +94,53 @@ final class ExampleStore: ObservableObject {
         return examples[k] ?? []
     }
 
-    func firstExample(pos: PartOfSpeech, word: String, meaning: String) -> ExampleEntry? {
-        examples(pos: pos, word: word, meaning: meaning).first
+    func firstExample(
+        pos: PartOfSpeech,
+        word: String,
+        meaning: String
+    ) -> ExampleEntry? {
+
+        if let bundled = bundledFirstExample(
+            pos: pos,
+            word: word,
+            meaning: meaning
+        ) {
+            return bundled
+        }
+
+        return examples(
+            pos: pos,
+            word: word,
+            meaning: meaning
+        ).first
+    }
+    
+    /// ユーザーが追加・編集した補足例文だけを返す
+    func userFirstExample(
+        pos: PartOfSpeech,
+        word: String,
+        meaning: String
+    ) -> ExampleEntry? {
+        examples(
+            pos: pos,
+            word: word,
+            meaning: meaning
+        ).first
+    }
+    
+    /// 🔒 アプリ収録の読み取り専用例文
+    func bundledFirstExample(
+        pos: PartOfSpeech,
+        word: String,
+        meaning: String
+    ) -> ExampleEntry? {
+        let k = makeKey(
+            pos: pos,
+            word: word,
+            meaning: meaning
+        )
+
+        return bundledExamples[k]?.first
     }
 
     // ✅ 互換：meaning未指定（暫定表示/Export用に1個返す）
@@ -113,13 +168,49 @@ final class ExampleStore: ObservableObject {
         }
         saveNotes()
 
-
-        
     }
 
     /// 空なら "" を返す（UI側が楽）
     func wordNote(pos: PartOfSpeech, word: String) -> String {
         wordNotes[makeWordKey(pos: pos, word: word)] ?? ""
+    }
+    
+    /// 🔒 アプリ収録の読み取り専用単語ノート
+    func bundledWordNote(
+        pos: PartOfSpeech,
+        word: String
+    ) -> String {
+        bundledWordNotes[
+            makeWordKey(pos: pos, word: word)
+        ] ?? ""
+    }
+    
+    /// 表示用：収録noteとユーザー補足noteをまとめて返す
+    func displayWordNote(
+        pos: PartOfSpeech,
+        word: String
+    ) -> String {
+        let bundled = bundledWordNote(
+            pos: pos,
+            word: word
+        )
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        let user = wordNote(
+            pos: pos,
+            word: word
+        )
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if bundled.isEmpty {
+            return user
+        }
+
+        if user.isEmpty {
+            return bundled
+        }
+
+        return bundled + "\n\n" + user
     }
 
     // MARK: - Save / Load（examples）
@@ -161,6 +252,176 @@ final class ExampleStore: ObservableObject {
 // MARK: - Bundled Seed
 
 extension ExampleStore {
+    
+    func loadBundledSeedReadOnly() {
+        guard let url = Bundle.main.url(
+            forResource: "ExampleSeed",
+            withExtension: "json"
+        ) else {
+            #if DEBUG
+            print("🟥 ExampleSeed.json がBundle内に見つかりません")
+            #endif
+            return
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+
+            let items = try JSONDecoder().decode(
+                [ExampleSeedItem].self,
+                from: data
+            )
+
+            var loadedExamples: [String: [ExampleEntry]] = [:]
+            var loadedNotes: [String: String] = [:]
+
+            for item in items {
+                guard let pos = PartOfSpeech.parse(item.pos) else {
+                    continue
+                }
+
+                let word = item.word
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+
+                guard !word.isEmpty else {
+                    continue
+                }
+
+                for seedMeaning in item.meanings {
+                    let meaning = seedMeaning.meaning
+                        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+                    let en = seedMeaning.en
+                        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+                    let ja = seedMeaning.ja?
+                        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+                    guard !meaning.isEmpty, !en.isEmpty else {
+                        continue
+                    }
+
+                    // Seedに含まれるmeaning本体はHomeworkStoreへ安全に補完
+                    let homeworkStore = HomeworkStore.shared
+
+                    if !homeworkStore.exists(
+                        word: word,
+                        meaning: meaning,
+                        pos: pos
+                    ) {
+                        _ = homeworkStore.add(
+                            word: word,
+                            meaning: meaning,
+                            pos: pos
+                        )
+
+                        #if DEBUG
+                        print("🌱 bundled meaning追加 word=\(word) meaning=[\(meaning)]")
+                        #endif
+                    }
+
+                    let k = makeKey(
+                        pos: pos,
+                        word: word,
+                        meaning: meaning
+                    )
+                                        
+                    loadedExamples[k] = [
+                        ExampleEntry(
+                            en: en,
+                            ja: ja?.isEmpty == true ? nil : ja,
+                            note: nil
+                        )
+                    ]
+                }
+
+                if let note = item.wordNote?
+                    .trimmingCharacters(in: .whitespacesAndNewlines),
+                   !note.isEmpty {
+
+                    let wordKey = makeWordKey(
+                        pos: pos,
+                        word: word
+                    )
+
+                    loadedNotes[wordKey] = note
+                }
+            }
+
+            bundledExamples = loadedExamples
+            bundledWordNotes = loadedNotes
+
+            #if DEBUG
+            print(
+                "🔒 bundled seed loaded examples=\(bundledExamples.count) notes=\(bundledWordNotes.count)"
+            )
+            #endif
+
+        } catch {
+            #if DEBUG
+            print("🟥 bundled seed 読み込み失敗: \(error)")
+            #endif
+        }
+    }
+    
+    func migrateLegacySeedCopiesIfNeeded() {
+        let migrationKey = "example_seed_split_migration_v1"
+
+        guard !UserDefaults.standard.bool(forKey: migrationKey) else {
+            return
+        }
+
+        var examplesChanged = false
+        var notesChanged = false
+
+        // 旧Store内で、現在のBundled原本と内容が完全一致する例文だけ外す
+        for (key, bundledEntries) in bundledExamples {
+            guard let storedEntries = examples[key] else {
+                continue
+            }
+
+            let isSameContent =
+                storedEntries.count == bundledEntries.count &&
+                zip(storedEntries, bundledEntries).allSatisfy { stored, bundled in
+                    stored.en == bundled.en &&
+                    stored.ja == bundled.ja &&
+                    stored.note == bundled.note
+                }
+
+            if isSameContent {
+                examples.removeValue(forKey: key)
+                examplesChanged = true
+            }
+        }
+
+        // 旧Store内で、現在のBundled原本と完全一致するnoteだけ外す
+        for (key, bundledNote) in bundledWordNotes {
+            guard let storedNote = wordNotes[key] else {
+                continue
+            }
+
+            if storedNote == bundledNote {
+                wordNotes.removeValue(forKey: key)
+                notesChanged = true
+            }
+        }
+
+        if examplesChanged {
+            save()
+        }
+
+        if notesChanged {
+            saveNotes()
+        }
+
+        UserDefaults.standard.set(true, forKey: migrationKey)
+
+        #if DEBUG
+        print(
+            "🔒 legacy Seed migration finished examplesChanged=\(examplesChanged) notesChanged=\(notesChanged)"
+        )
+        #endif
+    }
 
     func seedBundledExamplesIfNeeded() {
         let seedVersionKey = "example_seed_version"

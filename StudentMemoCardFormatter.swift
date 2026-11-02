@@ -4,6 +4,7 @@
 //
 //  Created by Nami .T on 2026/09/20.
 //
+//  StudentMemoCardFormatter.swift
 
 import Foundation
 
@@ -84,7 +85,7 @@ enum StudentMemoCardFormatter {
         }
 
         // Word Note
-        let note = ExampleStore.shared.wordNote(
+        let note = ExampleStore.shared.displayWordNote(
             pos: pos,
             word: word
         )

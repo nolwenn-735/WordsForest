@@ -1,9 +1,8 @@
 //
+// Created by Nami .T on 2026/09/24.
+//
 //  BackupFolderPicker.swift
 //  WordsForest
-//
-//  Created by Nami .T on 2026/09/24.
-//
 
 import SwiftUI
 import UniformTypeIdentifiers

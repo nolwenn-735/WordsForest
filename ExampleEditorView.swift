@@ -10,19 +10,51 @@ struct ExampleEditorView: View {
 
     let pos: PartOfSpeech
     let word: String
+    let onExitBulkEditing: (() -> Void)?
+
+    init(
+        pos: PartOfSpeech,
+        word: String,
+        onExitBulkEditing: (() -> Void)? = nil
+    ) {
+        self.pos = pos
+        self.word = word
+        self.onExitBulkEditing = onExitBulkEditing
+    }
 
     @Environment(\.dismiss) private var dismiss
-
     struct Draft: Identifiable {
         let id = UUID()
         var meaning: String = ""
         var en: String = ""
         var ja: String = ""
     }
+    
+    private var bundledNoteText: String {
+        ExampleStore.shared.bundledWordNote(
+            pos: pos,
+            word: word
+        )
+    }
+
+    private var bundledMeanings: [String] {
+        HomeworkStore.shared.existingMeanings(
+            for: word,
+            pos: pos
+        )
+        .filter { meaning in
+            ExampleStore.shared.bundledFirstExample(
+                pos: pos,
+                word: word,
+                meaning: meaning
+            ) != nil
+        }
+    }
 
     @State private var drafts: [Draft] = [Draft()]
     @State private var wordNoteText: String = ""
     @State private var showOverwriteAlert = false
+    @State private var showExitBulkAlert = false
 
     // 初期ロード時のスナップショット（上書き判定用）
     @State private var initialWordNoteText: String = ""
@@ -48,29 +80,80 @@ struct ExampleEditorView: View {
                     }
                 }
 
-                // ✅ 単語ノート（全体）
-                Section("単語ノート（全体）") {
+                // 🔒 アプリ収録内容
+                if !bundledNoteText.isEmpty || !bundledMeanings.isEmpty {
+                    Section {
+                        if !bundledNoteText.isEmpty {
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("単語ノート")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+
+                                Text(bundledNoteText)
+                            }
+                        }
+
+                        ForEach(bundledMeanings, id: \.self) { meaning in
+                            if let example = ExampleStore.shared.bundledFirstExample(
+                                pos: pos,
+                                word: word,
+                                meaning: meaning
+                            ) {
+                                VStack(alignment: .leading, spacing: 6) {
+                                    Text(meaning)
+                                        .font(.subheadline.weight(.semibold))
+
+                                    Text(example.en)
+
+                                    if let ja = example.ja,
+                                       !ja.isEmpty {
+                                        Text(ja)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                }
+                                .padding(.vertical, 4)
+                            }
+                        }
+                    } header: {
+                        Label(
+                            "収録内容（変更不可）",
+                            systemImage: "lock.fill"
+                        )
+                    }
+                }
+
+                // ユーザー補足ノート
+                Section("補足ノート") {
                     TextEditor(text: $wordNoteText)
                         .frame(minHeight: 140)
                 }
 
-                // 意味ブロック（縦に増える）
+                // ユーザー補足の意味＋例文
                 ForEach($drafts) { $d in
                     Section {
-                        TextField("意味（例：〜を管理する）", text: $d.meaning)
+                        TextField(
+                            "意味（例：〜を管理する）",
+                            text: $d.meaning
+                        )
 
-                        Divider().padding(.vertical, 2)
+                        Divider()
+                            .padding(.vertical, 2)
 
-                        TextField("English sentence", text: $d.en)
-                            .textInputAutocapitalization(.sentences)
+                        TextField(
+                            "English sentence",
+                            text: $d.en
+                        )
+                        .textInputAutocapitalization(.sentences)
 
-                        TextField("日本語訳（任意）", text: $d.ja)
+                        TextField(
+                            "日本語訳（任意）",
+                            text: $d.ja
+                        )
                     } header: {
                         HStack {
-                            Text("意味＋例文")
+                            Text("補足の意味＋例文")
                             Spacer()
 
-                            // 意味ブロック削除（1個しかない時は出さない）
                             if drafts.count > 1 {
                                 Button {
                                     removeDraft(id: d.id)
@@ -87,9 +170,17 @@ struct ExampleEditorView: View {
             .navigationTitle("例文を編集")
             .toolbar {
 
-                // 左：戻る
+                // 左：通常編集では「戻る」／宿題の連続編集では「編集を終了」
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("戻る") { dismiss() }
+                    if onExitBulkEditing != nil {
+                        Button("編集を終了") {
+                            showExitBulkAlert = true
+                        }
+                    } else {
+                        Button("戻る") {
+                            dismiss()
+                        }
+                    }
                 }
 
                 // 右：＋（meaningブロック追加）
@@ -108,14 +199,6 @@ struct ExampleEditorView: View {
                         attemptSave()
                     }
                 }
-
-                // 下：この単語の例文を全部消したい時（安全のため meaning 空は触らない）
-                ToolbarItem(placement: .bottomBar) {
-                    Button("この単語の例文を削除（入力済みmeaningのみ）", role: .destructive) {
-                        removeAllExamplesForFilledMeanings()
-                        dismiss()
-                    }
-                }
             }
             
             .onAppear { loadExisting() }
@@ -130,17 +213,35 @@ struct ExampleEditorView: View {
             } message: {
                 Text("この単語には既存の例文またはノートがあります。今回の入力内容を保存すると、その内容が上書きされます。")
             }
+            .alert(
+                "カード裏面の編集を終了しますか？",
+                isPresented: $showExitBulkAlert
+            ) {
+                Button("続ける", role: .cancel) { }
+
+                Button("終了する", role: .destructive) {
+                    onExitBulkEditing?()
+                }
+            } message: {
+                Text("ここまで保存した内容は保持されます。この画面でまだ保存していない変更は保存されません。")
+            }
         }
     }
 
     // MARK: - Load
 
     private func loadExisting() {
-        // ✅ 単語ノート（全体）を読む
-        wordNoteText = ExampleStore.shared.wordNote(pos: pos, word: word) 
+        // ユーザー補足の単語ノートだけを読む
+        wordNoteText = ExampleStore.shared.wordNote(
+            pos: pos,
+            word: word
+        )
 
-        // 既存 meaning を HomeworkStore から拾う（複数意味の“正”はここ）
-        let meanings = HomeworkStore.shared.existingMeanings(for: word, pos: pos)
+        // 既存 meaning を HomeworkStore から拾う
+        let meanings = HomeworkStore.shared.existingMeanings(
+            for: word,
+            pos: pos
+        )
 
         if meanings.isEmpty {
             drafts = [Draft()]
@@ -149,14 +250,20 @@ struct ExampleEditorView: View {
             return
         }
 
-        drafts = meanings.map { m in
-            let ex = ExampleStore.shared.firstExample(pos: pos, word: word, meaning: m)
+        drafts = meanings.map { meaning in
+            let ex = ExampleStore.shared.userFirstExample(
+                pos: pos,
+                word: word,
+                meaning: meaning
+            )
+
             return Draft(
-                meaning: m,
+                meaning: meaning,
                 en: ex?.en ?? "",
                 ja: ex?.ja ?? ""
             )
         }
+
         initialWordNoteText = normalizedText(wordNoteText)
         initialDraftsSnapshot = makeDraftSnapshots(from: drafts)
     }
@@ -321,14 +428,6 @@ struct ExampleEditorView: View {
             } else {
                 ExampleStore.shared.removeExample(pos: pos, word: word, meaning: meaning)
             }
-        }
-    }
-
-    private func removeAllExamplesForFilledMeanings() {
-        for d in drafts {
-            let meaning = d.meaning.trimmingCharacters(in: .whitespacesAndNewlines)
-            if meaning.isEmpty { continue }
-            ExampleStore.shared.removeExample(pos: pos, word: word, meaning: meaning)
         }
     }
 
