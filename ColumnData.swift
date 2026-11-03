@@ -1,8 +1,8 @@
+//Created by Nami .T on 2025/10/30.→12/21配信対応に置き換え
+//
 //
 //  ColumnData.swift
 //  WordsForest
-//
-//  Created by Nami .T on 2025/10/30.→12/21配信対応に置き換え
 //
 
 import Foundation
@@ -17,7 +17,7 @@ struct ColumnArticle: Identifiable, Hashable, Codable {
 enum ColumnData {
     static let all: [ColumnArticle] = [
         ColumnArticle(
-            id: 1,
+            id: -1,
             title: "on の感覚",
             body: """
 英語の前置詞 on は、ただ「〜の上に」という意味だけではありません。

@@ -1,5 +1,5 @@
 //
-//  ExampleStore.swift 2026/02/16全置換版
+//  ExampleStore.swift
 //  WordsForest
 //
 import Foundation
@@ -364,17 +364,14 @@ extension ExampleStore {
         }
     }
     
-    func migrateLegacySeedCopiesIfNeeded() {
-        let migrationKey = "example_seed_split_migration_v1"
-
-        guard !UserDefaults.standard.bool(forKey: migrationKey) else {
-            return
-        }
+    private func removeBundledSeedCopiesFromUserLayer()
+        -> (examplesChanged: Bool, notesChanged: Bool) {
 
         var examplesChanged = false
         var notesChanged = false
 
-        // 旧Store内で、現在のBundled原本と内容が完全一致する例文だけ外す
+        // 現在のBundled原本と完全一致する例文だけ
+        // ユーザー層から外す
         for (key, bundledEntries) in bundledExamples {
             guard let storedEntries = examples[key] else {
                 continue
@@ -394,7 +391,8 @@ extension ExampleStore {
             }
         }
 
-        // 旧Store内で、現在のBundled原本と完全一致するnoteだけ外す
+        // 現在のBundled原本と完全一致するnoteだけ
+        // ユーザー層から外す
         for (key, bundledNote) in bundledWordNotes {
             guard let storedNote = wordNotes[key] else {
                 continue
@@ -406,200 +404,39 @@ extension ExampleStore {
             }
         }
 
-        if examplesChanged {
+        return (
+            examplesChanged: examplesChanged,
+            notesChanged: notesChanged
+        )
+    }
+
+    func migrateLegacySeedCopiesIfNeeded() {
+        let migrationKey = "example_seed_split_migration_v1"
+
+        guard !UserDefaults.standard.bool(forKey: migrationKey) else {
+            return
+        }
+
+        let result = removeBundledSeedCopiesFromUserLayer()
+
+        if result.examplesChanged {
             save()
         }
 
-        if notesChanged {
+        if result.notesChanged {
             saveNotes()
         }
 
-        UserDefaults.standard.set(true, forKey: migrationKey)
+        UserDefaults.standard.set(
+            true,
+            forKey: migrationKey
+        )
 
         #if DEBUG
         print(
-            "🔒 legacy Seed migration finished examplesChanged=\(examplesChanged) notesChanged=\(notesChanged)"
+            "🔒 legacy Seed migration finished examplesChanged=\(result.examplesChanged) notesChanged=\(result.notesChanged)"
         )
         #endif
-    }
-
-    func seedBundledExamplesIfNeeded() {
-        let seedVersionKey = "example_seed_version"
-        let currentSeedVersion = 10
-
-        let savedVersion = UserDefaults.standard.integer(forKey: seedVersionKey)
-
-        guard savedVersion < currentSeedVersion else {
-            return
-        }
-
-        guard let url = Bundle.main.url(
-            forResource: "ExampleSeed",
-            withExtension: "json"
-        ) else {
-        #if DEBUG
-            print("🟥 ExampleSeed.json がBundle内に見つかりません")
-        #endif
-            return
-        }
-
-        #if DEBUG
-        print("🟦 ExampleSeed URL = \(url.path)")
-        #endif
-
-        let data: Data
-
-        do {
-            data = try Data(contentsOf: url)
-
-        #if DEBUG
-            print("🟦 ExampleSeed data size = \(data.count) bytes")
-        #endif
-
-        } catch {
-
-        #if DEBUG
-            print("🟥 ExampleSeed.json のData読み込み失敗: \(error)")
-        #endif
-
-            return
-        }
-
-        let items: [ExampleSeedItem]
-
-        do {
-            items = try JSONDecoder().decode(
-                [ExampleSeedItem].self,
-                from: data
-            )
-
-        #if DEBUG
-            print("🟦 ExampleSeed decode成功: \(items.count) words")
-        #endif
-
-        } catch {
-
-        #if DEBUG
-            print("🟥 ExampleSeed decode失敗: \(error)")
-        #endif
-
-            return
-        }
-
-        for item in items {
-            guard let pos = PartOfSpeech.parse(item.pos) else {
-                continue
-            }
-
-            let word = item.word
-                .trimmingCharacters(in: .whitespacesAndNewlines)
-
-            guard !word.isEmpty else {
-                continue
-            }
-
-            // ---------------------------
-            // ① 例文
-            // 既存がある場合は絶対に上書きしない
-            // ---------------------------
-            for seedMeaning in item.meanings {
-                let meaning = seedMeaning.meaning
-                    .trimmingCharacters(in: .whitespacesAndNewlines)
-
-                let en = seedMeaning.en
-                    .trimmingCharacters(in: .whitespacesAndNewlines)
-
-                let ja = seedMeaning.ja?
-                    .trimmingCharacters(in: .whitespacesAndNewlines)
-
-                guard !meaning.isEmpty, !en.isEmpty else {
-                    continue
-                }
-
-                // ---------------------------
-                // meaning本体
-                // HomeworkStoreに無いmeaningだけ安全に補完
-                // ---------------------------
-                let homeworkStore = HomeworkStore.shared
-
-                if !homeworkStore.exists(
-                    word: word,
-                    meaning: meaning,
-                    pos: pos
-                ) {
-                    _ = homeworkStore.add(
-                        word: word,
-                        meaning: meaning,
-                        pos: pos
-                    )
-
-                #if DEBUG
-                    print("🌱 Seed meaning追加 word=\(word) meaning=[\(meaning)]")
-                #endif
-                }
-                
-                let existing = self.firstExample(
-                    pos: pos,
-                    word: word,
-                    meaning: meaning
-                )
-
-                // v6で初期例文を更新する既存語。
-                // 今回は angry / boring / kind の3語だけ新版へ置き換える。
-                let shouldReplaceV6SeedExample =
-                    savedVersion < 6 &&
-                    item.pos
-                        .trimmingCharacters(in: .whitespacesAndNewlines)
-                        .lowercased() == "adjective" &&
-                    ["angry", "boring", "kind"].contains(
-                        word.lowercased()
-                    )
-
-                if existing != nil && !shouldReplaceV6SeedExample {
-                    continue
-                }
-
-                self.saveExample(
-                    pos: pos,
-                    word: word,
-                    meaning: meaning,
-                    en: en,
-                    ja: (ja?.isEmpty == true ? nil : ja),
-                    note: nil
-                )
-            }
-
-            // ---------------------------
-            // ② 単語note
-            // 既存noteがある場合は絶対に上書きしない
-            // ---------------------------
-            let existingNote = self.wordNote(
-                pos: pos,
-                word: word
-            )
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-
-            if existingNote.isEmpty,
-               let note = item.wordNote?
-                .trimmingCharacters(in: .whitespacesAndNewlines),
-               !note.isEmpty {
-
-                self.saveWordNote(
-                    pos: pos,
-                    word: word,
-                    note: note
-                )
-            }
-        }
-
-        UserDefaults.standard.set(
-            currentSeedVersion,
-            forKey: seedVersionKey
-        )
-
-#if DEBUG
-        print("🟩 ExampleSeed v\(currentSeedVersion) を安全に読み込みました")
-#endif
     }
 }
 
@@ -866,12 +703,26 @@ extension ExampleStore {
         wordNotes restoredWordNotes: [String: String]
     ) {
 
-        // バックアップ時点の状態へ戻す
+        // バックアップ時点のユーザー層を復元
         examples = restoredExamples
         wordNotes = restoredWordNotes
 
-        // 永続保存
+        // 二層化前の旧バックアップに含まれている
+        // Bundled Seedと完全一致するコピーだけをユーザー層から外す
+        let result = removeBundledSeedCopiesFromUserLayer()
+
+        // HomeworkStore復元後に、
+        // 現行ExampleSeed由来のmeaningを再補完する
+        loadBundledSeedReadOnly()
+
+        // 整理後のユーザー層を永続保存
         save()
         saveNotes()
+
+        #if DEBUG
+        print(
+            "🔒 backup restore cleaned Seed copies examplesChanged=\(result.examplesChanged) notesChanged=\(result.notesChanged)"
+        )
+        #endif
     }
 }

@@ -156,7 +156,25 @@ struct HomeworkSetEditorView: View {
                         .padding(.vertical, 4)
                     }
                 }
+                Section {
+                    HStack(spacing: 16) {
+                        Label {
+                            Text("既に例文あり\n（補足可）")
+                        } icon: {
+                            Image(systemName: "text.quote")
+                                .foregroundStyle(.blue)
+                        }
 
+                        Label {
+                            Text("既にノートあり\n（補足可）")
+                        } icon: {
+                            Image(systemName: "note.text")
+                                .foregroundStyle(.orange)
+                        }
+                    }
+                    .font(.footnote)
+                }
+                
                 Section {
                     requiredListSection(required: $requiredA, pos: posA)
                 } header: {

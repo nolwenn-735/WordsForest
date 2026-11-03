@@ -1,8 +1,7 @@
 //
+//  Created by Nami .T on 2025/12/21.
 //  ColumnStore.swift
 //  WordsForest
-//
-//  Created by Nami .T on 2025/12/21.
 //
 
 import Foundation
@@ -27,32 +26,64 @@ final class ColumnStore: ObservableObject {
     @AppStorage("column_newUntilISO") private var newUntilISO: String = ""
 
     @Published private(set) var articles: [ColumnArticle] = []
+    /// アプリ収録の読み取り専用コラム
+    private(set) var bundledArticles: [ColumnArticle] = []
+
+    /// 教師作成・配布で追加されたコラム
+    private var distributedArticles: [ColumnArticle] = []
 
     private let iso = ISO8601DateFormatter()
 
     private init() {
-        self.articles = loadOrSeed()
+        bundledArticles = ColumnData.all.sorted { $0.id > $1.id }
+        distributedArticles = loadDistributedArticles()
+        rebuildArticles()
     }
 
-    // 初回は ColumnData を seed
-    private func loadOrSeed() -> [ColumnArticle] {
-        if let data = raw.data(using: .utf8),
-           let list = try? JSONDecoder().decode([ColumnArticle].self, from: data),
-           !list.isEmpty {
-            return list.sorted { $0.id > $1.id }
+    /// 教師作成・配布コラムだけを端末保存から読む
+    private func loadDistributedArticles() -> [ColumnArticle] {
+        guard let data = raw.data(using: .utf8),
+              let list = try? JSONDecoder().decode(
+                [ColumnArticle].self,
+                from: data
+              )
+        else {
+            return []
         }
 
-        let seeded = ColumnData.all.sorted { $0.id > $1.id }
-        persist(seeded)
-        return seeded
+        return list
+            .filter { $0.id > 0 }
+            .sorted { $0.id > $1.id }
     }
 
-    private func persist(_ list: [ColumnArticle]) {
-        let data = (try? JSONEncoder().encode(list)) ?? Data("[]".utf8)
-        raw = String(data: data, encoding: .utf8) ?? "[]"
-        articles = list
+    /// 教師作成・配布コラムだけを端末へ保存する
+    private func persistDistributed(
+        _ list: [ColumnArticle]
+    ) {
+        let cleaned = list
+            .filter { $0.id > 0 }
+            .sorted { $0.id > $1.id }
+
+        let data =
+            (try? JSONEncoder().encode(cleaned))
+            ?? Data("[]".utf8)
+
+        raw =
+            String(data: data, encoding: .utf8)
+            ?? "[]"
+
+        distributedArticles = cleaned
+        rebuildArticles()
     }
 
+    /// 画面表示用は
+    /// Bundled基礎コラム + 教師作成・配布コラム
+    private func rebuildArticles() {
+        articles =
+            (bundledArticles + distributedArticles)
+            .sorted { $0.id > $1.id }
+    }
+    
     // ✅ HOME用：🆕バッジ出す？
     func shouldShowNewBadge(now: Date = Date()) -> Bool {
         guard hasNew else { return false }
@@ -67,10 +98,13 @@ final class ColumnStore: ObservableObject {
 
     // ✅ 取り込み（JSONファイル）
     func importPayload(_ payload: ColumnExportPayload) throws {
+        let incomingItems = payload.items
+            .filter { $0.id > 0 }
+
         // 同じpayloadでも、記事本体が端末内に無ければ再取り込みする
         if payload.id == lastImportedPayloadID {
-            let allItemsAlreadyExist = payload.items.allSatisfy { incoming in
-                articles.contains { $0.id == incoming.id }
+            let allItemsAlreadyExist = incomingItems.allSatisfy { incoming in
+                distributedArticles.contains { $0.id == incoming.id }
             }
 
             if allItemsAlreadyExist {
@@ -78,47 +112,82 @@ final class ColumnStore: ObservableObject {
             }
         }
 
-        // 既存 + 新規をidでマージ（同idは上書き＝更新）
-        var dict = Dictionary(uniqueKeysWithValues: articles.map { ($0.id, $0) })
-        for item in payload.items {
+        // 教師作成・配布コラムだけをidでマージ
+        var dict = Dictionary(
+            uniqueKeysWithValues:
+                distributedArticles.map { ($0.id, $0) }
+        )
+
+        for item in incomingItems {
             dict[item.id] = item
         }
 
-        let merged = dict.values.sorted { $0.id > $1.id }
-        persist(merged)
+        let merged = dict.values.sorted {
+            $0.id > $1.id
+        }
+
+        persistDistributed(merged)
 
         // 🆕を立てる（7日残す）
         lastImportedPayloadID = payload.id
         hasNew = true
 
-        let until = Calendar.current.date(byAdding: .day, value: 7, to: Date()) ?? Date()
+        let until =
+            Calendar.current.date(
+                byAdding: .day,
+                value: 7,
+                to: Date()
+            )
+            ?? Date()
+
         newUntilISO = iso.string(from: until)
     }
+
     func nextID() -> Int {
-        (articles.map { $0.id }.max() ?? 0) + 1
+        (distributedArticles.map { $0.id }.max() ?? 0) + 1
     }
 
     func upsert(_ article: ColumnArticle) {
-        var dict = Dictionary(uniqueKeysWithValues: articles.map { ($0.id, $0) })
+        guard article.id > 0 else {
+            return
+        }
+
+        var dict = Dictionary(
+            uniqueKeysWithValues:
+                distributedArticles.map { ($0.id, $0) }
+        )
+
         dict[article.id] = article
-        let merged = dict.values.sorted { $0.id > $1.id }
-        persist(merged)
+
+        let merged = dict.values.sorted {
+            $0.id > $1.id
+        }
+
+        persistDistributed(merged)
     }
-    // ✅ 記事を削除
+
+    // ✅ 教師作成・配布記事だけを削除
     func delete(_ article: ColumnArticle) {
-        var list = articles
-        list.removeAll { $0.id == article.id }
-        persist(list)
+        guard article.id > 0 else {
+            return
+        }
+
+        var list = distributedArticles
+
+        list.removeAll {
+            $0.id == article.id
+        }
+
+        persistDistributed(list)
     }
-    
-    // ✅ 開発用：コラムを ColumnData の初期状態に戻す
+
+    // ✅ 開発用：教師作成・配布コラムを空に戻す
     func resetToSeedForDebug() {
         lastImportedPayloadID = ""
         hasNew = false
         newUntilISO = ""
 
-        let seeded = ColumnData.all.sorted { $0.id > $1.id }
-        persist(seeded)
+        persistDistributed([])
     }
 }
 
@@ -126,9 +195,9 @@ final class ColumnStore: ObservableObject {
 
 extension ColumnStore {
 
-    /// 統合バックアップへ渡すコラム記事
+    /// 統合バックアップへ渡す教師作成・配布コラム
     var backupArticles: [ColumnArticle] {
-        articles
+        distributedArticles
     }
 }
 
@@ -143,12 +212,12 @@ extension ColumnStore {
         articles restoredArticles: [ColumnArticle]
     ) {
 
-        let restored = restoredArticles.sorted {
-            $0.id > $1.id
-        }
+        let restoredDistributed = restoredArticles
+            .filter { $0.id > 0 }
+            .sorted { $0.id > $1.id }
 
-        // 記事本体をバックアップ時点へ戻す
-        persist(restored)
+        // バックアップからは教師作成・配布コラムだけ復元
+        persistDistributed(restoredDistributed)
 
         // 🆕関連はバックアップ対象外なのでリセット
         lastImportedPayloadID = ""

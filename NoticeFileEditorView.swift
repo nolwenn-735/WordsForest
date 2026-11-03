@@ -1,8 +1,8 @@
+//  Created by Nami .T on 2026/03/19.→03/25🔔通知自動化
 //
 //  NoticeFileEditorView.swift
 //  WordsForest
 //
-//  Created by Nami .T on 2026/03/19.→03/25🔔通知自動化
 //
 //  NoticeFileEditorView.swift
 
@@ -12,6 +12,8 @@ import UniformTypeIdentifiers
 
 struct NoticeFileEditorView: View {
     @Environment(\.dismiss) private var dismiss
+    
+    let onConfirm: ((DeliveryManifest) -> Void)?
 
     @State private var homeworkPayloadID: String
     @State private var homeworkDateText: String
@@ -28,6 +30,7 @@ struct NoticeFileEditorView: View {
     @State private var exportFileName: String = "wf-manifest.json"
     @State private var showingExporter = false
     @State private var errorMessage: String? = nil
+    @State private var showNoticeExportConfirm = false
 
     init(
         initialHomeworkPayloadID: String = "",
@@ -37,8 +40,10 @@ struct NoticeFileEditorView: View {
         initialHomeworkStatus: String? = nil,
         initialHomeworkCycleWeeks: Int? = nil,
         initialHomeworkExtensionWeeks: Int? = nil,
-        initialLatestColumnID: Int? = nil
+        initialLatestColumnID: Int? = nil,
+        onConfirm: ((DeliveryManifest) -> Void)? = nil
     ) {
+        self.onConfirm = onConfirm
         let cycle = initialHomeworkCycleWeeks ?? 0
         let extensionWeeks = initialHomeworkExtensionWeeks ?? 0
 
@@ -114,16 +119,16 @@ struct NoticeFileEditorView: View {
 
                 Section {
                     Button {
-                        exportNoticeFile()
+                        confirmNoticeContent()
                     } label: {
                         HStack {
                             Text("🔔")
-                            Text("通知ファイルを書き出す")
+                            Text("通知内容を決定")
                         }
                     }
                     .disabled(!canExport)
                 }
-
+                
                 Section {
                     Text("生徒に送るのは、この「通知ファイル」と、配布する内容のJSONです。宿題なら宿題JSON、コラムならコラムJSONを一緒に送ります。")
                         .font(.footnote)
@@ -181,6 +186,65 @@ struct NoticeFileEditorView: View {
         !latestColumnIDText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
+    private func makeNoticeManifest() -> DeliveryManifest {
+        let homeworkCount = Int(
+            homeworkCountText
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+        )
+
+        let latestColumnID = Int(
+            latestColumnIDText
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+        )
+
+        let status = nonEmptyOrNil(homeworkStatus)
+        let cycleWeeks = homeworkCycleWeeks == 0
+            ? nil
+            : homeworkCycleWeeks
+
+        let extensionWeeks: Int? = {
+            if status != nil ||
+                cycleWeeks != nil ||
+                homeworkExtensionWeeks != 0 {
+
+                return homeworkExtensionWeeks
+            } else {
+                return nil
+            }
+        }()
+
+        return DeliveryManifest(
+            latestHomeworkPayloadID:
+                normalizedHomeworkID(homeworkPayloadID),
+            latestHomeworkDateText:
+                nonEmptyOrNil(homeworkDateText),
+            latestHomeworkLabel:
+                nonEmptyOrNil(homeworkLabel),
+            latestHomeworkCount:
+                homeworkCount,
+            homeworkStatus:
+                status,
+            homeworkCycleWeeks:
+                cycleWeeks,
+            homeworkExtensionWeeks:
+                extensionWeeks,
+            latestColumnArticleID:
+                latestColumnID,
+            updatedAtISO:
+                ISO8601DateFormatter().string(from: Date())
+        )
+    }
+
+    private func confirmNoticeContent() {
+        let manifest = makeNoticeManifest()
+
+        dismiss()
+
+        DispatchQueue.main.async {
+            onConfirm?(manifest)
+        }
+    }
+    
     private func exportNoticeFile() {
         let homeworkCount = Int(homeworkCountText.trimmingCharacters(in: .whitespacesAndNewlines))
         let latestColumnID = Int(latestColumnIDText.trimmingCharacters(in: .whitespacesAndNewlines))
@@ -238,3 +302,4 @@ struct NoticeFileEditorView: View {
 #Preview {
     NoticeFileEditorView()
 }
+

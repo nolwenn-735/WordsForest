@@ -1,8 +1,8 @@
+//  Created by Nami .T on 2025/10/30.→2026/3/12 TeacherLock対応
+//
 //
 //  ColumnIndexView.swift
 //  WordsForest
-//
-//  Created by Nami .T on 2025/10/30.→2026/3/12 TeacherLock対応
 //
 
 import SwiftUI
@@ -12,6 +12,8 @@ struct ColumnIndexView: View {
     @EnvironmentObject private var teacher: TeacherMode
 
     @AppStorage(DefaultsKeys.showMascots) private var showMascots: Bool = true
+    @AppStorage(DefaultsKeys.usageMode)
+    private var usageMode: UsageMode = .classroom
 
     @State private var searchText = ""
     @State private var showNewestFirst = true
@@ -44,7 +46,9 @@ struct ColumnIndexView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                importHeader
+                if usageMode == .classroom {
+                    importHeader
+                }
 
                 List {
                     ForEach(filtered) { article in
@@ -84,10 +88,12 @@ struct ColumnIndexView: View {
         .navigationTitle("🐺 コラム一覧")
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
-                Button {
-                    pendingCreate = true
-                } label: {
-                    Image(systemName: "plus")
+                if usageMode == .classroom {
+                    Button {
+                        pendingCreate = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
 
                 Button(showNewestFirst ? "最新→古い" : "古い→最新") {
@@ -222,13 +228,13 @@ struct ColumnIndexView: View {
 
         NavigationLink {
             ColumnArticleView(
-                title: "No.\(article.id)  \(article.title)",
+                title: "\(articleNumberLabel(article))  \(article.title)",
                 content: article.body
             )
         } label: {
             VStack(alignment: .leading, spacing: 6) {
                 HStack(spacing: 8) {
-                    Text("No.\(article.id)")
+                    Text(articleNumberLabel(article))
                         .font(.caption)
                         .foregroundStyle(.secondary)
 
@@ -255,18 +261,20 @@ struct ColumnIndexView: View {
             .padding(.vertical, 4)
         }
         .contextMenu {
-            Button("書き出し") {
-                pendingExportArticle = article
-            }
+            if usageMode == .classroom && article.id > 0 {
+                Button("書き出し") {
+                    pendingExportArticle = article
+                }
 
-            Button("編集…") {
-                pendingEditArticle = article
-            }
+                Button("編集…") {
+                    pendingEditArticle = article
+                }
 
-            Button(role: .destructive) {
-                pendingDeleteArticle = article
-            } label: {
-                Text("削除")
+                Button(role: .destructive) {
+                    pendingDeleteArticle = article
+                } label: {
+                    Text("削除")
+                }
             }
         }
     }
@@ -322,8 +330,10 @@ struct ColumnIndexView: View {
     }
 
     private func filteredArticles() -> [ColumnArticle] {
-        var base = store.articles
-
+        var base = usageMode == .individual
+            ? store.bundledArticles
+            : store.articles
+        
         if showNewestFirst {
             base.sort { $0.id > $1.id }
         } else {
@@ -339,6 +349,16 @@ struct ColumnIndexView: View {
         }
     }
 
+    private func articleNumberLabel(
+        _ article: ColumnArticle
+    ) -> String {
+        if article.id < 0 {
+            return "基礎\(abs(article.id))"
+        }
+
+        return "No.\(article.id)"
+    }
+    
     private func isPlaceholder(_ article: ColumnArticle) -> Bool {
         let trimmed = article.body.trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmed.isEmpty || trimmed == "ここに本文を書きます…"

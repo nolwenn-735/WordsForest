@@ -1,7 +1,7 @@
+//2026/03/05(宿題書き出しcurrent or draft 選択可logic実装）03/25manifest自動化
 //
 // HomeworkUI.swift
 //
-//2026/03/05(宿題書き出しcurrent or draft 選択可logic実装）03/25manifest自動化
 
 import SwiftUI
 import Foundation
@@ -36,6 +36,8 @@ struct HomeworkBanner: View {
     @State private var showingExporter = false
     @State private var exportErrorMessage: String? = nil
     @State private var showExportPicker = false
+    @State private var pendingNoticeManifest: DeliveryManifest? = nil
+    @State private var showNoticeExportConfirm = false
   
     @AppStorage("notice_lastHomeworkPayloadID") private var lastExportedHomeworkPayloadID: String = ""
     @AppStorage("notice_lastHomeworkDateText") private var lastExportedHomeworkDateText: String = ""
@@ -149,17 +151,38 @@ struct HomeworkBanner: View {
                 )
             }
 
-            .alert(
+            .confirmationDialog(
                 "今回分を書き出しますか？",
-                isPresented: $showExportPicker
+                isPresented: $showExportPicker,
+                titleVisibility: .visible
             ) {
-                Button("キャンセル", role: .cancel) { }
-
                 Button("書き出す") {
                     exportCurrentPack()
                 }
+
+                Button("キャンセル") {
+                    showExportPicker = false
+                }
             } message: {
-                Text("現在出題中の今回分（\(hw.currentPair.jaTitle)）を書き出します。")
+                Text(
+                    "現在出題中の今回分（\(hw.currentPair.jaTitle)）を書き出します。"
+                )
+            }
+            .confirmationDialog(
+                "通知ファイルを書き出しますか？",
+                isPresented: $showNoticeExportConfirm,
+                titleVisibility: .visible
+            ) {
+                Button("書き出す") {
+                    exportPendingNoticeFile()
+                }
+
+                Button("キャンセル") {
+                    pendingNoticeManifest = nil
+                    showNoticeExportConfirm = false
+                }
+            } message: {
+                Text("現在設定している通知内容を書き出します。")
             }
             .sheet(item: $editingTarget) { target in
                 let parts = target.pair.parts
@@ -536,7 +559,14 @@ struct HomeworkBanner: View {
                 initialHomeworkStatus: currentHomeworkStatusForManifest(),
                 initialHomeworkCycleWeeks: currentHomeworkCycleWeeksForManifest(),
                 initialHomeworkExtensionWeeks: hw.manifestHomeworkExtensionWeeks,
-                initialLatestColumnID: lastExportedColumnID == 0 ? nil : lastExportedColumnID
+                initialLatestColumnID:
+                    lastExportedColumnID == 0
+                        ? nil
+                        : lastExportedColumnID,
+                onConfirm: { manifest in
+                    pendingNoticeManifest = manifest
+                    showNoticeExportConfirm = true
+                }
             )
         } label: {
             VStack(spacing: 2) {
@@ -594,8 +624,6 @@ struct HomeworkBanner: View {
         }
     }
     
-
-    
     private func exportCurrentPack() {
         print("✅ EXPORT CURRENT PACK TAP")
 
@@ -617,6 +645,26 @@ struct HomeworkBanner: View {
         } catch {
             exportErrorMessage = "JSON生成失敗: \(error.localizedDescription)"
             print("❌ export current error:", error)
+        }
+    }
+ 
+    private func exportPendingNoticeFile() {
+        guard let manifest = pendingNoticeManifest else {
+            return
+        }
+
+        do {
+            let result = try DeliveryManifestFile.makeExportDocument(manifest)
+
+            exportDoc = result.doc
+            exportFileName = result.fileName
+            exportErrorMessage = nil
+            pendingNoticeManifest = nil
+            showingExporter = true
+
+        } catch {
+            exportErrorMessage =
+                "通知ファイルを作れませんでした: \(error.localizedDescription)"
         }
     }
     
