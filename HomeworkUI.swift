@@ -563,6 +563,7 @@ struct HomeworkBanner: View {
                     lastExportedColumnID == 0
                         ? nil
                         : lastExportedColumnID,
+                entryContext: .homework,
                 onConfirm: { manifest in
                     pendingNoticeManifest = manifest
                     showNoticeExportConfirm = true

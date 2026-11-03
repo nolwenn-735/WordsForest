@@ -5,15 +5,21 @@
 //
 //
 //  NoticeFileEditorView.swift
-
-
+//
+//
 import SwiftUI
-import UniformTypeIdentifiers
 
 struct NoticeFileEditorView: View {
     @Environment(\.dismiss) private var dismiss
     
     let onConfirm: ((DeliveryManifest) -> Void)?
+    
+    enum EntryContext {
+        case homework
+        case column
+    }
+
+    let entryContext: EntryContext
 
     @State private var homeworkPayloadID: String
     @State private var homeworkDateText: String
@@ -26,12 +32,6 @@ struct NoticeFileEditorView: View {
 
     @State private var latestColumnIDText: String
 
-    @State private var exportDoc: JSONTextDocument? = nil
-    @State private var exportFileName: String = "wf-manifest.json"
-    @State private var showingExporter = false
-    @State private var errorMessage: String? = nil
-    @State private var showNoticeExportConfirm = false
-
     init(
         initialHomeworkPayloadID: String = "",
         initialHomeworkDateText: String = "",
@@ -41,8 +41,10 @@ struct NoticeFileEditorView: View {
         initialHomeworkCycleWeeks: Int? = nil,
         initialHomeworkExtensionWeeks: Int? = nil,
         initialLatestColumnID: Int? = nil,
+        entryContext: EntryContext = .homework,
         onConfirm: ((DeliveryManifest) -> Void)? = nil
-    ) {
+        ) {
+        self.entryContext = entryContext
         self.onConfirm = onConfirm
         let cycle = initialHomeworkCycleWeeks ?? 0
         let extensionWeeks = initialHomeworkExtensionWeeks ?? 0
@@ -62,12 +64,39 @@ struct NoticeFileEditorView: View {
 
         _latestColumnIDText = State(initialValue: initialLatestColumnID.map(String.init) ?? "")
     }
+    
+    @ViewBuilder
+    private var columnNoticeSection: some View {
+        Section(
+            entryContext == .column
+                ? "配布するコラム"
+                : "最新コラムのNo."
+        ) {
+            TextField(
+                "最新コラムNo.（例: 1）",
+                text: $latestColumnIDText
+            )
+            .keyboardType(.numberPad)
+
+            Text(
+                entryContext == .column
+                    ? "今回配布するコラムのナンバーです。"
+                    : "現在配布済みの最新コラムのナンバーです。"
+            )
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+        }
+    }
 
     var body: some View {
         NavigationStack {
             Form {
+                if entryContext == .column {
+                    columnNoticeSection
+                }
+
                 Section("新しい宿題の通知") {
-                    TextField("宿題ID（例: 2026-05-24-draft-pair1）", text: $homeworkPayloadID)
+                    TextField("宿題ID（例: 2027-04-20-draft-pair1）", text: $homeworkPayloadID)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
 
@@ -75,7 +104,7 @@ struct NoticeFileEditorView: View {
                         .font(.footnote)
                         .foregroundStyle(.secondary)
 
-                    TextField("日付（例: 2026/05/24）", text: $homeworkDateText)
+                    TextField("日付（例: 2027/04/20）", text: $homeworkDateText)
 
                     TextField("宿題名（例: 名詞＋形容詞）", text: $homeworkLabel)
 
@@ -108,13 +137,8 @@ struct NoticeFileEditorView: View {
                         .foregroundStyle(.secondary)
                 }
 
-                Section("最新コラムのNo.") {
-                    TextField("最新コラムNo.（例: 1）", text: $latestColumnIDText)
-                        .keyboardType(.numberPad)
-
-                    Text("現在配布済みの最新コラムのナンバーです。")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
+                if entryContext == .homework {
+                    columnNoticeSection
                 }
 
                 Section {
@@ -143,34 +167,6 @@ struct NoticeFileEditorView: View {
                         dismiss()
                     }
                 }
-            }
-            .fileExporter(
-                isPresented: $showingExporter,
-                document: exportDoc ?? JSONTextDocument(text: "{}"),
-                contentType: .json,
-                defaultFilename: exportFileName
-            ) { result in
-                switch result {
-                case .success(let url):
-                    errorMessage = nil
-                    print("✅ notice exported:", url)
-                case .failure(let err):
-                    errorMessage = err.localizedDescription
-                    print("❌ notice export error:", err)
-                }
-            }
-            .alert(
-                "書き出しエラー",
-                isPresented: Binding(
-                    get: { errorMessage != nil },
-                    set: { if !$0 { errorMessage = nil } }
-                )
-            ) {
-                Button("OK", role: .cancel) {
-                    errorMessage = nil
-                }
-            } message: {
-                Text(errorMessage ?? "")
             }
         }
     }
@@ -245,42 +241,6 @@ struct NoticeFileEditorView: View {
         }
     }
     
-    private func exportNoticeFile() {
-        let homeworkCount = Int(homeworkCountText.trimmingCharacters(in: .whitespacesAndNewlines))
-        let latestColumnID = Int(latestColumnIDText.trimmingCharacters(in: .whitespacesAndNewlines))
-
-        let status = nonEmptyOrNil(homeworkStatus)
-        let cycleWeeks = homeworkCycleWeeks == 0 ? nil : homeworkCycleWeeks
-        let extensionWeeks: Int? = {
-            if status != nil || cycleWeeks != nil || homeworkExtensionWeeks != 0 {
-                return homeworkExtensionWeeks
-            } else {
-                return nil
-            }
-        }()
-
-        let manifest = DeliveryManifest(
-            latestHomeworkPayloadID: normalizedHomeworkID(homeworkPayloadID),
-            latestHomeworkDateText: nonEmptyOrNil(homeworkDateText),
-            latestHomeworkLabel: nonEmptyOrNil(homeworkLabel),
-            latestHomeworkCount: homeworkCount,
-            homeworkStatus: status,
-            homeworkCycleWeeks: cycleWeeks,
-            homeworkExtensionWeeks: extensionWeeks,
-            latestColumnArticleID: latestColumnID,
-            updatedAtISO: ISO8601DateFormatter().string(from: Date())
-        )
-
-        do {
-            let result = try DeliveryManifestFile.makeExportDocument(manifest)
-            exportDoc = result.doc
-            exportFileName = result.fileName
-            errorMessage = nil
-            showingExporter = true
-        } catch {
-            errorMessage = "通知ファイルを作れませんでした: \(error.localizedDescription)"
-        }
-    }
 
     private func normalizedHomeworkID(_ s: String) -> String? {
         let trimmed = s.trimmingCharacters(in: .whitespacesAndNewlines)

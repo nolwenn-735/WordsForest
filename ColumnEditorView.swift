@@ -1,8 +1,8 @@
 //
+//Created by Nami .T on 2025/12/21.
+//
 //  ColumnEditorView.swift
 //  WordsForest
-//
-//  Created by Nami .T on 2025/12/21.
 //
 
 import SwiftUI
@@ -23,8 +23,11 @@ struct ColumnEditorView: View {
     @State private var showingExporter = false
     @State private var exportErrorMessage: String? = nil
     @State private var showingDeleteConfirm = false
+    @State private var pendingNoticeManifest: DeliveryManifest? = nil
+    @State private var showNoticeExportConfirm = false
     @AppStorage("notice_lastColumnID") private var lastExportedColumnID: Int = 0
     @State private var pendingExportedColumnID: Int? = nil
+    @State private var hasExportedCurrentColumn = false
     @AppStorage("notice_lastHomeworkPayloadID") private var lastExportedHomeworkPayloadID: String = ""
     @AppStorage("notice_lastHomeworkDateText") private var lastExportedHomeworkDateText: String = ""
     @AppStorage("notice_lastHomeworkLabel") private var lastExportedHomeworkLabel: String = ""
@@ -79,7 +82,7 @@ struct ColumnEditorView: View {
                             let result = try ColumnExportFile.makeExportDocument(for: articleForExport)
                             exportDoc = result.doc
                             exportFileName = result.fileName
-                            lastExportedColumnID = articleForExport.id
+                            pendingExportedColumnID = articleForExport.id
                             exportErrorMessage = nil
                             showingExporter = true
                         } catch {
@@ -88,7 +91,7 @@ struct ColumnEditorView: View {
                         }
                     } label: {
                         HStack {
-                            Text("コラムJSON書き出し")
+                            Text("コラムを書き出す")
                         }
                         .foregroundStyle(.blue)
                     }
@@ -108,18 +111,27 @@ struct ColumnEditorView: View {
                             initialHomeworkPayloadID: lastExportedHomeworkPayloadID,
                             initialHomeworkDateText: lastExportedHomeworkDateText,
                             initialHomeworkLabel: lastExportedHomeworkLabel,
-                            initialHomeworkCount: lastExportedHomeworkCount == 0 ? nil : lastExportedHomeworkCount,
-                            initialLatestColumnID: initial.id
+                            initialHomeworkCount:
+                                lastExportedHomeworkCount == 0
+                                    ? nil
+                                    : lastExportedHomeworkCount,
+                            initialLatestColumnID: initial.id,
+                            entryContext: .column,
+                            onConfirm: { manifest in
+                                pendingNoticeManifest = manifest
+                                showNoticeExportConfirm = true
+                            }
                         )
                     } label: {
                         HStack {
                             Text("🔔")
-                            Text("通知ファイルを作る")
+                            Text("通知内容を確認")
                         }
                         .foregroundStyle(.blue)
                     }
+                    .disabled(!hasExportedCurrentColumn)
 
-                    Text("コラムを配布するときは、コラムJSONを書き出したあと、この通知ファイルも書き出します。")
+                    Text("コラムを配布するときは、コラムを書き出したあと、通知内容を確認して通知ファイルも書き出します。")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
@@ -127,6 +139,15 @@ struct ColumnEditorView: View {
             }
             .navigationTitle(isNew ? "コラム追加" : "コラム編集")
             .navigationBarTitleDisplayMode(.inline)
+            .onChange(of: title) {
+                hasExportedCurrentColumn = false
+            }
+            .onChange(of: bodyText) {
+                hasExportedCurrentColumn = false
+            }
+            .onChange(of: tagsText) {
+                hasExportedCurrentColumn = false
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("戻る") { dismiss() }
@@ -160,6 +181,7 @@ struct ColumnEditorView: View {
                 case .success(let url):
                     if let id = pendingExportedColumnID {
                         lastExportedColumnID = id
+                        hasExportedCurrentColumn = true
                     }
                     pendingExportedColumnID = nil
                     exportErrorMessage = nil
@@ -182,6 +204,22 @@ struct ColumnEditorView: View {
                 }
             } message: {
                 Text(exportErrorMessage ?? "")
+            }
+            .confirmationDialog(
+                "通知ファイルを書き出しますか？",
+                isPresented: $showNoticeExportConfirm,
+                titleVisibility: .visible
+            ) {
+                Button("書き出す") {
+                    exportPendingNoticeFile()
+                }
+
+                Button("キャンセル") {
+                    pendingNoticeManifest = nil
+                    showNoticeExportConfirm = false
+                }
+            } message: {
+                Text("現在設定している通知内容を書き出します。")
             }
             .confirmationDialog(
                 "このコラムを削除しますか？",
@@ -207,6 +245,28 @@ struct ColumnEditorView: View {
 
                 Button("キャンセル", role: .cancel) { }
             }
+        }
+    }
+    private func exportPendingNoticeFile() {
+        guard let manifest = pendingNoticeManifest else {
+            return
+        }
+
+        do {
+            let result =
+                try DeliveryManifestFile.makeExportDocument(
+                    manifest
+                )
+
+            exportDoc = result.doc
+            exportFileName = result.fileName
+            exportErrorMessage = nil
+            pendingNoticeManifest = nil
+            showingExporter = true
+
+        } catch {
+            exportErrorMessage =
+                "通知ファイルを作れませんでした: \(error.localizedDescription)"
         }
     }
 }
