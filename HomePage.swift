@@ -36,6 +36,9 @@ struct HomePage: View {
     }
     
     @AppStorage(DefaultsKeys.showMascots) private var showMascots: Bool = true
+    
+    @AppStorage(DefaultsKeys.usageMode)
+    private var usageMode: UsageMode = .classroom
 
     @AppStorage("manifest_latestHomeworkPayloadID") private var
     manifestLatestHomeworkPayloadID: String = ""
@@ -177,7 +180,11 @@ struct HomePage: View {
                             }
                             .buttonStyle(ColoredPillButtonStyle(color: .indigo, size: .compact, alpha: 0.20))
                             .overlay(alignment: .trailing) {
-                                if columnStore.shouldShowNewBadge() || hasUnclaimedColumnFromManifest {
+                                if usageMode == .classroom &&
+                                    (
+                                        columnStore.shouldShowNewBadge() ||
+                                        hasUnclaimedColumnFromManifest
+                                    ) {
                                     Text("🆕")
                                         .font(.caption2.bold())
                                         .padding(.horizontal, 6)

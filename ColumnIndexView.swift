@@ -104,7 +104,9 @@ struct ColumnIndexView: View {
             }
         }
         .onAppear {
-            store.markAsSeen()
+            if usageMode == .classroom {
+                store.markAsSeen()
+            }
         }
         .onChange(of: pendingCreate) { _, newValue in
             guard newValue else { return }

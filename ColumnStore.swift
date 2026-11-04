@@ -35,9 +35,39 @@ final class ColumnStore: ObservableObject {
     private let iso = ISO8601DateFormatter()
 
     private init() {
-        bundledArticles = ColumnData.all.sorted { $0.id > $1.id }
+        bundledArticles = loadBundledArticles()
         distributedArticles = loadDistributedArticles()
         rebuildArticles()
+    }
+    
+    /// アプリに収録した基礎コラムをBundled JSONから読む
+    private func loadBundledArticles() -> [ColumnArticle] {
+        guard let url = Bundle.main.url(
+            forResource: "BundledColumns",
+            withExtension: "json"
+        ) else {
+            print("❌ BundledColumns.json が見つかりません")
+            return []
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+            let list = try JSONDecoder().decode(
+                [ColumnArticle].self,
+                from: data
+            )
+
+            return list
+                .filter { $0.id < 0 }
+                .sorted { $0.id > $1.id }
+
+        } catch {
+            print(
+                "❌ BundledColumns.json 読み込み失敗:",
+                error
+            )
+            return []
+        }
     }
 
     /// 教師作成・配布コラムだけを端末保存から読む

@@ -86,8 +86,9 @@ struct NoticeFileEditorView: View {
             .font(.footnote)
             .foregroundStyle(.secondary)
         }
+        .opacity(entryContext == .homework ? 0.45 : 1.0)
     }
-
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -111,6 +112,7 @@ struct NoticeFileEditorView: View {
                     TextField("語数（例: 24）", text: $homeworkCountText)
                         .keyboardType(.numberPad)
                 }
+                .opacity(entryContext == .column ? 0.45 : 1.0)
 
                 Section("宿題状態と期間") {
                     Picker("宿題状態", selection: $homeworkStatus) {
@@ -136,6 +138,7 @@ struct NoticeFileEditorView: View {
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
+                .opacity(entryContext == .column ? 0.45 : 1.0)
 
                 if entryContext == .homework {
                     columnNoticeSection
