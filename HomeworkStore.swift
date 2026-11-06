@@ -44,6 +44,13 @@ struct StoredWord: Hashable, Codable {
     }
 }
 
+// BundledWords.json 読み込み専用
+private struct BundledWordRecord: Codable, Hashable {
+    let word: String
+    let meaning: String
+    let pos: PartOfSpeech
+}
+
 final class HomeworkStore: ObservableObject {
 
     static let shared = HomeworkStore()
@@ -56,6 +63,33 @@ final class HomeworkStore: ObservableObject {
     private let key = "homework_v3"
     private let favKey = "favorites_v3"
     private let learnedKey = "learned_v3"
+    
+    private lazy var bundledWords: [BundledWordRecord] = {
+        guard let url = Bundle.main.url(
+            forResource: "BundledWords",
+            withExtension: "json"
+        ) else {
+            print("❌ BundledWords.json not found")
+            return []
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+            let decoded = try JSONDecoder().decode(
+                [BundledWordRecord].self,
+                from: data
+            )
+
+            #if DEBUG
+            print("📚 BundledWords loaded:", decoded.count)
+            #endif
+
+            return decoded
+        } catch {
+            print("❌ BundledWords.json decode failed:", error)
+            return []
+        }
+    }()
 
     private init() {
         load()
@@ -141,33 +175,74 @@ final class HomeworkStore: ObservableObject {
     
     // 今回は migrate の中身は仮。旧データがあればここで変換する。
     private func migrateIfNeeded() {
-        // すでに v3 の words が入っていれば何もしない
-        guard words.isEmpty else { return }
-
-        // ここで旧バージョンからの移行をすることもできるけど、
-        // ひとまず「SampleDeck の単語を初期データとして流し込む」だけやる
-
-        func seed(from pos: PartOfSpeech) {
-            let bank = SampleDeck.filtered(by: pos)
-
-            for card in bank {
-                // SampleDeck 側は 1語1意味なので、最初の意味だけ使う
-                let base = card.meanings.first ?? ""
-                let trimmed = base.trimmingCharacters(in: .whitespacesAndNewlines)
-                guard !trimmed.isEmpty else { continue }
-
-                // 既に同じ word+meaning+pos が入っていれば add() 側で弾かれる
-                _ = add(word: card.word, meaning: trimmed, pos: pos)
+        // 現在保存済みの word + meaning + pos を記録。
+        // 既存UUIDは一切変更しない。
+        var knownKeys = Set(
+            words.map {
+                WordKey(
+                    pos: $0.pos,
+                    word: norm($0.word),
+                    meaning: normMeaning($0.meaning)
+                )
             }
+        )
+
+        var addedCount = 0
+
+        // BundledWords.json に存在し、
+        // 端末側にまだ無い原本だけを追加する。
+        for bundled in bundledWords {
+            let word = bundled.word
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+
+            let meaning = bundled.meaning
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+
+            guard !word.isEmpty, !meaning.isEmpty else {
+                continue
+            }
+
+            let bundledKey = WordKey(
+                pos: bundled.pos,
+                word: norm(word),
+                meaning: normMeaning(meaning)
+            )
+
+            guard knownKeys.insert(bundledKey).inserted else {
+                continue
+            }
+
+            words.append(
+                StoredWord(
+                    word: word,
+                    meaning: meaning,
+                    pos: bundled.pos
+                )
+            )
+
+            addedCount += 1
         }
 
-        // 名詞・動詞・形容詞・副詞ぶん種をまく(added .others 12/12)
-        for pos in PartOfSpeech.collectionCases {
-            seed(from: pos)
+        // 追加があった場合だけ保存。
+        // 既存StoredWordには触らないのでUUIDも維持される。
+        if addedCount > 0 {
+            save()
+
+            NotificationCenter.default.post(
+                name: .storeDidChange,
+                object: nil
+            )
         }
 
-        // ここまでで words[] が埋まるので、以降の list(for:)
-        // や homeworkWords(for:) からカードが見えるようになる
+        #if DEBUG
+        print(
+            "📚 BundledWords sync:",
+            bundledWords.count,
+            "bundled /",
+            addedCount,
+            "added"
+        )
+        #endif
     }
 
     private func ensureStored(_ c: WordCard) {
@@ -228,10 +303,10 @@ final class HomeworkStore: ObservableObject {
         s.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
-    /// SampleDeck由来のプリインストール内容を含むカードか判定する
+    /// BundledWords.json に収録されたプリインストール内容を含むカードか判定する
     ///
     /// WordCard は同じ品詞・同じ単語の複数meaningを1枚にまとめているため、
-    /// 単語だけではなく、SampleDeckに収録されているmeaningとの一致も確認する。
+    /// 単語だけではなく、BundledWords.json に収録されているmeaningとの一致も確認する。
     func isBundledCard(_ card: WordCard) -> Bool {
         let targetWord = norm(card.word)
 
@@ -246,15 +321,13 @@ final class HomeworkStore: ObservableObject {
         }
 
         let bundledMeanings = Set(
-            SampleDeck.filtered(by: card.pos)
+            bundledWords
                 .filter {
+                    $0.pos == card.pos &&
                     norm($0.word) == targetWord
                 }
-                .flatMap {
-                    $0.meanings
-                }
                 .map {
-                    normMeaning($0)
+                    normMeaning($0.meaning)
                 }
                 .filter {
                     !$0.isEmpty
@@ -263,6 +336,8 @@ final class HomeworkStore: ObservableObject {
 
         return !cardMeanings.isDisjoint(with: bundledMeanings)
     }
+    
+
  
    // HomeworkStoreの半角debug用func
     
@@ -623,15 +698,30 @@ final class HomeworkStore: ObservableObject {
         let current = list(for: pos)
         guard current.count < target else { return }
 
-        let bank = SampleDeck.filtered(by: pos)
-        let existing = Set(current.map { $0.word.lowercased() })
+        let bank = bundledWords.filter { $0.pos == pos }
+
+        var existing = Set(
+            current.map { norm($0.word) }
+        )
 
         var count = current.count
-        for card in bank where count < target {
-            if !existing.contains(card.word.lowercased()) {
-                add(word: card.word, meaning: card.meanings.first ?? "", pos: pos)
-                count += 1
+
+        for record in bank where count < target {
+            let normalizedWord = norm(record.word)
+
+            // 同じ単語の別meaningがBundledWordsに複数あっても、
+            // autofillでは1語として数える。
+            guard existing.insert(normalizedWord).inserted else {
+                continue
             }
+
+            add(
+                word: record.word,
+                meaning: record.meaning,
+                pos: record.pos
+            )
+
+            count += 1
         }
     }
 

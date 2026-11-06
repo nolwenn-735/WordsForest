@@ -14,6 +14,19 @@ enum PartOfSpeech: String, CaseIterable, Hashable, Codable {
 }
 
 extension PartOfSpeech {
+    static func parse(_ s: String) -> PartOfSpeech? {
+        switch s.lowercased() {
+        case "noun","名詞","n": return .noun
+        case "verb","動詞","v": return .verb
+        case "adjective","形容詞","adj","a": return .adj
+        case "adverb","副詞","adv","r": return .adv
+        case "others","other","misc","その他","他":  return .others   // ← 追加
+        default: return nil
+        }
+    }
+}
+
+extension PartOfSpeech {
     /// 品詞の日本語タイトル
     var jaTitle: String {
         switch self {

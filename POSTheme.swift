@@ -58,9 +58,3 @@ extension PartOfSpeech {
     }
 }
 
-struct SampleDeckFilter {
-    static func by(pos: PartOfSpeech, levels: Set<CEFRLevel>?) -> [WordCard] {
-        let base = SampleDeck.filtered(by: pos)
-        return base
-    }
-}

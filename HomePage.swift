@@ -904,15 +904,14 @@ private struct LearnedBoxRootView: View {
 }
 
 // MARK: - 検索ロジック
+
 func searchAllCards(query q: String) -> [WordCard] {
     guard !q.isEmpty else { return [] }
 
     let allPOS = PartOfSpeech.homeworkCases + [.others]
 
     let rawCards =
-        allPOS.flatMap { HomeworkStore.shared.list(for: $0) } +
-        allPOS.flatMap { SampleDeck.filtered(by: $0) }
-
+        allPOS.flatMap { HomeworkStore.shared.list(for: $0) }
     func key(_ c: WordCard) -> String {
         "\(c.pos.rawValue)|\(c.word.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())"
     }

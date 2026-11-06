@@ -1,10 +1,7108 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
-    </dependencies>
-    <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-    </objects>
-</document>
+[
+  {
+    "word": "apple",
+    "meaning": "りんご",
+    "pos": "noun"
+  },
+  {
+    "word": "river",
+    "meaning": "川",
+    "pos": "noun"
+  },
+  {
+    "word": "forest",
+    "meaning": "森",
+    "pos": "noun"
+  },
+  {
+    "word": "music",
+    "meaning": "音楽",
+    "pos": "noun"
+  },
+  {
+    "word": "mountain",
+    "meaning": "山",
+    "pos": "noun"
+  },
+  {
+    "word": "ocean",
+    "meaning": "海",
+    "pos": "noun"
+  },
+  {
+    "word": "flower",
+    "meaning": "花",
+    "pos": "noun"
+  },
+  {
+    "word": "friend",
+    "meaning": "友達",
+    "pos": "noun"
+  },
+  {
+    "word": "sun",
+    "meaning": "太陽",
+    "pos": "noun"
+  },
+  {
+    "word": "moon",
+    "meaning": "月",
+    "pos": "noun"
+  },
+  {
+    "word": "tree",
+    "meaning": "木",
+    "pos": "noun"
+  },
+  {
+    "word": "cloud",
+    "meaning": "雲",
+    "pos": "noun"
+  },
+  {
+    "word": "book",
+    "meaning": "本",
+    "pos": "noun"
+  },
+  {
+    "word": "school",
+    "meaning": "学校",
+    "pos": "noun"
+  },
+  {
+    "word": "bird",
+    "meaning": "鳥",
+    "pos": "noun"
+  },
+  {
+    "word": "snow",
+    "meaning": "雪",
+    "pos": "noun"
+  },
+  {
+    "word": "star",
+    "meaning": "星",
+    "pos": "noun"
+  },
+  {
+    "word": "animal",
+    "meaning": "動物",
+    "pos": "noun"
+  },
+  {
+    "word": "city",
+    "meaning": "都市",
+    "pos": "noun"
+  },
+  {
+    "word": "flowerpot",
+    "meaning": "植木鉢",
+    "pos": "noun"
+  },
+  {
+    "word": "dream",
+    "meaning": "夢",
+    "pos": "noun"
+  },
+  {
+    "word": "story",
+    "meaning": "物語",
+    "pos": "noun"
+  },
+  {
+    "word": "window",
+    "meaning": "窓",
+    "pos": "noun"
+  },
+  {
+    "word": "garden",
+    "meaning": "庭",
+    "pos": "noun"
+  },
+  {
+    "word": "kitchen",
+    "meaning": "台所",
+    "pos": "noun"
+  },
+  {
+    "word": "pencil",
+    "meaning": "鉛筆",
+    "pos": "noun"
+  },
+  {
+    "word": "street",
+    "meaning": "通り",
+    "pos": "noun"
+  },
+  {
+    "word": "dog",
+    "meaning": "犬",
+    "pos": "noun"
+  },
+  {
+    "word": "food",
+    "meaning": "食べ物",
+    "pos": "noun"
+  },
+  {
+    "word": "phone",
+    "meaning": "電話",
+    "pos": "noun"
+  },
+  {
+    "word": "bag",
+    "meaning": "かばん",
+    "pos": "noun"
+  },
+  {
+    "word": "chair",
+    "meaning": "椅子",
+    "pos": "noun"
+  },
+  {
+    "word": "table",
+    "meaning": "テーブル",
+    "pos": "noun"
+  },
+  {
+    "word": "cup",
+    "meaning": "コップ",
+    "pos": "noun"
+  },
+  {
+    "word": "bed",
+    "meaning": "ベッド",
+    "pos": "noun"
+  },
+  {
+    "word": "shirt",
+    "meaning": "シャツ",
+    "pos": "noun"
+  },
+  {
+    "word": "shoes",
+    "meaning": "靴",
+    "pos": "noun"
+  },
+  {
+    "word": "hat",
+    "meaning": "帽子",
+    "pos": "noun"
+  },
+  {
+    "word": "water",
+    "meaning": "水",
+    "pos": "noun"
+  },
+  {
+    "word": "juice",
+    "meaning": "ジュース",
+    "pos": "noun"
+  },
+  {
+    "word": "butter",
+    "meaning": "バター",
+    "pos": "noun"
+  },
+  {
+    "word": "bread",
+    "meaning": "パン",
+    "pos": "noun"
+  },
+  {
+    "word": "milk",
+    "meaning": "牛乳",
+    "pos": "noun"
+  },
+  {
+    "word": "egg",
+    "meaning": "卵",
+    "pos": "noun"
+  },
+  {
+    "word": "car",
+    "meaning": "車",
+    "pos": "noun"
+  },
+  {
+    "word": "train",
+    "meaning": "電車",
+    "pos": "noun"
+  },
+  {
+    "word": "bus",
+    "meaning": "バス",
+    "pos": "noun"
+  },
+  {
+    "word": "key",
+    "meaning": "鍵",
+    "pos": "noun"
+  },
+  {
+    "word": "door",
+    "meaning": "ドア",
+    "pos": "noun"
+  },
+  {
+    "word": "house",
+    "meaning": "家",
+    "pos": "noun"
+  },
+  {
+    "word": "mirror",
+    "meaning": "鏡",
+    "pos": "noun"
+  },
+  {
+    "word": "clock",
+    "meaning": "時計",
+    "pos": "noun"
+  },
+  {
+    "word": "watch",
+    "meaning": "腕時計",
+    "pos": "noun"
+  },
+  {
+    "word": "soap",
+    "meaning": "石けん",
+    "pos": "noun"
+  },
+  {
+    "word": "towel",
+    "meaning": "タオル",
+    "pos": "noun"
+  },
+  {
+    "word": "toothbrush",
+    "meaning": "歯ブラシ",
+    "pos": "noun"
+  },
+  {
+    "word": "windowpane",
+    "meaning": "窓ガラス",
+    "pos": "noun"
+  },
+  {
+    "word": "notebook",
+    "meaning": "ノート",
+    "pos": "noun"
+  },
+  {
+    "word": "letter",
+    "meaning": "手紙",
+    "pos": "noun"
+  },
+  {
+    "word": "photo",
+    "meaning": "写真",
+    "pos": "noun"
+  },
+  {
+    "word": "library",
+    "meaning": "図書館",
+    "pos": "noun"
+  },
+  {
+    "word": "museum",
+    "meaning": "博物館",
+    "pos": "noun"
+  },
+  {
+    "word": "station",
+    "meaning": "駅",
+    "pos": "noun"
+  },
+  {
+    "word": "corner",
+    "meaning": "角",
+    "pos": "noun"
+  },
+  {
+    "word": "guest",
+    "meaning": "招待客",
+    "pos": "noun"
+  },
+  {
+    "word": "schedule",
+    "meaning": "予定",
+    "pos": "noun"
+  },
+  {
+    "word": "message",
+    "meaning": "伝言",
+    "pos": "noun"
+  },
+  {
+    "word": "question",
+    "meaning": "質問",
+    "pos": "noun"
+  },
+  {
+    "word": "mistake",
+    "meaning": "まちがい",
+    "pos": "noun"
+  },
+  {
+    "word": "practice",
+    "meaning": "練習",
+    "pos": "noun"
+  },
+  {
+    "word": "festival",
+    "meaning": "祭り",
+    "pos": "noun"
+  },
+  {
+    "word": "language",
+    "meaning": "言語",
+    "pos": "noun"
+  },
+  {
+    "word": "classroom",
+    "meaning": "教室",
+    "pos": "noun"
+  },
+  {
+    "word": "homework",
+    "meaning": "宿題",
+    "pos": "noun"
+  },
+  {
+    "word": "answer",
+    "meaning": "答え",
+    "pos": "noun"
+  },
+  {
+    "word": "example",
+    "meaning": "例",
+    "pos": "noun"
+  },
+  {
+    "word": "problem",
+    "meaning": "問題",
+    "pos": "noun"
+  },
+  {
+    "word": "meeting",
+    "meaning": "会議",
+    "pos": "noun"
+  },
+  {
+    "word": "plan",
+    "meaning": "計画",
+    "pos": "noun"
+  },
+  {
+    "word": "list",
+    "meaning": "リスト",
+    "pos": "noun"
+  },
+  {
+    "word": "ticket",
+    "meaning": "切符",
+    "pos": "noun"
+  },
+  {
+    "word": "wallet",
+    "meaning": "財布",
+    "pos": "noun"
+  },
+  {
+    "word": "umbrella",
+    "meaning": "傘",
+    "pos": "noun"
+  },
+  {
+    "word": "medicine",
+    "meaning": "薬",
+    "pos": "noun"
+  },
+  {
+    "word": "breakfast",
+    "meaning": "朝食",
+    "pos": "noun"
+  },
+  {
+    "word": "lunch",
+    "meaning": "昼食",
+    "pos": "noun"
+  },
+  {
+    "word": "dinner",
+    "meaning": "夕食",
+    "pos": "noun"
+  },
+  {
+    "word": "assignment",
+    "meaning": "課題",
+    "pos": "noun"
+  },
+  {
+    "word": "blackboard",
+    "meaning": "黒板",
+    "pos": "noun"
+  },
+  {
+    "word": "dictionary",
+    "meaning": "辞書",
+    "pos": "noun"
+  },
+  {
+    "word": "grade",
+    "meaning": "成績",
+    "pos": "noun"
+  },
+  {
+    "word": "group",
+    "meaning": "班",
+    "pos": "noun"
+  },
+  {
+    "word": "hint",
+    "meaning": "ヒント",
+    "pos": "noun"
+  },
+  {
+    "word": "idea",
+    "meaning": "考え",
+    "pos": "noun"
+  },
+  {
+    "word": "project",
+    "meaning": "課題研究",
+    "pos": "noun"
+  },
+  {
+    "word": "report",
+    "meaning": "レポート",
+    "pos": "noun"
+  },
+  {
+    "word": "rule",
+    "meaning": "規則",
+    "pos": "noun"
+  },
+  {
+    "word": "sentence",
+    "meaning": "文",
+    "pos": "noun"
+  },
+  {
+    "word": "test",
+    "meaning": "テスト",
+    "pos": "noun"
+  },
+  {
+    "word": "bathroom",
+    "meaning": "浴室",
+    "pos": "noun"
+  },
+  {
+    "word": "blanket",
+    "meaning": "毛布",
+    "pos": "noun"
+  },
+  {
+    "word": "dish",
+    "meaning": "皿",
+    "pos": "noun"
+  },
+  {
+    "word": "drawer",
+    "meaning": "引き出し",
+    "pos": "noun"
+  },
+  {
+    "word": "floor",
+    "meaning": "床",
+    "pos": "noun"
+  },
+  {
+    "word": "fridge",
+    "meaning": "冷蔵庫",
+    "pos": "noun"
+  },
+  {
+    "word": "laundry",
+    "meaning": "洗濯物",
+    "pos": "noun"
+  },
+  {
+    "word": "pillow",
+    "meaning": "枕",
+    "pos": "noun"
+  },
+  {
+    "word": "shower",
+    "meaning": "シャワー",
+    "pos": "noun"
+  },
+  {
+    "word": "bridge",
+    "meaning": "橋",
+    "pos": "noun"
+  },
+  {
+    "word": "bus stop",
+    "meaning": "バス停",
+    "pos": "noun"
+  },
+  {
+    "word": "crosswalk",
+    "meaning": "横断歩道",
+    "pos": "noun"
+  },
+  {
+    "word": "entrance",
+    "meaning": "入口",
+    "pos": "noun"
+  },
+  {
+    "word": "exit",
+    "meaning": "出口",
+    "pos": "noun"
+  },
+  {
+    "word": "gate",
+    "meaning": "門",
+    "pos": "noun"
+  },
+  {
+    "word": "map",
+    "meaning": "地図",
+    "pos": "noun"
+  },
+  {
+    "word": "passenger",
+    "meaning": "乗客",
+    "pos": "noun"
+  },
+  {
+    "word": "road",
+    "meaning": "道路",
+    "pos": "noun"
+  },
+  {
+    "word": "sidewalk",
+    "meaning": "歩道",
+    "pos": "noun"
+  },
+  {
+    "word": "sign",
+    "meaning": "標識",
+    "pos": "noun"
+  },
+  {
+    "word": "traffic light",
+    "meaning": "信号",
+    "pos": "noun"
+  },
+  {
+    "word": "anger",
+    "meaning": "怒り",
+    "pos": "noun"
+  },
+  {
+    "word": "choice",
+    "meaning": "選択",
+    "pos": "noun"
+  },
+  {
+    "word": "fear",
+    "meaning": "恐れ",
+    "pos": "noun"
+  },
+  {
+    "word": "feeling",
+    "meaning": "気持ち",
+    "pos": "noun"
+  },
+  {
+    "word": "hope",
+    "meaning": "希望",
+    "pos": "noun"
+  },
+  {
+    "word": "joy",
+    "meaning": "喜び",
+    "pos": "noun"
+  },
+  {
+    "word": "kindness",
+    "meaning": "親切",
+    "pos": "noun"
+  },
+  {
+    "word": "memory",
+    "meaning": "記憶",
+    "pos": "noun"
+  },
+  {
+    "word": "promise",
+    "meaning": "約束",
+    "pos": "noun"
+  },
+  {
+    "word": "reason",
+    "meaning": "理由",
+    "pos": "noun"
+  },
+  {
+    "word": "worry",
+    "meaning": "心配",
+    "pos": "noun"
+  },
+  {
+    "word": "bakery",
+    "meaning": "パン屋",
+    "pos": "noun"
+  },
+  {
+    "word": "bill",
+    "meaning": "勘定書",
+    "pos": "noun"
+  },
+  {
+    "word": "cashier",
+    "meaning": "レジ係",
+    "pos": "noun"
+  },
+  {
+    "word": "change",
+    "meaning": "おつり",
+    "pos": "noun"
+  },
+  {
+    "word": "customer",
+    "meaning": "顧客",
+    "pos": "noun"
+  },
+  {
+    "word": "discount",
+    "meaning": "値引き",
+    "pos": "noun"
+  },
+  {
+    "word": "market",
+    "meaning": "市場",
+    "pos": "noun"
+  },
+  {
+    "word": "price",
+    "meaning": "値段",
+    "pos": "noun"
+  },
+  {
+    "word": "receipt",
+    "meaning": "レシート",
+    "pos": "noun"
+  },
+  {
+    "word": "sale",
+    "meaning": "特売",
+    "pos": "noun"
+  },
+  {
+    "word": "autumn",
+    "meaning": "秋",
+    "pos": "noun"
+  },
+  {
+    "word": "breeze",
+    "meaning": "そよ風",
+    "pos": "noun"
+  },
+  {
+    "word": "forecast",
+    "meaning": "天気予報",
+    "pos": "noun"
+  },
+  {
+    "word": "lightning",
+    "meaning": "稲光",
+    "pos": "noun"
+  },
+  {
+    "word": "rainbow",
+    "meaning": "虹",
+    "pos": "noun"
+  },
+  {
+    "word": "season",
+    "meaning": "季節",
+    "pos": "noun"
+  },
+  {
+    "word": "shade",
+    "meaning": "日陰",
+    "pos": "noun"
+  },
+  {
+    "word": "snowfall",
+    "meaning": "降雪",
+    "pos": "noun"
+  },
+  {
+    "word": "sunshine",
+    "meaning": "日光",
+    "pos": "noun"
+  },
+  {
+    "word": "run",
+    "meaning": "走る",
+    "pos": "verb"
+  },
+  {
+    "word": "fly",
+    "meaning": "飛ぶ",
+    "pos": "verb"
+  },
+  {
+    "word": "write",
+    "meaning": "書く",
+    "pos": "verb"
+  },
+  {
+    "word": "think",
+    "meaning": "考える",
+    "pos": "verb"
+  },
+  {
+    "word": "read",
+    "meaning": "読む",
+    "pos": "verb"
+  },
+  {
+    "word": "eat",
+    "meaning": "食べる",
+    "pos": "verb"
+  },
+  {
+    "word": "sleep",
+    "meaning": "眠る",
+    "pos": "verb"
+  },
+  {
+    "word": "sing",
+    "meaning": "歌う",
+    "pos": "verb"
+  },
+  {
+    "word": "listen",
+    "meaning": "聞く",
+    "pos": "verb"
+  },
+  {
+    "word": "watch",
+    "meaning": "見る",
+    "pos": "verb"
+  },
+  {
+    "word": "draw",
+    "meaning": "描く",
+    "pos": "verb"
+  },
+  {
+    "word": "build",
+    "meaning": "作る",
+    "pos": "verb"
+  },
+  {
+    "word": "swim",
+    "meaning": "泳ぐ",
+    "pos": "verb"
+  },
+  {
+    "word": "walk",
+    "meaning": "歩く",
+    "pos": "verb"
+  },
+  {
+    "word": "smile",
+    "meaning": "ほほえむ",
+    "pos": "verb"
+  },
+  {
+    "word": "laugh",
+    "meaning": "笑う",
+    "pos": "verb"
+  },
+  {
+    "word": "open",
+    "meaning": "開ける",
+    "pos": "verb"
+  },
+  {
+    "word": "close",
+    "meaning": "閉める",
+    "pos": "verb"
+  },
+  {
+    "word": "help",
+    "meaning": "助ける",
+    "pos": "verb"
+  },
+  {
+    "word": "cook",
+    "meaning": "料理する",
+    "pos": "verb"
+  },
+  {
+    "word": "climb",
+    "meaning": "登る",
+    "pos": "verb"
+  },
+  {
+    "word": "wait",
+    "meaning": "待つ",
+    "pos": "verb"
+  },
+  {
+    "word": "hope",
+    "meaning": "望む",
+    "pos": "verb"
+  },
+  {
+    "word": "learn",
+    "meaning": "学ぶ",
+    "pos": "verb"
+  },
+  {
+    "word": "sell",
+    "meaning": "売る",
+    "pos": "verb"
+  },
+  {
+    "word": "use",
+    "meaning": "使う",
+    "pos": "verb"
+  },
+  {
+    "word": "carry",
+    "meaning": "運ぶ",
+    "pos": "verb"
+  },
+  {
+    "word": "drive",
+    "meaning": "運転する",
+    "pos": "verb"
+  },
+  {
+    "word": "ride",
+    "meaning": "乗る",
+    "pos": "verb"
+  },
+  {
+    "word": "wash",
+    "meaning": "洗う",
+    "pos": "verb"
+  },
+  {
+    "word": "clean",
+    "meaning": "掃除する",
+    "pos": "verb"
+  },
+  {
+    "word": "talk",
+    "meaning": "話す",
+    "pos": "verb"
+  },
+  {
+    "word": "call",
+    "meaning": "電話する",
+    "pos": "verb"
+  },
+  {
+    "word": "meet",
+    "meaning": "会う",
+    "pos": "verb"
+  },
+  {
+    "word": "study",
+    "meaning": "勉強する",
+    "pos": "verb"
+  },
+  {
+    "word": "play",
+    "meaning": "遊ぶ",
+    "pos": "verb"
+  },
+  {
+    "word": "paint",
+    "meaning": "塗る",
+    "pos": "verb"
+  },
+  {
+    "word": "dance",
+    "meaning": "踊る",
+    "pos": "verb"
+  },
+  {
+    "word": "drink",
+    "meaning": "飲む",
+    "pos": "verb"
+  },
+  {
+    "word": "look",
+    "meaning": "見る",
+    "pos": "verb"
+  },
+  {
+    "word": "see",
+    "meaning": "見える",
+    "pos": "verb"
+  },
+  {
+    "word": "throw",
+    "meaning": "投げる",
+    "pos": "verb"
+  },
+  {
+    "word": "catch",
+    "meaning": "捕まえる",
+    "pos": "verb"
+  },
+  {
+    "word": "pick",
+    "meaning": "拾う",
+    "pos": "verb"
+  },
+  {
+    "word": "put",
+    "meaning": "置く",
+    "pos": "verb"
+  },
+  {
+    "word": "bring",
+    "meaning": "持ってくる",
+    "pos": "verb"
+  },
+  {
+    "word": "take",
+    "meaning": "持っていく",
+    "pos": "verb"
+  },
+  {
+    "word": "show",
+    "meaning": "見せる",
+    "pos": "verb"
+  },
+  {
+    "word": "teach",
+    "meaning": "教える",
+    "pos": "verb"
+  },
+  {
+    "word": "love",
+    "meaning": "愛する",
+    "pos": "verb"
+  },
+  {
+    "word": "like",
+    "meaning": "好き",
+    "pos": "verb"
+  },
+  {
+    "word": "hate",
+    "meaning": "嫌う",
+    "pos": "verb"
+  },
+  {
+    "word": "jump",
+    "meaning": "跳ぶ",
+    "pos": "verb"
+  },
+  {
+    "word": "sit",
+    "meaning": "座る",
+    "pos": "verb"
+  },
+  {
+    "word": "stand",
+    "meaning": "立つ",
+    "pos": "verb"
+  },
+  {
+    "word": "hug",
+    "meaning": "抱きしめる",
+    "pos": "verb"
+  },
+  {
+    "word": "want",
+    "meaning": "欲しい",
+    "pos": "verb"
+  },
+  {
+    "word": "bake",
+    "meaning": "焼く",
+    "pos": "verb"
+  },
+  {
+    "word": "arrive",
+    "meaning": "到着する",
+    "pos": "verb"
+  },
+  {
+    "word": "borrow",
+    "meaning": "借りる",
+    "pos": "verb"
+  },
+  {
+    "word": "choose",
+    "meaning": "選ぶ",
+    "pos": "verb"
+  },
+  {
+    "word": "continue",
+    "meaning": "続ける",
+    "pos": "verb"
+  },
+  {
+    "word": "happen",
+    "meaning": "起こる",
+    "pos": "verb"
+  },
+  {
+    "word": "invite",
+    "meaning": "招待する",
+    "pos": "verb"
+  },
+  {
+    "word": "prepare",
+    "meaning": "準備する",
+    "pos": "verb"
+  },
+  {
+    "word": "return",
+    "meaning": "戻る",
+    "pos": "verb"
+  },
+  {
+    "word": "share",
+    "meaning": "分け合う",
+    "pos": "verb"
+  },
+  {
+    "word": "stay",
+    "meaning": "滞在する",
+    "pos": "verb"
+  },
+  {
+    "word": "travel",
+    "meaning": "旅行する",
+    "pos": "verb"
+  },
+  {
+    "word": "answer",
+    "meaning": "答える",
+    "pos": "verb"
+  },
+  {
+    "word": "ask",
+    "meaning": "たずねる",
+    "pos": "verb"
+  },
+  {
+    "word": "check",
+    "meaning": "確認する",
+    "pos": "verb"
+  },
+  {
+    "word": "finish",
+    "meaning": "終える",
+    "pos": "verb"
+  },
+  {
+    "word": "forget",
+    "meaning": "忘れる",
+    "pos": "verb"
+  },
+  {
+    "word": "leave",
+    "meaning": "出発する",
+    "pos": "verb"
+  },
+  {
+    "word": "need",
+    "meaning": "必要とする",
+    "pos": "verb"
+  },
+  {
+    "word": "remember",
+    "meaning": "覚えている",
+    "pos": "verb"
+  },
+  {
+    "word": "start",
+    "meaning": "始める",
+    "pos": "verb"
+  },
+  {
+    "word": "compare",
+    "meaning": "比べる",
+    "pos": "verb"
+  },
+  {
+    "word": "copy",
+    "meaning": "写す",
+    "pos": "verb"
+  },
+  {
+    "word": "discuss",
+    "meaning": "話し合う",
+    "pos": "verb"
+  },
+  {
+    "word": "explain",
+    "meaning": "説明する",
+    "pos": "verb"
+  },
+  {
+    "word": "hand",
+    "meaning": "手渡す",
+    "pos": "verb"
+  },
+  {
+    "word": "improve",
+    "meaning": "改善する",
+    "pos": "verb"
+  },
+  {
+    "word": "include",
+    "meaning": "含む",
+    "pos": "verb"
+  },
+  {
+    "word": "mark",
+    "meaning": "印をつける",
+    "pos": "verb"
+  },
+  {
+    "word": "review",
+    "meaning": "復習する",
+    "pos": "verb"
+  },
+  {
+    "word": "solve",
+    "meaning": "解く",
+    "pos": "verb"
+  },
+  {
+    "word": "submit",
+    "meaning": "提出する",
+    "pos": "verb"
+  },
+  {
+    "word": "underline",
+    "meaning": "下線を引く",
+    "pos": "verb"
+  },
+  {
+    "word": "boil",
+    "meaning": "ゆでる",
+    "pos": "verb"
+  },
+  {
+    "word": "brush",
+    "meaning": "みがく",
+    "pos": "verb"
+  },
+  {
+    "word": "change",
+    "meaning": "着替える",
+    "pos": "verb"
+  },
+  {
+    "word": "dry",
+    "meaning": "乾かす",
+    "pos": "verb"
+  },
+  {
+    "word": "fold",
+    "meaning": "たたむ",
+    "pos": "verb"
+  },
+  {
+    "word": "heat",
+    "meaning": "温める",
+    "pos": "verb"
+  },
+  {
+    "word": "pack",
+    "meaning": "荷造りする",
+    "pos": "verb"
+  },
+  {
+    "word": "rest",
+    "meaning": "休む",
+    "pos": "verb"
+  },
+  {
+    "word": "set",
+    "meaning": "置く",
+    "pos": "verb"
+  },
+  {
+    "word": "tidy",
+    "meaning": "片づける",
+    "pos": "verb"
+  },
+  {
+    "word": "wake",
+    "meaning": "目を覚ます",
+    "pos": "verb"
+  },
+  {
+    "word": "cross",
+    "meaning": "横切る",
+    "pos": "verb"
+  },
+  {
+    "word": "follow",
+    "meaning": "ついて行く",
+    "pos": "verb"
+  },
+  {
+    "word": "hurry",
+    "meaning": "急ぐ",
+    "pos": "verb"
+  },
+  {
+    "word": "miss",
+    "meaning": "乗りそこなう",
+    "pos": "verb"
+  },
+  {
+    "word": "pass",
+    "meaning": "通り過ぎる",
+    "pos": "verb"
+  },
+  {
+    "word": "reach",
+    "meaning": "着く",
+    "pos": "verb"
+  },
+  {
+    "word": "stop",
+    "meaning": "止まる",
+    "pos": "verb"
+  },
+  {
+    "word": "turn",
+    "meaning": "曲がる",
+    "pos": "verb"
+  },
+  {
+    "word": "visit",
+    "meaning": "訪れる",
+    "pos": "verb"
+  },
+  {
+    "word": "agree",
+    "meaning": "賛成する",
+    "pos": "verb"
+  },
+  {
+    "word": "believe",
+    "meaning": "信じる",
+    "pos": "verb"
+  },
+  {
+    "word": "calm",
+    "meaning": "落ち着かせる",
+    "pos": "verb"
+  },
+  {
+    "word": "care",
+    "meaning": "気にかける",
+    "pos": "verb"
+  },
+  {
+    "word": "cheer",
+    "meaning": "元気づける",
+    "pos": "verb"
+  },
+  {
+    "word": "doubt",
+    "meaning": "疑う",
+    "pos": "verb"
+  },
+  {
+    "word": "notice",
+    "meaning": "気づく",
+    "pos": "verb"
+  },
+  {
+    "word": "regret",
+    "meaning": "後悔する",
+    "pos": "verb"
+  },
+  {
+    "word": "relax",
+    "meaning": "くつろぐ",
+    "pos": "verb"
+  },
+  {
+    "word": "buy",
+    "meaning": "買う",
+    "pos": "verb"
+  },
+  {
+    "word": "cost",
+    "meaning": "費用がかかる",
+    "pos": "verb"
+  },
+  {
+    "word": "exchange",
+    "meaning": "交換する",
+    "pos": "verb"
+  },
+  {
+    "word": "order",
+    "meaning": "注文する",
+    "pos": "verb"
+  },
+  {
+    "word": "spend",
+    "meaning": "使う（お金を）",
+    "pos": "verb"
+  },
+  {
+    "word": "try",
+    "meaning": "試す",
+    "pos": "verb"
+  },
+  {
+    "word": "freeze",
+    "meaning": "凍る",
+    "pos": "verb"
+  },
+  {
+    "word": "melt",
+    "meaning": "溶ける",
+    "pos": "verb"
+  },
+  {
+    "word": "rain",
+    "meaning": "雨が降る",
+    "pos": "verb"
+  },
+  {
+    "word": "shine",
+    "meaning": "照る",
+    "pos": "verb"
+  },
+  {
+    "word": "snow",
+    "meaning": "雪が降る",
+    "pos": "verb"
+  },
+  {
+    "word": "warm",
+    "meaning": "暖める",
+    "pos": "verb"
+  },
+  {
+    "word": "gentle",
+    "meaning": "優しい",
+    "pos": "adj"
+  },
+  {
+    "word": "quiet",
+    "meaning": "静かな",
+    "pos": "adj"
+  },
+  {
+    "word": "bright",
+    "meaning": "明るい",
+    "pos": "adj"
+  },
+  {
+    "word": "mossy",
+    "meaning": "苔むした",
+    "pos": "adj"
+  },
+  {
+    "word": "happy",
+    "meaning": "幸せな",
+    "pos": "adj"
+  },
+  {
+    "word": "sad",
+    "meaning": "悲しい",
+    "pos": "adj"
+  },
+  {
+    "word": "cold",
+    "meaning": "寒い",
+    "pos": "adj"
+  },
+  {
+    "word": "hot",
+    "meaning": "暑い",
+    "pos": "adj"
+  },
+  {
+    "word": "small",
+    "meaning": "小さい",
+    "pos": "adj"
+  },
+  {
+    "word": "large",
+    "meaning": "大きい",
+    "pos": "adj"
+  },
+  {
+    "word": "fast",
+    "meaning": "速い",
+    "pos": "adj"
+  },
+  {
+    "word": "slow",
+    "meaning": "遅い",
+    "pos": "adj"
+  },
+  {
+    "word": "old",
+    "meaning": "古い",
+    "pos": "adj"
+  },
+  {
+    "word": "new",
+    "meaning": "新しい",
+    "pos": "adj"
+  },
+  {
+    "word": "kind",
+    "meaning": "親切な",
+    "pos": "adj"
+  },
+  {
+    "word": "funny",
+    "meaning": "おかしな",
+    "pos": "adj"
+  },
+  {
+    "word": "scary",
+    "meaning": "怖い",
+    "pos": "adj"
+  },
+  {
+    "word": "blue",
+    "meaning": "青い",
+    "pos": "adj"
+  },
+  {
+    "word": "green",
+    "meaning": "緑の",
+    "pos": "adj"
+  },
+  {
+    "word": "clean",
+    "meaning": "きれいな",
+    "pos": "adj"
+  },
+  {
+    "word": "dirty",
+    "meaning": "汚れた",
+    "pos": "adj"
+  },
+  {
+    "word": "sharp",
+    "meaning": "鋭い",
+    "pos": "adj"
+  },
+  {
+    "word": "soft",
+    "meaning": "柔らかい",
+    "pos": "adj"
+  },
+  {
+    "word": "strong",
+    "meaning": "強い",
+    "pos": "adj"
+  },
+  {
+    "word": "tall",
+    "meaning": "背の高い",
+    "pos": "adj"
+  },
+  {
+    "word": "short",
+    "meaning": "背の低い",
+    "pos": "adj"
+  },
+  {
+    "word": "warm",
+    "meaning": "暖かい",
+    "pos": "adj"
+  },
+  {
+    "word": "cool",
+    "meaning": "涼しい",
+    "pos": "adj"
+  },
+  {
+    "word": "dark",
+    "meaning": "暗い",
+    "pos": "adj"
+  },
+  {
+    "word": "light",
+    "meaning": "軽い",
+    "pos": "adj"
+  },
+  {
+    "word": "sweet",
+    "meaning": "甘い",
+    "pos": "adj"
+  },
+  {
+    "word": "sour",
+    "meaning": "酸っぱい",
+    "pos": "adj"
+  },
+  {
+    "word": "bitter",
+    "meaning": "苦い",
+    "pos": "adj"
+  },
+  {
+    "word": "salty",
+    "meaning": "しょっぱい",
+    "pos": "adj"
+  },
+  {
+    "word": "tired",
+    "meaning": "疲れた",
+    "pos": "adj"
+  },
+  {
+    "word": "sleepy",
+    "meaning": "眠い",
+    "pos": "adj"
+  },
+  {
+    "word": "hungry",
+    "meaning": "お腹がすいた",
+    "pos": "adj"
+  },
+  {
+    "word": "thirsty",
+    "meaning": "喉が渇いた",
+    "pos": "adj"
+  },
+  {
+    "word": "busy",
+    "meaning": "忙しい",
+    "pos": "adj"
+  },
+  {
+    "word": "free",
+    "meaning": "自由な",
+    "pos": "adj"
+  },
+  {
+    "word": "fun",
+    "meaning": "楽しい",
+    "pos": "adj"
+  },
+  {
+    "word": "boring",
+    "meaning": "退屈な",
+    "pos": "adj"
+  },
+  {
+    "word": "noisy",
+    "meaning": "うるさい",
+    "pos": "adj"
+  },
+  {
+    "word": "beautiful",
+    "meaning": "美しい",
+    "pos": "adj"
+  },
+  {
+    "word": "ugly",
+    "meaning": "醜い",
+    "pos": "adj"
+  },
+  {
+    "word": "thin",
+    "meaning": "細い",
+    "pos": "adj"
+  },
+  {
+    "word": "fat",
+    "meaning": "太った",
+    "pos": "adj"
+  },
+  {
+    "word": "young",
+    "meaning": "若い",
+    "pos": "adj"
+  },
+  {
+    "word": "angry",
+    "meaning": "怒っている",
+    "pos": "adj"
+  },
+  {
+    "word": "easy",
+    "meaning": "簡単な",
+    "pos": "adj"
+  },
+  {
+    "word": "difficult",
+    "meaning": "難しい",
+    "pos": "adj"
+  },
+  {
+    "word": "rich",
+    "meaning": "裕福な",
+    "pos": "adj"
+  },
+  {
+    "word": "poor",
+    "meaning": "貧しい",
+    "pos": "adj"
+  },
+  {
+    "word": "important",
+    "meaning": "大事な",
+    "pos": "adj"
+  },
+  {
+    "word": "interesting",
+    "meaning": "面白い",
+    "pos": "adj"
+  },
+  {
+    "word": "warm",
+    "meaning": "あたたかい",
+    "pos": "adj"
+  },
+  {
+    "word": "friendly",
+    "meaning": "親しみやすい",
+    "pos": "adj"
+  },
+  {
+    "word": "safe",
+    "meaning": "安全な",
+    "pos": "adj"
+  },
+  {
+    "word": "careful",
+    "meaning": "注意深い",
+    "pos": "adj"
+  },
+  {
+    "word": "different",
+    "meaning": "異なる",
+    "pos": "adj"
+  },
+  {
+    "word": "famous",
+    "meaning": "有名な",
+    "pos": "adj"
+  },
+  {
+    "word": "helpful",
+    "meaning": "助けになる",
+    "pos": "adj"
+  },
+  {
+    "word": "nervous",
+    "meaning": "緊張した",
+    "pos": "adj"
+  },
+  {
+    "word": "calm",
+    "meaning": "冷静な",
+    "pos": "adj"
+  },
+  {
+    "word": "ready",
+    "meaning": "準備ができた",
+    "pos": "adj"
+  },
+  {
+    "word": "special",
+    "meaning": "特別な",
+    "pos": "adj"
+  },
+  {
+    "word": "useful",
+    "meaning": "役に立つ",
+    "pos": "adj"
+  },
+  {
+    "word": "wide",
+    "meaning": "幅の広い",
+    "pos": "adj"
+  },
+  {
+    "word": "early",
+    "meaning": "早い",
+    "pos": "adj"
+  },
+  {
+    "word": "important",
+    "meaning": "重要な",
+    "pos": "adj"
+  },
+  {
+    "word": "late",
+    "meaning": "遅い",
+    "pos": "adj"
+  },
+  {
+    "word": "near",
+    "meaning": "近い",
+    "pos": "adj"
+  },
+  {
+    "word": "right",
+    "meaning": "正しい",
+    "pos": "adj"
+  },
+  {
+    "word": "same",
+    "meaning": "同じ",
+    "pos": "adj"
+  },
+  {
+    "word": "sick",
+    "meaning": "具合の悪い",
+    "pos": "adj"
+  },
+  {
+    "word": "wrong",
+    "meaning": "まちがった",
+    "pos": "adj"
+  },
+  {
+    "word": "absent",
+    "meaning": "欠席の",
+    "pos": "adj"
+  },
+  {
+    "word": "correct",
+    "meaning": "正しい",
+    "pos": "adj"
+  },
+  {
+    "word": "excellent",
+    "meaning": "すばらしい",
+    "pos": "adj"
+  },
+  {
+    "word": "final",
+    "meaning": "最後の",
+    "pos": "adj"
+  },
+  {
+    "word": "main",
+    "meaning": "主な",
+    "pos": "adj"
+  },
+  {
+    "word": "necessary",
+    "meaning": "必要な",
+    "pos": "adj"
+  },
+  {
+    "word": "present",
+    "meaning": "出席している",
+    "pos": "adj"
+  },
+  {
+    "word": "simple",
+    "meaning": "簡単な",
+    "pos": "adj"
+  },
+  {
+    "word": "true",
+    "meaning": "本当の",
+    "pos": "adj"
+  },
+  {
+    "word": "written",
+    "meaning": "書かれた",
+    "pos": "adj"
+  },
+  {
+    "word": "awake",
+    "meaning": "目が覚めている",
+    "pos": "adj"
+  },
+  {
+    "word": "comfortable",
+    "meaning": "心地よい",
+    "pos": "adj"
+  },
+  {
+    "word": "empty",
+    "meaning": "空っぽの",
+    "pos": "adj"
+  },
+  {
+    "word": "full",
+    "meaning": "いっぱいの",
+    "pos": "adj"
+  },
+  {
+    "word": "heavy",
+    "meaning": "重い",
+    "pos": "adj"
+  },
+  {
+    "word": "soft",
+    "meaning": "やわらかい",
+    "pos": "adj"
+  },
+  {
+    "word": "wet",
+    "meaning": "ぬれた",
+    "pos": "adj"
+  },
+  {
+    "word": "crowded",
+    "meaning": "混んだ",
+    "pos": "adj"
+  },
+  {
+    "word": "far",
+    "meaning": "遠い",
+    "pos": "adj"
+  },
+  {
+    "word": "local",
+    "meaning": "地元の",
+    "pos": "adj"
+  },
+  {
+    "word": "lost",
+    "meaning": "道に迷った",
+    "pos": "adj"
+  },
+  {
+    "word": "straight",
+    "meaning": "まっすぐな",
+    "pos": "adj"
+  },
+  {
+    "word": "traffic",
+    "meaning": "交通の",
+    "pos": "adj"
+  },
+  {
+    "word": "vacant",
+    "meaning": "空いている",
+    "pos": "adj"
+  },
+  {
+    "word": "wide",
+    "meaning": "広い",
+    "pos": "adj"
+  },
+  {
+    "word": "afraid",
+    "meaning": "こわい",
+    "pos": "adj"
+  },
+  {
+    "word": "brave",
+    "meaning": "勇敢な",
+    "pos": "adj"
+  },
+  {
+    "word": "calm",
+    "meaning": "落ち着いた",
+    "pos": "adj"
+  },
+  {
+    "word": "glad",
+    "meaning": "うれしい",
+    "pos": "adj"
+  },
+  {
+    "word": "lonely",
+    "meaning": "さびしい",
+    "pos": "adj"
+  },
+  {
+    "word": "proud",
+    "meaning": "誇らしい",
+    "pos": "adj"
+  },
+  {
+    "word": "relaxed",
+    "meaning": "くつろいだ",
+    "pos": "adj"
+  },
+  {
+    "word": "serious",
+    "meaning": "深刻な",
+    "pos": "adj"
+  },
+  {
+    "word": "surprised",
+    "meaning": "驚いた",
+    "pos": "adj"
+  },
+  {
+    "word": "upset",
+    "meaning": "動揺した",
+    "pos": "adj"
+  },
+  {
+    "word": "cheap",
+    "meaning": "安い",
+    "pos": "adj"
+  },
+  {
+    "word": "expensive",
+    "meaning": "高価な",
+    "pos": "adj"
+  },
+  {
+    "word": "fresh",
+    "meaning": "新鮮な",
+    "pos": "adj"
+  },
+  {
+    "word": "open",
+    "meaning": "営業している",
+    "pos": "adj"
+  },
+  {
+    "word": "popular",
+    "meaning": "人気のある",
+    "pos": "adj"
+  },
+  {
+    "word": "sold out",
+    "meaning": "売り切れの",
+    "pos": "adj"
+  },
+  {
+    "word": "cloudy",
+    "meaning": "くもった",
+    "pos": "adj"
+  },
+  {
+    "word": "dry",
+    "meaning": "乾燥した",
+    "pos": "adj"
+  },
+  {
+    "word": "foggy",
+    "meaning": "霧の深い",
+    "pos": "adj"
+  },
+  {
+    "word": "rainy",
+    "meaning": "雨の",
+    "pos": "adj"
+  },
+  {
+    "word": "windy",
+    "meaning": "風の強い",
+    "pos": "adj"
+  },
+  {
+    "word": "slowly",
+    "meaning": "ゆっくり",
+    "pos": "adv"
+  },
+  {
+    "word": "quickly",
+    "meaning": "素早く",
+    "pos": "adv"
+  },
+  {
+    "word": "carefully",
+    "meaning": "注意深く",
+    "pos": "adv"
+  },
+  {
+    "word": "often",
+    "meaning": "しばしば",
+    "pos": "adv"
+  },
+  {
+    "word": "happily",
+    "meaning": "幸せそうに",
+    "pos": "adv"
+  },
+  {
+    "word": "sadly",
+    "meaning": "悲しそうに",
+    "pos": "adv"
+  },
+  {
+    "word": "neatly",
+    "meaning": "きちんと",
+    "pos": "adv"
+  },
+  {
+    "word": "loudly",
+    "meaning": "大声で",
+    "pos": "adv"
+  },
+  {
+    "word": "silently",
+    "meaning": "静かに",
+    "pos": "adv"
+  },
+  {
+    "word": "eagerly",
+    "meaning": "熱心に",
+    "pos": "adv"
+  },
+  {
+    "word": "gently",
+    "meaning": "優しく",
+    "pos": "adv"
+  },
+  {
+    "word": "bravely",
+    "meaning": "勇敢に",
+    "pos": "adv"
+  },
+  {
+    "word": "brightly",
+    "meaning": "明るく",
+    "pos": "adv"
+  },
+  {
+    "word": "calmly",
+    "meaning": "落ち着いて",
+    "pos": "adv"
+  },
+  {
+    "word": "early",
+    "meaning": "早く",
+    "pos": "adv"
+  },
+  {
+    "word": "late",
+    "meaning": "遅く",
+    "pos": "adv"
+  },
+  {
+    "word": "rarely",
+    "meaning": "めったに〜ない",
+    "pos": "adv"
+  },
+  {
+    "word": "daily",
+    "meaning": "毎日",
+    "pos": "adv"
+  },
+  {
+    "word": "never",
+    "meaning": "決して〜ない",
+    "pos": "adv"
+  },
+  {
+    "word": "apart",
+    "meaning": "離れて",
+    "pos": "adv"
+  },
+  {
+    "word": "somewhere",
+    "meaning": "どこかで",
+    "pos": "adv"
+  },
+  {
+    "word": "inside",
+    "meaning": "中で",
+    "pos": "adv"
+  },
+  {
+    "word": "outside",
+    "meaning": "外で",
+    "pos": "adv"
+  },
+  {
+    "word": "easily",
+    "meaning": "簡単に",
+    "pos": "adv"
+  },
+  {
+    "word": "really",
+    "meaning": "本当に",
+    "pos": "adv"
+  },
+  {
+    "word": "maybe",
+    "meaning": "たぶん",
+    "pos": "adv"
+  },
+  {
+    "word": "again",
+    "meaning": "もう一度",
+    "pos": "adv"
+  },
+  {
+    "word": "safely",
+    "meaning": "安全に",
+    "pos": "adv"
+  },
+  {
+    "word": "kindly",
+    "meaning": "親切に",
+    "pos": "adv"
+  },
+  {
+    "word": "gracefully",
+    "meaning": "優雅に",
+    "pos": "adv"
+  },
+  {
+    "word": "angrily",
+    "meaning": "怒って",
+    "pos": "adv"
+  },
+  {
+    "word": "fortunately",
+    "meaning": "幸運にも",
+    "pos": "adv"
+  },
+  {
+    "word": "unfortunately",
+    "meaning": "不運にも",
+    "pos": "adv"
+  },
+  {
+    "word": "exactly",
+    "meaning": "正確に",
+    "pos": "adv"
+  },
+  {
+    "word": "anywhere",
+    "meaning": "どこでも",
+    "pos": "adv"
+  },
+  {
+    "word": "already",
+    "meaning": "すでに",
+    "pos": "adv"
+  },
+  {
+    "word": "certainly",
+    "meaning": "確かに",
+    "pos": "adv"
+  },
+  {
+    "word": "everywhere",
+    "meaning": "いたるところで",
+    "pos": "adv"
+  },
+  {
+    "word": "finally",
+    "meaning": "ついに",
+    "pos": "adv"
+  },
+  {
+    "word": "forward",
+    "meaning": "前へ",
+    "pos": "adv"
+  },
+  {
+    "word": "perhaps",
+    "meaning": "もしかすると",
+    "pos": "adv"
+  },
+  {
+    "word": "recently",
+    "meaning": "最近",
+    "pos": "adv"
+  },
+  {
+    "word": "sometimes",
+    "meaning": "ときどき",
+    "pos": "adv"
+  },
+  {
+    "word": "suddenly",
+    "meaning": "突然",
+    "pos": "adv"
+  },
+  {
+    "word": "upstairs",
+    "meaning": "上の階で",
+    "pos": "adv"
+  },
+  {
+    "word": "always",
+    "meaning": "いつも",
+    "pos": "adv"
+  },
+  {
+    "word": "fast",
+    "meaning": "速く",
+    "pos": "adv"
+  },
+  {
+    "word": "here",
+    "meaning": "ここで",
+    "pos": "adv"
+  },
+  {
+    "word": "later",
+    "meaning": "あとで",
+    "pos": "adv"
+  },
+  {
+    "word": "now",
+    "meaning": "今",
+    "pos": "adv"
+  },
+  {
+    "word": "soon",
+    "meaning": "すぐに",
+    "pos": "adv"
+  },
+  {
+    "word": "there",
+    "meaning": "そこで",
+    "pos": "adv"
+  },
+  {
+    "word": "today",
+    "meaning": "今日",
+    "pos": "adv"
+  },
+  {
+    "word": "tomorrow",
+    "meaning": "明日",
+    "pos": "adv"
+  },
+  {
+    "word": "together",
+    "meaning": "いっしょに",
+    "pos": "adv"
+  },
+  {
+    "word": "usually",
+    "meaning": "たいてい",
+    "pos": "adv"
+  },
+  {
+    "word": "aloud",
+    "meaning": "声に出して",
+    "pos": "adv"
+  },
+  {
+    "word": "clearly",
+    "meaning": "はっきりと",
+    "pos": "adv"
+  },
+  {
+    "word": "correctly",
+    "meaning": "正しく",
+    "pos": "adv"
+  },
+  {
+    "word": "directly",
+    "meaning": "直接",
+    "pos": "adv"
+  },
+  {
+    "word": "especially",
+    "meaning": "特に",
+    "pos": "adv"
+  },
+  {
+    "word": "individually",
+    "meaning": "各自で",
+    "pos": "adv"
+  },
+  {
+    "word": "quietly",
+    "meaning": "静かに",
+    "pos": "adv"
+  },
+  {
+    "word": "separately",
+    "meaning": "別々に",
+    "pos": "adv"
+  },
+  {
+    "word": "twice",
+    "meaning": "2回",
+    "pos": "adv"
+  },
+  {
+    "word": "wrongly",
+    "meaning": "まちがって",
+    "pos": "adv"
+  },
+  {
+    "word": "back",
+    "meaning": "後ろへ",
+    "pos": "adv"
+  },
+  {
+    "word": "downstairs",
+    "meaning": "下の階で",
+    "pos": "adv"
+  },
+  {
+    "word": "hard",
+    "meaning": "一生けん命",
+    "pos": "adv"
+  },
+  {
+    "word": "just",
+    "meaning": "ちょうど",
+    "pos": "adv"
+  },
+  {
+    "word": "nearly",
+    "meaning": "ほとんど",
+    "pos": "adv"
+  },
+  {
+    "word": "still",
+    "meaning": "まだ",
+    "pos": "adv"
+  },
+  {
+    "word": "then",
+    "meaning": "それから",
+    "pos": "adv"
+  },
+  {
+    "word": "yet",
+    "meaning": "まだ",
+    "pos": "adv"
+  },
+  {
+    "word": "abroad",
+    "meaning": "海外へ",
+    "pos": "adv"
+  },
+  {
+    "word": "downtown",
+    "meaning": "街中へ",
+    "pos": "adv"
+  },
+  {
+    "word": "east",
+    "meaning": "東へ",
+    "pos": "adv"
+  },
+  {
+    "word": "home",
+    "meaning": "家へ",
+    "pos": "adv"
+  },
+  {
+    "word": "left",
+    "meaning": "左へ",
+    "pos": "adv"
+  },
+  {
+    "word": "nearby",
+    "meaning": "近くに",
+    "pos": "adv"
+  },
+  {
+    "word": "north",
+    "meaning": "北へ",
+    "pos": "adv"
+  },
+  {
+    "word": "right",
+    "meaning": "右へ",
+    "pos": "adv"
+  },
+  {
+    "word": "south",
+    "meaning": "南へ",
+    "pos": "adv"
+  },
+  {
+    "word": "west",
+    "meaning": "西へ",
+    "pos": "adv"
+  },
+  {
+    "word": "anyway",
+    "meaning": "何でも",
+    "pos": "adv"
+  },
+  {
+    "word": "deeply",
+    "meaning": "深く",
+    "pos": "adv"
+  },
+  {
+    "word": "honestly",
+    "meaning": "正直に",
+    "pos": "adv"
+  },
+  {
+    "word": "seriously",
+    "meaning": "まじめに",
+    "pos": "adv"
+  },
+  {
+    "word": "cheaply",
+    "meaning": "安く",
+    "pos": "adv"
+  },
+  {
+    "word": "instead",
+    "meaning": "代わりに",
+    "pos": "adv"
+  },
+  {
+    "word": "online",
+    "meaning": "オンラインで",
+    "pos": "adv"
+  },
+  {
+    "word": "very",
+    "meaning": "とても",
+    "pos": "adv"
+  },
+  {
+    "word": "overnight",
+    "meaning": "一晩で",
+    "pos": "adv"
+  },
+  {
+    "word": "the",
+    "meaning": "定冠詞　その〜、例の",
+    "pos": "others"
+  },
+  {
+    "word": "a",
+    "meaning": "不定冠詞　ある〜、ひとつの",
+    "pos": "others"
+  },
+  {
+    "word": "in",
+    "meaning": "前置詞　〜の中で",
+    "pos": "others"
+  },
+  {
+    "word": "on",
+    "meaning": "前置詞　〜の上に",
+    "pos": "others"
+  },
+  {
+    "word": "to",
+    "meaning": "前置詞/不定詞　到達点を示す/〜すること",
+    "pos": "others"
+  },
+  {
+    "word": "and",
+    "meaning": "接続詞　〜と、そして",
+    "pos": "others"
+  },
+  {
+    "word": "but",
+    "meaning": "接続詞　しかし",
+    "pos": "others"
+  },
+  {
+    "word": "can",
+    "meaning": "助動詞　〜できる",
+    "pos": "others"
+  },
+  {
+    "word": "at",
+    "meaning": "前置詞　〜で",
+    "pos": "others"
+  },
+  {
+    "word": "is",
+    "meaning": "be動詞　〜である",
+    "pos": "others"
+  },
+  {
+    "word": "are",
+    "meaning": "be動詞　〜である",
+    "pos": "others"
+  },
+  {
+    "word": "was",
+    "meaning": "be動詞　amとisの過去形",
+    "pos": "others"
+  },
+  {
+    "word": "were",
+    "meaning": "be動詞　areの過去形",
+    "pos": "others"
+  },
+  {
+    "word": "do",
+    "meaning": "助動詞/動詞　する",
+    "pos": "others"
+  },
+  {
+    "word": "does",
+    "meaning": "助動詞/動詞　〜する(3単現)",
+    "pos": "others"
+  },
+  {
+    "word": "did",
+    "meaning": "助動詞/動詞　〜した",
+    "pos": "others"
+  },
+  {
+    "word": "will",
+    "meaning": "助動詞　〜するだろう",
+    "pos": "others"
+  },
+  {
+    "word": "if",
+    "meaning": "接続詞　もし〜なら",
+    "pos": "others"
+  },
+  {
+    "word": "because",
+    "meaning": "接続詞　なぜなら/〜なので",
+    "pos": "others"
+  },
+  {
+    "word": "with",
+    "meaning": "前置詞　〜と一緒に",
+    "pos": "others"
+  },
+  {
+    "word": "without",
+    "meaning": "前置詞　〜なしで",
+    "pos": "others"
+  },
+  {
+    "word": "under",
+    "meaning": "前置詞　〜の下に",
+    "pos": "others"
+  },
+  {
+    "word": "as",
+    "meaning": "前置詞/接続詞/副詞 〜として/〜する時/同じくらい",
+    "pos": "others"
+  },
+  {
+    "word": "oh",
+    "meaning": "間投詞　おおっ",
+    "pos": "others"
+  },
+  {
+    "word": "hey",
+    "meaning": "間投詞　ねえ",
+    "pos": "others"
+  },
+  {
+    "word": "behind",
+    "meaning": "前置詞 〜の後ろに",
+    "pos": "others"
+  },
+  {
+    "word": "between",
+    "meaning": "前置詞 〜の間に",
+    "pos": "others"
+  },
+  {
+    "word": "through",
+    "meaning": "前置詞 〜を通って",
+    "pos": "others"
+  },
+  {
+    "word": "during",
+    "meaning": "前置詞 〜の間に",
+    "pos": "others"
+  },
+  {
+    "word": "before",
+    "meaning": "前置詞/接続詞 〜の前に",
+    "pos": "others"
+  },
+  {
+    "word": "after",
+    "meaning": "前置詞/接続詞 〜の後で",
+    "pos": "others"
+  },
+  {
+    "word": "until",
+    "meaning": "前置詞/接続詞 〜まで",
+    "pos": "others"
+  },
+  {
+    "word": "although",
+    "meaning": "接続詞 〜だけれども",
+    "pos": "others"
+  },
+  {
+    "word": "when",
+    "meaning": "接続詞 〜するとき",
+    "pos": "others"
+  },
+  {
+    "word": "something",
+    "meaning": "代名詞 何か",
+    "pos": "others"
+  },
+  {
+    "word": "nothing",
+    "meaning": "代名詞 何も〜ないもの",
+    "pos": "others"
+  },
+  {
+    "word": "around",
+    "meaning": "前置詞/副詞 〜のまわりに",
+    "pos": "others"
+  },
+  {
+    "word": "because",
+    "meaning": "接続詞 なぜなら/〜なので",
+    "pos": "others"
+  },
+  {
+    "word": "someone",
+    "meaning": "代名詞 だれか",
+    "pos": "others"
+  },
+  {
+    "word": "everyone",
+    "meaning": "代名詞 みんな",
+    "pos": "others"
+  },
+  {
+    "word": "everything",
+    "meaning": "代名詞 すべて",
+    "pos": "others"
+  },
+  {
+    "word": "another",
+    "meaning": "形容詞/代名詞 もう一つの",
+    "pos": "others"
+  },
+  {
+    "word": "across",
+    "meaning": "前置詞/副詞 〜を横切って",
+    "pos": "others"
+  },
+  {
+    "word": "against",
+    "meaning": "前置詞 〜に反して",
+    "pos": "others"
+  },
+  {
+    "word": "among",
+    "meaning": "前置詞 〜の間で",
+    "pos": "others"
+  },
+  {
+    "word": "both",
+    "meaning": "代名詞/形容詞/副詞 両方",
+    "pos": "others"
+  },
+  {
+    "word": "either",
+    "meaning": "代名詞/形容詞/副詞 どちらか",
+    "pos": "others"
+  },
+  {
+    "word": "enough",
+    "meaning": "形容詞/代名詞/副詞 十分な/十分に",
+    "pos": "others"
+  },
+  {
+    "word": "every",
+    "meaning": "形容詞 すべての",
+    "pos": "others"
+  },
+  {
+    "word": "few",
+    "meaning": "形容詞/代名詞 ほとんどない/少数",
+    "pos": "others"
+  },
+  {
+    "word": "many",
+    "meaning": "形容詞/代名詞 たくさんの",
+    "pos": "others"
+  },
+  {
+    "word": "most",
+    "meaning": "形容詞/代名詞/副詞 ほとんどの/最も",
+    "pos": "others"
+  },
+  {
+    "word": "several",
+    "meaning": "形容詞/代名詞 いくつかの",
+    "pos": "others"
+  },
+  {
+    "word": "whether",
+    "meaning": "接続詞 〜かどうか",
+    "pos": "others"
+  },
+  {
+    "word": "along",
+    "meaning": "前置詞/副詞 〜に沿って",
+    "pos": "others"
+  },
+  {
+    "word": "beside",
+    "meaning": "前置詞 〜のそばに",
+    "pos": "others"
+  },
+  {
+    "word": "down",
+    "meaning": "前置詞/副詞 下へ",
+    "pos": "others"
+  },
+  {
+    "word": "off",
+    "meaning": "前置詞/副詞 離れて/消えて",
+    "pos": "others"
+  },
+  {
+    "word": "over",
+    "meaning": "前置詞/副詞 〜の上に/上へ",
+    "pos": "others"
+  },
+  {
+    "word": "past",
+    "meaning": "前置詞 〜を過ぎて",
+    "pos": "others"
+  },
+  {
+    "word": "since",
+    "meaning": "前置詞/接続詞 〜以来/〜なので",
+    "pos": "others"
+  },
+  {
+    "word": "than",
+    "meaning": "接続詞/前置詞 〜より",
+    "pos": "others"
+  },
+  {
+    "word": "yourself",
+    "meaning": "代名詞 あなた自身",
+    "pos": "others"
+  },
+  {
+    "word": "each",
+    "meaning": "形容詞/代名詞 それぞれの",
+    "pos": "others"
+  },
+  {
+    "word": "beyond",
+    "meaning": "前置詞 〜の向こうに",
+    "pos": "others"
+  },
+  {
+    "word": "near",
+    "meaning": "前置詞 〜の近くに",
+    "pos": "others"
+  },
+  {
+    "word": "onto",
+    "meaning": "前置詞 〜の上へ",
+    "pos": "others"
+  },
+  {
+    "word": "toward",
+    "meaning": "前置詞 〜の方へ",
+    "pos": "others"
+  },
+  {
+    "word": "via",
+    "meaning": "前置詞 〜経由で",
+    "pos": "others"
+  },
+  {
+    "word": "within",
+    "meaning": "前置詞 〜の中に",
+    "pos": "others"
+  },
+  {
+    "word": "anyone",
+    "meaning": "代名詞 だれでも/だれか",
+    "pos": "others"
+  },
+  {
+    "word": "myself",
+    "meaning": "代名詞 私自身",
+    "pos": "others"
+  },
+  {
+    "word": "while",
+    "meaning": "接続詞 〜する間",
+    "pos": "others"
+  },
+  {
+    "word": "some",
+    "meaning": "形容詞/代名詞 いくつかの",
+    "pos": "others"
+  },
+  {
+    "word": "below",
+    "meaning": "前置詞/副詞 〜より下に",
+    "pos": "others"
+  },
+  {
+    "word": "throughout",
+    "meaning": "前置詞 〜の間じゅう",
+    "pos": "others"
+  },
+  {
+    "word": "bitter",
+    "meaning": "苦々しく思っている・恨みが残っている",
+    "pos": "adj"
+  },
+  {
+    "word": "available",
+    "meaning": "利用できる・入手できる",
+    "pos": "adj"
+  },
+  {
+    "word": "available",
+    "meaning": "空いている",
+    "pos": "adj"
+  },
+  {
+    "word": "available",
+    "meaning": "都合がつく",
+    "pos": "adj"
+  },
+  {
+    "word": "careful",
+    "meaning": "注意深い・気をつけている",
+    "pos": "adj"
+  },
+  {
+    "word": "careful",
+    "meaning": "慎重な",
+    "pos": "adj"
+  },
+  {
+    "word": "common",
+    "meaning": "よくある・一般的な",
+    "pos": "adj"
+  },
+  {
+    "word": "common",
+    "meaning": "共通の",
+    "pos": "adj"
+  },
+  {
+    "word": "different",
+    "meaning": "異なる・違う",
+    "pos": "adj"
+  },
+  {
+    "word": "different",
+    "meaning": "別の",
+    "pos": "adj"
+  },
+  {
+    "word": "important",
+    "meaning": "重要な・大切な",
+    "pos": "adj"
+  },
+  {
+    "word": "possible",
+    "meaning": "可能な",
+    "pos": "adj"
+  },
+  {
+    "word": "possible",
+    "meaning": "あり得る・可能性がある",
+    "pos": "adj"
+  },
+  {
+    "word": "ready",
+    "meaning": "できあがった・用意できた",
+    "pos": "adj"
+  },
+  {
+    "word": "serious",
+    "meaning": "真剣な",
+    "pos": "adj"
+  },
+  {
+    "word": "serious",
+    "meaning": "本気の",
+    "pos": "adj"
+  },
+  {
+    "word": "aware",
+    "meaning": "気づいている・認識している",
+    "pos": "adj"
+  },
+  {
+    "word": "comfortable",
+    "meaning": "快適な",
+    "pos": "adj"
+  },
+  {
+    "word": "comfortable",
+    "meaning": "気楽な・抵抗がない",
+    "pos": "adj"
+  },
+  {
+    "word": "confident",
+    "meaning": "自信がある",
+    "pos": "adj"
+  },
+  {
+    "word": "confident",
+    "meaning": "確信している",
+    "pos": "adj"
+  },
+  {
+    "word": "familiar",
+    "meaning": "見覚え・聞き覚えがある",
+    "pos": "adj"
+  },
+  {
+    "word": "familiar",
+    "meaning": "よく知っている・慣れている",
+    "pos": "adj"
+  },
+  {
+    "word": "likely",
+    "meaning": "～しそうな・可能性が高い",
+    "pos": "adj"
+  },
+  {
+    "word": "private",
+    "meaning": "私的な・個人的な",
+    "pos": "adj"
+  },
+  {
+    "word": "private",
+    "meaning": "非公開の",
+    "pos": "adj"
+  },
+  {
+    "word": "public",
+    "meaning": "公共の",
+    "pos": "adj"
+  },
+  {
+    "word": "public",
+    "meaning": "公開された・公になった",
+    "pos": "adj"
+  },
+  {
+    "word": "responsible",
+    "meaning": "責任がある",
+    "pos": "adj"
+  },
+  {
+    "word": "responsible",
+    "meaning": "担当している",
+    "pos": "adj"
+  },
+  {
+    "word": "similar",
+    "meaning": "似ている",
+    "pos": "adj"
+  },
+  {
+    "word": "specific",
+    "meaning": "特定の",
+    "pos": "adj"
+  },
+  {
+    "word": "specific",
+    "meaning": "具体的な・明確な",
+    "pos": "adj"
+  },
+  {
+    "word": "afraid",
+    "meaning": "怖がっている・恐れている",
+    "pos": "adj"
+  },
+  {
+    "word": "afraid",
+    "meaning": "残念ながら・申し訳ないが",
+    "pos": "adj"
+  },
+  {
+    "word": "certain",
+    "meaning": "確信している",
+    "pos": "adj"
+  },
+  {
+    "word": "certain",
+    "meaning": "ある特定の",
+    "pos": "adj"
+  },
+  {
+    "word": "clear",
+    "meaning": "明確な・分かりやすい",
+    "pos": "adj"
+  },
+  {
+    "word": "clear",
+    "meaning": "晴れた・澄んだ",
+    "pos": "adj"
+  },
+  {
+    "word": "convenient",
+    "meaning": "便利な",
+    "pos": "adj"
+  },
+  {
+    "word": "convenient",
+    "meaning": "都合のよい",
+    "pos": "adj"
+  },
+  {
+    "word": "dangerous",
+    "meaning": "危険な",
+    "pos": "adj"
+  },
+  {
+    "word": "expensive",
+    "meaning": "高価な・値段が高い",
+    "pos": "adj"
+  },
+  {
+    "word": "free",
+    "meaning": "無料の",
+    "pos": "adj"
+  },
+  {
+    "word": "free",
+    "meaning": "暇な・予定が空いている",
+    "pos": "adj"
+  },
+  {
+    "word": "safe",
+    "meaning": "無事な",
+    "pos": "adj"
+  },
+  {
+    "word": "cheap",
+    "meaning": "安っぽい・質が低そうな",
+    "pos": "adj"
+  },
+  {
+    "word": "crowded",
+    "meaning": "混雑した",
+    "pos": "adj"
+  },
+  {
+    "word": "healthy",
+    "meaning": "健康な・健康によい",
+    "pos": "adj"
+  },
+  {
+    "word": "local",
+    "meaning": "地元の・その地域の",
+    "pos": "adj"
+  },
+  {
+    "word": "simple",
+    "meaning": "簡単な・単純な",
+    "pos": "adj"
+  },
+  {
+    "word": "strange",
+    "meaning": "変な・奇妙な",
+    "pos": "adj"
+  },
+  {
+    "word": "tired",
+    "meaning": "疲れている",
+    "pos": "adj"
+  },
+  {
+    "word": "messy",
+    "meaning": "散らかった・乱雑な",
+    "pos": "adj"
+  },
+  {
+    "word": "messy",
+    "meaning": "ややこしい・面倒な",
+    "pos": "adj"
+  },
+  {
+    "word": "empty",
+    "meaning": "空の・誰もいない",
+    "pos": "adj"
+  },
+  {
+    "word": "full",
+    "meaning": "いっぱいの・満員の",
+    "pos": "adj"
+  },
+  {
+    "word": "polite",
+    "meaning": "礼儀正しい・丁寧な",
+    "pos": "adj"
+  },
+  {
+    "word": "rude",
+    "meaning": "失礼な",
+    "pos": "adj"
+  },
+  {
+    "word": "honest",
+    "meaning": "正直な",
+    "pos": "adj"
+  },
+  {
+    "word": "unfair",
+    "meaning": "不公平な・不当な",
+    "pos": "adj"
+  },
+  {
+    "word": "awkward",
+    "meaning": "気まずい",
+    "pos": "adj"
+  },
+  {
+    "word": "awkward",
+    "meaning": "扱いにくい・やりにくい",
+    "pos": "adj"
+  },
+  {
+    "word": "embarrassed",
+    "meaning": "恥ずかしい・きまりが悪い",
+    "pos": "adj"
+  },
+  {
+    "word": "nervous",
+    "meaning": "緊張している・不安な",
+    "pos": "adj"
+  },
+  {
+    "word": "proud",
+    "meaning": "誇りに思っている",
+    "pos": "adj"
+  },
+  {
+    "word": "patient",
+    "meaning": "辛抱強い・気長な",
+    "pos": "adj"
+  },
+  {
+    "word": "friendly",
+    "meaning": "親しみやすい・友好的な",
+    "pos": "adj"
+  },
+  {
+    "word": "guilty",
+    "meaning": "罪悪感がある・後ろめたい",
+    "pos": "adj"
+  },
+  {
+    "word": "jealous",
+    "meaning": "嫉妬している・うらやましく思っている",
+    "pos": "adj"
+  },
+  {
+    "word": "relieved",
+    "meaning": "ほっとした",
+    "pos": "adj"
+  },
+  {
+    "word": "disappointed",
+    "meaning": "がっかりした",
+    "pos": "adj"
+  },
+  {
+    "word": "actual",
+    "meaning": "実際の・本当の",
+    "pos": "adj"
+  },
+  {
+    "word": "accurate",
+    "meaning": "正確な",
+    "pos": "adj"
+  },
+  {
+    "word": "basic",
+    "meaning": "基本的な",
+    "pos": "adj"
+  },
+  {
+    "word": "direct",
+    "meaning": "直接の・率直な",
+    "pos": "adj"
+  },
+  {
+    "word": "flexible",
+    "meaning": "柔軟な・融通が利く",
+    "pos": "adj"
+  },
+  {
+    "word": "general",
+    "meaning": "一般的な・全体的な",
+    "pos": "adj"
+  },
+  {
+    "word": "personal",
+    "meaning": "個人的な・私的な",
+    "pos": "adj"
+  },
+  {
+    "word": "recent",
+    "meaning": "最近の",
+    "pos": "adj"
+  },
+  {
+    "word": "typical",
+    "meaning": "典型的な・よくある",
+    "pos": "adj"
+  },
+  {
+    "word": "unusual",
+    "meaning": "普通ではない・珍しい",
+    "pos": "adj"
+  },
+  {
+    "word": "complex",
+    "meaning": "複雑な",
+    "pos": "adj"
+  },
+  {
+    "word": "obvious",
+    "meaning": "明らかな・見れば分かる",
+    "pos": "adj"
+  },
+  {
+    "word": "subtle",
+    "meaning": "微妙な・わずかな",
+    "pos": "adj"
+  },
+  {
+    "word": "vague",
+    "meaning": "曖昧な・はっきりしない",
+    "pos": "adj"
+  },
+  {
+    "word": "vague",
+    "meaning": "ぼんやりした・明確でない",
+    "pos": "adj"
+  },
+  {
+    "word": "relevant",
+    "meaning": "関係のある・関連する",
+    "pos": "adj"
+  },
+  {
+    "word": "practical",
+    "meaning": "実用的な・現実的な",
+    "pos": "adj"
+  },
+  {
+    "word": "effective",
+    "meaning": "効果的な",
+    "pos": "adj"
+  },
+  {
+    "word": "efficient",
+    "meaning": "効率のよい",
+    "pos": "adj"
+  },
+  {
+    "word": "reliable",
+    "meaning": "信頼できる",
+    "pos": "adj"
+  },
+  {
+    "word": "random",
+    "meaning": "無作為の・唐突な",
+    "pos": "adj"
+  },
+  {
+    "word": "synthetic",
+    "meaning": "合成の・人工的に作られた",
+    "pos": "adj"
+  },
+  {
+    "word": "artificial",
+    "meaning": "人工の・人為的な",
+    "pos": "adj"
+  },
+  {
+    "word": "genuine",
+    "meaning": "本物の・心からの",
+    "pos": "adj"
+  },
+  {
+    "word": "durable",
+    "meaning": "丈夫な・耐久性のある",
+    "pos": "adj"
+  },
+  {
+    "word": "fragile",
+    "meaning": "壊れやすい・もろい",
+    "pos": "adj"
+  },
+  {
+    "word": "fragile",
+    "meaning": "不安定な・崩れやすい",
+    "pos": "adj"
+  },
+  {
+    "word": "temporary",
+    "meaning": "一時的な",
+    "pos": "adj"
+  },
+  {
+    "word": "permanent",
+    "meaning": "永続的な・恒久的な",
+    "pos": "adj"
+  },
+  {
+    "word": "physical",
+    "meaning": "身体の・物理的な",
+    "pos": "adj"
+  },
+  {
+    "word": "identical",
+    "meaning": "まったく同じ",
+    "pos": "adj"
+  },
+  {
+    "word": "realistic",
+    "meaning": "現実的な・現実に近い",
+    "pos": "adj"
+  },
+  {
+    "word": "alternative",
+    "meaning": "代わりの・別の",
+    "pos": "adj"
+  },
+  {
+    "word": "appropriate",
+    "meaning": "適切な・ふさわしい",
+    "pos": "adj"
+  },
+  {
+    "word": "capable",
+    "meaning": "能力がある・できる",
+    "pos": "adj"
+  },
+  {
+    "word": "curious",
+    "meaning": "好奇心がある・知りたがっている",
+    "pos": "adj"
+  },
+  {
+    "word": "independent",
+    "meaning": "自立した・独立した",
+    "pos": "adj"
+  },
+  {
+    "word": "negative",
+    "meaning": "否定的な・悪い",
+    "pos": "adj"
+  },
+  {
+    "word": "positive",
+    "meaning": "前向きな・良い",
+    "pos": "adj"
+  },
+  {
+    "word": "potential",
+    "meaning": "潜在的な・起こり得る",
+    "pos": "adj"
+  },
+  {
+    "word": "suitable",
+    "meaning": "適した・ふさわしい",
+    "pos": "adj"
+  },
+  {
+    "word": "willing",
+    "meaning": "～する意思がある",
+    "pos": "adj"
+  },
+  {
+    "word": "keen",
+    "meaning": "熱心な・強く望んでいる",
+    "pos": "adj"
+  },
+  {
+    "word": "eager",
+    "meaning": "～したくてたまらない・待ちきれない",
+    "pos": "adj"
+  },
+  {
+    "word": "eager",
+    "meaning": "意欲的な・熱心な",
+    "pos": "adj"
+  },
+  {
+    "word": "reluctant",
+    "meaning": "気が進まない・しぶっている",
+    "pos": "adj"
+  },
+  {
+    "word": "sensitive",
+    "meaning": "敏感な・影響を受けやすい",
+    "pos": "adj"
+  },
+  {
+    "word": "sensitive",
+    "meaning": "繊細な・人の気持ちに敏感な",
+    "pos": "adj"
+  },
+  {
+    "word": "reasonable",
+    "meaning": "妥当な・無理のない",
+    "pos": "adj"
+  },
+  {
+    "word": "fair",
+    "meaning": "公平な・妥当な",
+    "pos": "adj"
+  },
+  {
+    "word": "rare",
+    "meaning": "珍しい・めったにない",
+    "pos": "adj"
+  },
+  {
+    "word": "ordinary",
+    "meaning": "普通の・特別ではない",
+    "pos": "adj"
+  },
+  {
+    "word": "unique",
+    "meaning": "独特の・唯一の",
+    "pos": "adj"
+  },
+  {
+    "word": "essential",
+    "meaning": "必要不可欠な",
+    "pos": "adj"
+  },
+  {
+    "word": "radical",
+    "meaning": "抜本的な・急進的な",
+    "pos": "adj"
+  },
+  {
+    "word": "crucial",
+    "meaning": "極めて重要な・決定的な",
+    "pos": "adj"
+  },
+  {
+    "word": "minor",
+    "meaning": "小さな・重要でない",
+    "pos": "adj"
+  },
+  {
+    "word": "major",
+    "meaning": "主要な・重大な",
+    "pos": "adj"
+  },
+  {
+    "word": "precise",
+    "meaning": "正確な・厳密な",
+    "pos": "adj"
+  },
+  {
+    "word": "rough",
+    "meaning": "大まかな・ざっくりした",
+    "pos": "adj"
+  },
+  {
+    "word": "severe",
+    "meaning": "深刻な・激しい",
+    "pos": "adj"
+  },
+  {
+    "word": "stable",
+    "meaning": "安定した",
+    "pos": "adj"
+  },
+  {
+    "word": "unstable",
+    "meaning": "不安定な",
+    "pos": "adj"
+  },
+  {
+    "word": "sufficient",
+    "meaning": "十分な",
+    "pos": "adj"
+  },
+  {
+    "word": "affordable",
+    "meaning": "手頃な・無理なく買える",
+    "pos": "adj"
+  },
+  {
+    "word": "formal",
+    "meaning": "正式な・かしこまった",
+    "pos": "adj"
+  },
+  {
+    "word": "casual",
+    "meaning": "気軽な・かしこまっていない",
+    "pos": "adj"
+  },
+  {
+    "word": "confused",
+    "meaning": "混乱している・よく分からなくなっている",
+    "pos": "adj"
+  },
+  {
+    "word": "annoyed",
+    "meaning": "いら立っている・うんざりしている",
+    "pos": "adj"
+  },
+  {
+    "word": "upset",
+    "meaning": "動揺した・つらい気持ちの",
+    "pos": "adj"
+  },
+  {
+    "word": "grateful",
+    "meaning": "感謝している",
+    "pos": "adj"
+  },
+  {
+    "word": "strict",
+    "meaning": "厳しい・厳格な",
+    "pos": "adj"
+  },
+  {
+    "word": "generous",
+    "meaning": "気前のよい・寛大な",
+    "pos": "adj"
+  },
+  {
+    "word": "selfish",
+    "meaning": "自分勝手な・利己的な",
+    "pos": "adj"
+  },
+  {
+    "word": "low",
+    "meaning": "低い",
+    "pos": "adj"
+  },
+  {
+    "word": "low",
+    "meaning": "少ない・下がっている",
+    "pos": "adj"
+  },
+  {
+    "word": "low",
+    "meaning": "気分が沈んだ",
+    "pos": "adj"
+  },
+  {
+    "word": "high",
+    "meaning": "高い",
+    "pos": "adj"
+  },
+  {
+    "word": "high",
+    "meaning": "程度・数値が高い",
+    "pos": "adj"
+  },
+  {
+    "word": "thin",
+    "meaning": "薄い・細い",
+    "pos": "adj"
+  },
+  {
+    "word": "thin",
+    "meaning": "薄い・まばらな",
+    "pos": "adj"
+  },
+  {
+    "word": "thick",
+    "meaning": "厚い・太い",
+    "pos": "adj"
+  },
+  {
+    "word": "thick",
+    "meaning": "濃い・密な",
+    "pos": "adj"
+  },
+  {
+    "word": "light",
+    "meaning": "薄い・淡い",
+    "pos": "adj"
+  },
+  {
+    "word": "hard",
+    "meaning": "硬い",
+    "pos": "adj"
+  },
+  {
+    "word": "hard",
+    "meaning": "難しい",
+    "pos": "adj"
+  },
+  {
+    "word": "soft",
+    "meaning": "穏やかな・小さな",
+    "pos": "adj"
+  },
+  {
+    "word": "sharp",
+    "meaning": "鋭い・よく切れる",
+    "pos": "adj"
+  },
+  {
+    "word": "sharp",
+    "meaning": "急激な",
+    "pos": "adj"
+  },
+  {
+    "word": "close",
+    "meaning": "近い",
+    "pos": "adj"
+  },
+  {
+    "word": "close",
+    "meaning": "親しい",
+    "pos": "adj"
+  },
+  {
+    "word": "fine",
+    "meaning": "大丈夫な・問題ない",
+    "pos": "adj"
+  },
+  {
+    "word": "fine",
+    "meaning": "細かい・きめの細かい",
+    "pos": "adj"
+  },
+  {
+    "word": "real",
+    "meaning": "本物の",
+    "pos": "adj"
+  },
+  {
+    "word": "real",
+    "meaning": "現実の・実在する",
+    "pos": "adj"
+  },
+  {
+    "word": "right",
+    "meaning": "正しい・合っている",
+    "pos": "adj"
+  },
+  {
+    "word": "right",
+    "meaning": "右の",
+    "pos": "adj"
+  },
+  {
+    "word": "wrong",
+    "meaning": "間違っている",
+    "pos": "adj"
+  },
+  {
+    "word": "wrong",
+    "meaning": "調子がおかしい・問題がある",
+    "pos": "adj"
+  },
+  {
+    "word": "deep",
+    "meaning": "深い",
+    "pos": "adj"
+  },
+  {
+    "word": "deep",
+    "meaning": "深い・ぐっすりした",
+    "pos": "adj"
+  },
+  {
+    "word": "flat",
+    "meaning": "平らな",
+    "pos": "adj"
+  },
+  {
+    "word": "flat",
+    "meaning": "空気が抜けた・パンクした",
+    "pos": "adj"
+  },
+  {
+    "word": "heavy",
+    "meaning": "激しい・大量の",
+    "pos": "adj"
+  },
+  {
+    "word": "fresh",
+    "meaning": "新鮮な・こもっていない",
+    "pos": "adj"
+  },
+  {
+    "word": "dry",
+    "meaning": "乾いた・乾燥した",
+    "pos": "adj"
+  },
+  {
+    "word": "dry",
+    "meaning": "辛口の",
+    "pos": "adj"
+  },
+  {
+    "word": "open",
+    "meaning": "開いている",
+    "pos": "adj"
+  },
+  {
+    "word": "open",
+    "meaning": "受け入れる姿勢がある",
+    "pos": "adj"
+  },
+  {
+    "word": "short",
+    "meaning": "短い",
+    "pos": "adj"
+  },
+  {
+    "word": "short",
+    "meaning": "足りない・不足している",
+    "pos": "adj"
+  },
+  {
+    "word": "true",
+    "meaning": "本当の・事実である",
+    "pos": "adj"
+  },
+  {
+    "word": "true",
+    "meaning": "確かにそうだ",
+    "pos": "adj"
+  },
+  {
+    "word": "same",
+    "meaning": "同じ気持ち・同じ考え",
+    "pos": "adj"
+  },
+  {
+    "word": "sure",
+    "meaning": "確信している",
+    "pos": "adj"
+  },
+  {
+    "word": "sure",
+    "meaning": "もちろん・いいよ",
+    "pos": "adj"
+  },
+  {
+    "word": "good",
+    "meaning": "良い",
+    "pos": "adj"
+  },
+  {
+    "word": "good",
+    "meaning": "大丈夫な・もう十分な",
+    "pos": "adj"
+  },
+  {
+    "word": "bad",
+    "meaning": "悪い・ひどい",
+    "pos": "adj"
+  },
+  {
+    "word": "bad",
+    "meaning": "申し訳なく思っている",
+    "pos": "adj"
+  },
+  {
+    "word": "cool",
+    "meaning": "それで構わない・いいと思う",
+    "pos": "adj"
+  },
+  {
+    "word": "single",
+    "meaning": "一つだけの・一人の",
+    "pos": "adj"
+  },
+  {
+    "word": "single",
+    "meaning": "一つ残らず・毎回",
+    "pos": "adj"
+  },
+  {
+    "word": "proper",
+    "meaning": "適切な・正式な",
+    "pos": "adj"
+  },
+  {
+    "word": "proper",
+    "meaning": "ちゃんとした・まともな",
+    "pos": "adj"
+  },
+  {
+    "word": "off",
+    "meaning": "普段と違う・何か変な",
+    "pos": "adj"
+  },
+  {
+    "word": "off",
+    "meaning": "傷んでいる・状態がおかしい",
+    "pos": "adj"
+  },
+  {
+    "word": "equal",
+    "meaning": "等しい・同じ量の",
+    "pos": "adj"
+  },
+  {
+    "word": "equal",
+    "meaning": "平等な",
+    "pos": "adj"
+  },
+  {
+    "word": "foreign",
+    "meaning": "外国の",
+    "pos": "adj"
+  },
+  {
+    "word": "foreign",
+    "meaning": "なじみのない・未知の",
+    "pos": "adj"
+  },
+  {
+    "word": "strong",
+    "meaning": "濃い・強烈な",
+    "pos": "adj"
+  },
+  {
+    "word": "weak",
+    "meaning": "弱い",
+    "pos": "adj"
+  },
+  {
+    "word": "weak",
+    "meaning": "弱い・不十分な",
+    "pos": "adj"
+  },
+  {
+    "word": "rich",
+    "meaning": "濃厚な・豊かな",
+    "pos": "adj"
+  },
+  {
+    "word": "poor",
+    "meaning": "質が悪い・不十分な",
+    "pos": "adj"
+  },
+  {
+    "word": "poor",
+    "meaning": "かわいそうな・気の毒な",
+    "pos": "adj"
+  },
+  {
+    "word": "regular",
+    "meaning": "普段の・通常の",
+    "pos": "adj"
+  },
+  {
+    "word": "regular",
+    "meaning": "常連の",
+    "pos": "adj"
+  },
+  {
+    "word": "natural",
+    "meaning": "自然の・天然の",
+    "pos": "adj"
+  },
+  {
+    "word": "natural",
+    "meaning": "自然な・不自然でない",
+    "pos": "adj"
+  },
+  {
+    "word": "wild",
+    "meaning": "野生の",
+    "pos": "adj"
+  },
+  {
+    "word": "wild",
+    "meaning": "当てずっぽうの・大胆な",
+    "pos": "adj"
+  },
+  {
+    "word": "plain",
+    "meaning": "飾り気のない・シンプルな",
+    "pos": "adj"
+  },
+  {
+    "word": "plain",
+    "meaning": "味のついていない・プレーンな",
+    "pos": "adj"
+  },
+  {
+    "word": "bright",
+    "meaning": "頭のよい・理解が速い",
+    "pos": "adj"
+  },
+  {
+    "word": "bright",
+    "meaning": "明るい・有望な",
+    "pos": "adj"
+  },
+  {
+    "word": "smart",
+    "meaning": "頭のよい・賢い",
+    "pos": "adj"
+  },
+  {
+    "word": "smart",
+    "meaning": "賢い・気の利いた",
+    "pos": "adj"
+  },
+  {
+    "word": "dark",
+    "meaning": "重い・陰鬱な",
+    "pos": "adj"
+  },
+  {
+    "word": "warm",
+    "meaning": "温かみのある・親しみのある",
+    "pos": "adj"
+  },
+  {
+    "word": "cold",
+    "meaning": "冷たい・寒い",
+    "pos": "adj"
+  },
+  {
+    "word": "cold",
+    "meaning": "よそよそしい・冷淡な",
+    "pos": "adj"
+  },
+  {
+    "word": "hot",
+    "meaning": "熱い・暑い",
+    "pos": "adj"
+  },
+  {
+    "word": "hot",
+    "meaning": "辛い",
+    "pos": "adj"
+  },
+  {
+    "word": "hot",
+    "meaning": "話題の・人気の",
+    "pos": "adj"
+  },
+  {
+    "word": "sweet",
+    "meaning": "優しい・思いやりのある",
+    "pos": "adj"
+  },
+  {
+    "word": "mean",
+    "meaning": "意地悪な",
+    "pos": "adj"
+  },
+  {
+    "word": "mean",
+    "meaning": "ひどい・冷たく当たる",
+    "pos": "adj"
+  },
+  {
+    "word": "nice",
+    "meaning": "良い・感じのよい",
+    "pos": "adj"
+  },
+  {
+    "word": "nice",
+    "meaning": "親切な",
+    "pos": "adj"
+  },
+  {
+    "word": "solid",
+    "meaning": "固い・中身が詰まった",
+    "pos": "adj"
+  },
+  {
+    "word": "solid",
+    "meaning": "しっかりした・堅実な",
+    "pos": "adj"
+  },
+  {
+    "word": "exact",
+    "meaning": "正確な・ぴったり一致する",
+    "pos": "adj"
+  },
+  {
+    "word": "exact",
+    "meaning": "まさにその・まったく同じ",
+    "pos": "adj"
+  },
+  {
+    "word": "thrilling",
+    "meaning": "わくわくする・胸が高鳴る",
+    "pos": "adj"
+  },
+  {
+    "word": "thrilling",
+    "meaning": "手に汗握る・興奮させる",
+    "pos": "adj"
+  },
+  {
+    "word": "tight",
+    "meaning": "きつい・ぴったりしている",
+    "pos": "adj"
+  },
+  {
+    "word": "tight",
+    "meaning": "余裕のない",
+    "pos": "adj"
+  },
+  {
+    "word": "loose",
+    "meaning": "ゆるい・しっかり固定されていない",
+    "pos": "adj"
+  },
+  {
+    "word": "loose",
+    "meaning": "大まかな・厳密でない",
+    "pos": "adj"
+  },
+  {
+    "word": "smooth",
+    "meaning": "なめらかな",
+    "pos": "adj"
+  },
+  {
+    "word": "smooth",
+    "meaning": "順調な・問題のない",
+    "pos": "adj"
+  },
+  {
+    "word": "raw",
+    "meaning": "生の・加熱していない",
+    "pos": "adj"
+  },
+  {
+    "word": "raw",
+    "meaning": "加工されていない・そのままの",
+    "pos": "adj"
+  },
+  {
+    "word": "odd",
+    "meaning": "奇数の",
+    "pos": "adj"
+  },
+  {
+    "word": "odd",
+    "meaning": "変な・妙な",
+    "pos": "adj"
+  },
+  {
+    "word": "even",
+    "meaning": "偶数の",
+    "pos": "adj"
+  },
+  {
+    "word": "even",
+    "meaning": "平らな・均一な",
+    "pos": "adj"
+  },
+  {
+    "word": "live",
+    "meaning": "生放送の",
+    "pos": "adj"
+  },
+  {
+    "word": "live",
+    "meaning": "生演奏の・ライブの",
+    "pos": "adj"
+  },
+  {
+    "word": "mild",
+    "meaning": "穏やかな・軽度の",
+    "pos": "adj"
+  },
+  {
+    "word": "mild",
+    "meaning": "辛さや味が穏やかな",
+    "pos": "adj"
+  },
+  {
+    "word": "false",
+    "meaning": "誤った・事実でない",
+    "pos": "adj"
+  },
+  {
+    "word": "false",
+    "meaning": "偽の・本当ではない",
+    "pos": "adj"
+  },
+  {
+    "word": "following",
+    "meaning": "次の・以下の",
+    "pos": "adj"
+  },
+  {
+    "word": "following",
+    "meaning": "その次の・その後の",
+    "pos": "adj"
+  },
+  {
+    "word": "lazy",
+    "meaning": "怠けた・怠惰な",
+    "pos": "adj"
+  },
+  {
+    "word": "lazy",
+    "meaning": "のんびりした・ゆったりした",
+    "pos": "adj"
+  },
+  {
+    "word": "dead",
+    "meaning": "死んでいる",
+    "pos": "adj"
+  },
+  {
+    "word": "dead",
+    "meaning": "動かない・電池が切れている",
+    "pos": "adj"
+  },
+  {
+    "word": "present",
+    "meaning": "現在の・今の",
+    "pos": "adj"
+  },
+  {
+    "word": "present",
+    "meaning": "その場にいる・出席している",
+    "pos": "adj"
+  },
+  {
+    "word": "missing",
+    "meaning": "見つからない・なくなった",
+    "pos": "adj"
+  },
+  {
+    "word": "missing",
+    "meaning": "欠けている・足りない",
+    "pos": "adj"
+  },
+  {
+    "word": "due",
+    "meaning": "期限である",
+    "pos": "adj"
+  },
+  {
+    "word": "due",
+    "meaning": "到着・発生する予定である",
+    "pos": "adj"
+  },
+  {
+    "word": "last",
+    "meaning": "最後の",
+    "pos": "adj"
+  },
+  {
+    "word": "last",
+    "meaning": "前回の・この前の",
+    "pos": "adj"
+  },
+  {
+    "word": "spare",
+    "meaning": "予備の",
+    "pos": "adj"
+  },
+  {
+    "word": "spare",
+    "meaning": "空いている・余った",
+    "pos": "adj"
+  },
+  {
+    "word": "alive",
+    "meaning": "生きている",
+    "pos": "adj"
+  },
+  {
+    "word": "alive",
+    "meaning": "活気のある・生き生きした",
+    "pos": "adj"
+  },
+  {
+    "word": "funny",
+    "meaning": "おかしい・面白い",
+    "pos": "adj"
+  },
+  {
+    "word": "funny",
+    "meaning": "変な・妙な",
+    "pos": "adj"
+  },
+  {
+    "word": "tough",
+    "meaning": "丈夫な・簡単には壊れない",
+    "pos": "adj"
+  },
+  {
+    "word": "tough",
+    "meaning": "大変な・厳しい",
+    "pos": "adj"
+  },
+  {
+    "word": "sorry",
+    "meaning": "申し訳なく思って",
+    "pos": "adj"
+  },
+  {
+    "word": "sorry",
+    "meaning": "気の毒に思って・残念に思って",
+    "pos": "adj"
+  },
+  {
+    "word": "mad",
+    "meaning": "怒っている",
+    "pos": "adj"
+  },
+  {
+    "word": "mad",
+    "meaning": "正気とは思えない・ばかげた",
+    "pos": "adj"
+  },
+  {
+    "word": "firm",
+    "meaning": "固い・しっかりした",
+    "pos": "adj"
+  },
+  {
+    "word": "firm",
+    "meaning": "毅然とした・きっぱりした",
+    "pos": "adj"
+  },
+  {
+    "word": "straight",
+    "meaning": "率直な・遠回しでない",
+    "pos": "adj"
+  },
+  {
+    "word": "blank",
+    "meaning": "何も書かれていない・空白の",
+    "pos": "adj"
+  },
+  {
+    "word": "blank",
+    "meaning": "頭が真っ白な・何も思い浮かばない",
+    "pos": "adj"
+  },
+  {
+    "word": "complete",
+    "meaning": "完全な・すべてそろった",
+    "pos": "adj"
+  },
+  {
+    "word": "complete",
+    "meaning": "まったくの・完全な",
+    "pos": "adj"
+  },
+  {
+    "word": "professional",
+    "meaning": "仕事上の・職業上の",
+    "pos": "adj"
+  },
+  {
+    "word": "professional",
+    "meaning": "プロらしい・手際のよい",
+    "pos": "adj"
+  },
+  {
+    "word": "social",
+    "meaning": "社会の・社会的な",
+    "pos": "adj"
+  },
+  {
+    "word": "social",
+    "meaning": "社交的な・人付き合いの多い",
+    "pos": "adj"
+  },
+  {
+    "word": "lonely",
+    "meaning": "寂しい・孤独な",
+    "pos": "adj"
+  },
+  {
+    "word": "lonely",
+    "meaning": "人けのない・寂しい",
+    "pos": "adj"
+  },
+  {
+    "word": "lovely",
+    "meaning": "素敵な・美しい",
+    "pos": "adj"
+  },
+  {
+    "word": "lovely",
+    "meaning": "楽しい・心地よい",
+    "pos": "adj"
+  },
+  {
+    "word": "international",
+    "meaning": "国際的な",
+    "pos": "adj"
+  },
+  {
+    "word": "international",
+    "meaning": "複数の国に関わる",
+    "pos": "adj"
+  },
+  {
+    "word": "global",
+    "meaning": "世界的な・世界規模の",
+    "pos": "adj"
+  },
+  {
+    "word": "global",
+    "meaning": "世界全体に展開する",
+    "pos": "adj"
+  },
+  {
+    "word": "native",
+    "meaning": "母語の・生まれ育った土地の",
+    "pos": "adj"
+  },
+  {
+    "word": "native",
+    "meaning": "その土地にもともとある・自生の",
+    "pos": "adj"
+  },
+  {
+    "word": "remote",
+    "meaning": "遠く離れた・人里離れた",
+    "pos": "adj"
+  },
+  {
+    "word": "remote",
+    "meaning": "遠隔の・リモートの",
+    "pos": "adj"
+  },
+  {
+    "word": "central",
+    "meaning": "中央の・中心部の",
+    "pos": "adj"
+  },
+  {
+    "word": "central",
+    "meaning": "中心的な・重要な",
+    "pos": "adj"
+  },
+  {
+    "word": "shared",
+    "meaning": "共有の",
+    "pos": "adj"
+  },
+  {
+    "word": "shared",
+    "meaning": "共通の",
+    "pos": "adj"
+  },
+  {
+    "word": "urban",
+    "meaning": "都市の・都市部の",
+    "pos": "adj"
+  },
+  {
+    "word": "urban",
+    "meaning": "都会的な・都市らしい",
+    "pos": "adj"
+  },
+  {
+    "word": "rural",
+    "meaning": "田舎の・農村の",
+    "pos": "adj"
+  },
+  {
+    "word": "rural",
+    "meaning": "都市部ではない・地方の",
+    "pos": "adj"
+  },
+  {
+    "word": "neat",
+    "meaning": "きちんとした・整った",
+    "pos": "adj"
+  },
+  {
+    "word": "neat",
+    "meaning": "うまい・気の利いた",
+    "pos": "adj"
+  },
+  {
+    "word": "sudden",
+    "meaning": "突然の",
+    "pos": "adj"
+  },
+  {
+    "word": "sudden",
+    "meaning": "急激な",
+    "pos": "adj"
+  },
+  {
+    "word": "normal",
+    "meaning": "普通の・通常の",
+    "pos": "adj"
+  },
+  {
+    "word": "normal",
+    "meaning": "正常な・異常のない",
+    "pos": "adj"
+  },
+  {
+    "word": "steady",
+    "meaning": "安定した・一定の",
+    "pos": "adj"
+  },
+  {
+    "word": "steady",
+    "meaning": "着実な",
+    "pos": "adj"
+  },
+  {
+    "word": "gentle",
+    "meaning": "優しい・穏やかな",
+    "pos": "adj"
+  },
+  {
+    "word": "gentle",
+    "meaning": "緩やかな・強くない",
+    "pos": "adj"
+  },
+  {
+    "word": "narrow",
+    "meaning": "狭い・幅の細い",
+    "pos": "adj"
+  },
+  {
+    "word": "narrow",
+    "meaning": "限られた・わずかな",
+    "pos": "adj"
+  },
+  {
+    "word": "broad",
+    "meaning": "広い・幅広い",
+    "pos": "adj"
+  },
+  {
+    "word": "broad",
+    "meaning": "大まかな・全体的な",
+    "pos": "adj"
+  },
+  {
+    "word": "brief",
+    "meaning": "短時間の",
+    "pos": "adj"
+  },
+  {
+    "word": "brief",
+    "meaning": "簡潔な・手短な",
+    "pos": "adj"
+  },
+  {
+    "word": "average",
+    "meaning": "平均の",
+    "pos": "adj"
+  },
+  {
+    "word": "average",
+    "meaning": "平凡な・特に目立たない",
+    "pos": "adj"
+  },
+  {
+    "word": "fit",
+    "meaning": "健康で体力のある",
+    "pos": "adj"
+  },
+  {
+    "word": "fit",
+    "meaning": "適した・ふさわしい",
+    "pos": "adj"
+  },
+  {
+    "word": "rapid",
+    "meaning": "急速な・速い",
+    "pos": "adj"
+  },
+  {
+    "word": "rapid",
+    "meaning": "急激な",
+    "pos": "adj"
+  },
+  {
+    "word": "super",
+    "meaning": "すばらしい・最高の",
+    "pos": "adj"
+  },
+  {
+    "word": "quick",
+    "meaning": "素早い・理解などが速い",
+    "pos": "adj"
+  },
+  {
+    "word": "quick",
+    "meaning": "短時間で済む",
+    "pos": "adj"
+  },
+  {
+    "word": "calm",
+    "meaning": "穏やかな・静かな",
+    "pos": "adj"
+  },
+  {
+    "word": "calm",
+    "meaning": "冷静な・落ち着いた",
+    "pos": "adj"
+  },
+  {
+    "word": "silent",
+    "meaning": "音のしない・静まり返った",
+    "pos": "adj"
+  },
+  {
+    "word": "silent",
+    "meaning": "無言の・言葉を発しない",
+    "pos": "adj"
+  },
+  {
+    "word": "extra",
+    "meaning": "追加の・予備の",
+    "pos": "adj"
+  },
+  {
+    "word": "extra",
+    "meaning": "追加で必要な・別料金の",
+    "pos": "adj"
+  },
+  {
+    "word": "instant",
+    "meaning": "即座の・すぐに起こる",
+    "pos": "adj"
+  },
+  {
+    "word": "instant",
+    "meaning": "すぐ作れる・インスタントの",
+    "pos": "adj"
+  },
+  {
+    "word": "original",
+    "meaning": "元の・最初の",
+    "pos": "adj"
+  },
+  {
+    "word": "original",
+    "meaning": "独創的な・新しい発想の",
+    "pos": "adj"
+  },
+  {
+    "word": "official",
+    "meaning": "公式の",
+    "pos": "adj"
+  },
+  {
+    "word": "official",
+    "meaning": "正式な・公的な",
+    "pos": "adj"
+  },
+  {
+    "word": "final",
+    "meaning": "最後の・最終の",
+    "pos": "adj"
+  },
+  {
+    "word": "final",
+    "meaning": "最終決定の・これ以上変わらない",
+    "pos": "adj"
+  },
+  {
+    "word": "whole",
+    "meaning": "全体の・全部の",
+    "pos": "adj"
+  },
+  {
+    "word": "whole",
+    "meaning": "ずっと",
+    "pos": "adj"
+  },
+  {
+    "word": "worried",
+    "meaning": "心配している・不安な",
+    "pos": "adj"
+  },
+  {
+    "word": "worried",
+    "meaning": "心配そうな",
+    "pos": "adj"
+  },
+  {
+    "word": "alone",
+    "meaning": "一人で・ほかに誰もいない",
+    "pos": "adj"
+  },
+  {
+    "word": "awake",
+    "meaning": "目が覚めている・起きている",
+    "pos": "adj"
+  },
+  {
+    "word": "awake",
+    "meaning": "すっかり目が覚めた",
+    "pos": "adj"
+  },
+  {
+    "word": "asleep",
+    "meaning": "眠っている",
+    "pos": "adj"
+  },
+  {
+    "word": "asleep",
+    "meaning": "しびれて感覚がない",
+    "pos": "adj"
+  },
+  {
+    "word": "early",
+    "meaning": "早い時刻の",
+    "pos": "adj"
+  },
+  {
+    "word": "early",
+    "meaning": "初期の・初めのころの",
+    "pos": "adj"
+  },
+  {
+    "word": "late",
+    "meaning": "遅れた・遅刻した",
+    "pos": "adj"
+  },
+  {
+    "word": "late",
+    "meaning": "遅い時間の",
+    "pos": "adj"
+  },
+  {
+    "word": "perfect",
+    "meaning": "完璧な・申し分のない",
+    "pos": "adj"
+  },
+  {
+    "word": "perfect",
+    "meaning": "ぴったりの・ちょうどよい",
+    "pos": "adj"
+  },
+  {
+    "word": "terrible",
+    "meaning": "ひどい・とても悪い",
+    "pos": "adj"
+  },
+  {
+    "word": "terrible",
+    "meaning": "とても苦手な",
+    "pos": "adj"
+  },
+  {
+    "word": "wide",
+    "meaning": "幅広い・多様な",
+    "pos": "adj"
+  },
+  {
+    "word": "compact",
+    "meaning": "小さくまとまった・省スペースの",
+    "pos": "adj"
+  },
+  {
+    "word": "compact",
+    "meaning": "無駄なくまとまった・簡潔な",
+    "pos": "adj"
+  },
+  {
+    "word": "further",
+    "meaning": "さらに多くの・追加の",
+    "pos": "adj"
+  },
+  {
+    "word": "further",
+    "meaning": "これ以上の・さらなる",
+    "pos": "adj"
+  },
+  {
+    "word": "steep",
+    "meaning": "急な・傾斜のきつい",
+    "pos": "adj"
+  },
+  {
+    "word": "steep",
+    "meaning": "とても高い",
+    "pos": "adj"
+  },
+  {
+    "word": "faint",
+    "meaning": "かすかな・弱い",
+    "pos": "adj"
+  },
+  {
+    "word": "faint",
+    "meaning": "気が遠くなりそうな",
+    "pos": "adj"
+  },
+  {
+    "word": "slight",
+    "meaning": "わずかな・少しの",
+    "pos": "adj"
+  },
+  {
+    "word": "slight",
+    "meaning": "軽い・程度の小さい",
+    "pos": "adj"
+  },
+  {
+    "word": "dense",
+    "meaning": "密集した・濃い",
+    "pos": "adj"
+  },
+  {
+    "word": "dense",
+    "meaning": "内容が詰まった・理解しづらい",
+    "pos": "adj"
+  },
+  {
+    "word": "shallow",
+    "meaning": "浅い",
+    "pos": "adj"
+  },
+  {
+    "word": "shallow",
+    "meaning": "表面的な・深みのない",
+    "pos": "adj"
+  },
+  {
+    "word": "current",
+    "meaning": "現在の・今の",
+    "pos": "adj"
+  },
+  {
+    "word": "current",
+    "meaning": "現在使われている・現行の",
+    "pos": "adj"
+  },
+  {
+    "word": "entire",
+    "meaning": "全体の・全部の",
+    "pos": "adj"
+  },
+  {
+    "word": "entire",
+    "meaning": "まるごとの・全体にわたる",
+    "pos": "adj"
+  },
+  {
+    "word": "separate",
+    "meaning": "別々の・分かれた",
+    "pos": "adj"
+  },
+  {
+    "word": "separate",
+    "meaning": "別の・別個の",
+    "pos": "adj"
+  },
+  {
+    "word": "vast",
+    "meaning": "広大な・非常に広い",
+    "pos": "adj"
+  },
+  {
+    "word": "vast",
+    "meaning": "莫大な・非常に多い",
+    "pos": "adj"
+  },
+  {
+    "word": "commercial",
+    "meaning": "商業の・ビジネスの",
+    "pos": "adj"
+  },
+  {
+    "word": "commercial",
+    "meaning": "商業的な・利益につながる",
+    "pos": "adj"
+  },
+  {
+    "word": "dull",
+    "meaning": "退屈な・面白みのない",
+    "pos": "adj"
+  },
+  {
+    "word": "dull",
+    "meaning": "鈍い・はっきりしない",
+    "pos": "adj"
+  },
+  {
+    "word": "domestic",
+    "meaning": "国内の",
+    "pos": "adj"
+  },
+  {
+    "word": "domestic",
+    "meaning": "家庭の・家の中の",
+    "pos": "adj"
+  },
+  {
+    "word": "critical",
+    "meaning": "非常に重要な・重大な",
+    "pos": "adj"
+  },
+  {
+    "word": "critical",
+    "meaning": "批判的な",
+    "pos": "adj"
+  },
+  {
+    "word": "legal",
+    "meaning": "法律上の・法的な",
+    "pos": "adj"
+  },
+  {
+    "word": "legal",
+    "meaning": "合法の",
+    "pos": "adj"
+  },
+  {
+    "word": "mobile",
+    "meaning": "移動できる・持ち運べる",
+    "pos": "adj"
+  },
+  {
+    "word": "mobile",
+    "meaning": "携帯端末向けの・モバイルの",
+    "pos": "adj"
+  },
+  {
+    "word": "visible",
+    "meaning": "見える",
+    "pos": "adj"
+  },
+  {
+    "word": "visible",
+    "meaning": "目立つ・表面に現れている",
+    "pos": "adj"
+  },
+  {
+    "word": "annual",
+    "meaning": "毎年の・年1回の",
+    "pos": "adj"
+  },
+  {
+    "word": "annual",
+    "meaning": "1年間の・年間の",
+    "pos": "adj"
+  },
+  {
+    "word": "digital",
+    "meaning": "デジタルの・電子的な",
+    "pos": "adj"
+  },
+  {
+    "word": "digital",
+    "meaning": "電子形式の",
+    "pos": "adj"
+  },
+  {
+    "word": "informal",
+    "meaning": "形式ばらない・気軽な",
+    "pos": "adj"
+  },
+  {
+    "word": "informal",
+    "meaning": "非公式の",
+    "pos": "adj"
+  },
+  {
+    "word": "standard",
+    "meaning": "標準の・一般的な",
+    "pos": "adj"
+  },
+  {
+    "word": "standard",
+    "meaning": "基準となる・通常の",
+    "pos": "adj"
+  },
+  {
+    "word": "technical",
+    "meaning": "技術上の・専門的な",
+    "pos": "adj"
+  },
+  {
+    "word": "technical",
+    "meaning": "専門知識を必要とする",
+    "pos": "adj"
+  },
+  {
+    "word": "academic",
+    "meaning": "学問の・学校教育の",
+    "pos": "adj"
+  },
+  {
+    "word": "academic",
+    "meaning": "理論的な・実用から離れた",
+    "pos": "adj"
+  },
+  {
+    "word": "internal",
+    "meaning": "内部の・内側の",
+    "pos": "adj"
+  },
+  {
+    "word": "internal",
+    "meaning": "組織内の・内部向けの",
+    "pos": "adj"
+  },
+  {
+    "word": "external",
+    "meaning": "外部の・外側の",
+    "pos": "adj"
+  },
+  {
+    "word": "external",
+    "meaning": "組織外からの・外部による",
+    "pos": "adj"
+  },
+  {
+    "word": "verbal",
+    "meaning": "言葉による・口頭の",
+    "pos": "adj"
+  },
+  {
+    "word": "verbal",
+    "meaning": "口頭で交わされた",
+    "pos": "adj"
+  },
+  {
+    "word": "written",
+    "meaning": "書かれた・文章の",
+    "pos": "adj"
+  },
+  {
+    "word": "written",
+    "meaning": "書面による",
+    "pos": "adj"
+  },
+  {
+    "word": "spoken",
+    "meaning": "話し言葉の",
+    "pos": "adj"
+  },
+  {
+    "word": "spoken",
+    "meaning": "口頭で使われる",
+    "pos": "adj"
+  },
+  {
+    "word": "financial",
+    "meaning": "お金・財務に関する",
+    "pos": "adj"
+  },
+  {
+    "word": "financial",
+    "meaning": "金銭的な・経済面での",
+    "pos": "adj"
+  },
+  {
+    "word": "fond",
+    "meaning": "好きで・好意を持って",
+    "pos": "adj"
+  },
+  {
+    "word": "fond",
+    "meaning": "懐かしく・愛情を込めた",
+    "pos": "adj"
+  },
+  {
+    "word": "ideal",
+    "meaning": "理想的な",
+    "pos": "adj"
+  },
+  {
+    "word": "ideal",
+    "meaning": "最適な・条件にぴったりの",
+    "pos": "adj"
+  },
+  {
+    "word": "principal",
+    "meaning": "主な・主要な",
+    "pos": "adj"
+  },
+  {
+    "word": "principal",
+    "meaning": "最も重要な",
+    "pos": "adj"
+  },
+  {
+    "word": "initial",
+    "meaning": "最初の・初期の",
+    "pos": "adj"
+  },
+  {
+    "word": "initial",
+    "meaning": "初めの段階の",
+    "pos": "adj"
+  },
+  {
+    "word": "mutual",
+    "meaning": "お互いの・相互の",
+    "pos": "adj"
+  },
+  {
+    "word": "mutual",
+    "meaning": "双方に共通する",
+    "pos": "adj"
+  },
+  {
+    "word": "valid",
+    "meaning": "有効な",
+    "pos": "adj"
+  },
+  {
+    "word": "valid",
+    "meaning": "妥当な・もっともな",
+    "pos": "adj"
+  },
+  {
+    "word": "neutral",
+    "meaning": "中立の・どちらにも偏らない",
+    "pos": "adj"
+  },
+  {
+    "word": "neutral",
+    "meaning": "無難な・中立的な",
+    "pos": "adj"
+  },
+  {
+    "word": "overall",
+    "meaning": "全体的な・総合的な",
+    "pos": "adj"
+  },
+  {
+    "word": "overall",
+    "meaning": "全体としての",
+    "pos": "adj"
+  },
+  {
+    "word": "prior",
+    "meaning": "以前の・それより前の",
+    "pos": "adj"
+  },
+  {
+    "word": "prior",
+    "meaning": "事前の",
+    "pos": "adj"
+  },
+  {
+    "word": "apparent",
+    "meaning": "明らかな・はっきり分かる",
+    "pos": "adj"
+  },
+  {
+    "word": "apparent",
+    "meaning": "一見～のような・見かけ上の",
+    "pos": "adj"
+  },
+  {
+    "word": "adequate",
+    "meaning": "十分な・必要な条件を満たす",
+    "pos": "adj"
+  },
+  {
+    "word": "adequate",
+    "meaning": "必要最低限を満たした",
+    "pos": "adj"
+  },
+  {
+    "word": "decent",
+    "meaning": "まずまず良い・ちゃんとした",
+    "pos": "adj"
+  },
+  {
+    "word": "decent",
+    "meaning": "まともな・良識のある",
+    "pos": "adj"
+  },
+  {
+    "word": "concise",
+    "meaning": "簡潔な・要点を押さえた",
+    "pos": "adj"
+  },
+  {
+    "word": "concise",
+    "meaning": "短く無駄のない",
+    "pos": "adj"
+  },
+  {
+    "word": "consistent",
+    "meaning": "一貫した・矛盾のない",
+    "pos": "adj"
+  },
+  {
+    "word": "consistent",
+    "meaning": "安定して同じ水準の",
+    "pos": "adj"
+  },
+  {
+    "word": "accessible",
+    "meaning": "利用できる・アクセスできる",
+    "pos": "adj"
+  },
+  {
+    "word": "accessible",
+    "meaning": "分かりやすい・とっつきやすい",
+    "pos": "adj"
+  },
+  {
+    "word": "secure",
+    "meaning": "安全な・しっかり保護された",
+    "pos": "adj"
+  },
+  {
+    "word": "secure",
+    "meaning": "しっかり固定された",
+    "pos": "adj"
+  },
+  {
+    "word": "immediate",
+    "meaning": "即座の・すぐの",
+    "pos": "adj"
+  },
+  {
+    "word": "immediate",
+    "meaning": "すぐ近くの・直接の",
+    "pos": "adj"
+  },
+  {
+    "word": "frequent",
+    "meaning": "頻繁な・たびたび起こる",
+    "pos": "adj"
+  },
+  {
+    "word": "frequent",
+    "meaning": "よく来る・よく利用する",
+    "pos": "adj"
+  },
+  {
+    "word": "worthwhile",
+    "meaning": "やる価値のある",
+    "pos": "adj"
+  },
+  {
+    "word": "worthwhile",
+    "meaning": "時間や努力をかけるだけの価値がある",
+    "pos": "adj"
+  },
+  {
+    "word": "controversial",
+    "meaning": "議論を呼ぶ・賛否の分かれる",
+    "pos": "adj"
+  },
+  {
+    "word": "controversial",
+    "meaning": "意見の分かれる",
+    "pos": "adj"
+  },
+  {
+    "word": "sensible",
+    "meaning": "賢明な・現実的な",
+    "pos": "adj"
+  },
+  {
+    "word": "sensible",
+    "meaning": "実用的な・状況に合った",
+    "pos": "adj"
+  },
+  {
+    "word": "modest",
+    "meaning": "謙虚な・控えめな",
+    "pos": "adj"
+  },
+  {
+    "word": "modest",
+    "meaning": "大きすぎない・控えめな",
+    "pos": "adj"
+  },
+  {
+    "word": "dramatic",
+    "meaning": "劇的な・大きな",
+    "pos": "adj"
+  },
+  {
+    "word": "dramatic",
+    "meaning": "急激で目立つ",
+    "pos": "adj"
+  },
+  {
+    "word": "competitive",
+    "meaning": "競争の激しい・競争心の強い",
+    "pos": "adj"
+  },
+  {
+    "word": "competitive",
+    "meaning": "競争力のある",
+    "pos": "adj"
+  },
+  {
+    "word": "confidential",
+    "meaning": "機密の・秘密の",
+    "pos": "adj"
+  },
+  {
+    "word": "confidential",
+    "meaning": "内密の・他人に漏らせない",
+    "pos": "adj"
+  },
+  {
+    "word": "conscious",
+    "meaning": "意識がある",
+    "pos": "adj"
+  },
+  {
+    "word": "conscious",
+    "meaning": "意識している・気を配っている",
+    "pos": "adj"
+  },
+  {
+    "word": "literal",
+    "meaning": "文字どおりの",
+    "pos": "adj"
+  },
+  {
+    "word": "literal",
+    "meaning": "直訳の・言葉どおりの",
+    "pos": "adj"
+  },
+  {
+    "word": "conventional",
+    "meaning": "従来の・一般的な",
+    "pos": "adj"
+  },
+  {
+    "word": "conventional",
+    "meaning": "慣習的な・普通とされている",
+    "pos": "adj"
+  },
+  {
+    "word": "equivalent",
+    "meaning": "同等の・相当する",
+    "pos": "adj"
+  },
+  {
+    "word": "equivalent",
+    "meaning": "同じ価値・役割を持つ",
+    "pos": "adj"
+  },
+  {
+    "word": "substantial",
+    "meaning": "かなりの・相当な",
+    "pos": "adj"
+  },
+  {
+    "word": "substantial",
+    "meaning": "無視できないほど大きな",
+    "pos": "adj"
+  },
+  {
+    "word": "economic",
+    "meaning": "経済の・経済に関する",
+    "pos": "adj"
+  },
+  {
+    "word": "economic",
+    "meaning": "経済上の",
+    "pos": "adj"
+  },
+  {
+    "word": "economical",
+    "meaning": "経済的な・無駄遣いの少ない",
+    "pos": "adj"
+  },
+  {
+    "word": "economical",
+    "meaning": "費用や資源を節約できる",
+    "pos": "adj"
+  },
+  {
+    "word": "classic",
+    "meaning": "定番の・長く評価されている",
+    "pos": "adj"
+  },
+  {
+    "word": "classic",
+    "meaning": "典型的な",
+    "pos": "adj"
+  },
+  {
+    "word": "classical",
+    "meaning": "古典の・古典様式の",
+    "pos": "adj"
+  },
+  {
+    "word": "classical",
+    "meaning": "古典文化に関する",
+    "pos": "adj"
+  },
+  {
+    "word": "discreet",
+    "meaning": "控えめな・目立たない",
+    "pos": "adj"
+  },
+  {
+    "word": "discreet",
+    "meaning": "慎重な・口が堅い",
+    "pos": "adj"
+  },
+  {
+    "word": "discrete",
+    "meaning": "別々の・個別の",
+    "pos": "adj"
+  },
+  {
+    "word": "discrete",
+    "meaning": "はっきり区別された",
+    "pos": "adj"
+  },
+  {
+    "word": "historic",
+    "meaning": "歴史的に重要な",
+    "pos": "adj"
+  },
+  {
+    "word": "historic",
+    "meaning": "歴史に残る",
+    "pos": "adj"
+  },
+  {
+    "word": "historical",
+    "meaning": "歴史に関する",
+    "pos": "adj"
+  },
+  {
+    "word": "historical",
+    "meaning": "過去に実際に起きた",
+    "pos": "adj"
+  },
+  {
+    "word": "electric",
+    "meaning": "電気で動く・電動の",
+    "pos": "adj"
+  },
+  {
+    "word": "electric",
+    "meaning": "興奮に満ちた・刺激的な",
+    "pos": "adj"
+  },
+  {
+    "word": "electrical",
+    "meaning": "電気に関する・電気系統の",
+    "pos": "adj"
+  },
+  {
+    "word": "electrical",
+    "meaning": "電気設備・電気分野の",
+    "pos": "adj"
+  },
+  {
+    "word": "plausible",
+    "meaning": "もっともらしい・ありそうな",
+    "pos": "adj"
+  },
+  {
+    "word": "plausible",
+    "meaning": "筋が通っていそうな",
+    "pos": "adj"
+  },
+  {
+    "word": "credible",
+    "meaning": "信頼できる・信じるに足る",
+    "pos": "adj"
+  },
+  {
+    "word": "credible",
+    "meaning": "信用できそうな",
+    "pos": "adj"
+  },
+  {
+    "word": "legitimate",
+    "meaning": "正当な・もっともな",
+    "pos": "adj"
+  },
+  {
+    "word": "legitimate",
+    "meaning": "正規の・ちゃんとした",
+    "pos": "adj"
+  },
+  {
+    "word": "deliberate",
+    "meaning": "意図的な・わざとの",
+    "pos": "adj"
+  },
+  {
+    "word": "deliberate",
+    "meaning": "よく考えた上での・慎重な",
+    "pos": "adj"
+  },
+  {
+    "word": "accidental",
+    "meaning": "偶然の・意図しない",
+    "pos": "adj"
+  },
+  {
+    "word": "accidental",
+    "meaning": "うっかりした・誤って起きた",
+    "pos": "adj"
+  },
+  {
+    "word": "distinct",
+    "meaning": "はっきり異なる・明確に区別できる",
+    "pos": "adj"
+  },
+  {
+    "word": "distinct",
+    "meaning": "はっきり感じ取れる",
+    "pos": "adj"
+  },
+  {
+    "word": "vivid",
+    "meaning": "鮮やかな",
+    "pos": "adj"
+  },
+  {
+    "word": "vivid",
+    "meaning": "鮮明な・生き生きとした",
+    "pos": "adj"
+  },
+  {
+    "word": "tentative",
+    "meaning": "仮の・まだ確定していない",
+    "pos": "adj"
+  },
+  {
+    "word": "tentative",
+    "meaning": "ためらいがちな・おそるおそるの",
+    "pos": "adj"
+  },
+  {
+    "word": "thorough",
+    "meaning": "徹底した・念入りな",
+    "pos": "adj"
+  },
+  {
+    "word": "thorough",
+    "meaning": "詳しく丁寧な・抜けのない",
+    "pos": "adj"
+  },
+  {
+    "word": "notable",
+    "meaning": "注目すべき・目立った",
+    "pos": "adj"
+  },
+  {
+    "word": "notable",
+    "meaning": "特筆すべき",
+    "pos": "adj"
+  },
+  {
+    "word": "coherent",
+    "meaning": "筋が通っている・まとまりのある",
+    "pos": "adj"
+  },
+  {
+    "word": "coherent",
+    "meaning": "一貫した",
+    "pos": "adj"
+  },
+  {
+    "word": "explicit",
+    "meaning": "明確に述べられた・はっきりした",
+    "pos": "adj"
+  },
+  {
+    "word": "explicit",
+    "meaning": "明白な・明示された",
+    "pos": "adj"
+  },
+  {
+    "word": "implicit",
+    "meaning": "暗黙の・言外に含まれた",
+    "pos": "adj"
+  },
+  {
+    "word": "implicit",
+    "meaning": "明言されていないが含まれている",
+    "pos": "adj"
+  },
+  {
+    "word": "arbitrary",
+    "meaning": "明確な根拠のない・恣意的な",
+    "pos": "adj"
+  },
+  {
+    "word": "arbitrary",
+    "meaning": "基準がはっきりしない",
+    "pos": "adj"
+  },
+  {
+    "word": "robust",
+    "meaning": "丈夫な・しっかりした",
+    "pos": "adj"
+  },
+  {
+    "word": "robust",
+    "meaning": "強固な・十分に信頼できる",
+    "pos": "adj"
+  },
+  {
+    "word": "resilient",
+    "meaning": "回復力のある・立ち直る力のある",
+    "pos": "adj"
+  },
+  {
+    "word": "resilient",
+    "meaning": "困難に強い",
+    "pos": "adj"
+  },
+  {
+    "word": "intuitive",
+    "meaning": "直感的に分かりやすい",
+    "pos": "adj"
+  },
+  {
+    "word": "intuitive",
+    "meaning": "感覚的に理解しやすい",
+    "pos": "adj"
+  },
+  {
+    "word": "inevitable",
+    "meaning": "避けられない・必然的な",
+    "pos": "adj"
+  },
+  {
+    "word": "inevitable",
+    "meaning": "起こるのが避けられない",
+    "pos": "adj"
+  },
+  {
+    "word": "nuanced",
+    "meaning": "微妙な違いや複数の側面を含んだ",
+    "pos": "adj"
+  },
+  {
+    "word": "nuanced",
+    "meaning": "細かな違いを踏まえた",
+    "pos": "adj"
+  },
+  {
+    "word": "ambiguous",
+    "meaning": "曖昧な・複数の解釈ができる",
+    "pos": "adj"
+  },
+  {
+    "word": "ambiguous",
+    "meaning": "どちらとも取れる",
+    "pos": "adj"
+  },
+  {
+    "word": "feasible",
+    "meaning": "実行可能な・現実的にできる",
+    "pos": "adj"
+  },
+  {
+    "word": "feasible",
+    "meaning": "現実的に実現できる",
+    "pos": "adj"
+  },
+  {
+    "word": "inherent",
+    "meaning": "本質的に備わっている・固有の",
+    "pos": "adj"
+  },
+  {
+    "word": "inherent",
+    "meaning": "もともと内在する",
+    "pos": "adj"
+  },
+  {
+    "word": "compelling",
+    "meaning": "説得力のある",
+    "pos": "adj"
+  },
+  {
+    "word": "compelling",
+    "meaning": "強く引きつける",
+    "pos": "adj"
+  },
+  {
+    "word": "pervasive",
+    "meaning": "広く行き渡った・蔓延している",
+    "pos": "adj"
+  },
+  {
+    "word": "pervasive",
+    "meaning": "広範囲に及ぶ",
+    "pos": "adj"
+  },
+  {
+    "word": "redundant",
+    "meaning": "重複していて不要な・余分な",
+    "pos": "adj"
+  },
+  {
+    "word": "redundant",
+    "meaning": "同じ役割がすでにあり不要な",
+    "pos": "adj"
+  },
+  {
+    "word": "marginal",
+    "meaning": "わずかな・ごく小さい",
+    "pos": "adj"
+  },
+  {
+    "word": "marginal",
+    "meaning": "影響の小さい・わずかな",
+    "pos": "adj"
+  },
+  {
+    "word": "subjective",
+    "meaning": "主観的な",
+    "pos": "adj"
+  },
+  {
+    "word": "subjective",
+    "meaning": "人によって判断が変わる",
+    "pos": "adj"
+  },
+  {
+    "word": "objective",
+    "meaning": "客観的な",
+    "pos": "adj"
+  },
+  {
+    "word": "objective",
+    "meaning": "事実にもとづいた・感情に左右されない",
+    "pos": "adj"
+  },
+  {
+    "word": "skeptical",
+    "meaning": "疑っている・簡単には信じない",
+    "pos": "adj"
+  },
+  {
+    "word": "skeptical",
+    "meaning": "疑いを持っている",
+    "pos": "adj"
+  },
+  {
+    "word": "transparent",
+    "meaning": "透明な",
+    "pos": "adj"
+  },
+  {
+    "word": "transparent",
+    "meaning": "公開性が高い・隠し事のない",
+    "pos": "adj"
+  },
+  {
+    "word": "negligible",
+    "meaning": "無視できるほど小さい・ごくわずかな",
+    "pos": "adj"
+  },
+  {
+    "word": "negligible",
+    "meaning": "ほとんど影響のない",
+    "pos": "adj"
+  },
+  {
+    "word": "prevalent",
+    "meaning": "広く見られる・普及している",
+    "pos": "adj"
+  },
+  {
+    "word": "prevalent",
+    "meaning": "広く行き渡っている",
+    "pos": "adj"
+  },
+  {
+    "word": "adverse",
+    "meaning": "悪い・不利な・好ましくない",
+    "pos": "adj"
+  },
+  {
+    "word": "adverse",
+    "meaning": "悪影響を与える",
+    "pos": "adj"
+  },
+  {
+    "word": "favorable",
+    "meaning": "好意的な・好評な",
+    "pos": "adj"
+  },
+  {
+    "word": "favorable",
+    "meaning": "好ましい・有利な",
+    "pos": "adj"
+  },
+  {
+    "word": "viable",
+    "meaning": "現実的に成り立つ・実行可能な",
+    "pos": "adj"
+  },
+  {
+    "word": "viable",
+    "meaning": "選択肢として成立する",
+    "pos": "adj"
+  },
+  {
+    "word": "eligible",
+    "meaning": "資格がある・条件を満たしている",
+    "pos": "adj"
+  },
+  {
+    "word": "eligible",
+    "meaning": "対象となる",
+    "pos": "adj"
+  },
+  {
+    "word": "compatible",
+    "meaning": "互換性がある・一緒に使える",
+    "pos": "adj"
+  },
+  {
+    "word": "compatible",
+    "meaning": "対応している",
+    "pos": "adj"
+  },
+  {
+    "word": "consecutive",
+    "meaning": "連続した",
+    "pos": "adj"
+  },
+  {
+    "word": "consecutive",
+    "meaning": "途切れず続く",
+    "pos": "adj"
+  },
+  {
+    "word": "simultaneous",
+    "meaning": "同時に起こる・同時の",
+    "pos": "adj"
+  },
+  {
+    "word": "simultaneous",
+    "meaning": "同時進行の",
+    "pos": "adj"
+  },
+  {
+    "word": "scarce",
+    "meaning": "不足している・手に入りにくい",
+    "pos": "adj"
+  },
+  {
+    "word": "scarce",
+    "meaning": "需要に対して少ない",
+    "pos": "adj"
+  },
+  {
+    "word": "prone",
+    "meaning": "～しやすい・～する傾向がある",
+    "pos": "adj"
+  },
+  {
+    "word": "prone",
+    "meaning": "～になりがちな",
+    "pos": "adj"
+  },
+  {
+    "word": "susceptible",
+    "meaning": "影響を受けやすい・弱い",
+    "pos": "adj"
+  },
+  {
+    "word": "susceptible",
+    "meaning": "損傷などを受けやすい",
+    "pos": "adj"
+  },
+  {
+    "word": "durable",
+    "meaning": "丈夫な・長持ちする",
+    "pos": "adj"
+  },
+  {
+    "word": "durable",
+    "meaning": "耐久性のある",
+    "pos": "adj"
+  },
+  {
+    "word": "portable",
+    "meaning": "持ち運びしやすい・携帯できる",
+    "pos": "adj"
+  },
+  {
+    "word": "portable",
+    "meaning": "携帯用の",
+    "pos": "adj"
+  },
+  {
+    "word": "intermittent",
+    "meaning": "断続的な・時々途切れる",
+    "pos": "adj"
+  },
+  {
+    "word": "intermittent",
+    "meaning": "時々起こる",
+    "pos": "adj"
+  },
+  {
+    "word": "persistent",
+    "meaning": "しつこく続く・なかなか消えない",
+    "pos": "adj"
+  },
+  {
+    "word": "persistent",
+    "meaning": "長く続く・繰り返し起こる",
+    "pos": "adj"
+  },
+  {
+    "word": "excessive",
+    "meaning": "過度な・必要以上の",
+    "pos": "adj"
+  },
+  {
+    "word": "excessive",
+    "meaning": "普通の範囲を超えた",
+    "pos": "adj"
+  },
+  {
+    "word": "sufficient",
+    "meaning": "十分な・必要量を満たす",
+    "pos": "adj"
+  },
+  {
+    "word": "sufficient",
+    "meaning": "必要な条件を満たすだけの",
+    "pos": "adj"
+  },
+  {
+    "word": "mandatory",
+    "meaning": "必須の・義務づけられた",
+    "pos": "adj"
+  },
+  {
+    "word": "mandatory",
+    "meaning": "規則上必要な",
+    "pos": "adj"
+  },
+  {
+    "word": "optional",
+    "meaning": "任意の・必須ではない",
+    "pos": "adj"
+  },
+  {
+    "word": "optional",
+    "meaning": "選択できる",
+    "pos": "adj"
+  },
+  {
+    "word": "seamless",
+    "meaning": "継ぎ目を感じない・スムーズな",
+    "pos": "adj"
+  },
+  {
+    "word": "seamless",
+    "meaning": "途切れのない・自然につながる",
+    "pos": "adj"
+  },
+  {
+    "word": "cumbersome",
+    "meaning": "扱いにくい・面倒な",
+    "pos": "adj"
+  },
+  {
+    "word": "cumbersome",
+    "meaning": "かさばる・取り回しにくい",
+    "pos": "adj"
+  },
+  {
+    "word": "versatile",
+    "meaning": "用途が広い・いろいろ使える",
+    "pos": "adj"
+  },
+  {
+    "word": "versatile",
+    "meaning": "多用途の・応用が利く",
+    "pos": "adj"
+  },
+  {
+    "word": "obsolete",
+    "meaning": "時代遅れの・もう使われなくなった",
+    "pos": "adj"
+  },
+  {
+    "word": "obsolete",
+    "meaning": "新しいものに置き換えられた",
+    "pos": "adj"
+  },
+  {
+    "word": "defective",
+    "meaning": "欠陥のある・不良の",
+    "pos": "adj"
+  },
+  {
+    "word": "defective",
+    "meaning": "正常に機能しない",
+    "pos": "adj"
+  },
+  {
+    "word": "vulnerable",
+    "meaning": "攻撃や被害を受けやすい",
+    "pos": "adj"
+  },
+  {
+    "word": "vulnerable",
+    "meaning": "影響を受けやすい・弱い",
+    "pos": "adj"
+  },
+  {
+    "word": "responsive",
+    "meaning": "反応が速い・すぐ応答する",
+    "pos": "adj"
+  },
+  {
+    "word": "responsive",
+    "meaning": "対応が早い",
+    "pos": "adj"
+  },
+  {
+    "word": "flexible",
+    "meaning": "状況に合わせて調整できる",
+    "pos": "adj"
+  },
+  {
+    "word": "reversible",
+    "meaning": "元に戻せる・取り消せる",
+    "pos": "adj"
+  },
+  {
+    "word": "reversible",
+    "meaning": "元の状態に戻すことができる",
+    "pos": "adj"
+  },
+  {
+    "word": "irreversible",
+    "meaning": "元に戻せない・取り返しのつかない",
+    "pos": "adj"
+  },
+  {
+    "word": "irreversible",
+    "meaning": "回復・取り消しのできない",
+    "pos": "adj"
+  },
+  {
+    "word": "recoverable",
+    "meaning": "元に戻せる・復旧可能な",
+    "pos": "adj"
+  },
+  {
+    "word": "recoverable",
+    "meaning": "回復可能な・取り戻せる",
+    "pos": "adj"
+  },
+  {
+    "word": "refundable",
+    "meaning": "払い戻し可能な",
+    "pos": "adj"
+  },
+  {
+    "word": "refundable",
+    "meaning": "返金される",
+    "pos": "adj"
+  },
+  {
+    "word": "complimentary",
+    "meaning": "無料サービスの",
+    "pos": "adj"
+  },
+  {
+    "word": "complimentary",
+    "meaning": "褒める・好意的な",
+    "pos": "adj"
+  },
+  {
+    "word": "unauthorized",
+    "meaning": "許可されていない・不正な",
+    "pos": "adj"
+  },
+  {
+    "word": "unauthorized",
+    "meaning": "無断の",
+    "pos": "adj"
+  },
+  {
+    "word": "encrypted",
+    "meaning": "暗号化された",
+    "pos": "adj"
+  },
+  {
+    "word": "encrypted",
+    "meaning": "暗号で保護された",
+    "pos": "adj"
+  },
+  {
+    "word": "disposable",
+    "meaning": "使い捨ての",
+    "pos": "adj"
+  },
+  {
+    "word": "disposable",
+    "meaning": "使用後に処分する",
+    "pos": "adj"
+  },
+  {
+    "word": "sustainable",
+    "meaning": "持続可能な・無理なく続けられる",
+    "pos": "adj"
+  },
+  {
+    "word": "sustainable",
+    "meaning": "長期的に維持できる",
+    "pos": "adj"
+  },
+  {
+    "word": "attainable",
+    "meaning": "達成可能な・手が届く",
+    "pos": "adj"
+  },
+  {
+    "word": "attainable",
+    "meaning": "努力すれば実現できる",
+    "pos": "adj"
+  },
+  {
+    "word": "decisive",
+    "meaning": "決定的な・決め手となる",
+    "pos": "adj"
+  },
+  {
+    "word": "decisive",
+    "meaning": "結果を左右する",
+    "pos": "adj"
+  },
+  {
+    "word": "provisional",
+    "meaning": "暫定的な・正式確定前の",
+    "pos": "adj"
+  },
+  {
+    "word": "provisional",
+    "meaning": "仮に設定された",
+    "pos": "adj"
+  },
+  {
+    "word": "proprietary",
+    "meaning": "独自規格の・専用の",
+    "pos": "adj"
+  },
+  {
+    "word": "proprietary",
+    "meaning": "独自に所有・管理された",
+    "pos": "adj"
+  },
+  {
+    "word": "reputable",
+    "meaning": "評判のよい・信頼できる",
+    "pos": "adj"
+  },
+  {
+    "word": "reputable",
+    "meaning": "信頼できる",
+    "pos": "adj"
+  },
+  {
+    "word": "authentic",
+    "meaning": "本物の・正真正銘の",
+    "pos": "adj"
+  },
+  {
+    "word": "authentic",
+    "meaning": "本場の・本物らしい",
+    "pos": "adj"
+  },
+  {
+    "word": "counterfeit",
+    "meaning": "偽物の・偽造された",
+    "pos": "adj"
+  },
+  {
+    "word": "counterfeit",
+    "meaning": "本物を装った偽物の",
+    "pos": "adj"
+  },
+  {
+    "word": "compromised",
+    "meaning": "安全性が損なわれた・危険にさらされた",
+    "pos": "adj"
+  },
+  {
+    "word": "compromised",
+    "meaning": "セキュリティが侵害された",
+    "pos": "adj"
+  },
+  {
+    "word": "dormant",
+    "meaning": "休眠状態の・しばらく使われていない",
+    "pos": "adj"
+  },
+  {
+    "word": "dormant",
+    "meaning": "活動していない",
+    "pos": "adj"
+  },
+  {
+    "word": "premature",
+    "meaning": "時期尚早の・早すぎる",
+    "pos": "adj"
+  },
+  {
+    "word": "premature",
+    "meaning": "まだその段階ではない",
+    "pos": "adj"
+  },
+  {
+    "word": "counterintuitive",
+    "meaning": "直感に反する・一見すると逆に思える",
+    "pos": "adj"
+  },
+  {
+    "word": "counterintuitive",
+    "meaning": "予想とは逆に感じる",
+    "pos": "adj"
+  },
+  {
+    "word": "incremental",
+    "meaning": "少しずつ段階的な",
+    "pos": "adj"
+  },
+  {
+    "word": "incremental",
+    "meaning": "段階的に増えていく",
+    "pos": "adj"
+  },
+  {
+    "word": "cumulative",
+    "meaning": "累積する・積み重なった",
+    "pos": "adj"
+  },
+  {
+    "word": "cumulative",
+    "meaning": "積み重なった結果の",
+    "pos": "adj"
+  },
+  {
+    "word": "sore",
+    "meaning": "痛い・ヒリヒリする",
+    "pos": "adj"
+  },
+  {
+    "word": "sore",
+    "meaning": "筋肉などが痛む",
+    "pos": "adj"
+  },
+  {
+    "word": "stiff",
+    "meaning": "こわばった・凝った",
+    "pos": "adj"
+  },
+  {
+    "word": "stiff",
+    "meaning": "動かしにくい",
+    "pos": "adj"
+  },
+  {
+    "word": "swollen",
+    "meaning": "腫れた",
+    "pos": "adj"
+  },
+  {
+    "word": "swollen",
+    "meaning": "むくんだ",
+    "pos": "adj"
+  },
+  {
+    "word": "tender",
+    "meaning": "触ると痛い・敏感な",
+    "pos": "adj"
+  },
+  {
+    "word": "tender",
+    "meaning": "押すと痛む",
+    "pos": "adj"
+  },
+  {
+    "word": "numb",
+    "meaning": "感覚がない・しびれた",
+    "pos": "adj"
+  },
+  {
+    "word": "numb",
+    "meaning": "しびれて感覚が鈍い",
+    "pos": "adj"
+  },
+  {
+    "word": "dizzy",
+    "meaning": "めまいがする・ふらふらする",
+    "pos": "adj"
+  },
+  {
+    "word": "dizzy",
+    "meaning": "ふらつく感じがする",
+    "pos": "adj"
+  },
+  {
+    "word": "hoarse",
+    "meaning": "声がかすれた・しゃがれた",
+    "pos": "adj"
+  },
+  {
+    "word": "hoarse",
+    "meaning": "声が出にくい",
+    "pos": "adj"
+  },
+  {
+    "word": "itchy",
+    "meaning": "かゆい",
+    "pos": "adj"
+  },
+  {
+    "word": "itchy",
+    "meaning": "かゆみのある",
+    "pos": "adj"
+  },
+  {
+    "word": "drowsy",
+    "meaning": "眠気のある・ぼんやり眠い",
+    "pos": "adj"
+  },
+  {
+    "word": "drowsy",
+    "meaning": "眠くてぼんやりした",
+    "pos": "adj"
+  },
+  {
+    "word": "congested",
+    "meaning": "鼻などが詰まった",
+    "pos": "adj"
+  },
+  {
+    "word": "congested",
+    "meaning": "詰まった感じのする",
+    "pos": "adj"
+  },
+  {
+    "word": "perceptible",
+    "meaning": "感じ取れる・気づける程度の",
+    "pos": "adj"
+  },
+  {
+    "word": "perceptible",
+    "meaning": "わずかだが分かる",
+    "pos": "adj"
+  },
+  {
+    "word": "noticeable",
+    "meaning": "はっきり分かる・目立つ",
+    "pos": "adj"
+  },
+  {
+    "word": "noticeable",
+    "meaning": "気づくほどの",
+    "pos": "adj"
+  },
+  {
+    "word": "minimal",
+    "meaning": "ごくわずかな・最小限の",
+    "pos": "adj"
+  },
+  {
+    "word": "minimal",
+    "meaning": "必要最低限の",
+    "pos": "adj"
+  },
+  {
+    "word": "reasonable",
+    "meaning": "妥当な・納得できる",
+    "pos": "adj"
+  },
+  {
+    "word": "reasonable",
+    "meaning": "無理のない",
+    "pos": "adj"
+  },
+  {
+    "word": "questionable",
+    "meaning": "疑わしい・怪しい",
+    "pos": "adj"
+  },
+  {
+    "word": "questionable",
+    "meaning": "妥当性に疑問のある",
+    "pos": "adj"
+  },
+  {
+    "word": "legible",
+    "meaning": "判読できる・読み取れる",
+    "pos": "adj"
+  },
+  {
+    "word": "legible",
+    "meaning": "文字がはっきり読める",
+    "pos": "adj"
+  },
+  {
+    "word": "audible",
+    "meaning": "聞き取れる・聞こえる",
+    "pos": "adj"
+  },
+  {
+    "word": "audible",
+    "meaning": "耳で確認できる",
+    "pos": "adj"
+  },
+  {
+    "word": "detectable",
+    "meaning": "検出できる・確認できる",
+    "pos": "adj"
+  },
+  {
+    "word": "detectable",
+    "meaning": "測定・観察で分かる",
+    "pos": "adj"
+  },
+  {
+    "word": "acceptable",
+    "meaning": "許容できる・受け入れられる",
+    "pos": "adj"
+  },
+  {
+    "word": "acceptable",
+    "meaning": "基準を満たす",
+    "pos": "adj"
+  },
+  {
+    "word": "unacceptable",
+    "meaning": "許容できない・受け入れられない",
+    "pos": "adj"
+  },
+  {
+    "word": "unacceptable",
+    "meaning": "許容範囲を超えた",
+    "pos": "adj"
+  },
+  {
+    "word": "perceptive",
+    "meaning": "洞察力のある・よく気づく",
+    "pos": "adj"
+  },
+  {
+    "word": "perceptive",
+    "meaning": "物事をよく見抜く",
+    "pos": "adj"
+  },
+  {
+    "word": "receptive",
+    "meaning": "受け入れる姿勢のある",
+    "pos": "adj"
+  },
+  {
+    "word": "receptive",
+    "meaning": "新しい考えを受け入れやすい",
+    "pos": "adj"
+  },
+  {
+    "word": "prospective",
+    "meaning": "将来そうなる見込みの",
+    "pos": "adj"
+  },
+  {
+    "word": "prospective",
+    "meaning": "候補となる・見込みの",
+    "pos": "adj"
+  },
+  {
+    "word": "respective",
+    "meaning": "それぞれの",
+    "pos": "adj"
+  },
+  {
+    "word": "respective",
+    "meaning": "それぞれに対応する",
+    "pos": "adj"
+  },
+  {
+    "word": "deceptive",
+    "meaning": "誤解させるような・見かけに反する",
+    "pos": "adj"
+  },
+  {
+    "word": "deceptive",
+    "meaning": "実態と違う印象を与える",
+    "pos": "adj"
+  },
+  {
+    "word": "selective",
+    "meaning": "選り好みする・選択的な",
+    "pos": "adj"
+  },
+  {
+    "word": "selective",
+    "meaning": "基準を持って選ぶ",
+    "pos": "adj"
+  },
+  {
+    "word": "restrictive",
+    "meaning": "制限の厳しい・自由を狭める",
+    "pos": "adj"
+  },
+  {
+    "word": "restrictive",
+    "meaning": "制約の多い",
+    "pos": "adj"
+  },
+  {
+    "word": "constructive",
+    "meaning": "建設的な・改善につながる",
+    "pos": "adj"
+  },
+  {
+    "word": "constructive",
+    "meaning": "前向きで役に立つ",
+    "pos": "adj"
+  },
+  {
+    "word": "preventive",
+    "meaning": "予防の・未然に防ぐための",
+    "pos": "adj"
+  },
+  {
+    "word": "preventive",
+    "meaning": "問題を防ぐための",
+    "pos": "adj"
+  },
+  {
+    "word": "protective",
+    "meaning": "保護するための",
+    "pos": "adj"
+  },
+  {
+    "word": "protective",
+    "meaning": "危険や損傷から守る",
+    "pos": "adj"
+  },
+  {
+    "word": "straightforward",
+    "meaning": "分かりやすい・複雑でない",
+    "pos": "adj"
+  },
+  {
+    "word": "straightforward",
+    "meaning": "簡単に進められる",
+    "pos": "adj"
+  },
+  {
+    "word": "inconvenient",
+    "meaning": "不便な・都合が悪い",
+    "pos": "adj"
+  },
+  {
+    "word": "inconvenient",
+    "meaning": "使い勝手の悪い",
+    "pos": "adj"
+  },
+  {
+    "word": "unreliable",
+    "meaning": "信頼できない・安定しない",
+    "pos": "adj"
+  },
+  {
+    "word": "unreliable",
+    "meaning": "当てにならない",
+    "pos": "adj"
+  },
+  {
+    "word": "manageable",
+    "meaning": "無理なく対処できる・なんとかなる",
+    "pos": "adj"
+  },
+  {
+    "word": "manageable",
+    "meaning": "扱える範囲の",
+    "pos": "adj"
+  },
+  {
+    "word": "avoidable",
+    "meaning": "避けられる・防げる",
+    "pos": "adj"
+  },
+  {
+    "word": "avoidable",
+    "meaning": "工夫すれば防げる",
+    "pos": "adj"
+  },
+  {
+    "word": "preferable",
+    "meaning": "より望ましい・その方がよい",
+    "pos": "adj"
+  },
+  {
+    "word": "preferable",
+    "meaning": "他より好ましい",
+    "pos": "adj"
+  },
+  {
+    "word": "time-consuming",
+    "meaning": "時間のかかる",
+    "pos": "adj"
+  },
+  {
+    "word": "time-consuming",
+    "meaning": "時間を多く取られる",
+    "pos": "adj"
+  },
+  {
+    "word": "cost-effective",
+    "meaning": "費用対効果の高い",
+    "pos": "adj"
+  },
+  {
+    "word": "cost-effective",
+    "meaning": "コストに対して効果の高い",
+    "pos": "adj"
+  },
+  {
+    "word": "adjustable",
+    "meaning": "調整できる",
+    "pos": "adj"
+  },
+  {
+    "word": "adjustable",
+    "meaning": "調節可能な",
+    "pos": "adj"
+  },
+  {
+    "word": "inefficient",
+    "meaning": "効率の悪い・無駄が多い",
+    "pos": "adj"
+  },
+  {
+    "word": "inefficient",
+    "meaning": "時間や労力を無駄にする",
+    "pos": "adj"
+  },
+  {
+    "word": "effortless",
+    "meaning": "楽々できる・ほとんど手間のかからない",
+    "pos": "adj"
+  },
+  {
+    "word": "effortless",
+    "meaning": "苦労を感じさせない",
+    "pos": "adj"
+  },
+  {
+    "word": "bulky",
+    "meaning": "大きくてかさばる・持ち運びにくい",
+    "pos": "adj"
+  },
+  {
+    "word": "bulky",
+    "meaning": "場所を取る",
+    "pos": "adj"
+  },
+  {
+    "word": "cluttered",
+    "meaning": "ごちゃごちゃした",
+    "pos": "adj"
+  },
+  {
+    "word": "cluttered",
+    "meaning": "物や情報が多すぎて見づらい",
+    "pos": "adj"
+  },
+  {
+    "word": "cramped",
+    "meaning": "狭くて窮屈な",
+    "pos": "adj"
+  },
+  {
+    "word": "cramped",
+    "meaning": "身動きしにくい",
+    "pos": "adj"
+  },
+  {
+    "word": "spacious",
+    "meaning": "広々とした",
+    "pos": "adj"
+  },
+  {
+    "word": "spacious",
+    "meaning": "ゆったりした",
+    "pos": "adj"
+  },
+  {
+    "word": "flimsy",
+    "meaning": "薄っぺらくて頼りない・壊れやすそうな",
+    "pos": "adj"
+  },
+  {
+    "word": "flimsy",
+    "meaning": "もろそうな・強度の低い",
+    "pos": "adj"
+  },
+  {
+    "word": "sturdy",
+    "meaning": "丈夫でしっかりした",
+    "pos": "adj"
+  },
+  {
+    "word": "sturdy",
+    "meaning": "安定感のある",
+    "pos": "adj"
+  },
+  {
+    "word": "sluggish",
+    "meaning": "動作が鈍い・もたつく",
+    "pos": "adj"
+  },
+  {
+    "word": "sluggish",
+    "meaning": "反応が鈍い",
+    "pos": "adj"
+  },
+  {
+    "word": "sluggish",
+    "meaning": "だるくて動きが鈍い",
+    "pos": "adj"
+  },
+  {
+    "word": "overwhelming",
+    "meaning": "圧倒されるほど多い・強い",
+    "pos": "adj"
+  },
+  {
+    "word": "overwhelming",
+    "meaning": "手に余るほどの",
+    "pos": "adj"
+  },
+  {
+    "word": "tedious",
+    "meaning": "単調でうんざりする・面倒で退屈な",
+    "pos": "adj"
+  },
+  {
+    "word": "tedious",
+    "meaning": "時間がかかって退屈な",
+    "pos": "adj"
+  },
+  {
+    "word": "intrusive",
+    "meaning": "邪魔に感じる・入り込みすぎる",
+    "pos": "adj"
+  },
+  {
+    "word": "intrusive",
+    "meaning": "踏み込みすぎた・出しゃばった",
+    "pos": "adj"
+  },
+  {
+    "word": "customizable",
+    "meaning": "自分好みに変更できる",
+    "pos": "adj"
+  },
+  {
+    "word": "customizable",
+    "meaning": "用途に合わせて設定できる",
+    "pos": "adj"
+  },
+  {
+    "word": "replaceable",
+    "meaning": "交換可能な",
+    "pos": "adj"
+  },
+  {
+    "word": "replaceable",
+    "meaning": "別のものに取り替えられる",
+    "pos": "adj"
+  },
+  {
+    "word": "transferable",
+    "meaning": "譲渡可能な・移せる",
+    "pos": "adj"
+  },
+  {
+    "word": "transferable",
+    "meaning": "別の場面にも応用できる",
+    "pos": "adj"
+  },
+  {
+    "word": "refurbished",
+    "meaning": "整備済みの・再生品の",
+    "pos": "adj"
+  },
+  {
+    "word": "refurbished",
+    "meaning": "点検・修理して再販売された",
+    "pos": "adj"
+  },
+  {
+    "word": "misleading",
+    "meaning": "誤解を招く",
+    "pos": "adj"
+  },
+  {
+    "word": "misleading",
+    "meaning": "間違った印象を与える",
+    "pos": "adj"
+  },
+  {
+    "word": "underwhelming",
+    "meaning": "期待したほどではない・物足りない",
+    "pos": "adj"
+  },
+  {
+    "word": "underwhelming",
+    "meaning": "期待外れの",
+    "pos": "adj"
+  },
+  {
+    "word": "overpriced",
+    "meaning": "値段が高すぎる・割高な",
+    "pos": "adj"
+  },
+  {
+    "word": "overpriced",
+    "meaning": "価値に対して高すぎる",
+    "pos": "adj"
+  },
+  {
+    "word": "removable",
+    "meaning": "取り外し可能な",
+    "pos": "adj"
+  },
+  {
+    "word": "removable",
+    "meaning": "外すことができる",
+    "pos": "adj"
+  },
+  {
+    "word": "hesitant",
+    "meaning": "ためらっている・迷っている",
+    "pos": "adj"
+  },
+  {
+    "word": "hesitant",
+    "meaning": "決めきれない",
+    "pos": "adj"
+  },
+  {
+    "word": "fat",
+    "meaning": "太い・分厚い",
+    "pos": "adj"
+  },
+  {
+    "word": "lean",
+    "meaning": "脂肪の少ない・引き締まった",
+    "pos": "adj"
+  },
+  {
+    "word": "lean",
+    "meaning": "無駄が少なく効率的な",
+    "pos": "adj"
+  },
+  {
+    "word": "greasy",
+    "meaning": "脂っこい・油っぽい",
+    "pos": "adj"
+  },
+  {
+    "word": "greasy",
+    "meaning": "油でべたついた",
+    "pos": "adj"
+  },
+  {
+    "word": "sticky",
+    "meaning": "べたべたする・粘着性のある",
+    "pos": "adj"
+  },
+  {
+    "word": "sticky",
+    "meaning": "厄介な・扱いにくい",
+    "pos": "adj"
+  },
+  {
+    "word": "slippery",
+    "meaning": "滑りやすい",
+    "pos": "adj"
+  },
+  {
+    "word": "slippery",
+    "meaning": "つかみにくい・滑って落としやすい",
+    "pos": "adj"
+  },
+  {
+    "word": "brittle",
+    "meaning": "もろくて折れやすい・割れやすい",
+    "pos": "adj"
+  },
+  {
+    "word": "glossy",
+    "meaning": "光沢のある・つやのある",
+    "pos": "adj"
+  },
+  {
+    "word": "matte",
+    "meaning": "つや消しの・光沢のない",
+    "pos": "adj"
+  },
+  {
+    "word": "opaque",
+    "meaning": "不透明な・向こうが透けない",
+    "pos": "adj"
+  },
+  {
+    "word": "opaque",
+    "meaning": "分かりにくい・不透明な",
+    "pos": "adj"
+  },
+  {
+    "word": "porous",
+    "meaning": "多孔質の・小さな穴が多い",
+    "pos": "adj"
+  },
+  {
+    "word": "blurry",
+    "meaning": "ぼやけた・ピンぼけの",
+    "pos": "adj"
+  },
+  {
+    "word": "grainy",
+    "meaning": "粒子が粗い・ざらついて見える",
+    "pos": "adj"
+  },
+  {
+    "word": "pixelated",
+    "meaning": "画素が目立つ・モザイク状になった",
+    "pos": "adj"
+  },
+  {
+    "word": "crooked",
+    "meaning": "曲がった・傾いた・まっすぐでない",
+    "pos": "adj"
+  },
+  {
+    "word": "uneven",
+    "meaning": "均一でない・でこぼこの",
+    "pos": "adj"
+  },
+  {
+    "word": "uneven",
+    "meaning": "むらのある",
+    "pos": "adj"
+  },
+  {
+    "word": "faded",
+    "meaning": "色あせた・薄くなった",
+    "pos": "adj"
+  },
+  {
+    "word": "stained",
+    "meaning": "しみ・汚れがついた",
+    "pos": "adj"
+  },
+  {
+    "word": "damp",
+    "meaning": "少し湿った・じめっとした",
+    "pos": "adj"
+  },
+  {
+    "word": "musty",
+    "meaning": "かび臭い・湿気を含んだ古いにおいのする",
+    "pos": "adj"
+  },
+  {
+    "word": "worn",
+    "meaning": "使い古した・すり減った",
+    "pos": "adj"
+  },
+  {
+    "word": "scuffed",
+    "meaning": "こすれて傷・跡がついた",
+    "pos": "adj"
+  },
+  {
+    "word": "scratched",
+    "meaning": "引っかき傷のついた",
+    "pos": "adj"
+  },
+  {
+    "word": "chipped",
+    "meaning": "一部が欠けた",
+    "pos": "adj"
+  },
+  {
+    "word": "dented",
+    "meaning": "へこんだ",
+    "pos": "adj"
+  },
+  {
+    "word": "warped",
+    "meaning": "ゆがんだ・反った",
+    "pos": "adj"
+  },
+  {
+    "word": "frayed",
+    "meaning": "端がほつれた・擦り切れた",
+    "pos": "adj"
+  },
+  {
+    "word": "tarnished",
+    "meaning": "金属のつやが曇った・変色した",
+    "pos": "adj"
+  },
+  {
+    "word": "rusty",
+    "meaning": "さびた",
+    "pos": "adj"
+  },
+  {
+    "word": "rusty",
+    "meaning": "久しぶりで腕・勘が鈍った",
+    "pos": "adj"
+  },
+  {
+    "word": "wobbly",
+    "meaning": "ぐらぐらする・不安定な",
+    "pos": "adj"
+  },
+  {
+    "word": "jammed",
+    "meaning": "詰まって動かない・引っかかっている",
+    "pos": "adj"
+  },
+  {
+    "word": "cracked",
+    "meaning": "ひびの入った・割れ目のある",
+    "pos": "adj"
+  },
+  {
+    "word": "leaky",
+    "meaning": "漏れる・水漏れする",
+    "pos": "adj"
+  },
+  {
+    "word": "clogged",
+    "meaning": "詰まった・ふさがった",
+    "pos": "adj"
+  },
+  {
+    "word": "flickering",
+    "meaning": "ちらつく・明滅している",
+    "pos": "adj"
+  },
+  {
+    "word": "faulty",
+    "meaning": "欠陥のある・正常に機能しない",
+    "pos": "adj"
+  },
+  {
+    "word": "unresponsive",
+    "meaning": "反応しない",
+    "pos": "adj"
+  },
+  {
+    "word": "unresponsive",
+    "meaning": "呼びかけなどに反応しない",
+    "pos": "adj"
+  },
+  {
+    "word": "glitchy",
+    "meaning": "バグっぽく不安定な・挙動がおかしい",
+    "pos": "adj"
+  },
+  {
+    "word": "tangled",
+    "meaning": "絡まった・もつれた",
+    "pos": "adj"
+  },
+  {
+    "word": "wrinkled",
+    "meaning": "しわの寄った",
+    "pos": "adj"
+  },
+  {
+    "word": "soggy",
+    "meaning": "水分を吸ってぐにゃっとした・べちゃべちゃの",
+    "pos": "adj"
+  },
+  {
+    "word": "pink",
+    "meaning": "ピンク色",
+    "pos": "noun"
+  },
+  {
+    "word": "after",
+    "meaning": "前置詞　〜の後で",
+    "pos": "others"
+  },
+  {
+    "word": "after",
+    "meaning": "副詞  …後に",
+    "pos": "others"
+  },
+  {
+    "word": "after",
+    "meaning": "接続詞  〜したあとで",
+    "pos": "others"
+  },
+  {
+    "word": "call",
+    "meaning": "呼ぶ",
+    "pos": "verb"
+  },
+  {
+    "word": "close",
+    "meaning": "閉じる",
+    "pos": "verb"
+  },
+  {
+    "word": "find",
+    "meaning": "分かる",
+    "pos": "verb"
+  },
+  {
+    "word": "find",
+    "meaning": "見つける",
+    "pos": "verb"
+  },
+  {
+    "word": "look",
+    "meaning": "診察する",
+    "pos": "verb"
+  },
+  {
+    "word": "run",
+    "meaning": "運営する",
+    "pos": "verb"
+  }
+]
+

@@ -301,25 +301,6 @@ extension ExampleStore {
                         continue
                     }
 
-                    // Seedに含まれるmeaning本体はHomeworkStoreへ安全に補完
-                    let homeworkStore = HomeworkStore.shared
-
-                    if !homeworkStore.exists(
-                        word: word,
-                        meaning: meaning,
-                        pos: pos
-                    ) {
-                        _ = homeworkStore.add(
-                            word: word,
-                            meaning: meaning,
-                            pos: pos
-                        )
-
-                        #if DEBUG
-                        print("🌱 bundled meaning追加 word=\(word) meaning=[\(meaning)]")
-                        #endif
-                    }
-
                     let k = makeKey(
                         pos: pos,
                         word: word,
@@ -711,8 +692,7 @@ extension ExampleStore {
         // Bundled Seedと完全一致するコピーだけをユーザー層から外す
         let result = removeBundledSeedCopiesFromUserLayer()
 
-        // HomeworkStore復元後に、
-        // 現行ExampleSeed由来のmeaningを再補完する
+        // 現行ExampleSeedをBundled例文・ノート層へ再読込する
         loadBundledSeedReadOnly()
 
         // 整理後のユーザー層を永続保存
