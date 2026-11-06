@@ -1,8 +1,11 @@
-//
+
+
+//Created by Nami .T on 2025/12/07.
+
 //  POSFlashcardListView.swift
 //  WordsForest
 //
-//  Created by Nami .T on 2025/12/07.
+//
 //
 import SwiftUI
 
@@ -52,24 +55,11 @@ struct POSFlashcardListView: View {
             }
         }
 
-        // 🔧 ツールバー（＋メニュー ＆ ホームへ🏠）
+        // 🔧 ツールバー（単語追加 ＆ ホームへ🏠）
         .toolbar {
             ToolbarItemGroup(placement: .topBarLeading) {
-                Menu {
-                    GuardedButton {
-                        showingAdd = true
-                    } label: {
-                        Text("単語を追加")
-                    }
-
-                    if pos != .others {
-                        GuardedButton {
-                            HomeworkStore.shared.autofill(for: pos, target: 24)
-                            reloadCards()
-                        } label: {
-                            Text("不足分を自動追加（24まで）")
-                        }
-                    }
+                GuardedButton {
+                    showingAdd = true
                 } label: {
                     Image(systemName: "plus")
                         .foregroundStyle(.secondary)
@@ -85,9 +75,9 @@ struct POSFlashcardListView: View {
                 }
                 .foregroundStyle(.blue)
                 .buttonStyle(.plain)
-                
             }
         }
+        
         .onAppear {
             reloadCards()
         }

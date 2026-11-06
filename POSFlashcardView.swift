@@ -1,10 +1,11 @@
 //
+//11/27版 Wordcardpage.swift の UI デザインを共通ビューに移植した版 (12/17 .json)→2026/01/24不規則動詞、履歴対応版
+//
 //  POSFlashcardView.swift
 //  WordsForest
 //
 // POSFlashcardView.swift
-// 11/27版 Wordcardpage.swift の UI デザインを共通ビューに移植した版 (12/17 .json)→2026/01/24不規則動詞、履歴対応版
-
+//
 
 import SwiftUI
 import AVFoundation
@@ -282,9 +283,11 @@ struct POSFlashcardView: View {
         let isChecked = HomeworkStore.shared.isLearned(c)
         let isFav = HomeworkStore.shared.isFavorite(c)
 
+        // プリインストール原本かどうか
+        let isBundled = HomeworkStore.shared.isBundledCard(c)
+
         // 行カラー
         let rowAccent = perRowAccent ? c.pos.accent : accent
-
         POSCardRow(
             pos: c.pos,
             baseWord: c.word,
@@ -331,6 +334,7 @@ struct POSFlashcardView: View {
             },
             speakBoth: speakBoth,
             accent: rowAccent,
+            isBundled: isBundled,
             onEditFromMenu: {
                 onEdit(c)
             },
@@ -418,7 +422,8 @@ struct POSFlashcardView: View {
         let toggleSpeakBoth: () -> Void
         let speakBoth: Bool
         let accent: Color
-        
+        let isBundled: Bool
+
         // … メニュー用（カード編集／例文ノート編集／削除はここから）
         let onEditFromMenu: () -> Void
         let onEditExamplesFromMenu: () -> Void
@@ -552,22 +557,39 @@ struct POSFlashcardView: View {
                         .frame(width: 36, height: 36)
                         .contentShape(Rectangle())
                         .contextMenu {
-                            Button {
-                                teacher.requestUnlock(runAfterUnlock: onEditFromMenu)
-                            } label: {
-                                Label("このカードを編集", systemImage: "square.and.pencil")
+                            if !isBundled {
+                                Button {
+                                    teacher.requestUnlock(runAfterUnlock: onEditFromMenu)
+                                } label: {
+                                    Label(
+                                        "このカードを編集",
+                                        systemImage: "square.and.pencil"
+                                    )
+                                }
                             }
 
                             Button {
-                                teacher.requestUnlock(runAfterUnlock: onEditExamplesFromMenu)
+                                teacher.requestUnlock(
+                                    runAfterUnlock: onEditExamplesFromMenu
+                                )
                             } label: {
-                                Label("例文・ノートを編集", systemImage: "text.bubble")
+                                Label(
+                                    "例文・ノートを編集",
+                                    systemImage: "text.bubble"
+                                )
                             }
-                            
-                            Button(role: .destructive) {
-                                teacher.requestUnlock(runAfterUnlock: onDeleteFromMenu)
-                            } label: {
-                                Label("このカードを削除", systemImage: "trash")
+
+                            if !isBundled {
+                                Button(role: .destructive) {
+                                    teacher.requestUnlock(
+                                        runAfterUnlock: onDeleteFromMenu
+                                    )
+                                } label: {
+                                    Label(
+                                        "このカードを削除",
+                                        systemImage: "trash"
+                                    )
+                                }
                             }
                         }
                     

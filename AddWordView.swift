@@ -4,6 +4,7 @@
 //
 //  Created by Nami .T on 2025/09/24.→2026/01/24
 //
+// AddWordView.swift
 
 import SwiftUI
 
@@ -17,7 +18,7 @@ struct AddWordView: View {
     @State private var meaning: String = ""
     @State private var dupWord = false
     @State private var dupExact = false
-    @State private var autoFillAfterSave = false
+    
 
     // どこにカーソルを当てるか
     @FocusState private var focusedField: Field?
@@ -80,14 +81,6 @@ struct AddWordView: View {
                     TextField("さまよう", text: $meaning)
                         .focused($focusedField, equals: .meaning)
                 }
-
-                // 新規追加のときだけ出すトグル
-                if editing == nil {
-                    Section {
-                        Toggle("保存後に不足分を自動追加（24まで）", isOn: $autoFillAfterSave)
-                            .tint(.orange)
-                    }
-                }
             }
             // 入力内容が変わったら重複チェック
             .onChange(of: word, initial: true) { _, _ in
@@ -108,16 +101,6 @@ struct AddWordView: View {
                         save()
                     }
                     .disabled(!canSave || dupExact)
-                }
-            }
-            // 編集のときだけ下に「削除」
-            .safeAreaInset(edge: .bottom) {
-                if editing != nil {
-                    Button("このカードを削除", role: .destructive) {
-                        deleteCard()
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 10)
                 }
             }
         }
@@ -155,15 +138,11 @@ struct AddWordView: View {
             )
         } else {
             // 新規追加
-            let ok = HomeworkStore.shared.add(
+            _ = HomeworkStore.shared.add(
                 word: w,
                 meaning: m,
                 pos: pos
             )
-            if ok, autoFillAfterSave {
-                // 不足してたら埋める
-                HomeworkStore.shared.autofill(for: pos, target: 24)
-            }
         }
         dismiss()
     }
@@ -194,15 +173,6 @@ struct AddWordView: View {
             if sameWord == w && originalMeaning == m {
                 dupExact = false
             }
-        }
-    }
-
-    // MARK: - 削除
-
-    private func deleteCard() {
-        if let c = editing {
-            HomeworkStore.shared.delete(c)
-            dismiss()
         }
     }
 }

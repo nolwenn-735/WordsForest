@@ -6,6 +6,7 @@
 //
 //  HomeworkStore.swift  （🍊Clément完全版・複数意味対応）💛　→ 12/7 Thinking🍊版→12/12 before5.2版→12/14jason対応化前→jason12/15対応→2026/01/20最初のmeaningsにID付版→01/24不規則動詞と宿題履歴→UUID方式に変更🌿🍊
 
+//  HomeworkStore.swift
 
 
 import Foundation
@@ -226,6 +227,42 @@ final class HomeworkStore: ObservableObject {
     private func normMeaning(_ s: String) -> String {
         s.trimmingCharacters(in: .whitespacesAndNewlines)
     }
+    
+    /// SampleDeck由来のプリインストール内容を含むカードか判定する
+    ///
+    /// WordCard は同じ品詞・同じ単語の複数meaningを1枚にまとめているため、
+    /// 単語だけではなく、SampleDeckに収録されているmeaningとの一致も確認する。
+    func isBundledCard(_ card: WordCard) -> Bool {
+        let targetWord = norm(card.word)
+
+        let cardMeanings = Set(
+            card.meanings
+                .map { normMeaning($0) }
+                .filter { !$0.isEmpty }
+        )
+
+        guard !cardMeanings.isEmpty else {
+            return false
+        }
+
+        let bundledMeanings = Set(
+            SampleDeck.filtered(by: card.pos)
+                .filter {
+                    norm($0.word) == targetWord
+                }
+                .flatMap {
+                    $0.meanings
+                }
+                .map {
+                    normMeaning($0)
+                }
+                .filter {
+                    !$0.isEmpty
+                }
+        )
+
+        return !cardMeanings.isDisjoint(with: bundledMeanings)
+    }
  
    // HomeworkStoreの半角debug用func
     
@@ -283,6 +320,12 @@ final class HomeworkStore: ObservableObject {
     }
 
     func delete(_ card: WordCard) {
+        // プリインストール原本は削除させない
+        guard !isBundledCard(card) else {
+            print("🛡️ Bundled card deletion blocked:", card.word)
+            return
+        }
+
         // WordCard → StoredWord の1件だけ削除
         let k = key(for: card)
 
@@ -621,26 +664,65 @@ final class HomeworkStore: ObservableObject {
             $0.pos == pos && norm($0.word) == w
         }
     }
+}
 
-    /// 既存カードの更新（とりあえず「最初の意味」を置き換える想定）
-    func update(_ original: WordCard, word newWord: String, meaning newMeaning: String) {
+// MARK: - WordCard update
+
+extension HomeworkStore {
+
+    /// 既存カードの更新
+    /// プリインストール原本は変更しない
+    func update(
+        _ original: WordCard,
+        word newWord: String,
+        meaning newMeaning: String
+    ) {
+        guard !isBundledCard(original) else {
+            print(
+                "🛡️ Bundled card update blocked:",
+                original.word
+            )
+            return
+        }
+
         let oldKey = key(for: original)
 
-        let trimmedMeaning = newMeaning.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedMeaning = newMeaning
+            .trimmingCharacters(
+                in: .whitespacesAndNewlines
+            )
 
-        if let idx = words.firstIndex(where: { key(for: $0) == oldKey }) {
-            // ✅ ここが大事：既存IDを保持
+        if let idx = words.firstIndex(
+            where: {
+                key(for: $0) == oldKey
+            }
+        ) {
             let existingID = words[idx].id
-            words[idx] = StoredWord(id: existingID, word: newWord, meaning: trimmedMeaning, pos: original.pos)
+
+            words[idx] = StoredWord(
+                id: existingID,
+                word: newWord,
+                meaning: trimmedMeaning,
+                pos: original.pos
+            )
         } else {
-            // 見つからない時だけ新規（=新ID）
-            words.append(StoredWord(word: newWord, meaning: trimmedMeaning, pos: original.pos))
+            words.append(
+                StoredWord(
+                    word: newWord,
+                    meaning: trimmedMeaning,
+                    pos: original.pos
+                )
+            )
         }
 
         save()
         saveFavorites()
         saveLearned()
-        NotificationCenter.default.post(name: .storeDidChange, object: nil)
+
+        NotificationCenter.default.post(
+            name: .storeDidChange,
+            object: nil
+        )
     }
 }
 
@@ -650,13 +732,6 @@ extension Notification.Name {
     static let storeDidChange     = Notification.Name("storeDidChange")
     static let favoritesDidChange = Notification.Name("favoritesDidChange")
     static let learnedDidChange   = Notification.Name("learnedDidChange")
-}
-
-// MARK: - My Collection 用お気に入りヘルパー
-extension HomeworkStore {
-
-
-    
 }
 
 // MARK: - My Collection / 覚えたBOX 表示用 集計
