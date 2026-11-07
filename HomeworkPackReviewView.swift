@@ -50,10 +50,8 @@ struct HomeworkPackReviewView: View {
                                 Spacer()
 
                                 // ✅ “いつもの例文編集”へ
-                                Button {
-                                    teacher.requestUnlock {
-                                        editingCard = c
-                                    }
+                                GuardedButton {
+                                    editingCard = c
                                 } label: {
                                     Image(systemName: "square.and.pencil")
                                         .font(.title3)

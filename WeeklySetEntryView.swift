@@ -11,6 +11,13 @@ struct WeeklySetEntryView: View {
     @EnvironmentObject private var hw: HomeworkState
     @EnvironmentObject private var teacher: TeacherMode
 
+    @AppStorage(DefaultsKeys.usageMode)
+    private var usageMode: UsageMode = .classroom
+
+    private var canEditHomework: Bool {
+        usageMode == .individual || teacher.unlocked
+    }
+
     let pair: PosPair
 
     var body: some View {
@@ -30,8 +37,8 @@ struct WeeklySetEntryView: View {
             if let payload {
                 // ✅ 取り込み済み：payloadから「カード画面」へ行けるUI
                 WeeklySetPayloadCardsView(payload: payload)
-
-            } else if teacher.unlocked {
+                
+            } else if canEditHomework {
                 // ✅ 先生だけ：未取り込みでもローカル生成ビューに入れる
                 WeeklySetView(pair: pair)
 
@@ -57,7 +64,7 @@ struct WeeklySetEntryView: View {
 
         // ✅ ここがポイント：.toolbar(content:) じゃなくて .toolbar { } を使う
         .toolbar {
-            if teacher.unlocked {
+            if canEditHomework {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
                         HomeworkSetEditorView(posA: nextParts[0], posB: nextParts[1])

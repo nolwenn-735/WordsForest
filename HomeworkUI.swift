@@ -25,7 +25,11 @@ struct HomeworkBanner: View {
     @AppStorage(DefaultsKeys.usageMode)
     private var usageMode: UsageMode = .classroom
 
-    // 宿題編集（先生用）
+    private var canEditHomework: Bool {
+        usageMode == .individual || teacher.unlocked
+    }
+
+    // 宿題編集
     @State private var showHomeworkEditPicker = false
     @State private var editingTarget: HomeworkEditTarget? = nil
     @State private var showStartNextConfirm = false
@@ -233,7 +237,7 @@ struct HomeworkBanner: View {
     }
 
     private var displayHomeworkStatus: String {
-        if teacher.unlocked {
+        if canEditHomework {
             return currentHomeworkStatusForManifest()
         }
 
@@ -243,7 +247,7 @@ struct HomeworkBanner: View {
     }
 
     private var displayHomeworkLabel: String {
-        if !teacher.unlocked {
+        if !canEditHomework {
             if displayHomeworkStatus == "none" {
                 return "宿題なし"
             }
@@ -260,7 +264,7 @@ struct HomeworkBanner: View {
     private var displayCycleLengthLabel: String {
         let weeks: Int
 
-        if teacher.unlocked {
+        if canEditHomework {
             weeks = hw.manifestHomeworkCycleWeeks
         } else if manifestHomeworkCycleWeeks > 0 {
             weeks = manifestHomeworkCycleWeeks
@@ -279,7 +283,7 @@ struct HomeworkBanner: View {
     }
     
     private var displayHomeworkCount: Int {
-        if teacher.unlocked {
+        if canEditHomework {
             return hw.totalCount
         }
 
@@ -291,7 +295,7 @@ struct HomeworkBanner: View {
     }
 
     private var displayExtensionWeeks: Int {
-        if teacher.unlocked {
+        if canEditHomework {
             return hw.manifestHomeworkExtensionWeeks
         }
 
@@ -352,11 +356,14 @@ struct HomeworkBanner: View {
             cycleLengthCapsule
                 .layoutPriority(0.5)
 
-            if usageMode == .individual || teacher.unlocked {
+            if canEditHomework {
                 HStack(spacing: 3) {
                     homeworkEditButton
-                    exportButton
-                    noticeButton
+
+                    if usageMode == .classroom {
+                        exportButton
+                        noticeButton
+                    }
                 }
                 .layoutPriority(1)
 
@@ -381,11 +388,11 @@ struct HomeworkBanner: View {
             }
         }()
 
-        let displayText = teacher.unlocked
+        let displayText = canEditHomework
             ? "\(shortCycleLabel)・\(hw.totalCount)"
             : "\(shortCycleLabel)・\(hw.totalCount)語"
         
-        if teacher.unlocked {
+        if canEditHomework {
             Menu {
 
                 Section("期間") {
@@ -713,17 +720,17 @@ struct HomeworkBanner: View {
             
             Menu {
                 Button("延長なし") {
-                    guard teacher.unlocked else { return }
+                    guard canEditHomework else { return }
                     hw.setExtensionWeeks(0)
                 }
                 
                 Button("+1週延長") {
-                    guard teacher.unlocked else { return }
+                    guard canEditHomework else { return }
                     hw.setExtensionWeeks(1)
                 }
                 
                 Button("+2週延長") {
-                    guard teacher.unlocked else { return }
+                    guard canEditHomework else { return }
                     hw.setExtensionWeeks(2)
                 }
                 
@@ -762,7 +769,7 @@ struct HomeworkBanner: View {
             .buttonStyle(.plain)
             .frame(maxWidth: .infinity)
         }
-        .allowsHitTesting(teacher.unlocked)
+        .allowsHitTesting(canEditHomework)
     }
     
     private func pill(_ t: String) -> some View {
@@ -932,4 +939,5 @@ private func dateString(_ d: Date) -> String {
         .environmentObject(HomeworkState())
     }
 }
+
 

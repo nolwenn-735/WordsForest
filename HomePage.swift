@@ -103,8 +103,10 @@ struct HomePage: View {
                         }
                         .padding(.horizontal, 4)
                     
-                    // MARK: 新着
-                    recentSection
+                    // MARK: 新着（教室使用のみ）
+                    if usageMode == .classroom {
+                        recentSection
+                    }
                     
                     Group {
                         // MARK: 品詞別レッスン
@@ -254,7 +256,9 @@ struct HomePage: View {
             favCount = HomeworkStore.shared.collectionFavoritesCount
             learnedCount = HomeworkStore.shared.collectionLearnedCount
 
-            importSavedManifestFile(showMissingAlert: false)
+            if usageMode == .classroom {
+                importSavedManifestFile(showMissingAlert: false)
+            }
         }
         .onReceive(NotificationCenter.default.publisher(for: .favoritesDidChange)) { _ in
             favCount = HomeworkStore.shared.collectionFavoritesCount
