@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RootView: View {
     @EnvironmentObject private var router: Router
-    @EnvironmentObject private var hw: HomeworkState
 
     @AppStorage(DefaultsKeys.usageModeConfigured)
     private var usageModeConfigured: Bool = false
@@ -27,9 +26,7 @@ struct RootView: View {
                         POSFlashcardListView(
                             pos: pos,
                             accent: pos.accentColor,
-                            animalName: pos == .others
-                                ? pos.dailyAnimalName
-                                : pos.animalName(forCycle: hw.variantIndex(for: pos))
+                            animalName: pos.dailyAnimalName
                         )
                     }
             }

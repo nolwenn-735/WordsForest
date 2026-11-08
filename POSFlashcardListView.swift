@@ -17,11 +17,13 @@ struct POSFlashcardListView: View {
     
     @ObservedObject private var homeworkStore = HomeworkStore.shared
     @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject private var teacher: TeacherMode
     @EnvironmentObject private var router: Router
     
     @State private var showingAdd = false
     @State private var editingWord: WordCard? = nil
+    @State private var editingExamplesCard: WordCard? = nil
+    @State private var newlyAddedCard: WordCard? = nil
+    @State private var showingPostAddPrompt = false
     @State private var displayedCards: [WordCard] = []
  
     private func reloadCards() {
@@ -34,50 +36,31 @@ struct POSFlashcardListView: View {
     
     var body: some View {
         let cards = displayedCards
+        let pageTitle = pos == .others ? "その他" : pos.jaTitle
 
-        Group {
-            if cards.isEmpty {
-                // まだ単語がないとき
-                ContentUnavailableView("まだありません", systemImage: "book")
-            } else {
-                // 単語があるとき
-                POSFlashcardView(
-                    title: pos.jaTitle,
-                    cards: cards,
-                    accent: pos.accentColor,
-                    background: pos.backgroundColor,
-                    animalName: animalName,
-                    onEdit: { c in editingWord = c },
-                    onDataChanged: {
-                        reloadCards()
-                    }
-                )
-            }
-        }
+        POSFlashcardView(
+            title: pageTitle,
+            cards: cards,
+            accent: pos.accentColor,
+            background: pos.backgroundColor,
+            animalName: animalName,
+            onEdit: { c in editingWord = c },
+            onDataChanged: {
+                reloadCards()
+            },
+            onBack: {
+                dismiss()
+            },
+            onAdd: {
+                showingAdd = true
+            },
+            onHome: {
+                router.goHome()
+            },
+            alphabetJumpEnabled: true
+        )
 
-        // 🔧 ツールバー（単語追加 ＆ ホームへ🏠）
-        .toolbar {
-            ToolbarItemGroup(placement: .topBarLeading) {
-                GuardedButton {
-                    showingAdd = true
-                } label: {
-                    Image(systemName: "plus")
-                        .foregroundStyle(.secondary)
-                        .opacity(0.45)
-                }
-            }
-
-            ToolbarItemGroup(placement: .topBarTrailing) {
-                Button {
-                    router.goHome()
-                } label: {
-                    Text("ホームへ🏠")
-                }
-                .foregroundStyle(.blue)
-                .buttonStyle(.plain)
-            }
-        }
-        
+        // 上部操作は POSFlashcardView 側で一括管理
         .onAppear {
             reloadCards()
         }
@@ -93,13 +76,43 @@ struct POSFlashcardListView: View {
         // ✅ toolbar の外に sheet を置く
         .sheet(isPresented: $showingAdd, onDismiss: {
             reloadCards()
+
+            if newlyAddedCard != nil {
+                showingPostAddPrompt = true
+            }
         }) {
-            AddWordView(pos: pos)
+            AddWordView(pos: pos) { card in
+                newlyAddedCard = card
+            }
         }
         .sheet(item: $editingWord, onDismiss: {
             reloadCards()
         }) { c in
             AddWordView(pos: pos, editing: c)
+        }
+        .sheet(item: $editingExamplesCard, onDismiss: {
+            reloadCards()
+        }) { c in
+            ExampleEditorView(pos: c.pos, word: c.word)
+        }
+        .alert(
+            "カードを追加しました",
+            isPresented: $showingPostAddPrompt,
+            presenting: newlyAddedCard
+        ) { card in
+            Button("例文・ノートを編集") {
+                newlyAddedCard = nil
+
+                DispatchQueue.main.async {
+                    editingExamplesCard = card
+                }
+            }
+
+            Button("あとで", role: .cancel) {
+                newlyAddedCard = nil
+            }
+        } message: { card in
+            Text("「\(card.word)」のカード裏面を続けて編集できます。")
         }
     }
 }

@@ -17,16 +17,19 @@ struct CardBackView: View {
 
     // MARK: - 状態（読み上げ & 編集）
     @EnvironmentObject private var teacher: TeacherMode
+    @AppStorage(DefaultsKeys.usageMode)
+    private var usageMode: UsageMode = .classroom
 
     @State private var speechSlow = false      // ゆっくり
     @State private var speakBoth  = true       // 英＋日
     @State private var showingEditor = false   // 例文編集シート
     @State private var showingMemoDestination = false
 
-    @State private var didActivateAudioSession = false
-
-    private let synthesizer = AVSpeechSynthesizer()
-    private let speechDelegate = SpeechDelegate()
+    private let synthesizer: AVSpeechSynthesizer = {
+        let synthesizer = AVSpeechSynthesizer()
+        synthesizer.usesApplicationAudioSession = false
+        return synthesizer
+    }()
 
     // MARK: - 本体
     var body: some View {
@@ -62,7 +65,7 @@ struct CardBackView: View {
 
                 Spacer()
 
-                if teacher.unlocked {
+                if usageMode == .individual || teacher.unlocked {
                     Button(action: { showingEditor = true }) {
                         Image(systemName: "square.and.pencil")
                             .foregroundStyle(.secondary)
@@ -229,15 +232,6 @@ struct CardBackView: View {
                 store: StudentMemoStore.shared
             )
         }
-        .onAppear {
-            synthesizer.delegate = speechDelegate
-            speechDelegate.onQueueEmpty = {
-                deactivateAudioSessionIfNeeded()
-            }
-        }
-        .onDisappear {
-            deactivateAudioSessionIfNeeded()
-        }
     }
 
     // MARK: - 例文表示ブロック（共通）
@@ -292,31 +286,6 @@ struct CardBackView: View {
 
     // MARK: - 読み上げ
 
-    private func activateAudioSessionIfNeeded() {
-        guard !didActivateAudioSession else { return }
-
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(.soloAmbient, mode: .spokenAudio, options: [])
-            try session.setActive(true)
-            didActivateAudioSession = true
-        } catch {
-            print("AudioSession activate error:", error)
-        }
-    }
-
-    private func deactivateAudioSessionIfNeeded() {
-        guard didActivateAudioSession else { return }
-
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setActive(false, options: [.notifyOthersOnDeactivation])
-        } catch {
-            print("AudioSession deactivate error:", error)
-        }
-        didActivateAudioSession = false
-    }
-
     private func speakWord() {
         let forms = irregularForms.isEmpty ? [word] : irregularForms
         let text  = forms.joined(separator: ", ")
@@ -339,8 +308,6 @@ struct CardBackView: View {
             synthesizer.stopSpeaking(at: .immediate)
         }
 
-        activateAudioSessionIfNeeded()
-
         let u = AVSpeechUtterance(string: text)
         u.voice = AVSpeechSynthesisVoice(language: lang)
 
@@ -349,22 +316,6 @@ struct CardBackView: View {
         u.rate = speechSlow ? slow : native
 
         synthesizer.speak(u)
-    }
-}
-
-final class SpeechDelegate: NSObject, AVSpeechSynthesizerDelegate {
-    var onQueueEmpty: (() -> Void)?
-
-    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        if !synthesizer.isSpeaking {
-            onQueueEmpty?()
-        }
-    }
-
-    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
-        if !synthesizer.isSpeaking {
-            onQueueEmpty?()
-        }
     }
 }
 

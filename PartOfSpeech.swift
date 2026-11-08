@@ -34,7 +34,7 @@ extension PartOfSpeech {
         case .verb: return "動詞"
         case .adj:  return "形容詞"
         case .adv:  return "副詞"
-        case .others: return "その他の品詞"
+        case .others: return "その他品詞"
         }
     }
 }

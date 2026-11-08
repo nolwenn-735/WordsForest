@@ -197,14 +197,18 @@ struct HomePage: View {
                                         .padding(.trailing, 14)
                                 }
                             }
-                            NavigationLink(showMascots ? "🦌 その他品詞" : "🟣 その他品詞") {
-                                POSFlashcardListView(
-                                    pos: .others,
-                                    accent: .purple,
-                                    animalName: PartOfSpeech.others.dailyAnimalName
-                                )
+                            Button {
+                                router.push(PartOfSpeech.others)
+                            } label: {
+                                Text(showMascots ? "🦌 その他品詞" : "🟣 その他品詞")
                             }
-                            .buttonStyle(ColoredPillButtonStyle(color: .orange, size: .compact, alpha: 0.20))
+                            .buttonStyle(
+                                ColoredPillButtonStyle(
+                                    color: .orange,
+                                    size: .compact,
+                                    alpha: 0.20
+                                )
+                            )
                         }
                         
                         // MARK: 使い方 / 表示設定

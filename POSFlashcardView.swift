@@ -11,7 +11,13 @@ import SwiftUI
 import AVFoundation
 
 final class SpeechManager: ObservableObject {
-    let synthesizer = AVSpeechSynthesizer()
+    let synthesizer: AVSpeechSynthesizer
+
+    init() {
+        let synthesizer = AVSpeechSynthesizer()
+        synthesizer.usesApplicationAudioSession = false
+        self.synthesizer = synthesizer
+    }
 }
 
 /// 単語カード一覧（検索結果・My Collection・覚えたBOX・宿題セットで使用）
@@ -36,6 +42,9 @@ struct POSFlashcardView: View {
 
     // 宿題モードなどで、✅したものは行を隠したい画面で true
     let hideLearned: Bool
+
+    // 品詞ページだけ、タイトルから A〜Z 頭文字ジャンプを使う
+    let alphabetJumpEnabled: Bool
     
     // すでにあればそのまま
     @ObservedObject private var store = HomeworkStore.shared
@@ -55,8 +64,8 @@ struct POSFlashcardView: View {
     /// 展開中のカード index（nil なら全て表面）
     @State private var expandedIndex: Int? = nil
     
-    /// スクロール中に表示しているカード位置を保持
-    @State private var scrollPosition: Int? = nil
+    /// A〜Z 頭文字ジャンプ
+    @State private var showingAlphabetJump = false
     
     /// 例文編集シート用
     @State private var editingCard: WordCard? = nil
@@ -64,13 +73,13 @@ struct POSFlashcardView: View {
     /// 親側に渡すコールバック
     var onEdit: (WordCard) -> Void
     var onDataChanged: () -> Void
+    var onBack: (() -> Void)?
+    var onAdd: (() -> Void)?
+    var onHome: (() -> Void)?
     
     /// レイアウト定数（11/27版と同じ思想）
     private let rowsPerScreen: CGFloat = 4
-    
-    // TTS
-    private let synthesizer = AVSpeechSynthesizer()
-    
+
     // MARK: - init
     
     init(
@@ -82,9 +91,13 @@ struct POSFlashcardView: View {
         reversed: Bool = false,
         onEdit: @escaping (WordCard) -> Void = { _ in },
         onDataChanged: @escaping () -> Void = {},
+        onBack: (() -> Void)? = nil,
+        onAdd: (() -> Void)? = nil,
+        onHome: (() -> Void)? = nil,
         perRowAccent: Bool = false,
         showPOSSectionHeaders: Bool = false,
-        hideLearned: Bool = false
+        hideLearned: Bool = false,
+        alphabetJumpEnabled: Bool = false
     ) {
         self.title = title
         self.cards = cards
@@ -93,9 +106,13 @@ struct POSFlashcardView: View {
         self.animalName = animalName
         self.onEdit = onEdit
         self.onDataChanged = onDataChanged
+        self.onBack = onBack
+        self.onAdd = onAdd
+        self.onHome = onHome
         self.perRowAccent = perRowAccent
         self.showPOSSectionHeaders = showPOSSectionHeaders
         self.hideLearned = hideLearned
+        self.alphabetJumpEnabled = alphabetJumpEnabled
         _reversed = State(initialValue: reversed)
         
     }
@@ -103,119 +120,285 @@ struct POSFlashcardView: View {
     // MARK: - body
     
     var body: some View {
-        ZStack {
-            GeometryReader { outer in
-                let rowH = max(88, (outer.size.height - 140) / rowsPerScreen)
+        ScrollViewReader { proxy in
+            ZStack {
+                GeometryReader { outer in
+                    let rowH = max(88, (outer.size.height - 140) / rowsPerScreen)
 
-                ScrollView {
-                    LazyVStack(spacing: 16) {
+                    ScrollView {
+                        LazyVStack(spacing: 16) {
 
-                        if title == "検索結果" && cards.isEmpty {
-                            VStack(spacing: 14) {
-                                Image(systemName: "magnifyingglass")
-                                    .font(.system(size: 34))
-                                    .foregroundStyle(.secondary)
+                            if title == "検索結果" && cards.isEmpty {
+                                VStack(spacing: 14) {
+                                    Image(systemName: "magnifyingglass")
+                                        .font(.system(size: 34))
+                                        .foregroundStyle(.secondary)
 
-                                Text("この単語は現在登録されていません")
-                                    .font(.headline)
+                                    Text("この単語は現在登録されていません")
+                                        .font(.headline)
 
-                                Text("必要な場合は、＋（単語カードの追加）\nまたは宿題編集から登録できます。")
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
-                                    .multilineTextAlignment(.center)
+                                    Text("必要な場合は、＋（単語カードの追加）\nまたは宿題編集から登録できます。")
+                                        .font(.subheadline)
+                                        .foregroundStyle(.secondary)
+                                        .multilineTextAlignment(.center)
+                                }
+                                .padding(.top, 80)
+                                .frame(maxWidth: .infinity)
+                            } else if cards.isEmpty {
+                                ContentUnavailableView("まだありません", systemImage: "book")
+                                    .padding(.top, 80)
+                                    .frame(maxWidth: .infinity)
+                            } else {
+                                rows(rowHeight: rowH)
                             }
-                            .padding(.top, 80)
-                            .frame(maxWidth: .infinity)
-                        } else {
-                            rows(rowHeight: rowH)
-                        }
 
-                        Spacer(minLength: 80)
+                            Spacer(minLength: 80)
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 140)
                     }
-                    .scrollTargetLayout()
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, 140)
-                }
-                .scrollPosition(id: $scrollPosition)
-                
-                // 右下マスコット（固定）
-                if showMascots {
-                    VStack {
-                        Spacer()
-                        HStack {
+
+                    // 右下マスコット（固定）
+                    if showMascots {
+                        VStack {
                             Spacer()
-                            Image(animalName)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 140, height: 140)
-                                .allowsHitTesting(false)
-                                .padding(.trailing, 12)
-                                .padding(.bottom, 8)
-                                .offset(x: -32)
+                            HStack {
+                                Spacer()
+                                Image(animalName)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 140, height: 140)
+                                    .allowsHitTesting(false)
+                                    .padding(.trailing, 12)
+                                    .padding(.bottom, 8)
+                                    .offset(x: -32)
+                            }
                         }
                     }
                 }
             }
-        }
-        // ✅ ここで「画面全体（safe area含む）」に背景を敷く
-        .background(background.ignoresSafeArea())
-
-        // ✅ ScrollView の “白い地” を消す（Listじゃないから必須ではないけど残してOK）
-        .scrollContentBackground(.hidden)
-
-        // ✅ ナビバーもこの画面の色に固定（Homeの設定を上書き）
-        .toolbarBackground(background, for: .navigationBar)
-        .toolbarBackground(.visible, for: .navigationBar)
- //     .toolbarColorScheme(.light, for: .navigationBar)
-
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                HStack(spacing: 8) {
-                    Text(title)
-                        .font(.headline)
-
-                    Button {
-                        reversed.toggle()
-                    } label: {
-                        HStack(spacing: 6) {
-                            Circle()
-                                .fill(accent)
-                                .frame(width: 12, height: 12)
-                                .overlay(
-                                    Circle().stroke(Color(.separator), lineWidth: 1.0)
-                                )
-
-                            Text("英↔︎日")
-                                .font(.caption)
-                                .foregroundStyle(.primary)
+            .background(background.ignoresSafeArea())
+            .scrollContentBackground(.hidden)
+            .toolbarBackground(background, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .navigationBarBackButtonHidden(alphabetJumpEnabled)
+            .toolbar(alphabetJumpEnabled ? .hidden : .visible, for: .navigationBar)
+            .safeAreaInset(edge: .top, spacing: 0) {
+                if alphabetJumpEnabled {
+                    posControlHeader(proxy: proxy)
+                }
+            }
+            .toolbar {
+                if !alphabetJumpEnabled {
+                    ToolbarItem(placement: .principal) {
+                        HStack(spacing: 8) {
+                            Text(title)
+                                .font(.headline)
                                 .lineLimit(1)
+                                .minimumScaleFactor(0.72)
+
+                            Button {
+                                reversed.toggle()
+                            } label: {
+                                HStack(spacing: 5) {
+                                    Circle()
+                                        .fill(accent)
+                                        .frame(width: 11, height: 11)
+                                        .overlay(
+                                            Circle().stroke(Color(.separator), lineWidth: 0.8)
+                                        )
+
+                                    Text("英↔︎日")
+                                        .font(.subheadline)
+                                        .lineLimit(1)
+                                }
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel("英語と日本語を反転")
                         }
-                        .padding(.horizontal, 8)
-                        .frame(minWidth: 44, minHeight: 44)
-                        .contentShape(Rectangle())
                     }
-                    .buttonStyle(.plain)
                 }
-                .fixedSize(horizontal: true, vertical: false)
             }
-        }
-        .sheet(item: $editingCard) { card in
-            ExampleEditorView(pos: card.pos, word: card.word)
+            .sheet(item: $editingCard) { card in
+                ExampleEditorView(pos: card.pos, word: card.word)
+            }
         }
     }
-    
+
+    // MARK: - 品詞ページ上部コントロール
+
+    @ViewBuilder
+    private func posControlHeader(proxy: ScrollViewProxy) -> some View {
+        HStack(spacing: 4) {
+            // 左端の移動／追加は、タップ領域を保ったまま少し寄せる
+            HStack(spacing: 1) {
+                if let onBack {
+                    Button {
+                        onBack()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .font(.system(size: 17, weight: .semibold))
+                            .frame(width: 22, height: 22)
+                    }
+                    .modifier(CompactGlassCircleButton())
+                    .frame(width: 44, height: 44)
+                    .accessibilityLabel("戻る")
+                }
+
+                if let onAdd {
+                    GuardedButton {
+                        onAdd()
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(.system(size: 18, weight: .medium))
+                            .frame(width: 22, height: 22)
+                    }
+                    .modifier(CompactGlassCircleButton())
+                    .frame(width: 44, height: 44)
+                    .accessibilityLabel("単語カードを追加")
+                }
+            }
+
+            // 英⇄日は品詞名の左へ。A–Zとの押し分けも明確にする。
+            Button {
+                reversed.toggle()
+            } label: {
+                HStack(spacing: 3) {
+                    Circle()
+                        .fill(accent)
+                        .frame(width: 9, height: 9)
+                        .overlay(
+                            Circle().stroke(Color(.separator), lineWidth: 0.7)
+                        )
+
+                    Text("英↔︎日")
+                        .font(.system(size: 13, weight: .medium))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.88)
+                }
+            }
+            .modifier(CompactGlassCapsuleButton())
+            .frame(height: 44)
+            .accessibilityLabel("英語と日本語を反転")
+
+            // 品詞名は操作ではなく見出し。3文字分の席を必ず確保する。
+            Text(title)
+                .font(.system(size: 16, weight: .semibold))
+                .lineLimit(1)
+                .fixedSize(horizontal: true, vertical: false)
+                .layoutPriority(10)
+                .frame(minWidth: 46)
+
+            Button {
+                showingAlphabetJump.toggle()
+            } label: {
+                Text("A–Z")
+                    .font(.system(size: 13, weight: .semibold))
+                    .lineLimit(1)
+            }
+            .modifier(CompactGlassCapsuleButton())
+            .frame(height: 44)
+            .accessibilityLabel("頭文字へ移動")
+            .popover(isPresented: $showingAlphabetJump) {
+                alphabetJumpPopover(proxy: proxy)
+                    .presentationCompactAdaptation(.popover)
+            }
+
+            Spacer(minLength: 0)
+
+            if let onHome {
+                Button {
+                    onHome()
+                } label: {
+                    Text("ホームへ🏠")
+                        .font(.system(size: 14, weight: .medium))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.78)
+                }
+                .modifier(CompactGlassCapsuleButton())
+                .frame(height: 44)
+                .accessibilityLabel("ホームへ")
+            }
+        }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 6)
+        .background(background)
+    }
+
+    // MARK: - A〜Z 頭文字ジャンプ
+
+    private let alphabetLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".map(String.init)
+
+    private var visibleCardsForJump: [WordCard] {
+        hideLearned
+            ? cards.filter { !store.isLearned($0) }
+            : cards
+    }
+
+    private var availableInitialLetters: Set<String> {
+        Set(visibleCardsForJump.compactMap { initialLetter(of: $0.word) })
+    }
+
+    private func initialLetter(of word: String) -> String? {
+        let trimmed = word.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let first = trimmed.uppercased().first else { return nil }
+
+        let letter = String(first)
+        return alphabetLetters.contains(letter) ? letter : nil
+    }
+
+    private func jumpToInitial(_ letter: String, proxy: ScrollViewProxy) {
+        guard let index = visibleCardsForJump.firstIndex(where: {
+            initialLetter(of: $0.word) == letter
+        }) else { return }
+
+        showingAlphabetJump = false
+
+        // A〜Zジャンプは一回だけ。
+        // スクロール位置をStateで追跡し続けず、ジャンプ後は通常の手動スクロールへ戻す。
+        DispatchQueue.main.async {
+            proxy.scrollTo(index, anchor: .top)
+        }
+    }
+
+    private func alphabetJumpPopover(proxy: ScrollViewProxy) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("頭文字へ移動")
+                .font(.headline)
+
+            LazyVGrid(
+                columns: Array(
+                    repeating: GridItem(.flexible(), spacing: 6),
+                    count: 6
+                ),
+                spacing: 8
+            ) {
+                ForEach(alphabetLetters, id: \.self) { letter in
+                    let available = availableInitialLetters.contains(letter)
+
+                    Button(letter) {
+                        jumpToInitial(letter, proxy: proxy)
+                    }
+                    .font(.headline)
+                    .frame(maxWidth: .infinity, minHeight: 34)
+                    .buttonStyle(.bordered)
+                    .disabled(!available)
+                    .opacity(available ? 1.0 : 0.28)
+                }
+            }
+        }
+        .padding(16)
+        .frame(width: 286)
+    }
+
     // MARK: - 行の並び
     
     @ViewBuilder
     private func rows(rowHeight: CGFloat) -> some View {
-        let store = HomeworkStore.shared
-        
-        // ① 表示対象を1行で決める（if 文にしない）
-        let visibleCards: [WordCard] = hideLearned
-        ? cards.filter { !store.isLearned($0) }
-        : cards
-        
-        // ② enumerate して index を作る
+        // 表示対象は A〜Z ジャンプと同じ一覧を使う
+        let visibleCards = visibleCardsForJump
+
+        // enumerate して index を作る
         let enumerated = Array(visibleCards.enumerated())
         
         ForEach(enumerated, id: \.offset) { pair in
@@ -229,6 +412,7 @@ struct POSFlashcardView: View {
             }
 
             row(for: c, index: i, rowHeight: rowHeight)
+                .id(i)
         }
     }
     @ViewBuilder
@@ -360,21 +544,9 @@ struct POSFlashcardView: View {
         }
     }
     
-    private func prepareAudioSession() {
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(.playback, mode: .spokenAudio, options: [.duckOthers])
-            try session.setActive(true)
-        } catch {
-            print("AudioSession error:", error)
-        }
-    }
-    
     private func speak(_ text: String, lang: String) {
         let t = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !t.isEmpty else { return }
-        
-        prepareAudioSession()
         
         let u = AVSpeechUtterance(string: t)
         u.voice = AVSpeechSynthesisVoice(language: lang)
@@ -387,6 +559,8 @@ struct POSFlashcardView: View {
     private struct POSCardRow: View {
         
         @EnvironmentObject private var teacher: TeacherMode
+        @AppStorage(DefaultsKeys.usageMode)
+        private var usageMode: UsageMode = .classroom
         
         // ==== 一時的なダミー変数（旧コード踏襲）====
         var posLabel: String = ""
@@ -429,6 +603,14 @@ struct POSFlashcardView: View {
         let onEditExamplesFromMenu: () -> Void
         let onDeleteFromMenu: () -> Void
         
+        private func runProtected(_ action: @escaping () -> Void) {
+            if usageMode == .individual || teacher.unlocked {
+                action()
+            } else {
+                teacher.requestUnlock(runAfterUnlock: action)
+            }
+        }
+
         private func splitOthers(_ s: String) -> (tag: String, body: String) {
             let t = s.trimmingCharacters(in: .whitespacesAndNewlines)
             
@@ -557,21 +739,8 @@ struct POSFlashcardView: View {
                         .frame(width: 36, height: 36)
                         .contentShape(Rectangle())
                         .contextMenu {
-                            if !isBundled {
-                                Button {
-                                    teacher.requestUnlock(runAfterUnlock: onEditFromMenu)
-                                } label: {
-                                    Label(
-                                        "このカードを編集",
-                                        systemImage: "square.and.pencil"
-                                    )
-                                }
-                            }
-
                             Button {
-                                teacher.requestUnlock(
-                                    runAfterUnlock: onEditExamplesFromMenu
-                                )
+                                runProtected(onEditExamplesFromMenu)
                             } label: {
                                 Label(
                                     "例文・ノートを編集",
@@ -580,10 +749,17 @@ struct POSFlashcardView: View {
                             }
 
                             if !isBundled {
-                                Button(role: .destructive) {
-                                    teacher.requestUnlock(
-                                        runAfterUnlock: onDeleteFromMenu
+                                Button {
+                                    runProtected(onEditFromMenu)
+                                } label: {
+                                    Label(
+                                        "単語・意味を修正",
+                                        systemImage: "square.and.pencil"
                                     )
+                                }
+
+                                Button(role: .destructive) {
+                                    runProtected(onDeleteFromMenu)
                                 } label: {
                                     Label(
                                         "このカードを削除",
@@ -621,5 +797,42 @@ extension String {
             return (head.isEmpty ? nil : head, rest)
         }
         return (nil, s)
+    }
+}
+
+
+// MARK: - Compact Liquid Glass controls
+
+private struct CompactGlassCircleButton: ViewModifier {
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if #available(iOS 26.0, *) {
+            content
+                .buttonStyle(.glass)
+                .buttonBorderShape(.circle)
+                .controlSize(.small)
+        } else {
+            content
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.circle)
+                .controlSize(.small)
+        }
+    }
+}
+
+private struct CompactGlassCapsuleButton: ViewModifier {
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if #available(iOS 26.0, *) {
+            content
+                .buttonStyle(.glass)
+                .buttonBorderShape(.capsule)
+                .controlSize(.small)
+        } else {
+            content
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.capsule)
+                .controlSize(.small)
+        }
     }
 }

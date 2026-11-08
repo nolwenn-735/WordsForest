@@ -125,15 +125,6 @@ struct HomeworkBanner: View {
                     )
                 }
 
-                if HomeworkPackStore.shared.loadDraft(
-                    cycleIndex: hw.currentCycleIndex + 1,
-                    pair: hw.currentPair.next
-                ) != nil {
-                    Button("▶︎ 次回分を出題する（\(hw.currentPair.next.jaTitle)）") {
-                        showStartNextConfirm = true
-                    }
-                }
-
                 Button("キャンセル", role: .cancel) { }
                 
             } message: {
@@ -141,35 +132,49 @@ struct HomeworkBanner: View {
             }
 
             .alert(
-                "次回分を出題しますか？",
+                "次回出題分を書き出しますか？",
                 isPresented: $showStartNextConfirm
             ) {
                 Button("キャンセル", role: .cancel) { }
 
-                Button("出題する") {
-                    _ = hw.promoteNextDraftToCurrent()
+                Button("書き出して出題") {
+                    let promoted = hw.promoteNextDraftToCurrent()
+                    if promoted {
+                        exportCurrentPack()
+                    } else {
+                        exportErrorMessage = "次回分を今回分へ切り替えられませんでした。次回分が保存されているか確認してください。"
+                    }
                 }
             } message: {
                 Text(
-                    "現在の宿題を終了し、次回分「\(hw.currentPair.next.jaTitle)」を新しい今回分として出題します。"
+                    "現在出題中の今回分を終了し、次回分「\(hw.currentPair.next.jaTitle)」を新しい今回分として書き出して出題します。"
                 )
             }
 
             .confirmationDialog(
-                "今回分を書き出しますか？",
+                "宿題を書き出す",
                 isPresented: $showExportPicker,
                 titleVisibility: .visible
             ) {
-                Button("書き出す") {
+                if HomeworkPackStore.shared.loadDraft(
+                    cycleIndex: hw.currentCycleIndex + 1,
+                    pair: hw.currentPair.next
+                ) != nil {
+                    Button("▶︎ 次回出題分を書き出す（\(hw.currentPair.next.jaTitle)）") {
+                        showStartNextConfirm = true
+                    }
+                }
+
+                Button("⚠️ 現在出題中の今回分修正を書き出す（\(hw.currentPair.jaTitle)）") {
                     exportCurrentPack()
                 }
 
-                Button("キャンセル") {
+                Button("キャンセル", role: .cancel) {
                     showExportPicker = false
                 }
             } message: {
                 Text(
-                    "現在出題中の今回分（\(hw.currentPair.jaTitle)）を書き出します。"
+                    "現在出題中の宿題を「今回分」、これから出題する宿題を「次回分」として扱います。\n\n▶︎ 次回出題分：これから出題する宿題\n⚠️ 今回分修正：すでに出題中の宿題を修正後、再度書き出す場合"
                 )
             }
             .confirmationDialog(
@@ -939,5 +944,4 @@ private func dateString(_ d: Date) -> String {
         .environmentObject(HomeworkState())
     }
 }
-
 

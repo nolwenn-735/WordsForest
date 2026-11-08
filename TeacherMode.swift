@@ -278,7 +278,7 @@ struct TeacherUnlockSheet: View {
             }
 
             Section {
-                Button("このページを閉じ1時間解錠") {
+                Button("閉じる（解錠状態を維持）") {
                     teacher.showingUnlockSheet = false
                 }
 
@@ -384,7 +384,7 @@ struct GuardedButton<Label: View>: View {
 
     var body: some View {
         Button {
-            if usageMode == .individual {
+            if usageMode == .individual || teacher.unlocked {
                 action()
             } else {
                 teacher.requestUnlock(runAfterUnlock: action)

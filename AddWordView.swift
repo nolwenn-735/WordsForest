@@ -11,6 +11,7 @@ import SwiftUI
 struct AddWordView: View {
     let pos: PartOfSpeech
     var editing: WordCard? = nil   // ← 既存なら渡す（新規は nil）
+    var onAdded: ((WordCard) -> Void)? = nil
 
     @Environment(\.dismiss) private var dismiss
 
@@ -138,11 +139,20 @@ struct AddWordView: View {
             )
         } else {
             // 新規追加
-            _ = HomeworkStore.shared.add(
+            let added = HomeworkStore.shared.add(
                 word: w,
                 meaning: m,
                 pos: pos
             )
+
+            if added,
+               let addedCard = HomeworkStore.shared
+                .list(for: pos)
+                .first(where: {
+                    $0.word.caseInsensitiveCompare(w) == .orderedSame
+                }) {
+                onAdded?(addedCard)
+            }
         }
         dismiss()
     }

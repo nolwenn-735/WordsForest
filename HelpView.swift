@@ -849,7 +849,7 @@ struct TeacherHomeworkHelpView: View {
                 )
 
                 Text(
-                    "生徒には、受け取ったファイルを端末にあるファイルアプリの「このiPhone内」または「このiPad内」の「🧸WordsForest」に保存してもらいます。"
+                    "生徒には、受け取ったファイルを端末にあるファイルアプリの「このiPhone内」または「このiPad内」の「🧸WordsForest」フォルダに保存してもらいます。"
                 )
 
                 Text(

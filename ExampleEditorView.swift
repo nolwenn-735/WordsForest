@@ -183,12 +183,12 @@ struct ExampleEditorView: View {
                     }
                 }
 
-                // 右：＋（meaningブロック追加）
+                // 右：意味ブロック追加
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         drafts.append(Draft())
                     } label: {
-                        Label("追加", systemImage: "plus")
+                        Text("＋ 意味追加")
                     }
                 }
 
