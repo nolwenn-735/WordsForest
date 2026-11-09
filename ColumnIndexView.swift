@@ -332,9 +332,7 @@ struct ColumnIndexView: View {
     }
 
     private func filteredArticles() -> [ColumnArticle] {
-        var base = usageMode == .individual
-            ? store.bundledArticles
-            : store.articles
+        var base = store.articles
         
         if showNewestFirst {
             base.sort { $0.id > $1.id }

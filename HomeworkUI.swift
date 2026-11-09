@@ -33,6 +33,8 @@ struct HomeworkBanner: View {
     @State private var showHomeworkEditPicker = false
     @State private var editingTarget: HomeworkEditTarget? = nil
     @State private var showStartNextConfirm = false
+    @State private var showPersonalStartConfirm = false
+    @State private var showNoPersonalDraftAlert = false
 
     // Filesへ書き出し用
     @State private var exportDoc: JSONTextDocument? = nil
@@ -129,6 +131,35 @@ struct HomeworkBanner: View {
                 
             } message: {
                 Text("編集する宿題を選んでください。品詞ペアは交互に出題されます。")
+            }
+
+            .alert(
+                "自分の課題を開始しますか？",
+                isPresented: $showPersonalStartConfirm
+            ) {
+                Button("キャンセル", role: .cancel) { }
+
+                Button("開始する") {
+                    let promoted = hw.promoteNextDraftToCurrent()
+                    if promoted {
+                        hw.setActive()
+                        exportErrorMessage = nil
+                    } else {
+                        exportErrorMessage = "次回分を今回分へ切り替えられませんでした。次回分が保存されているか確認してください。"
+                    }
+                }
+            } message: {
+                Text(
+                    "これから取り組む次回分「\(hw.currentPair.next.jaTitle)」を新しい今回分として開始します。"
+                )
+            }
+            .alert(
+                "次回分がありません",
+                isPresented: $showNoPersonalDraftAlert
+            ) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text("先に「宿題編集」から次回分を作成して保存してください。")
             }
 
             .alert(
@@ -368,6 +399,8 @@ struct HomeworkBanner: View {
                     if usageMode == .classroom {
                         exportButton
                         noticeButton
+                    } else {
+                        personalStartButton
                     }
                 }
                 .layoutPriority(1)
@@ -473,6 +506,38 @@ struct HomeworkBanner: View {
             }
             .foregroundStyle(.teal)
             .frame(width: 50, height: 54)   // ← export と揃える
+            .background(
+                Color(red: 0.92, green: 0.92, blue: 0.94),
+                in: RoundedRectangle(cornerRadius: 12)
+            )
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var personalStartButton: some View {
+        Button {
+            let hasNextDraft = HomeworkPackStore.shared.loadDraft(
+                cycleIndex: hw.currentCycleIndex + 1,
+                pair: hw.currentPair.next
+            ) != nil
+
+            if hasNextDraft {
+                showPersonalStartConfirm = true
+            } else {
+                showNoPersonalDraftAlert = true
+            }
+        } label: {
+            VStack(spacing: 2) {
+                Image(systemName: "play.fill")
+                    .font(.system(size: 13, weight: .semibold))
+                Text("新規開始")
+                    .font(.system(size: 10.5, weight: .medium))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+            }
+            .foregroundStyle(.green)
+            .frame(width: 54, height: 54)
             .background(
                 Color(red: 0.92, green: 0.92, blue: 0.94),
                 in: RoundedRectangle(cornerRadius: 12)

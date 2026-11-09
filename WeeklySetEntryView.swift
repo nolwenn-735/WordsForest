@@ -26,13 +26,6 @@ struct WeeklySetEntryView: View {
             pair: pair
         )
 
-        // ✅ 表示（今回分）は引数 pair のまま
-     //   let parts = pair.parts
-
-        // ✅ 先生の「編集」は “次回分” を編集したいので nextPair を作る
-        let nextPair = pair.next
-        let nextParts = nextPair.parts
-        
         return Group {
             if let payload {
                 // ✅ 取り込み済み：payloadから「カード画面」へ行けるUI
@@ -63,19 +56,6 @@ struct WeeklySetEntryView: View {
         }
 
         // ✅ ここがポイント：.toolbar(content:) じゃなくて .toolbar { } を使う
-        .toolbar {
-            if canEditHomework {
-                ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink {
-                        HomeworkSetEditorView(posA: nextParts[0], posB: nextParts[1])
-                            .environmentObject(hw)
-                            .environmentObject(teacher)
-                    } label: {
-                        Text("次回分編集")
-                    }
-                }
-            }
-        }
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
                 Text("WEEK hwID=\(ObjectIdentifier(hw).hashValue) pair=\(hw.currentPairLabel) cycle=\(hw.currentCycleIndex) payload=\(payload != nil ? "YES" : "NO")")
