@@ -328,7 +328,7 @@ struct UsageModeChangeHelpView: View {
 
             Section("TeacherLockについて") {
                 Text(
-                    "教室使用でTeacherLockを解除している間は、先生向けの編集操作や利用方法の変更などを行える状態になります。"
+                    "教室使用でTeacherLockを解錠している間は、先生向けの編集操作や利用方法の変更などを行える状態になります。"
                 )
 
                 Text(
@@ -344,7 +344,7 @@ struct UsageModeChangeHelpView: View {
             
             Section("卒業・退塾などで教室使用を終えるとき") {
                 Text(
-                    "生徒が卒業・退塾などで教室使用を終了し、その後もWords’ Forestを個人で利用する場合は、生徒端末のTeacherLockを解除し、「個人使用」へ変更してから端末を返却してください。"
+                    "生徒が卒業・退塾などで教室使用を終了し、その後もWords’ Forestを個人で利用する場合は、生徒端末のTeacherLockを解錠し、「個人使用」へ変更してから端末を返却してください。"
                 )
 
                 Text(
@@ -674,7 +674,7 @@ struct TeacherHomeworkHelpView: View {
                 )
 
                 Text(
-                    "1．HOMEの「🔒 Teacher」をタップし、暗証番号を入力してTeacherLockを解錠します。"
+                    "1．HOMEの「🔒 Teacher」をタップし、暗証番号を入力してTeacherLockを解錠します。解錠状態は1時間継続します。作業中にタイムアウトした場合は再度暗証番号を入力して解錠してください。"
                 )
 
                 Text(
@@ -763,7 +763,7 @@ struct TeacherHomeworkHelpView: View {
                 )
 
                 Text(
-                    "通常の配布では、まず次回分を完成させてから書き出して出題してください。"
+                    "次回分を書き出して出題すると、すでに次々回分を編集して準備してある場合は、その宿題が自動的に新しい「次回分」としてエントリーされます。                その宿題を出題するときは、HOMEの「書き出し」から書き出しを行い、通知を作成して生徒へ配布してください。"
                 )
             }
 

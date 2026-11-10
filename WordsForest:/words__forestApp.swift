@@ -25,7 +25,7 @@ struct words__forestApp: App {
                 .environmentObject(ColumnStore.shared)
                 .environmentObject(teacher)
 
-                // ✅ 解除シートは「ここに1個だけ」
+                // ✅ 解錠シートは「ここに1個だけ」
                 .sheet(isPresented: $teacher.showingUnlockSheet) {
                     TeacherUnlockSheet()
                         .environmentObject(teacher)

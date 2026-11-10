@@ -7908,7 +7908,164 @@
             }
           ]
         },
- 
+        
+        
+        {
+          "pos": "adverb",
+          "word": "already",
+          "wordNote": "already の基本イメージは、予想していた時点より前に「もうそこまで進んでいる」ことです。\n\nI've already sent the email.\n→ もうメールは送りました。\n\nこの「もう」には、「まだだと思っていたかもしれないけど、実は済んでいる」という感覚が入ることがあります。\n\nAre you hungry?\n→ お腹すいた？\n\nI've already eaten.\n→ もう食べたよ。\n\nalready は現在完了とよく使われますが、\n\nI already know.\n→ もう知ってるよ。\n\nのように現在形でも使えます。\n\nまた、驚きを込めて\n\nIs it five already?\n→ もう5時なの？\n\nのようにも使えます。\n\nyet が「今までに起きたかどうか」を見るのに対して、already は「もうそこまで進んでいる」という感覚です。",
+          "meanings": [
+            {
+              "meaning": "すでに",
+              "en": "A: I've already sent the email.\nB: Really? I'll check my spam folder too.",
+              "ja": "A: もうメール送ったよ。\nB: 本当？迷惑メールフォルダも見てみる。"
+            }
+          ]
+        },
+        {
+          "pos": "adverb",
+          "word": "yet",
+          "wordNote": "yet の基本イメージは、「今の時点までに、もう起きた？」または「今の時点では、まだ起きていない」です。\n\nHave you finished yet?\n→ もう終わった？\n\nI haven't finished yet.\n→ まだ終わっていません。\n\nyet は疑問文や否定文の文末によく置かれます。\n\n「もう？」と確認するときと、「まだ〜ない」と言うときの両方に使えるのがポイントです。\n\nIs dinner ready yet?\n→ 夕食、もうできた？\n\nNot yet.\n→ まだ。\n\nこの Not yet. は非常によく使う短い返事です。\n\nalready が「もう起きた・もう済んだ」を見るのに対して、yet は「今の時点までに起きたかどうか」を確認する語です。\n\nまた、\n\nThe best is yet to come.\n→ 最高のものはまだこれから。\n\nのように「これから先に残っている」という感覚でも使われます。",
+          "meanings": [
+            {
+              "meaning": "まだ",
+              "en": "A: I haven't decided yet.\nB: No problem. Just let me know tonight.",
+              "ja": "A: まだ決めてないんだ。\nB: 大丈夫。今夜教えてくれればいいよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adverb",
+          "word": "still",
+          "wordNote": "still の基本イメージは、ある状態や動作が「今も続いている」ことです。\n\nAre you still working?\n→ まだ仕事してるの？\n\nI'm still waiting.\n→ まだ待っています。\n\nstill には、「もう終わっていてもよさそうなのに、続いている」という感覚が入ることもあります。\n\nIs that café still open?\n→ あのカフェ、まだ営業してる？\n\nI still remember that day.\n→ 今でもその日のことを覚えています。\n\nこのように、動作だけでなく、記憶・気持ち・状態が続いているときにも使えます。\n\nyet が「まだ起きていない」を表すことが多いのに対して、still は「まだ続いている」を見る語です。\n\nstill = 継続中\n\nと考えると分かりやすいです。",
+          "meanings": [
+            {
+              "meaning": "まだ",
+              "en": "A: Are you still working?\nB: Yeah, but I'm almost done.",
+              "ja": "A: まだ仕事してるの？\nB: うん、でももうすぐ終わるよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adverb",
+          "word": "just",
+          "wordNote": "just の中心には、範囲を「ここだけ」と小さく絞る感覚があります。そこから、いくつかのよく使う意味に広がります。\n\n1. 「たった今」\n\n時間の範囲を、今のすぐ近くまで絞ります。\n\nI just got home.\n→ たった今、家に着きました。\n\nShe just called me.\n→ 彼女からたった今電話がありました。\n\n「ほんの少し前」という感覚です。\n\n2. 「ただ〜だけ」\n\n量や内容を小さく限定します。\n\nI just need five minutes.\n→ 5分だけ必要です。\n\nJust one more question.\n→ あと一つだけ質問があります。\n\nI'm just looking.\n→ 見ているだけです。\n\n店員に声をかけられたときの I'm just looking. は、とてもよく使う表現です。\n\n3. 「まさに・ちょうど」\n\nずれなくぴったり合うときにも使います。\n\nThat's just what I needed.\n→ まさにそれが必要だったんです。\n\nThis size is just right.\n→ このサイズがちょうどいいです。\n\n4. 言い方を少しやわらかくする\n\n会話では、just を入れて発言を少し控えめにすることもよくあります。\n\nI just wanted to ask you something.\n→ ちょっと聞きたいことがあって。\n\nI'm just checking.\n→ ちょっと確認しているだけです。\n\nJust wanted to let you know.\n→ 一応知らせておこうと思って。\n\njust は、「時間をほんの少しに絞る」「内容をこれだけに絞る」「ぴったり一点に合わせる」という範囲を狭める感覚から考えると、いろいろな使い方がつながって見えてきます。",
+          "meanings": [
+            {
+              "meaning": "ちょうど",
+              "en": "A: I just got home.\nB: Okay. Call me when you've had a minute to settle in.",
+              "ja": "A: ちょうど今、家に着いたところ。\nB: 分かった。少し落ち着いたら電話して。"
+            }
+          ]
+        },
+        {
+          "pos": "adverb",
+          "word": "usually",
+          "wordNote": "usually の基本イメージは、「例外はあるけれど、普段はこれ」といういつものパターンです。\n\nI usually order the same thing here.\n→ 私はここではたいてい同じものを注文します。\n\nalways が「いつも」、sometimes が「ときどき」なのに対して、usually はかなり高い頻度で起きるけれど、例外もあるという位置です。\n\nI usually walk to work, but today I took the bus.\n→ 普段は歩いて通勤しますが、今日はバスに乗りました。\n\nこのように、例外の日を続けると自然です。\n\n語順は、一般動詞の前に置くことが多く、\n\nI usually eat at home.\n\nbe動詞の文では be動詞の後ろに置くことが多いです。\n\nI'm usually home by seven.\n→ たいてい7時までには家にいます。\n\nusually は、自分の習慣や普段のパターンを説明するときにとても使いやすい副詞です。",
+          "meanings": [
+            {
+              "meaning": "たいてい",
+              "en": "A: I usually order the same thing here.\nB: Then why not try something different today?",
+              "ja": "A: ここではいつもだいたい同じもの頼むんだ。\nB: じゃあ今日は違うの試してみたら？"
+            }
+          ]
+        },
+        {
+          "pos": "adverb",
+          "word": "often",
+          "wordNote": "often の基本イメージは、同じことが「かなりの頻度で繰り返される」ことです。\n\nWe often talk online after work.\n→ 私たちは仕事のあと、よくオンラインで話します。\n\nalways のように毎回ではないけれど、sometimes よりは頻度が高いという位置にあります。\n\nDo you come here often?\n→ ここにはよく来るんですか？\n\nこの表現は、店や場所について相手に尋ねるときにもよく使います。\n\n語順は一般動詞の前が基本です。\n\nI often forget where I put my keys.\n→ 鍵をどこに置いたかよく忘れます。\n\nbe動詞なら後ろに置くことが多いです。\n\nShe's often busy on Fridays.\n→ 彼女は金曜日は忙しいことが多いです。\n\noften は単なる回数ではなく、「その人の生活の中でよく起こるパターン」を表す感覚があります。",
+          "meanings": [
+            {
+              "meaning": "しばしば",
+              "en": "A: We often talk online after work.\nB: Do you ever end up talking for hours?",
+              "ja": "A: 仕事のあと、よくオンラインで話すんだ。\nB: 気づいたら何時間も話してることない？"
+            }
+          ]
+        },
+        {
+          "pos": "adverb",
+          "word": "rarely",
+          "wordNote": "rarely の基本イメージは、「ほとんど起きないけれど、ゼロではない」です。\n\nI rarely carry cash anymore.\n→ 最近は現金を持ち歩くことがほとんどありません。\n\nrarely 自体に「めったに〜ない」という否定に近い意味が入っています。\n\nそのため、\n\nI don't rarely carry cash.\n\nのように、さらに not を重ねる必要はありません。\n\nWe rarely see each other these days.\n→ 最近はほとんど会わなくなりました。\n\nnever が「一度もない」に近いのに対して、rarely は「たまにはある」余地を残しています。\n\n語順は often と同じように一般動詞の前に置くことが多いです。\n\nI rarely check social media in the morning.\n→ 朝はめったにSNSを見ません。\n\n「頻度がとても低い」と考えると使いやすくなります。",
+          "meanings": [
+            {
+              "meaning": "めったに〜ない",
+              "en": "A: I rarely carry cash anymore.\nB: Same here. Did this place say cash only?",
+              "ja": "A: 最近、現金ほとんど持ち歩かないんだ。\nB: 私も。この店、現金だけって書いてあった？"
+            }
+          ]
+        },
+        {
+          "pos": "adverb",
+          "word": "recently",
+          "wordNote": "recently の基本イメージは、今から振り返って「近い過去の範囲」を見ることです。\n\nI've been sleeping better recently.\n→ 最近、よく眠れるようになりました。\n\nrecently は「最近のある一点」というより、ここしばらくの期間を見ることが多い語です。\n\nHave you talked to her recently?\n→ 最近、彼女と話した？\n\nI've been cooking more recently.\n→ 最近は前より料理をするようになりました。\n\n現在完了や現在完了進行形と相性がよく、「ここ最近ずっと」という流れを表せます。過去形と使って、近い過去の出来事を述べることもあります。\n\nI recently changed my phone.\n→ 最近スマホを替えました。\n\n「最近何か変わった？」という話題を始めるときに、とても使いやすい副詞です。",
+          "meanings": [
+            {
+              "meaning": "最近",
+              "en": "A: I've been sleeping better recently.\nB: Really? Did you change anything?",
+              "ja": "A: 最近、前よりよく眠れるんだ。\nB: 本当？何か変えたの？"
+            }
+          ]
+        },
+        {
+          "pos": "adverb",
+          "word": "finally",
+          "wordNote": "finally の基本イメージは、長い過程のあとで「ようやく最後の地点に着く」ことです。\n\nI finally found the file.\n→ やっとファイルを見つけました。\n\n単なる「最後に」ではなく、待った、探した、何度も試したなどの過程があることが多いです。\n\nWe finally got an answer.\n→ ようやく返事が来ました。\n\nThe app finally started working again.\n→ アプリがやっとまた動き始めました。\n\nこのように、finally には「長かった……」という気持ちが乗ることがあります。\n\nまた、順番を説明するときの「最後に」として使うこともあります。\n\nFirst, open the file. Then edit the text. Finally, save it.\n→ まずファイルを開き、次に文章を編集し、最後に保存します。\n\n文脈によって「ようやく」と「最後に」のどちらかになるので、そこまでの流れを見るのがポイントです。",
+          "meanings": [
+            {
+              "meaning": "ついに",
+              "en": "A: I finally found the file.\nB: Where was it hiding?",
+              "ja": "A: やっとファイル見つけた。\nB: どこに隠れてたの？"
+            }
+          ]
+        },
+        {
+          "pos": "adverb",
+          "word": "suddenly",
+          "wordNote": "suddenly の基本イメージは、前ぶれなく「それまでの流れが急に変わる」ことです。\n\nThe screen suddenly went black.\n→ 画面が突然真っ暗になりました。\n\nEverything suddenly became quiet.\n→ 急にあたりが静かになりました。\n\nsuddenly は、単に「速く」という意味ではありません。\n\nそれまで続いていた状態\n↓\n急に別の状態\n\nという変化を表します。\n\nHe suddenly stopped replying.\n→ 彼は突然返信しなくなりました。\n\nI suddenly remembered where I'd seen him before.\n→ どこで以前彼を見たのか、急に思い出しました。\n\nこのように、天気だけでなく、会話・人の行動・機械の状態・記憶など、流れが急に変わる場面で幅広く使えます。",
+          "meanings": [
+            {
+              "meaning": "突然",
+              "en": "A: The screen suddenly went black. Did you save your work?\nB: Yeah, I saved it a minute ago.",
+              "ja": "A: 急に画面が真っ暗になった。作業、保存してある？\nB: うん、1分くらい前に保存したよ。"
+            }
+          ]
+        },
+        {
+          "pos": "adverb",
+          "word": "exactly",
+          "wordNote": "exactly の基本イメージは、ずれがなく「ぴったり一致する」ことです。\n\nThat's exactly what I mean.\n→ まさにそれが言いたかったことです。\n\n数字や時刻だけでなく、考えや気持ちにも使えます。\n\nThat's exactly how I felt.\n→ まさに私もそんな気持ちでした。\n\nIt starts at exactly ten.\n→ ちょうど10時に始まります。\n\nまた、質問で\n\nWhat exactly happened?\n→ 正確には何が起きたの？\n\nWhere exactly is it?\n→ 正確にはどこにあるの？\n\nのように使うと、「もっと具体的に教えて」という感覚になります。\n\n会話では、相手の意見に強く同意して\n\nExactly.\n→ その通り。\n\nと一語で返すことも非常によくあります。\n\nexactly は「正確に」だけでなく、意味・考え・場所・数字がぴったり重なる感覚を持つ語です。",
+          "meanings": [
+            {
+              "meaning": "正確に",
+              "en": "A: That's exactly what I mean.\nB: Right? I knew we were talking about the same thing.",
+              "ja": "A: まさにそれが言いたかった。\nB: でしょ？同じこと話してると思ってた。"
+            }
+          ]
+        },
+        {
+          "pos": "adverb",
+          "word": "hard",
+          "wordNote": "副詞の hard の基本イメージは、力をしっかり注ぎ込むことです。\n\nwork hard\n→ 一生懸命働く\n\nstudy hard\n→ 一生懸命勉強する\n\nShe studied hard for the test.\n→ 彼女はその試験のために一生懸命勉強しました。\n\nhard は「硬い」「難しい」という形容詞としても使われますが、副詞では「強く・一生懸命に」という意味になります。\n\nIt was raining hard.\n→ 雨が激しく降っていました。\n\nThe wind was blowing hard.\n→ 風が強く吹いていました。\n\nこのように、人の努力だけでなく、強い勢いを表すこともできます。\n\n特に注意したいのが hardly です。\n\nhard\n→ 一生懸命に・強く\n\nhardly\n→ ほとんど〜ない\n\nI worked hard.\n→ 一生懸命働いた。\n\nI hardly worked.\n→ ほとんど働かなかった。\n\nたった -ly が付くだけで意味が大きく変わるので、セットで覚えると安心です。",
+          "meanings": [
+            {
+              "meaning": "一生懸命",
+              "en": "A: She studied hard for the test.\nB: Did all that work pay off?",
+              "ja": "A: 彼女、そのテストのために一生懸命勉強してたよ。\nB: その頑張り、結果につながった？"
+            }
+          ]
+        },
+        {
+          "pos": "verb",
+          "word": "bring",
+          "wordNote": "bring の基本イメージは、人や物を「こちら側・基準になる場所へ持ってくる」ことです。\n\nCan you bring your notebook tomorrow?\n→ 明日ノートを持ってきてくれる？\n\n話し手や聞き手がいる場所、または会話の中で基準になっている場所へ向かう感覚があります。\n\nBring your charger to my room.\n→ 充電器を私の部屋に持ってきて。\n\n一方、take は、今いる場所から別の場所へ持っていく感覚です。\n\nbring\n→ こちらへ持ってくる\n\ntake\n→ あちらへ持っていく\n\nまた bring は、物を運ぶだけではありません。\n\nThat song brings back memories.\n→ その曲を聞くと昔の記憶がよみがえる。\n\nThe new system brought us a lot of problems.\n→ 新しい仕組みは私たちに多くの問題をもたらしました。\n\n「何かをこちら側へ連れてくる」という感覚が、記憶・結果・変化をもたらす使い方にも広がっています。",
+          "meanings": [
+            {
+              "meaning": "持ってくる",
+              "en": "A: Can you bring your notebook tomorrow?\nB: Sure. Do you want me to bring the worksheet too?",
+              "ja": "A: 明日ノート持ってきてくれる？\nB: いいよ。ワークシートも持っていこうか？"
+            }
+          ]
+        },
  
       {
         "pos": "noun",
@@ -7985,12 +8142,12 @@
       {
         "pos": "noun",
         "word": "bread",
-        "wordNote": "「パン」を英語だと思っている人が時々いますがフランス語です。\n英語ではbreadです。間違えないようにしましょう。\n\n基本的にネイティブの感覚ではパンは大きなかたまりの中の一部としてとらえるので1個2個と数えない不可算名詞です。\n\nロールパンなどと種類に言及する時には可算名詞として考えます。\n\n少しややこしいですがこういったタイプの単語はcheeseなど他にもあるので覚えましょう。\n\n言語が違うと物の数え方の感覚も違うのが面白いですね。",
+        "wordNote": "bread は英語では通常、数えない名詞です。\n\n英語では bread を、一つひとつ独立した物というより「パンという食べ物のまとまり」として見ることが多いからです。\n\nsome bread\n→ パンをいくらか\n\na lot of bread\n→ たくさんのパン\n\nWe need some bread for breakfast.\n→ 朝食用のパンが必要です。\n\n一つ一つ数えたいときは、形や単位を付けます。\n\na slice of bread\n→ パン1枚\n\na loaf of bread\n→ パン1斤・1個\n\ntwo loaves of bread\n→ パン2斤・2個\n\nまた、種類について話すときは breads と数えることもあります。\n\nThis bakery sells several kinds of bread.\n→ このパン屋はいろいろな種類のパンを売っています。\n\n日常ではまず「bread 自体は数えず、slice や loaf を数える」と覚えると使いやすいです。\n\n日本語の「パン」はフランス語 pain などと同じ系統の語から来ていますが、英語では bread なので、英語ではそのまま bread と覚えましょう。",
         "meanings": [
           {
             "meaning": "パン",
-            "en": "I eat some bread for breakfast every morning.",
-            "ja": "私は毎朝朝食にパンを食べるよ。"
+            "en": "A: We need some bread for breakfast.\nB: Okay. I'll stop by the bakery on my way home.",
+            "ja": "A: 朝ごはん用のパンが必要だね。\nB: 分かった。帰りにパン屋さん寄ってくるよ。"
           }
         ]
       },
@@ -8067,9 +8224,36 @@
         ]
       },
       {
+        "pos": "noun",
+        "word": "practice",
+        "wordNote": "practice の基本イメージは、上手くなるために「繰り返して身につけること」です。\n\n「練習」という活動全体を表すときは、通常数えない名詞として使います。\n\nI need more practice.\n→ もっと練習が必要です。\n\nYou need more practice with this pronunciation.\n→ この発音はもう少し練習が必要です。\n\npractice は「何回の練習」と個数で見るより、経験や練習量として見る感覚があります。\n\n一回の練習時間を数えたい場合は、\n\na practice session\n→ 1回の練習\n\nのように言えます。\n\nまた、\n\nPractice makes perfect.\n→ 練習を重ねれば上達する。\n\nという有名な表現もあります。\n\nさらに practice には「実際に行うこと・慣行」という意味もあり、\n\nin practice\n→ 実際には\n\nという表現もよく使われます。\n\nThe idea sounds simple, but it's harder in practice.\n→ その考えは簡単そうだけど、実際にやるともっと難しい。\n\n「繰り返して実際にやる」という感覚が、練習から実践・慣行へ広がっています。",
+        "meanings": [
+          {
+            "meaning": "練習",
+            "en": "A: You need more practice with this pronunciation.\nB: Okay. Can you say it slowly one more time?",
+            "ja": "A: この発音、もう少し練習した方がいいね。\nB: 分かった。もう一回ゆっくり言ってくれる？"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "music",
+        "wordNote": "music は英語では通常、数えない名詞です。\n\n英語では music を、一曲一曲の個体ではなく「音楽というもの・音楽全体」として見ることが多いからです。\n\nsome music\n→ 何か音楽\n\na lot of music\n→ たくさんの音楽\n\nI listen to music while I work.\n→ 仕事中に音楽を聴きます。\n\n通常、一般的な意味で\n\na music\nmusics\n\nとは言いません。\n\n一曲を数えたいなら、\n\na song\n→ 1曲（歌）\n\na piece of music\n→ 1曲・1つの音楽作品\n\nのように言えます。\n\nまた、\n\nThat's music to my ears.\n→ それはうれしい話だ。\n\nという表現もあります。直訳では「私の耳には音楽だ」ですが、「聞いてうれしい知らせ」という意味です。\n\nmusic は個数ではなく、音楽というまとまりとして見る、と考えると使いやすくなります。",
+        "meanings": [
+          {
+            "meaning": "音楽",
+            "en": "A: I listen to music while I work.\nB: Doesn't it distract you when there are lyrics?",
+            "ja": "A: 仕事しながら音楽聴くんだ。\nB: 歌詞があると気が散らない？"
+          }
+        ]
+      },
+
+      
+      
+      {
         "pos": "others",
         "word": "after",
-        "wordNote": "after は前置詞・副詞・接続詞として使われます。\n\n後ろに名詞が続くか、単独で使われるか、節が続くかに注目すると判別しやすいよ。",
+        "wordNote": "after は前置詞・副詞・接続詞として使われます。\n\n後ろに名詞が続くか、単独で使われるか、節が続くかに注目すると判別しやすいです。",
         "meanings": [
           {
             "meaning": "前置詞　〜の後で",
@@ -8089,6 +8273,199 @@
         ]
       },
       {
+        "pos": "others",
+        "word": "both",
+        "wordNote": "both の基本イメージは、二つあるものを「二つとも」まとめてつかむことです。\n\nboth A and B\n→ AもBも両方\n\nBoth my parents work from home.\n→ 両親は二人とも在宅勤務です。\n\nboth books\n→ 2冊とも\n\nboth of them\n→ その二人・二つとも\n\nのように、both は必ず「二つ」を意識します。\n\nWe both forgot the password.\n→ 私たちは二人ともパスワードを忘れました。\n\nこのように、名詞の前だけでなく、主語の後ろに置くこともできます。\n\nall が三つ以上を含む全体にも使えるのに対して、both は「二つをまとめて両方」。\n\n「あなたも私も」「右も左も」のように、二つを同時につかむ感覚で覚えると分かりやすいです。",
+        "meanings": [
+          {
+            "meaning": "代名詞/形容詞/副詞 両方",
+            "en": "A: Both of my parents work from home.\nB: Really? Is it hard to find a quiet place?",
+            "ja": "A: 両親とも在宅勤務なんだ。\nB: そうなんだ。静かな場所を見つけるの大変じゃない？"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "either",
+        "wordNote": "either の基本イメージは、二つあるものを見て「どちらか一方」を選べることです。\n\neither A or B\n→ AかBのどちらか\n\nEither answer is fine.\n→ どちらの答えでも大丈夫です。\n\nYou can sit on either side.\n→ どちら側に座ってもいいよ。\n\nこの場合は「二つのうち、どちらを選んでもよい」という感覚です。\n\n否定文では、\n\nI don't like either one.\n→ どちらも好きではありません。\n\nのように「二つのうち、どちらも〜ない」という意味になります。\n\nまた会話では、\n\nI don't know either.\n→ 私も分からない。\n\nのように、否定文の最後で「〜もまた…ない」と言うこともあります。\n\nboth が「二つとも」なら、either は「二つを見比べて、そのどちらか」。二択の場面を思い浮かべると使いやすい語です。",
+        "meanings": [
+          {
+            "meaning": "代名詞/形容詞/副詞 どちらか",
+            "en": "A: Either answer is fine.\nB: Okay. Which one sounds more natural to you?",
+            "ja": "A: どちらの答えでも大丈夫だよ。\nB: 分かった。どっちの方が自然に聞こえる？"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "each",
+        "wordNote": "each の基本イメージは、全体の中の一つひとつを順番に指さして見ることです。\n\neach student\n→ 生徒一人ひとり\n\nEach student has a tablet.\n→ 生徒は一人ひとりタブレットを持っています。\n\neach は全員を含んでいても、視線は一人ずつに向いています。\n\nThey each chose a different color.\n→ 彼らはそれぞれ違う色を選びました。\n\neach of us\n→ 私たち一人ひとり\n\nのような形もよく使います。\n\nevery も「すべての」と訳せますが、\n\neach\n→ 一つひとつを見る\n\nevery\n→ 一つも漏らさず全体を見る\n\nという違いがあります。\n\n「全員いるけれど、一人ずつ顔が見えている」のが each と考えると分かりやすいです。",
+        "meanings": [
+          {
+            "meaning": "形容詞/代名詞 それぞれの",
+            "en": "A: Each student has a tablet.\nB: Do we need to bring our own chargers too?",
+            "ja": "A: 生徒は一人ひとりタブレットを持ってるよ。\nB: 充電器も自分で持ってきた方がいい？"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "every",
+        "wordNote": "every の基本イメージは、一つひとつを数えながら「一つも抜けず、全部に当てはまる」と見ることです。\n\nevery student\n→ すべての生徒\n\nevery day\n→ 毎日\n\nI check the weather every morning.\n→ 毎朝、天気を確認します。\n\nevery の後ろには通常、単数名詞を置きます。\n\nevery student\nevery room\nevery weekend\n\n日本語では「全部」と訳すこともありますが、形としては一つずつを数えながら、例外なく全体を覆う感覚があります。\n\nI've tried every café on this street.\n→ この通りのカフェは全部行ってみました。\n\neach が「一つずつに視線を向ける」のに対して、every は「一つも漏らさず全体を覆う」。この違いを意識すると使い分けやすくなります。",
+        "meanings": [
+          {
+            "meaning": "形容詞 すべての",
+            "en": "A: I check the weather every morning.\nB: Does it actually help you decide what to wear?",
+            "ja": "A: 毎朝、天気を確認するんだ。\nB: 実際、着るものを決めるのに役立つ？"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "enough",
+        "wordNote": "enough の基本イメージは、必要なラインに「届いている」ことです。\n\nenough time\n→ 十分な時間\n\nenough money\n→ 十分なお金\n\nDo we have enough time?\n→ 十分な時間ある？\n\n名詞の前では、\n\nenough + 名詞\n\nになります。\n\n一方、形容詞や副詞では後ろに置きます。\n\nwarm enough\n→ 十分暖かい\n\nfast enough\n→ 十分速く\n\nThe room isn't big enough for all of us.\n→ この部屋は全員で使うには十分広くありません。\n\nenough は必ずしも「たくさん」という意味ではありません。目的に対して足りているかどうかを見る語です。\n\nまた、\n\nI've had enough.\n→ もう十分。／もうたくさん。\n\nのように、それ以上はいらないという意味でもよく使います。\n\n「必要ラインに届いた」と考えると、いろいろな使い方がつながって見えます。",
+        "meanings": [
+          {
+            "meaning": "形容詞/代名詞/副詞 十分な/十分に",
+            "en": "A: Do we have enough time to stop for coffee?\nB: Yeah, if we leave in ten minutes.",
+            "ja": "A: コーヒー買っていく時間あるかな？\nB: うん、10分以内に出れば大丈夫。"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "another",
+        "wordNote": "another の基本イメージは、今ある一つとは別に「もう一つ」を取り出すことです。\n\nanother cup\n→ もう一杯\n\nanother idea\n→ 別の案をもう一つ\n\nCan I have another cup of coffee?\n→ コーヒーをもう一杯もらえますか？\n\nanother は基本的に、\n\nanother + 単数可算名詞\n\nの形で使います。\n\nLet's try another way.\n→ 別の方法を試してみよう。\n\nこの文では「同じ方法をもう一度」ではなく、今とは別の一つを選んでいます。\n\nまた、\n\nanother five minutes\n→ あと5分\n\nのように、数＋複数名詞の前に置いて「さらに〜」を表すこともあります。\n\nanother / other / the other / others は似ていますが、まず another は「もう一個」「別の一個」という感覚をつかむと使いやすくなります。",
+        "meanings": [
+          {
+            "meaning": "形容詞/代名詞 もう一つの",
+            "en": "A: Can I have another cup of coffee?\nB: Sure. I'll make some more.",
+            "ja": "A: コーヒー、もう一杯もらっていい？\nB: もちろん。もう少し淹れるね。"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "between",
+        "wordNote": "between の基本イメージは、はっきり区別できるものの「あいだ」です。\n\nbetween A and B\n→ AとBのあいだ\n\nThe café is between the bank and the station.\n→ そのカフェは銀行と駅のあいだにあります。\n\n「二つのもののあいだ」と覚えることが多いですが、三つ以上でも、一つひとつを区別して考えている場合は between を使えます。\n\nWe divided the work between the three of us.\n→ 私たち3人で仕事を分担しました。\n\nまた、\n\nbetween you and me\n→ ここだけの話だけど\n\nのように、人と人の関係にも使われます。\n\nbetween\n→ 一つひとつが見えている、そのあいだ\n\namong\n→ 集まりの中\n\nと考えると違いが見えやすくなります。",
+        "meanings": [
+          {
+            "meaning": "前置詞 〜の間に",
+            "en": "A: The café is between the bank and the station.\nB: Got it. Is it the one with the yellow door?",
+            "ja": "A: そのカフェ、銀行と駅の間にあるよ。\nB: 分かった。黄色いドアの店？"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "among",
+        "wordNote": "among の基本イメージは、人や物の集まりに囲まれて「その中にいる」ことです。\n\namong the students\n→ 生徒たちの中で\n\namong the trees\n→ 木々の間に\n\nI found your note among the papers on my desk.\n→ 机の上の書類の中から、あなたのメモを見つけました。\n\nbetween が一つひとつを区別して見るのに対し、among は全体を一つの集まりとして見る感覚があります。\n\nHer name was among the winners.\n→ 彼女の名前は受賞者の中にありました。\n\nこのように、実際に物に囲まれていなくても「ある集団の一員」という意味で使えます。\n\n「点と点のあいだ」が between、\n「集まりの中」が among。\n\nこの違いを思い浮かべると使いやすくなります。",
+        "meanings": [
+          {
+            "meaning": "前置詞 〜の間で",
+            "en": "A: I found your note among the papers on my desk.\nB: Seriously? I thought I'd lost it.",
+            "ja": "A: 机の書類の中から君のメモ見つけたよ。\nB: 本当に？なくしたと思ってた。"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "during",
+        "wordNote": "during の基本イメージは、ある時間・出来事という「時間の箱の中」です。\n\nduring class\n→ 授業中に\n\nduring lunch\n→ 昼食中に\n\nduring the summer\n→ 夏の間に\n\nPlease don't use your phone during class.\n→ 授業中はスマホを使わないでください。\n\nduring の後ろには基本的に名詞が来ます。\n\nduring the meeting\nduring the trip\nduring the night\n\nまた、\n\nSomething happened during the download.\n→ ダウンロード中に何かが起きた。\n\nのように、日常の出来事や作業にも使えます。\n\n一方、\n\nwhile I was downloading the file\n→ 私がファイルをダウンロードしている間\n\nのように、主語＋動詞を続けたい場合は while を使います。\n\nduring は「その時間帯の中で」と考えると分かりやすいです。",
+        "meanings": [
+          {
+            "meaning": "前置詞 〜の間に",
+            "en": "A: Please don't use your phone during class.\nB: Okay. Can I check it during the break?",
+            "ja": "A: 授業中はスマホ使わないでね。\nB: 分かった。休み時間なら確認していい？"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "while",
+        "wordNote": "while の基本イメージは、二つのことが同じ時間帯に進んでいることです。\n\nwhile I work\n→ 私が仕事をしている間\n\nwhile you wait\n→ あなたが待っている間\n\nI'll make dinner while you finish that report.\n→ あなたがそのレポートを終える間に、夕食を作るよ。\n\nwhile の後ろには基本的に、\n\n主語 + 動詞\n\nが続きます。\n\nwhile I'm driving\nwhile she sleeps\nwhile we're waiting\n\nまた、\n\nYou can listen while you work.\n→ 作業しながら聞いていいよ。\n\nのように「〜しながら」という感覚でもよく使います。\n\nduring が「ある時間そのもの」を見るのに対して、while はその時間に何が進んでいるかを見ています。\n\nduring dinner\n→ 夕食という時間の中\n\nwhile we were eating dinner\n→ 私たちが夕食を食べている間\n\nという違いです。",
+        "meanings": [
+          {
+            "meaning": "接続詞 〜する間",
+            "en": "A: I'll make dinner while you finish that report.\nB: Thanks. I should be done in about twenty minutes.",
+            "ja": "A: そのレポート終わらせてる間に、夕食作るよ。\nB: ありがとう。あと20分くらいで終わると思う。"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "since",
+        "wordNote": "since には大きく二つの使い方があります。まず時間では、過去のある地点にピンを立て、そこから後ろへ時間が続く「起点」を表します。\n\nsince Monday\n→ 月曜日からずっと\n\nsince 2022\n→ 2022年からずっと\n\nI've used this laptop since college.\n→ 大学時代からずっとこのノートパソコンを使っています。\n\nsince last week\nsince I moved here\nsince we last talked\n\nのように、日時だけでなく文を続けることもできます。\n\n一方、\n\nfor three years\n→ 3年間\n\nのように、どれくらい続いたかという「長さ」を表すときは for を使います。\n\nsince = スタート地点\nfor = そこからの長さ\n\nと考えると整理しやすくなります。\n\nまた since は、理由を表して「〜なので」と使うこともあります。\n\nSince we're already here, let's take a look.\n→ せっかくここまで来たんだから、見ていこう。\n\nこの since は because よりも、理由を強く押し出すというより「その事情を前提にすると」という背景を添える感じで使われることがあります。\n\n時間の since と理由の since は働きが違うので、無理に一つの日本語訳にまとめず、「時間の起点」と「判断の前提」という二つの主要ルートで覚えると分かりやすいです。",
+        "meanings": [
+          {
+            "meaning": "前置詞/接続詞 〜以来/〜なので",
+            "en": "A: I've used this laptop since college.\nB: Really? How is it still alive?",
+            "ja": "A: 大学の頃からずっとこのノートパソコン使ってるんだ。\nB: 本当に？よくまだ動いてるね。"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "until",
+        "wordNote": "until の基本イメージは、ある終点まで状態や行動が続いていくことです。\n\nuntil six\n→ 6時まで\n\nuntil tomorrow\n→ 明日まで\n\nI'll be at the office until six.\n→ 6時までオフィスにいます。\n\nuntil は「6時に何かをする」というより、6時という線まで今の状態が続く感覚です。\n\nWait here until I come back.\n→ 私が戻るまでここで待っていて。\n\nDon't open it until tomorrow.\n→ 明日になるまで開けないで。\n\nこのように、until の後ろには文を続けることもできます。\n\n似た表現の by は「その時刻までに完了する」という締め切りを表します。\n\nStay here until six.\n→ 6時までここにいる。\n\nFinish it by six.\n→ 6時までに終わらせる。\n\nsince が「ここから始まる」というスタート地点なら、until は「ここまで続く」というゴール地点です。",
+        "meanings": [
+          {
+            "meaning": "前置詞/接続詞 〜まで",
+            "en": "A: I'll be at the office until six.\nB: Great. I'll stop by before then.",
+            "ja": "A: 6時までオフィスにいるよ。\nB: よかった。それまでに寄るね。"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "although",
+        "wordNote": "although の基本イメージは、「普通ならこうなるはずなのに」と逆方向の事実をつなぐことです。\n\nAlthough it was expensive, I bought it.\n→ 高かったけれど、買いました。\n\nAlthough the reviews were mixed, I really liked the movie.\n→ 評判は賛否両論だったけれど、私はその映画がとても気に入りました。\n\n高い\n→ 普通なら買わないかもしれない\n\n評判が微妙\n→ 普通なら気に入らないかもしれない\n\nという予想をひっくり返しています。\n\nalthough を使った文では、通常\n\nAlthough ..., but ...\n\nのように but を重ねません。\n\nAlthough I was tired, I went out.\n→ ○\n\nAlthough I was tired, but I went out.\n→ ×\n\nalthough は単なる「でも」ではなく、予想と現実のズレを見せる語だと考えると使いやすくなります。",
+        "meanings": [
+          {
+            "meaning": "接続詞 〜だけれども",
+            "en": "A: Although the reviews were mixed, I really liked the movie.\nB: Really? What did you like about it?",
+            "ja": "A: 評判は賛否両論だったけど、私はあの映画すごく好きだった。\nB: そうなんだ。どこがよかった？"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "whether",
+        "wordNote": "whether の基本イメージは、二つ以上の可能性を並べて「どちらになるかまだ決まっていない」と見ることです。\n\nI don't know whether he'll come.\n→ 彼が来るかどうか分かりません。\n\nwhether ... or not\n→ 〜かどうか\n\nI haven't decided whether to go or not.\n→ 行くかどうかまだ決めていません。\n\nまた、\n\nWhether you agree or not, we need to decide today.\n→ 賛成でも反対でも、今日は決める必要があります。\n\nのように「どちらの場合でも」という使い方もできます。\n\nif も「〜かどうか」と訳されることがありますが、whether は特に「Aなのか、それともBなのか」と選択肢が並んでいる感じが強い語です。\n\nまた、\n\nwhether to go\n→ 行くべきかどうか\n\nのように whether + to不定詞 もよく使います。\n\n可能性を天秤に載せて比べるイメージで覚えると分かりやすいです。",
+        "meanings": [
+          {
+            "meaning": "接続詞 〜かどうか",
+            "en": "A: I don't know whether he'll come tonight.\nB: Should we save him a seat anyway?",
+            "ja": "A: 今夜あの人が来るかどうか分からないんだ。\nB: とりあえず席は取っておく？"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "as",
+        "wordNote": "as は意味が多い語ですが、中心には、二つのものを同じ立場・基準・時間の流れに重ねるような感覚があります。\n\n1. 「〜として」\n\n人や物に「どんな役割で使われているか」を示します。\n\nShe works as a nurse.\n→ 彼女は看護師として働いています。\n\nI used my jacket as a pillow.\n→ ジャケットを枕代わりに使いました。\n\nこの as は「今、この役割をしています」というイメージです。\n\n2. as ... as「〜と同じくらい」\n\n二つを同じ物差しの上に並べて比べます。\n\nThis one is as good as the expensive one.\n→ これは高い方と同じくらい良いです。\n\nIt's not as difficult as I expected.\n→ 思っていたほど難しくありません。\n\nnot as ... as は「〜ほど…ではない」という、とてもよく使う形です。\n\n3. 「〜するとき・〜するにつれて」\n\n二つの出来事が同じ時間の流れの中で進むときにも as を使います。\n\nAs I was leaving, my phone rang.\n→ 帰ろうとしたとき、電話が鳴りました。\n\nAs the weather got colder, the streets became quieter.\n→ 寒くなるにつれて、通りは静かになっていきました。\n\n「二つの変化が一緒に進む」感じがあります。\n\n4. 「〜なので」\n\n理由を表す as もあります。\n\nAs it was getting late, we decided to leave.\n→ 遅くなってきたので、帰ることにしました。\n\nbecause よりも、理由を強く主張するというより、背景として添える感じになることがあります。\n\nas は一つの日本語訳で覚えるより、\n\n「役割を重ねる」\n「同じ基準に並べる」\n「同じ時間の流れに置く」\n\nという感覚から意味が広がっていると考えると整理しやすくなります。",
+        "meanings": [
+          {
+            "meaning": "前置詞/接続詞/副詞 〜として/〜する時/同じくらい",
+            "en": "A: She works as a nurse now.\nB: Really? What did she do before that?",
+            "ja": "A: 彼女、今は看護師として働いてるよ。\nB: そうなんだ。その前は何をしてたの？"
+          }
+        ]
+      },
+      {
+        "pos": "others",
+        "word": "than",
+        "wordNote": "than の基本イメージは、二つを比べるときに「比較する相手・基準」を置くことです。\n\nbigger than\n→ 〜より大きい\n\nmore useful than\n→ 〜より役に立つ\n\nThis bag is lighter than mine.\n→ このバッグは私のものより軽いです。\n\nthan の後ろには「何と比べているのか」が来ます。\n\nShe arrived earlier than me.\n→ 彼女は私より早く着きました。\n\n日常でとてもよく使うのが、\n\nthan I expected\n→ 思っていたより\n\nです。\n\nIt's harder than I expected.\n→ 思っていたより難しい。\n\nThe trip was shorter than I expected.\n→ 旅行は思っていたより短かった。\n\nまた、\n\nrather than ...\n→ 〜ではなく、むしろ…\n\nという表現にも使われます。\n\nI'd walk rather than wait another hour.\n→ もう1時間待つくらいなら歩くよ。\n\nthan は単なる「〜より」ではなく、比べるときにもう一方を基準として置く語だと考えると使いやすくなります。",
+        "meanings": [
+          {
+            "meaning": "接続詞/前置詞 〜より",
+            "en": "A: This bag is lighter than mine.\nB: Want to switch bags for the trip?",
+            "ja": "A: このバッグ、私のより軽いね。\nB: 旅行の間、交換する？"
+          }
+        ]
+      },
+      
+      {
         "pos": "verb",
         "word": "bake",
         "wordNote": null,
@@ -8103,12 +8480,12 @@
       {
         "pos": "verb",
         "word": "bring",
-        "wordNote": null,
+        "wordNote": "bring の基本イメージは、人や物を「こちら側・基準になる場所へ持ってくる」ことです。\n\nCan you bring your notebook tomorrow?\n→ 明日ノートを持ってきてくれる？\n\n話し手や聞き手がいる場所、または会話の中で基準になっている場所へ向かう感覚があります。\n\nBring your charger to my room.\n→ 充電器を私の部屋に持ってきて。\n\n一方、take は、今いる場所から別の場所へ持っていく感覚です。\n\nbring\n→ こちらへ持ってくる\n\ntake\n→ あちらへ持っていく\n\nまた bring は、物を運ぶだけではありません。\n\nThat song brings back memories.\n→ その曲を聞くと昔の記憶がよみがえる。\n\nThe new system brought us a lot of problems.\n→ 新しい仕組みは私たちに多くの問題をもたらしました。\n\n「何かをこちら側へ連れてくる」という感覚が、記憶・結果・変化をもたらす使い方にも広がっています。",
         "meanings": [
           {
             "meaning": "持ってくる",
-            "en": "Can you bring me my baggage?",
-            "ja": "私の荷物を持ってきてくれる？"
+            "en": "A: Can you bring your notebook tomorrow?\nB: Sure. Do you want me to bring the worksheet too?",
+            "ja": "A: 明日ノート持ってきてくれる？\nB: いいよ。ワークシートも持っていこうか？"
           }
         ]
       },
@@ -8263,6 +8640,102 @@
             "ja": "君に僕の犬たちの写真を見せるよ。"
           }
         ]
-      }
+      },
+      {
+        "pos": "verb",
+        "word": "take",
+        "wordNote": "take の基本イメージは、何かを手に取り、自分の行為の中に取り込んで「そこから先へ持っていく」ことです。\n\nTake your ID with you.\n→ 身分証を持っていって。\n\nbring が「こちらへ持ってくる」なら、take は「今いる所から別の所へ持っていく」という方向の違いがあります。\n\nしかし take は、物を運ぶ以外にも非常によく使われます。\n\ntake a photo\n→ 写真を撮る\n\ntake a break\n→ 休憩を取る\n\ntake medicine\n→ 薬を飲む\n\ntake a seat\n→ 座る\n\nこれらは日本語では別々の動詞になりますが、英語では「その行為・機会を自分の側へ取り込む」と考えるとつながって見えます。\n\nまた、\n\nIt takes ten minutes.\n→ 10分かかります。\n\nのように、必要な時間を「取る」という使い方もあります。\n\ntake は訳語を一つずつ暗記するより、「取って、自分の行為として持っていく」という基本感覚から意味の広がりを見ると使いやすくなります。",
+        "meanings": [
+          {
+            "meaning": "持っていく",
+            "en": "A: Don't forget to take your ID with you.\nB: Good catch. They check it at the entrance, right?",
+            "ja": "A: 身分証持っていくの忘れないでね。\nB: 言ってくれて助かった。入口で確認されるんだよね？"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "borrow",
+        "wordNote": "borrow の基本イメージは、誰かのものを「一時的に自分の側へ受け取り、あとで返す」ことです。\n\nCan I borrow your charger?\n→ 充電器を借りてもいい？\n\nborrow A from B\n→ BからAを借りる\n\nI borrowed this book from the library.\n→ この本を図書館から借りました。\n\n反対に「貸す」は lend を使います。\n\nborrow\n→ 借りる側から見る\n\nlend\n→ 貸す側から見る\n\nCan I borrow your pen?\n→ ペンを借りてもいい？\n\nCan you lend me your pen?\n→ ペンを貸してくれる？\n\n同じ出来事でも、どちら側から見るかで動詞が変わります。\n\nまた、物だけでなく、\n\nEnglish has borrowed many words from French.\n→ 英語はフランス語から多くの語を借用しています。\n\nのように、言葉やアイデアを「借りる」という使い方もあります。",
+        "meanings": [
+          {
+            "meaning": "借りる",
+            "en": "A: Can I borrow your charger?\nB: Sure. It's in the side pocket of my bag.",
+            "ja": "A: 充電器借りてもいい？\nB: いいよ。バッグの横のポケットに入ってる。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "arrive",
+        "wordNote": "arrive の基本イメージは、移動が終わって「目的の地点に到着する」ことです。\n\nWe arrived at the station at nine.\n→ 9時に駅に着きました。\n\n場所には通常、\n\narrive at + 比較的小さな場所\narrive in + 都市・国など広い場所\n\nを使います。\n\narrive at the station\n→ 駅に着く\n\narrive in Tokyo\n→ 東京に着く\n\nただし home / here / there には通常、前置詞を付けません。\n\nI arrived home late.\n→ 遅く家に着きました。\n\nまた、人だけでなく物にも使えます。\n\nMy package finally arrived.\n→ 荷物がやっと届きました。\n\nreach も「着く」ですが、reach は reach the station のように場所を直接後ろに置きます。\n\narrive at the station\nreach the station\n\nという形の違いをセットで覚えると使いやすくなります。",
+        "meanings": [
+          {
+            "meaning": "到着する",
+            "en": "A: We arrived at the station ten minutes early.\nB: Great. Want to grab something to drink?",
+            "ja": "A: 駅に10分早く着いたよ。\nB: よかった。何か飲み物買う？"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "reach",
+        "wordNote": "reach の基本イメージは、手や動きが伸びて「目的の点に届く」ことです。\n\nWe reached the hotel around eleven.\n→ 11時ごろホテルに着きました。\n\nreach は他動詞なので、場所を直接後ろに置きます。\n\nreach the station\n→ 駅に着く\n\nreach the top\n→ 頂上に到達する\n\n通常、reach to the station のように場所の前へ to は付けません。\n\nreach の「届く」という感覚は、場所だけでなく目標や合意にも広がります。\n\nreach a goal\n→ 目標に到達する\n\nreach an agreement\n→ 合意に達する\n\nPrices reached a record high.\n→ 価格が過去最高に達しました。\n\narrive は「到着した」という出来事を見るのに対して、reach は「目的点まで届いた」という感覚が強い語です。\n\narrive at the station\nreach the station\n\nの形の違いにも注意しましょう。",
+        "meanings": [
+          {
+            "meaning": "着く",
+            "en": "A: What time did you reach the hotel?\nB: Around eleven. The train was delayed again.",
+            "ja": "A: ホテルには何時に着いた？\nB: 11時ごろ。また電車が遅れてたんだ。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "miss",
+        "wordNote": "miss の基本イメージは、狙っていたもの・そこにあるはずのものに「届かない、すれ違う」ことです。\n\nI missed the last train.\n→ 終電に乗り損ねました。\n\n電車は来たけれど、自分がそこに間に合わず、乗る機会に届かなかったという感覚です。\n\nそこから、いろいろな意味に広がります。\n\nmiss a chance\n→ 機会を逃す\n\nmiss the target\n→ 的を外す\n\nI missed your call.\n→ 電話に出られなかった。\n\nまた、\n\nI miss you.\n→ あなたがいなくて寂しい。／会いたい。\n\nという非常によく使う表現もあります。\n\nこの場合も「そこにいてほしい人が今ここにいない」という欠けた感覚があります。\n\n「狙ったところに届かない」「あるはずのものが欠けている」という感覚で見ると、miss の意味がつながってきます。",
+        "meanings": [
+          {
+            "meaning": "乗りそこなう",
+            "en": "A: I missed the last train.\nB: Do you want me to help you find a taxi?",
+            "ja": "A: 終電逃しちゃった。\nB: タクシー探すの手伝おうか？"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "spend",
+        "wordNote": "spend の基本イメージは、自分が持っている時間やお金を「使って、その分を手元から出す」ことです。\n\nspend money on ...\n→ 〜にお金を使う\n\nI spent too much money on books.\n→ 本にお金を使いすぎました。\n\nspend time doing ...\n→ 〜して時間を過ごす\n\nI spent the afternoon cleaning my room.\n→ 午後は部屋の掃除をして過ごしました。\n\nお金だけでなく、時間も「自分が持っている資源」として使うのが spend の特徴です。\n\nまた、\n\nWe spent the weekend in Kyoto.\n→ 週末を京都で過ごしました。\n\nのように「時間をある場所で過ごす」ときにも使えます。\n\ncost が物やサービスの側から「これだけ必要になる」と見るのに対して、spend は人の側から「自分がこれだけ使う」と見ます。\n\nI spent $20 on the book.\n→ 私はその本に20ドル使った。\n\nThe book cost $20.\n→ その本は20ドルした。\n\n視点の違いをつかむと使い分けやすくなります。",
+        "meanings": [
+          {
+            "meaning": "使う（お金を）",
+            "en": "A: I spent too much money on books this month.\nB: How many did you buy this time?",
+            "ja": "A: 今月、本にお金使いすぎた。\nB: 今回は何冊買ったの？"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "cost",
+        "wordNote": "cost の基本イメージは、ある物や行動が「それを得るためにこれだけの代価を要求する」ことです。\n\nThis ticket costs thirty dollars.\n→ このチケットは30ドルします。\n\nspend では人が主語になりやすいのに対して、cost では物・サービス・出来事の側が主語になります。\n\nI spent $30 on the ticket.\n→ 私はチケットに30ドル使った。\n\nThe ticket cost $30.\n→ チケットは30ドルした。\n\nまた、お金以外にも使えます。\n\nThe mistake cost us a lot of time.\n→ そのミスのせいで多くの時間を失いました。\n\nIt cost me a whole afternoon.\n→ それに午後を丸ごと使うことになりました。\n\nこのように、「それを得る・起こすための代価」が時間や労力になることもあります。\n\nHow much does it cost?\n→ いくらですか？\n\nは買い物や予約などで非常によく使う表現です。\n\ncost は「値段が付いている」というより、「これだけ差し出す必要がある」という感覚で見ると意味が広がって理解しやすくなります。",
+        "meanings": [
+          {
+            "meaning": "費用がかかる",
+            "en": "A: How much does this ticket cost?\nB: About thirty dollars. Want me to check the other route too?",
+            "ja": "A: このチケットいくらする？\nB: 30ドルくらい。別のルートも調べようか？"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "homework",
+        "wordNote": "homework は英語では通常、数えない名詞です。\n\n日本語では「宿題を一つ、二つ」と数えることがありますが、英語では homework を「取り組むべき学習作業のまとまり」として見る感覚があります。\n\nsome homework\n→ いくらかの宿題\n\na lot of homework\n→ たくさんの宿題\n\nI still have a lot of homework to do.\n→ まだ宿題がたくさん残っています。\n\nそのため通常、\n\na homework\nhomeworks\n\nとは言いません。\n\n一つの課題を数えたいときは、\n\nan assignment\n→ 一つの課題\n\nthree assignments\n→ 3つの課題\n\nのように assignment を使うと自然です。\n\nhomework は「個数」より「作業量」としてとらえる、と考えると分かりやすいです。",
+        "meanings": [
+          {
+            "meaning": "宿題",
+            "en": "A: I still have a lot of homework to do.\nB: Want me to help you with any of it?",
+            "ja": "A: まだ宿題たくさん残ってるんだ。\nB: どれか手伝おうか？"
+          }
+        ]
+      },
     ]
 

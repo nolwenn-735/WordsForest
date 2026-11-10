@@ -172,9 +172,116 @@ final class HomeworkStore: ObservableObject {
             saveRequired()
         }
     }
+ 
+    private func migrateLegacyBeFormsToBaseVerbIfNeeded() {
+        let beMeaning = "be動詞　〜である"
+
+        func isLegacyBeForm(_ item: StoredWord) -> Bool {
+            guard item.pos == .others else { return false }
+
+            let word = norm(item.word)
+            let meaning = normMeaning(item.meaning)
+
+            switch word {
+            case "is", "are":
+                return meaning == "be動詞　〜である"
+
+            case "was":
+                return meaning == "be動詞　amとisの過去形"
+
+            case "were":
+                return meaning == "be動詞　areの過去形"
+
+            default:
+                return false
+            }
+        }
+
+        let legacyWords = words.filter(isLegacyBeForm)
+
+        guard !legacyWords.isEmpty else {
+            return
+        }
+
+        let legacyIDs = Set(legacyWords.map(\.id))
+
+        let wasFavorite =
+            !favoriteIDs.isDisjoint(with: legacyIDs)
+
+        let wasLearned =
+            !learnedIDs.isDisjoint(with: legacyIDs)
+
+        let wasRequired =
+            !requiredIDs.isDisjoint(with: legacyIDs)
+
+        let beID: UUID
+
+        // すでに正式な be が存在する場合は、そのUUIDを使う
+        if let existingBe = words.first(where: {
+            $0.pos == .verb &&
+            norm($0.word) == "be" &&
+            normMeaning($0.meaning) == beMeaning
+        }) {
+            beID = existingBe.id
+
+        } else {
+            // 旧4カードのうち1枚のUUIDを be に引き継ぐ
+            let preferredOrder = ["is", "are", "was", "were"]
+
+            guard let source = preferredOrder.compactMap({ target in
+                legacyWords.first {
+                    norm($0.word) == target
+                }
+            }).first else {
+                return
+            }
+
+            beID = source.id
+
+            if let index = words.firstIndex(where: {
+                $0.id == beID
+            }) {
+                words[index] = StoredWord(
+                    id: beID,
+                    word: "be",
+                    meaning: beMeaning,
+                    pos: .verb
+                )
+            }
+        }
+
+        // be に引き継いだ1件以外の旧4カードを整理
+        words.removeAll {
+            legacyIDs.contains($0.id) &&
+            $0.id != beID
+        }
+
+        // 旧4カードについていた学習状態を be へまとめて引き継ぐ
+        favoriteIDs.subtract(legacyIDs)
+        learnedIDs.subtract(legacyIDs)
+        requiredIDs.subtract(legacyIDs)
+
+        if wasFavorite {
+            favoriteIDs.insert(beID)
+        }
+
+        if wasLearned {
+            learnedIDs.insert(beID)
+        }
+
+        if wasRequired {
+            requiredIDs.insert(beID)
+        }
+
+        save()
+        saveFavorites()
+        saveLearned()
+        saveRequired()
+    }
     
     // 今回は migrate の中身は仮。旧データがあればここで変換する。
     private func migrateIfNeeded() {
+        migrateLegacyBeFormsToBaseVerbIfNeeded()
         // 現在保存済みの word + meaning + pos を記録。
         // 既存UUIDは一切変更しない。
         var knownKeys = Set(

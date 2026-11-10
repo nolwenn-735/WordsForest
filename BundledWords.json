@@ -750,6 +750,11 @@
     "pos": "noun"
   },
   {
+    "word": "be",
+    "meaning": "be動詞　〜である",
+    "pos": "verb"
+  },
+  {
     "word": "run",
     "meaning": "走る",
     "pos": "verb"
@@ -2356,7 +2361,7 @@
   },
   {
     "word": "hard",
-    "meaning": "一生けん命",
+    "meaning": "一生懸命",
     "pos": "adv"
   },
   {
@@ -2522,26 +2527,6 @@
   {
     "word": "at",
     "meaning": "前置詞　〜で",
-    "pos": "others"
-  },
-  {
-    "word": "is",
-    "meaning": "be動詞　〜である",
-    "pos": "others"
-  },
-  {
-    "word": "are",
-    "meaning": "be動詞　〜である",
-    "pos": "others"
-  },
-  {
-    "word": "was",
-    "meaning": "be動詞　amとisの過去形",
-    "pos": "others"
-  },
-  {
-    "word": "were",
-    "meaning": "be動詞　areの過去形",
     "pos": "others"
   },
   {

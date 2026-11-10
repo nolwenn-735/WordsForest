@@ -163,7 +163,7 @@ struct DisplaySettingsView: View {
             } header: {
                 Text("利用方法を選択してください")
             } footer: {
-                Text("「個人」では自分で単語カードや宿題を編集できます。「教室」では先生が学習内容を管理し、編集にはTeacherロック解除が必要です。")
+                Text("「個人」では自分で単語カードや宿題を編集できます。「教室」では先生が学習内容を管理し、編集にはTeacherロック解錠が必要です。")
             }
             
             Section {

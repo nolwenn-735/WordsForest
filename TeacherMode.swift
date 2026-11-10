@@ -22,7 +22,7 @@ final class TeacherMode: ObservableObject {
     private let unlockUntilKey = "teacherUnlockUntilISO.v1"
     private let passConfiguredKey = "teacherPassConfigured.v1"
 
-    /// 解除の有効時間：60分
+    /// 解錠の有効時間：60分
     private let unlockDuration: TimeInterval = 60 * 60
 
     private var pendingAction: (() -> Void)?
@@ -44,7 +44,7 @@ final class TeacherMode: ObservableObject {
 
     // MARK: - Public API
 
-    /// ロック解除を要求（解除中なら即 action、期限切れならシート）
+    /// ロック解錠を要求（解錠中なら即 action、期限切れならシート）
     func requestUnlock(runAfterUnlock action: (() -> Void)? = nil) {
         refreshLockState()
 
@@ -69,7 +69,7 @@ final class TeacherMode: ObservableObject {
         autoLockTask = nil
     }
 
-    /// 入力コードで解除（成功したら60分間 unlocked）
+    /// 入力コードで解錠（成功したら60分間 unlocked）
     @discardableResult
     func tryUnlock(code: String, dismissSheet: Bool = true) -> Bool {
         let stored = UserDefaults.standard.string(forKey: passHashKey) ?? ""
@@ -82,7 +82,7 @@ final class TeacherMode: ObservableObject {
                 showingUnlockSheet = false
             }
 
-            // 解除期限を保存
+            // 解錠期限を保存
             let until = Date().addingTimeInterval(unlockDuration)
             saveUnlockUntil(until)
 
@@ -99,7 +99,7 @@ final class TeacherMode: ObservableObject {
 
         return ok
     }
-    /// 先生が暗証番号を変える（運用は「解除中だけ呼ぶ」）
+    /// 先生が暗証番号を変える（運用は「解錠中だけ呼ぶ」）
     func setPasscode(_ newCode: String) {
         UserDefaults.standard.set(hash(newCode), forKey: passHashKey)
         UserDefaults.standard.set(true, forKey: passConfiguredKey)
@@ -238,7 +238,7 @@ struct TeacherUnlockSheet: View {
 
     private var unlockSection: some View {
         Group {
-            Section("TEACHER ロック解除（60分）") {
+            Section("TEACHER ロック解錠（60分）") {
                 SecureField("パスコード", text: $code)
                     .textContentType(.oneTimeCode)
                     .keyboardType(.numberPad)
@@ -251,7 +251,7 @@ struct TeacherUnlockSheet: View {
             }
 
             Section {
-                Button("解除") {
+                Button("解錠") {
                     let ok = teacher.tryUnlock(code: code, dismissSheet: false)
                     showError = !ok
                     if ok {
@@ -273,12 +273,12 @@ struct TeacherUnlockSheet: View {
     private var unlockedMenuSection: some View {
         Group {
             Section {
-                Text("Teacher は現在解除中です。")
+                Text("Teacher は現在解錠中です。")
                     .foregroundStyle(.secondary)
             }
 
             Section {
-                Button("閉じる（解錠状態を維持）") {
+                Button("解錠する（1時間）") {
                     teacher.showingUnlockSheet = false
                 }
 
