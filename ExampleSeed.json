@@ -7908,6 +7908,18 @@
             }
           ]
         },
+        {
+          "pos": "adjective",
+          "word": "precious",
+          "wordNote": "precious の基本の感覚は、「失いたくないほど大切で、簡単には代わりがきかない」ことです。\n\nprecious memories\n→ かけがえのない思い出\n\nprecious time\n→ 貴重な時間\n\nThis photo is precious to me.\n→ この写真は私にとってとても大切です。\n\nprecious は、値段が高いものだけに使う語ではありません。\n\n家族との写真、思い出、限られた時間など、本人にとって「なくしたくない」「大切にしたい」と感じるものにも使います。\n\n一方、valuable は「価値が高い」という意味で、金銭的・実用的な価値にも広く使えます。\n\nThis watch is valuable.\n→ この時計は価値が高い。\n\nThis watch is precious to me.\n→ この時計は私にとってかけがえのないものだ。\n\nvaluable が「価値がある」、precious が「失いたくないほど大切」と考えると、違いが見えやすくなります。",
+          "meanings": [
+            {
+              "meaning": "大切な",
+              "en": "A: This photo is precious to me. It's the only one I have of my grandparents together.\nB: Then you should make a backup copy.",
+              "ja": "A: この写真、私にとってすごく大切なんだ。祖父母が二人で写ってる写真、これしかないの。\nB: じゃあバックアップを取っておいた方がいいね。"
+            }
+          ]
+        },
         
         
         {
@@ -8055,17 +8067,67 @@
           ]
         },
         {
-          "pos": "verb",
-          "word": "bring",
-          "wordNote": "bring の基本イメージは、人や物を「こちら側・基準になる場所へ持ってくる」ことです。\n\nCan you bring your notebook tomorrow?\n→ 明日ノートを持ってきてくれる？\n\n話し手や聞き手がいる場所、または会話の中で基準になっている場所へ向かう感覚があります。\n\nBring your charger to my room.\n→ 充電器を私の部屋に持ってきて。\n\n一方、take は、今いる場所から別の場所へ持っていく感覚です。\n\nbring\n→ こちらへ持ってくる\n\ntake\n→ あちらへ持っていく\n\nまた bring は、物を運ぶだけではありません。\n\nThat song brings back memories.\n→ その曲を聞くと昔の記憶がよみがえる。\n\nThe new system brought us a lot of problems.\n→ 新しい仕組みは私たちに多くの問題をもたらしました。\n\n「何かをこちら側へ連れてくる」という感覚が、記憶・結果・変化をもたらす使い方にも広がっています。",
+          "pos": "adverb",
+          "word": "abroad",
+          "wordNote": "abroad の基本の感覚は、「自分の国を離れて、外国へ／外国で」です。\n\ngo abroad\n→ 海外へ行く\n\nstudy abroad\n→ 海外留学する\n\nlive abroad\n→ 海外で暮らす\n\ntravel abroad\n→ 海外旅行をする\n\n大事なのは、abroad 自体に「海外へ・海外で」という場所や方向の感覚が含まれていることです。\n\nそのため、\n\n× go to abroad\n○ go abroad\n\nとなり、普通は abroad の前に to を付けません。\n\ngo to Japan\n→ 日本へ行く\n\ngo abroad\n→ 海外へ行く\n\nのように使い分けます。\n\nまた、\n\nI've never been abroad.\n→ 一度も海外へ行ったことがありません。\n\nのように、「海外に行った経験」を表すときにもよく使います。\n\n「外国という場所の名前」ではなく、「自国の外へ／外で」という感覚を持つ語だと考えると分かりやすいです。",
           "meanings": [
             {
-              "meaning": "持ってくる",
-              "en": "A: Can you bring your notebook tomorrow?\nB: Sure. Do you want me to bring the worksheet too?",
-              "ja": "A: 明日ノート持ってきてくれる？\nB: いいよ。ワークシートも持っていこうか？"
+              "meaning": "海外へ",
+              "en": "A: I'm thinking of studying abroad next year.\nB: Have you decided which country?",
+              "ja": "A: 来年、海外留学しようかなって考えてるんだ。\nB: どの国にするかはもう決めた？"
             }
           ]
         },
+        {
+          "pos": "adverb",
+          "word": "anyway",
+          "wordNote": "anyway の基本の感覚は、「細かい事情はいったん横に置いて、話や行動を先へ進める」ことです。\n\nそこから、会話ではいくつかの使い方に広がります。\n\n1. 「とにかく／いずれにせよ」\n\nAnyway, let's talk about it tomorrow.\n→ とにかく、この話は明日にしよう。\n\n途中までの話をまとめたり、話題を切り替えたりするときによく使います。\n\nAnyway, what were you saying?\n→ それで、何の話だったっけ？\n\nこの anyway は、脱線した話を元へ戻すときにも便利です。\n\n2. 「それでも」\n\nThe reviews weren't great, but I watched it anyway.\n→ 評判はあまり良くなかったけど、それでも観ました。\n\n「そういう事情はあるけれど、それにかかわらず」という感覚です。\n\nanyway は「何でも」という意味ではありません。\n\n「まあそれはさておき」「そうであっても、先へ進む」という感覚をつかむと、会話での使い方が見えやすくなります。",
+          "meanings": [
+            {
+              "meaning": "とにかく／いずれにせよ",
+              "en": "A: Anyway, let's talk about it tomorrow. We're both too tired now.\nB: Good idea. We'll think more clearly in the morning.",
+              "ja": "A: とにかく、この話は明日にしよう。二人とも今は疲れすぎてるよ。\nB: そうしよう。朝の方がちゃんと考えられそう。"
+            },
+            {
+              "meaning": "それでも",
+              "en": "A: The reviews weren't great, but I watched it anyway.\nB: Was it better than you expected?",
+              "ja": "A: 評判はあまり良くなかったけど、それでも観たんだ。\nB: 思ってたより良かった？"
+            }
+          ]
+        },
+        {
+          "pos": "adverb",
+          "word": "seriously",
+          "wordNote": "seriously の基本の感覚は、「冗談や軽い気持ちではなく、本気で受け止める」ことです。\n\ntake something seriously\n→ 〜を真剣に受け止める\n\nYou need to take this seriously.\n→ これは真剣に考えないといけないよ。\n\nまた、\n\nAre you seriously thinking about changing jobs?\n→ 本気で転職を考えているの？\n\nのように、「本当にそこまで考えているの？」という意味でも使います。\n\n会話では、\n\nSeriously?\n→ 本気で？／マジで？\n\nのように一語だけでも非常によく使われます。\n\nseriously は単に「まじめな態度で」というだけではなく、「これは冗談ではない」「本気の話だ」という感覚まで含む副詞です。",
+          "meanings": [
+            {
+              "meaning": "まじめに",
+              "en": "A: You need to take this seriously. The deadline is tomorrow.\nB: I know. I'll finish it tonight.",
+              "ja": "A: これ、ちゃんと真剣にやらないと。締め切り明日だよ。\nB: 分かってる。今夜終わらせるよ。"
+            },
+            {
+              "meaning": "本気で／真剣に",
+              "en": "A: Are you seriously thinking about changing jobs?\nB: Yeah. I've been thinking about it for months.",
+              "ja": "A: 本気で転職を考えてるの？\nB: うん。もう何か月も考えてる。"
+            }
+          ]
+        },
+        {
+          "pos": "adverb",
+          "word": "cheaply",
+          "wordNote": "cheaply の基本の感覚は、「あまりお金をかけずに、安い方法で」です。\n\ncheaply made\n→ 安く作られた\n\nThis bag was cheaply made.\n→ このバッグは安く作られています。\n\nこの表現では、単に価格が安いだけでなく、「作りにあまりお金がかかっていない」「品質が低そう」というニュアンスが出ることがあります。\n\n一方、「安く買った」と言いたいときは、\n\nI got it cheap.\n→ 安く手に入れた。\n\nI bought it at a low price.\n→ 安い値段で買った。\n\nのような言い方も自然です。\n\ncheaply は何にでも付ければ日本語の「安く」になるわけではなく、「どんな方法で作った・行ったか」を説明するときに使いやすい副詞です。",
+          "meanings": [
+            {
+              "meaning": "安く",
+              "en": "A: This bag was cheaply made. The handle came off after a week.\nB: That explains why it was so inexpensive.",
+              "ja": "A: このバッグ、安く作られてるんだよ。1週間で持ち手が取れちゃった。\nB: なるほど、だからあんなに安かったんだね。"
+            }
+          ]
+        },
+        
+        
+        
+
  
       {
         "pos": "noun",
@@ -8247,6 +8309,169 @@
           }
         ]
       },
+      {
+        "pos": "noun",
+        "word": "homework",
+        "wordNote": "homework は英語では通常、数えない名詞です。\n\n日本語では「宿題を一つ、二つ」と数えることがありますが、英語では homework を「取り組むべき学習作業のまとまり」として見る感覚があります。\n\nsome homework\n→ いくらかの宿題\n\na lot of homework\n→ たくさんの宿題\n\nI still have a lot of homework to do.\n→ まだ宿題がたくさん残っています。\n\nそのため通常、\n\na homework\nhomeworks\n\nとは言いません。\n\n一つの課題を数えたいときは、\n\nan assignment\n→ 一つの課題\n\nthree assignments\n→ 3つの課題\n\nのように assignment を使うと自然です。\n\nhomework は「個数」より「作業量」としてとらえる、と考えると分かりやすいです。",
+        "meanings": [
+          {
+            "meaning": "宿題",
+            "en": "A: I still have a lot of homework to do.\nB: Want me to help you with any of it?",
+            "ja": "A: まだ宿題たくさん残ってるんだ。\nB: どれか手伝おうか？"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "ocean",
+        "wordNote": "ocean の基本の感覚は、「地球規模で広がる大きな海」です。\n\nthe Pacific Ocean\n→ 太平洋\n\nthe Atlantic Ocean\n→ 大西洋\n\nocean は、大きな海域そのものを意識するときによく使います。\n\n一方、sea は ocean より陸との関係が近い海域や、日常的に「海辺の海」を表すときによく使います。\n\nby the sea\n→ 海辺で\n\ngo to the sea\n→ 海へ行く\n\nただし ocean と sea の呼び分けは、単純に「大きい／小さい」だけで完全に決まるわけではありません。\n\nざっくり、\n\nocean\n→ 世界規模の大きな海の広がり\n\nsea\n→ 陸との関係がより身近に感じられる海\n\nという感覚を持つと使いやすくなります。",
+        "meanings": [
+          {
+            "meaning": "海",
+            "en": "A: You can see the ocean from our room.\nB: Really? Let's open the curtains.",
+            "ja": "A: 部屋から海が見えるよ。\nB: 本当？カーテン開けてみよう。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "school",
+        "wordNote": "school の基本の感覚は、「学校という建物」だけではなく、「学校教育・学校生活という機能」まで含むことです。\n\n生徒として学校へ通う場合は、\n\ngo to school\n→ 学校へ行く\n\nbe at school\n→ 学校にいる\n\nのように、普通は冠詞を付けません。\n\nこれは「学校という建物へ行く」より、「学校本来の目的である教育を受けに行く」ことを表しているからです。\n\n一方、\n\nI went to the school to meet her teacher.\n→ 先生に会うために、その学校へ行きました。\n\nでは、school を「その学校という建物・場所」として見ているので the が付きます。\n\ngo to school\n→ 生徒として学校へ行く\n\ngo to the school\n→ その学校という場所へ行く\n\nという違いです。\n\n同じような考え方は、英語の hospital や church などにも見られますが、まず school では「本来の目的で使うときは無冠詞」という感覚をつかむと分かりやすいです。",
+        "meanings": [
+          {
+            "meaning": "学校",
+            "en": "A: My daughter starts school next month.\nB: Is she excited?",
+            "ja": "A: 娘、来月から学校が始まるんだ。\nB: 楽しみにしてる？"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "city",
+        "wordNote": "city の基本の感覚は、「人や建物、交通、仕事などの機能が集まった都市」です。\n\na big city\n→ 大都市\n\ncity center\n→ 市の中心部／都心\n\ntown も「町」と訳されますが、一般に city より小規模で、都市機能も少ない場所を指すことが多いです。\n\nI grew up in a small town.\n→ 私は小さな町で育ちました。\n\nNow I live in a big city.\n→ 今は大都市に住んでいます。\n\nただし、city と town の正式な区分は国や地域によって違います。\n\nそのため、\n\ncity\n→ より大規模で都市的な場所\n\ntown\n→ より小規模な町\n\nくらいの感覚で捉えるのが実用的です。",
+        "meanings": [
+          {
+            "meaning": "都市",
+            "en": "A: I grew up in a small town, but now I live in a big city.\nB: Which do you prefer?",
+            "ja": "A: 小さな町で育ったけど、今は大都市に住んでるんだ。\nB: どっちの方が好き？"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "garden",
+        "wordNote": "garden の基本の感覚は、「植物を育てたり、手入れしたりする庭」です。\n\nただし garden と yard は、英語圏によって使い方に違いがあります。\n\nBritish English では、家の前後にある庭全体を garden と呼ぶことがよくあります。\n\nback garden\n→ 裏庭\n\nfront garden\n→ 前庭\n\nAmerican English では、家の周囲の庭全体には yard を使うことが多く、garden は花・野菜などを育てている場所を指しやすくなります。\n\nbackyard\n→ 裏庭\n\nvegetable garden\n→ 家庭菜園\n\nつまり「庭＝garden」と一対一で覚えるより、\n\ngarden\n→ 植物を育てる・手入れする場所\n\nyard\n→ 特にアメリカ英語で、家の周囲の庭・敷地\n\nという違いを知っておくと、実際の英語に出会ったときに理解しやすくなります。",
+        "meanings": [
+          {
+            "meaning": "庭",
+            "en": "A: Let's eat outside in the garden.\nB: Good idea. It's too nice to stay indoors.",
+            "ja": "A: 庭で食べようよ。\nB: いいね。こんなに天気いいのに中にいるのはもったいない。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "street",
+        "wordNote": "street の基本の感覚は、「建物が並び、人や車が行き来する街の通り」です。\n\non this street\n→ この通りに\n\nacross the street\n→ 通りの向かいに\n\nstreet は都市の通りを表す、とても一般的な語です。\n\navenue も道路名によく使われます。\n\nKing Street\nKing Avenue\n\nのように、どちらも固有の道路名になります。\n\navenue は比較的大きな通りに使われることも多いですが、実際の呼び方は都市ごとの命名法にも左右されます。\n\nそのため、\n\nstreet\n→ 街の通りを表す一般的な語\n\navenue\n→ 道路名として使われる別タイプの名称\n\nと考えるのが安全です。\n\n「avenue なら必ず street より大きい」という絶対的なルールではありません。",
+        "meanings": [
+          {
+            "meaning": "通り",
+            "en": "A: The café is on King Street, not King Avenue.\nB: Good thing you checked. I was heading the wrong way.",
+            "ja": "A: そのカフェ、King AvenueじゃなくてKing Streetにあるよ。\nB: 確認してくれてよかった。逆の方に向かってた。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "grade",
+        "wordNote": "grade の基本の感覚は、「ある基準の中で、どの段階・等級にいるか」です。\n\nそこから、学校では二つの非常によく使う意味に広がります。\n\n1. 成績\n\nI got a good grade on the test.\n→ テストで良い成績を取りました。\n\nここでは「評価の段階」を表しています。\n\n2. 学年\n\nWhat grade are you in?\n→ 何年生ですか？\n\nI'm in eighth grade.\n→ 8年生です。\n\nこの「学年」の使い方は、特にアメリカ英語で非常によく使われます。\n\ngrade は「成績」と「学年」が別々の単語に見えますが、どちらも「どの段階に位置しているか」という感覚からつながっています。",
+        "meanings": [
+          {
+            "meaning": "成績",
+            "en": "A: I got a much better grade this time.\nB: Nice! What did you do differently?",
+            "ja": "A: 今回、前よりずっといい成績だったよ。\nB: いいね！何か勉強の仕方変えた？"
+          },
+          {
+            "meaning": "学年",
+            "en": "A: What grade are you in?\nB: I'm in eighth grade.",
+            "ja": "A: 何年生？\nB: 8年生だよ。"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "group",
+        "wordNote": "group の基本の感覚は、「複数の人や物を、一つのまとまりとして見る」ことです。\n\na group of friends\n→ 友達のグループ\n\na group of students\n→ 生徒の集団\n\nwork in groups\n→ グループで作業する\n\ngroup chat\n→ グループチャット\n\n学校では「班」と訳せる場面もありますが、group は学校の班だけを表す語ではありません。\n\n人だけでなく、\n\na group of buildings\n→ 建物の一群\n\nのように、物のまとまりにも使えます。\n\n「いくつかあるものを一つのまとまりとして扱う」という感覚をつかむと、使い方が広がります。",
+        "meanings": [
+          {
+            "meaning": "グループ／集団",
+            "en": "A: Let's make a group chat for the project.\nB: Good idea. It'll be easier than sending separate messages.",
+            "ja": "A: このプロジェクト用のグループチャット作ろうよ。\nB: いいね。個別にメッセージ送るより楽そう。"
+          },
+          {
+            "meaning": "班",
+            "en": "A: Work in groups of four for this activity.\nB: Okay. Can we choose our own groups?",
+            "ja": "A: この活動は4人の班でやってください。\nB: 分かりました。班は自分たちで決めていいですか？"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "idea",
+        "wordNote": "idea の基本の感覚は、「頭の中にある考え・イメージ」です。\n\nそこから、いくつかの使い方に広がります。\n\n1. 案・アイデア\n\nThat's a good idea.\n→ それはいい考えだね。\n\nI have an idea.\n→ いい案がある。\n\n何かをどうするかという提案や考えを表します。\n\n2. 見当・理解\n\nI have no idea.\n→ 全然分かりません。\n\nDo you have any idea what happened?\n→ 何が起きたか何か心当たりある？\n\nこの idea は「新しい発明のアイデア」というより、「頭の中に何か考えや見当があるか」という感覚です。\n\nidea は、特別に独創的な案だけを指す語ではありません。\n\n「頭の中にあるもの」という基本の感覚を持つと、That's a good idea. と I have no idea. が同じ語でつながって見えてきます。",
+        "meanings": [
+          {
+            "meaning": "考え／アイデア",
+            "en": "A: I have an idea. Why don't we move the meeting online?\nB: That could work.",
+            "ja": "A: いい案がある。会議、オンラインにしない？\nB: それならうまくいくかも。"
+          },
+          {
+            "meaning": "見当／理解",
+            "en": "A: I have no idea where I left my keys.\nB: Did you check your coat pocket?",
+            "ja": "A: 鍵どこに置いたか全然分からない。\nB: コートのポケット見た？"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "project",
+        "wordNote": "project の基本の感覚は、「ある目的に向かって、一定の期間取り組むまとまりのある仕事」です。\n\n仕事では、\n\na new project\n→ 新しい企画・プロジェクト\n\nschool project\n→ 学校の課題・研究\n\nのように使います。\n\nWe're working on a new project.\n→ 新しい企画に取り組んでいます。\n\nMy science project is due Friday.\n→ 理科の課題は金曜日が締め切りです。\n\nproject は、単発の小さな宿題というより、計画・調査・制作・協力などを含む、ある程度まとまりのある取り組みに使われることが多い語です。\n\n日本語では「プロジェクト」「企画」「課題」「研究」など文脈によって訳が変わりますが、中心にあるのは「目的を決めて進める仕事」です。",
+        "meanings": [
+          {
+            "meaning": "企画／計画",
+            "en": "A: We're starting a new project next month.\nB: What's your role going to be?",
+            "ja": "A: 来月、新しいプロジェクトが始まるんだ。\nB: どんな担当になるの？"
+          },
+          {
+            "meaning": "課題／研究",
+            "en": "A: My science project is due Friday.\nB: Do you still have a lot to finish?",
+            "ja": "A: 理科の課題、金曜日が締め切りなんだ。\nB: まだやることたくさん残ってる？"
+          }
+        ]
+      },
+      {
+        "pos": "noun",
+        "word": "bill",
+        "wordNote": "bill は文脈によって意味が大きく変わる語ですが、「正式に書かれた一枚のもの」という感覚からいくつかの意味に広がっています。\n\n1. 勘定書・請求書\n\nCould we have the bill, please?\n→ お会計をお願いします。\n\n飲食店などで、支払う金額が書かれたものを表します。\n\nアメリカ英語では restaurant bill、イギリス英語でも bill が普通に使われます。\n\n2. 紙幣\n\na ten-dollar bill\n→ 10ドル紙幣\n\nDo you have a five-dollar bill?\n→ 5ドル札持ってる？\n\nこの「紙幣」の意味は特にアメリカ英語でよく使われます。\n\n3. 法案\n\npass a bill\n→ 法案を可決する\n\nThe bill passed the Senate.\n→ その法案は上院を通過しました。\n\nニュースで非常によく出る意味です。\n\n「勘定書」「紙幣」「法案」は日本語ではまったく別の語に見えますが、bill は文脈によってこうした意味を持つので、前後を見て判断することが大切です。",
+        "meanings": [
+          {
+            "meaning": "勘定書",
+            "en": "A: Could we have the bill, please?\nB: Sure. I'll bring it right over.",
+            "ja": "A: お会計をお願いできますか？\nB: はい。すぐお持ちします。"
+          },
+          {
+            "meaning": "紙幣",
+            "en": "A: Do you have a ten-dollar bill?\nB: No, I only have a twenty.",
+            "ja": "A: 10ドル札持ってる？\nB: ない、20ドル札しかないよ。"
+          },
+          {
+            "meaning": "法案",
+            "en": "A: The bill passed the Senate yesterday.\nB: What happens next?",
+            "ja": "A: その法案、昨日上院を通過したよ。\nB: 次はどうなるの？"
+          }
+        ]
+      },
+      
 
       
       
@@ -8726,16 +8951,266 @@
         ]
       },
       {
-        "pos": "noun",
-        "word": "homework",
-        "wordNote": "homework は英語では通常、数えない名詞です。\n\n日本語では「宿題を一つ、二つ」と数えることがありますが、英語では homework を「取り組むべき学習作業のまとまり」として見る感覚があります。\n\nsome homework\n→ いくらかの宿題\n\na lot of homework\n→ たくさんの宿題\n\nI still have a lot of homework to do.\n→ まだ宿題がたくさん残っています。\n\nそのため通常、\n\na homework\nhomeworks\n\nとは言いません。\n\n一つの課題を数えたいときは、\n\nan assignment\n→ 一つの課題\n\nthree assignments\n→ 3つの課題\n\nのように assignment を使うと自然です。\n\nhomework は「個数」より「作業量」としてとらえる、と考えると分かりやすいです。",
+        "pos": "verb",
+        "word": "think",
+        "wordNote": "think の基本の感覚は、「頭の中で考え、判断や意見を持つ」ことです。\n\nI think this is the right answer.\n→ これが正しい答えだと思います。\n\nI think ... は非常に便利ですが、日本語の「〜と思います」を何でも I think にすればよいわけではありません。\n\n確信があまりなく「たぶん」と推測するなら、\n\nI guess ...\n→ たぶん〜だと思う\n\n自分の感覚・印象なら、\n\nI feel ...\n→ 〜という感じがする\n\n自分がそう信じている考えなら、\n\nI believe ...\n→ 〜だと考えている／信じている\n\n状況を見てそう思えるなら、\n\nIt seems ...\n→ 〜のようだ\n\nなど、英語では「どう思っているのか」によって表現を選べます。\n\nthink はまず、「自分の判断・意見として考える」語だと覚えると使いやすくなります。",
         "meanings": [
           {
-            "meaning": "宿題",
-            "en": "A: I still have a lot of homework to do.\nB: Want me to help you with any of it?",
-            "ja": "A: まだ宿題たくさん残ってるんだ。\nB: どれか手伝おうか？"
+            "meaning": "考える",
+            "en": "A: I think this is the right platform, but let me check.\nB: Good idea. We still have plenty of time.",
+            "ja": "A: たぶんこのホームで合ってると思うけど、確認させて。\nB: そうしよう。まだ時間は十分あるし。"
           }
         ]
       },
+      {
+        "pos": "verb",
+        "word": "learn",
+        "wordNote": "learn の基本の感覚は、「知らなかったこと・できなかったことを、自分の中に身につける」ことです。\n\nlearn English\n→ 英語を身につける\n\nlearn how to use something\n→ 何かの使い方を覚える\n\nI learned how to use the new software.\n→ 新しいソフトの使い方を覚えました。\n\nよく比べられるのが study です。\n\nstudy\n→ 身につけるために勉強・研究する過程\n\nlearn\n→ 実際に知識や技能が身につく結果\n\nI studied English for three years.\n→ 英語を3年間勉強しました。\n\nI learned a lot from that course.\n→ その講座で多くのことを身につけました。\n\nそのため、\n\nI studied English, but I didn't learn much.\n→ 英語を勉強したけれど、あまり身につかなかった。\n\nという文も作れます。\n\n「机に向かう・学習する」が study、「分かる・できるようになる」が learn と考えると違いが見えやすくなります。",
+        "meanings": [
+          {
+            "meaning": "学ぶ",
+            "en": "A: I finally learned how to use the new software.\nB: Great. Can you show me later?",
+            "ja": "A: やっと新しいソフトの使い方覚えたよ。\nB: いいね。あとで教えてくれる？"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "call",
+        "wordNote": "call の基本の感覚は、「声・名前・電話などを使って、相手に働きかける」ことです。\n\nそこから、よく使う二つの意味に広がります。\n\n1. 電話する\n\nI'll call you later.\n→ あとで電話するね。\n\ncall someone\n→ 人に電話する\n\n英語では普通、\n\n× call to you\n○ call you\n\nのように、人を直接後ろに置きます。\n\n2. 呼ぶ・〜と呼ぶ\n\nWhat do you call this in English?\n→ これは英語で何と言いますか？\n\nCall me Ken.\n→ ケンって呼んで。\n\nThey call this area the Old Town.\n→ この地域はOld Townと呼ばれています。\n\n「電話する」と「呼ぶ」は日本語では別の動詞ですが、call には「相手へ呼びかける」という共通の感覚があります。",
+        "meanings": [
+          {
+            "meaning": "電話する",
+            "en": "A: I'll call you when I get there.\nB: Okay. I'll keep my phone nearby.",
+            "ja": "A: 着いたら電話するね。\nB: 分かった。すぐ取れるようにスマホ近くに置いとく。"
+          },
+          {
+            "meaning": "呼ぶ",
+            "en": "A: What do you call this in English?\nB: I'm not sure. Let's look it up.",
+            "ja": "A: これ、英語で何て呼ぶの？\nB: 分からないな。調べてみよう。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "meet",
+        "wordNote": "meet の基本の感覚は、「人と人が同じ地点に来て、顔を合わせる」ことです。\n\n初対面なら、\n\nNice to meet you.\n→ はじめまして。\n\n予定して知り合いと会う場合も、\n\nLet's meet at six.\n→ 6時に会おう。\n\nI'm meeting Aya after work.\n→ 仕事のあとAyaに会います。\n\nのように普通に使えます。\n\nただし、「友達と会って一緒に過ごす」という意味を強く出したいときは、\n\nmeet up with friends\n→ 友達と待ち合わせて会う\n\nhang out with friends\n→ 友達と一緒に遊ぶ・過ごす\n\nもよく使います。\n\nまた、知っている人に「会う」は see も非常によく使われます。\n\nI'm seeing Tom tomorrow.\n→ 明日Tomに会います。\n\nmeet は「顔を合わせる地点に来る」という感覚を持つと、初対面だけの語ではないことが分かります。",
+        "meanings": [
+          {
+            "meaning": "会う",
+            "en": "A: I'm meeting Aya after work.\nB: Are you two getting dinner?",
+            "ja": "A: 仕事のあとAyaに会うんだ。\nB: 二人でご飯食べるの？"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "play",
+        "wordNote": "play の基本の感覚は、「ある活動の中に入って、それを実際に楽しみながらやる」ことです。\n\n日本語では場面によって別々の動詞になりますが、英語では play が広く使われます。\n\n1. 遊ぶ\n\nThe kids are playing outside.\n→ 子どもたちは外で遊んでいます。\n\n子どもが友達と遊ぶなら、\n\nplay with friends\n→ 友達と遊ぶ\n\nが自然です。\n\n一方、十代以降や大人が「友達と遊ぶ・一緒に過ごす」と言うときは、\n\nhang out with friends\n→ 友達と遊ぶ／一緒に過ごす\n\nが非常によく使われます。\n\n2. ゲームやスポーツをする\n\nplay tennis\n→ テニスをする\n\nplay chess\n→ チェスをする\n\nplay video games\n→ テレビゲームをする\n\n3. 楽器を演奏する\n\nplay the piano\n→ ピアノを弾く\n\nplay the guitar\n→ ギターを弾く\n\nplay the violin\n→ バイオリンを弾く\n\n日本語では「遊ぶ」「する」「弾く」と分かれますが、英語ではどれも play です。\n\n「その活動の中に入って実際にやる」という感覚を持つと、意味の広がりがつながって見えます。",
+        "meanings": [
+          {
+            "meaning": "遊ぶ",
+            "en": "A: The kids are playing outside.\nB: Good. They've been indoors all morning.",
+            "ja": "A: 子どもたち、外で遊んでるよ。\nB: よかった。午前中ずっと家の中にいたからね。"
+          },
+          {
+            "meaning": "（ゲーム・スポーツなどを）する",
+            "en": "A: Do you want to play tennis after school?\nB: Sure. Let's book a court.",
+            "ja": "A: 放課後テニスしない？\nB: いいよ。コート予約しよう。"
+          },
+          {
+            "meaning": "（楽器を）演奏する",
+            "en": "A: Can you play the piano?\nB: A little. I learned when I was a child.",
+            "ja": "A: ピアノ弾ける？\nB: 少しだけ。子どものころ習ってたんだ。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "catch",
+        "wordNote": "catch の基本の感覚は、「動いてくるものを逃さず、自分のところで捉える」ことです。\n\nそこから、いろいろな意味に広がります。\n\ncatch a ball\n→ ボールを捕る\n\ncatch a train\n→ 電車をつかまえる → 間に合って乗る\n\ncatch a cold\n→ 風邪をもらう → 風邪をひく\n\nまた、耳に入ってきた言葉を「捉える」ことにも使います。\n\nSorry, I didn't catch that.\n→ ごめん、今の聞き取れなかった。\n\nさらに、\n\ncatch someone doing something\n→ 人が〜しているところを見つける／現場を押さえる\n\nのような使い方もあります。\n\n日本語では「捕る」「乗る」「風邪をひく」「聞き取る」と別々ですが、catch の根っこには「逃さず捉える」という共通の感覚があります。",
+        "meanings": [
+          {
+            "meaning": "捕まえる",
+            "en": "A: Can you catch the ball?\nB: Throw it a little higher.",
+            "ja": "A: そのボール取れる？\nB: もう少し高く投げて。"
+          },
+          {
+            "meaning": "（電車などに）乗る／間に合う",
+            "en": "A: We can still catch the last train.\nB: Then we'd better leave now.",
+            "ja": "A: まだ終電に間に合うよ。\nB: じゃあ今出た方がいいね。"
+          },
+          {
+            "meaning": "聞き取る",
+            "en": "A: Sorry, I didn't catch that.\nB: No problem. I'll say it again.",
+            "ja": "A: ごめん、今の聞き取れなかった。\nB: 大丈夫。もう一回言うね。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "ask",
+        "wordNote": "ask の基本の感覚は、「相手から何かを求める」ことです。\n\n求めるものが情報なら「たずねる」になり、物や行動なら「頼む・求める」になります。\n\n1. 情報を求める\n\nask a question\n→ 質問する\n\nCan I ask you something?\n→ ちょっと聞いてもいい？\n\n2. 物・助けを求める\n\nask for help\n→ 助けを求める\n\nask for the bill\n→ 勘定書を頼む\n\n3. 人に行動を頼む\n\nask someone to do\n→ 人に〜するよう頼む\n\nI asked him to send the file again.\n→ 彼にファイルをもう一度送るよう頼みました。\n\n「質問する」と「頼む」が別の意味に見えても、どちらも「相手から何かを得ようとする」という感覚でつながっています。",
+        "meanings": [
+          {
+            "meaning": "たずねる",
+            "en": "A: Can I ask you something?\nB: Sure. What's up?",
+            "ja": "A: ちょっと聞いてもいい？\nB: もちろん。どうしたの？"
+          },
+          {
+            "meaning": "頼む／求める",
+            "en": "A: I asked him to send the file again.\nB: Good. The first one wouldn't open.",
+            "ja": "A: 彼にファイルをもう一度送ってって頼んだよ。\nB: よかった。最初のは開かなかったからね。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "agree",
+        "wordNote": "agree の基本の感覚は、「考え・条件・判断が、相手と同じところに合う」ことです。\n\nそのため、日本語では「賛成する」「同意する」などと訳されます。\n\nagree with someone\n→ 人に賛成する\n\nI agree with you.\n→ あなたに賛成です。\n\nagree on something\n→ 〜について合意する\n\nWe agreed on a date.\n→ 日程について合意しました。\n\nagree to something\n→ 提案・条件などを受け入れる\n\nShe agreed to the plan.\n→ 彼女はその計画に同意しました。\n\nagree to do\n→ 〜することに同意する\n\nHe agreed to help.\n→ 彼は手伝うことに同意しました。\n\n日本語ではどれも「賛成・同意」と訳せますが、後ろに人・話題・提案・行動のどれが来るかによって形が変わります。\n\n中心にあるのは、「違っていたものが同じところにそろう」という感覚です。",
+        "meanings": [
+          {
+            "meaning": "賛成する",
+            "en": "A: I agree with you about the deadline.\nB: Good. Let's ask for one more week.",
+            "ja": "A: 締め切りについてはあなたに賛成。\nB: よかった。もう1週間延ばせないか聞いてみよう。"
+          },
+          {
+            "meaning": "同意する",
+            "en": "A: She agreed to help us with the event.\nB: That's a relief. We really needed another person.",
+            "ja": "A: 彼女、イベントを手伝うことに同意してくれたよ。\nB: よかった。もう一人、本当に必要だったんだ。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "set",
+        "wordNote": "set の基本の感覚は、「物・状態・条件を『ここ』と決めて、そこに置く」ことです。\n\nそこから、とても多くの使い方に広がります。\n\nset a box on the table\n→ 箱をテーブルの上に置く\n\nset an alarm\n→ アラームを設定する\n\nset the temperature\n→ 温度を設定する\n\nset the table\n→ 食卓を整える\n\nset someone free\n→ 人を自由な状態にする\n\nset a date\n→ 日付を決める\n\n日本語では「置く」「設定する」「整える」「〜の状態にする」「決める」と別々の動詞になりますが、set ではどれも「位置・状態・条件を決めてそこに置く」という感覚があります。\n\nput も「置く」ですが、put は物をある場所へ動かして置くことに広く使います。\n\nset は、そこからさらに「位置や条件をきちんと決める」という感覚が強く出ることがあります。",
+        "meanings": [
+          {
+            "meaning": "置く",
+            "en": "A: Where should I set this box?\nB: Just put it by the door.",
+            "ja": "A: この箱、どこに置けばいい？\nB: ドアのそばに置いといて。"
+          },
+          {
+            "meaning": "〜の状態にする／設定する",
+            "en": "A: I set the alarm for six.\nB: Good. We can't miss the early train.",
+            "ja": "A: アラーム6時にセットしたよ。\nB: よかった。朝早い電車に乗り遅れられないからね。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "tidy",
+        "wordNote": "tidy の基本の感覚は、「散らばっているものを、あるべき場所へ戻して整える」ことです。\n\ntidy the room\n→ 部屋を片づける\n\ntidy your desk\n→ 机を片づける\n\ntidy up\n→ 片づける／整頓する\n\nよく比べたいのが clean です。\n\ntidy\n→ 物の位置や見た目を整える\n\nclean\n→ 汚れを落としてきれいにする\n\nたとえば、床に物が散らばっている部屋なら tidy が必要です。\n\n床が汚れているなら clean が必要です。\n\nもちろん、実際の部屋では両方必要なこともあります。\n\n「散らかりを整える」が tidy、「汚れを取る」が clean と考えると使い分けやすくなります。",
+        "meanings": [
+          {
+            "meaning": "片づける",
+            "en": "A: Can you tidy your desk before dinner?\nB: Sure. I just need to finish this first.",
+            "ja": "A: 夕食の前に机片づけてくれる？\nB: うん。これだけ先に終わらせるね。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "miss",
+        "wordNote": "miss の基本の感覚は、狙っていたもの・そこにあるはずのものに「届かない、すれ違う」ことです。\n\nそこから、いろいろな意味に広がります。\n\n1. 乗りそこなう\n\nmiss the train\n→ 電車に乗りそこなう\n\n電車は来たけれど、自分がそこに間に合わず、「乗る機会」に届かなかった感覚です。\n\n2. 逃す・見逃す\n\nmiss a chance\n→ 機会を逃す\n\nmiss an important detail\n→ 大事な点を見落とす\n\n3. 聞き逃す・聞き取れない\n\nSorry, I missed what you said.\n→ ごめん、今言ったこと聞き逃した。\n\n言葉が自分のところまで届かなかった、と考えると分かりやすいです。\n\n4. 人がいなくて寂しく思う\n\nI miss you.\n→ あなたがいなくて寂しい。／会いたい。\n\nこの場合も、「そこにいてほしい人が今ここにいない」という欠けた感覚があります。\n\nmiss は意味が多く見えますが、「狙ったところに届かない」「あるはずのものが欠けている」という感覚を中心にすると、意味がつながって見えてきます。",
+        "meanings": [
+          {
+            "meaning": "乗りそこなう",
+            "en": "A: I missed the last train.\nB: Do you want me to help you find a taxi?",
+            "ja": "A: 終電逃しちゃった。\nB: タクシー探すの手伝おうか？"
+          },
+          {
+            "meaning": "逃す／見逃す",
+            "en": "A: Don't miss the chance to talk to her.\nB: You're right. I may not get another chance.",
+            "ja": "A: 彼女と話すチャンス逃さない方がいいよ。\nB: そうだね。次の機会はないかもしれないし。"
+          },
+          {
+            "meaning": "聞き逃す／聞き取れない",
+            "en": "A: Sorry, I missed what you said.\nB: No problem. I'll say it again.",
+            "ja": "A: ごめん、今言ったこと聞き逃した。\nB: 大丈夫。もう一回言うね。"
+          },
+          {
+            "meaning": "〜がいなくて寂しく思う",
+            "en": "A: I really miss my old classmates.\nB: Why don't you message them?",
+            "ja": "A: 昔のクラスメートたち、本当に恋しいな。\nB: メッセージ送ってみたら？"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "reach",
+        "wordNote": "reach の基本の感覚は、「手・動き・変化などが伸びて、目的の点まで届く」ことです。\n\nそこから、場所だけでなく、物・数字・人にも意味が広がります。\n\n1. 場所に着く・到達する\n\nreach the station\n→ 駅に着く\n\nreach the top\n→ 頂上に到達する\n\nreach は他動詞なので、\n\nreach the station\n\nのように場所を直接後ろに置き、通常 reach to the station とは言いません。\n\n2. 手が届く\n\nI can't reach the top shelf.\n→ 一番上の棚に手が届きません。\n\n3. 数値・水準に達する\n\nTemperatures reached 35 degrees.\n→ 気温が35度に達しました。\n\nreach a goal\n→ 目標に到達する\n\n4. 人に連絡がつく\n\nI couldn't reach him by phone.\n→ 電話で彼に連絡がつきませんでした。\n\nこの場合も、「自分の連絡が相手まで届く」と考えると意味がつながります。\n\narrive は「到着した」という出来事を見るのに対して、reach は「目的点まで届いた」という感覚が強い語です。\n\narrive at the station\nreach the station\n\nという形の違いにも注意しましょう。",
+        "meanings": [
+          {
+            "meaning": "着く",
+            "en": "A: What time did you reach the hotel?\nB: Around eleven. The train was delayed again.",
+            "ja": "A: ホテルには何時に着いた？\nB: 11時ごろ。また電車が遅れてたんだ。"
+          },
+          {
+            "meaning": "手が届く",
+            "en": "A: I can't reach the top shelf.\nB: Want me to get it for you?",
+            "ja": "A: 一番上の棚に手が届かない。\nB: 取ろうか？"
+          },
+          {
+            "meaning": "〜の水準・数値に達する",
+            "en": "A: Temperatures reached 35 degrees today.\nB: No wonder the room felt so hot.",
+            "ja": "A: 今日、気温35度まで上がったんだって。\nB: そりゃ部屋も暑いわけだね。"
+          },
+          {
+            "meaning": "連絡がつく",
+            "en": "A: I tried to call her, but I couldn't reach her.\nB: Maybe she's still in a meeting.",
+            "ja": "A: 彼女に電話したけど、連絡つかなかった。\nB: まだ会議中なのかも。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "melt",
+        "wordNote": "melt の基本の感覚は、「固いものが熱などによって、やわらかくなったり液体へ変わったりする」ことです。\n\n英語では同じ melt が、「溶ける」と「溶かす」の両方に使えます。\n\n1. 自然に溶ける\n\nThe ice melted.\n→ 氷が溶けました。\n\nThe snow is starting to melt.\n→ 雪が溶け始めています。\n\n2. 何かを溶かす\n\nMelt the butter slowly.\n→ バターをゆっくり溶かしてください。\n\nShe melted some chocolate.\n→ 彼女はチョコレートを溶かしました。\n\n誰かが溶かす場合でも、物そのものが溶ける場合でも、中心にあるのは「固い状態から形が変わる」という感覚です。\n\nまた比喩的に、\n\nMy heart melted.\n→ 心がとろけた。／気持ちがやわらいだ。\n\nのように、感情がやわらかくなることにも使われます。",
+        "meanings": [
+          {
+            "meaning": "溶ける",
+            "en": "A: The butter is starting to melt.\nB: Great. Pour it in when it's completely liquid.",
+            "ja": "A: バター溶け始めたよ。\nB: いいね。完全に液体になったら入れて。"
+          },
+          {
+            "meaning": "溶かす",
+            "en": "A: Can you melt the chocolate while I prepare the fruit?\nB: Sure. I'll keep the heat low.",
+            "ja": "A: 私が果物準備してる間にチョコ溶かしてくれる？\nB: いいよ。弱火にしておくね。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "shine",
+        "wordNote": "shine の基本の感覚は、「明るい光を放つ、または光を受けて明るく見える」ことです。\n\nそこから、太陽だけでなく、物や人の表情にも使われます。\n\n1. 太陽などが照る\n\nThe sun is shining.\n→ 太陽が照っています。\n\nThe sun is finally shining again.\n→ やっとまた日が照ってきました。\n\n2. 輝く・光る\n\nThe floor was shining after we cleaned it.\n→ 掃除したあと、床が光っていました。\n\nHer eyes shone with excitement.\n→ 彼女の目は興奮で輝いていました。\n\nこのように、実際の光だけでなく、人の目や表情が生き生きして見えるときにも使えます。\n\nさらに、\n\nshine a light on the problem\n→ 問題に光を当てる\n\nという表現は、比喩的に「問題を明らかにする」「注目を集める」という意味にもなります。\n\nshine は「太陽が照る」だけの語ではなく、「光が出る・光が見える」という感覚から意味が広がっています。",
+        "meanings": [
+          {
+            "meaning": "（太陽などが）照る",
+            "en": "A: The sun is finally shining again.\nB: Good. I was getting tired of the grey weather.",
+            "ja": "A: やっとまた日が照ってきたよ。\nB: よかった。ずっとどんよりした天気で飽きてたところ。"
+          },
+          {
+            "meaning": "輝く／光る",
+            "en": "A: Her eyes were shining with excitement.\nB: I guess she really liked the surprise.",
+            "ja": "A: 彼女、わくわくして目が輝いてたよ。\nB: じゃあサプライズ、本当に気に入ったんだね。"
+          }
+        ]
+      },
+      {
+        "pos": "verb",
+        "word": "bring",
+        "wordNote": "bring の基本イメージは、人や物を「こちら側・基準になる場所へ持ってくる」ことです。\n\nCan you bring your notebook tomorrow?\n→ 明日ノートを持ってきてくれる？\n\n話し手や聞き手がいる場所、または会話の中で基準になっている場所へ向かう感覚があります。\n\nBring your charger to my room.\n→ 充電器を私の部屋に持ってきて。\n\n一方、take は、今いる場所から別の場所へ持っていく感覚です。\n\nbring\n→ こちらへ持ってくる\n\ntake\n→ あちらへ持っていく\n\nまた bring は、物を運ぶだけではありません。\n\nThat song brings back memories.\n→ その曲を聞くと昔の記憶がよみがえる。\n\nThe new system brought us a lot of problems.\n→ 新しい仕組みは私たちに多くの問題をもたらしました。\n\n「何かをこちら側へ連れてくる」という感覚が、記憶・結果・変化をもたらす使い方にも広がっています。",
+        "meanings": [
+          {
+            "meaning": "持ってくる",
+            "en": "A: Can you bring your notebook tomorrow?\nB: Sure. Do you want me to bring the worksheet too?",
+            "ja": "A: 明日ノート持ってきてくれる？\nB: いいよ。ワークシートも持っていこうか？"
+          }
+        ]
+      },
+
+      
     ]
 

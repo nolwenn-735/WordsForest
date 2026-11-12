@@ -450,10 +450,17 @@
     "pos": "noun"
   },
   {
+    "word":"grade",
+    "meaning":"学年",
+    "pos":"noun"}
+  {
     "word": "grade",
     "meaning": "成績",
     "pos": "noun"
   },
+  {"word":"group",
+   "meaning":"グループ／集団",
+   "pos":"noun"}
   {
     "word": "group",
     "meaning": "班",
@@ -470,10 +477,20 @@
     "pos": "noun"
   },
   {
-    "word": "project",
-    "meaning": "課題研究",
-    "pos": "noun"
-  },
+   "word":"idea",
+   "meaning":"見当／理解",
+   "pos":"noun"
+  }
+  {
+   "word":"project",
+   "meaning":"企画／計画",
+   "pos":"noun"
+  }
+  {
+   "word":"project",
+   "meaning":"課題／研究",
+   "pos":"noun"
+  }
   {
     "word": "report",
     "meaning": "レポート",
@@ -664,6 +681,14 @@
     "meaning": "勘定書",
     "pos": "noun"
   },
+  {
+    "word":"bill",
+    "meaning":"紙幣",
+    "pos":"noun"
+  }
+  {"word":"bill",
+   "meaning":"法案",
+   "pos":"noun"}
   {
     "word": "cashier",
     "meaning": "レジ係",
@@ -935,6 +960,15 @@
     "pos": "verb"
   },
   {
+    "word":"play",
+    "meaning":"（ゲーム・スポーツなどを）する",
+    "pos":"verb"}
+  {
+    "word":"play",
+    "meaning":"（楽器を）演奏する",
+    "pos":"verb"
+  }
+  {
     "word": "paint",
     "meaning": "塗る",
     "pos": "verb"
@@ -969,6 +1003,15 @@
     "meaning": "捕まえる",
     "pos": "verb"
   },
+  {
+    "word":"catch",
+    "meaning":"（電車などに）乗る／間に合う",
+    "pos":"verb"}
+  {
+    "word":"catch",
+    "meaning":"聞き取る",
+    "pos":"verb"
+  }
   {
     "word": "pick",
     "meaning": "拾う",
@@ -1110,6 +1153,10 @@
     "pos": "verb"
   },
   {
+    "word":"ask",
+    "meaning":"頼む／求める",
+    "pos":"verb"}
+  {
     "word": "check",
     "meaning": "確認する",
     "pos": "verb"
@@ -1250,6 +1297,11 @@
     "pos": "verb"
   },
   {
+    "word":"set",
+    "meaning":"〜の状態にする／設定する",
+    "pos":"verb"
+  }
+  {
     "word": "tidy",
     "meaning": "片づける",
     "pos": "verb"
@@ -1280,6 +1332,21 @@
     "pos": "verb"
   },
   {
+    "word":"miss",
+    "meaning":"逃す／見逃す",
+    "pos":"verb"
+  }
+  {
+    "word":"miss",
+    "meaning":"聞き逃す／聞き取れない",
+    "pos":"verb"
+  }
+  {
+    "word":"miss",
+    "meaning":"〜がいなくて寂しく思う",
+    "pos":"verb"
+  }
+  {
     "word": "pass",
     "meaning": "通り過ぎる",
     "pos": "verb"
@@ -1289,6 +1356,21 @@
     "meaning": "着く",
     "pos": "verb"
   },
+  {
+    "word":"reach",
+    "meaning":"手が届く",
+    "pos":"verb"
+  }
+  {
+    "word":"reach",
+    "meaning":"〜の水準・数値に達する",
+    "pos":"verb"
+  }
+  {
+    "word":"reach",
+    "meaning":"連絡がつく",
+    "pos":"verb"
+  }
   {
     "word": "stop",
     "meaning": "止まる",
@@ -1304,6 +1386,11 @@
     "meaning": "訪れる",
     "pos": "verb"
   },
+  {
+    "word":"agree",
+    "meaning":"同意する",
+    "pos":"verb"
+  }
   {
     "word": "agree",
     "meaning": "賛成する",
@@ -1390,15 +1477,25 @@
     "pos": "verb"
   },
   {
+    "word":"melt",
+    "meaning":"溶かす",
+    "pos":"verb"
+  }
+  {
     "word": "rain",
     "meaning": "雨が降る",
     "pos": "verb"
   },
   {
-    "word": "shine",
-    "meaning": "照る",
-    "pos": "verb"
-  },
+    "word":"shine",
+    "meaning":"（太陽などが）照る",
+    "pos":"verb"
+  }
+  {
+    "word":"shine",
+    "meaning":"輝く／光る",
+    "pos":"verb"
+  }
   {
     "word": "snow",
     "meaning": "雪が降る",
@@ -2441,7 +2538,12 @@
   },
   {
     "word": "anyway",
-    "meaning": "何でも",
+    "meaning": "とにかく／いずれにせよ",
+    "pos": "adv"
+  },
+  {
+    "word": "anyway",
+    "meaning": "それでも",
     "pos": "adv"
   },
   {
@@ -2459,6 +2561,9 @@
     "meaning": "まじめに",
     "pos": "adv"
   },
+  {"word":"seriously",
+   "meaning":"本気で／真剣に",
+   "pos":"adv"}
   {
     "word": "cheaply",
     "meaning": "安く",
@@ -7039,6 +7144,11 @@
     "meaning": "水分を吸ってぐにゃっとした・べちゃべちゃの",
     "pos": "adj"
   },
+  {"word":"precious",
+   "meaning":"大切な",
+   "pos":"adj"}
+  
+  
   {
     "word": "pink",
     "meaning": "ピンク色",
