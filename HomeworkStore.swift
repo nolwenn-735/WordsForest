@@ -278,12 +278,267 @@ final class HomeworkStore: ObservableObject {
         saveLearned()
         saveRequired()
     }
+
+    // MARK: - BundledWords meaning rename migration
+
+    /// BundledWords側で meaning の表記を変更したとき、
+    /// 旧StoredWordのUUIDを維持したまま新meaningへ移行する。
+    ///
+    /// すでに新meaning側のStoredWordが存在する場合も、
+    /// 旧カードのUUIDを代表として残し、学習状態をまとめて引き継ぐ。
+    @discardableResult
+    private func migrateBundledMeaningRename(
+        word: String,
+        pos: PartOfSpeech,
+        from oldMeaning: String,
+        to newMeaning: String
+    ) -> Bool {
+
+        let normalizedWord = norm(word)
+        let oldNormalized = normMeaning(oldMeaning)
+        let newNormalized = normMeaning(newMeaning)
+
+        guard let oldItem = words.first(where: {
+            $0.pos == pos &&
+            norm($0.word) == normalizedWord &&
+            normMeaning($0.meaning) == oldNormalized
+        }) else {
+            return false
+        }
+
+        let oldID = oldItem.id
+
+        // すでに新meaning側が追加済みの場合、
+        // 新しいUUIDを消して旧UUIDへ状態を集約する。
+        if let newItem = words.first(where: {
+            $0.pos == pos &&
+            norm($0.word) == normalizedWord &&
+            normMeaning($0.meaning) == newNormalized &&
+            $0.id != oldID
+        }) {
+
+            let newID = newItem.id
+
+            if favoriteIDs.remove(newID) != nil {
+                favoriteIDs.insert(oldID)
+            }
+
+            if learnedIDs.remove(newID) != nil {
+                learnedIDs.insert(oldID)
+            }
+
+            if requiredIDs.remove(newID) != nil {
+                requiredIDs.insert(oldID)
+            }
+
+            words.removeAll {
+                $0.id == newID
+            }
+        }
+
+        // 旧UUIDをそのまま使って正式な新meaningへ変更
+        guard let oldIndex = words.firstIndex(where: {
+            $0.id == oldID
+        }) else {
+            return false
+        }
+
+        words[oldIndex] = StoredWord(
+            id: oldID,
+            word: word,
+            meaning: newMeaning,
+            pos: pos
+        )
+
+    #if DEBUG
+        print(
+            "🔁 Bundled meaning migrated:",
+            word,
+            "[\(oldMeaning)] → [\(newMeaning)]"
+        )
+    #endif
+
+        return true
+    }
+ 
+    // MARK: - BundledWords duplicate meaning collapse migration
+
+    /// BundledWords側で「別meaningではなく言い換え」と判断した旧meaningを、
+    /// 正式meaningへ統合する。
+    ///
+    /// StoredWordのUUIDは削除せず残す。
+    /// 同じmeaningになった複数StoredWordは list(for:) 側で1meaningにまとめられるため、
+    /// 過去の宿題履歴IDを壊さず表示だけ1件にできる。
+    @discardableResult
+    private func collapseBundledMeaning(
+        word: String,
+        pos: PartOfSpeech,
+        from oldMeaning: String,
+        into canonicalMeaning: String
+    ) -> Bool {
+
+        let normalizedWord = norm(word)
+        let oldNormalized = normMeaning(oldMeaning)
+        let canonicalNormalized = normMeaning(canonicalMeaning)
+
+        guard let oldIndex = words.firstIndex(where: {
+            $0.pos == pos &&
+            norm($0.word) == normalizedWord &&
+            normMeaning($0.meaning) == oldNormalized
+        }) else {
+            return false
+        }
+
+        let oldID = words[oldIndex].id
+
+        // 旧StoredWordのUUIDをそのまま保って、
+        // meaningだけ正式meaningへ揃える。
+        words[oldIndex] = StoredWord(
+            id: oldID,
+            word: word,
+            meaning: canonicalMeaning,
+            pos: pos
+        )
+
+        // 同じ正式meaningを持つStoredWordが複数存在しても、
+        // UUIDは履歴互換のため残す。
+        let matchingIDs = words
+            .filter {
+                $0.pos == pos &&
+                norm($0.word) == normalizedWord &&
+                normMeaning($0.meaning) == canonicalNormalized
+            }
+            .map(\.id)
+
+        guard let representativeID = matchingIDs.first else {
+            return true
+        }
+
+        let matchingIDSet = Set(matchingIDs)
+
+        // My Collection / 覚えた / 必須 の状態は、
+        // 実際に画面で代表になるIDへまとめる。
+        let wasFavorite =
+            !favoriteIDs.isDisjoint(with: matchingIDSet)
+
+        let wasLearned =
+            !learnedIDs.isDisjoint(with: matchingIDSet)
+
+        let wasRequired =
+            !requiredIDs.isDisjoint(with: matchingIDSet)
+
+        favoriteIDs.subtract(matchingIDSet)
+        learnedIDs.subtract(matchingIDSet)
+        requiredIDs.subtract(matchingIDSet)
+
+        if wasFavorite {
+            favoriteIDs.insert(representativeID)
+        }
+
+        if wasLearned {
+            learnedIDs.insert(representativeID)
+        }
+
+        if wasRequired {
+            requiredIDs.insert(representativeID)
+        }
+
+    #if DEBUG
+        print(
+            "🧹 Bundled meaning collapsed:",
+            word,
+            "[\(oldMeaning)] → [\(canonicalMeaning)]"
+        )
+    #endif
+
+        return true
+    }
     
-    // 今回は migrate の中身は仮。旧データがあればここで変換する。
     private func migrateIfNeeded() {
+
+        // ---------------------------------------------------------
+        // 1. 旧 is / are / was / were → 正式な be へ移行
+        // ---------------------------------------------------------
+
         migrateLegacyBeFormsToBaseVerbIfNeeded()
-        // 現在保存済みの word + meaning + pos を記録。
-        // 既存UUIDは一切変更しない。
+
+
+        // ---------------------------------------------------------
+        // 2. BundledWords側で表記変更したmeaningを移行
+        // ---------------------------------------------------------
+
+        var renamedCount = 0
+
+        if migrateBundledMeaningRename(
+            word: "anyway",
+            pos: .adv,
+            from: "何でも",
+            to: "とにかく／いずれにせよ"
+        ) {
+            renamedCount += 1
+        }
+
+        if migrateBundledMeaningRename(
+            word: "project",
+            pos: .noun,
+            from: "課題研究",
+            to: "企画／計画"
+        ) {
+            renamedCount += 1
+        }
+
+        if migrateBundledMeaningRename(
+            word: "shine",
+            pos: .verb,
+            from: "照る",
+            to: "（太陽などが）照る"
+        ) {
+            renamedCount += 1
+        }
+
+        if migrateBundledMeaningRename(
+            word: "complimentary",
+            pos: .adj,
+            from: "褒める・好意的な",
+            to: "好意的な／褒める内容の"
+        ) {
+            renamedCount += 1
+        }
+
+
+        // ---------------------------------------------------------
+        // 3. 「別meaningではなく言い換え」だった旧meaningを統合
+        // ---------------------------------------------------------
+
+        var collapsedCount = 0
+
+        if collapseBundledMeaning(
+            word: "disposable",
+            pos: .adj,
+            from: "使用後に処分する",
+            into: "使い捨ての"
+        ) {
+            collapsedCount += 1
+        }
+
+        if collapseBundledMeaning(
+            word: "whole",
+            pos: .adj,
+            from: "ずっと",
+            into: "全体の・全部の"
+        ) {
+            collapsedCount += 1
+        }
+
+
+        // ---------------------------------------------------------
+        // 4. BundledWords.json の不足meaningを追加
+        //
+        // word + meaning + pos の完全一致で判定する。
+        // 同じwordに複数meaningがあっても、
+        // それぞれ独立したStoredWordとして追加される。
+        // ---------------------------------------------------------
+
         var knownKeys = Set(
             words.map {
                 WordKey(
@@ -296,9 +551,8 @@ final class HomeworkStore: ObservableObject {
 
         var addedCount = 0
 
-        // BundledWords.json に存在し、
-        // 端末側にまだ無い原本だけを追加する。
         for bundled in bundledWords {
+
             let word = bundled.word
                 .trimmingCharacters(in: .whitespacesAndNewlines)
 
@@ -328,30 +582,63 @@ final class HomeworkStore: ObservableObject {
             )
 
             addedCount += 1
+
+    #if DEBUG
+            print(
+                "🌱 Bundled meaning added:",
+                bundled.pos.rawValue,
+                word,
+                "[\(meaning)]"
+            )
+    #endif
         }
 
-        // 追加があった場合だけ保存。
-        // 既存StoredWordには触らないのでUUIDも維持される。
-        if addedCount > 0 {
+
+        // ---------------------------------------------------------
+        // 5. 変更があったときだけ保存
+        // ---------------------------------------------------------
+
+        if renamedCount > 0 ||
+            collapsedCount > 0 ||
+            addedCount > 0 {
+
             save()
+            saveFavorites()
+            saveLearned()
+            saveRequired()
 
             NotificationCenter.default.post(
                 name: .storeDidChange,
                 object: nil
             )
+
+            NotificationCenter.default.post(
+                name: .favoritesDidChange,
+                object: nil
+            )
+
+            NotificationCenter.default.post(
+                name: .learnedDidChange,
+                object: nil
+            )
         }
 
-        #if DEBUG
+
+    #if DEBUG
         print(
             "📚 BundledWords sync:",
             bundledWords.count,
             "bundled /",
+            renamedCount,
+            "renamed /",
+            collapsedCount,
+            "collapsed /",
             addedCount,
             "added"
         )
-        #endif
+    #endif
     }
-
+    
     private func ensureStored(_ c: WordCard) {
         // meanings の先頭だけ store へ（いまの WordKey 方針と揃える）
         let meaning = c.meanings.first?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""

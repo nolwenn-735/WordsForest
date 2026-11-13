@@ -3652,11 +3652,6 @@
               "meaning": "全体の・全部の",
               "en": "I spent the whole afternoon looking for that file.",
               "ja": "午後ずっと、そのファイルを探してた。"
-            },
-            {
-              "meaning": "ずっと",
-              "en": "He knew the answer the whole time and didn't tell us.",
-              "ja": "彼、最初からずっと答えを知ってたのに教えてくれなかった。"
             }
           ]
         },
@@ -6055,7 +6050,7 @@
         {
           "pos": "adjective",
           "word": "complimentary",
-          "wordNote": "complimentary は「料金に含まれていて、追加料金なしで提供される」という意味があります。\n\ncomplimentary breakfast\n→ 無料サービスの朝食\n\ncomplimentary Wi-Fi\n→ 無料で利用できるWi-Fi\n\na complimentary drink\n→ サービスで提供される飲み物\n\nまた、「褒める、好意的な」という意味もあります。\n\na complimentary remark\n→ 褒める言葉\n\nよく似た complementary は別の語で、「互いに補い合う」という意味です。\n\ncomplimentary\n→ 無料サービスの・褒める\n\ncomplementary\n→ 互いに補い合う\n\nスペルも意味も混同しやすい語です。",
+          "wordNote": "complimentary は「料金に含まれていて、追加料金なしで提供される」という意味があります。\n\ncomplimentary breakfast\n→ 無料サービスの朝食\n\ncomplimentary Wi-Fi\n→ 無料で利用できるWi-Fi\n\na complimentary drink\n→ サービスで提供される飲み物\n\nまた、「好意的な、褒める内容の」という意味もあります。\n\na complimentary remark\n→ 褒める言葉\n\nよく似た complementary は別の語で、「互いに補い合う」という意味です。\n\ncomplimentary\n→ 無料サービスの・好意的な／褒める内容の\n\ncomplementary\n→ 互いに補い合う\n\nスペルも意味も混同しやすい語です。",
           "meanings": [
             {
               "meaning": "無料サービスの",
@@ -6063,7 +6058,7 @@
               "ja": "朝食は無料サービスだから、追加料金いらないよ。"
             },
             {
-              "meaning": "褒める・好意的な",
+              "meaning": "好意的な／褒める内容の",
               "en": "She made a complimentary remark about my presentation.",
               "ja": "彼女は私のプレゼンについて褒める言葉をかけてくれた。"
             }
@@ -6110,11 +6105,6 @@
           "meanings": [
             {
               "meaning": "使い捨ての",
-              "en": "I stopped buying disposable batteries and switched to rechargeable ones.",
-              "ja": "使い捨て電池を買うのをやめて、充電式に替えたよ。"
-            },
-            {
-              "meaning": "使用後に処分する",
               "en": "These gloves are disposable, so use a new pair each time.",
               "ja": "この手袋は使い捨てだから、毎回新しいものを使ってね。"
             }
@@ -8085,13 +8075,13 @@
           "meanings": [
             {
               "meaning": "とにかく／いずれにせよ",
-              "en": "A: Anyway, let's talk about it tomorrow. We're both too tired now.\nB: Good idea. We'll think more clearly in the morning.",
-              "ja": "A: とにかく、この話は明日にしよう。二人とも今は疲れすぎてるよ。\nB: そうしよう。朝の方がちゃんと考えられそう。"
+              "en": "A: Anyway, we can decide after lunch. We don't have to choose right now.\nB: Good. I need some time to think about it.",
+              "ja": "A: とにかく、昼食のあとで決めればいいよ。今すぐ選ばなくてもいいし。\nB: うん。ちょっと考える時間がほしい。"
             },
             {
               "meaning": "それでも",
-              "en": "A: The reviews weren't great, but I watched it anyway.\nB: Was it better than you expected?",
-              "ja": "A: 評判はあまり良くなかったけど、それでも観たんだ。\nB: 思ってたより良かった？"
+              "en": "A: The forecast said it might rain, but we went hiking anyway.\nB: Did you get caught in it?",
+              "ja": "A: 雨かもって予報だったけど、それでもハイキングに行ったんだ。\nB: 降られた？"
             }
           ]
         },
@@ -8102,13 +8092,13 @@
           "meanings": [
             {
               "meaning": "まじめに",
-              "en": "A: You need to take this seriously. The deadline is tomorrow.\nB: I know. I'll finish it tonight.",
-              "ja": "A: これ、ちゃんと真剣にやらないと。締め切り明日だよ。\nB: 分かってる。今夜終わらせるよ。"
+              "en": "A: Can we talk seriously for a minute?\nB: Sure. What's going on?",
+              "ja": "A: ちょっと真面目に話せる？\nB: もちろん。どうしたの？"
             },
             {
               "meaning": "本気で／真剣に",
-              "en": "A: Are you seriously thinking about changing jobs?\nB: Yeah. I've been thinking about it for months.",
-              "ja": "A: 本気で転職を考えてるの？\nB: うん。もう何か月も考えてる。"
+              "en": "A: Are you seriously going to sell your car?\nB: Yeah. I barely use it anymore.",
+              "ja": "A: 本気で車売るつもりなの？\nB: うん。もうほとんど乗ってないし。"
             }
           ]
         },
@@ -8388,13 +8378,13 @@
         "meanings": [
           {
             "meaning": "成績",
-            "en": "A: I got a much better grade this time.\nB: Nice! What did you do differently?",
-            "ja": "A: 今回、前よりずっといい成績だったよ。\nB: いいね！何か勉強の仕方変えた？"
+            "en": "A: My math grade went up this term.\nB: Nice! All that practice paid off.",
+            "ja": "A: 今学期、数学の成績上がったよ。\nB: よかったね！練習した甲斐があったね。"
           },
           {
             "meaning": "学年",
-            "en": "A: What grade are you in?\nB: I'm in eighth grade.",
-            "ja": "A: 何年生？\nB: 8年生だよ。"
+            "en": "A: My brother is in the same grade as your sister.\nB: Then they probably know each other.",
+            "ja": "A: 弟、あなたの妹と同じ学年だよ。\nB: じゃあたぶん知り合いだね。"
           }
         ]
       },
@@ -8405,13 +8395,13 @@
         "meanings": [
           {
             "meaning": "グループ／集団",
-            "en": "A: Let's make a group chat for the project.\nB: Good idea. It'll be easier than sending separate messages.",
-            "ja": "A: このプロジェクト用のグループチャット作ろうよ。\nB: いいね。個別にメッセージ送るより楽そう。"
+            "en": "A: Which group are you in for the museum tour?\nB: The blue group. What about you?",
+            "ja": "A: 博物館のツアー、どのグループ？\nB: 青のグループ。あなたは？"
           },
           {
             "meaning": "班",
-            "en": "A: Work in groups of four for this activity.\nB: Okay. Can we choose our own groups?",
-            "ja": "A: この活動は4人の班でやってください。\nB: 分かりました。班は自分たちで決めていいですか？"
+            "en": "A: Our group has to present first today.\nB: Then we'd better check the slides one more time.",
+            "ja": "A: 今日、うちの班が最初に発表なんだ。\nB: じゃあスライドもう一回確認した方がいいね。"
           }
         ]
       },
@@ -8422,13 +8412,13 @@
         "meanings": [
           {
             "meaning": "考え／アイデア",
-            "en": "A: I have an idea. Why don't we move the meeting online?\nB: That could work.",
-            "ja": "A: いい案がある。会議、オンラインにしない？\nB: それならうまくいくかも。"
+            "en": "A: Why don't we leave a little earlier and avoid the traffic?\nB: That's a good idea.",
+            "ja": "A: 少し早めに出て渋滞を避けない？\nB: それいい考えだね。"
           },
           {
             "meaning": "見当／理解",
-            "en": "A: I have no idea where I left my keys.\nB: Did you check your coat pocket?",
-            "ja": "A: 鍵どこに置いたか全然分からない。\nB: コートのポケット見た？"
+            "en": "A: Do you have any idea how this machine works?\nB: Not really. Let's find the manual.",
+            "ja": "A: この機械どう使うか分かる？\nB: あんまり。説明書探そう。"
           }
         ]
       },
@@ -8439,13 +8429,13 @@
         "meanings": [
           {
             "meaning": "企画／計画",
-            "en": "A: We're starting a new project next month.\nB: What's your role going to be?",
-            "ja": "A: 来月、新しいプロジェクトが始まるんだ。\nB: どんな担当になるの？"
+            "en": "A: They're looking for someone to lead the new project.\nB: You should apply. It sounds perfect for you.",
+            "ja": "A: 新しい企画のリーダーを探してるんだって。\nB: 応募したら？あなたに合いそう。"
           },
           {
             "meaning": "課題／研究",
-            "en": "A: My science project is due Friday.\nB: Do you still have a lot to finish?",
-            "ja": "A: 理科の課題、金曜日が締め切りなんだ。\nB: まだやることたくさん残ってる？"
+            "en": "A: Have you finished your history project?\nB: Almost. I just need to add the photos.",
+            "ja": "A: 歴史の課題終わった？\nB: ほぼ。写真を追加するだけ。"
           }
         ]
       },
@@ -8456,18 +8446,18 @@
         "meanings": [
           {
             "meaning": "勘定書",
-            "en": "A: Could we have the bill, please?\nB: Sure. I'll bring it right over.",
-            "ja": "A: お会計をお願いできますか？\nB: はい。すぐお持ちします。"
+            "en": "A: I think they charged us twice on the bill.\nB: Let's ask the server before we pay.",
+            "ja": "A: 勘定書、同じもの二回請求されてる気がする。\nB: 払う前に店員さんに聞こう。"
           },
           {
             "meaning": "紙幣",
-            "en": "A: Do you have a ten-dollar bill?\nB: No, I only have a twenty.",
-            "ja": "A: 10ドル札持ってる？\nB: ない、20ドル札しかないよ。"
+            "en": "A: This machine doesn't accept large bills.\nB: I have a five-dollar bill. Try this.",
+            "ja": "A: この機械、大きい紙幣使えないよ。\nB: 5ドル札あるよ。これ使って。"
           },
           {
             "meaning": "法案",
-            "en": "A: The bill passed the Senate yesterday.\nB: What happens next?",
-            "ja": "A: その法案、昨日上院を通過したよ。\nB: 次はどうなるの？"
+            "en": "A: Did the new bill pass?\nB: Not yet. They're voting on it tomorrow.",
+            "ja": "A: 新しい法案、通った？\nB: まだ。明日採決するって。"
           }
         ]
       },
@@ -8717,17 +8707,17 @@
       {
         "pos": "verb",
         "word": "call",
-        "wordNote": null,
+        "wordNote": "call の基本の感覚は、「声・名前・電話などを使って、相手に働きかける」ことです。\n\nそこから、よく使う二つの意味に広がります。\n\n1. 電話する\n\nI'll call you later.\n→ あとで電話するね。\n\ncall someone\n→ 人に電話する\n\n英語では普通、\n\n× call to you\n○ call you\n\nのように、人を直接後ろに置きます。\n\n2. 呼ぶ・〜と呼ぶ\n\nWhat do you call this in English?\n→ これは英語で何と言いますか？\n\nCall me Ken.\n→ ケンって呼んで。\n\nThey call this area the Old Town.\n→ この地域はOld Townと呼ばれています。\n\n「電話する」と「呼ぶ」は日本語では別の動詞ですが、call には「相手へ呼びかける」という共通の感覚があります。",
         "meanings": [
           {
-            "meaning": "呼ぶ",
-            "en": "She calls her dog Curly.",
-            "ja": "彼女は彼女の犬をカーリーと呼ぶ。"
+            "meaning": "電話する",
+            "en": "A: Can you call the clinic and ask if they're still open?\nB: Sure. I'll do it now.",
+            "ja": "A: クリニックに電話して、まだ開いてるか聞いてくれる？\nB: いいよ。今するね。"
           },
           {
-            "meaning": "電話する",
-            "en": "I'll call you later.",
-            "ja": "あとで電話するね。"
+            "meaning": "呼ぶ",
+            "en": "A: Everyone calls him Max, but that's not his real name.\nB: Really? What's his real name?",
+            "ja": "A: みんな彼をMaxって呼んでるけど、本名じゃないんだ。\nB: 本当？本名は何？"
           }
         ]
       },
@@ -9003,6 +8993,7 @@
           }
         ]
       },
+      
       {
         "pos": "verb",
         "word": "play",
@@ -9010,18 +9001,18 @@
         "meanings": [
           {
             "meaning": "遊ぶ",
-            "en": "A: The kids are playing outside.\nB: Good. They've been indoors all morning.",
-            "ja": "A: 子どもたち、外で遊んでるよ。\nB: よかった。午前中ずっと家の中にいたからね。"
+            "en": "A: Can Mia come over and play after school?\nB: Sure. Around four?",
+            "ja": "A: 放課後Miaがうちに来て遊んでもいい？\nB: いいよ。4時ごろ？"
           },
           {
             "meaning": "（ゲーム・スポーツなどを）する",
-            "en": "A: Do you want to play tennis after school?\nB: Sure. Let's book a court.",
-            "ja": "A: 放課後テニスしない？\nB: いいよ。コート予約しよう。"
+            "en": "A: Want to play badminton after work?\nB: Sure. I haven't played in ages.",
+            "ja": "A: 仕事のあとバドミントンしない？\nB: いいね。ずっとやってないや。"
           },
           {
             "meaning": "（楽器を）演奏する",
-            "en": "A: Can you play the piano?\nB: A little. I learned when I was a child.",
-            "ja": "A: ピアノ弾ける？\nB: 少しだけ。子どものころ習ってたんだ。"
+            "en": "A: Who was playing the guitar last night?\nB: My brother. He's practicing for a concert.",
+            "ja": "A: 昨日の夜ギター弾いてたの誰？\nB: 弟。コンサートの練習してるんだ。"
           }
         ]
       },
@@ -9032,18 +9023,18 @@
         "meanings": [
           {
             "meaning": "捕まえる",
-            "en": "A: Can you catch the ball?\nB: Throw it a little higher.",
-            "ja": "A: そのボール取れる？\nB: もう少し高く投げて。"
+            "en": "A: The cat got out again!\nB: I'll try to catch her before she reaches the road.",
+            "ja": "A: また猫が外に出ちゃった！\nB: 道路まで行く前に捕まえてみる。"
           },
           {
             "meaning": "（電車などに）乗る／間に合う",
-            "en": "A: We can still catch the last train.\nB: Then we'd better leave now.",
-            "ja": "A: まだ終電に間に合うよ。\nB: じゃあ今出た方がいいね。"
+            "en": "A: If we leave now, we can catch the 7:20.\nB: Okay, let's go.",
+            "ja": "A: 今出れば7時20分のに間に合うよ。\nB: じゃあ行こう。"
           },
           {
             "meaning": "聞き取る",
-            "en": "A: Sorry, I didn't catch that.\nB: No problem. I'll say it again.",
-            "ja": "A: ごめん、今の聞き取れなかった。\nB: 大丈夫。もう一回言うね。"
+            "en": "A: Did you catch the address she gave us?\nB: No. Can you play that part again?",
+            "ja": "A: 彼女が言ってた住所、聞き取れた？\nB: いや。そこもう一回再生してくれる？"
           }
         ]
       },
@@ -9054,13 +9045,13 @@
         "meanings": [
           {
             "meaning": "たずねる",
-            "en": "A: Can I ask you something?\nB: Sure. What's up?",
-            "ja": "A: ちょっと聞いてもいい？\nB: もちろん。どうしたの？"
+            "en": "A: Ask the receptionist where Room 204 is.\nB: Okay. I'll go check.",
+            "ja": "A: 受付で204号室がどこか聞いてみて。\nB: 分かった。聞いてくる。"
           },
           {
             "meaning": "頼む／求める",
-            "en": "A: I asked him to send the file again.\nB: Good. The first one wouldn't open.",
-            "ja": "A: 彼にファイルをもう一度送ってって頼んだよ。\nB: よかった。最初のは開かなかったからね。"
+            "en": "A: I asked my neighbor to water the plants while I'm away.\nB: Did she say yes?",
+            "ja": "A: 留守の間、隣の人に植物の水やり頼んだんだ。\nB: 引き受けてくれた？"
           }
         ]
       },
@@ -9071,13 +9062,13 @@
         "meanings": [
           {
             "meaning": "賛成する",
-            "en": "A: I agree with you about the deadline.\nB: Good. Let's ask for one more week.",
-            "ja": "A: 締め切りについてはあなたに賛成。\nB: よかった。もう1週間延ばせないか聞いてみよう。"
+            "en": "A: I think we should cancel if the roads are icy.\nB: I agree. It's not worth the risk.",
+            "ja": "A: 道が凍ってたら中止した方がいいと思う。\nB: 賛成。無理する必要ないよ。"
           },
           {
             "meaning": "同意する",
-            "en": "A: She agreed to help us with the event.\nB: That's a relief. We really needed another person.",
-            "ja": "A: 彼女、イベントを手伝うことに同意してくれたよ。\nB: よかった。もう一人、本当に必要だったんだ。"
+            "en": "A: Did everyone agree to the new schedule?\nB: Yes. We can start using it next week.",
+            "ja": "A: みんな新しい予定に同意した？\nB: うん。来週から使えるよ。"
           }
         ]
       },
@@ -9088,13 +9079,13 @@
         "meanings": [
           {
             "meaning": "置く",
-            "en": "A: Where should I set this box?\nB: Just put it by the door.",
-            "ja": "A: この箱、どこに置けばいい？\nB: ドアのそばに置いといて。"
+            "en": "A: Where should I set these drinks?\nB: On the counter is fine.",
+            "ja": "A: この飲み物どこに置けばいい？\nB: カウンターでいいよ。"
           },
           {
             "meaning": "〜の状態にする／設定する",
-            "en": "A: I set the alarm for six.\nB: Good. We can't miss the early train.",
-            "ja": "A: アラーム6時にセットしたよ。\nB: よかった。朝早い電車に乗り遅れられないからね。"
+            "en": "A: Can you set your phone to silent before the meeting?\nB: Already done.",
+            "ja": "A: 会議の前にスマホをサイレントにしてくれる？\nB: もうしたよ。"
           }
         ]
       },
@@ -9117,23 +9108,23 @@
         "meanings": [
           {
             "meaning": "乗りそこなう",
-            "en": "A: I missed the last train.\nB: Do you want me to help you find a taxi?",
-            "ja": "A: 終電逃しちゃった。\nB: タクシー探すの手伝おうか？"
+            "en": "A: We missed the bus by two minutes.\nB: The next one isn't for another twenty.",
+            "ja": "A: 2分差でバス逃した。\nB: 次は20分後だよ。"
           },
           {
             "meaning": "逃す／見逃す",
-            "en": "A: Don't miss the chance to talk to her.\nB: You're right. I may not get another chance.",
-            "ja": "A: 彼女と話すチャンス逃さない方がいいよ。\nB: そうだね。次の機会はないかもしれないし。"
+            "en": "A: I missed the email about the room change.\nB: That explains why you went to 302.",
+            "ja": "A: 教室変更のメール見逃してた。\nB: だから302に行ったのか。"
           },
           {
             "meaning": "聞き逃す／聞き取れない",
-            "en": "A: Sorry, I missed what you said.\nB: No problem. I'll say it again.",
-            "ja": "A: ごめん、今言ったこと聞き逃した。\nB: 大丈夫。もう一回言うね。"
+            "en": "A: I missed the last part of the announcement.\nB: They said the train will leave from Platform 6.",
+            "ja": "A: アナウンスの最後聞き逃した。\nB: 6番ホームから出るって。"
           },
           {
             "meaning": "〜がいなくて寂しく思う",
-            "en": "A: I really miss my old classmates.\nB: Why don't you message them?",
-            "ja": "A: 昔のクラスメートたち、本当に恋しいな。\nB: メッセージ送ってみたら？"
+            "en": "A: I miss having lunch with you every day.\nB: Me too. We should meet sometime next week.",
+            "ja": "A: 毎日一緒に昼ごはん食べてたのが懐かしいな。\nB: 私も。来週どこかで会おうよ。"
           }
         ]
       },
@@ -9144,23 +9135,23 @@
         "meanings": [
           {
             "meaning": "着く",
-            "en": "A: What time did you reach the hotel?\nB: Around eleven. The train was delayed again.",
-            "ja": "A: ホテルには何時に着いた？\nB: 11時ごろ。また電車が遅れてたんだ。"
+            "en": "A: Do you think we'll reach the airport by six?\nB: We should, if the traffic stays light.",
+            "ja": "A: 6時までに空港着くと思う？\nB: 渋滞しなければ着くと思う。"
           },
           {
             "meaning": "手が届く",
-            "en": "A: I can't reach the top shelf.\nB: Want me to get it for you?",
-            "ja": "A: 一番上の棚に手が届かない。\nB: 取ろうか？"
+            "en": "A: Can you reach the window latch?\nB: Yeah, just barely.",
+            "ja": "A: 窓の留め金に手届く？\nB: うん、ぎりぎり。"
           },
           {
             "meaning": "〜の水準・数値に達する",
-            "en": "A: Temperatures reached 35 degrees today.\nB: No wonder the room felt so hot.",
-            "ja": "A: 今日、気温35度まで上がったんだって。\nB: そりゃ部屋も暑いわけだね。"
+            "en": "A: The video reached ten thousand views overnight.\nB: Seriously? That's way more than I expected.",
+            "ja": "A: あの動画、一晩で1万回再生いったよ。\nB: 本当に？予想よりずっと多い。"
           },
           {
             "meaning": "連絡がつく",
-            "en": "A: I tried to call her, but I couldn't reach her.\nB: Maybe she's still in a meeting.",
-            "ja": "A: 彼女に電話したけど、連絡つかなかった。\nB: まだ会議中なのかも。"
+            "en": "A: Have you been able to reach Daniel?\nB: No. He's not answering messages either.",
+            "ja": "A: Danielと連絡ついた？\nB: まだ。メッセージにも返事ない。"
           }
         ]
       },
@@ -9171,13 +9162,13 @@
         "meanings": [
           {
             "meaning": "溶ける",
-            "en": "A: The butter is starting to melt.\nB: Great. Pour it in when it's completely liquid.",
-            "ja": "A: バター溶け始めたよ。\nB: いいね。完全に液体になったら入れて。"
+            "en": "A: Your ice cream is melting.\nB: I know. I'm trying to eat it faster.",
+            "ja": "A: アイス溶けてるよ。\nB: 分かってる。急いで食べてる。"
           },
           {
             "meaning": "溶かす",
-            "en": "A: Can you melt the chocolate while I prepare the fruit?\nB: Sure. I'll keep the heat low.",
-            "ja": "A: 私が果物準備してる間にチョコ溶かしてくれる？\nB: いいよ。弱火にしておくね。"
+            "en": "A: Can you melt some cheese over the bread?\nB: Sure. Give me a minute.",
+            "ja": "A: パンの上のチーズ溶かしてくれる？\nB: いいよ。ちょっと待って。"
           }
         ]
       },
@@ -9188,13 +9179,13 @@
         "meanings": [
           {
             "meaning": "（太陽などが）照る",
-            "en": "A: The sun is finally shining again.\nB: Good. I was getting tired of the grey weather.",
-            "ja": "A: やっとまた日が照ってきたよ。\nB: よかった。ずっとどんよりした天気で飽きてたところ。"
+            "en": "A: The sun's shining right into the kitchen.\nB: I'll close the blind a little.",
+            "ja": "A: 日差しがキッチンに直接入ってるね。\nB: ブラインド少し閉めるね。"
           },
           {
             "meaning": "輝く／光る",
-            "en": "A: Her eyes were shining with excitement.\nB: I guess she really liked the surprise.",
-            "ja": "A: 彼女、わくわくして目が輝いてたよ。\nB: じゃあサプライズ、本当に気に入ったんだね。"
+            "en": "A: Your shoes are really shining today.\nB: I polished them this morning.",
+            "ja": "A: 今日、靴すごく光ってるね。\nB: 今朝磨いたんだ。"
           }
         ]
       },
@@ -9210,7 +9201,5 @@
           }
         ]
       },
-
-      
     ]
 

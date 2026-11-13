@@ -31,9 +31,7 @@ struct POSFlashcardListView: View {
             .filter { !homeworkStore.isLearned($0) }
             .sorted { $0.word.localizedCaseInsensitiveCompare($1.word) == .orderedAscending }
     }
-    
 
-    
     var body: some View {
         let cards = displayedCards
         let pageTitle = pos == .others ? "その他" : pos.jaTitle

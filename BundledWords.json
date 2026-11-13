@@ -452,7 +452,7 @@
   {
     "word":"grade",
     "meaning":"学年",
-    "pos":"noun"}
+    "pos":"noun"},
   {
     "word": "grade",
     "meaning": "成績",
@@ -460,7 +460,7 @@
   },
   {"word":"group",
    "meaning":"グループ／集団",
-   "pos":"noun"}
+   "pos":"noun"},
   {
     "word": "group",
     "meaning": "班",
@@ -480,17 +480,17 @@
    "word":"idea",
    "meaning":"見当／理解",
    "pos":"noun"
-  }
+  },
   {
    "word":"project",
    "meaning":"企画／計画",
    "pos":"noun"
-  }
+  },
   {
    "word":"project",
    "meaning":"課題／研究",
    "pos":"noun"
-  }
+  },
   {
     "word": "report",
     "meaning": "レポート",
@@ -685,10 +685,10 @@
     "word":"bill",
     "meaning":"紙幣",
     "pos":"noun"
-  }
+  },
   {"word":"bill",
    "meaning":"法案",
-   "pos":"noun"}
+   "pos":"noun"},
   {
     "word": "cashier",
     "meaning": "レジ係",
@@ -962,12 +962,12 @@
   {
     "word":"play",
     "meaning":"（ゲーム・スポーツなどを）する",
-    "pos":"verb"}
+    "pos":"verb"},
   {
     "word":"play",
     "meaning":"（楽器を）演奏する",
     "pos":"verb"
-  }
+  },
   {
     "word": "paint",
     "meaning": "塗る",
@@ -1006,12 +1006,12 @@
   {
     "word":"catch",
     "meaning":"（電車などに）乗る／間に合う",
-    "pos":"verb"}
+    "pos":"verb"},
   {
     "word":"catch",
     "meaning":"聞き取る",
     "pos":"verb"
-  }
+  },
   {
     "word": "pick",
     "meaning": "拾う",
@@ -1155,7 +1155,7 @@
   {
     "word":"ask",
     "meaning":"頼む／求める",
-    "pos":"verb"}
+    "pos":"verb"},
   {
     "word": "check",
     "meaning": "確認する",
@@ -1300,7 +1300,7 @@
     "word":"set",
     "meaning":"〜の状態にする／設定する",
     "pos":"verb"
-  }
+  },
   {
     "word": "tidy",
     "meaning": "片づける",
@@ -1335,17 +1335,17 @@
     "word":"miss",
     "meaning":"逃す／見逃す",
     "pos":"verb"
-  }
+  },
   {
     "word":"miss",
     "meaning":"聞き逃す／聞き取れない",
     "pos":"verb"
-  }
+  },
   {
     "word":"miss",
     "meaning":"〜がいなくて寂しく思う",
     "pos":"verb"
-  }
+  },
   {
     "word": "pass",
     "meaning": "通り過ぎる",
@@ -1360,17 +1360,17 @@
     "word":"reach",
     "meaning":"手が届く",
     "pos":"verb"
-  }
+  },
   {
     "word":"reach",
     "meaning":"〜の水準・数値に達する",
     "pos":"verb"
-  }
+  },
   {
     "word":"reach",
     "meaning":"連絡がつく",
     "pos":"verb"
-  }
+  },
   {
     "word": "stop",
     "meaning": "止まる",
@@ -1390,7 +1390,7 @@
     "word":"agree",
     "meaning":"同意する",
     "pos":"verb"
-  }
+  },
   {
     "word": "agree",
     "meaning": "賛成する",
@@ -1480,7 +1480,7 @@
     "word":"melt",
     "meaning":"溶かす",
     "pos":"verb"
-  }
+  },
   {
     "word": "rain",
     "meaning": "雨が降る",
@@ -1490,12 +1490,12 @@
     "word":"shine",
     "meaning":"（太陽などが）照る",
     "pos":"verb"
-  }
+  },
   {
     "word":"shine",
     "meaning":"輝く／光る",
     "pos":"verb"
-  }
+  },
   {
     "word": "snow",
     "meaning": "雪が降る",
@@ -2563,7 +2563,7 @@
   },
   {"word":"seriously",
    "meaning":"本気で／真剣に",
-   "pos":"adv"}
+   "pos":"adv"},
   {
     "word": "cheaply",
     "meaning": "安く",
@@ -4720,11 +4720,6 @@
     "pos": "adj"
   },
   {
-    "word": "whole",
-    "meaning": "ずっと",
-    "pos": "adj"
-  },
-  {
     "word": "worried",
     "meaning": "心配している・不安な",
     "pos": "adj"
@@ -6126,7 +6121,7 @@
   },
   {
     "word": "complimentary",
-    "meaning": "褒める・好意的な",
+    "meaning": "好意的な／褒める内容の",
     "pos": "adj"
   },
   {
@@ -6152,11 +6147,6 @@
   {
     "word": "disposable",
     "meaning": "使い捨ての",
-    "pos": "adj"
-  },
-  {
-    "word": "disposable",
-    "meaning": "使用後に処分する",
     "pos": "adj"
   },
   {
@@ -7146,9 +7136,9 @@
   },
   {"word":"precious",
    "meaning":"大切な",
-   "pos":"adj"}
-  
-  
+   "pos":"adj"},
+
+
   {
     "word": "pink",
     "meaning": "ピンク色",
@@ -7200,4 +7190,3 @@
     "pos": "verb"
   }
 ]
-
