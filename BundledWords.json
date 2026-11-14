@@ -2207,11 +2207,6 @@
     "pos": "adv"
   },
   {
-    "word": "never",
-    "meaning": "決して〜ない",
-    "pos": "adv"
-  },
-  {
     "word": "apart",
     "meaning": "離れて",
     "pos": "adv"
@@ -2343,7 +2338,37 @@
   },
   {
     "word": "always",
-    "meaning": "いつも",
+    "meaning": "いつも／必ず",
+    "pos": "adv"
+  },
+  {
+    "word": "never",
+    "meaning": "決して〜ない／一度も〜ない",
+    "pos": "adv"
+  },
+  {
+    "word": "soon",
+    "meaning": "もうすぐ／近いうちに",
+    "pos": "adv"
+  },
+  {
+    "word": "later",
+    "meaning": "あとで／もっと遅く",
+    "pos": "adv"
+  },
+  {
+    "word": "again",
+    "meaning": "再び／もう一度",
+    "pos": "adv"
+  },
+  {
+    "word": "very",
+    "meaning": "とても／非常に",
+    "pos": "adv"
+  },
+  {
+    "word": "nearly",
+    "meaning": "ほとんど／もう少しで",
     "pos": "adv"
   },
   {
@@ -2357,18 +2382,8 @@
     "pos": "adv"
   },
   {
-    "word": "later",
-    "meaning": "あとで",
-    "pos": "adv"
-  },
-  {
     "word": "now",
     "meaning": "今",
-    "pos": "adv"
-  },
-  {
-    "word": "soon",
-    "meaning": "すぐに",
     "pos": "adv"
   },
   {
@@ -2467,11 +2482,6 @@
     "pos": "adv"
   },
   {
-    "word": "nearly",
-    "meaning": "ほとんど",
-    "pos": "adv"
-  },
-  {
     "word": "still",
     "meaning": "まだ",
     "pos": "adv"
@@ -2563,7 +2573,8 @@
   },
   {"word":"seriously",
    "meaning":"本気で／真剣に",
-   "pos":"adv"},
+   "pos":"adv"
+  },
   {
     "word": "cheaply",
     "meaning": "安く",
@@ -2580,15 +2591,18 @@
     "pos": "adv"
   },
   {
-    "word": "very",
-    "meaning": "とても",
-    "pos": "adv"
-  },
-  {
     "word": "overnight",
     "meaning": "一晩で",
     "pos": "adv"
   },
+  {
+    "word": "enough",
+    "meaning": "十分に",
+    "pos": "adv"
+  },
+
+  
+  
   {
     "word": "the",
     "meaning": "定冠詞　その〜、例の",
@@ -2782,11 +2796,6 @@
   {
     "word": "across",
     "meaning": "前置詞/副詞 〜を横切って",
-    "pos": "others"
-  },
-  {
-    "word": "against",
-    "meaning": "前置詞 〜に反して",
     "pos": "others"
   },
   {

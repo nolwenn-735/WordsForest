@@ -505,6 +505,69 @@ final class HomeworkStore: ObservableObject {
             renamedCount += 1
         }
 
+        if migrateBundledMeaningRename(
+            word: "always",
+            pos: .adv,
+            from: "いつも",
+            to: "いつも／必ず"
+        ) {
+            renamedCount += 1
+        }
+
+        if migrateBundledMeaningRename(
+            word: "never",
+            pos: .adv,
+            from: "決して〜ない",
+            to: "決して〜ない／一度も〜ない"
+        ) {
+            renamedCount += 1
+        }
+
+        if migrateBundledMeaningRename(
+            word: "soon",
+            pos: .adv,
+            from: "すぐに",
+            to: "もうすぐ／近いうちに"
+        ) {
+            renamedCount += 1
+        }
+
+        if migrateBundledMeaningRename(
+            word: "later",
+            pos: .adv,
+            from: "あとで",
+            to: "あとで／もっと遅く"
+        ) {
+            renamedCount += 1
+        }
+
+        if migrateBundledMeaningRename(
+            word: "again",
+            pos: .adv,
+            from: "もう一度",
+            to: "再び／もう一度"
+        ) {
+            renamedCount += 1
+        }
+
+        if migrateBundledMeaningRename(
+            word: "very",
+            pos: .adv,
+            from: "とても",
+            to: "とても／非常に"
+        ) {
+            renamedCount += 1
+        }
+
+        if migrateBundledMeaningRename(
+            word: "nearly",
+            pos: .adv,
+            from: "ほとんど",
+            to: "ほとんど／もう少しで"
+        ) {
+            renamedCount += 1
+        }
+
 
         // ---------------------------------------------------------
         // 3. 「別meaningではなく言い換え」だった旧meaningを統合
@@ -529,7 +592,6 @@ final class HomeworkStore: ObservableObject {
         ) {
             collapsedCount += 1
         }
-
 
         // ---------------------------------------------------------
         // 4. BundledWords.json の不足meaningを追加

@@ -8114,7 +8114,367 @@
             }
           ]
         },
-        
+        {
+          "pos": "adverb",
+          "word": "always",
+          "meanings": [
+            {
+              "meaning": "いつも／必ず",
+              "en": "A: Do you always take the bus at this time?\nB: Yeah, it works out perfectly for my train connection.",
+              "ja": "A：君はいつもこの時間のバスに乗るの？\nB：そうだよ。電車との乗り継ぎにちょうどいいんだ。"
+            }
+          ],
+          "wordNote": "always は、あることが「いつもそうである」という感覚を表します。毎回繰り返す習慣にも、変わらず続く状態にも使えます。\n\n1. 「いつも・必ず」\n\nI always check the weather before I leave.\n→ 出かける前には必ず天気を確認します。\n\nShe's always kind to everyone.\n→ 彼女は誰に対してもいつも親切です。\n\nusually は「たいてい」で、例外があっても自然です。always は「毎回そうだ」という気持ちを強く表します。\n\n2. 「いつも〜ばかり」と気持ちを込める\n\nYou're always complaining!\n→ 君はいつも文句ばかり言っていますね！\n\n進行形と一緒に使うと、繰り返される行動への不満や驚き、感心を表すことがあります。\n\nalways の中心は、時間の中で同じことが繰り返される、あるいは変わらず続くという感覚です。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "sometimes",
+          "meanings": [
+            {
+              "meaning": "ときどき",
+              "en": "A: Do you ever work from home?\nB: Sometimes, especially when the weather’s bad.",
+              "ja": "A：在宅勤務することある？\nB：ときどきね。特に天気が悪いとき。"
+            }
+          ],
+          "wordNote": "sometimes は、「そういうときもある」という感覚を表します。いつもではありませんが、ときどき起こることです。\n\nI sometimes skip breakfast.\n→ ときどき朝食を抜きます。\n\nSometimes I just want to be alone.\n→ ときどき、ただ一人でいたくなることがあります。\n\n文の途中にも、文の最初にも置けます。\n\n似た形の3つを区別しましょう。\n\n1. sometimes：ときどき\n\nI sometimes walk to work.\n→ ときどき歩いて通勤します。\n\n2. sometime：いつか\n\nLet's meet sometime.\n→ いつか会いましょう。\n\n3. some time：しばらくの時間\n\nIt takes some time.\n→ 少し時間がかかります。\n\nsometimes は「いつか」ではなく、何度かある機会のうちの「ときどき」です。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "never",
+          "meanings": [
+            {
+              "meaning": "決して〜ない／一度も〜ない",
+              "en": "A: Have you tried this restaurant?\nB: No, I’ve never been here before. What do you recommend?",
+              "ja": "A：このお店、来たことある？\nB：ううん、初めて。何がおすすめ？"
+            }
+          ],
+          "wordNote": "never の中心には、ある時間の範囲で「一度も起こらない」という感覚があります。頻度で考えるとゼロです。\n\n1. 習慣として「決して〜ない」\n\nI never drink coffee at night.\n→ 夜はコーヒーを飲みません。\n\nHe never forgets a promise.\n→ 彼は約束を決して忘れません。\n\n2. 経験として「一度も〜ない」\n\nI've never seen snow before.\n→ これまで雪を見たことがありません。\n\n現在完了形と組み合わせると、これまでの経験が一度もないことを表せます。\n\n3. よく使う組み合わせ\n\nNever again!\n→ もう二度とごめんです！\n\nNever mind.\n→ 気にしないでください。\n\nnever 自体に否定の意味があるため、標準的な英語では通常 don't を重ねません。ever が「一度でも」なら、never は「一度もない」です。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "ever",
+          "meanings": [
+            {
+              "meaning": "これまでに／いつか／一度でも",
+              "en": "A: Have you ever lost your phone?\nB: Once. I left it on a train, but someone turned it in.",
+              "ja": "A：スマホなくしたことある？\nB：一回ある。電車に置き忘れたけど、誰かが届けてくれたんだ。"
+            }
+          ],
+          "wordNote": "ever の中心には、ある時間の範囲の「どこか一度でも」という感覚があります。質問や条件、強調の表現でよく使われます。\n\n1. 「これまでに一度でも」\n\nHave you ever been abroad?\n→ 海外に行ったことはありますか？\n\nこれまでの経験を尋ねるときの定番です。\n\n2. 「いつか・もし一度でも」\n\nIf you ever need help, just call me.\n→ いつか助けが必要になったら、電話してください。\n\n3. 強調する表現\n\nThis is the best day ever!\n→ これまでで最高の日です！\n\nI hardly ever eat out.\n→ 外食はめったにしません。\n\never since then\n→ それ以来ずっと\n\nnever は「一度もない」、ever は「一度でもあるか・起こるか」という違いです。時間のどこか一点を意識すると、いろいろな用法がつながります。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "ago",
+          "meanings": [
+            {
+              "meaning": "〜前に",
+              "en": "A: When did you move here?\nB: About three years ago. I really like this neighborhood.",
+              "ja": "A：いつここに引っ越してきたの？\nB：3年くらい前だよ。この辺り、すごく気に入ってる。"
+            }
+          ],
+          "wordNote": "ago は、「今」から過去へ時間をさかのぼる感覚です。どのくらい前なのかを示します。\n\nI saw him two days ago.\n→ 2日前に彼に会いました。\n\nShe left an hour ago.\n→ 彼女は1時間前に出発しました。\n\nago は two days ago のように、時間の長さを表す言葉の後ろに置きます。過去の時点を指すため、通常は過去形と使います。\n\nbefore との違いも見てみましょう。\n\nthree days ago\n→ 今から3日前\n\nthree days before\n→ そのときより3日前\n\nbefore は、話の中にある別の時点を基準にできます。ago の時計は、基本的に「今」から逆向きに動いていると考えましょう。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "then",
+          "meanings": [
+            {
+              "meaning": "そのとき",
+              "en": "A: Were you living in Tokyo then?\nB: No, I was still in Osaka.",
+              "ja": "A：そのころ東京に住んでたの？\nB：ううん、まだ大阪にいたよ。"
+            },
+            {
+              "meaning": "それから",
+              "en": "A: What should I do after I fill this out?\nB: Then bring it to the front desk.",
+              "ja": "A：これを書き終えたらどうすればいい？\nB：それから受付に持ってきて。"
+            },
+            {
+              "meaning": "それなら",
+              "en": "A: I can’t make it on Friday.\nB: Then how about Saturday?",
+              "ja": "A：金曜日は都合がつかないんだ。\nB：それなら土曜日はどう？"
+            }
+          ],
+          "wordNote": "then の中心には、「その時点・その状況を受けて、次へ進む」という感覚があります。時間にも、行動の順番にも、会話の判断にも使えます。\n\n1. 「そのとき・そのころ」\n\nI was a student then.\n→ そのころ私は学生でした。\n\n当時のある時点を指しています。\n\n2. 「それから・次に」\n\nFinish your homework, then take a break.\n→ 宿題を終えて、それから休憩してください。\n\nand then は「そして、それから」という流れを作ります。\n\n3. 「それなら」\n\nIf you're tired, then let's stop here.\n→ 疲れているなら、それじゃここまでにしましょう。\n\n相手の話や条件を受けて、次の提案をしています。\n\nsince then\n→ それ以来\n\nthen は、前の時点や状況を受け取り、次の時間・行動・判断へつなぐ言葉です。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "now",
+          "meanings": [
+            {
+              "meaning": "今",
+              "en": "A: Are you busy right now?\nB: A little. Can I call you back in ten minutes?",
+              "ja": "A：今忙しい？\nB：ちょっとね。10分後にかけ直していい？"
+            },
+            {
+              "meaning": "今では",
+              "en": "A: Do you still drive to work?\nB: No, I take the train now.",
+              "ja": "A：まだ車で通勤してる？\nB：ううん、今は電車だよ。"
+            }
+          ],
+          "wordNote": "now は、「今」という時点を指します。目の前の瞬間だけでなく、以前と比べた現在を表すこともできます。\n\n1. 「今」\n\nI'm busy now.\n→ 今は忙しいです。\n\nCall me right now.\n→ 今すぐ電話してください。\n\nright now は「まさに今」という感じを強めます。\n\n2. 「今では・今はもう」\n\nI used to hate tomatoes, but I like them now.\n→ 昔はトマトが嫌いでしたが、今は好きです。\n\n以前との変化が伝わります。\n\n3. よく使う表現\n\nFor now, let's wait.\n→ ひとまず待ちましょう。\n\nFrom now on, I'll get up earlier.\n→ これからはもっと早く起きます。\n\nfor now は「今のところ」、from now on は「今を境にこれからずっと」です。now を時間の基準点と考えると覚えやすくなります。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "lately",
+          "meanings": [
+            {
+              "meaning": "最近／このところ",
+              "en": "A: Have you been sleeping well lately?\nB: Not really. I’ve been staying up too late.",
+              "ja": "A：最近よく眠れてる？\nB：あんまり。夜更かししちゃってるんだ。"
+            }
+          ],
+          "wordNote": "lately は、「最近から今にかけて」という時間の幅を表します。最近の状態や習慣、変化について話すときに便利です。\n\nI've been busy lately.\n→ このところ忙しいです。\n\nHave you seen any good movies lately?\n→ 最近、何かいい映画を観ましたか？\n\n現在完了形や現在完了進行形と一緒によく使われます。\n\nrecently との違いを見てみましょう。\n\nI bought a new laptop recently.\n→ 最近、新しいノートパソコンを買いました。\n\nrecently は最近起きた一度きりの出来事にも自然に使えます。一方、lately は「このところどう？」と、最近から今までをひとまとまりに眺める感じがあります。\n\nlately は、カレンダーの一点ではなく「最近という期間」に目を向ける言葉です。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "eventually",
+          "meanings": [
+            {
+              "meaning": "最終的には／結局は",
+              "en": "A: Did you ever find your lost keys?\nB: Yeah, eventually. They were in my dog’s bed!",
+              "ja": "A：なくした鍵、結局見つかった？\nB：うん、ようやくね。うちの犬の寝床にあったんだよ！"
+            }
+          ],
+          "wordNote": "eventually は、途中で時間がかかったり、いろいろなことが起きたりした末に「最終的には」という結果にたどり着く感覚です。\n\nWe got lost, but eventually found the station.\n→ 道に迷いましたが、最終的には駅を見つけました。\n\nShe eventually changed her mind.\n→ 彼女は結局、考えを変えました。\n\nfinally と比べてみましょう。\n\nFinally, the bus is here!\n→ やっとバスが来ました！\n\nfinally は「やっと！」という安堵や達成感を伴いやすい言葉です。eventually は、そこに至るまでの経過と、最後にどうなったかに目を向けます。\n\nすぐに結果が出たのではなく、時間を経てたどり着いた。その流れが eventually の中心です。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "soon",
+          "meanings": [
+            {
+              "meaning": "もうすぐ／近いうちに",
+              "en": "A: Is the bus coming soon?\nB: It should be here in about five minutes.",
+              "ja": "A：バス、もうすぐ来る？\nB：あと5分くらいで来るはずだよ。"
+            }
+          ],
+          "wordNote": "soon は、今や話の基準となる時点から「あまり時間がたたないうちに」という感覚です。\n\nI'll be back soon.\n→ すぐ戻ります。\n\nSee you soon!\n→ また近いうちに会いましょう！\n\n「すぐ」が何分後なのかは、状況によって変わります。\n\nsoon と early も比べてみましょう。\n\nThe train will arrive soon.\n→ 電車はもうすぐ到着します。\n\nThe train arrived early.\n→ 電車は予定より早く到着しました。\n\nsoon は「時間的に近い」、early は「予定や普段より早い」という違いです。\n\nas soon as I get home\n→ 家に着いたらすぐに\n\nsoon は、ある時点から次の出来事までの時間が短いことを表します。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "later",
+          "meanings": [
+            {
+              "meaning": "あとで／もっと遅く",
+              "en": "A: Can we talk about this later?\nB: Sure. I’ll be free after lunch.",
+              "ja": "A：このこと、あとで話せる？\nB：もちろん。昼食後なら空いてるよ。"
+            }
+          ],
+          "wordNote": "later は、「ある時点より後」という感覚を表します。今より後の場合も、話の中の時点より後の場合もあります。\n\n1. 「あとで」\n\nI'll text you later.\n→ あとでメッセージします。\n\nSee you later!\n→ またあとで！\n\n2. 「もっと遅く」\n\nWe arrived later than expected.\n→ 予想より遅く到着しました。\n\nlate は「遅く」、later は「それより後に」という比較の感覚があります。\n\n3. 形容詞としての later\n\nIs there a later train?\n→ もっと遅い時刻の電車はありますか？\n\nこの later は train を説明する形容詞です。副詞カードでは「あとで・より後に」が中心になります。\n\nlater は、時間の流れの中で基準点より後ろに位置することを示します。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "again",
+          "meanings": [
+            {
+              "meaning": "再び／もう一度",
+              "en": "A: Sorry, could you say that again?\nB: Sure. The meeting starts at two, not three.",
+              "ja": "A：ごめん、もう一回言ってくれる？\nB：もちろん。会議は3時じゃなくて2時からだよ。"
+            }
+          ],
+          "wordNote": "again は、「一度起きたことを、もう一度」という繰り返しの感覚を表します。\n\nLet's try again.\n→ もう一度やってみましょう。\n\nIt started raining again.\n→ また雨が降り始めました。\n\nagain と back の違いは、会話でとても役立ちます。\n\nCall me again.\n→ もう一度電話してください。\n\nCall me back.\n→ 折り返し電話してください。\n\nagain は「同じ行動を繰り返す」、back は「元のところへ戻る」という感覚です。\n\nagain and again\n→ 何度も何度も\n\nonce again\n→ もう一度\n\n同じことがもう一回起きる。その単純な感覚が again の中心です。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "very",
+          "meanings": [
+            {
+              "meaning": "とても／非常に",
+              "en": "A: Is the water cold?\nB: Very! I can barely keep my feet in it.",
+              "ja": "A：水、冷たい？\nB：すごく！足を入れていられないくらい。"
+            }
+          ],
+          "wordNote": "very は、形容詞や副詞が表す程度を「とても」と強める基本の言葉です。\n\nThis bag is very light.\n→ このバッグはとても軽いです。\n\nShe speaks very clearly.\n→ 彼女はとてもはっきり話します。\n\nただし、very は普通、動詞を直接強めるためには使いません。\n\nI really like this song.\n→ この曲が本当に好きです。\n\nI like this song very much.\n→ この曲がとても好きです。\n\n「I very like this song.」とは言いません。\n\nまた、比較級を強めるなら very better ではなく much better です。\n\nvery は便利な言葉ですが、気持ちを表す so や really、限度を超える too などを選ぶと、伝えたいことがもっとはっきりします。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "really",
+          "meanings": [
+            {
+              "meaning": "本当に",
+              "en": "A: Did you really meet her in Paris?\nB: Yeah! We ran into each other at a café.",
+              "ja": "A：本当にパリで彼女に会ったの？\nB：うん！カフェで偶然会ったんだ。"
+            },
+            {
+              "meaning": "とても",
+              "en": "A: How was the movie?\nB: I really enjoyed it. You should see it!",
+              "ja": "A：映画どうだった？\nB：すごく楽しめたよ。君も観てみて！"
+            }
+          ],
+          "wordNote": "really の中心には、「本当にそうだ」という感覚があります。事実を確かめるときにも、気持ちを強く伝えるときにも使えます。\n\n1. 「本当に」\n\nIs that really true?\n→ それは本当ですか？\n\nI really didn't know.\n→ 本当に知りませんでした。\n\n2. 「とても・すごく」\n\nI really love this song.\n→ この曲が本当に大好きです。\n\nThat really helped.\n→ それは本当に助かりました。\n\nvery は通常、動詞を直接強めませんが、really は love や help のような動詞にも使えます。\n\n3. 会話での返答\n\nNot really.\n→ あまりそうでもありません。\n\nReally?\n→ 本当ですか？\n\nreally は、単なる強さだけでなく「本当なんです」という話し手の実感を伝える言葉です。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "so",
+          "meanings": [
+            {
+              "meaning": "とても",
+              "en": "A: Why are you wearing a jacket indoors?\nB: It’s so cold in here!",
+              "ja": "A：なんで室内で上着着てるの？\nB：ここ、すごく寒いんだよ！"
+            },
+            {
+              "meaning": "そんなに",
+              "en": "A: Is the test going to be difficult?\nB: I don’t think it’ll be so hard.",
+              "ja": "A：テスト難しいかな？\nB：そんなに難しくないと思うよ。"
+            }
+          ],
+          "wordNote": "so は、「そのくらい・そんなに」という程度を指し示す感覚があります。会話では気持ちの強さもよく表します。\n\n1. 「とても・すごく」\n\nI'm so tired!\n→ すごく疲れました！\n\nThis is so good!\n→ これ、すごくおいしいです！\n\nvery よりも、驚きや喜びなどの気持ちが表に出ることがあります。\n\n2. 「そんなに」\n\nDon't worry so much.\n→ そんなに心配しないでください。\n\n「その程度まで」と、話の中の程度を指しています。\n\n3. 結果につなぐ so ... that ...\n\nIt was so cold that the lake froze.\n→ とても寒かったので、湖が凍りました。\n\nso が示す強い程度から、その結果へと話が続きます。\n\nso は、程度を指し示しながら、話し手の実感や次の結果へつなげられる言葉です。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "too",
+          "meanings": [
+            {
+              "meaning": "〜すぎる",
+              "en": "A: Can you carry this suitcase?\nB: It’s too heavy. Can you help me?",
+              "ja": "A：このスーツケース運べる？\nB：重すぎるよ。手伝ってくれる？"
+            },
+            {
+              "meaning": "〜もまた",
+              "en": "A: I’m going to the library after school.\nB: Me too! Let’s go together.",
+              "ja": "A：放課後、図書館に行くんだ。\nB：私も！一緒に行こう。"
+            }
+          ],
+          "wordNote": "too には、よく使う二つの働きがあります。一つは「限度を超える」、もう一つは「同じ側に加わる」という感覚です。\n\n1. 「〜すぎる」\n\nIt's too late to call him.\n→ 彼に電話するには遅すぎます。\n\nThis coffee is too hot to drink.\n→ このコーヒーは熱すぎて飲めません。\n\nvery hot は「とても熱い」ですが、too hot は「熱すぎて困る」という意味になります。\n\n2. 「〜もまた」\n\nI want one too.\n→ 私も一つ欲しいです。\n\nShe likes jazz, too.\n→ 彼女もジャズが好きです。\n\n肯定文の「〜も」には too、also、as well がよく使われます。否定文では either がよく使われます。\n\nI don't like it either.\n→ 私もそれは好きではありません。\n\ntoo は、程度が範囲を超える場合と、同じ仲間に加わる場合を区別して覚えましょう。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "quite",
+          "meanings": [
+            {
+              "meaning": "かなり",
+              "en": "A: Was the restaurant busy?\nB: Quite busy. We had to wait about twenty minutes.",
+              "ja": "A：お店、混んでた？\nB：かなりね。20分くらい待ったよ。"
+            },
+            {
+              "meaning": "完全に",
+              "en": "A: Are you sure this is the right address?\nB: Yes, I’m quite sure.",
+              "ja": "A：本当にこの住所で合ってる？\nB：うん、間違いないよ。"
+            }
+          ],
+          "wordNote": "quite は、程度を強める言葉ですが、後ろに来る形容詞によって「かなり」にも「完全に」にもなります。\n\n1. 「かなり・けっこう」\n\nIt's quite cold today.\n→ 今日はかなり寒いです。\n\nThe test was quite difficult.\n→ 試験はけっこう難しかったです。\n\n2. 「完全に・まったく」\n\nThat's quite impossible.\n→ それはまったく不可能です。\n\nI'm quite certain.\n→ 完全に確信しています。\n\nimpossible や certain のように、はっきりした状態を表す語と組み合わせると、完全さを強調することがあります。\n\n3. よく使う quite sure\n\nI'm quite sure.\n→ かなり確信しています／間違いないと思います。\n\nquite sure は日常会話で便利ですが、確信の強さは文脈や英米の用法によって変わります。\n\nquite は「いつでも同じ強さの『かなり』」ではありません。後ろの語と一緒に、どの程度を表しているか考えてみましょう。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "pretty",
+          "meanings": [
+            {
+              "meaning": "かなり／けっこう",
+              "en": "A: Is the new café any good?\nB: Yeah, it’s pretty nice. And the coffee’s cheap.",
+              "ja": "A：新しいカフェ、いい感じ？\nB：うん、けっこういいよ。それにコーヒーも安い。"
+            }
+          ],
+          "wordNote": "副詞の pretty は、会話で「けっこう・かなり」と程度を強める言葉です。親しみやすく、くだけた響きがあります。\n\nIt's pretty warm today.\n→ 今日はけっこう暖かいです。\n\nThat sounds pretty good.\n→ それ、なかなかよさそうですね。\n\n形容詞の pretty は「かわいい・きれいな」という意味ですが、副詞では見た目の美しさとは関係ありません。\n\nShe's pretty busy.\n→ 彼女はかなり忙しいです。\n\nvery busy と言うよりも、日常会話らしい柔らかい響きになることがあります。\n\nただし pretty は「少しだけ」という意味ではありません。十分に強い程度を表すこともあります。\n\npretty は、会話の中で程度を自然に強めたいときに役立つ言葉です。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "fairly",
+          "meanings": [
+            {
+              "meaning": "かなり／まずまず",
+              "en": "A: Was the exam difficult?\nB: It was fairly easy. I finished early.",
+              "ja": "A：試験、難しかった？\nB：わりと簡単だったよ。早く終わった。"
+            }
+          ],
+          "wordNote": "fairly は、「ある程度は十分にそうだ」と、程度を穏やかに伝える言葉です。\n\nThe instructions were fairly clear.\n→ 説明はわりと分かりやすかったです。\n\nIt's fairly common.\n→ それは比較的よくあることです。\n\npretty と比べてみましょう。\n\nIt's pretty good.\n→ けっこういいですね。\n\nIt's fairly good.\n→ まずまずいいですね。\n\nどちらも程度を表しますが、pretty はくだけた会話でよく使われ、fairly はやや落ち着いた響きがあります。\n\nfairly good は、褒めていても少し控えめに聞こえる場合があります。\n\nfairly は、強く言い切るのではなく、一定の水準に達していることを穏やかに評価する感覚です。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "rather",
+          "meanings": [
+            {
+              "meaning": "かなり／思ったより",
+              "en": "A: How was the hotel?\nB: The room was rather small, actually.",
+              "ja": "A：ホテルどうだった？\nB：実は部屋が思ってたより狭かったんだ。"
+            },
+            {
+              "meaning": "むしろ／〜する方がいい",
+              "en": "A: Would you rather eat out or cook at home tonight?\nB: I’d rather cook at home. I’m too tired to go out.",
+              "ja": "A：今夜は外食と家で料理するの、どっちがいい？\nB：家で作る方がいいな。出かけるには疲れすぎてる。"
+            }
+          ],
+          "wordNote": "rather は、程度を表すときに「かなり」という意味になります。予想と違っていた、という気持ちが加わることもあります。また、would rather は希望を伝える大切な表現です。\n\n1. 「かなり・思ったより」\n\nIt's rather expensive.\n→ かなり高いですね／思ったより高いですね。\n\nThe weather is rather nice today.\n→ 今日は意外といい天気ですね。\n\n「思ったより」という気持ちが出ることはありますが、rather に必ずその意味が含まれるわけではありません。\n\n2. would rather：「むしろ〜したい・〜する方がいい」\n\nI'd rather stay home.\n→ 家にいる方がいいです。\n\nI'd rather walk than drive.\n→ 車で行くより歩く方がいいです。\n\nwould rather の後ろには、通常、動詞の原形を置きます。than を使うと、何と比べているかも示せます。\n\n3. やわらかく断る\n\nI'd rather not.\n→ できれば遠慮したいです。\n\n強く拒否するのではなく、自分の希望として伝えられます。\n\n4. 相手に「できれば〜してほしい・しないでほしい」\n\nI'd rather you didn't.\n→ できればそうしないでほしいです。\n\nI'd rather you stayed here.\n→ できればここにいてほしいです。\n\nこの形では would rather + 人 + 過去形 を使います。過去の話ではなく、今やこれからについての希望を表すことがあります。\n\nrather は、程度を表す用法と、選択・希望を表す would rather を分けて覚えると使いやすくなります。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "almost",
+          "meanings": [
+            {
+              "meaning": "ほとんど",
+              "en": "A: Are you ready?\nB: Almost! Just give me one more minute.",
+              "ja": "A：準備できた？\nB：もう少し！あと1分待って。"
+            },
+            {
+              "meaning": "もう少しで",
+              "en": "A: What happened?\nB: I almost missed my stop!",
+              "ja": "A：どうしたの？\nB：もう少しで降りる駅を乗り過ごすところだった！"
+            }
+          ],
+          "wordNote": "almost は、ある状態や結果に「あと少しで届く」という感覚です。非常に近いけれど、まだそこには達していません。\n\n1. 「ほとんど」\n\nAlmost everyone agreed.\n→ ほとんど全員が賛成しました。\n\nIt's almost midnight.\n→ もうすぐ真夜中です。\n\n2. 「もう少しで〜するところだった」\n\nI almost dropped my phone.\n→ もう少しでスマホを落とすところでした。\n\n実際には落とさなかったことが伝わります。\n\n3. nearly との比較\n\nalmost と nearly は、多くの場面で入れ替えられます。\n\nただし、almost always（ほとんどいつも）や almost everyone（ほとんど全員）のように、almost が自然な組み合わせもあります。\n\nalmost の中心は、目標や結果のすぐ手前まで近づいているという感覚です。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "nearly",
+          "meanings": [
+            {
+              "meaning": "ほとんど／もう少しで",
+              "en": "A: Did you finish the report?\nB: Nearly. I just need to check the numbers.",
+              "ja": "A：レポート終わった？\nB：ほとんど。数字を確認するだけ。"
+            }
+          ],
+          "wordNote": "nearly は、ある数量や状態、到達点の「すぐ近くまで来ている」という感覚です。almost とよく似ています。\n\nIt's nearly midnight.\n→ もうすぐ真夜中です。\n\nWe nearly missed the train.\n→ もう少しで電車に乗り遅れるところでした。\n\n数量や時間にもよく使います。\n\nNearly 100 people came.\n→ 100人近くが来ました。\n\nalmost との違いを見てみましょう。\n\nalmost everyone\n→ ほとんど全員\n\nnearly midnight\n→ もうすぐ真夜中\n\n両方使える場面は多いですが、almost everyone や almost always のように almost が特に自然な組み合わせもあります。\n\nまた、not nearly は「全然〜ほどではない」という強い差を表せます。\n\nThis isn't nearly as expensive as that one.\n→ これはあれほど高くありません。\n\nnearly は、何かの到達点へかなり近づいている感覚で考えましょう。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "much",
+          "meanings": [
+            {
+              "meaning": "大いに",
+              "en": "A: Do you like your new job?\nB: Very much. Everyone’s been really helpful.",
+              "ja": "A：新しい仕事、気に入ってる？\nB：すごくね。みんな本当に親切なんだ。"
+            },
+            {
+              "meaning": "ずっと",
+              "en": "A: Is this route faster?\nB: Yes, it’s much faster than the other one.",
+              "ja": "A：こっちの道の方が速い？\nB：うん、もう一方よりずっと速いよ。"
+            }
+          ],
+          "wordNote": "much の中心には、「量や程度が大きい」という感覚があります。副詞としては、気持ちや比較の差を強めるときに役立ちます。\n\n1. 「とても・大いに」\n\nThank you very much.\n→ 本当にありがとうございます。\n\nI don't go out much.\n→ あまり外出しません。\n\nvery much や not much のような組み合わせもよく使います。\n\n2. 「ずっと・はるかに」\n\nThis one is much better.\n→ こちらの方がずっといいです。\n\nShe runs much faster now.\n→ 彼女は今ではずっと速く走ります。\n\n比較級の better や faster を強めるときは、very ではなく much が使えます。\n\n3. よく使う組み合わせ\n\nso much\n→ そんなにたくさん／とても\n\nHow much longer?\n→ あとどのくらいですか？\n\nmuch は、量の大きさから、気持ちの強さや比較の差の大きさまで表す言葉です。"
+        },
+
+        {
+          "pos": "adverb",
+          "word": "enough",
+          "meanings": [
+            {
+              "meaning": "十分に",
+              "en": "A: Is the soup hot enough?\nB: Not yet. Give it another minute.",
+              "ja": "A：スープ、十分温まった？\nB：まだ。あと1分待って。"
+            }
+          ],
+          "wordNote": "enough の中心には、「必要な基準に届いている」という感覚があります。多いか少ないかではなく、足りているかどうかがポイントです。\n\n1. 副詞：「十分に」\n\nYou're old enough to decide.\n→ 自分で決められる年齢です。\n\nHe didn't run fast enough.\n→ 彼は十分速く走れませんでした。\n\n形容詞や副詞を修飾するときは、old enough、fast enough のように後ろに置きます。\n\n2. 名詞と一緒に使う場合\n\nWe have enough time.\n→ 時間は十分にあります。\n\nenough money\n→ 十分なお金\n\n名詞を修飾するときは、通常 enough を名詞の前に置きます。\n\n3. too との比較\n\nIt's too hot.\n→ 熱すぎます。\n\nIt's warm enough.\n→ 十分暖かいです。\n\ntoo は限度を超えていること、enough は必要な基準に届いていることを表します。\n\nenough は、「必要なだけある・必要な程度に達している」という感覚で覚えましょう。"
+        },
         
         
 
