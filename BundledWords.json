@@ -774,6 +774,7 @@
     "meaning": "日光",
     "pos": "noun"
   },
+  
   {
     "word": "be",
     "meaning": "be動詞　〜である",
@@ -1506,6 +1507,7 @@
     "meaning": "暖める",
     "pos": "verb"
   },
+  
   {
     "word": "gentle",
     "meaning": "優しい",
@@ -1848,9 +1850,9 @@
   },
   {
     "word": "early",
-    "meaning": "早い",
-    "pos": "adj"
-  },
+    "meaning": "早く／早めに",
+    "pos": "adv"
+  }
   {
     "word": "important",
     "meaning": "重要な",
@@ -2117,6 +2119,14 @@
     "pos": "adj"
   },
   {
+    "word": "off",
+      "meaning": "傷んでいる・状態がおかしい",
+      "pos": "adj"
+  },
+
+  
+  
+  {
     "word": "slowly",
     "meaning": "ゆっくり",
     "pos": "adv"
@@ -2187,8 +2197,103 @@
     "pos": "adv"
   },
   {
+    "word": "there",
+    "meaning": "そこに／そこで／あそこに",
+    "pos": "adv"
+  },
+  {
+    "word": "everywhere",
+    "meaning": "どこにでも／いたるところに",
+    "pos": "adv"
+  },
+  {
+    "word": "back",
+    "meaning": "後ろへ／後ろに",
+    "pos": "adv"
+  },
+  {
     "word": "early",
-    "meaning": "早く",
+    "meaning": "早く／早めに",
+    "pos": "adv"
+  },
+  {
+    "word": "here",
+    "meaning": "ここに",
+    "pos": "adv"
+  },
+  {
+    "word": "away",
+    "meaning": "離れて／向こうに",
+    "pos": "adv"
+  },
+  {
+    "word": "away",
+    "meaning": "不在で／留守で",
+    "pos": "adv"
+  },
+  {
+    "word": "back",
+    "meaning": "戻って／元の場所へ",
+    "pos": "adv"
+  },
+  {
+    "word": "off",
+    "meaning": "離れて／外れて",
+    "pos": "adv"
+  },
+  {
+    "word": "far",
+    "meaning": "遠くに／遠くへ",
+    "pos": "adv"
+  },
+  {
+    "word": "far",
+    "meaning": "はるかに／ずっと",
+    "pos": "adv"
+  },
+  {
+    "word": "only",
+    "meaning": "〜だけ／ただ〜だけ",
+    "pos": "adv"
+  },
+  {
+    "word": "only",
+    "meaning": "たった／わずか",
+    "pos": "adv"
+  },
+  {
+    "word": "even",
+    "meaning": "〜さえ／〜すら",
+    "pos": "adv"
+  },
+  {
+    "word": "even",
+    "meaning": "さらに／いっそう",
+    "pos": "adv"
+  },
+  {
+    "word": "well",
+    "meaning": "上手に／うまく",
+    "pos": "adv"
+  },
+  {
+    "word": "well",
+    "meaning": "よく／十分に",
+    "pos": "adv"
+  },
+  {
+    "word": "about",
+    "meaning": "約／およそ",
+    "pos": "adv"
+  },
+  {
+    "word": "tonight",
+    "meaning": "今夜／今晩",
+    "pos": "adv"
+  },
+  {
+    "word": "not",
+    "meaning": "〜ない",
     "pos": "adv"
   },
   {
@@ -2297,11 +2402,6 @@
     "pos": "adv"
   },
   {
-    "word": "everywhere",
-    "meaning": "いたるところで",
-    "pos": "adv"
-  },
-  {
     "word": "finally",
     "meaning": "ついに",
     "pos": "adv"
@@ -2377,18 +2477,8 @@
     "pos": "adv"
   },
   {
-    "word": "here",
-    "meaning": "ここで",
-    "pos": "adv"
-  },
-  {
     "word": "now",
     "meaning": "今",
-    "pos": "adv"
-  },
-  {
-    "word": "there",
-    "meaning": "そこで",
     "pos": "adv"
   },
   {
@@ -2459,11 +2549,6 @@
   {
     "word": "wrongly",
     "meaning": "まちがって",
-    "pos": "adv"
-  },
-  {
-    "word": "back",
-    "meaning": "後ろへ",
     "pos": "adv"
   },
   {
@@ -2600,7 +2685,36 @@
     "meaning": "十分に",
     "pos": "adv"
   },
-
+  {
+    "word": "ago",
+    "meaning": "〜前に",
+    "pos": "adv"
+  },
+  {
+    "word": "almost",
+    "meaning": "ほとんど",
+    "pos": "adv"
+  },
+  {
+    "word": "almost",
+    "meaning": "もう少しで",
+    "pos": "adv"
+  },
+  {
+    "word": "ever",
+    "meaning": "これまでに／いつか／一度でも",
+    "pos": "adv"
+  },
+  {
+    "word": "so",
+    "meaning": "とても",
+    "pos": "adv"
+  },
+  {
+    "word": "so",
+    "meaning": "そんなに",
+    "pos": "adv"
+  },
   
   
   {
@@ -3944,13 +4058,8 @@
     "pos": "adj"
   },
   {
-    "word": "off",
-    "meaning": "普段と違う・何か変な",
-    "pos": "adj"
-  },
-  {
-    "word": "off",
-    "meaning": "傷んでいる・状態がおかしい",
+    "word": "early",
+    "meaning": "早い時刻の",
     "pos": "adj"
   },
   {
@@ -4761,11 +4870,6 @@
   {
     "word": "asleep",
     "meaning": "しびれて感覚がない",
-    "pos": "adj"
-  },
-  {
-    "word": "early",
-    "meaning": "早い時刻の",
     "pos": "adj"
   },
   {

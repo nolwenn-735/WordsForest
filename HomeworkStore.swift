@@ -568,6 +568,41 @@ final class HomeworkStore: ObservableObject {
             renamedCount += 1
         }
 
+        if migrateBundledMeaningRename(
+            word: "there",
+            pos: .adv,
+            from: "そこで",
+            to: "そこに／そこで／あそこに"
+        ) {
+            renamedCount += 1
+        }
+
+        if migrateBundledMeaningRename(
+            word: "everywhere",
+            pos: .adv,
+            from: "いたるところで",
+            to: "どこにでも／いたるところに"
+        ) {
+            renamedCount += 1
+        }
+
+        if migrateBundledMeaningRename(
+            word: "back",
+            pos: .adv,
+            from: "後ろへ",
+            to: "後ろへ／後ろに"
+        ) {
+            renamedCount += 1
+        }
+        
+        if migrateBundledMeaningRename(
+            word: "early",
+            pos: .adv,
+            from: "早く",
+            to: "早く／早めに"
+        ) {
+            renamedCount += 1
+        }
 
         // ---------------------------------------------------------
         // 3. 「別meaningではなく言い換え」だった旧meaningを統合
