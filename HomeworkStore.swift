@@ -75,6 +75,7 @@ final class HomeworkStore: ObservableObject {
 
         do {
             let data = try Data(contentsOf: url)
+
             let decoded = try JSONDecoder().decode(
                 [BundledWordRecord].self,
                 from: data
@@ -278,6 +279,7 @@ final class HomeworkStore: ObservableObject {
         saveLearned()
         saveRequired()
     }
+
 
     // MARK: - BundledWords meaning rename migration
 
@@ -600,6 +602,24 @@ final class HomeworkStore: ObservableObject {
             pos: .adv,
             from: "早く",
             to: "早く／早めに"
+        ) {
+            renamedCount += 1
+        }
+        
+        if migrateBundledMeaningRename(
+            word: "hard",
+            pos: .adv,
+            from: "一生懸命",
+            to: "一生懸命に／熱心に"
+        ) {
+            renamedCount += 1
+        }
+        
+        if migrateBundledMeaningRename(
+            word: "late",
+            pos: .adv,
+            from: "遅く",
+            to: "遅く／遅れて"
         ) {
             renamedCount += 1
         }

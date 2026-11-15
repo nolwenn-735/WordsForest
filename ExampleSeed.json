@@ -8047,14 +8047,48 @@
         {
           "pos": "adverb",
           "word": "hard",
-          "wordNote": "副詞の hard の基本イメージは、力をしっかり注ぎ込むことです。\n\nwork hard\n→ 一生懸命働く\n\nstudy hard\n→ 一生懸命勉強する\n\nShe studied hard for the test.\n→ 彼女はその試験のために一生懸命勉強しました。\n\nhard は「硬い」「難しい」という形容詞としても使われますが、副詞では「強く・一生懸命に」という意味になります。\n\nIt was raining hard.\n→ 雨が激しく降っていました。\n\nThe wind was blowing hard.\n→ 風が強く吹いていました。\n\nこのように、人の努力だけでなく、強い勢いを表すこともできます。\n\n特に注意したいのが hardly です。\n\nhard\n→ 一生懸命に・強く\n\nhardly\n→ ほとんど〜ない\n\nI worked hard.\n→ 一生懸命働いた。\n\nI hardly worked.\n→ ほとんど働かなかった。\n\nたった -ly が付くだけで意味が大きく変わるので、セットで覚えると安心です。",
           "meanings": [
             {
-              "meaning": "一生懸命",
-              "en": "A: She studied hard for the test.\nB: Did all that work pay off?",
-              "ja": "A: 彼女、そのテストのために一生懸命勉強してたよ。\nB: その頑張り、結果につながった？"
+              "meaning": "一生懸命に／熱心に",
+              "en": "A: You look exhausted. Were you working late again?\nB: Yeah. I’ve been working really hard to finish the report before Friday.",
+              "ja": "A：すごく疲れてるね。また遅くまで仕事してたの？\nB：うん。金曜までにレポートを終わらせたくて、かなり頑張ってるんだ。"
+            },
+            {
+              "meaning": "強く／激しく",
+              "en": "A: Is it still raining outside?\nB: Yeah, pretty hard. You might want to wait a few minutes before you leave.",
+              "ja": "A：外、まだ雨降ってる？\nB：うん、かなり激しく降ってるよ。出るなら少し待ったほうがいいかも。"
             }
-          ]
+          ],
+          "wordNote": "hard は、動作に力や努力がしっかりかかっている感じを持つ語です。\n\nwork hard、study hard、try hard のように、何かに力を注いで取り組む場面でとてもよく使います。\n\nI’ve been studying hard this week because I have an exam on Friday.\n→ 金曜日に試験があるので、今週はかなり頑張って勉強しています。\n\nDon’t try too hard to make everything perfect. Just get started.\n→ 何もかも完璧にしようと頑張りすぎないで。まず始めてみて。\n\nthink hard は「一生懸命考える・よく考える」という表現です。\n\nThink hard before you answer. You don’t have to decide right away.\n→ 答える前によく考えてね。すぐに決めなくてもいいよ。\n\nまた、rain hard、hit hard のように、雨や衝撃などの強さを表すときにも使います。\n\nIt started raining hard while I was walking home, so I got completely soaked.\n→ 家まで歩いている途中で雨が激しく降り出して、びしょ濡れになりました。\n\nhard と hardly は形がよく似ていますが、意味はまったく違います。\n\nShe works hard.\n→ 彼女は一生懸命働きます。\n\nShe hardly works.\n→ 彼女はほとんど働きません。\n\n-ly が付いただけに見えても、hardly は「hard に」の意味にはならないので注意しましょう。"
+        },
+        {
+          "pos": "adverb",
+          "word": "hardly",
+          "meanings": [
+            {
+              "meaning": "ほとんど〜ない",
+              "en": "A: Did you get any sleep last night?\nB: Hardly. My neighbor’s dog kept barking until almost three.",
+              "ja": "A：昨日の夜、少しは眠れた？\nB：ほとんど眠れなかったよ。隣の犬が3時近くまでずっと吠えてて。"
+            }
+          ],
+          "wordNote": "hardly は、量・程度・可能性などがほとんどゼロに近いことを表すときに使います。\n\nI could hardly keep my eyes open during the meeting because I’d slept so badly.\n→ 前の晩によく眠れなかったので、会議中ほとんど目を開けていられませんでした。\n\nThere was hardly any food left, so we ordered pizza instead.\n→ 食べ物がほとんど残っていなかったので、代わりにピザを頼みました。\n\nhardly ever は「めったに〜ない」という、とてもよく使う表現です。\n\nDo you eat out much?\n→ 外食すること多い？\n\nHardly ever. I usually cook at home because it’s cheaper.\n→ めったにしないよ。安いから普段は家で料理してるんだ。\n\nhardly に近い語に scarcely があります。\n\nscarcely も「ほとんど〜ない」という意味ですが、日常会話では hardly のほうがよく使われ、scarcely は文章ややや硬めの表現で見かけることがあります。\n\nhardly と barely はどちらも「ほとんど〜ない」という領域で使われますが、barely には「ほんの少しだけ届いた・ぎりぎり成立した」という感覚が出やすいのが特徴です。"
+        },
+        {
+          "pos": "adverb",
+          "word": "barely",
+          "meanings": [
+            {
+              "meaning": "かろうじて／ぎりぎり",
+              "en": "A: Did you make the last train?\nB: Barely. The doors closed right behind me.",
+              "ja": "A：終電間に合った？\nB：ぎりぎりね。乗ったすぐ後ろでドアが閉まったよ。"
+            },
+            {
+              "meaning": "ほとんど〜ない／ほぼ〜できない",
+              "en": "A: Can you read the sign from here?\nB: Barely. It’s too dark, and the letters are tiny.",
+              "ja": "A：ここからあの看板読める？\nB：かろうじてね。暗いし、文字もすごく小さい。"
+            }
+          ],
+          "wordNote": "barely には、「完全にできないわけではないけれど、余裕がほとんどない」という感覚があります。\n\nゼロではなく、ほんのわずかに届いているところがポイントです。\n\nI could barely hear her over the noise, so I moved closer.\n→ 周りがうるさくて彼女の声がかろうじて聞こえる程度だったので、少し近くに移動しました。\n\nWe barely had enough time for lunch before the next meeting started.\n→ 次の会議が始まる前に、昼食を取る時間がぎりぎりあるくらいでした。\n\nbarely enough は「ぎりぎり足りる」、barely noticeable は「ほとんど気づかないほど」というように使えます。\n\nThere’s barely enough milk for two cups of coffee, so I’ll get some more later.\n→ コーヒー2杯分の牛乳がぎりぎり残っているくらいなので、あとで買い足します。\n\nThe scratch is barely noticeable unless you look closely.\n→ その傷は、よく見ないとほとんど気づかない程度です。\n\nhardly も「ほとんど〜ない」という意味で近い語ですが、barely は特に「最低限のところで何とかできた・成立した」という感覚が出やすい語です。\n\nWe barely made the train.\n→ 電車にはぎりぎり間に合いました。\n\n間に合わなかったわけではありません。間に合った。でも余裕はほぼゼロ。その「ぎりっ」が barely の得意分野です。"
         },
         {
           "pos": "adverb",
@@ -8475,6 +8509,7 @@
           ],
           "wordNote": "enough の中心には、「必要な基準に届いている」という感覚があります。多いか少ないかではなく、足りているかどうかがポイントです。\n\n1. 副詞：「十分に」\n\nYou're old enough to decide.\n→ 自分で決められる年齢です。\n\nHe didn't run fast enough.\n→ 彼は十分速く走れませんでした。\n\n形容詞や副詞を修飾するときは、old enough、fast enough のように後ろに置きます。\n\n2. 名詞と一緒に使う場合\n\nWe have enough time.\n→ 時間は十分にあります。\n\nenough money\n→ 十分なお金\n\n名詞を修飾するときは、通常 enough を名詞の前に置きます。\n\n3. too との比較\n\nIt's too hot.\n→ 熱すぎます。\n\nIt's warm enough.\n→ 十分暖かいです。\n\ntoo は限度を超えていること、enough は必要な基準に届いていることを表します。\n\nenough は、「必要なだけある・必要な程度に達している」という感覚で覚えましょう。"
         },
+        
         {
           "pos": "adverb",
           "word": "only",
@@ -8490,7 +8525,7 @@
               "ja": "A：駅はここから遠い？\nB：ううん、歩いてたった5分だよ。"
             }
           ],
-          "wordNote": "only の中心には、「範囲をここだけに限定する」という感覚があります。\n\n人・物・数量・行動などについて、「それ以外は含めない」と範囲を絞るときに使います。\n\n1. 「〜だけ・ただ〜だけ」\n\n対象を一つに限定します。\n\nI only need your name and email address.\n→ 名前とメールアドレスだけ必要です。\n\nShe only eats vegetables at lunch.\n→ 彼女は昼食には野菜しか食べません。\n\nWe only talked for a few minutes before the meeting.\n→ 会議の前に数分話しただけです。\n\nonly が何を限定しているのかを見ることが大切です。\n\n2. 「たった・わずか」\n\n数量や時間が少ないことを表すときにもよく使います。\n\nIt only costs five dollars, so I might buy it.\n→ たった5ドルなので、買おうかなと思っています。\n\nHe’s only ten years old, but he’s very independent.\n→ 彼はまだ10歳ですが、とてもしっかりしています。\n\nWe have only two days left to finish the project.\n→ その企画を終えるまで、あと2日しかありません。\n\n3. only の位置に注意\n\nonly は置く場所によって、「何だけなのか」が変わることがあります。\n\nOnly Lisa called me yesterday.\n→ 昨日、私に電話したのはリサだけです。\n\nLisa only called me. She didn’t send a message.\n→ リサは私に電話しただけです。メッセージは送りませんでした。\n\nLisa called only me, not the others.\n→ リサが電話したのは私だけで、ほかの人には電話しませんでした。\n\n会話では文脈から意味が分かることも多いですが、文章では only の位置を意識すると意味がはっきりします。\n\nonly は、\n\n「人を一人に絞る」\n「行動を一つに絞る」\n「数量を小さく絞る」\n\nという「ここだけ」の感覚から考えると、いろいろな使い方がつながって見えてきます。"
+          "wordNote": "only の中心には、「範囲をここだけに限定する」という感覚があります。\n\n人・物・数量・行動などについて、「それ以外は含めない」と範囲を絞るときに使います。\n\nI only need your name and email address.\n→ 名前とメールアドレスだけ必要です。\n\nWe only talked for a few minutes before the meeting.\n→ 会議の前に数分話しただけです。\n\nonly は、置く場所によって「何を限定しているのか」が変わることがあります。\n\nOnly Lisa called me yesterday.\n→ 昨日、私に電話したのはリサだけです。\n\nLisa only called me. She didn’t send a message.\n→ リサは私に電話しただけです。メッセージは送りませんでした。\n\nLisa called only me, not the others.\n→ リサが電話したのは私だけで、ほかの人には電話しませんでした。\n\n会話では文脈から分かることも多いですが、文章では only の位置を意識すると意味がはっきりします。\n\nonly は、「人を一人に絞る」「行動を一つに絞る」「数量を小さく絞る」という「ここだけ」の感覚から考えると、いろいろな使い方がつながって見えてきます。"
         },
 
         {
@@ -8508,7 +8543,7 @@
               "ja": "A：こっちのルートの方が速い？\nB：うん。それにさらに短いよ。"
             }
           ],
-          "wordNote": "even の中心には、「普通ならそこまでは含まないものまで範囲に入れる」という感覚があります。\n\n予想外のものを取り上げて、「〜さえ」「さらに」と強調するときに使います。\n\n1. 「〜さえ・〜すら」\n\n意外な人や物まで含まれることを表します。\n\nEven my dad uses that app now.\n→ 今では父でさえそのアプリを使っています。\n\nShe didn’t even say goodbye before she left.\n→ 彼女は帰る前に、さよならさえ言いませんでした。\n\nI can’t even open the file on my phone.\n→ スマホでは、そのファイルを開くことすらできません。\n\n「そこまで？」という驚きや意外さが含まれることがあります。\n\n2. 「さらに・いっそう」\n\n比較級の前に置くと、程度がさらに大きくなることを表します。\n\nThis one is even cheaper than the first one.\n→ これは最初のものよりさらに安いです。\n\nThe second book was even better, so I finished it in one day.\n→ 2冊目はさらに面白くて、1日で読み終えました。\n\nIt became even more difficult after the rules changed.\n→ ルールが変わってから、さらに難しくなりました。\n\neven better や even more はとてもよく使われる組み合わせです。\n\neven は、\n\n「普通なら範囲の外にあるものまで入れる」\n「すでに大きい程度をさらに先まで広げる」\n\nという感覚を持っています。"
+          "wordNote": "even の中心には、「普通ならそこまでは含まないものまで範囲に入れる」という感覚があります。\n\n意外な人や物を取り上げて、「そこまで含まれるの？」という驚きや強調を加えるときによく使います。\n\nEven my dad uses that app now.\n→ 今では父でさえそのアプリを使っています。\n\nShe didn’t even say goodbye before she left.\n→ 彼女は帰る前に、さよならさえ言いませんでした。\n\nI can’t even open the file on my phone.\n→ スマホでは、そのファイルを開くことすらできません。\n\n否定文では、even が入ることで「それさえできない」という意外さが強く出ることがあります。\n\neven は比較級の前にもよく置かれます。even better、even more、even easier などは、とてもよく使う組み合わせです。\n\neven は、「普通なら範囲の外にありそうなものまで入れる」という感覚を中心にすると、いろいろな使い方がつながって見えてきます。"
         },
 
         {
@@ -8526,7 +8561,7 @@
               "ja": "A：この辺り、よく知ってる？\nB：かなりね。前に近くに住んでたんだ。"
             }
           ],
-          "wordNote": "well の中心には、「物事がよい状態で行われる」という感覚があります。\n\n動作のしかたや、知識・理解の程度についてよく使います。\n\n1. 「上手に・うまく」\n\n動作がよい状態で行われることを表します。\n\nShe sings very well, especially live.\n→ 彼女はとても上手に歌います。特にライブでは素晴らしいです。\n\nYou explained it really well, so I finally understood it.\n→ とても上手に説明してくれたので、やっと理解できました。\n\nEverything went well at the meeting today.\n→ 今日の会議はすべてうまくいきました。\n\ngo well は「うまくいく」という、とてもよく使う表現です。\n\n2. 「よく・十分に」\n\n何かをよく知っている、理解しているというときにも使います。\n\nI know him well, so I can ask him directly.\n→ 彼のことはよく知っているので、直接聞けます。\n\nDo you remember the area well enough to drive there?\n→ 車で行けるくらい、その辺りをよく覚えていますか？\n\nI don’t know the city very well yet.\n→ その街のことは、まだあまりよく知りません。\n\ngood との違い\n\ngood は基本的に名詞の状態や性質を説明する形容詞です。\n\nShe is a good singer.\n→ 彼女は歌の上手な人です。\n\nwell は、動作がどのように行われるかを説明する副詞です。\n\nShe sings well even without a microphone.\n→ 彼女はマイクがなくても上手に歌います。\n\n「何が良いのか」が名詞なら good、「どう行うのか」が動作なら well と考えると分かりやすくなります。"
+          "wordNote": "well の中心には、「物事がよい状態で行われる」という感覚があります。\n\n動作のしかたを表すときにとてもよく使います。\n\nShe sings very well, especially live.\n→ 彼女はとても上手に歌います。特にライブでは素晴らしいです。\n\nYou explained it really well, so I finally understood it.\n→ とても上手に説明してくれたので、やっと理解できました。\n\nEverything went well at the meeting today.\n→ 今日の会議はすべてうまくいきました。\n\ngo well は「うまくいく」という、とてもよく使う表現です。\n\ngood と well は混同しやすいので注意しましょう。\n\ngood は基本的に名詞の状態や性質を説明する形容詞です。\n\nShe is a good singer.\n→ 彼女は歌の上手な人です。\n\nwell は、動作がどのように行われるかを説明する副詞です。\n\nShe sings well even without a microphone.\n→ 彼女はマイクがなくても上手に歌います。\n\nまた、well enough で「十分によく・十分にうまく」という表現もよく使います。\n\nI can hear you well enough now.\n→ 今は十分よく聞こえます。\n\n「何が良いのか」が名詞なら good、「どう行うのか」が動作なら well と考えると分かりやすくなります。"
         },
 
         {
@@ -8537,9 +8572,14 @@
               "meaning": "約／およそ",
               "en": "A: How long does the train take?\nB: About forty minutes.",
               "ja": "A：電車でどのくらいかかる？\nB：40分くらいだよ。"
+            },
+            {
+              "meaning": "まさに〜しようとしている",
+              "en": "A: Did you call Emma?\nB: I was just about to when she messaged me.",
+              "ja": "A：エマに電話した？\nB：ちょうど電話しようとしてたら、向こうからメッセージが来たよ。"
             }
           ],
-          "wordNote": "about の中心には、「ぴったり一点ではなく、その周辺」という感覚があります。\n\nそこから、「約・およそ」という意味が生まれます。\n\n1. 「約・およそ」\n\n数字や時間を正確に言う必要がないときに使います。\n\nIt takes about an hour by train.\n→ 電車で1時間くらいかかります。\n\nThere were about thirty people at the event.\n→ そのイベントには30人くらいいました。\n\nI got home at about nine last night.\n→ 昨夜は9時ごろ家に着きました。\n\n「その数字の周辺」という感覚です。\n\n2. be about to 〜 「まさに〜しようとしている」\n\nbe about to + 動詞 で、何かが今まさに起ころうとしていることを表します。\n\nI’m about to leave, so I’ll call you later.\n→ ちょうど出かけるところなので、あとで電話します。\n\nThe movie is about to start, so please turn off your phone.\n→ 映画がもうすぐ始まるので、スマホの電源を切ってください。\n\nI was about to call you when your message arrived.\n→ ちょうど電話しようとしていたところに、あなたからメッセージが来ました。\n\nここでも、「ある出来事のすぐ周辺まで来ている」という感覚が残っています。\n\nabout には英国英語などで「その辺に・あちこちに」という場所を表す使い方もありますが、日常学習ではまず「約」と be about to を押さえておくと便利です。"
+          "wordNote": "about の中心には、「ぴったり一点ではなく、その周辺」という感覚があります。\n\n数字・時間・量の前に置くときは、正確な一点ではなく「そのくらい」という幅を持たせます。\n\nIt takes about an hour by train, depending on the connection.\n→ 乗り継ぎによりますが、電車で1時間くらいかかります。\n\nThere were about thirty people at the event, so it wasn’t too crowded.\n→ イベントには30人くらいいたので、そこまで混んでいませんでした。\n\nabout ten、about an hour、about five kilometers のように、日常会話で数字をざっくり伝えるときによく使います。\n\nまた、be about to + 動詞 の形では、「ある行動の直前」という感覚になります。\n\nI was about to leave when my phone rang.\n→ 出かけようとしたちょうどそのとき、電話が鳴りました。\n\nabout には「〜について」という前置詞の使い方もあります。副詞としてはまず、「一点ではなく、その周辺」という感覚を持っておくと整理しやすくなります。"
         },
 
         {
@@ -8563,9 +8603,14 @@
               "meaning": "早く／早めに",
               "en": "A: Why are you leaving so early?\nB: I have a doctor’s appointment.",
               "ja": "A：どうしてそんなに早く帰るの？\nB：病院の予約があるんだ。"
+            },
+            {
+              "meaning": "早い時期に",
+              "en": "A: When did you learn to cook?\nB: Pretty early in life. Both my parents worked, so I helped at home.",
+              "ja": "A：いつ料理を覚えたの？\nB：かなり早い時期だよ。両親とも働いてたから、家で手伝ってたんだ。"
             }
           ],
-          "wordNote": "early の中心には、「予定や基準より前の時点」という感覚があります。\n\n時間そのものが早い場合にも、何かを早めに行う場合にも使います。\n\n1. 「早く・早めに」\n\n予定や普通の時間より前に行動するときに使います。\n\nI woke up early today, so I went for a walk.\n→ 今日は早く起きたので、散歩に行きました。\n\nLet’s leave early to avoid traffic.\n→ 渋滞を避けるために、早めに出ましょう。\n\nI got there a little early, so I had time for coffee.\n→ 少し早めに着いたので、コーヒーを飲む時間がありました。\n\n2. 「早い時期に」\n\n一日だけでなく、人生・季節・期間などの早い段階にも使えます。\n\nI learned to cook early in life because both my parents worked.\n→ 両親とも働いていたので、私は若いうちに料理を覚えました。\n\nIt gets dark early in winter, so the streets look different by five.\n→ 冬は早く暗くなるので、5時には街の様子が変わって見えます。\n\nWe arrived early in the morning before the crowds came.\n→ 人が混み始める前の朝早くに到着しました。\n\nearly は、\n\n「時計の時刻が早い」\n「予定より早い」\n「ある期間の早い段階」\n\nというように、「基準より前」という感覚で考えると理解しやすくなります。"
+          "wordNote": "early の中心には、「予定や基準より前の時点」という感覚があります。\n\n時刻についても、人生や計画などの時期についても、「基準より前」という感覚は共通しています。\n\nI woke up early today, so I went for a walk before breakfast.\n→ 今日は早く起きたので、朝食前に散歩しました。\n\nLet’s leave early to avoid traffic.\n→ 渋滞を避けるために、早めに出ましょう。\n\nI got there a little early, so I had time for coffee.\n→ 少し早めに着いたので、コーヒーを飲む時間がありました。\n\nearly in life、early in the year、early in the project のように、「ある期間の早い段階」を表すときにも使います。\n\nShe became interested in languages early in life and kept studying them.\n→ 彼女は早い時期から言語に興味を持ち、その後も学び続けました。\n\ntoo early なら「早すぎる」、early enough なら「十分早く」という表現になります。\n\nIt’s still too early to decide, so let’s wait a little longer.\n→ 決めるにはまだ早すぎるので、もう少し待ちましょう。\n\nWe arrived early enough to get good seats.\n→ 良い席を取れるくらい早く着きました。\n\nearly は、「基準より前」という感覚を持っておくと、時刻・予定・期間についての使い方がつながって見えてきます。"
         },
 
         {
@@ -8580,6 +8625,7 @@
           ],
           "wordNote": "not は、文の内容を否定して「〜ではない」「〜しない」とするための基本的な副詞です。\n\n単純な否定だけでなく、会話では否定の強さを調整する表現にもよく使われます。\n\n1. 基本の否定\n\nbe動詞、助動詞、do などと一緒に使います。\n\nI’m not tired yet, so I can keep working.\n→ まだ疲れていないので、もう少し作業できます。\n\nShe can’t come today because she has another appointment.\n→ 彼女は別の予定があるので、今日は来られません。\n\nI don’t remember his name, but I know his face.\n→ 彼の名前は覚えていませんが、顔は知っています。\n\n英語では、not をどの動詞と組み合わせるかによって文の形が変わります。\n\n2. not really 「あまり〜ではない・そうでもない」\n\n強く「いいえ」と言わず、少しやわらかく否定できます。\n\nDo you like spicy food?\nNot really. I prefer milder flavors.\n→ 辛い食べ物は好き？\n→ あんまり。もっとマイルドな味の方が好きです。\n\n日常会話で非常によく使われる表現です。\n\n3. not quite 「完全には〜ない・もう少し」\n\nquite と組み合わせると、「完全な状態には少し足りない」という意味になります。\n\nI’m not quite ready to leave yet.\n→ まだ出かける準備が完全にはできていません。\n\nThat’s not quite what I meant, so let me explain it again.\n→ 私が言いたかったこととは少し違うので、もう一度説明します。\n\n4. not yet 「まだ〜ない」\n\nあることが今後起こる可能性を残しながら、「今の時点ではまだ」と言います。\n\nHave you finished the report?\nNot yet. I still need to check the last page.\n→ レポート終わった？\n→ まだ。最後のページを確認しないといけません。\n\n5. not always 「いつも〜とは限らない」\n\nnot がどこを否定しているかによって意味が変わります。\n\nIt’s not always easy to make a choice.\n→ 選択するのは、いつも簡単とは限りません。\n\nWorking from home is convenient, but it’s not always easy to focus.\n→ 在宅勤務は便利ですが、いつも集中しやすいとは限りません。\n\nこれは「いつも難しい」という意味ではなく、「簡単なときもあれば、そうでないときもある」という意味です。\n\n6. not necessarily 「必ずしも〜ではない」\n\nSomething expensive is not necessarily better.\n→ 高いものが必ずしも良いとは限りません。\n\nBeing busy does not necessarily mean being productive.\n→ 忙しいことが、必ずしも生産的であることを意味するわけではありません。\n\nnot は単なる「〜ない」だけでなく、\n\nnot really\nnot quite\nnot yet\nnot always\nnot necessarily\n\nのように、否定する範囲や強さを細かく調整する働きもあります。"
         },
+
         {
           "pos": "adverb",
           "word": "here",
@@ -8595,7 +8641,7 @@
               "ja": "A：ここで働いてどのくらいになりますか？\nB：もうすぐ5年です。"
             }
           ],
-          "wordNote": "here の中心には、「話している人のいる場所・近くにある場所」という感覚があります。\n\nそこから、「ここに」「ここで」という使い方に広がります。\n\n1. 「ここに」\n\n人や物が「この場所にいる・来る」というときに使います。\n\nPlease wait here for a moment.\n→ ここで少し待っていてください。\n\nYou can leave your bag here.\n→ バッグはここに置いて大丈夫です。\n\nCome here and take a look at this.\n→ ここに来て、これを見てみてください。\n\n「この場所へ」「この場所に」という感覚です。\n\n2. 「ここで」\n\nこの場所で何かを行うときにも使います。\n\nI work here three days a week.\n→ 私は週に3日ここで働いています。\n\nWe usually have lunch here after class.\n→ 私たちは授業のあと、たいていここで昼食を取ります。\n\nCan we talk here, or is it too noisy?\n→ ここで話せる？それとも騒がしすぎる？\n\nhere は、\n\n「この場所にいる」\n「この場所へ来る」\n「この場所で何かをする」\n\nというように、話し手の近くにある場所を指す言葉です。"
+          "wordNote": "here の中心には、「話している人のいる場所・近くにある場所」という感覚があります。\n\n日本語では文によって「ここに」「ここで」などと訳し分けますが、英語では同じ here を使います。\n\nCome here and take a look at this.\n→ ここに来て、これを見てみてください。\n\nI’m right here if you need me.\n→ 必要なら、すぐここにいますよ。\n\nright here は「まさにここ」、over here は「こっち・こちら」というように、場所をもう少しはっきり示すときにもよく使います。\n\nThe entrance is right here.\n→ 入口はまさにここです。\n\nCould you bring that box over here?\n→ その箱をこっちに持ってきてもらえますか？\n\nhere は、「話し手のいる場所」を中心に考えると、いろいろな使い方が自然につながって見えてきます。"
         },
 
         {
@@ -8608,7 +8654,7 @@
               "ja": "A：あのカフェ行ったことある？\nB：うん。仕事のあと、ときどき行くよ。"
             }
           ],
-          "wordNote": "there の中心には、「話し手から少し離れた場所」という感覚があります。\n\n日本語では文脈によって「そこ」「あそこ」と訳されます。\n\n1. 「そこに・あそこに」\n\n人や物が、話し手から離れた場所にあることを表します。\n\nYour phone is over there on the table.\n→ あなたのスマホは、あそこのテーブルの上にあります。\n\nI left my umbrella there by mistake.\n→ うっかりそこに傘を置いてきました。\n\nLet’s meet there at six.\n→ 6時にそこで会いましょう。\n\n2. 「そこで」\n\nその場所で何かを行うときにも使います。\n\nWe ate there last weekend, and the food was great.\n→ 先週末そこで食事をしましたが、料理がおいしかったです。\n\nI used to work there before I moved here.\n→ ここに引っ越してくる前は、そこで働いていました。\n\nthere is / there are\n\nthere は、場所を指す使い方とは別に、There is ... / There are ... の形でもよく使われます。\n\nThere’s a convenience store near the station.\n→ 駅の近くにコンビニがあります。\n\nThere are still a few seats left.\n→ まだ席がいくつか残っています。\n\nこの there は「そこ」という場所を直接指しているのではなく、「〜があります」と何かの存在を伝える働きをしています。\n\nthere は、\n\n「話し手から離れた場所」\n「その場所で起こること」\n「何かが存在することを示す表現」\n\nという形で、日常英語にとてもよく登場します。"
+          "wordNote": "there の中心には、「話し手から少し離れた場所」という感覚があります。\n\n日本語では文脈によって「そこ」「あそこ」などと訳し分けますが、英語では同じ there を使います。\n\nYour phone is over there on the table.\n→ あなたのスマホは、あそこのテーブルの上にあります。\n\nI left my umbrella there by mistake.\n→ うっかりそこに傘を置いてきました。\n\nLet’s meet there at six. I’ll come straight from work.\n→ 6時にそこで会いましょう。仕事からそのまま向かいます。\n\nover there は「向こうに・あそこに」、right there は「まさにそこに」というように、場所をもう少しはっきり示すときにもよく使います。\n\nthere is / there are\n\nthere は、場所を指す使い方とは別に、There is ... / There are ... の形でもよく使われます。\n\nThere’s a convenience store near the station, so we can stop there.\n→ 駅の近くにコンビニがあるので、そこに寄れます。\n\nThere are still a few seats left, so we should be okay.\n→ まだ席がいくつか残っているので、大丈夫そうです。\n\nこの there は「そこ」という場所を直接指しているのではなく、「〜があります」と何かの存在を伝える働きをしています。\n\nthere は、「話し手から少し離れた場所」という感覚と、There is / are の特別な使い方を分けて覚えると整理しやすくなります。\n\n会話では、there is / there are を使って、まだ話題に出ていない人・物・出来事を初めて紹介することもよくあります。\n\nThere’s a restaurant near my office, and the staff there are really friendly.\n→ 会社の近くにレストランがあるんだけど、店員さんがすごく親切なんだ。\n\n特に会話では、There’s this ... の形で「〜っていうのがあるんだけどね」「〜っていう人がいてさ」のように、これから話す人や物を話題に出すことがあります。\n\nThere’s this little café near my office that stays open late. The staff are really friendly, too.\n→ 会社の近くにね、夜遅くまで開いてる小さなカフェがあるんだけど、店員さんもすごく親切なんだ。\n\nThere’s this guy at work who always brings homemade cookies. They’re so good that I always look forward to them.\n→ 職場にね、いつも手作りクッキーを持ってくる人がいるんだけど、すごくおいしいから毎回楽しみにしてるんだよ。\n\nこの there は場所を指す「そこ」という意味ではなく、新しい人物や物事を会話の中に登場させ、その話を始める働きをしています。"
         },
 
         {
@@ -8634,12 +8680,17 @@
               "ja": "A：駅はここから近い？\nB：歩いて10分くらいだよ。"
             },
             {
+              "meaning": "離れていく／立ち去って",
+              "en": "A: Where did Tom go?\nB: He walked away without saying anything.",
+              "ja": "A：トムはどこに行ったの？\nB：何も言わずに立ち去ったよ。"
+            },
+            {
               "meaning": "不在で／留守で",
               "en": "A: Is Emma in the office today?\nB: No, she’s away until Monday.",
               "ja": "A：今日エマは会社にいる？\nB：ううん、月曜日まで留守だよ。"
             }
           ],
-          "wordNote": "away の中心には、「今いる場所・基準となる場所から離れる」という感覚があります。\n\nそこから、「離れて」「向こうに」「不在で」という使い方に広がります。\n\n1. 「離れて・向こうに」\n\nある場所から距離があることを表します。\n\nThe station is only ten minutes away.\n→ 駅までは10分くらいです。\n\nMy parents live about two hours away.\n→ 両親はここから2時間くらいのところに住んでいます。\n\nDon’t go too far away.\n→ あまり遠くまで行かないでください。\n\n2. 「離れていく」\n\nその場所から移動するときにもよく使います。\n\nHe walked away without saying anything.\n→ 彼は何も言わずに立ち去りました。\n\nThe dog ran away when the gate opened.\n→ 門が開いたとき、犬が走って逃げました。\n\ngo away や run away では、「その場所から離れる」という感覚がそのまま残っています。\n\n3. 「不在で・留守で」\n\n人がいつもの場所にいないときにも使います。\n\nShe’s away on business this week.\n→ 彼女は今週、出張で不在です。\n\nI’ll be away for a few days, so I’ll reply when I get back.\n→ 数日留守にするので、戻ったら返信します。\n\naway は、\n\n「場所から離れる」\n「距離がある」\n「いつもの場所にいない」\n\nという使い方を、「基準となる場所から離れる」という感覚でつなげることができます。"
+          "wordNote": "away の中心には、「今いる場所・基準となる場所から離れる」という感覚があります。\n\n距離があるときにも、人や物がその場所から離れるときにも、この感覚が共通しています。\n\nThe nearest station is about ten minutes away.\n→ 一番近い駅は10分くらいのところにあります。\n\nDon’t go too far away. We’re leaving soon.\n→ あまり遠くへ行かないで。もうすぐ出発するよ。\n\ngo away や run away のように、ほかの動詞と組み合わせてもよく使います。\n\nThe dog ran away when the gate opened.\n→ 門が開いたとき、犬が走って逃げました。\n\nまた、right away は「すぐに」というとてもよく使う表現です。\n\nI’ll send it right away.\n→ すぐに送ります。\n\naway は、「基準となる場所から距離ができる」という感覚を中心に覚えると、いろいろな使い方がつながって見えてきます。"
         },
 
         {
@@ -8657,7 +8708,7 @@
               "ja": "A：もう少し後ろに下がってくれる？\nB：いいよ。これくらいで大丈夫？"
             }
           ],
-          "wordNote": "back の中心には、「元の場所・元の方向へ戻る」という感覚があります。\n\nそこから、「戻って」「後ろへ」という使い方に広がります。\n\n1. 「戻って・元の場所へ」\n\n以前いた場所や状態に戻るときに使います。\n\nI’ll be back after lunch.\n→ 昼食のあとに戻ります。\n\nCan you call me back later?\n→ あとで折り返し電話してもらえますか？\n\nI forgot my wallet, so I had to go back home.\n→ 財布を忘れたので、家に戻らなければなりませんでした。\n\ncome back、go back、call back など、日常会話でとてもよく使われます。\n\n2. 「後ろへ・後ろに」\n\n物理的に後ろの方向へ移動するときにも使います。\n\nCould you move back a little?\n→ もう少し後ろに下がってもらえますか？\n\nStep back and give him some space.\n→ 少し後ろに下がって、彼にスペースを空けてください。\n\nI leaned back in my chair and relaxed.\n→ 椅子にもたれて、少しくつろぎました。\n\nback は、\n\n「元いた場所へ戻る」\n「元の方向へ引き返す」\n「後ろの方向へ動く」\n\nという感覚で考えると、いろいろな表現がつながって見えてきます。"
+          "wordNote": "back の中心には、「元の場所・元の状態へ戻る」という感覚があります。\n\n日常会話では、ほかの動詞と組み合わせてとてもよく使います。\n\nI’ll call you back after the meeting.\n→ 会議が終わったら折り返し電話します。\n\nCan I have my pen back when you’re done?\n→ 使い終わったらペンを返してもらえますか？\n\nI got back home later than usual.\n→ いつもより遅く家に戻りました。\n\ncall back は「折り返し電話する」、give back は「返す」、get back は「戻る」という表現です。\n\nback and forth は「行ったり来たり」という意味で使います。\n\nWe emailed back and forth all morning.\n→ 午前中ずっとメールを何度もやり取りしました。\n\nback は、場所だけでなく、物・連絡・状態などが「元へ戻る」という感覚で考えると、たくさんの表現が整理しやすくなります。"
         },
 
         {
@@ -8670,7 +8721,7 @@
               "ja": "A：このボタンどうしたの？\nB：ジャケットを着たときに取れちゃった。"
             }
           ],
-          "wordNote": "off の中心には、「接触していたもの・続いていた状態から離れる」という感覚があります。\n\n短い単語ですが、日常英語ではとても多くの場面で使われます。\n\n1. 「離れて・外れて」\n\nくっついていたものが離れるときに使います。\n\nOne of the buttons came off my coat.\n→ コートのボタンが一つ取れました。\n\nThe label came off in the wash.\n→ 洗濯したらラベルが取れました。\n\nBe careful. The lid might come off.\n→ 気をつけて。ふたが外れるかもしれません。\n\ncome off は「外れる・取れる」という、とてもよく使う表現です。\n\n2. 「身につけているものを外す」\n\n服・靴・眼鏡などを外すときにも使います。\n\nPlease take your shoes off at the door.\n→ 入口で靴を脱いでください。\n\nI took my jacket off because it was warm inside.\n→ 中が暖かかったので、ジャケットを脱ぎました。\n\n3. 「機械や電気を切る」\n\n動いていたものを止めるときにも使います。\n\nPlease turn the lights off when you leave.\n→ 出るときに電気を消してください。\n\nI turned my phone off during the meeting.\n→ 会議中はスマホの電源を切りました。\n\n4. 「乗り物から降りる」\n\n乗っていた場所から離れるので、get off で「降りる」という意味になります。\n\nWe need to get off at the next stop.\n→ 次の停留所で降りないといけません。\n\n5. 「仕事・活動から離れる」\n\n仕事を休むときにも使います。\n\nI’m off tomorrow, so I can meet you in the afternoon.\n→ 明日は休みなので、午後なら会えます。\n\noff は、\n\n「くっついているものから離れる」\n「動いている状態から離れる」\n「乗り物や仕事から離れる」\n\nという「離れる」感覚を中心に考えると、たくさんの使い方が整理しやすくなります。"
+          "wordNote": "off の中心には、「接触していたもの・続いていた状態から離れる」という感覚があります。\n\n短い単語ですが、この「離れる」感覚から日常英語のいろいろな表現につながります。\n\ncome off は、くっついていたものが「外れる・取れる」ときによく使います。\n\nOne of the buttons came off my coat, so I need to sew it back on.\n→ コートのボタンが一つ取れたので、縫い付け直さないといけません。\n\nThe label came off in the wash, but the shirt is fine.\n→ 洗濯したらラベルが取れましたが、シャツ自体は大丈夫です。\n\ntake ... off\n\n服・靴・眼鏡など、身につけているものを外すときによく使います。\n\nPlease take your shoes off at the door. You can leave them here.\n→ 入口で靴を脱いでください。ここに置いて大丈夫です。\n\nturn ... off\n\n機械や電気など、動いているものを止めるときにも off を使います。\n\nPlease turn the lights off when you leave.\n→ 出るときに電気を消してください。\n\nget off\n\n乗っていた場所から離れる感覚から、乗り物を「降りる」という意味になります。\n\nWe need to get off at the next stop, so let’s get ready.\n→ 次の停留所で降りるので、そろそろ準備しましょう。\n\nbe off\n\n仕事や活動から離れていることを表すこともあります。\n\nI’m off tomorrow, so I can meet you in the afternoon.\n→ 明日は休みなので、午後なら会えます。\n\noff は、「くっついているものから離れる」「動いている状態から離れる」「乗り物や仕事から離れる」という共通の感覚で考えると、多くの表現がつながって見えてきます。"
         },
 
         {
@@ -8688,10 +8739,58 @@
               "ja": "A：新しいルートの方が速い？\nB：うん、前のルートよりずっといいよ。"
             }
           ],
-          "wordNote": "far の中心には、「距離や程度が大きく離れている」という感覚があります。\n\n場所についても、比較についても使われます。\n\n1. 「遠くに・遠くへ」\n\n物理的な距離が大きいことを表します。\n\nDo you live far from the station?\n→ 駅から遠いところに住んでいますか？\n\nWe didn’t walk very far because it started raining.\n→ 雨が降り始めたので、あまり遠くまでは歩きませんでした。\n\nHow far is the airport from here?\n→ 空港はここからどのくらい遠いですか？\n\nHow far ...? は距離をたずねるときによく使います。\n\n2. 「はるかに・ずっと」\n\n比較級の前に置くと、差が大きいことを表します。\n\nThis option is far cheaper than the others.\n→ この選択肢は、ほかのものよりずっと安いです。\n\nThe new system is far easier to use.\n→ 新しいシステムの方が、はるかに使いやすいです。\n\nHer second idea was far more practical.\n→ 彼女の2つ目の案の方が、ずっと実用的でした。\n\nfar better、far easier、far more useful のように使います。\n\n3. so far 「今のところ」\n\nfar は、so far という形でも非常によく使われます。\n\nSo far, everything is going well.\n→ 今のところ、すべて順調です。\n\nI’ve read three chapters so far.\n→ 今のところ3章まで読みました。\n\nここでは「今という地点まで」というイメージがあります。\n\nfar は、\n\n「場所の距離が遠い」\n「比較した差が大きい」\n「ある地点まで」\n\nという使い方を、「離れた距離」という感覚から理解できます。"
+          "wordNote": "far の中心には、「基準となる場所や程度から大きく離れている」という感覚があります。\n\n距離についてたずねるときは、How far ...? がとてもよく使われます。\n\nHow far is the hotel from the station?\n→ ホテルは駅からどのくらい離れていますか？\n\nIt’s not far from here, so we can walk.\n→ ここから遠くないので、歩いて行けます。\n\nfar from ... は「〜から遠く離れて」という意味ですが、物理的な距離だけでなく、「〜とはほど遠い」という比喩的な表現にも使われます。\n\nThe plan is far from perfect, but it’s a good start.\n→ その計画は完璧にはほど遠いですが、良い出発点です。\n\nまた、so far は「今のところ」という非常によく使う表現です。\n\nSo far, everything is going well.\n→ 今のところ、すべて順調です。\n\nfar は、「距離が大きく開いている」という感覚を持っておくと、場所・比較・比喩的な表現までつながって理解しやすくなります。"
+        },
+        {
+          "pos": "adverb",
+          "word": "late",
+          "meanings": [
+            {
+              "meaning": "遅く／遅れて",
+              "en": "A: Why are you still awake?\nB: I got home late, and I still have a few things to do.",
+              "ja": "A：なんでまだ起きてるの？\nB：帰るのが遅くなって、まだちょっとやることが残ってるんだ。"
+            }
+          ],
+          "wordNote": "late は、「予定・期待していた時刻より後になる」「時間的に遅い」という感覚を持つ語です。\n\narrive late、come home late、stay up late、work late のように、日常会話でとてもよく使います。\n\nDid the meeting start on time?\n→ 会議、時間どおり始まった？\n\nNot really. A few people arrived late, so we waited.\n→ いや、何人か遅れて来たから待ったよ。\n\nstay up late は「夜遅くまで起きている」という、とてもよく使う表現です。\n\nI stayed up late watching a movie, so I’m really tired today.\n→ 映画を見て夜更かししたので、今日はすごく疲れています。\n\nwork late は「遅くまで働く」という意味です。\n\nI worked late yesterday, so I’m leaving early today.\n→ 昨日は遅くまで働いたので、今日は早めに帰ります。\n\nlate と lately は形がよく似ていますが、意味は違います。\n\nI worked late.\n→ 遅くまで働きました。\n\nI’ve been working a lot lately.\n→ 最近ずっと仕事が多いです。\n\nlate は「遅い時刻・遅れて」という意味ですが、lately は「最近・このところ」を表します。\n\n-ly が付いても「late に」という意味にはならないので、hard / hardly と同じように別の語として覚えるのがおすすめです。"
+        },
+        {
+          "pos": "adverb",
+          "word": "more",
+          "meanings": [
+            {
+              "meaning": "もっと／さらに",
+              "en": "A: Do you want some more coffee?\nB: Yeah, just a little. I’ve still got a lot of work to finish.",
+              "ja": "A：コーヒーもう少しいる？\nB：うん、ちょっとだけ。まだ仕事がかなり残ってるんだ。"
+            }
+          ],
+          "wordNote": "more の中心には、「今ある量や程度に、さらに足す」という感覚があります。\n\n日常会話では、食べ物・飲み物・時間・情報などについて「もう少し」「もっと」と言いたいときによく使います。\n\nWould you like some more tea?\n→ 紅茶、もう少しいかがですか？\n\nI need a little more time to think about it.\n→ もう少し考える時間が必要です。\n\nmore は比較級を作るときにも重要です。\n\n長めの形容詞では、more + 形容詞 の形で「より〜」を表します。\n\nThis app is more useful than I expected.\n→ このアプリ、思っていたより便利です。\n\nThe second option is more practical for everyday use.\n→ 2つ目の案のほうが、日常使いにはより実用的です。\n\n副詞にも more を付けて、「もっと〜に」という比較を作ることがあります。\n\nCould you speak a little more slowly? I’m still learning.\n→ もう少しゆっくり話してもらえますか？ まだ勉強中なんです。\n\nShe explained it more clearly this time, so everyone understood.\n→ 今回は前より分かりやすく説明してくれたので、みんな理解できました。\n\nmore often も非常によく使う表現です。\n\nI work from home more often now than I used to.\n→ 今は以前より在宅で働くことが増えました。\n\nmore は、「量を追加する」ときにも、「程度をさらに上げる」ときにも使える語です。"
+        },
+        {
+          "pos": "adverb",
+          "word": "most",
+          "meanings": [
+            {
+              "meaning": "最も／いちばん",
+              "en": "A: Which part of the trip did you enjoy most?\nB: Probably the little town by the sea. I’d love to go back someday.",
+              "ja": "A：旅行でどこがいちばん楽しかった？\nB：たぶん海辺の小さな町かな。いつかまた行きたいな。"
+            }
+          ],
+          "wordNote": "most は、「いくつかある中で程度がいちばん高い」という感覚を持つ語です。\n\n学校では the most + 形容詞 の形で最上級を習うことが多いですね。\n\nThis is the most useful feature in the app.\n→ これがこのアプリでいちばん便利な機能です。\n\nThat was the most difficult part of the project.\n→ そこがそのプロジェクトでいちばん難しい部分でした。\n\nところが、副詞の most では the が付かないこともよくあります。\n\nWhich part of the trip did you enjoy most?\n→ 旅行のどこがいちばん楽しかった？\n\nI like this one most because it’s simple and easy to use.\n→ シンプルで使いやすいので、これがいちばん好きです。\n\nここでは most が enjoy や like という動作について、「いちばん」という程度を加えています。\n\n副詞を最上級にするときも、most + 副詞 の形を使うことがあります。\n\nOf everyone on the team, Mia explained it most clearly.\n→ チームのみんなの中で、ミアがいちばん分かりやすく説明しました。\n\nHe answered most confidently when we asked about his own research.\n→ 自分の研究について聞かれたとき、彼がいちばん自信を持って答えました。\n\n「最上級なら必ず the most」と覚えていると、the のない most を見て驚くことがあります。\n\nthe most + 形容詞 の形はとても重要ですが、副詞として動詞や別の副詞の程度を表す most では、the が付かない形も自然に使われます。\n\nmost と mostly も意味が違うので注意しましょう。\n\nI like this one most.\n→ これがいちばん好きです。\n\nI mostly use this one at work.\n→ 私はこれを主に仕事で使っています。\n\nmost は「いちばん」、mostly は「主に・大部分は」です。"
+        },
+        {
+          "pos": "adverb",
+          "word": "mostly",
+          "meanings": [
+            {
+              "meaning": "主に／大部分は",
+              "en": "A: Do you work at the office every day?\nB: Not anymore. I mostly work from home now, but I go in once or twice a week.",
+              "ja": "A：毎日オフィスで働いてるの？\nB：今はもう違うよ。主に在宅で働いてるけど、週に1、2回は出社してる。"
+            }
+          ],
+          "wordNote": "mostly は、「全部ではないけれど、大部分はそう」という感覚を持つ語です。\n\n人の生活習慣や仕事、食べ物、天気、構成など、「全体の中で何が中心か」を伝えるときにとても便利です。\n\nI mostly work from home, but I go to the office once or twice a week.\n→ 主に在宅で働いていますが、週に1、2回は出社します。\n\nWe mostly cook at home, but we eat out on weekends sometimes.\n→ 普段は主に家で料理しますが、週末にはときどき外食します。\n\nThe audience was mostly students, but there were a few teachers too.\n→ 観客はほとんど学生でしたが、先生も何人かいました。\n\nIt was mostly sunny during the trip, so we got to eat outside on the terrace most days.\n→ 旅行中はだいたい晴れていたので、ほとんど毎日テラスで食事できてよかったです。\n\nmostly のポイントは、「100％ではない」ということです。\n\nI mostly drink coffee.\n→ 主にコーヒーを飲みます。\n\nこれは、「コーヒーしか飲まない」という意味ではありません。ほかの飲み物も飲むけれど、中心はコーヒー、という感じです。\n\nmost と mostly は形が似ていますが、仕事は違います。\n\nI enjoyed the museum most.\n→ 博物館がいちばん楽しかったです。\n\nI mostly visited museums during the trip.\n→ 旅行中は主に博物館を回りました。\n\nmost は「いちばん」という比較の頂点を表し、mostly は「全体の中で大部分を占めるもの」を表します。\n\n-ly が付いたことで、「最も」から「主に・大部分は」へ意味が変わっているので、most / mostly も別の語として覚えるのがおすすめです。"
         },
 
-
+ 
  
       {
         "pos": "noun",

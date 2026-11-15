@@ -1852,7 +1852,7 @@
     "word": "early",
     "meaning": "早く／早めに",
     "pos": "adv"
-  }
+  },
   {
     "word": "important",
     "meaning": "重要な",
@@ -2217,6 +2217,11 @@
     "pos": "adv"
   },
   {
+    "word": "early",
+    "meaning": "早い時期に",
+    "pos": "adv"
+  },
+  {
     "word": "here",
     "meaning": "ここに",
     "pos": "adv"
@@ -2224,6 +2229,11 @@
   {
     "word": "away",
     "meaning": "離れて／向こうに",
+    "pos": "adv"
+  },
+  {
+    "word": "away",
+    "meaning": "離れていく／立ち去って",
     "pos": "adv"
   },
   {
@@ -2287,6 +2297,11 @@
     "pos": "adv"
   },
   {
+    "word": "about",
+    "meaning": "まさに〜しようとしている",
+    "pos": "adv"
+  },
+  {
     "word": "tonight",
     "meaning": "今夜／今晩",
     "pos": "adv"
@@ -2298,7 +2313,7 @@
   },
   {
     "word": "late",
-    "meaning": "遅く",
+    "meaning": "遅く／遅れて",
     "pos": "adv"
   },
   {
@@ -2344,11 +2359,6 @@
   {
     "word": "maybe",
     "meaning": "たぶん",
-    "pos": "adv"
-  },
-  {
-    "word": "again",
-    "meaning": "もう一度",
     "pos": "adv"
   },
   {
@@ -2558,7 +2568,27 @@
   },
   {
     "word": "hard",
-    "meaning": "一生懸命",
+    "meaning": "一生懸命に／熱心に",
+    "pos": "adv"
+  },
+  {
+    "word": "hard",
+    "meaning": "強く／激しく",
+    "pos": "adv"
+  },
+  {
+    "word": "hardly",
+    "meaning": "ほとんど〜ない",
+    "pos": "adv"
+  },
+  {
+    "word": "barely",
+    "meaning": "かろうじて／ぎりぎり",
+    "pos": "adv"
+  },
+  {
+    "word": "barely",
+    "meaning": "ほとんど〜ない／ほぼ〜できない",
     "pos": "adv"
   },
   {
@@ -2715,6 +2745,22 @@
     "meaning": "そんなに",
     "pos": "adv"
   },
+  {
+    "word": "more",
+    "meaning": "もっと／さらに",
+    "pos": "adv"
+  },
+  {
+    "word": "most",
+    "meaning": "最も／いちばん",
+    "pos": "adv"
+  },
+  {
+    "word": "mostly",
+    "meaning": "主に／大部分は",
+    "pos": "adv"
+  },
+  
   
   
   {
