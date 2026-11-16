@@ -616,6 +616,15 @@ final class HomeworkStore: ObservableObject {
         }
         
         if migrateBundledMeaningRename(
+            word: "hard",
+            pos: .adv,
+            from: "一生けん命",
+            to: "一生懸命に／熱心に"
+        ) {
+            renamedCount += 1
+        }
+        
+        if migrateBundledMeaningRename(
             word: "late",
             pos: .adv,
             from: "遅く",
@@ -1080,18 +1089,62 @@ final class HomeworkStore: ObservableObject {
         // WordCard へ変換
         let cards: [WordCard] = grouped.values.compactMap { group in
             // meanings を正規化して確定
-            var meanings: [String] = []
-            var seenMeanings = Set<String>()
+            // BundledWords.json に登録されているmeaningは、
+            // 原本JSONの記載順を表示順として優先する。
+            // ユーザー追加meaningは、その後ろに現在の保存順で並べる。
+
+            var storedMeanings: [String] = []
+            var seenStoredMeanings = Set<String>()
 
             for storedWord in group {
                 let meaning = normMeaning(storedWord.meaning)
 
-                if !meaning.isEmpty, seenMeanings.insert(meaning).inserted {
+                if !meaning.isEmpty,
+                   seenStoredMeanings.insert(meaning).inserted {
+                    storedMeanings.append(meaning)
+                }
+            }
+
+            guard !storedMeanings.isEmpty else { return nil }
+
+            let targetWord = norm(group[0].word)
+
+            // この単語・品詞について、BundledWords.json の記載順を取得
+            var bundledMeaningOrder: [String] = []
+            var seenBundledMeanings = Set<String>()
+
+            for bundled in bundledWords {
+                guard bundled.pos == pos,
+                      norm(bundled.word) == targetWord else {
+                    continue
+                }
+
+                let meaning = normMeaning(bundled.meaning)
+
+                if !meaning.isEmpty,
+                   seenBundledMeanings.insert(meaning).inserted {
+                    bundledMeaningOrder.append(meaning)
+                }
+            }
+
+            // まずBundled原本にあるmeaningを原本順で並べる
+            var meanings: [String] = []
+            var addedMeanings = Set<String>()
+
+            for meaning in bundledMeaningOrder {
+                if seenStoredMeanings.contains(meaning),
+                   addedMeanings.insert(meaning).inserted {
                     meanings.append(meaning)
                 }
             }
 
-            guard !meanings.isEmpty else { return nil }
+            // Bundledにないユーザー追加meaningなどは後ろへ。
+            // こちらは現在のStoredWord順を維持する。
+            for meaning in storedMeanings {
+                if addedMeanings.insert(meaning).inserted {
+                    meanings.append(meaning)
+                }
+            }
 
             // 🦌 その他品詞だけは、最初に登録されたStoredWordを代表IDにする
             // → meaningを追加しても代表IDが変わりにくい

@@ -8789,7 +8789,56 @@
           ],
           "wordNote": "mostly は、「全部ではないけれど、大部分はそう」という感覚を持つ語です。\n\n人の生活習慣や仕事、食べ物、天気、構成など、「全体の中で何が中心か」を伝えるときにとても便利です。\n\nI mostly work from home, but I go to the office once or twice a week.\n→ 主に在宅で働いていますが、週に1、2回は出社します。\n\nWe mostly cook at home, but we eat out on weekends sometimes.\n→ 普段は主に家で料理しますが、週末にはときどき外食します。\n\nThe audience was mostly students, but there were a few teachers too.\n→ 観客はほとんど学生でしたが、先生も何人かいました。\n\nIt was mostly sunny during the trip, so we got to eat outside on the terrace most days.\n→ 旅行中はだいたい晴れていたので、ほとんど毎日テラスで食事できてよかったです。\n\nmostly のポイントは、「100％ではない」ということです。\n\nI mostly drink coffee.\n→ 主にコーヒーを飲みます。\n\nこれは、「コーヒーしか飲まない」という意味ではありません。ほかの飲み物も飲むけれど、中心はコーヒー、という感じです。\n\nmost と mostly は形が似ていますが、仕事は違います。\n\nI enjoyed the museum most.\n→ 博物館がいちばん楽しかったです。\n\nI mostly visited museums during the trip.\n→ 旅行中は主に博物館を回りました。\n\nmost は「いちばん」という比較の頂点を表し、mostly は「全体の中で大部分を占めるもの」を表します。\n\n-ly が付いたことで、「最も」から「主に・大部分は」へ意味が変わっているので、most / mostly も別の語として覚えるのがおすすめです。"
         },
-
+        {
+          "pos": "adverb",
+          "word": "sure",
+          "meanings": [
+            {
+              "meaning": "確かに／本当に",
+              "en": "A: It got cold fast tonight.\nB: It sure did. I wish I’d brought a warmer jacket.",
+              "ja": "A：今夜、一気に寒くなったね。\nB：ほんとだね。もっと暖かい上着持ってくればよかった。"
+            }
+          ],
+          "wordNote": "sure は会話で、相手の発言や目の前の状況を強く受けて、「ほんとにそうだね」「確かにそうだ」と強調するときに使われることがあります。\n\n特に、It sure is ... / It sure does. / That sure sounds ... のような形でよく現れます。\n\nIt sure is quiet here today.\n→ 今日はここ、本当に静かだね。\n\nThat sure sounds good. Let’s try it this weekend.\n→ それ、すごく良さそう。今週末やってみようよ。\n\nYou sure know how to pick a good restaurant.\n→ 本当にいい店を選ぶの上手だね。\n\nこの sure は really や certainly に近い働きをしますが、会話ではもう少しくだけた、勢いのある強調として聞こえることがあります。\n\nA: That was a long meeting.\nB: It sure was. I thought it would never end.\n→ A：長い会議だったね。\n→ B：ほんとにね。終わらないかと思ったよ。\n\n形容詞の sure とは使い方が違います。\n\nI’m sure she’ll be here soon.\n→ 彼女はもうすぐ来ると思います。／きっと来ます。\n\nこの sure は「確信している」という形容詞です。\n\n一方、\n\nShe sure talks fast.\n→ 彼女、本当に話すの速いね。\n\nでは sure が talks を強調する副詞として使われています。\n\n形が同じでも、I’m sure ... のように人の確信を表しているのか、It sure ... / She sure ... のように文の内容を強く言っているのかを見ると区別しやすくなります。"
+        },
+        {
+          "pos": "adverb",
+          "word": "high",
+          "meanings": [
+            {
+              "meaning": "高く／高いところに",
+              "en": "A: Can you see that flock of birds high above the mountain?\nB: Yeah. They’re flying really high. Do you think they’re swans?",
+              "ja": "A：山のずっと上の方を飛んでる鳥の群れ、見える？\nB：うん。すごく高く飛んでるね。白鳥かな？"
+            }
+          ],
+          "wordNote": "high は、実際の場所や位置が「高いところにある・高いところへ行く」という感覚を表します。\n\nfly high、climb high、rise high のように、目で見える高さについてよく使われます。\n\nThe kite flew high above the houses, and we could barely see it.\n→ 凧は家々のずっと上まで高く飛んで、ほとんど見えないくらいでした。\n\nThe balloon rose high into the sky and disappeared behind the clouds.\n→ 風船は空高く上がって、雲の向こうに見えなくなりました。\n\nhigh up という形で、「かなり高い位置に」という感じを強めることもあります。\n\nThe nest was high up in the tree, so we could only see it from a distance.\n→ 巣は木のかなり高いところにあったので、遠くからしか見えませんでした。\n\nhigh には、「目標を高く持つ」という比喩的な表現もあります。\n\nAim high, but give yourself time to improve.\n→ 高い目標を持って。でも、上達する時間もちゃんと自分にあげてね。\n\nhighly と形はよく似ていますが、使い方は違います。\n\nThe birds are flying high above the mountain.\n→ 鳥たちは山のずっと上を高く飛んでいます。\n\nThe restaurant is highly recommended.\n→ そのレストランはとても評判がよく、おすすめされています。\n\nhigh は主に実際の「高さ」を表し、highly は「程度・評価がとても高い」という意味で使われることが多い語です。"
+        },
+        {
+          "pos": "adverb",
+          "word": "highly",
+          "meanings": [
+            {
+              "meaning": "非常に／大いに",
+              "en": "A: Is that restaurant worth trying?\nB: Definitely. I highly recommend it. The food is great, and the staff are really friendly.",
+              "ja": "A：あのレストラン、行ってみる価値ある？\nB：絶対あるよ。かなりおすすめ。料理もおいしいし、店員さんもすごく親切だよ。"
+            }
+          ],
+          "wordNote": "highly は、何かの程度や評価が非常に高いことを表すときに使います。\n\n特に highly recommend は、日常会話でもレビューでもとてもよく使う表現です。\n\nI highly recommend this restaurant. The pasta is excellent, and the staff are really friendly.\n→ このレストラン、かなりおすすめです。パスタがおいしいし、店員さんもすごく親切です。\n\nhighly respected は「非常に尊敬されている・高く評価されている」という意味です。\n\nShe’s highly respected in her field because she’s both experienced and generous with her advice.\n→ 彼女は経験豊富で、アドバイスも惜しまないので、その分野でとても高く評価されています。\n\nhighly successful のように、成功の程度が非常に高いことを表すこともあります。\n\nThe campaign was highly successful, so they decided to run it again next year.\n→ そのキャンペーンは大成功だったので、来年も実施することになりました。\n\nhighly unlikely は「その可能性が非常に低い」という、少し面白い組み合わせです。\n\nIt’s highly unlikely that the train will be this empty during rush hour.\n→ ラッシュ時にこの電車がこんなに空いている可能性はかなり低いです。\n\nhighly 自体は「程度が高い」ことを表しますが、unlikely のような語につくと、「ありそうになさの程度が高い」ので、結果として「可能性がとても低い」という意味になります。\n\nthink highly of ... も覚えておくと便利な表現です。\n\nMy manager thinks highly of her. He often asks for her opinion before making a decision.\n→ 上司は彼女を高く評価しています。何か決める前によく彼女の意見を聞いています。\n\nhighly は、単純に「高い場所」を表すのではなく、評価・程度・可能性などが「非常に高いレベルにある」ことを表す語、と考えると分かりやすくなります。"
+        },
+        {
+          "pos": "adverb",
+          "word": "near",
+          "meanings": [
+            {
+              "meaning": "近くに",
+              "en": "A: It’s really crowded here.\nB: Yeah. Stay near so we don’t get separated.",
+              "ja": "A：ここ、すごく混んでるね。\nB：うん。はぐれないように、近くにいてね。"
+            }
+          ],
+          "wordNote": "near は、「距離が近い」「すぐそばにいる・ある」という感覚を表す語です。\n\nstay near、come near、live near のように、人や物との距離が近いことを表すときによく使います。\n\nStay near me in the crowd so we don’t get separated.\n→ 人混みでは、はぐれないように私の近くにいてね。\n\nWe live near the station, so it’s easy to get around.\n→ 駅の近くに住んでいるので、移動しやすいです。\n\nDon’t come too near the edge. It’s slippery here.\n→ 端に近づきすぎないで。ここ滑りやすいよ。\n\nnear と nearby は少し使い方が違います。\n\nThere’s a post office near the station.\n→ 駅の近くに郵便局があります。\n\nThere’s a post office nearby, so we can mail it before lunch.\n→ 近くに郵便局があるので、昼食前にそれを出せます。\n\nnear は「何に近いのか」を後ろに置くことが多く、nearby はそれだけで「近くに・近くの」という意味で使えます。\n\nそして、near と nearly は形がよく似ていますが、意味はかなり違います。\n\nStay near.\n→ 近くにいて。\n\nI nearly missed the train.\n→ もう少しで電車に乗り遅れるところでした。\n\nnear は「距離が近い」という意味ですが、nearly は「ほとんど・もう少しで」という意味です。\n\nThe bottle is nearly empty.\n→ ボトルはほとんど空です。\n\nWe’re nearly there.\n→ もうすぐ着きます。\n\n-ly が付いても「近くに」という意味にはならないので、hard / hardly、late / lately、high / highly と同じように、near / nearly も別の語として覚えるのがおすすめです。"
+        },
+ 
+ 
  
  
       {
@@ -9874,5 +9923,143 @@
           }
         ]
       },
+      {
+        "pos": "verb",
+        "word": "hold",
+        "meanings": [
+          {
+            "meaning": "持つ／手に持つ",
+            "en": "A: Can you hold my phone for a second?\nB: Sure. Do you need both hands for that bag?",
+            "ja": "A：ちょっとスマホ持っててくれる？\nB：いいよ。そのバッグ、両手じゃないと持てなさそう？"
+          },
+          {
+            "meaning": "支える",
+            "en": "A: Could you hold the ladder while I change the light bulb?\nB: Of course. I’ve got it, so take your time.",
+            "ja": "A：電球を替える間、はしご押さえててくれる？\nB：もちろん。ちゃんと支えてるから、焦らなくて大丈夫だよ。"
+          },
+          {
+            "meaning": "保つ／その状態にしておく",
+            "en": "A: Can you hold the door open for a second?\nB: Sure. I can see you’ve got your hands full.",
+            "ja": "A：ちょっとドア開けたままにしてくれる？\nB：いいよ。両手ふさがってるもんね。"
+          },
+          {
+            "meaning": "開催する",
+            "en": "A: Are we still holding the meeting on Friday?\nB: Yeah, but we moved it to the afternoon so everyone can join.",
+            "ja": "A：金曜日の会議、予定どおりやるの？\nB：うん。でも全員参加できるように午後に変更したよ。"
+          }
+        ],
+        "wordNote": "hold の中心には、「手元・位置・状態から離さず、そのまま保っておく」という感覚があります。\n\n物を手にしているときも、何かを動かないように支えているときも、「そこから離さない」という感覚が共通しています。\n\nCould you hold my umbrella while I look for my wallet?\n→ 財布を探す間、傘を持っててもらえる？\n\nHold the box steady while I tape the bottom.\n→ 底をテープで留める間、箱が動かないように押さえてて。\n\nsteady は「動かないように安定した状態で」という意味です。hold と一緒に使うと、「その位置を保つ」という感覚がよく分かります。\n\nhold は、物だけでなく「状態をそのまま保つ」ときにも使います。\n\nHold still for a second. There’s something on your jacket.\n→ ちょっとじっとしてて。ジャケットに何か付いてるよ。\n\nCould you hold the door for me? My hands are full.\n→ ドア押さえててもらえる？ 両手がふさがってるんだ。\n\nhold still は「じっとしている」、hold the door は「ドアを押さえておく」という、とてもよく使う表現です。\n\n会議やイベントについて hold を使うのも、「ある場や活動を一定の時間そこに成立させておく」と考えると、まったく別の意味には見えなくなります。\n\nThey’re holding a small event at the library this weekend.\n→ 今週末、図書館で小さなイベントを開くそうです。\n\nWe usually hold our team meetings on Monday mornings.\n→ 私たちは通常、月曜の朝にチーム会議を開きます。\n\nよく使う表現に hold on もあります。\n\nHold on a second. I need to write that down.\n→ ちょっと待って。それ書き留めたい。\n\nこの hold on も、「今の状態のまま少し止まっていて」という感覚から来ています。\n\n電話でもよく使います。\n\nCould you hold on for a moment? I’ll check for you.\n→ 少々お待ちいただけますか？ 確認しますね。\n\nほかにも、hold hands は「手をつなぐ」、hold your breath は「息を止める」という表現です。\n\nThe kids held hands while crossing the street.\n→ 子どもたちは道を渡る間、手をつないでいました。\n\nI had to hold my breath because the smell was so strong.\n→ においがあまりに強くて、息を止めなければなりませんでした。\n\nhold は意味が多い動詞ですが、「何かを離さず、その位置・状態に保つ」という感覚を中心にすると、ばらばらだった使い方がつながって見えてきます。"
+      },
+      {
+        "pos": "verb",
+        "word": "leave",
+        "meanings": [
+          {
+            "meaning": "出発する",
+            "en": "A: What time are you leaving tomorrow?\nB: Around seven. I want to avoid the morning traffic.",
+            "ja": "A：明日何時に出発するの？\nB：7時ごろ。朝の渋滞を避けたいんだ。"
+          },
+          {
+            "meaning": "～を離れる／去る",
+            "en": "A: Why did you leave the party so early?\nB: I wasn’t feeling well, so I went home.",
+            "ja": "A：どうしてパーティーをそんなに早く抜けたの？\nB：ちょっと具合がよくなかったから、家に帰ったんだ。"
+          },
+          {
+            "meaning": "～を置いていく／残す",
+            "en": "A: I think I left my glasses at the restaurant.\nB: Call them now. They might still have them.",
+            "ja": "A：眼鏡、レストランに置いてきたかも。\nB：今電話してみて。まだ預かってくれてるかも。"
+          },
+          {
+            "meaning": "～をそのままにしておく",
+            "en": "A: Should I close the window?\nB: No, leave it open. It’s getting warm in here.",
+            "ja": "A：窓閉めようか？\nB：ううん、開けたままにしておいて。ここ暑くなってきたから。"
+          }
+        ],
+        "wordNote": "leave の中心には、「今いる場所・手元・状態から離れる／離して、あとに何かが残る」という感覚があります。\n\n自分自身がその場所から離れる場合は、\n\nWe’re leaving at seven tomorrow.\n→ 明日は7時に出発します。\n\nI left the office a little early today.\n→ 今日は少し早めに会社を出ました。\n\nのように使えます。\n\nleave for ... なら、「～へ向けて出発する」という意味になります。\n\nWe’re leaving for Tokyo tomorrow morning.\n→ 明日の朝、東京へ向けて出発します。\n\nところで、\n\nWhat time are you leaving tomorrow?\n→ 明日何時に出発するの？\n\nを見て、「明日のことなのに、なぜ現在進行形？」と思うかもしれません。\n\n英語では、すでに予定が決まっていて、その予定に向かって動き始めているような未来について、現在進行形を使うことがあります。\n\nI’m meeting Aya after work.\n→ 仕事のあとAyaに会います。\n\nWe’re leaving at seven tomorrow.\n→ 明日は7時に出発します。\n\nまだ実際には出発していなくても、「その予定の中にもう片足を入れている」ような感覚です。\n\nleave は、自分が離れるだけでなく、「何かをあとに残して離れる」ときにも使います。\n\nI left my glasses at the restaurant.\n→ レストランに眼鏡を置いてきました。\n\nDon’t leave your bag on the train.\n→ 電車にバッグを置き忘れないでね。\n\nleave a message は「伝言を残す」です。\n\nI left you a message this morning.\n→ 今朝、あなたに伝言を残しました。\n\nまた、物や人をある状態のままにしておくときにも leave を使います。\n\nLeave the window open. It’s getting warm in here.\n→ 窓は開けたままにしておいて。ここ暑くなってきたから。\n\nLeave it as it is.\n→ そのままにしておいて。\n\nleave someone alone は「人を一人にしておく／そっとしておく」という、とてもよく使う表現です。\n\nShe looks tired. Let’s leave her alone for a while.\n→ 疲れてるみたいだから、しばらくそっとしておこう。\n\nleave something behind は、「何かを後に残す・置いていく」という表現です。\n\nI think I left my umbrella behind.\n→ 傘を置いてきたみたい。\n\nそして、\n\nLeave it to me.\n→ 私に任せて。\n\nも覚えておくと便利です。\n\nここでは、仕事や問題を「自分の手元から離して、相手のところに残す」という感覚から、「任せる」という意味につながっています。\n\nleave は「出発する」「去る」「置いていく」「そのままにする」と日本語では別々に見えますが、中心にあるのは「離れたあとに、場所・物・状態が残る」という感覚です。"
+      },
+      {
+        "pos": "verb",
+        "word": "turn",
+        "meanings": [
+          {
+            "meaning": "曲がる",
+            "en": "A: Do I turn here?\nB: Not yet. Turn right at the next light.",
+            "ja": "A：ここで曲がるの？\nB：まだ。次の信号のところを右に曲がって。"
+          },
+          {
+            "meaning": "向きを変える／向ける",
+            "en": "A: Can you turn the screen toward me?\nB: Sure. Is that better?",
+            "ja": "A：画面、こっちに向けてくれる？\nB：いいよ。これで見やすい？"
+          },
+          {
+            "meaning": "回す／ひねる",
+            "en": "A: How do I open this?\nB: Push the lid down and turn it to the left.",
+            "ja": "A：これどうやって開けるの？\nB：ふたを押しながら左に回して。"
+          },
+          {
+            "meaning": "～になる／変わる",
+            "en": "A: The leaves are starting to turn red and yellow.\nB: Yeah. It finally feels like fall.",
+            "ja": "A：葉っぱが赤や黄色に色づき始めたね。\nB：うん。やっと秋らしくなってきたね。"
+          }
+        ],
+        "wordNote": "turn の中心には、「向き・方向・状態を、それまでとは違う方へ変える」という感覚があります。\n\n道を進んでいて方向を変えるときは、\n\nTurn right at the next light.\n→ 次の信号のところを右に曲がって。\n\nのように使います。\n\nここで light は「明かり」ではなく、会話では traffic light を短くして「信号」という意味で使われています。\n\nturn は、自分の進む方向だけでなく、物の向きを変えるときにも使います。\n\nCan you turn the screen toward me?\n→ 画面をこっちに向けてくれる？\n\ntoward は「～の方へ」という意味です。\n\ntoward me\n→ 私の方へ\n\ntoward the window\n→ 窓の方へ\n\nのように、「どちらの方向を向くのか」を表せます。\n\nturn your head\n→ 顔・頭を向ける\n\nturn around\n→ 振り向く／向きを反対にする\n\nもよく使います。\n\n物そのものを回したり、ひねったりするときにも turn を使います。\n\nTurn the knob slowly.\n→ ノブをゆっくり回して。\n\nTurn the key to the left.\n→ 鍵を左に回して。\n\n道を曲がるときも、画面をこちらへ向けるときも、ノブを回すときも、「今までとは違う向きへ動かす」という感覚は同じです。\n\nさらに turn は、物理的な向きだけでなく「状態が別の状態へ変わる」ときにも使います。\n\nThe sky turned dark.\n→ 空が暗くなりました。\n\nThe water turned cold.\n→ 水が冷たくなりました。\n\n色が変わるときにもよく使います。\n\nThe leaves are starting to turn red and yellow.\n→ 葉っぱが赤や黄色に色づき始めています。\n\n日本語では「紅葉する」と一語で言えますが、英語では、\n\nThe leaves turn red.\n→ 葉が赤くなる。\n\nThe leaves turn yellow.\n→ 葉が黄色くなる。\n\nのように、「葉の色が別の色へ変わる」と表すことができます。\n\nturn red は葉だけでなく、人の顔が赤くなるときにも使えます。\n\nHis face turned red when everyone looked at him.\n→ みんなに見られて、彼の顔が赤くなりました。\n\nまた、turn は小さな語と組み合わさると、日常会話で非常によく使う表現になります。\n\nturn on\n→ 電源を入れる\n\nCould you turn on the light?\n→ 電気をつけてくれる？\n\nturn off\n→ 電源を切る\n\nDon’t forget to turn off the TV.\n→ テレビを消すのを忘れないでね。\n\nturn around\n→ 振り向く／向きを変える\n\nI turned around when I heard my name.\n→ 名前を呼ばれて振り向きました。\n\nturn into ...\n→ ～に変わる／～に変える\n\nThe old station was turned into a museum.\n→ その古い駅は博物館に変えられました。\n\nこの turn into ... では、向きではなく「ものの状態や役割そのものが別のものへ変わる」感覚です。\n\nturn は「曲がる」だけの動詞ではありません。\n\n進む方向を変える。\n物の向きを変える。\n何かを回す。\n状態や色を変える。\n\nどの場合にも、「今までとは違う方へくるっと変わる」という感覚が中心にあります。"
+      },
+      {
+        "pos": "verb",
+        "word": "change",
+        "meanings": [
+          {
+            "meaning": "変える／変更する",
+            "en": "A: Can we change the date of the meeting?\nB: Sure. Would Thursday work for you?",
+            "ja": "A：会議の日にち、変更できる？\nB：いいよ。木曜日なら都合どう？"
+          },
+          {
+            "meaning": "変わる",
+            "en": "A: Has the plan changed?\nB: Yeah. We’re meeting at the station instead of the restaurant.",
+            "ja": "A：予定変わった？\nB：うん。レストランじゃなくて駅で待ち合わせることになったよ。"
+          },
+          {
+            "meaning": "着替える",
+            "en": "A: Are you ready to go?\nB: Almost. I just need to change first.",
+            "ja": "A：出かける準備できた？\nB：ほぼね。あとは着替えるだけ。"
+          },
+          {
+            "meaning": "交換する／取り替える",
+            "en": "A: Why isn’t the remote working?\nB: I think we need to change the batteries.",
+            "ja": "A：なんでリモコン動かないの？\nB：電池を取り替えないといけないんだと思う。"
+          }
+        ],
+        "wordNote": "change の中心には、「今あるもの・状態を、別のもの・状態へ入れ替える」という感覚があります。\n\n予定や内容を別のものにするときは、\n\nCan we change the date of the meeting?\n→ 会議の日にち、変更できる？\n\nのように使います。\n\nchange the date\n→ 日付を変える\n\nchange the plan\n→ 予定・計画を変える\n\nchange the subject\n→ 話題を変える\n\nなど、今あるものを別のものに入れ替える感覚です。\n\n一方、何かが自然に別の状態になるときにも change を使います。\n\nHas the plan changed?\n→ 予定変わった？\n\nThings have changed a lot since then.\n→ あれからいろいろ変わりました。\n\nここでは、誰かが何かを変えるのではなく、ものや状況そのものが「変わる」側になっています。\n\nchange は、服を着替えるときにもよく使います。\n\nA: Are you ready to go?\nB: Almost. I just need to change first.\n→ A：出かける準備できた？\n→ B：ほぼね。あとは着替えるだけ。\n\nここでは change だけで「着替える」という意味になります。\n\nこの first は、「次の行動に移る前に、まずこれを済ませる」という意味で使われています。厳密に「最初にこれ、次にこれ」と順序を強く意識しているわけではありません。\n\n英語では、このあと何かする前にまず一つ済ませる、という感覚で first を添えることがあります。\n\n服についてもう少し具体的に言うなら、change into ... もよく使います。\n\nI changed into something more comfortable.\n→ もっと楽な服に着替えました。\n\nchange into jeans\n→ ジーンズに着替える\n\nchange into pajamas\n→ パジャマに着替える\n\nというように、何に着替えたのかを続けられます。\n\nまた、古いものや使えなくなったものを別のものに取り替えるときにも change を使います。\n\nWhy isn’t the remote working?\n→ なんでリモコン動かないの？\n\nI think we need to change the batteries.\n→ 電池を取り替えないといけないんだと思う。\n\nchange the batteries\n→ 電池を取り替える\n\nchange a tire\n→ タイヤを交換する\n\nのように、今あるものを別のものと入れ替える感覚です。\n\n移動でもこの感覚は使われます。\n\nWe have to change trains at the next station.\n→ 次の駅で電車を乗り換えないといけません。\n\n乗っている電車を別の電車に替えるので、change trains で「電車を乗り換える」になります。\n\n考えが変わるときには、\n\nI changed my mind.\n→ 考えを変えました。／気が変わりました。\n\nと言えます。\n\nchange your mind は、今まで持っていた考えを別の考えに入れ替える感覚です。\n\nAt first I didn’t want to go, but I changed my mind.\n→ 最初は行きたくなかったけど、気が変わりました。\n\nchange は、日本語では「変える」「変わる」「着替える」「取り替える」「乗り換える」など別々の動詞になります。\n\n英語ではどれも、「今あるものや状態が、別のものへ入れ替わる」という中心の感覚からつながっています。\n\nちなみに change には名詞で「おつり」という意味もあります。\n\nKeep the change.\n→ おつりは取っておいて。\n\n動詞の change とは働きが違いますが、同じ単語がこんなところにも顔を出します。"
+      },
+      {
+        "pos": "verb",
+        "word": "mean",
+        "meanings": [
+          {
+            "meaning": "意味する／～という意味である",
+            "en": "A: What does this word mean?\nB: It means \"very tired.\"",
+            "ja": "A：この単語どういう意味？\nB：「とても疲れている」って意味だよ。"
+          },
+          {
+            "meaning": "～するつもりである／意図する",
+            "en": "A: Did you delete the file?\nB: Yeah, but I didn’t mean to. I tapped the wrong button.",
+            "ja": "A：ファイル消したの？\nB：うん。でも消すつもりじゃなかったんだ。間違ったボタン押しちゃって。"
+          },
+          {
+            "meaning": "～ということになる／～をもたらす",
+            "en": "A: The last train has already left.\nB: So that means we’ll need a taxi.",
+            "ja": "A：終電、もう出ちゃったよ。\nB：じゃあタクシー使わないといけないってことだね。"
+          },
+          {
+            "meaning": "～にとって大切である／大きな意味を持つ",
+            "en": "A: This photo means a lot to me.\nB: I can see why. You all look so happy in it.",
+            "ja": "A：この写真、私にとってすごく大切なんだ。\nB：分かるよ。みんなすごく幸せそうに写ってるね。"
+          }
+        ],
+        "wordNote": "mean の中心には、「言葉・行動・出来事の中に、ある内容や意図が込められている」という感覚があります。\n\nまず、言葉や表現が何を表しているかを言うときに使います。\n\nWhat does this word mean?\n→ この単語、どういう意味？\n\nWhat do you mean?\n→ どういう意味？／どういうこと？\n\nこの二つは似ていますが、少し見ているものが違います。\n\nWhat does this word mean?\nでは、word という言葉そのものの意味を聞いています。\n\n一方、\n\nWhat do you mean?\nでは、相手が今言ったことや、その発言に込めた意図を聞いています。\n\nそのため会話では、\n\nDo you mean we have to start over?\n→ つまり、最初からやり直さないといけないってこと？\n\nのように、相手が本当に言いたかったことを確認するときにもよく使います。\n\n自分の言いたいことを補足したり、少し言い直したりするときには、\n\nI mean, it’s not bad. It’s just a little expensive.\n→ いや、悪くはないんだよ。ただちょっと高いだけで。\n\nのように I mean ... がよく使われます。\n\nここでは「私は～を意味します」と訳す必要はありません。\n\n「つまり」「いや、言いたいのは」「というか」のように、自分の言葉を少し整えながら先を続ける感覚です。\n\n自分の意図について話すときにも mean を使います。\n\nI didn’t mean to delete the file.\n→ ファイルを消すつもりじゃなかった。\n\nmean to + 動詞\nで、「～するつもりである」という意味になります。\n\nI meant to call you yesterday.\n→ 昨日電話するつもりだった。\n\nI didn’t mean to.\n→ そんなつもりじゃなかった。\n\nこの I didn’t mean to. は、何をするつもりではなかったのかが会話から分かっているとき、後ろを省略して使えます。\n\nまた、\n\nI didn’t mean it that way.\n→ そういう意味で言ったんじゃない。\n\nもよく使います。\n\nここでは、自分の言葉に込めた意図について説明しています。\n\nThat’s what I meant to say.\n→ そう、それが言いたかったこと。\n\nも覚えておくと便利です。\n\nwhat I meant は「私が言いたかったこと・意図していたこと」、meant to say は「言おうとしていた」という感覚です。\n\nmean は、出来事から分かる結果を表すときにも使います。\n\nThe last train has already left.\n→ 終電はもう出てしまいました。\n\nThat means we’ll need a taxi.\n→ ということは、タクシーを使わないといけないね。\n\nこの mean は、日本語で無理に「意味する」と訳すより、\n\nThat means ...\n→ ということは～だ\n\nと考えると会話で使いやすくなります。\n\n一つの出来事の中に、その先の結果が含まれている感覚です。\n\nそして、人や物が自分にとって大切な存在であることを表すときにも mean を使います。\n\nThis photo means a lot to me.\n→ この写真は私にとってすごく大切です。\n\nYou mean a lot to me.\n→ あなたは私にとってとても大切な人です。\n\nmean a lot to ...\nは、「～にとって大きな意味を持つ」ことから、「とても大切である」という意味になります。\n\nmean は、日本語では「意味する」「意図する」「～ということになる」「大切である」など別々に見えます。\n\nでも中心にあるのは、言葉・行動・出来事・人や物の中に「何が込められているのか」という感覚です。\n\nその感覚をつかむと、\n\nWhat do you mean?\nI mean ...\nI didn’t mean to.\nThat’s what I meant to say.\nThat means ...\nIt means a lot to me.\n\nといった会話表現も、ばらばらではなく一つにつながって見えてきます。"
+      },
+      
+      
     ]
+
 

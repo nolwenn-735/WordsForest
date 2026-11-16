@@ -117,29 +117,68 @@ struct HomePage: View {
                         posRow(.verb, title: showMascots ? "🐈動詞" : "🔵動詞", color: .blue)
                         posRow(.adj, title: showMascots ? "🐇形容詞" : "🟢形容詞", color: .green)
                         posRow(.adv, title: showMascots ? "🦙副詞" : "🟠副詞", color: .orange)
-                        
-                        // MARK: スペリング
-                        Button {
-                            showSpellingMenu = true
-                        } label: {
-                            Text("✏️ スペリング・チャレンジ")
-                        }
-                        .buttonStyle(ColoredPillButtonStyle(color: .purple, size: .compact, alpha: 0.20))
-                        .sheet(isPresented: $showSpellingMenu) {
-                            SpellingChallengeMenuView()
-                        }
-                        
-                        // MARK: My Collection
-                        NavigationLink {
-                            MyCollectionRootView()
-                        } label: {
-                            Text("💗  My Collection（覚えにくい単語）")
-                        }
-                        .buttonStyle(ColoredPillButtonStyle(color: .pink, size: .compact, alpha: 0.20))
-                        .badgeOverlay(count: favCount, text: favBadgeText, color: .red)
-                        
-                        // MARK: 覚えたBOX ＋ メモ
+                                                
+                        // MARK: その他品詞 ＋ メモ
                         HStack(spacing: 8) {
+
+                            Button {
+                                router.push(PartOfSpeech.others)
+                            } label: {
+                                Text(showMascots ? "🦌 その他品詞" : "🟣 その他品詞")
+                            }
+                            .buttonStyle(
+                                ColoredPillButtonStyle(
+                                    color: .orange,
+                                    size: .compact,
+                                    alpha: 0.20
+                                )
+                            )
+
+                            NavigationLink {
+                                StudentMemoListView(
+                                    store: StudentMemoStore.shared
+                                )
+                            } label: {
+                                Text("📝  メモ")
+                            }
+                            .buttonStyle(
+                                ColoredPillButtonStyle(
+                                    color: .yellow,
+                                    size: .compact,
+                                    alpha: 0.20
+                                )
+                            )
+                        }
+
+                        // MARK: コラム ＋ 覚えたBOX
+                        HStack(spacing: 8) {
+
+                            NavigationLink(showMascots ? "🐺 コラム " : "⚫️ コラム ") {
+                                ColumnIndexView()
+                            }
+                            .buttonStyle(
+                                ColoredPillButtonStyle(
+                                    color: .indigo,
+                                    size: .compact,
+                                    alpha: 0.20
+                                )
+                            )
+                            .overlay(alignment: .trailing) {
+                                if usageMode == .classroom &&
+                                    (
+                                        columnStore.shouldShowNewBadge() ||
+                                        hasUnclaimedColumnFromManifest
+                                    ) {
+                                    Text("🆕")
+                                        .font(.caption2.bold())
+                                        .padding(.horizontal, 6)
+                                        .padding(.vertical, 3)
+                                        .background(.red.opacity(0.95))
+                                        .foregroundStyle(.white)
+                                        .clipShape(Capsule())
+                                        .padding(.trailing, 14)
+                                }
+                            }
 
                             NavigationLink {
                                 LearnedBoxRootView()
@@ -158,57 +197,42 @@ struct HomePage: View {
                                 text: learnedBadgeText,
                                 color: .green
                             )
-
-                            NavigationLink {
-                                StudentMemoListView(
-                                    store: StudentMemoStore.shared
-                                )
-                            } label: {
-                                Text("📝  メモ")
-                            }
-                            .buttonStyle(
-                                ColoredPillButtonStyle(
-                                    color: .yellow,
-                                    size: .compact,
-                                    alpha: 0.20
-                                )
-                            )
                         }
-                        
-                        // MARK: その他品詞
-                        HStack(spacing: 8) {
-                            NavigationLink(showMascots ? "🐺 コラム " : "⚫️ コラム ") {
-                                ColumnIndexView()
-                            }
-                            .buttonStyle(ColoredPillButtonStyle(color: .indigo, size: .compact, alpha: 0.20))
-                            .overlay(alignment: .trailing) {
-                                if usageMode == .classroom &&
-                                    (
-                                        columnStore.shouldShowNewBadge() ||
-                                        hasUnclaimedColumnFromManifest
-                                    ) {
-                                    Text("🆕")
-                                        .font(.caption2.bold())
-                                        .padding(.horizontal, 6)
-                                        .padding(.vertical, 3)
-                                        .background(.red.opacity(0.95))
-                                        .foregroundStyle(.white)
-                                        .clipShape(Capsule())
-                                        .padding(.trailing, 14)
-                                }
-                            }
-                            Button {
-                                router.push(PartOfSpeech.others)
-                            } label: {
-                                Text(showMascots ? "🦌 その他品詞" : "🟣 その他品詞")
-                            }
-                            .buttonStyle(
-                                ColoredPillButtonStyle(
-                                    color: .orange,
-                                    size: .compact,
-                                    alpha: 0.20
-                                )
+
+                        // MARK: My Collection
+                        NavigationLink {
+                            MyCollectionRootView()
+                        } label: {
+                            Text("💗  My Collection（覚えにくい単語）")
+                        }
+                        .buttonStyle(
+                            ColoredPillButtonStyle(
+                                color: .pink,
+                                size: .compact,
+                                alpha: 0.20
                             )
+                        )
+                        .badgeOverlay(
+                            count: favCount,
+                            text: favBadgeText,
+                            color: .red
+                        )
+
+                        // MARK: スペリング
+                        Button {
+                            showSpellingMenu = true
+                        } label: {
+                            Text("✏️ スペリング・チャレンジ")
+                        }
+                        .buttonStyle(
+                            ColoredPillButtonStyle(
+                                color: .purple,
+                                size: .compact,
+                                alpha: 0.20
+                            )
+                        )
+                        .sheet(isPresented: $showSpellingMenu) {
+                            SpellingChallengeMenuView()
                         }
                         
                         // MARK: 使い方 / 表示設定

@@ -775,6 +775,9 @@
     "pos": "noun"
   },
   
+  
+  
+  
   {
     "word": "be",
     "meaning": "be動詞　〜である",
@@ -1178,6 +1181,21 @@
     "pos": "verb"
   },
   {
+    "word": "leave",
+    "meaning": "～を離れる／去る",
+    "pos": "verb"
+  },
+  {
+    "word": "leave",
+    "meaning": "～を置いていく／残す",
+    "pos": "verb"
+  },
+  {
+    "word": "leave",
+    "meaning": "～をそのままにしておく",
+    "pos": "verb"
+  },
+  {
     "word": "need",
     "meaning": "必要とする",
     "pos": "verb"
@@ -1264,7 +1282,22 @@
   },
   {
     "word": "change",
+    "meaning": "変える／変更する",
+    "pos": "verb"
+  },
+  {
+    "word": "change",
+    "meaning": "変わる",
+    "pos": "verb"
+  },
+  {
+    "word": "change",
     "meaning": "着替える",
+    "pos": "verb"
+  },
+  {
+    "word": "change",
+    "meaning": "交換する／取り替える",
     "pos": "verb"
   },
   {
@@ -1380,6 +1413,41 @@
   {
     "word": "turn",
     "meaning": "曲がる",
+    "pos": "verb"
+  },
+  {
+    "word": "turn",
+    "meaning": "向きを変える／向ける",
+    "pos": "verb"
+  },
+  {
+    "word": "turn",
+    "meaning": "回す／ひねる",
+    "pos": "verb"
+  },
+  {
+    "word": "turn",
+    "meaning": "～になる／変わる",
+    "pos": "verb"
+  },
+  {
+    "word": "mean",
+    "meaning": "意味する／～という意味である",
+    "pos": "verb"
+  },
+  {
+    "word": "mean",
+    "meaning": "～するつもりである／意図する",
+    "pos": "verb"
+  },
+  {
+    "word": "mean",
+    "meaning": "～ということになる／～をもたらす",
+    "pos": "verb"
+  },
+  {
+    "word": "mean",
+    "meaning": "～にとって大切である／大きな意味を持つ",
     "pos": "verb"
   },
   {
@@ -1507,6 +1575,31 @@
     "meaning": "暖める",
     "pos": "verb"
   },
+  {
+    "word": "hold",
+    "meaning": "持つ／手に持つ",
+    "pos": "verb"
+  },
+  {
+    "word": "hold",
+    "meaning": "支える",
+    "pos": "verb"
+  },
+  {
+    "word": "hold",
+    "meaning": "保つ／その状態にしておく",
+    "pos": "verb"
+  },
+  {
+    "word": "hold",
+    "meaning": "開催する",
+    "pos": "verb"
+  },
+  
+  
+  
+  
+  
   
   {
     "word": "gentle",
@@ -2356,6 +2449,7 @@
     "meaning": "本当に",
     "pos": "adv"
   },
+  
   {
     "word": "maybe",
     "meaning": "たぶん",
@@ -2379,16 +2473,6 @@
   {
     "word": "angrily",
     "meaning": "怒って",
-    "pos": "adv"
-  },
-  {
-    "word": "fortunately",
-    "meaning": "幸運にも",
-    "pos": "adv"
-  },
-  {
-    "word": "unfortunately",
-    "meaning": "不運にも",
     "pos": "adv"
   },
   {
@@ -2489,6 +2573,11 @@
   {
     "word": "now",
     "meaning": "今",
+    "pos": "adv"
+  },
+  {
+    "word": "now",
+    "meaning": "今では",
     "pos": "adv"
   },
   {
@@ -2603,7 +2692,17 @@
   },
   {
     "word": "then",
+    "meaning": "そのとき",
+    "pos": "adv"
+  },
+  {
+    "word": "then",
     "meaning": "それから",
+    "pos": "adv"
+  },
+  {
+    "word": "then",
+    "meaning": "それなら",
     "pos": "adv"
   },
   {
@@ -2758,6 +2857,96 @@
   {
     "word": "mostly",
     "meaning": "主に／大部分は",
+    "pos": "adv"
+  },
+  {
+    "word": "sure",
+    "meaning": "確かに／本当に",
+    "pos": "adv"
+  },
+  {
+    "word": "high",
+    "meaning": "高く／高いところに",
+    "pos": "adv"
+  },
+  {
+    "word": "highly",
+    "meaning": "非常に／大いに",
+    "pos": "adv"
+  },
+  {
+    "word": "near",
+    "meaning": "近くに",
+    "pos": "adv"
+  },
+  {
+    "word": "too",
+    "meaning": "〜すぎる",
+    "pos": "adv"
+  },
+  {
+    "word": "too",
+    "meaning": "〜もまた",
+    "pos": "adv"
+  },
+  {
+    "word": "quite",
+    "meaning": "かなり",
+    "pos": "adv"
+  },
+  {
+    "word": "quite",
+    "meaning": "完全に",
+    "pos": "adv"
+  },
+  {
+    "word": "pretty",
+    "meaning": "かなり／けっこう",
+    "pos": "adv"
+  },
+  {
+    "word": "fairly",
+    "meaning": "かなり／まずまず",
+    "pos": "adv"
+  },
+  {
+    "word": "rather",
+    "meaning": "かなり／思ったより",
+    "pos": "adv"
+  },
+  {
+    "word": "rather",
+    "meaning": "むしろ／〜する方がいい",
+    "pos": "adv"
+  },
+  {
+    "word": "almost",
+    "meaning": "ほとんど",
+    "pos": "adv"
+  },
+  {
+    "word": "almost",
+    "meaning": "もう少しで",
+    "pos": "adv"
+  },
+  {
+    "word": "much",
+    "meaning": "大いに",
+    "pos": "adv"
+  },
+  {
+    "word": "much",
+    "meaning": "ずっと",
+    "pos": "adv"
+  },
+  {
+    "word": "lately",
+    "meaning": "最近／このところ",
+    "pos": "adv"
+  },
+  {
+    "word": "eventually",
+    "meaning": "最終的には／結局は",
     "pos": "adv"
   },
   
