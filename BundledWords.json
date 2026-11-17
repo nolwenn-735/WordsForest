@@ -1037,6 +1037,118 @@
     "pos": "verb"
   },
   {
+    "word": "take",
+    "meaning": "取る／手に取る",
+    "pos": "verb"
+  },
+  {
+    "word": "take",
+    "meaning": "乗る／利用する",
+    "pos": "verb"
+  },
+  {
+    "word": "take",
+    "meaning": "受ける／する",
+    "pos": "verb"
+  },
+  {
+    "word": "take",
+    "meaning": "時間がかかる",
+    "pos": "verb"
+  },
+  {
+    "word": "get",
+    "meaning": "得る／手に入れる",
+    "pos": "verb"
+  },
+  {
+    "word": "get",
+    "meaning": "受け取る／もらう",
+    "pos": "verb"
+  },
+  {
+    "word": "get",
+    "meaning": "～になる／～の状態になる",
+    "pos": "verb"
+  },
+  {
+    "word": "get",
+    "meaning": "着く／到着する",
+    "pos": "verb"
+  },
+  {
+    "word": "get",
+    "meaning": "分かる／理解する",
+    "pos": "verb"
+  },
+  {
+    "word": "make",
+    "meaning": "作る／生み出す",
+    "pos": "verb"
+  },
+  {
+    "word": "make",
+    "meaning": "～させる／～の状態にする",
+    "pos": "verb"
+  },
+  {
+    "word": "make",
+    "meaning": "～する／行う",
+    "pos": "verb"
+  },
+  {
+    "word": "make",
+    "meaning": "稼ぐ",
+    "pos": "verb"
+  },
+  {
+    "word": "make",
+    "meaning": "間に合う／たどり着く／やり遂げる",
+    "pos": "verb"
+  },
+  {
+    "word": "have",
+    "meaning": "持っている／所有している",
+    "pos": "verb"
+  },
+  {
+    "word": "have",
+    "meaning": "経験する／～がある",
+    "pos": "verb"
+  },
+  {
+    "word": "have",
+    "meaning": "食べる／飲む",
+    "pos": "verb"
+  },
+  {
+    "word": "have",
+    "meaning": "～してもらう／～させる",
+    "pos": "verb"
+  },
+  {
+    "word": "have",
+    "meaning": "～しなければならない",
+    "pos": "verb"
+  },
+  {
+    "word": "do",
+    "meaning": "する／行う",
+    "pos": "verb"
+  },
+  {
+    "word": "do",
+    "meaning": "うまくやる／進む",
+    "pos": "verb"
+  },
+  {
+    "word": "do",
+    "meaning": "十分である／間に合う",
+    "pos": "verb"
+  },
+ 
+ 
+  {
     "word": "show",
     "meaning": "見せる",
     "pos": "verb"
@@ -1595,6 +1707,27 @@
     "meaning": "開催する",
     "pos": "verb"
   },
+  {
+    "word": "keep",
+    "meaning": "保つ／その状態にしておく",
+    "pos": "verb"
+  },
+  {
+    "word": "keep",
+    "meaning": "持ち続ける／取っておく",
+    "pos": "verb"
+  },
+  {
+    "word": "keep",
+    "meaning": "続ける",
+    "pos": "verb"
+  },
+  {
+    "word": "keep",
+    "meaning": "守る",
+    "pos": "verb"
+  },
+  
   
   
   
