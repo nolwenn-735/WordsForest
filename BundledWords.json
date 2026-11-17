@@ -1146,6 +1146,107 @@
     "meaning": "十分である／間に合う",
     "pos": "verb"
   },
+  {
+    "word": "break",
+    "meaning": "壊す／壊れる",
+    "pos": "verb"
+  },
+  {
+    "word": "break",
+    "meaning": "破る／守らない",
+    "pos": "verb"
+  },
+  {
+    "word": "break",
+    "meaning": "中断する／途切れる",
+    "pos": "verb"
+  },
+  {
+    "word": "break",
+    "meaning": "記録を破る／更新する",
+    "pos": "verb"
+  },
+  {
+    "word": "come",
+    "meaning": "来る／やって来る",
+    "pos": "verb"
+  },
+  {
+    "word": "come",
+    "meaning": "～になる／～の状態になる",
+    "pos": "verb"
+  },
+  {
+    "word": "come",
+    "meaning": "～から来る／由来する",
+    "pos": "verb"
+  },
+  {
+    "word": "come",
+    "meaning": "順番・機会などが来る",
+    "pos": "verb"
+  },
+  {
+    "word": "fall",
+    "meaning": "落ちる／落下する",
+    "pos": "verb"
+  },
+  {
+    "word": "fall",
+    "meaning": "倒れる",
+    "pos": "verb"
+  },
+  {
+    "word": "fall",
+    "meaning": "下がる／減る",
+    "pos": "verb"
+  },
+  {
+    "word": "fall",
+    "meaning": "～の状態になる",
+    "pos": "verb"
+  },
+  {
+    "word": "grow",
+    "meaning": "育つ／成長する",
+    "pos": "verb"
+  },
+  {
+    "word": "grow",
+    "meaning": "育てる／栽培する",
+    "pos": "verb"
+  },
+  {
+    "word": "grow",
+    "meaning": "増える／大きくなる",
+    "pos": "verb"
+  },
+  {
+    "word": "grow",
+    "meaning": "だんだん～になる",
+    "pos": "verb"
+  },
+  {
+    "word": "hurt",
+    "meaning": "傷つける／けがをさせる",
+    "pos": "verb"
+  },
+  {
+    "word": "hurt",
+    "meaning": "痛む／痛い",
+    "pos": "verb"
+  },
+  {
+    "word": "hurt",
+    "meaning": "傷つける／心を痛める",
+    "pos": "verb"
+  },
+  {
+    "word": "hurt",
+    "meaning": "害する／悪影響を与える",
+    "pos": "verb"
+  },
+  
  
  
   {
