@@ -915,7 +915,22 @@
   },
   {
     "word": "carry",
-    "meaning": "運ぶ",
+    "meaning": "運ぶ／持ち運ぶ",
+    "pos": "verb"
+  },
+  {
+    "word": "carry",
+    "meaning": "携帯する／持ち歩く",
+    "pos": "verb"
+  },
+  {
+    "word": "carry",
+    "meaning": "商品を扱う／置いている",
+    "pos": "verb"
+  },
+  {
+    "word": "carry",
+    "meaning": "伝える／届かせる",
     "pos": "verb"
   },
   {
@@ -1286,7 +1301,22 @@
   },
   {
     "word": "stand",
-    "meaning": "立つ",
+    "meaning": "立つ／立っている",
+    "pos": "verb"
+  },
+  {
+    "word": "stand",
+    "meaning": "～に耐える／我慢する",
+    "pos": "verb"
+  },
+  {
+    "word": "stand",
+    "meaning": "～を表す／～の略である",
+    "pos": "verb"
+  },
+  {
+    "word": "stand",
+    "meaning": "立場を取る／支持する",
     "pos": "verb"
   },
   {
@@ -1296,7 +1326,17 @@
   },
   {
     "word": "want",
-    "meaning": "欲しい",
+    "meaning": "欲しい／求める",
+    "pos": "verb"
+  },
+  {
+    "word": "want",
+    "meaning": "～したい",
+    "pos": "verb"
+  },
+  {
+    "word": "want",
+    "meaning": "人に～してほしい／～の状態を望む",
     "pos": "verb"
   },
   {
@@ -1351,9 +1391,20 @@
   },
   {
     "word": "stay",
-    "meaning": "滞在する",
+    "meaning": "とどまる／その場にいる",
     "pos": "verb"
   },
+  {
+    "word": "stay",
+    "meaning": "滞在する／泊まる",
+    "pos": "verb"
+  },
+  {
+    "word": "stay",
+    "meaning": "～の状態のままでいる",
+    "pos": "verb"
+  },
+  
   {
     "word": "travel",
     "meaning": "旅行する",
@@ -1620,9 +1671,25 @@
   },
   {
     "word": "stop",
-    "meaning": "止まる",
+    "meaning": "止まる／止める",
     "pos": "verb"
   },
+  {
+    "word": "stop",
+    "meaning": "やめる／中断する",
+    "pos": "verb"
+  },
+  {
+    "word": "stop",
+    "meaning": "防ぐ／阻止する",
+    "pos": "verb"
+  },
+  {
+    "word": "stop",
+    "meaning": "立ち寄る",
+    "pos": "verb"
+  },
+  
   {
     "word": "turn",
     "meaning": "曲がる",

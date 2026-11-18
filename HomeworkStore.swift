@@ -632,7 +632,54 @@ final class HomeworkStore: ObservableObject {
         ) {
             renamedCount += 1
         }
+        
+        if migrateBundledMeaningRename(
+            word: "stand",
+            pos: .verb,
+            from: "立つ",
+            to: "立つ／立っている"
+        ) {
+            renamedCount += 1
+        }
 
+        if migrateBundledMeaningRename(
+            word: "stay",
+            pos: .verb,
+            from: "滞在する",
+            to: "滞在する／泊まる"
+        ) {
+            renamedCount += 1
+        }
+        
+        if migrateBundledMeaningRename(
+            word: "stop",
+            pos: .verb,
+            from: "止まる",
+            to: "止まる／止める"
+        ) {
+            renamedCount += 1
+        }
+        
+        if migrateBundledMeaningRename(
+            word: "want",
+            pos: .verb,
+            from: "欲しい",
+            to: "欲しい／求める"
+        ) {
+            renamedCount += 1
+        }
+        
+        if migrateBundledMeaningRename(
+            word: "carry",
+            pos: .verb,
+            from: "運ぶ",
+            to: "運ぶ／持ち運ぶ"
+        ) {
+            renamedCount += 1
+        }
+        
+        
+        
         // ---------------------------------------------------------
         // 3. 「別meaningではなく言い換え」だった旧meaningを統合
         // ---------------------------------------------------------
