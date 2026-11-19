@@ -141,7 +141,8 @@ struct HomeworkSetEditorView: View {
     }
     var body: some View {
         NavigationStack {
-            List {
+            ScrollViewReader { proxy in
+                List {
 
                 if let pair = preparedFollowingDraftPair {
                     Section {
@@ -192,9 +193,14 @@ struct HomeworkSetEditorView: View {
                         .foregroundStyle(.blue)
                     }
                 }
-                Section("➕ 追加（\(posA.displayName)）") {
-                    pickerSection(pos: posA, query: $queryA, required: $requiredA)
-                }
+                    Section("➕ 追加（\(posA.displayName)）") {
+                        pickerSection(
+                            pos: posA,
+                            query: $queryA,
+                            required: $requiredA,
+                            lane: "A"
+                        )
+                    }
 
                 Section {
                     requiredListSection(required: $requiredB, pos: posB)
@@ -214,10 +220,15 @@ struct HomeworkSetEditorView: View {
                     }
                 }
 
-                Section("➕ 追加（\(posB.displayName)）") {
-                    pickerSection(pos: posB, query: $queryB, required: $requiredB)
-                }
-
+                    Section("➕ 追加（\(posB.displayName)）") {
+                        pickerSection(
+                            pos: posB,
+                            query: $queryB,
+                            required: $requiredB,
+                            lane: "B"
+                        )
+                    }
+                    
                 Section("👀 プレビュー（自動補充後）") {
                     if previewA.isEmpty && previewB.isEmpty {
                         Text("まだプレビューがありません。下の「プレビュー更新」を押してください。")
@@ -232,9 +243,12 @@ struct HomeworkSetEditorView: View {
                             .foregroundStyle(.secondary)
                     }
                 }
-            }
-            .environment(\.editMode, $reorderMode)
-            .navigationTitle("宿題セットを編集")
+                }
+                .safeAreaInset(edge: .top, spacing: 0) {
+                    alphabetJumpDock(proxy: proxy)
+                }
+                .environment(\.editMode, $reorderMode)
+                .navigationTitle("宿題セットを編集")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -271,7 +285,8 @@ struct HomeworkSetEditorView: View {
             .onChange(of: requiredB) { _, _ in
                 saveEditorDraft()
             }
-        }
+                    }
+                }
 
         // ✅ 必須語の選択上限
         .alert(
@@ -670,14 +685,95 @@ struct HomeworkSetEditorView: View {
         }
     }
 
-    private func pickerSection(pos: PartOfSpeech,
-                               query: Binding<String>,
-                               required: Binding<[RequiredItem]>) -> some View {
-        let all = store.list(for: pos)
-        let filtered = all.filter { c in
+    // MARK: - 追加候補 + A〜Zジャンプ
 
-            // すでに必須に入っているカードは追加候補から除外
-            let alreadyRequired = required.wrappedValue.contains { r in
+    @ViewBuilder
+    private func alphabetJumpDock(
+        proxy: ScrollViewProxy
+    ) -> some View {
+
+        let allCardsA = store.list(for: posA)
+        let allCardsB = store.list(for: posB)
+
+        HStack(spacing: 12) {
+
+            HStack(spacing: 8) {
+                Text(posA.displayName)
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(.secondary)
+
+                AlphabetJumpControl(
+                    words: allCardsA.map { $0.word }
+                ) { letter in
+                    queryA = ""
+
+                    let jumpCandidates = pickerCandidates(
+                        pos: posA,
+                        query: "",
+                        required: requiredA
+                    )
+
+                    jumpToPickerInitial(
+                        letter,
+                        candidates: jumpCandidates,
+                        lane: "A",
+                        proxy: proxy
+                    )
+                }
+            }
+            .frame(maxWidth: .infinity)
+
+            Divider()
+                .frame(height: 28)
+
+            HStack(spacing: 8) {
+                Text(posB.displayName)
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(.secondary)
+
+                AlphabetJumpControl(
+                    words: allCardsB.map { $0.word }
+                ) { letter in
+                    queryB = ""
+
+                    let jumpCandidates = pickerCandidates(
+                        pos: posB,
+                        query: "",
+                        required: requiredB
+                    )
+
+                    jumpToPickerInitial(
+                        letter,
+                        candidates: jumpCandidates,
+                        lane: "B",
+                        proxy: proxy
+                    )
+                }
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
+        .background(.ultraThinMaterial)
+    }
+    
+    private func pickerCandidates(
+        pos: PartOfSpeech,
+        query: String,
+        required: [RequiredItem]
+    ) -> [WordCard] {
+
+        let all = store.list(for: pos)
+
+        let q = query
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
+
+        return all.filter { c in
+
+            // 必須に追加済みのカードは、追加候補一覧からだけ除外する。
+            // A〜Zの有効文字判定には影響させない。
+            let alreadyRequired = required.contains { r in
                 isSameCard(c, r)
             }
 
@@ -685,45 +781,101 @@ struct HomeworkSetEditorView: View {
                 return false
             }
 
-            // 検索文字で絞り込み
-            let q = query.wrappedValue
-                .trimmingCharacters(in: .whitespacesAndNewlines)
-                .lowercased()
-
+            // 検索欄が空なら、残っている追加候補をすべて表示
             if q.isEmpty {
                 return true
             }
 
-            let w = c.word.lowercased()
-            let m = (c.meanings.first ?? "").lowercased()
+            let word = c.word.lowercased()
+            let meanings = c.meanings
+                .joined(separator: " ")
+                .lowercased()
 
-            return w.contains(q) || m.contains(q)
+            return word.contains(q) || meanings.contains(q)
+        }
+    }
+
+
+    private func pickerScrollID(
+        for card: WordCard,
+        lane: String
+    ) -> String {
+        "homework-picker-\(lane)-\(card.id.uuidString)"
+    }
+
+
+    private func jumpToPickerInitial(
+        _ letter: String,
+        candidates: [WordCard],
+        lane: String,
+        proxy: ScrollViewProxy
+    ) {
+        guard let target = candidates.first(where: {
+            AlphabetJumpControl.initialLetter(of: $0.word) == letter
+        }) else {
+            return
         }
 
+        // 検索欄を消した直後でも、
+        // Listが通常候補へ戻ってからジャンプできるよう次の描画へ送る。
+        DispatchQueue.main.async {
+            proxy.scrollTo(
+                pickerScrollID(
+                    for: target,
+                    lane: lane
+                ),
+                anchor: .top
+            )
+        }
+    }
 
-        return VStack(alignment: .leading, spacing: 8) {
-            TextField("検索（word / meaning）", text: query)
-                .textFieldStyle(.plain)
-                .textInputAutocapitalization(.never)
-                .autocorrectionDisabled()
-                .foregroundStyle(colorScheme == .dark ? .white : .primary)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 10)
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(colorScheme == .dark
-                              ? Color(red: 0.16, green: 0.16, blue: 0.17)
-                              : Color(.secondarySystemBackground))
+
+    @ViewBuilder
+    private func pickerSection(
+        pos: PartOfSpeech,
+        query: Binding<String>,
+        required: Binding<[RequiredItem]>,
+        lane: String
+    ) -> some View {
+
+        let filtered = pickerCandidates(
+            pos: pos,
+            query: query.wrappedValue,
+            required: required.wrappedValue
+        )
+
+        TextField("検索（word / meaning）", text: query)
+            .textFieldStyle(.plain)
+            .textInputAutocapitalization(.never)
+            .autocorrectionDisabled()
+            .foregroundStyle(colorScheme == .dark ? .white : .primary)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 10)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(
+                        colorScheme == .dark
+                            ? Color(red: 0.16, green: 0.16, blue: 0.17)
+                            : Color(.secondarySystemBackground)
+                    )
+            )
+
+        ForEach(filtered) { c in
+            pickerCandidateRow(
+                c: c,
+                pos: pos
+            )
+            .id(
+                pickerScrollID(
+                    for: c,
+                    lane: lane
                 )
+            )
+        }
 
-            ForEach(filtered) { c in
-                pickerCandidateRow(c: c, pos: pos)
-            }
-
-            if filtered.isEmpty {
-                Text("該当がありません")
-                    .foregroundStyle(.secondary)
-            }
+        if filtered.isEmpty {
+            Text("該当がありません")
+                .foregroundStyle(.secondary)
         }
     }
 

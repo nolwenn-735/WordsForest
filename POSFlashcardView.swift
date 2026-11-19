@@ -63,10 +63,7 @@ struct POSFlashcardView: View {
     
     /// 展開中のカード index（nil なら全て表面）
     @State private var expandedIndex: Int? = nil
-    
-    /// A〜Z 頭文字ジャンプ
-    @State private var showingAlphabetJump = false
-    
+        
     /// 例文編集シート用
     @State private var editingCard: WordCard? = nil
     
@@ -289,19 +286,10 @@ struct POSFlashcardView: View {
                 .layoutPriority(10)
                 .frame(minWidth: 46)
 
-            Button {
-                showingAlphabetJump.toggle()
-            } label: {
-                Text("A–Z")
-                    .font(.system(size: 13, weight: .semibold))
-                    .lineLimit(1)
-            }
-            .modifier(CompactGlassCapsuleButton())
-            .frame(height: 44)
-            .accessibilityLabel("頭文字へ移動")
-            .popover(isPresented: $showingAlphabetJump) {
-                alphabetJumpPopover(proxy: proxy)
-                    .presentationCompactAdaptation(.popover)
+            AlphabetJumpControl(
+                words: visibleCardsForJump.map { $0.word }
+            ) { letter in
+                jumpToInitial(letter, proxy: proxy)
             }
 
             Spacer(minLength: 0)
@@ -327,68 +315,22 @@ struct POSFlashcardView: View {
 
     // MARK: - A〜Z 頭文字ジャンプ
 
-    private let alphabetLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".map(String.init)
-
     private var visibleCardsForJump: [WordCard] {
         hideLearned
             ? cards.filter { !store.isLearned($0) }
             : cards
     }
 
-    private var availableInitialLetters: Set<String> {
-        Set(visibleCardsForJump.compactMap { initialLetter(of: $0.word) })
-    }
-
-    private func initialLetter(of word: String) -> String? {
-        let trimmed = word.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard let first = trimmed.uppercased().first else { return nil }
-
-        let letter = String(first)
-        return alphabetLetters.contains(letter) ? letter : nil
-    }
-
     private func jumpToInitial(_ letter: String, proxy: ScrollViewProxy) {
         guard let index = visibleCardsForJump.firstIndex(where: {
-            initialLetter(of: $0.word) == letter
+            AlphabetJumpControl.initialLetter(of: $0.word) == letter
         }) else { return }
 
-        showingAlphabetJump = false
-
         // A〜Zジャンプは一回だけ。
-        // スクロール位置をStateで追跡し続けず、ジャンプ後は通常の手動スクロールへ戻す。
+        // ジャンプ後は通常の手動スクロールへ戻す。
         DispatchQueue.main.async {
             proxy.scrollTo(index, anchor: .top)
         }
-    }
-
-    private func alphabetJumpPopover(proxy: ScrollViewProxy) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("頭文字へ移動")
-                .font(.headline)
-
-            LazyVGrid(
-                columns: Array(
-                    repeating: GridItem(.flexible(), spacing: 6),
-                    count: 6
-                ),
-                spacing: 8
-            ) {
-                ForEach(alphabetLetters, id: \.self) { letter in
-                    let available = availableInitialLetters.contains(letter)
-
-                    Button(letter) {
-                        jumpToInitial(letter, proxy: proxy)
-                    }
-                    .font(.headline)
-                    .frame(maxWidth: .infinity, minHeight: 34)
-                    .buttonStyle(.bordered)
-                    .disabled(!available)
-                    .opacity(available ? 1.0 : 0.28)
-                }
-            }
-        }
-        .padding(16)
-        .frame(width: 286)
     }
 
     // MARK: - 行の並び
