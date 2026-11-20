@@ -1,5 +1,7 @@
+
 //
 //  Created by Nami .T on 2025/12/21.
+//
 //  ColumnStore.swift
 //  WordsForest
 //
@@ -14,6 +16,31 @@ struct ColumnExportPayload: Codable {
     var items: [ColumnArticle]
 }
 
+// コラム削除を要求した結果
+enum ColumnDeleteResult: Equatable {
+
+    /// 未配布かつ最新No.なので、完全削除した。
+    /// 次回新規作成時に同じNo.を再利用できる。
+    case permanentlyDeletedUndistributed
+
+    /// 未配布だが、このNo.より後ろに別コラムが存在するため削除不可。
+    /// UIでは「削除せず内容を編集してください」と案内する。
+    case blockedUndistributedNonLatest
+
+    /// 一度以上配布済みなので、完全削除せず削除済みレコードへ変更した。
+    /// この削除版をコラムJSON + manifestで生徒へ配布する必要がある。
+    case markedDeletedNeedsDistribution
+
+    /// すでに削除済み。
+    case alreadyDeleted
+
+    /// BundledColumnsなど、正のIDではないため削除対象外。
+    case ignoredBundled
+
+    /// 対象のコラムがStore内に見つからない。
+    case notFound
+}
+
 @MainActor
 final class ColumnStore: ObservableObject {
     static let shared = ColumnStore()
@@ -26,10 +53,12 @@ final class ColumnStore: ObservableObject {
     @AppStorage("column_newUntilISO") private var newUntilISO: String = ""
 
     @Published private(set) var articles: [ColumnArticle] = []
+
     /// アプリ収録の読み取り専用コラム
     private(set) var bundledArticles: [ColumnArticle] = []
 
-    /// 教師作成・配布で追加されたコラム
+    /// 正のIDを持つコラム。
+    /// 教師作成の未配布コラム、配布済みコラム、削除済みレコードを含む。
     private var distributedArticles: [ColumnArticle] = []
 
     private let iso = ISO8601DateFormatter()
@@ -39,7 +68,7 @@ final class ColumnStore: ObservableObject {
         distributedArticles = loadDistributedArticles()
         rebuildArticles()
     }
-    
+
     /// アプリに収録した基礎コラムをBundled JSONから読む
     private func loadBundledArticles() -> [ColumnArticle] {
         guard let url = Bundle.main.url(
@@ -70,7 +99,7 @@ final class ColumnStore: ObservableObject {
         }
     }
 
-    /// 教師作成・配布コラムだけを端末保存から読む
+    /// 正のIDを持つコラムだけを端末保存から読む
     private func loadDistributedArticles() -> [ColumnArticle] {
         guard let data = raw.data(using: .utf8),
               let list = try? JSONDecoder().decode(
@@ -86,7 +115,7 @@ final class ColumnStore: ObservableObject {
             .sorted { $0.id > $1.id }
     }
 
-    /// 教師作成・配布コラムだけを端末へ保存する
+    /// 正のIDを持つコラムだけを端末へ保存する
     private func persistDistributed(
         _ list: [ColumnArticle]
     ) {
@@ -107,17 +136,21 @@ final class ColumnStore: ObservableObject {
     }
 
     /// 画面表示用は
-    /// Bundled基礎コラム + 教師作成・配布コラム
+    /// Bundled基礎コラム + 正のIDを持つコラム
     private func rebuildArticles() {
         articles =
             (bundledArticles + distributedArticles)
             .sorted { $0.id > $1.id }
     }
-    
+
     // ✅ HOME用：🆕バッジ出す？
     func shouldShowNewBadge(now: Date = Date()) -> Bool {
         guard hasNew else { return false }
-        guard let until = iso.date(from: newUntilISO) else { return true } // 期限が壊れてたら出す
+
+        guard let until = iso.date(from: newUntilISO) else {
+            return true
+        }
+
         return now < until
     }
 
@@ -126,40 +159,102 @@ final class ColumnStore: ObservableObject {
         hasNew = false
     }
 
-    // ✅ 取り込み（JSONファイル）
+    // =======================================================
+    // MARK: - コラム取得
+    // =======================================================
+
+    /// 正のIDを持つコラムをNo.で取得する
+    func article(id: Int) -> ColumnArticle? {
+        distributedArticles.first {
+            $0.id == id
+        }
+    }
+
+    // =======================================================
+    // MARK: - 取り込み
+    // =======================================================
+
+    /// 配布JSONを取り込む。
+    ///
+    /// 新しいrevisionは同じNo.を上書きする。
+    /// 古いrevisionを後から取り込んでも巻き戻さない。
+    /// 削除済みrevisionを取り込んだ場合も、同じNo.を削除済みに更新する。
     func importPayload(_ payload: ColumnExportPayload) throws {
         let incomingItems = payload.items
             .filter { $0.id > 0 }
 
-        // 同じpayloadでも、記事本体が端末内に無ければ再取り込みする
-        if payload.id == lastImportedPayloadID {
-            let allItemsAlreadyExist = incomingItems.allSatisfy { incoming in
-                distributedArticles.contains { $0.id == incoming.id }
-            }
-
-            if allItemsAlreadyExist {
-                return
-            }
-        }
-
-        // 教師作成・配布コラムだけをidでマージ
         var dict = Dictionary(
             uniqueKeysWithValues:
                 distributedArticles.map { ($0.id, $0) }
         )
 
-        for item in incomingItems {
-            dict[item.id] = item
+        var contentChanged = false
+        var metadataChanged = false
+
+        for rawIncoming in incomingItems {
+            let incoming = normalizedIncomingArticle(
+                rawIncoming
+            )
+
+            guard let current = dict[incoming.id] else {
+                dict[incoming.id] = incoming
+                contentChanged = true
+                continue
+            }
+
+            if shouldReplace(
+                current: current,
+                with: incoming
+            ) {
+                dict[incoming.id] = incoming
+                contentChanged = true
+                continue
+            }
+
+            let sameRevision =
+                incoming.revision == current.revision
+
+            let sameDeletedState =
+                incoming.isDeleted == current.isDeleted
+
+            let sameContent =
+                articleContentMatches(
+                    current,
+                    incoming
+                )
+
+            if sameRevision,
+               sameDeletedState,
+               sameContent,
+               incoming.distributedRevision > current.distributedRevision {
+
+                var updated = current
+                updated.distributedRevision =
+                    min(
+                        incoming.distributedRevision,
+                        current.revision
+                    )
+
+                dict[incoming.id] = updated
+                metadataChanged = true
+            }
         }
 
-        let merged = dict.values.sorted {
-            $0.id > $1.id
+        if contentChanged || metadataChanged {
+            let merged = dict.values.sorted {
+                $0.id > $1.id
+            }
+
+            persistDistributed(merged)
         }
 
-        persistDistributed(merged)
+        lastImportedPayloadID = payload.id
+
+        guard contentChanged else {
+            return
+        }
 
         // 🆕を立てる（7日残す）
-        lastImportedPayloadID = payload.id
         hasNew = true
 
         let until =
@@ -173,10 +268,79 @@ final class ColumnStore: ObservableObject {
         newUntilISO = iso.string(from: until)
     }
 
+    /// 生徒端末へ届いたコラムJSONは、
+    /// そのrevisionまで配布済みの内容として扱う。
+    private func normalizedIncomingArticle(
+        _ article: ColumnArticle
+    ) -> ColumnArticle {
+        ColumnArticle(
+            id: article.id,
+            title: article.title,
+            body: article.body,
+            tags: article.tags,
+            revision: article.revision,
+            distributedRevision: article.revision,
+            isDeleted: article.isDeleted
+        )
+    }
+
+    /// incomingを現在の同一No.へ上書きしてよいか。
+    private func shouldReplace(
+        current: ColumnArticle,
+        with incoming: ColumnArticle
+    ) -> Bool {
+
+        if incoming.revision > current.revision {
+            return true
+        }
+
+        if incoming.revision < current.revision {
+            return false
+        }
+
+        // 同じrevisionで削除状態が食い違う場合、
+        // 削除済み側を優先して古い本文を復活させない。
+        if current.isDeleted != incoming.isDeleted {
+            return incoming.isDeleted
+        }
+
+        // 旧形式JSONなど、revision情報が同じまま内容だけ更新された
+        // ケースにも対応する。
+        return !articleContentMatches(
+            current,
+            incoming
+        )
+    }
+
+    private func articleContentMatches(
+        _ lhs: ColumnArticle,
+        _ rhs: ColumnArticle
+    ) -> Bool {
+        lhs.title == rhs.title &&
+        lhs.body == rhs.body &&
+        lhs.tags == rhs.tags
+    }
+
+    // =======================================================
+    // MARK: - No.発行
+    // =======================================================
+
     func nextID() -> Int {
         (distributedArticles.map { $0.id }.max() ?? 0) + 1
     }
 
+    // =======================================================
+    // MARK: - 新規保存・再編集保存
+    // =======================================================
+
+    /// 新規コラムまたは既存コラムの編集内容を保存する。
+    ///
+    /// 新規:
+    /// revision 1 / distributedRevision 0
+    ///
+    /// 既存:
+    /// 内容が変わったときだけrevisionを1進める。
+    /// distributedRevisionは維持する。
     func upsert(_ article: ColumnArticle) {
         guard article.id > 0 else {
             return
@@ -187,7 +351,47 @@ final class ColumnStore: ObservableObject {
                 distributedArticles.map { ($0.id, $0) }
         )
 
-        dict[article.id] = article
+        if let current = dict[article.id] {
+
+            // 削除済みコラムは復活させない。
+            guard !current.isDeleted else {
+                return
+            }
+
+            let contentChanged =
+                current.title != article.title ||
+                current.body != article.body ||
+                current.tags != article.tags
+
+            guard contentChanged else {
+                return
+            }
+
+            let updated = ColumnArticle(
+                id: current.id,
+                title: article.title,
+                body: article.body,
+                tags: article.tags,
+                revision: current.revision + 1,
+                distributedRevision: current.distributedRevision,
+                isDeleted: false
+            )
+
+            dict[current.id] = updated
+
+        } else {
+            let created = ColumnArticle(
+                id: article.id,
+                title: article.title,
+                body: article.body,
+                tags: article.tags,
+                revision: 1,
+                distributedRevision: 0,
+                isDeleted: false
+            )
+
+            dict[created.id] = created
+        }
 
         let merged = dict.values.sorted {
             $0.id > $1.id
@@ -196,20 +400,154 @@ final class ColumnStore: ObservableObject {
         persistDistributed(merged)
     }
 
-    // ✅ 教師作成・配布記事だけを削除
-    func delete(_ article: ColumnArticle) {
-        guard article.id > 0 else {
-            return
+    // =======================================================
+    // MARK: - 配布済みrevision
+    // =======================================================
+
+    /// 通知マニフェストの書き出しが正常に完了した時点で呼ぶ。
+    ///
+    /// ここで初めて、そのrevisionを「生徒へ配布済み」と確定する。
+    @discardableResult
+    func markDistributed(
+        articleID: Int,
+        revision: Int? = nil
+    ) -> Bool {
+
+        guard articleID > 0 else {
+            return false
         }
 
-        var list = distributedArticles
-
-        list.removeAll {
-            $0.id == article.id
+        guard let current = distributedArticles.first(
+            where: { $0.id == articleID }
+        ) else {
+            return false
         }
 
-        persistDistributed(list)
+        let requestedRevision =
+            revision ?? current.revision
+
+        let targetRevision =
+            min(
+                max(1, requestedRevision),
+                current.revision
+            )
+
+        guard targetRevision > current.distributedRevision else {
+            return true
+        }
+
+        var updated = current
+        updated.distributedRevision = targetRevision
+
+        var dict = Dictionary(
+            uniqueKeysWithValues:
+                distributedArticles.map { ($0.id, $0) }
+        )
+
+        dict[current.id] = updated
+
+        let merged = dict.values.sorted {
+            $0.id > $1.id
+        }
+
+        persistDistributed(merged)
+
+        return true
     }
+
+    // =======================================================
+    // MARK: - 削除
+    // =======================================================
+
+    /// コラム削除ルール
+    ///
+    /// 1. Bundled:
+    ///    削除不可
+    ///
+    /// 2. 未配布 + 最新No.:
+    ///    完全削除。
+    ///    次回新規作成時に同じNo.を再利用できる。
+    ///
+    /// 3. 未配布 + 後ろに別No.あり:
+    ///    削除不可。
+    ///    No.の連続性を守るため編集を促す。
+    ///
+    /// 4. 一度でも配布済み:
+    ///    完全削除しない。
+    ///    同じNo.の削除済みrevisionを作る。
+    @discardableResult
+    func delete(
+        _ article: ColumnArticle
+    ) -> ColumnDeleteResult {
+
+        guard article.id > 0 else {
+            return .ignoredBundled
+        }
+
+        guard let current = distributedArticles.first(
+            where: { $0.id == article.id }
+        ) else {
+            return .notFound
+        }
+
+        if current.isDeleted {
+            return .alreadyDeleted
+        }
+
+        // 一度も配布していないコラム
+        if !current.hasBeenDistributed {
+            let latestID =
+                distributedArticles
+                    .map { $0.id }
+                    .max()
+                ?? 0
+
+            guard current.id == latestID else {
+                return .blockedUndistributedNonLatest
+            }
+
+            var list = distributedArticles
+
+            list.removeAll {
+                $0.id == current.id
+            }
+
+            persistDistributed(list)
+
+            return .permanentlyDeletedUndistributed
+        }
+
+        // 一度でも配布したコラムは、
+        // No.とタイトルを残した削除済みrevisionへ変更する。
+        let deletedArticle = ColumnArticle(
+            id: current.id,
+            title: current.title,
+            body: "",
+            tags: [],
+            revision: current.revision + 1,
+            distributedRevision: current.distributedRevision,
+            isDeleted: true
+        )
+
+        var dict = Dictionary(
+            uniqueKeysWithValues:
+                distributedArticles.map { ($0.id, $0) }
+        )
+
+        dict[current.id] = deletedArticle
+
+        let merged = dict.values.sorted {
+            $0.id > $1.id
+        }
+
+        persistDistributed(merged)
+
+        return .markedDeletedNeedsDistribution
+    }
+
+    // =======================================================
+    // MARK: - Debug
+    // =======================================================
 
     // ✅ 開発用：教師作成・配布コラムを空に戻す
     func resetToSeedForDebug() {
@@ -225,7 +563,7 @@ final class ColumnStore: ObservableObject {
 
 extension ColumnStore {
 
-    /// 統合バックアップへ渡す教師作成・配布コラム
+    /// 統合バックアップへ渡す正のIDを持つコラム
     var backupArticles: [ColumnArticle] {
         distributedArticles
     }
@@ -246,7 +584,7 @@ extension ColumnStore {
             .filter { $0.id > 0 }
             .sorted { $0.id > $1.id }
 
-        // バックアップからは教師作成・配布コラムだけ復元
+        // バックアップからは正のIDを持つコラムだけ復元
         persistDistributed(restoredDistributed)
 
         // 🆕関連はバックアップ対象外なのでリセット

@@ -32,6 +32,9 @@ struct NoticeFileEditorView: View {
 
     @State private var latestColumnIDText: String
 
+    private let latestColumnRevision: Int?
+    private let latestColumnChange: DeliveryColumnChange?
+
     init(
         initialHomeworkPayloadID: String = "",
         initialHomeworkDateText: String = "",
@@ -41,28 +44,58 @@ struct NoticeFileEditorView: View {
         initialHomeworkCycleWeeks: Int? = nil,
         initialHomeworkExtensionWeeks: Int? = nil,
         initialLatestColumnID: Int? = nil,
+        initialLatestColumnRevision: Int? = nil,
+        initialLatestColumnChange: DeliveryColumnChange? = nil,
         entryContext: EntryContext = .homework,
         onConfirm: ((DeliveryManifest) -> Void)? = nil
-        ) {
+    ) {
         self.entryContext = entryContext
         self.onConfirm = onConfirm
+        self.latestColumnRevision = initialLatestColumnRevision
+        self.latestColumnChange = initialLatestColumnChange
+
         let cycle = initialHomeworkCycleWeeks ?? 0
         let extensionWeeks = initialHomeworkExtensionWeeks ?? 0
 
-        _homeworkPayloadID = State(initialValue: initialHomeworkPayloadID)
-        _homeworkDateText = State(initialValue: initialHomeworkDateText)
-        _homeworkLabel = State(initialValue: initialHomeworkLabel)
-        _homeworkCountText = State(initialValue: initialHomeworkCount.map(String.init) ?? "")
-
-        _homeworkStatus = State(initialValue: initialHomeworkStatus ?? "")
-        _homeworkCycleWeeks = State(initialValue: (cycle == 1 || cycle == 2) ? cycle : 0)
-        _homeworkExtensionWeeks = State(
-            initialValue: (extensionWeeks == 1 || extensionWeeks == 2)
-                ? extensionWeeks
-                : 0
+        _homeworkPayloadID = State(
+            initialValue: initialHomeworkPayloadID
         )
 
-        _latestColumnIDText = State(initialValue: initialLatestColumnID.map(String.init) ?? "")
+        _homeworkDateText = State(
+            initialValue: initialHomeworkDateText
+        )
+
+        _homeworkLabel = State(
+            initialValue: initialHomeworkLabel
+        )
+
+        _homeworkCountText = State(
+            initialValue: initialHomeworkCount.map(String.init) ?? ""
+        )
+
+        _homeworkStatus = State(
+            initialValue: initialHomeworkStatus ?? ""
+        )
+
+        _homeworkCycleWeeks = State(
+            initialValue:
+                (cycle == 1 || cycle == 2)
+                    ? cycle
+                    : 0
+        )
+
+        _homeworkExtensionWeeks = State(
+            initialValue:
+                (extensionWeeks == 1 || extensionWeeks == 2)
+                    ? extensionWeeks
+                    : 0
+        )
+
+        _latestColumnIDText = State(
+            initialValue:
+                initialLatestColumnID.map(String.init)
+                    ?? ""
+        )
     }
     
     @ViewBuilder
@@ -72,19 +105,58 @@ struct NoticeFileEditorView: View {
                 ? "配布するコラム"
                 : "最新コラムのNo."
         ) {
-            TextField(
-                "最新コラムNo.（例: 1）",
-                text: $latestColumnIDText
-            )
-            .keyboardType(.numberPad)
 
-            Text(
-                entryContext == .column
-                    ? "今回配布するコラムのナンバーです。"
-                    : "現在配布済みの最新コラムのナンバーです。"
-            )
-            .font(.footnote)
-            .foregroundStyle(.secondary)
+            if entryContext == .column {
+                HStack {
+                    Text("コラムNo.")
+
+                    Spacer()
+
+                    Text(
+                        latestColumnIDText.isEmpty
+                            ? "未指定"
+                            : "No.\(latestColumnIDText)"
+                    )
+                    .foregroundStyle(.secondary)
+                }
+
+                if let revision = latestColumnRevision {
+                    HStack {
+                        Text("revision")
+
+                        Spacer()
+
+                        Text("\(revision)")
+                            .foregroundStyle(.secondary)
+                    }
+                }
+
+                if let change = latestColumnChange {
+                    HStack {
+                        Text("変更内容")
+
+                        Spacer()
+
+                        Text(columnChangeLabel(change))
+                            .foregroundStyle(.secondary)
+                    }
+                }
+
+                Text("今回配布するコラムの情報です。コラムJSONと同じNo.・revision・変更内容が通知ファイルに保存されます。")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+
+            } else {
+                TextField(
+                    "最新コラムNo.（例: 1）",
+                    text: $latestColumnIDText
+                )
+                .keyboardType(.numberPad)
+
+                Text("現在配布済みの最新コラムのナンバーです。")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
         }
         .opacity(entryContext == .homework ? 0.45 : 1.0)
     }
@@ -229,6 +301,10 @@ struct NoticeFileEditorView: View {
                 extensionWeeks,
             latestColumnArticleID:
                 latestColumnID,
+            latestColumnRevision:
+                latestColumnRevision,
+            latestColumnChange:
+                latestColumnChange,
             updatedAtISO:
                 ISO8601DateFormatter().string(from: Date())
         )
@@ -243,7 +319,21 @@ struct NoticeFileEditorView: View {
             onConfirm?(manifest)
         }
     }
-    
+
+    private func columnChangeLabel(
+        _ change: DeliveryColumnChange
+    ) -> String {
+        switch change {
+        case .newArticle:
+            return "新規配布"
+
+        case .updated:
+            return "再編集"
+
+        case .deleted:
+            return "削除"
+        }
+    }
 
     private func normalizedHomeworkID(_ s: String) -> String? {
         let trimmed = s.trimmingCharacters(in: .whitespacesAndNewlines)

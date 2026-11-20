@@ -10,7 +10,7 @@ import SwiftUI
 
 enum ColumnExportFile {
 
-    /// JSONファイル名（例: 2026-03-14-column-25.json）
+    /// JSONファイル名（例: 2026-03-14-column-25-r2.json）
     static func makeFileName(for payload: ColumnExportPayload) -> String {
         "\(payload.id).json"
     }
@@ -23,12 +23,19 @@ enum ColumnExportFile {
     }
 
     /// 1本の記事を payload 化
-    static func makePayload(for article: ColumnArticle, now: Date = Date()) -> ColumnExportPayload {
+    ///
+    /// 同じNo.を同日に再編集・再配布しても区別できるよう、
+    /// payload IDにはコラムNo.とrevisionの両方を含める。
+    static func makePayload(
+        for article: ColumnArticle,
+        now: Date = Date()
+    ) -> ColumnExportPayload {
+
         let iso = ISO8601DateFormatter()
         let day = dayString(from: now)
 
         return ColumnExportPayload(
-            id: "\(day)-column-\(article.id)",
+            id: "\(day)-column-\(article.id)-r\(article.revision)",
             createdAt: iso.string(from: now),
             items: [article]
         )
