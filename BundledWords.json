@@ -721,7 +721,7 @@
   },
   {
     "word": "receipt",
-    "meaning": "レシート",
+    "meaning": "レシート／領収書",
     "pos": "noun"
   },
   {
@@ -774,6 +774,58 @@
     "meaning": "日光",
     "pos": "noun"
   },
+  
+  {
+    "word": "insight",
+    "meaning": "洞察／新たな気づき",
+    "pos": "noun"
+  },
+  {
+    "word": "compromise",
+    "meaning": "妥協／折衷案",
+    "pos": "noun"
+  },
+  {
+    "word": "obstacle",
+    "meaning": "障害／妨げ",
+    "pos": "noun"
+  },
+  {
+    "word": "perspective",
+    "meaning": "視点／ものの見方",
+    "pos": "noun"
+  },
+  {
+    "word": "outcome",
+    "meaning": "結果／結末",
+    "pos": "noun"
+  },
+  {
+    "word": "misunderstanding",
+    "meaning": "誤解",
+    "pos": "noun"
+  },
+  {
+    "word": "permission",
+    "meaning": "許可",
+    "pos": "noun"
+  },
+  {
+    "word": "responsibility",
+    "meaning": "責任",
+    "pos": "noun"
+  },
+  {
+    "word": "complaint",
+    "meaning": "苦情／不満",
+    "pos": "noun"
+  },
+  {
+    "word": "deadline",
+    "meaning": "締め切り／期限",
+    "pos": "noun"
+  },
+
   
   
   
@@ -1033,9 +1085,86 @@
   },
   {
     "word": "pick",
-    "meaning": "拾う",
+    "meaning": "選ぶ／選び取る",
     "pos": "verb"
   },
+  {
+    "word": "pick",
+    "meaning": "摘む／採る",
+    "pos": "verb"
+  },
+  {
+    "word": "pick",
+    "meaning": "つまんで取る／取り除く",
+    "pos": "verb"
+  },
+  {
+    "word": "drop",
+    "meaning": "落とす／落ちる",
+    "pos": "verb"
+  },
+  {
+    "word": "drop",
+    "meaning": "下がる／減る",
+    "pos": "verb"
+  },
+  {
+    "word": "drop",
+    "meaning": "やめる／中止する／外す",
+    "pos": "verb"
+  },
+  {
+    "word": "push",
+    "meaning": "押す／押して動かす",
+    "pos": "verb"
+  },
+  {
+    "word": "push",
+    "meaning": "進める／後押しする",
+    "pos": "verb"
+  },
+  {
+    "word": "push",
+    "meaning": "強く勧める／無理にさせる",
+    "pos": "verb"
+  },
+  {
+    "word": "rise",
+    "meaning": "上がる／昇る",
+    "pos": "verb"
+  },
+  {
+    "word": "rise",
+    "meaning": "増える／上昇する",
+    "pos": "verb"
+  },
+  {
+    "word": "rise",
+    "meaning": "高まる／強まる",
+    "pos": "verb"
+  },
+  {
+    "word": "save",
+    "meaning": "救う／助ける",
+    "pos": "verb"
+  },
+  {
+    "word": "save",
+    "meaning": "取っておく／残しておく",
+    "pos": "verb"
+  },
+  {
+    "word": "save",
+    "meaning": "節約する／貯める",
+    "pos": "verb"
+  },
+  {
+    "word": "save",
+    "meaning": "保存する",
+    "pos": "verb"
+  },
+  
+  
   {
     "word": "put",
     "meaning": "置く",
@@ -7837,5 +7966,5 @@
     "word": "run",
     "meaning": "運営する",
     "pos": "verb"
-  }
+  },
 ]

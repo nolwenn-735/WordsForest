@@ -678,6 +678,33 @@ final class HomeworkStore: ObservableObject {
             renamedCount += 1
         }
         
+        if migrateBundledMeaningRename(
+            word: "pick",
+            pos: .verb,
+            from: "拾う",
+            to: "選ぶ／選び取る"
+        ) {
+            renamedCount += 1
+        }
+        
+        if migrateBundledMeaningRename(
+            word: "receipt",
+            pos: .noun,
+            from: "レシート",
+            to: "レシート／領収書"
+        ) {
+            renamedCount += 1
+        }
+        
+        if migrateBundledMeaningRename(
+            word: "outcome",
+            pos: .noun,
+            from: "結果／成り行き",
+            to: "レシート／結末"
+        ) {
+            renamedCount += 1
+        }
+        
         
         
         // ---------------------------------------------------------

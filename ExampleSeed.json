@@ -9183,6 +9183,188 @@
           }
         ]
       },
+      {
+        "pos": "noun",
+        "word": "stain",
+        "meanings": [
+          {
+            "meaning": "しみ／汚れ",
+            "en": "A: There's a coffee stain on your shirt.\nB: Oh no! Do you think it'll come out?",
+            "ja": "A：シャツにコーヒーのしみがついてるよ。\nB：えっ、最悪！ 落ちるかな？"
+          }
+        ],
+        "wordNote": "stain は、衣服や布、家具などに色が染みついて残った汚れを表します。\n\ndirt は泥やほこりなどの汚れを広く指しますが、stain は特に、コーヒーや油、インクなどがついて、跡として残っているものに使います。\n\na coffee stain\n→ コーヒーのしみ\n\nan oil stain\n→ 油じみ\n\na stubborn stain\n→ 頑固なしみ\n\nget a stain out\n→ しみを落とす\n\nstain remover\n→ しみ抜き剤\n\nI spilled some sauce on my shirt. How do I get the stain out?\n→ シャツにソースをこぼしちゃった。どうやったらしみが落ちるかな？\n\nしみが落ちることを表すときは、come out もよく使います。\n\nThe stain won't come out.\n→ このしみ、どうしても落ちないんだ。\n\nまた、stain は動詞としても使えます。\n\nBe careful. Red wine can stain the carpet.\n→ 気をつけて。赤ワインはカーペットにしみが残ることがあるよ。\n\nstained shirt\n→ しみのついたシャツ\n\nただ汚れているだけなら dirty、何かの色が染みついているなら stained という違いを意識すると使いやすくなります。\n\n衣服の洗濯だけでなく、ソファやテーブルの汚れについて話すときにも役立つ言葉です。"
+      },
+      {
+        "pos": "noun",
+        "word": "leak",
+        "meanings": [
+          {
+            "meaning": "水漏れ／漏出",
+            "en": "A: There's a leak under the kitchen sink.\nB: We'd better call someone before it gets worse.",
+            "ja": "A：キッチンのシンクの下で水漏れしてる。\nB：ひどくなる前に業者さんを呼んだほうがいいね。"
+          }
+        ],
+        "wordNote": "leak は、水やガスなどが、本来閉じ込められている場所から意図せず外へ漏れ出すことを表します。\n\n水道管や屋根の水漏れから、ガス漏れ、さらには情報漏洩まで、幅広く使われます。\n\na water leak\n→ 水漏れ\n\na gas leak\n→ ガス漏れ\n\na leak in the roof\n→ 屋根からの雨漏り\n\nfix a leak\n→ 漏れを修理する\n\nThere's a leak in the bathroom.\n→ 浴室で水漏れしてるんだ。\n\nleak は動詞としても使えます。\n\nThe pipe is leaking.\n→ 配管から水が漏れてる。\n\nMy water bottle leaked all over my bag.\n→ 水筒の中身がバッグの中に全部漏れちゃった。\n\nまた、情報が外部に漏れることにも使います。\n\na data leak\n→ データ漏洩\n\na leaked document\n→ 流出した文書\n\nSomeone leaked the information online.\n→ 誰かがその情報をネットに流したんだ。\n\nleak は、単に液体などが流れることではなく、本来漏れてはいけないところから外へ出てしまうという感覚が中心です。\n\n家庭内のトラブルだけでなく、ニュースやデジタルセキュリティの話題でもよく登場します。"
+      },
+      {
+        "pos": "noun",
+        "word": "detergent",
+        "meanings": [
+          {
+            "meaning": "洗剤",
+            "en": "A: Is this detergent for clothes or dishes?\nB: Clothes. The dish soap is under the sink.",
+            "ja": "A：これって洗濯用？ それとも食器用の洗剤？\nB：洗濯用だよ。食器用洗剤はシンクの下。"
+          }
+        ],
+        "wordNote": "detergent は、衣類や食器などの汚れを落とすために使う洗剤を表します。\n\n英語では、何を洗うための洗剤なのかによって呼び方が変わります。\n\nlaundry detergent\n→ 洗濯用洗剤\n\ndish soap / washing-up liquid\n→ 手洗い用の食器洗剤\n\ndishwasher detergent\n→ 食器洗い機用の洗剤\n\nfabric softener\n→ 柔軟剤\n\nWe're running low on laundry detergent.\n→ 洗濯洗剤がそろそろなくなりそう。\n\nCould you pick up some detergent on your way home?\n→ 帰りに洗剤を買ってきてくれる？\n\ndetergent は一般に不可算名詞として使われるため、量を表すときは some detergent や a bottle of detergent などと言います。\n\na bottle of detergent\n→ 洗剤1本\n\na box of detergent\n→ 洗剤1箱\n\nまた、soap は石けんや食器用洗剤などに使われますが、detergent は特に洗濯や機械洗浄用の洗剤を指すことが多い言葉です。\n\nIs this safe for delicate clothes?\n→ これ、デリケートな衣類にも使える？\n\n海外のスーパーでは laundry detergent と fabric softener が近くに並んでいることもあります。\n\n洗剤と柔軟剤を間違えずに買うためにも、セットで覚えておくと便利です。"
+      },
+      {
+        "pos": "noun",
+        "word": "receipt",
+        "meanings": [
+            {
+              "meaning": "レシート／領収書",
+              "en": "A: Do you still have the receipt?\nB: I think so. I might need it to return this.",
+              "ja": "A：まだレシート持ってる？\nB：たぶん。これ返品するのに必要かもしれないから。"
+            }
+        ],
+        "wordNote": "receipt は、商品やサービスの代金を支払ったことを示す書類です。\n\n日本語では「レシート」と「領収書」を区別することがありますが、英語の receipt は、支払いを証明するものを広く指します。\n\nkeep the receipt\n→ レシートを取っておく\n\nask for a receipt\n→ レシートをもらう\n\nan electronic receipt / an e-receipt\n→ 電子レシート\n\nproof of purchase\n→ 購入したことを証明するもの\n\nCould I have a receipt, please?\n→ レシートをいただけますか？\n\nKeep the receipt in case you need to return it.\n→ 返品するかもしれないから、レシートは取っておいてね。\n\nreceipt と invoice は似ていますが、役割が異なります。\n\ninvoice\n→ 請求書。通常、支払いを求めるために発行されるもの。\n\nreceipt\n→ 領収書・レシート。支払いが行われたことを示すもの。\n\nCould you send me the invoice?\n→ 請求書を送っていただけますか？\n\nまた、receipt の発音は /rɪˈsiːt/ で、p は発音しません。\n\nレストランや店舗でレシートが必要か尋ねられることもあります。\n\nWould you like a receipt?\n→ レシートはご入用ですか？\n\nNo, thanks. I don't need one.\n→ いいえ、大丈夫です。\n\n返品や経費精算のときにも必要になることがあるため、refund や expense と一緒に覚えておくと便利です。"
+      },
+      {
+        "pos": "noun",
+        "word": "drain",
+        "meanings": [
+          {
+            "meaning": "排水口／排水管",
+            "en": "A: The shower drain is clogged again.\nB: I'll try cleaning it after dinner.",
+            "ja": "A：シャワーの排水口、また詰まっちゃった。\nB：夕飯のあとで掃除してみるよ。"
+          }
+        ],
+        "wordNote": "drain は、水を外へ流すための排水口や排水設備を表します。\n\nsink はキッチンや洗面所の流し台・洗面ボウル、drain はそこから水が流れていく部分です。\n\na shower drain\n→ シャワーの排水口\n\na kitchen drain\n→ キッチンの排水口\n\na clogged drain\n→ 詰まった排水口\n\nunclog a drain\n→ 排水口の詰まりを取る\n\ndrain cleaner\n→ 排水管用洗浄剤\n\nThe kitchen drain smells bad.\n→ キッチンの排水口が臭うんだ。\n\nI think the drain is clogged with hair.\n→ 排水口に髪の毛が詰まってるみたい。\n\nclog は「詰まらせる」という意味で、drain と一緒によく使われます。\n\nThe drain is clogged.\n→ 排水口が詰まっている。\n\nまた、drain は動詞としても使えます。\n\nDrain the water before adding the sauce.\n→ ソースを加える前に水を切ってね。\n\nThe bathtub isn't draining properly.\n→ 浴槽の水がちゃんと流れていかないんだ。\n\n料理でパスタの湯を切るときにも、drain the pasta という表現を使います。\n\ndrain は「水が流れ出る場所」と「水を流し出す動作」の両方に関係する言葉です。\n\n家の設備について説明するときだけでなく、料理の手順でも役立ちます。"
+      },
+      {
+        "pos": "noun",
+        "word": "insight",
+        "meanings": [
+          {
+            "meaning": "洞察／新たな気づき",
+            "en": "A: Talking to her gave me a new insight into the problem.\nB: Really? What did you realize?",
+            "ja": "A：彼女と話して、問題について新しい気づきがあったんだ。\nB：本当？ 何に気づいたの？"
+          }
+        ],
+        "wordNote": "insight は、ただ情報を知ることではなく、それまで見えていなかったことを深く理解することです。\n\ninformation\n→ 情報\n\nidea\n→ 考え／発想\n\ninsight\n→ 物事の本質についての気づき／深い理解\n\nという違いがあります。\n\ngain insight into ...\n→ ～について理解を深める\n\noffer valuable insights\n→ 貴重な知見を提供する\n\nan interesting insight\n→ 興味深い気づき\n\nSNSや記事では insights と複数形で使われることも多く、調査や経験から得られた知見を表します。\n\nThanks for sharing your insights.\n→ 気づいたことを共有してくれてありがとう。\n\n相手の経験や考えから何かを学んだときにも使える言葉です。"
+      },
+      {
+        "pos": "noun",
+        "word": "compromise",
+        "meanings": [
+          {
+            "meaning": "妥協／折衷案",
+            "en": "A: You want to leave early, but I want to sleep in.\nB: How about 9? That seems like a fair compromise.",
+            "ja": "A：早く出発したいんでしょ。でも私は朝ゆっくり寝たいんだよね。\nB：じゃあ9時は？ それならお互い納得できそうじゃない？"
+          }
+        ],
+        "wordNote": "compromise は、意見や希望が違う人たちが、お互いに少しずつ譲って、受け入れられるところを見つけることです。\n\nどちらか一方が完全に我慢するのではなく、双方が希望を調整するという感覚があります。\n\nreach a compromise\n→ 妥協点を見つける\n\nfind a compromise\n→ 折衷案を見つける\n\na fair compromise\n→ 公平な折衷案\n\nWe need to find a compromise.\n→ お互い納得できる方法を考えないとね。\n\nまた、compromise は動詞としても使えます。\n\nI'm willing to compromise.\n→ 譲歩するつもりはあるよ。\n\n日常の予定調整から仕事の交渉まで、意見の違う相手と話し合う場面で役立ちます。"
+      },
+      {
+        "pos": "noun",
+        "word": "obstacle",
+        "meanings": [
+          {
+            "meaning": "障害／妨げ",
+            "en": "A: I'd love to study abroad, but money is a big obstacle.\nB: Have you looked into scholarships?",
+            "ja": "A：留学したいんだけど、お金が大きな壁なんだよね。\nB：奨学金は調べてみた？"
+          }
+        ],
+        "wordNote": "obstacle は、何かを達成しようとするとき、その前に立ちはだかって進行を妨げるものです。\n\nproblem は広く「問題」を指しますが、obstacle は特に、目標に向かう途中で邪魔になるものに焦点があります。\n\novercome an obstacle\n→ 障害を乗り越える\n\nface an obstacle\n→ 障害に直面する\n\na major obstacle\n→ 大きな障害\n\nWe faced a few obstacles, but we made it.\n→ いくつか障害はあったけど、なんとかやり遂げたよ。\n\nobstacle は、実際に道をふさぐ物体にも、費用・時間・制度などの抽象的な障害にも使えます。\n\n目標があり、そこへ進むのを何かが妨げているという関係を意識すると理解しやすくなります。"
+      },
+      {
+        "pos": "noun",
+        "word": "perspective",
+        "meanings": [
+          {
+            "meaning": "視点／ものの見方",
+            "en": "A: I never thought about it from her perspective.\nB: Yeah, she might be under a lot of pressure.",
+            "ja": "A：彼女の立場からは考えたことなかったな。\nB：うん、かなりプレッシャーを感じてるのかもね。"
+          }
+        ],
+        "wordNote": "perspective は、物事をどの立場や角度から見るかという「ものの見方」を表します。\n\nopinion は意見そのものですが、perspective は、その意見が生まれる背景にある見方や立場に焦点があります。\n\nfrom my perspective\n→ 私の視点では\n\nfrom a different perspective\n→ 別の視点から\n\nTry looking at it from a different perspective.\n→ 別の角度から考えてみて。\n\nput things into perspective\n→ 物事を適切な視野で捉え直す\n\nThat really put things into perspective.\n→ それで物事を冷静に捉え直せたよ。\n\n同じ出来事でも、立場が変われば見え方も変わります。\n\nperspective は、相手の事情を理解したり、考え方を見直したりするときに役立つ言葉です。"
+      },
+      {
+        "pos": "noun",
+        "word": "outcome",
+        "meanings": [
+          {
+            "meaning": "結果／結末",
+            "en": "A: Have you heard back from the company?\nB: Not yet. I'm still waiting to hear the outcome.",
+            "ja": "A：会社から返事来た？\nB：まだ。結果の連絡を待ってるところ。"
+          }
+        ],
+        "wordNote": "outcome は、出来事や取り組み、話し合いなどが進んだ末に、最終的にどうなったかを表します。\n\nresult も「結果」ですが、outcome は特に、ある過程を経て生じた最終的な状況に注目するときによく使われます。\n\na positive outcome\n→ 良い結果\n\nan unexpected outcome\n→ 予想外の結果\n\nthe outcome of the meeting\n→ 会議の結果\n\nWe don't know what the outcome will be yet.\n→ まだどういう結果になるか分からない。\n\nWhatever the outcome, I'm glad I tried.\n→ 結果がどうなっても、挑戦してよかった。\n\n試験、面接、仕事のプロジェクトなど、結果が出るまでに何らかの過程がある場面でよく使われます。\n\n特に whatever the outcome は、結果にかかわらず自分の考えや気持ちを伝えたいときに便利な表現です。"
+      },
+      {
+        "pos": "noun",
+        "word": "misunderstanding",
+        "meanings": [
+          {
+            "meaning": "誤解",
+            "en": "A: I think there was a misunderstanding. I wasn't blaming you.\nB: Oh, I see. Thanks for clearing that up.",
+            "ja": "A：誤解があったみたい。あなたを責めたわけじゃないんだ。\nB：そうだったんだ。説明してくれてありがとう。"
+          }
+        ],
+        "wordNote": "misunderstanding は、相手の言葉や行動、状況などを実際とは違う意味に受け取ってしまうことを表します。\n\ndisagreement は、互いの意見が違うことです。一方、misunderstanding は、そもそも相手の意図が正しく伝わっていないことに焦点があります。\n\na misunderstanding between friends\n→ 友達同士の誤解\n\na common misunderstanding\n→ よくある誤解\n\nclear up a misunderstanding\n→ 誤解を解く\n\navoid misunderstandings\n→ 誤解を避ける\n\nI think there's been a misunderstanding.\n→ 何か誤解があったみたいです。\n\nLet me explain what I meant.\n→ どういう意味で言ったのか説明させて。\n\n誤解を解くときには、clear up や clear things up がよく使われます。\n\nI'm glad we cleared things up.\n→ 誤解が解けてよかった。\n\nまた、misunderstanding は単なる聞き間違いとは限りません。文化や習慣の違い、メールの書き方、言葉のニュアンスなどからも生じます。\n\nI didn't mean to sound rude. It was a misunderstanding.\n→ 失礼な言い方をするつもりはなかったんだ。誤解だったんだよ。\n\n動詞 misunderstand は「誤解する」という意味です。\n\nDon't misunderstand me. I'm not saying it's a bad idea.\n→ 誤解しないでね。悪い考えだと言ってるわけじゃないんだ。\n\n相手を責めずに行き違いを解消したいときに、とても役立つ言葉です。"
+      },
+      {
+        "pos": "noun",
+        "word": "permission",
+        "meanings": [
+          {
+            "meaning": "許可",
+            "en": "A: Do we need permission to take photos here?\nB: Yes, you should ask the staff first.",
+            "ja": "A：ここで写真を撮るには許可が必要なの？\nB：うん、先にスタッフに聞いたほうがいいよ。"
+          }
+        ],
+        "wordNote": "permission は、何かをしてよいと認められていることを表します。\n\n自分にできる能力があるかではなく、規則や権限を持つ人によって認められているかどうかがポイントです。\n\nask for permission\n→ 許可を求める\n\ngive someone permission\n→ 誰かに許可を与える\n\nget permission to ...\n→ ～する許可を得る\n\nwithout permission\n→ 許可なく\n\nYou need permission to use these photos.\n→ この写真を使うには許可が必要だよ。\n\nDid you ask for permission first?\n→ 先に許可を取った？\n\npermission は基本的に不可算名詞です。\n\nask for a permission とはせず、ask for permission と言います。\n\nまた、permit は名詞として「許可証」、動詞として「許可する」という意味で使われます。\n\npermission\n→ 許可されていること\n\na permit\n→ 特定の行為を認める許可証\n\nDo I need a permit to park here?\n→ ここに駐車するには許可証が必要ですか？\n\n日常会話では、許可を求めるときに Can I ...? や Is it okay if I ...? もよく使います。\n\nIs it okay if I open the window?\n→ 窓を開けてもいい？\n\nOf course. Go ahead.\n→ もちろん。どうぞ。\n\npermission は、写真の使用、施設への立ち入り、アプリのアクセス権限など、日常生活からデジタル環境まで幅広く使われます。"
+      },
+      {
+        "pos": "noun",
+        "word": "responsibility",
+        "meanings": [
+          {
+            "meaning": "責任",
+            "en": "A: Who's responsible for checking the equipment?\nB: That's my responsibility. I'll do it before we leave.",
+            "ja": "A：機材の点検は誰の担当？\nB：それは私の担当だよ。出発前に確認するね。"
+          }
+        ],
+        "wordNote": "responsibility は、自分が引き受けるべき仕事や役割、あるいは自分の行動について説明したり対処したりする義務を表します。\n\nduty は、職務や規則、立場によって求められる義務に重点があります。一方、responsibility は、何を担当し、その結果にどう向き合うかという意味でもよく使われます。\n\ntake responsibility for ...\n→ ～に責任を持つ\n\naccept responsibility\n→ 責任を認める／引き受ける\n\na sense of responsibility\n→ 責任感\n\nshare responsibilities\n→ 役割や責任を分担する\n\nIt's my responsibility to make sure everything is ready.\n→ 全部準備できているか確認するのは私の役目だよ。\n\nresponsibility は「責任」という抽象的な意味では不可算名詞として使われますが、具体的な担当業務を指すときは可算名詞にもなります。\n\nThat's not my responsibility.\n→ それは私の担当ではないよ。\n\nWhat are your main responsibilities?\n→ 主な担当業務は何ですか？\n\nまた、形容詞 responsible も非常によく使います。\n\nWho's responsible for this project?\n→ このプロジェクトの責任者は誰？\n\nI'm responsible for updating the website.\n→ ウェブサイトの更新を担当しています。\n\ntake responsibility は、問題が起きたときに自分の責任を認める場面でも使われます。\n\nHe took responsibility for the mistake.\n→ 彼はそのミスについて責任を認めた。\n\n仕事の役割分担から、自分の行動に責任を持つという話まで、幅広い場面で使える言葉です。"
+      },
+      {
+        "pos": "noun",
+        "word": "complaint",
+        "meanings": [
+          {
+            "meaning": "苦情／不満",
+            "en": "A: Did you tell the hotel about the noise?\nB: Yes, I made a complaint at the front desk.",
+            "ja": "A：騒音のこと、ホテルに伝えた？\nB：うん、フロントで苦情を伝えたよ。"
+          }
+        ],
+        "wordNote": "complaint は、商品やサービス、状況などに対して、不満や問題があることを伝える言葉です。\n\ncriticism は、行動や考えなどの問題点を指摘したり評価したりすることです。一方、complaint は、自分が不快に感じたことや改善してほしい問題を相手に伝えるときによく使います。\n\nmake a complaint\n→ 苦情を申し立てる\n\nfile a complaint\n→ 正式に苦情を申し立てる\n\na customer complaint\n→ 顧客からの苦情\n\na complaint about ...\n→ ～についての苦情\n\nI have a complaint about my order.\n→ 注文した商品について問題があるんですが。\n\nI'd like to speak to someone about a complaint.\n→ 苦情について担当の方とお話ししたいのですが。\n\nmake a complaint は一般的な苦情の申し立てに使えますが、file a complaint は会社や行政機関などに正式な手続きを通して申し立てる場面でよく使われます。\n\nShe filed a complaint with the company.\n→ 彼女はその会社に正式に苦情を申し立てた。\n\nまた、complaint は「不満」という意味でも使われます。\n\nI have no complaints about the service.\n→ サービスには何の不満もないよ。\n\n動詞は complain です。\n\nSeveral guests complained about the noise.\n→ 何人かの宿泊客が騒音について苦情を言った。\n\ncomplain about ... は「～について不満を言う」という形でよく使います。\n\nただ不満を述べるだけでなく、問題を具体的に説明し、解決を求める場面で覚えておくと役立ちます。"
+      },
+      {
+        "pos": "noun",
+        "word": "deadline",
+        "meanings": [
+          {
+            "meaning": "締め切り／期限",
+            "en": "A: When's the deadline for the application?\nB: Friday, but I'd submit it a day early.",
+            "ja": "A：申請の締め切りはいつ？\nB：金曜日だけど、私なら一日前に提出するかな。"
+          }
+        ],
+        "wordNote": "deadline は、書類の提出や仕事の完了など、何かを終わらせなければならない最終的な日時を表します。\n\ndue date も期限を表しますが、deadline は特に、それまでに終えなければならないという時間的な制約を強く意識させる言葉です。\n\nmeet a deadline\n→ 締め切りに間に合わせる\n\nmiss a deadline\n→ 締め切りに間に合わない\n\nextend a deadline\n→ 締め切りを延長する\n\na tight deadline\n→ 余裕のない締め切り\n\nWhat's the deadline for submitting the form?\n→ 書類の提出期限はいつ？\n\nI'm worried we won't meet the deadline.\n→ 締め切りに間に合わないんじゃないかと心配なんだ。\n\n締め切りが迫っているときは、approaching や coming up もよく使います。\n\nThe deadline is coming up.\n→ 締め切りが近づいてるよ。\n\nまた、締め切りより前に終えることは ahead of the deadline や before the deadline で表せます。\n\nWe finished the project ahead of the deadline.\n→ 締め切りより早くプロジェクトを終えたよ。\n\ndue date は、宿題の提出日や請求書の支払期日などにもよく使われます。\n\nWhen is the payment due?\n→ 支払い期限はいつですか？\n\n仕事や学校だけでなく、申請書、応募書類、予約の変更期限など、日常生活でも頻繁に使う言葉です。"
+      },
+
+
       
 
       
@@ -10494,6 +10676,121 @@
           }
         ],
         "wordNote": "carry の中心には、「何かを自分のところに抱えたまま、移動したり、その先まで持っていく」という感覚があります。\n\nまず、いちばん基本的なのは「運ぶ」「持ち運ぶ」という使い方です。\n\nCan you carry this box upstairs?\n→ この箱、上まで運んでくれる？\n\nSure. It’s not that heavy.\n→ いいよ。そんなに重くないし。\n\ncarry は、物を実際に持ちながら運ぶ動作に注目しています。\n\nCan you carry this?\n→ これ持ってくれる？\n\nのように、荷物が重かったり、自分の手がふさがっていたりするときにもよく使います。\n\nここで、take や bring との違いを見ると分かりやすくなります。\n\ncarry\n→ 物を持って運ぶ動作に注目する\n\ntake\n→ ある場所へ持っていく\n\nbring\n→ 話し手や基準となる場所へ持ってくる\n\nたとえば、\n\nCan you carry this bag?\n→ このバッグ持ってくれる？\n\nでは、「持って運ぶこと」が中心です。\n\nTake this bag to the car.\n→ このバッグを車まで持っていって。\n\nでは、「車のところへ持っていく」という行き先が中心です。\n\nBring the bag here.\n→ バッグをここに持ってきて。\n\nでは、こちら側へ持ってくることが中心です。\n\ncarry は、「携帯する」「持ち歩く」という意味でもよく使います。\n\nDo you carry cash anymore?\n→ 今でも現金持ち歩いてる？\n\nNot much. I usually pay with my phone.\n→ あんまり。普段はスマホで払うよ。\n\ncarry cash\n→ 現金を持ち歩く\n\ncarry an ID\n→ 身分証を携帯する\n\ncarry a charger\n→ 充電器を持ち歩く\n\nというように使います。\n\nここでも、あるものを自分と一緒に抱えたまま移動しているという carry の感覚があります。\n\ncarry は、お店が商品を「扱っている」「置いている」という意味でも使われます。\n\nDo you carry this brand?\n→ このブランド扱ってますか？\n\nYes. It’s on the second floor.\n→ はい。2階にあります。\n\nDoes this store carry that model?\n→ この店ではそのモデルを扱っていますか？\n\nというように使えます。\n\n日本語で「商品を運ぶ」と考えると少し不思議に見えますが、お店がその商品を在庫として抱え、販売する商品として持っていると考えると、基本の carry とつながっています。\n\ncarry は、物ではなく、音や声などが「遠くまで届く」ときにも使われます。\n\nWe can hear the music from all the way over here.\n→ こんなところまで音楽聞こえるね。\n\nYeah, sound really carries across the water.\n→ うん、水の上って音がほんとによく届くね。\n\nsound carries\n→ 音が遠くまで届く／よく通る\n\nHer voice carries well.\n→ 彼女の声はよく通ります。\n\nここでは、音や声がある場所から別の場所まで運ばれていくような感覚があります。\n\ncarry は、目に見えないものについても使われます。\n\ncarry responsibility\n→ 責任を負う\n\ncarry a risk\n→ リスクを伴う\n\ncarry a burden\n→ 負担を背負う\n\nのように、責任や負担などを「自分が抱えたまま持っている」という感覚です。\n\nThis job carries a lot of responsibility.\n→ この仕事には大きな責任が伴います。\n\nというようにも使えます。\n\ncarry weight という表現もあります。\n\nHis opinion carries a lot of weight.\n→ 彼の意見には大きな影響力があります。\n\nここでの weight は実際の重さではありません。\n\n意見に「重み」があり、人の判断や決定に影響を与えるという意味です。\n\ncarry on もよく使われる表現です。\n\nCarry on.\n→ 続けて。\n\ncarry on doing\n→ ～し続ける\n\nという意味になります。\n\nShe carried on working even after everyone else had left.\n→ ほかの人がみんな帰ったあとも、彼女は仕事を続けました。\n\n今していることを途中で終わらせず、「その先まで持っていく」と考えると carry の感覚が見えます。\n\ncarry out は、\n\ncarry out a plan\n→ 計画を実行する\n\ncarry out an experiment\n→ 実験を行う\n\nのように使います。\n\n計画や指示を頭の中に置いておくだけではなく、実際の行動へ移し、最後まで運んでいく感覚です。\n\ncarry over は、「次のところまで持ち越す」という意味になります。\n\nThe effects carried over into the next day.\n→ その影響は翌日まで残りました。\n\nUnused vacation days can be carried over to next year.\n→ 未使用の休暇は翌年に繰り越すことができます。\n\nあるものが今の場所や期間で終わらず、その先まで運ばれていくイメージです。\n\ncarry は、日本語では「運ぶ」「持ち歩く」「扱う」「届く」「負う」「続ける」「実行する」など、かなり違う意味に見えます。\n\nでも中心にあるのは、\n\n物を抱えてその先へ持っていく\n→ 運ぶ\n\n自分と一緒に持って歩く\n→ 携帯する・持ち歩く\n\n商品を店が抱えている\n→ 扱う・置いている\n\n音や声がその先まで運ばれる\n→ 届く・よく通る\n\n責任や負担を抱え続ける\n→ 負う\n\n行動や計画をその先まで持っていく\n→ 続ける・実行する\n\nというつながりです。\n\ncarry a box\ncarry cash\ncarry a brand\nsound carries\ncarry responsibility\ncarry on\ncarry out\n\n一見すると別々の意味に見えますが、どれも「何かを抱えたまま、その先まで持っていく」という carry の感覚から伸びています。"
+      },
+      {
+        "pos": "verb",
+        "word": "pick",
+        "meanings": [
+          {
+            "meaning": "選ぶ／選び取る",
+            "en": "A: Which one do you want?\nB: You pick. I can’t decide.",
+            "ja": "A：どれがいい？\nB：選んで。決められない。"
+          },
+          {
+            "meaning": "摘む／採る",
+            "en": "A: Can I pick one of these strawberries?\nB: Sure. Try the red one.",
+            "ja": "A：このいちご、ひとつ採っていい？\nB：いいよ。赤いやつ食べてみて。"
+          },
+          {
+            "meaning": "つまんで取る／取り除く",
+            "en": "A: You’ve got something on your sleeve.\nB: Oh, thanks. Can you pick it off?",
+            "ja": "A：袖になんか付いてるよ。\nB：ほんと？ありがとう。取ってくれる？"
+          }
+        ],
+        "wordNote": "pick の中心には、「いくつかあるものの中から、手や意識で一つを選び取る」という感覚があります。\n\nまず、いちばん基本的なのは「選ぶ」「選び取る」という使い方です。\n\nWhich one do you want?\n→ どれがいい？\n\nYou pick. I can’t decide.\n→ 選んで。決められない。\n\npick + 名詞\nで、\n\n「～を選ぶ」\n\nという意味になります。\n\npick a color\n→ 色を選ぶ\n\npick a restaurant\n→ レストランを選ぶ\n\npick a team member\n→ チームのメンバーを選ぶ\n\nのように使います。\n\nchoose も「選ぶ」という意味ですが、pick は会話でとてもよく使われ、いくつかの候補の中から「これ」と一つ選び取る感じがあります。\n\nYou pick.\n→ あなたが選んで。\n\nPick one.\n→ 一つ選んで。\n\nのような短い言い方もよく使われます。\n\npick は、実際に手で何かを「摘む」「採る」ときにも使います。\n\nCan I pick one of these strawberries?\n→ このいちご、ひとつ採っていい？\n\nSure. Try the red one.\n→ いいよ。赤いやつ食べてみて。\n\npick strawberries\n→ いちごを摘む\n\npick flowers\n→ 花を摘む\n\npick an apple from the tree\n→ 木からりんごを採る\n\nというように使います。\n\nここでも、たくさんあるものの中から一つを手で選び取るという pick の感覚があります。\n\npick は、小さなものを「つまんで取る」「取り除く」という意味でも使われます。\n\nYou’ve got something on your sleeve.\n→ 袖になんか付いてるよ。\n\nOh, thanks. Can you pick it off?\n→ ほんと？ありがとう。取ってくれる？\n\npick ... off\nで、\n\n「～をつまんで取る」\n「～を取り除く」\n\nという意味になります。\n\nたとえば、\n\nShe picked a piece of lint off her jacket.\n→ 彼女はジャケットについた糸くずをつまんで取りました。\n\nのように使えます。\n\nここでも、「そこにあるものを選び取って離す」という基本の感覚が残っています。\n\nそして、pick と一緒によく使われる大切な表現が pick up です。\n\npick up には、いくつかのよく使われる意味があります。\n\nまず、\n\npick up something\n→ 何かを拾い上げる\n\nという使い方です。\n\nI picked up the coin from the floor.\n→ 床からコインを拾いました。\n\nここでは、下にあるものを選び取って、自分のところまで持ち上げています。\n\nそのため、日本語で単に「拾う」と言いたいときは、pick 単独ではなく pick up を使うことがよくあります。\n\npick up は、人を「迎えに行く」という意味でも非常によく使います。\n\nI’ll pick you up at seven.\n→ 7時に迎えに行くよ。\n\nCan you pick me up at the station?\n→ 駅まで迎えに来てくれる？\n\nここでは、人をある場所で拾い上げるように、自分の移動に加えて一緒に連れていく感覚があります。\n\nそして、ここは語順に注意が必要です。\n\n「pick up you で合ってるよね？」\n\n→ 違います。\n\n正しくは、\n\npick you up\n\nです。\n\npick up の目的語が普通の名詞なら、\n\npick up the bag\n→ バッグを拾う\n\npick the bag up\n→ バッグを拾う\n\nのどちらも使えます。\n\n一方、目的語が代名詞のときは、代名詞を pick と up の間に入れます。\n\npick it up\n→ それを拾って。\n\npick me up\n→ 私を迎えに来て。\n\npick you up\n→ あなたを迎えに行く。\n\npick them up\n→ それらを拾う／彼らを迎えに行く。\n\nという形です。\n\nそのため、\n\n× pick up it\n× pick up me\n× pick up you\n\nとは通常言いません。\n\n○ pick it up\n○ pick me up\n○ pick you up\n\nです。\n\npick up のように、途中に目的語を入れられる句動詞では、目的語が it、me、you、them などの代名詞になると、間に挟む形が基本になります。\n\npick up には、「自然に身につける」「覚える」という意味もあります。\n\nI picked up a few useful phrases while traveling.\n→ 旅行中に役立つ表現をいくつか自然に覚えました。\n\nShe picked up English quickly.\n→ 彼女は英語をすぐに身につけました。\n\nここでは、授業で一つずつ覚えたというより、生活や経験の中で情報や表現を拾い集めて、自分のものにしたような感覚があります。\n\npick up は、「上向く」「活発になる」という意味でも使われます。\n\nBusiness is starting to pick up.\n→ 景気が少しずつ上向いてきています。\n\nSales picked up in the afternoon.\n→ 午後になって売上が伸びました。\n\nThe wind is picking up.\n→ 風が強くなってきています。\n\nここでは、勢いや活動が持ち上がってくるような感覚があります。\n\npick up は日常会話で非常によく使われるので、\n\npick something up\n→ 物を拾い上げる\n\npick someone up\n→ 人を迎えに行く\n\npick something up\n→ 知識や表現などを自然に身につける\n\nbusiness / sales / wind pick up\n→ 活気や勢いが増す\n\nという代表的な使い方を覚えておくと便利です。\n\nほかにも、pick out という表現があります。\n\npick out ...\n→ ～を選び出す\n\nCan you help me pick out a housewarming gift for Maya?\n→ Mayaへの引っ越し祝い、選ぶの手伝ってくれる？\n\nのように、いくつかある中から特定のものを選び出すときに使います。\n\npick は、日本語では「選ぶ」「摘む」「採る」「つまんで取る」など、いろいろな訳になります。\n\nでも中心にあるのは、\n\n候補の中から一つ選び取る\n→ 選ぶ\n\nたくさんあるものから手で一つ取る\n→ 摘む・採る\n\n表面についているものを選び取って離す\n→ つまんで取る・取り除く\n\nというつながりです。\n\nさらに pick up になると、\n\n下にあるものを取って持ち上げる\n→ 拾い上げる\n\n人をある場所で拾って一緒に連れていく\n→ 迎えに行く\n\n情報や表現を拾って自分のものにする\n→ 自然に身につける\n\n勢いや活動が持ち上がる\n→ 上向く・活発になる\n\nという方向へ広がります。\n\npick a color\npick strawberries\npick something off\npick it up\npick you up\npick up a phrase\nsales pick up\n\n一見すると違う使い方に見えますが、どれも「何かを選び取る」という pick の感覚からつながっています。"
+      },
+      {
+        "pos": "verb",
+        "word": "drop",
+        "meanings": [
+          {
+            "meaning": "落とす／落ちる",
+            "en": "A: What are you looking for?\nB: One of my earbuds. I think I dropped it under the seat.",
+            "ja": "A：何探してるの？\nB：イヤホン片方。座席の下に落としたみたい。"
+          },
+          {
+            "meaning": "下がる／減る",
+            "en": "A: It was warm this afternoon.\nB: Yeah, but the temperature dropped really fast after sunset.",
+            "ja": "A：午後は暖かかったね。\nB：うん。でも日が沈んだら気温が一気に下がった。"
+          },
+          {
+            "meaning": "やめる／中止する／外す",
+            "en": "A: Are you still taking that class?\nB: No, I dropped it. It didn’t fit my schedule.",
+            "ja": "A：まだあの授業取ってる？\nB：ううん、履修やめた。予定に合わなくて。"
+          }
+        ],
+        "wordNote": "drop の中心には、「支えられていたものが、手・位置・水準から離れて下へ落ちる／落とす」という感覚があります。\n\nまず、いちばん基本的なのは「落とす」「落ちる」という使い方です。\n\nWhat are you looking for?\n→ 何探してるの？\n\nOne of my earbuds. I think I dropped it under the seat.\n→ イヤホン片方。座席の下に落としたみたい。\n\ndrop は、手に持っていたものなどを落とすときによく使います。\n\nI dropped my phone and cracked the screen really badly.\n→ スマホを落として、画面がバキバキに割れました。\n\nBe careful not to drop it.\n→ 落とさないように気をつけて。\n\nのように使います。\n\nここで fall との違いを見ると分かりやすくなります。\n\nThe glass fell.\n→ グラスが落ちました。\n\nI dropped the glass.\n→ 私がグラスを落としました。\n\nfall\n→ ものが落ちていくことに注目する\n\ndrop\n→ 手放したり支えを失わせたりして、落ちる／落とすことに注目する\n\nという違いがあります。\n\nそのため、\n\nThe book fell off the shelf.\n→ 本が棚から落ちました。\n\nI dropped the book.\n→ 私が本を落としました。\n\nのように使い分けることができます。\n\ndrop は、物理的なものだけでなく、数字や水準が「下がる」「減る」ときにも使います。\n\nIt was warm this afternoon.\n→ 午後は暖かかったね。\n\nYeah, but the temperature dropped really fast after sunset.\n→ うん。でも日が沈んだら気温が一気に下がった。\n\ntemperature drops\n→ 気温が下がる\n\nprices drop\n→ 価格が下がる\n\nsales drop\n→ 売上が落ちる\n\nattendance drops\n→ 出席者数が減る\n\nのように使います。\n\nここでは、実際に物が落ちているわけではありません。\n\n数値や水準が、上にあった位置から下へ落ちるように変化していると考えると、drop の感覚が見えます。\n\ndrop は、「やめる」「中止する」「外す」という意味でも使われます。\n\nAre you still taking that class?\n→ まだあの授業取ってる？\n\nNo, I dropped it. It didn’t fit my schedule.\n→ ううん、履修やめた。予定に合わなくて。\n\ndrop a class\n→ 授業の履修をやめる\n\ndrop the idea\n→ その案をやめる\n\ndrop the plan\n→ その計画を取りやめる\n\nのように使います。\n\nこれも、今まで持っていたものを手から落として、「もう持ち続けない」と考えると基本の drop につながります。\n\nDrop it.\n→ もうその話やめて。／それ以上言わないで。\n\nもよく使われる表現です。\n\nここでは、話題や言い争いなどを「もう持ち続けないで、そこで手放して」という感じがあります。\n\ndrop には、日常会話でよく使う句動詞や表現もたくさんあります。\n\ndrop off はとても重要です。\n\nI’ll drop you off at the station.\n→ 駅で降ろすよ。\n\ndrop someone off\n→ 人を車などで送って、その場所で降ろす\n\nという意味です。\n\nCan you drop this package off on your way home?\n→ 帰りにこの荷物届けてくれる？\n\nのように、物をある場所に届けたり置いていったりするときにも使います。\n\ndrop off\n→ 人を降ろす\n→ 物を届ける\n\nという使い方があります。\n\ndrop by は、\n\nI’ll drop by after work.\n→ 仕事のあとちょっと寄るね。\n\nのように、\n\ndrop by\n→ ちょっと立ち寄る\n\nという意味になります。\n\n長く滞在するというより、移動の途中などで短時間立ち寄る感じです。\n\ndrop in も似ています。\n\nFeel free to drop in anytime.\n→ いつでも気軽に寄ってね。\n\ndrop in\n→ ふらっと立ち寄る\n\nという意味です。\n\ndrop by と drop in はどちらも「ちょっと立ち寄る」という意味で、日常会話でよく使われます。\n\ndrop out は、\n\nHe dropped out of college.\n→ 彼は大学を中退しました。\n\nのように使います。\n\ndrop out of ...\n→ ～を途中でやめる／～から脱落する\n\nという意味です。\n\n続いていたコースや活動から外れて、そこから離れる感覚があります。\n\ndrop someone a message も、とても便利な表現です。\n\nDrop me a message when you get home.\n→ 家に着いたらメッセージして。\n\ndrop someone a message\n→ 人にちょっとメッセージを送る\n\nという意味です。\n\n少しカジュアルな言い方で、日常の連絡によく使われます。\n\ndrop a line という似た表現もあります。\n\nDrop me a line when you have time.\n→ 時間あるとき連絡して。\n\nというように使えます。\n\ndrop は、日本語では「落とす」「落ちる」「下がる」「減る」「やめる」など、かなり違う意味に見えます。\n\nでも中心にあるのは、\n\n手や支えから離れる\n→ 落とす・落ちる\n\n数値や水準が下へ移る\n→ 下がる・減る\n\n持っていた計画や行動を手放す\n→ やめる・中止する\n\nというつながりです。\n\nさらに、\n\ndrop someone off\n→ 人をある場所で降ろす\n\ndrop something off\n→ 物を届ける\n\ndrop by / drop in\n→ ちょっと立ち寄る\n\ndrop out\n→ 途中でやめる・脱落する\n\ndrop someone a message\n→ ちょっとメッセージを送る\n\nのように、日常会話でもさまざまな形で使われます。\n\ndrop a phone\nthe temperature drops\ndrop a class\ndrop someone off\ndrop by\ndrop out\ndrop me a message\n\n一見すると別々の使い方に見えますが、どれも「支え・位置・水準から離れて下へ落ちる／落とす」という drop の感覚から広がっています。"
+      },
+      {
+        "pos": "verb",
+        "word": "push",
+        "meanings": [
+          {
+            "meaning": "押す／押して動かす",
+            "en": "A: This door won’t open.\nB: Push it. Don’t pull.",
+            "ja": "A：このドア開かない。\nB：押して。引くんじゃなくて。"
+          },
+          {
+            "meaning": "進める／後押しする",
+            "en": "A: Are we still launching next month?\nB: Yes. We’re pushing the project forward.",
+            "ja": "A：来月のリリース、まだ予定どおり？\nB：うん。プロジェクトを前に進めてるところ。"
+          },
+          {
+            "meaning": "強く勧める／無理にさせる",
+            "en": "A: I’m not sure I’m ready.\nB: That’s okay. I don’t want to push you.",
+            "ja": "A：まだ準備できてるか分からない。\nB：大丈夫。無理にやらせたくないから。"
+          }
+        ],
+        "wordNote": "push の中心には、「力を加えて、自分から離れる方向へ動かす」という感覚があります。\n\nまず、いちばん基本的なのは、物を「押す」「押して動かす」という使い方です。\n\nThis door won’t open.\n→ このドア開かない。\n\nPush it. Don’t pull.\n→ 押して。引くんじゃなくて。\n\npush the door\n→ ドアを押す\n\npush the button\n→ ボタンを押す\n\npush the cart\n→ カートを押す\n\nのように使います。\n\n物に力を加えて、自分から離れる方向へ動かすのが push の基本です。\n\npull は反対に、\n\npull\n→ 自分の方へ引く\n\nという意味になります。\n\nそのため、\n\nPUSH\n→ 押す\n\nPULL\n→ 引く\n\nという表示は、ドアなどでもよく見かけます。\n\npush は、物理的なものだけでなく、計画や物事を「前へ進める」ときにも使います。\n\nAre we still launching next month?\n→ 来月のリリース、まだ予定どおり？\n\nYes. We’re pushing the project forward.\n→ うん。プロジェクトを前に進めてるところ。\n\npush something forward\n→ ～を前へ進める\n\nという意味です。\n\n実際に手で押しているわけではありませんが、止まりそうな物事に力を加えて、前へ進ませる感覚があります。\n\npush for ... もよく使います。\n\npush for change\n→ 変化を強く求める\n\npush for better conditions\n→ より良い条件を強く求める\n\nのように使います。\n\nここでは、自分が望む方向へ物事が動くよう、強く働きかけています。\n\npush は、人に何かをさせようと強く促すときにも使います。\n\nI’m not sure I’m ready.\n→ まだ準備できてるか分からない。\n\nThat’s okay. I don’t want to push you.\n→ 大丈夫。無理にやらせたくないから。\n\npush someone to do\nで、\n\n「人に～するよう強く促す」\n「人に～するよう圧力をかける」\n\nという意味になります。\n\nMy parents pushed me to study harder.\n→ 親にもっと勉強するよう強く言われました。\n\nDon’t push me.\n→ 急かさないで。／無理強いしないで。\n\nという言い方もよく使われます。\n\n物理的に背中を押すところから、\n\n「心理的に前へ押す」\n「行動するよう圧力をかける」\n\nという意味へ広がっています。\n\npush yourself も、とてもよく使います。\n\nI gave my game console to my parents until the test is over. I need to push myself to study.\n→ テストが終わるまでゲーム機を親に預けた。自分を追い込んで勉強しないと。\n\npush yourself\n→ 自分自身を前へ押す\n→ 自分を奮い立たせる／頑張らせる／追い込む\n\nという感覚です。\n\n自分で自分の背中を押して、もう一歩進もうとするときに使います。\n\n一方で、\n\nYou don’t have to push yourself so hard.\n→ そんなに無理しなくていいよ。\n\nのようにも使います。\n\npush yourself は、頑張るという前向きな意味にもなりますが、強くやりすぎると「自分を追い込みすぎる」という意味にもなります。\n\npush too hard\n→ 無理をしすぎる\n\nという表現もあります。\n\nDon’t push yourself too hard.\n→ あまり無理しすぎないで。\n\nのように使います。\n\npush back もよく使われる表現です。\n\nまず、文字どおりには、\n\npush back\n→ 押し返す\n\nという意味があります。\n\nそこから、\n\n「相手からの圧力や提案に反発する」\n\nという意味にも使われます。\n\nEmployees pushed back against the new rule.\n→ 従業員たちは新しい規則に反発しました。\n\n相手から来た力を、そのまま押し返すイメージです。\n\npush back は、予定を「後ろへずらす」という意味でもよく使います。\n\nWe had to push the meeting back to Friday.\n→ 会議を金曜に延期しなければなりませんでした。\n\n予定を時間の上で後ろへ押す、と考えると分かりやすくなります。\n\npush ahead は、\n\npush ahead\n→ 前へ進む／進める\n\nという意味です。\n\nWe decided to push ahead with the plan.\n→ その計画をそのまま進めることにしました。\n\n問題があっても止まらず、前へ押し進める感覚があります。\n\npush through もよく使います。\n\npush through\n→ 困難を押し切ってやり抜く\n\nという意味です。\n\nI was exhausted, but I pushed through and finished the report.\n→ へとへとだったけど、なんとか最後までやってレポートを仕上げました。\n\n困難や疲れなどを押しのけながら、その先まで進む感じです。\n\npush は、日本語では「押す」「進める」「後押しする」「強く勧める」「追い込む」など、いろいろな訳になります。\n\nでも中心にあるのは、\n\n物に力を加える\n→ 押す・押して動かす\n\n計画や物事に力を加える\n→ 前へ進める・後押しする\n\n人に心理的な力を加える\n→ 強く勧める・無理にさせる\n\n自分自身に力を加える\n→ 自分を奮い立たせる・追い込む\n\nというつながりです。\n\npush the door\npush the project forward\npush someone to do\npush yourself\npush back\npush ahead\npush through\n\n一見すると違う使い方に見えますが、どれも「力を加えて、自分から離れる方向へ動かす」という push の感覚から広がっています。"
+      },
+      {
+        "pos": "verb",
+        "word": "rise",
+        "meanings": [
+          {
+            "meaning": "上がる／昇る",
+            "en": "A: Is that the sunrise already?\nB: Yeah. We stayed up way too late. The sun’s rising.",
+            "ja": "A：もう日の出？\nB：うん。さすがに夜更かししすぎた。もう日が昇ってる。"
+          },
+          {
+            "meaning": "増える／上昇する",
+            "en": "A: Did the ticket prices go up again?\nB: Yeah. They’ve risen a lot since last year.",
+            "ja": "A：チケット代また上がったの？\nB：うん。去年からかなり上がってる。"
+          },
+          {
+            "meaning": "高まる／強まる",
+            "en": "A: Are you nervous about the interview?\nB: A little. The pressure’s definitely rising.",
+            "ja": "A：面接、緊張してる？\nB：ちょっとね。だんだんプレッシャー高まってきた。"
+          }
+        ],
+        "wordNote": "rise の中心には、「低い位置・水準・状態から、自分で上へ移っていく」という感覚があります。\n\nまず、いちばん分かりやすいのは、物や人が「上がる」「昇る」という使い方です。\n\nIs that the sunrise already?\n→ もう日の出？\n\nYeah. We stayed up way too late. The sun’s rising.\n→ うん。さすがに夜更かししすぎた。もう日が昇ってる。\n\nthe sun rises\n→ 太陽が昇る\n\nsmoke rises\n→ 煙が立ち上る\n\nhot air rises\n→ 暖かい空気が上昇する\n\nのように使います。\n\nrise では、何かが外から持ち上げられるというより、そのもの自身が上へ移っていくことに注目します。\n\nここで、とても混同しやすい rise と raise の違いを見てみます。\n\nrise\n→ 上がる\n\nraise\n→ ～を上げる\n\nという違いがあります。\n\nたとえば、\n\nPrices rose again.\n→ 価格がまた上がりました。\n\nでは、prices が上がっています。\n\n一方、\n\nThey raised the prices again.\n→ 彼らはまた価格を上げました。\n\nでは、they が prices を上げています。\n\nつまり、\n\nrise\n→ 「何が上がるのか」が主語になる\n\nraise\n→ 「誰が何を上げるのか」を表す\n\nという違いです。\n\n手を挙げるときも、\n\nI raised my hand.\n→ 手を挙げました。\n\nと言います。\n\n自分の手を「上げる」ので raise を使います。\n\n× I rose my hand.\n\nとは言いません。\n\n反対に、\n\nThe sun rose at 6:30.\n→ 太陽は6時30分に昇りました。\n\nでは、太陽そのものが昇るので rise を使います。\n\nrise の活用にも注意します。\n\nrise - rose - risen\n\nです。\n\nrose は rise の過去形です。\n\nThe sun rose early this morning.\n→ 今朝は早く日が昇りました。\n\nここでの rose は「バラ」ではなく、rise の過去形です。\n\n英文では、rose の前後を見ると、名詞の「バラ」なのか、rise の過去形なのかを判断できます。\n\nThe rose is beautiful.\n→ そのバラはきれいです。\n\nThe sun rose early.\n→ 太陽は早く昇りました。\n\nのように、文の中でどんな位置にあり、どんな働きをしているかを見ることが大切です。\n\nrise は、物理的な高さだけでなく、数字や水準が「増える」「上昇する」ときにもよく使います。\n\nDid the ticket prices go up again?\n→ チケット代また上がったの？\n\nYeah. They’ve risen a lot since last year.\n→ うん。去年からかなり上がってる。\n\nprices rise\n→ 価格が上がる\n\ntemperatures rise\n→ 気温が上がる\n\nsales rise\n→ 売上が増える\n\ninterest rates rise\n→ 金利が上がる\n\nのように使います。\n\nここでも、数字や水準が低いところから高いところへ移っていく感覚があります。\n\nrise は、感情や緊張、圧力などが「高まる」「強まる」ときにも使います。\n\nAre you nervous about the interview?\n→ 面接、緊張してる？\n\nA little. The pressure’s definitely rising.\n→ ちょっとね。だんだんプレッシャー高まってきた。\n\npressure rises\n→ 圧力・プレッシャーが高まる\n\ntension rises\n→ 緊張が高まる\n\nanger rises\n→ 怒りがこみ上げる\n\nexpectations rise\n→ 期待が高まる\n\nのように使います。\n\n物理的な高さではなくても、「程度が上へ向かって強くなる」と考えると rise の感覚が見えます。\n\nrise には、「立ち上がる」「起き上がる」という意味もあります。\n\nHe rose from his chair.\n→ 彼は椅子から立ち上がりました。\n\nShe rose to greet them.\n→ 彼女は彼らを迎えるために立ち上がりました。\n\n日常会話では stand up を使うことも多いですが、文章ではこの意味の rise もよく見かけます。\n\nここでも、低い位置から自分自身が上へ移るという基本の感覚は同じです。\n\non the rise という表現もよく使われます。\n\nOnline scams are on the rise.\n→ オンライン詐欺が増えています。\n\non the rise\n→ 増加している／増加傾向にある\n\nという意味です。\n\nニュースや記事などでもよく使われます。\n\nrise above ... という表現もあります。\n\nrise above the problem\n→ 問題を乗り越える\n\nrise above criticism\n→ 批判に左右されず乗り越える\n\nというように使います。\n\n問題や批判などに押さえつけられず、その上へ出る感覚です。\n\nrise to the challenge も覚えておくと便利です。\n\nShe really rose to the challenge.\n→ 彼女はその難題にしっかり応えました。\n\nrise to the challenge\n→ 難題に立ち向かう／期待に応える\n\nという意味になります。\n\n求められる水準まで自分を上げて対応するような感覚です。\n\nrise は、日本語では「上がる」「昇る」「増える」「高まる」「立ち上がる」など、いろいろな訳になります。\n\nでも中心にあるのは、\n\n位置が上へ移る\n→ 上がる・昇る\n\n数字や水準が上へ移る\n→ 増える・上昇する\n\n感情や圧力の程度が上へ移る\n→ 高まる・強まる\n\n自分自身が低い位置から上へ移る\n→ 立ち上がる\n\nというつながりです。\n\nそして rise と raise の違いは、\n\nPrices rise.\n→ 価格が上がる。\n\nThey raise prices.\n→ 彼らが価格を上げる。\n\nと考えると分かりやすくなります。\n\nrise\n→ 自分で上がる\n\nraise\n→ 何かを上げる\n\nという違いを意識すると、二つをかなり区別しやすくなります。"
+      },
+      {
+        "pos": "verb",
+        "word": "save",
+        "meanings": [
+          {
+            "meaning": "救う／助ける",
+            "en": "A: Thanks for bringing my charger.\nB: No problem.\nA: You saved me. My battery was at one percent.",
+            "ja": "A：充電器持ってきてくれてありがとう。\nB：いいよ。\nA：助かった。バッテリー1％だったんだ。"
+          },
+          {
+            "meaning": "取っておく／残しておく",
+            "en": "A: Are you going to eat the last piece?\nB: No, save it for Leo.",
+            "ja": "A：最後の一個食べる？\nB：ううん、Leoに取っておいて。"
+          },
+          {
+            "meaning": "節約する／貯める",
+            "en": "A: Why are you taking the train instead of a taxi?\nB: I’m trying to save money.",
+            "ja": "A：なんでタクシーじゃなくて電車なの？\nB：節約しようと思って。"
+          },
+          {
+            "meaning": "保存する",
+            "en": "A: Did you save the file?\nB: Wait... I think I closed it without saving.",
+            "ja": "A：ファイル保存した？\nB：待って……保存しないで閉じたかも。"
+          }
+        ],
+        "wordNote": "save の中心には、「失われたり、使い切られたり、消えてしまったりしないように守って、あとに残す」という感覚があります。\n\nまず、いちばん分かりやすいのは「救う」「助ける」という使い方です。\n\nThanks for bringing my charger.\n→ 充電器持ってきてくれてありがとう。\n\nNo problem.\n→ いいよ。\n\nYou saved me. My battery was at one percent.\n→ 助かった。バッテリー1％だったんだ。\n\nsave someone\n→ 人を救う／助ける\n\nという意味になります。\n\n必ずしも命に関わる場面だけではありません。\n\nYou saved me!\n→ 助かった！\n\nのように、困っているところを助けてもらったときにも会話でよく使います。\n\nもちろん、\n\nThe doctor saved his life.\n→ その医師は彼の命を救いました。\n\nsave someone’s life\n→ 人の命を救う\n\nという使い方もあります。\n\nここでは、人や命が失われないように守るという save の感覚があります。\n\nsave someone from ... という形もよく使います。\n\nYou saved me from making a huge mistake.\n→ 大きな失敗をするところを助けてくれた。\n\nsave someone from ...\n→ 人を～から救う／守る\n\nという意味です。\n\nsave は、「取っておく」「残しておく」という意味でもよく使います。\n\nAre you going to eat the last piece?\n→ 最後の一個食べる？\n\nNo, save it for Leo.\n→ ううん、Leoに取っておいて。\n\nsave something for someone\n→ 誰かのために何かを取っておく\n\nという使い方です。\n\n食べたり使ったりしてなくしてしまわず、あとで使えるように残しておく感覚があります。\n\nsave something for later もよく使います。\n\nI’ll save the rest for later.\n→ 残りはあとで食べるために取っておきます。\n\nsave it for later\n→ それはあとに取っておいて\n\nという意味です。\n\nsave me a seat も便利な表現です。\n\nCan you save me a seat?\n→ 席取っておいてくれる？\n\nここでは、ほかの人に使われてしまわないよう、自分のために席を残しておいてもらいます。\n\nsave は、お金や時間などを「節約する」「貯める」ときにも使います。\n\nWhy are you taking the train instead of a taxi?\n→ なんでタクシーじゃなくて電車なの？\n\nI’m trying to save money.\n→ 節約しようと思って。\n\nsave money\n→ お金を節約する／貯める\n\nという意味です。\n\nお金を使い切ってしまわず、自分の手元に残しておくところからこの意味になります。\n\nsave time も非常によく使います。\n\nThis shortcut will save us a lot of time.\n→ この近道ならかなり時間を節約できます。\n\nsave time\n→ 時間を節約する\n\nsave energy\n→ エネルギーを節約する\n\nsave space\n→ 場所を節約する\n\nのように使います。\n\n時間やエネルギーなどを必要以上に使わず、あとに残す感覚です。\n\nsave up は、「目的のために少しずつ貯める」という意味でよく使います。\n\nI’m saving up for a new laptop.\n→ 新しいノートPCを買うためにお金を貯めています。\n\nsave money\n→ お金を使わず残す／節約する\n\nsave up for ...\n→ ～のために少しずつお金を貯める\n\nという違いがあります。\n\nたとえば、\n\nI’m trying to save money.\n→ 出費を減らして節約しようとしている。\n\nI’m saving up for a trip.\n→ 旅行のためにお金を貯めている。\n\nというように使い分けることができます。\n\nそして、現代の日常生活で非常によく使うのが、データを「保存する」という意味です。\n\nDid you save the file?\n→ ファイル保存した？\n\nWait... I think I closed it without saving.\n→ 待って……保存しないで閉じたかも。\n\nsave a file\n→ ファイルを保存する\n\nsave a photo\n→ 写真を保存する\n\nsave your work\n→ 作業内容を保存する\n\nというように使います。\n\nここでも save の基本の感覚は同じです。\n\n作ったデータが消えて失われてしまわないように、あとで使える状態で残しておきます。\n\nSave your work before you close the app.\n→ アプリを閉じる前に作業内容を保存してね。\n\nという表現も覚えておくと便利です。\n\nsave には、「手間を省く」という使い方もあります。\n\nThat will save you a trip to the store.\n→ それなら店まで行く手間が省けます。\n\nsave someone time\n→ 人の時間を節約する\n\nsave someone trouble\n→ 人の手間を省く\n\nのように使います。\n\nこれも、使わなくてよい時間や労力を残してあげると考えると、基本の save とつながります。\n\nsave は、日本語では「救う」「取っておく」「節約する」「貯める」「保存する」など、かなり違う意味に見えます。\n\nでも中心にあるのは、\n\n人や命を失わせない\n→ 救う・助ける\n\n食べ物や物を使い切らない\n→ 取っておく・残しておく\n\nお金や時間を使い切らない\n→ 節約する・貯める\n\nデータを消さない\n→ 保存する\n\nというつながりです。\n\nsave someone\nsave someone’s life\nsave it for later\nsave me a seat\nsave money\nsave time\nsave up for ...\nsave a file\n\n一見すると別々の使い方に見えますが、どれも「失われたり使い切られたりしないように守って、あとに残す」という save の感覚から広がっています。"
       },
       
       
