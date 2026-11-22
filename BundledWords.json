@@ -836,6 +836,36 @@
     "pos": "verb"
   },
   {
+    "word": "call",
+    "meaning": "呼ぶ",
+    "pos": "verb"
+  },
+  {
+    "word": "close",
+    "meaning": "閉じる",
+    "pos": "verb"
+  },
+  {
+    "word": "find",
+    "meaning": "分かる",
+    "pos": "verb"
+  },
+  {
+    "word": "find",
+    "meaning": "見つける",
+    "pos": "verb"
+  },
+  {
+    "word": "look",
+    "meaning": "診察する",
+    "pos": "verb"
+  },
+  {
+    "word": "run",
+    "meaning": "運営する",
+    "pos": "verb"
+  },
+  {
     "word": "run",
     "meaning": "走る",
     "pos": "verb"
@@ -1390,9 +1420,6 @@
     "meaning": "害する／悪影響を与える",
     "pos": "verb"
   },
-  
- 
- 
   {
     "word": "show",
     "meaning": "見せる",
@@ -1496,11 +1523,6 @@
   {
     "word": "happen",
     "meaning": "起こる",
-    "pos": "verb"
-  },
-  {
-    "word": "invite",
-    "meaning": "招待する",
     "pos": "verb"
   },
   {
@@ -1930,11 +1952,6 @@
     "pos": "verb"
   },
   {
-    "word": "order",
-    "meaning": "注文する",
-    "pos": "verb"
-  },
-  {
     "word": "spend",
     "meaning": "使う（お金を）",
     "pos": "verb"
@@ -2022,6 +2039,171 @@
   {
     "word": "keep",
     "meaning": "守る",
+    "pos": "verb"
+  },
+  {
+    "word": "invite",
+    "meaning": "招待する／招く",
+    "pos": "verb"
+  },
+  {
+    "word": "invite",
+    "meaning": "～するよう誘う／参加を勧める",
+    "pos": "verb"
+  },
+  {
+    "word": "invite",
+    "meaning": "招く／引き起こす",
+    "pos": "verb"
+  },
+  {
+    "word": "order",
+    "meaning": "注文する／頼む",
+    "pos": "verb"
+  },
+  {
+    "word": "order",
+    "meaning": "命じる／指示する",
+    "pos": "verb"
+  },
+  {
+    "word": "order",
+    "meaning": "並べる／整理する",
+    "pos": "verb"
+  },
+  {
+    "word": "excuse",
+    "meaning": "許す／大目に見る",
+    "pos": "verb"
+  },
+  {
+    "word": "excuse",
+    "meaning": "免除する／外す",
+    "pos": "verb"
+  },
+  {
+    "word": "excuse",
+    "meaning": "正当化する／言い訳になる",
+    "pos": "verb"
+  },
+  {
+    "word": "die",
+    "meaning": "死ぬ／亡くなる",
+    "pos": "verb"
+  },
+  {
+    "word": "die",
+    "meaning": "枯れる／死ぬ",
+    "pos": "verb"
+  },
+  {
+    "word": "die",
+    "meaning": "動かなくなる／切れる",
+    "pos": "verb"
+  },
+  {
+    "word": "understand",
+    "meaning": "理解する／分かる",
+    "pos": "verb"
+  },
+  {
+    "word": "understand",
+    "meaning": "気持ち・事情を理解する／察する",
+    "pos": "verb"
+  },
+  {
+    "word": "understand",
+    "meaning": "～だと理解している／認識している",
+    "pos": "verb"
+  },
+  {
+    "word": "go",
+    "meaning": "行く／向かう",
+    "pos": "verb"
+  },
+  {
+    "word": "go",
+    "meaning": "進む／進行する／うまくいく",
+    "pos": "verb"
+  },
+  {
+    "word": "go",
+    "meaning": "～になる／～の状態に変わる",
+    "pos": "verb"
+  },
+  {
+    "word": "give",
+    "meaning": "与える／渡す",
+    "pos": "verb"
+  },
+  {
+    "word": "give",
+    "meaning": "情報・助言・機会などを与える／伝える",
+    "pos": "verb"
+  },
+  {
+    "word": "give",
+    "meaning": "（行為などを）する／与える",
+    "pos": "verb"
+  },
+  {
+    "word": "give",
+    "meaning": "時間・注意などを与える／割く",
+    "pos": "verb"
+  },
+  {
+    "word": "know",
+    "meaning": "知っている／分かっている",
+    "pos": "verb"
+  },
+  {
+    "word": "know",
+    "meaning": "人を知っている／場所などに詳しい",
+    "pos": "verb"
+  },
+  {
+    "word": "know",
+    "meaning": "～する方法を知っている／～できる",
+    "pos": "verb"
+  },
+  {
+    "word": "feel",
+    "meaning": "感じる／感じがする",
+    "pos": "verb"
+  },
+  {
+    "word": "feel",
+    "meaning": "～のように感じる／～という感じがする",
+    "pos": "verb"
+  },
+  {
+    "word": "feel",
+    "meaning": "～な気がする／～と思う",
+    "pos": "verb"
+  },
+  {
+    "word": "feel",
+    "meaning": "触る／触って確かめる",
+    "pos": "verb"
+  },
+  {
+    "word": "work",
+    "meaning": "働く／仕事をする",
+    "pos": "verb"
+  },
+  {
+    "word": "work",
+    "meaning": "取り組む／作業する",
+    "pos": "verb"
+  },
+  {
+    "word": "work",
+    "meaning": "機能する／作動する",
+    "pos": "verb"
+  },
+  {
+    "word": "work",
+    "meaning": "うまくいく／効果がある",
     "pos": "verb"
   },
   
@@ -7937,34 +8119,5 @@
     "meaning": "接続詞  〜したあとで",
     "pos": "others"
   },
-  {
-    "word": "call",
-    "meaning": "呼ぶ",
-    "pos": "verb"
-  },
-  {
-    "word": "close",
-    "meaning": "閉じる",
-    "pos": "verb"
-  },
-  {
-    "word": "find",
-    "meaning": "分かる",
-    "pos": "verb"
-  },
-  {
-    "word": "find",
-    "meaning": "見つける",
-    "pos": "verb"
-  },
-  {
-    "word": "look",
-    "meaning": "診察する",
-    "pos": "verb"
-  },
-  {
-    "word": "run",
-    "meaning": "運営する",
-    "pos": "verb"
-  },
+
 ]

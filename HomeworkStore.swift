@@ -705,6 +705,24 @@ final class HomeworkStore: ObservableObject {
             renamedCount += 1
         }
         
+        if migrateBundledMeaningRename(
+            word: "invite",
+            pos: .verb,
+            from: "招待する",
+            to: "招待する／招く"
+        ) {
+            renamedCount += 1
+        }
+        
+        if migrateBundledMeaningRename(
+            word: "order",
+            pos: .verb,
+            from: "注文する",
+            to: "注文する／頼む"
+        ) {
+            renamedCount += 1
+        }
+        
         
         
         // ---------------------------------------------------------
