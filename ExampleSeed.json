@@ -9368,11 +9368,126 @@
         ],
         "wordNote": "deadline は、書類の提出や仕事の完了など、何かを終わらせなければならない最終的な日時を表します。\n\ndue date も期限を表しますが、deadline は特に、それまでに終えなければならないという時間的な制約を強く意識させる言葉です。\n\nmeet a deadline\n→ 締め切りに間に合わせる\n\nmiss a deadline\n→ 締め切りに間に合わない\n\nextend a deadline\n→ 締め切りを延長する\n\na tight deadline\n→ 余裕のない締め切り\n\nWhat's the deadline for submitting the form?\n→ 書類の提出期限はいつ？\n\nI'm worried we won't meet the deadline.\n→ 締め切りに間に合わないんじゃないかと心配なんだ。\n\n締め切りが迫っているときは、approaching や coming up もよく使います。\n\nThe deadline is coming up.\n→ 締め切りが近づいてるよ。\n\nまた、締め切りより前に終えることは ahead of the deadline や before the deadline で表せます。\n\nWe finished the project ahead of the deadline.\n→ 締め切りより早くプロジェクトを終えたよ。\n\ndue date は、宿題の提出日や請求書の支払期日などにもよく使われます。\n\nWhen is the payment due?\n→ 支払い期限はいつですか？\n\n仕事や学校だけでなく、申請書、応募書類、予約の変更期限など、日常生活でも頻繁に使う言葉です。"
       },
-
-
-      
-
-      
+      {
+        "word": "shortage",
+        "pos": "noun",
+        "meanings": [
+          {
+            "meaning": "不足／欠乏",
+            "en": "A: Why are the shelves so empty?\nB: There's been a shortage of cooking oil lately.",
+            "ja": "A：どうして棚がこんなに空っぽなの？\nB：最近、食用油が品不足なんだって。"
+          }
+        ],
+        "wordNote": "shortage は、必要とされる量に対して、物や人手などが足りない状態を表します。\n\n単に「少ない」というだけでなく、需要や必要量を満たせていないことがポイントです。\n\na shortage of ...\n→ ～の不足\n\na food shortage\n→ 食料不足\n\na water shortage\n→ 水不足\n\na staff shortage\n→ 人手不足\n\nThere's a shortage of nurses in this area.\n→ この地域では看護師が不足しているんだ。\n\nThe store is experiencing a shortage of supplies because of delivery delays.\n→ 配送の遅れのせいで、その店では物資が不足している。\n\nshortage は可算名詞として使われ、a shortage of ... の形がとても一般的です。\n\nまた、複数の不足が発生している場合は shortages とも言います。\n\nSupply shortages are causing delays.\n→ 物資不足のために遅れが出ている。\n\n【shortage と lack の違い】\n\nshortage は、必要な量に対して供給が足りないことに焦点があります。\n\nlack は、何かが十分にないことを広く表し、物だけでなく経験や自信などにも使えます。\n\na shortage of workers\n→ 労働者の不足\n\na lack of experience\n→ 経験不足\n\nニュースでは housing shortage（住宅不足）や labor shortage（労働力不足）もよく登場します。\n\n品不足や人手不足など、社会生活の身近な問題を説明するときに役立つ言葉です。"
+      },
+      {
+        "word": "deposit",
+        "pos": "noun",
+        "meanings": [
+          {
+            "meaning": "預け金／保証金",
+            "en": "A: Do we have to pay a deposit for the apartment?\nB: Yes, it's one month's rent.",
+            "ja": "A：このアパート、保証金を払わないといけないの？\nB：うん、家賃1か月分だよ。"
+          }
+        ],
+        "wordNote": "deposit は、お金をいったん預けたり、契約や予約の際に先に支払ったりすることに関係する名詞です。\n\n賃貸住宅では、退去時の損傷や未払いに備えて預ける保証金を security deposit と呼びます。\n\na security deposit\n→ 保証金／敷金に相当するお金\n\npay a deposit\n→ 保証金や予約金を支払う\n\nget your deposit back\n→ 預けたお金を返してもらう\n\na refundable deposit\n→ 返金可能な預け金\n\nIs the deposit refundable?\n→ この保証金は返金されますか？\n\nYou'll get your deposit back when you move out.\n→ 退去するときに保証金は返ってくるよ。\n\ndeposit は、ホテルの予約やレンタカーの利用などでも使われます。\n\nThe hotel requires a deposit at check-in.\n→ そのホテルではチェックイン時に保証金が必要です。\n\n【deposit と down payment の違い】\n\ndeposit は、保証のために預けるお金や、予約・購入の際に先に支払うお金を指します。\n\ndown payment は、住宅や車などを購入するとき、代金の一部として最初に支払う「頭金」です。\n\na deposit on a rental car\n→ レンタカーの保証金\n\na down payment on a house\n→ 住宅購入時の頭金\n\nまた、銀行では deposit が「預金」や「入金」という意味になります。\n\nmake a deposit\n→ 入金する\n\na bank deposit\n→ 銀行預金\n\nI'd like to deposit this check.\n→ この小切手を入金したいのですが。\n\nこの場合の deposit は動詞です。\n\nなお、deposit が必ず返金されるとは限りません。契約によっては non-refundable deposit（返金不可の予約金など）もあるので、支払う前に条件を確認することが大切です。"
+      },
+      {
+        "word": "intersection",
+        "pos": "noun",
+        "meanings": [
+          {
+            "meaning": "交差点",
+            "en": "A: Is the pharmacy far from here?\nB: No, just turn right at the next intersection.",
+            "ja": "A：薬局はここから遠いですか？\nB：いいえ、次の交差点を右に曲がるだけですよ。"
+          }
+        ],
+        "wordNote": "intersection は、道路と道路が交わる場所を表します。\n\n特にアメリカ英語では、道案内や交通情報でよく使われる言葉です。\n\nat the intersection\n→ 交差点で\n\nthe next intersection\n→ 次の交差点\n\na busy intersection\n→ 交通量の多い交差点\n\nan intersection with traffic lights\n→ 信号のある交差点\n\nTurn left at the next intersection.\n→ 次の交差点を左に曲がってください。\n\nThere's a convenience store at the intersection.\n→ 交差点のところにコンビニがあるよ。\n\n【intersection と crossing の違い】\n\nintersection は、主に道路同士が交わる場所を指します。\n\ncrossing は、人や車などが横切る場所という意味が中心です。\n\nan intersection\n→ 道路の交差点\n\na pedestrian crossing\n→ 横断歩道（主にイギリス英語）\n\na railroad crossing\n→ 踏切（アメリカ英語）\n\nアメリカ英語では横断歩道を crosswalk と呼ぶのが一般的です。\n\nまた、crossroads も「交差点」を表しますが、特にイギリス英語でよく使われます。\n\nThe bank is just past the crossroads.\n→ 銀行は交差点を少し過ぎたところにあります。\n\ncrossroads には、人生や仕事などの「重要な岐路」という比喩的な意味もあります。\n\nI'm at a crossroads in my career.\n→ 仕事のことで大きな選択を迫られているんだ。\n\n道案内では、交差点を基準に turn right / turn left / go straight と組み合わせると、場所を分かりやすく伝えられます。"
+      },
+      {
+        "word": "symptom",
+        "pos": "noun",
+        "meanings": [
+          {
+            "meaning": "症状",
+            "en": "A: What symptoms have you been having?\nB: Mostly a sore throat and a headache.",
+            "ja": "A：どんな症状がありますか？\nB：主に喉の痛みと頭痛です。"
+          }
+        ],
+        "wordNote": "symptom は、病気や体調不良によって現れる症状を表します。\n\n痛み、せき、吐き気、めまいなど、本人が感じる体の変化を説明するときによく使われます。\n\nhave symptoms\n→ 症状がある\n\nmild symptoms\n→ 軽い症状\n\nsevere symptoms\n→ 重い症状\n\nsymptoms of ...\n→ ～の症状\n\nWhat symptoms do you have?\n→ どんな症状がありますか？\n\nMy symptoms started yesterday.\n→ 昨日から症状が出始めました。\n\nsymptom は可算名詞で、症状が一つなら a symptom、複数なら symptoms になります。\n\n病院では symptoms と複数形で尋ねられることがよくあります。\n\n【symptom と sign の違い】\n\n医学的には、symptom は患者本人が感じたり訴えたりする症状を指すことが多く、sign は医療者が観察や検査で確認できる徴候を指します。\n\na headache\n→ 頭痛（symptom の例）\n\nhigh blood pressure\n→ 高血圧（sign の例）\n\nただし日常英語では、symptom が病気の現れ全般を広く指すこともあります。\n\nまた、体調を説明するときは、symptom という名詞を使わずに直接伝えることもできます。\n\nI have a sore throat.\n→ 喉が痛いです。\n\nI've been feeling dizzy.\n→ めまいがしています。\n\nI started coughing last night.\n→ 昨夜からせきが出始めました。\n\n症状がいつ始まったかを伝えるときは、start、since、for なども役立ちます。\n\nI've had these symptoms for three days.\n→ この症状が3日間続いています。\n\n旅行先や病院で、自分の体調を具体的に説明するために覚えておきたい言葉です。"
+      },
+ {
+   "word": "subscription",
+   "pos": "noun",
+   "meanings": [
+     {
+       "meaning": "定期購読／定額サービスの契約",
+       "en": "A: Why am I still being charged for this app?\nB: Maybe your subscription renewed automatically.",
+       "ja": "A：なんでこのアプリ、まだ料金が引き落とされてるの？\nB：サブスクが自動更新されたのかも。"
+     }
+   ],
+        "wordNote": "subscription は、新聞や雑誌、動画配信、音楽、アプリなどのサービスを、一定期間継続して利用するための契約を表します。\n\n以前は新聞や雑誌の「定期購読」という意味が中心でしたが、現在ではデジタルサービスの契約にも広く使われています。\n\na monthly subscription\n→ 月額契約\n\nan annual subscription\n→ 年間契約\n\nrenew a subscription\n→ 契約を更新する\n\ncancel a subscription\n→ サブスクリプションを解約する\n\nan active subscription\n→ 有効な契約\n\nI forgot to cancel my subscription.\n→ サブスクを解約するのを忘れてた。\n\nHow much is the monthly subscription?\n→ 月額料金はいくらですか？\n\n【subscription と membership の違い】\n\nsubscription は、一定期間サービスやコンテンツを利用する契約に焦点があります。\n\nmembership は、団体や施設、サービスの「会員である資格や状態」に重点があります。\n\na streaming subscription\n→ 動画配信サービスの契約\n\na gym membership\n→ ジムの会員契約\n\nただし、実際のサービスでは両方の言葉が使われることもあります。\n\n【automatic renewal（自動更新）】\n\nサブスクリプションでは、契約が自動的に更新される場合があります。\n\nMy subscription renewed automatically.\n→ サブスクが自動更新された。\n\nI thought I'd canceled it.\n→ 解約したつもりだったんだけど。\n\nまた、free trial（無料体験）終了後に有料契約へ移行するサービスもあります。\n\nDoes the free trial automatically turn into a paid subscription?\n→ 無料体験が終わると、自動的に有料契約になりますか？\n\n解約については、cancel a subscription が最も基本的な表現です。\n\nただし、解約しても支払い済みの期間が終わるまでは利用できる場合があり、解約と返金は別の手続きです。\n\nデジタルサービスの料金や契約条件を確認するときに、特に役立つ言葉です。"
+      },
+ {
+   "word": "maintenance",
+   "pos": "noun",
+   "meanings": [
+     {
+       "meaning": "維持管理／点検・整備",
+       "en": "A: Why is the elevator out of service?\nB: It's undergoing maintenance. It should be working again by noon.",
+       "ja": "A：どうしてエレベーターが使えないの？\nB：点検中なんだ。お昼までにはまた使えるようになるはずだよ。"
+     }
+   ],
+        "wordNote": "maintenance は、建物・設備・機械などを良い状態に保つための点検、整備、維持管理を表します。\n\n故障してから直すだけでなく、故障を防ぐために定期的に行う作業も含まれます。\n\n【数えられる？ 数えられない？】\n\nmaintenance は通常、不可算名詞です。\n\na maintenance や maintenances とはせず、maintenance のまま使います。\n\nThe elevator is undergoing maintenance.\n→ エレベーターは点検・整備中です。\n\nThe building needs regular maintenance.\n→ この建物は定期的なメンテナンスが必要です。\n\n個々の作業を数えたい場合は、maintenance task（整備作業）や maintenance check（点検）などを使います。\n\n【よく使う表現】\n\nundergo maintenance\n→ 点検・整備を受ける\n\nroutine maintenance\n→ 定期的な点検・整備\n\nmaintenance costs\n→ 維持管理費\n\nmaintenance work\n→ 保守・整備作業\n\nThe website is down for maintenance.\n→ ウェブサイトはメンテナンスのため停止しています。\n\n【maintenance と repair の違い】\n\nmaintenance は、設備などを良い状態に保つための維持管理や点検・整備です。\n\nrepair は、壊れたものや故障したものを直すことに重点があります。\n\nThe air conditioner needs maintenance.\n→ エアコンの点検・整備が必要だ。\n\nThe air conditioner needs repairs.\n→ エアコンを修理する必要がある。\n\nrepair は「修理」という意味で可算・不可算の両方の用法があり、具体的な修理作業には a repair や repairs が使われます。\n\nmaintenance は住宅、車、家電、コンピューターなど、さまざまな場面で使える言葉です。"
+      },
+ {
+   "word": "appliance",
+   "pos": "noun",
+   "meanings": [
+     {
+       "meaning": "家電製品／器具",
+       "en": "A: Does the apartment come with any appliances?\nB: Yes, there's a fridge and a washing machine.",
+       "ja": "A：このアパートには家電が付いてるの？\nB：うん、冷蔵庫と洗濯機があるよ。"
+     }
+   ],
+        "wordNote": "appliance は、家庭などで特定の作業を行うために使う機器や器具を表します。\n\n日常会話では、冷蔵庫、洗濯機、電子レンジなどの家電製品を指すことが多い言葉です。\n\n【数えられる？ 数えられない？】\n\nappliance は可算名詞です。\n\n1台なら an appliance、複数なら appliances になります。\n\nWe need a new kitchen appliance.\n→ 新しいキッチン家電が1台必要なんだ。\n\nThe apartment comes with several appliances.\n→ そのアパートには家電が何台か備え付けられているよ。\n\n家電製品全般を指すときは appliances と複数形にすることがよくあります。\n\n【よく使う表現】\n\nhousehold appliances\n→ 家庭用電化製品・家庭用器具\n\nkitchen appliances\n→ キッチン家電\n\nelectrical appliances\n→ 電気器具\n\nenergy-efficient appliances\n→ 省エネ家電\n\nThe washing machine is the only appliance included in the rent.\n→ 家賃に含まれている備え付け家電は洗濯機だけです。\n\n【appliance と device の違い】\n\nappliance は、主に家事や家庭内の作業など、特定の用途に使う機器を表します。\n\ndevice は、特定の機能を持つ装置や機器を広く指す言葉です。\n\na kitchen appliance\n→ キッチン家電\n\na mobile device\n→ モバイル端末\n\nスマートフォンは通常、appliance より device と呼ぶほうが自然です。\n\nまた、appliance は必ずしも電気製品だけを意味するわけではなく、文脈によっては医療用の器具なども指します。\n\n家具（furniture）と家電（appliances）は別のカテゴリーです。\n\nDoes the apartment come with furniture and appliances?\n→ そのアパートには家具と家電が付いていますか？\n\n住宅探しや家電の購入で役立つ表現です。"
+      },
+ {
+   "word": "damage",
+   "pos": "noun",
+   "meanings": [
+     {
+       "meaning": "損傷／被害",
+       "en": "A: Did the storm cause much damage to your house?\nB: Just a few broken windows. Luckily, no one was hurt.",
+       "ja": "A：嵐で家はかなり被害を受けたの？\nB：窓ガラスが何枚か割れただけだよ。幸い、けが人はいなかった。"
+     }
+   ],
+        "wordNote": "damage は、物や建物などが傷ついたり、何らかの被害を受けたりした状態を表します。\n\n事故、悪天候、水漏れ、輸送中の破損など、幅広い場面で使われます。\n\n【数えられる？ 数えられない？】\n\n「損傷・被害」という意味の damage は、通常不可算名詞です。\n\na damage とはせず、被害が大きい場合も much damage や a lot of damage と表現します。\n\nThe storm caused a lot of damage.\n→ 嵐で大きな被害が出た。\n\nThere wasn't much damage to the car.\n→ 車にはそれほど大きな損傷はなかった。\n\n損傷箇所を一つずつ数えたい場合は、a scratch（ひっかき傷）、a dent（へこみ）など、具体的な名詞を使います。\n\n【よく使う表現】\n\ncause damage to ...\n→ ～に損害を与える\n\nsuffer damage\n→ 損傷・被害を受ける\n\nwater damage\n→ 水による損傷・被害\n\nserious damage\n→ 深刻な損傷・被害\n\nThe package arrived with some damage.\n→ 荷物が少し破損した状態で届いた。\n\n【damage と damages の違い】\n\ndamage は、物や建物などの損傷・被害を表します。\n\n一方、法律の文脈で damages と複数形にすると、「損害賠償金」という意味になります。\n\nThe fire caused serious damage.\n→ 火災で深刻な被害が出た。\n\nThe company was ordered to pay damages.\n→ その会社は損害賠償金の支払いを命じられた。\n\n日常生活で「被害」や「破損」を言うときは、基本的に damage のままと覚えておくと安心です。\n\nなお、damage は動詞としても使えます。\n\nThe water damaged the wooden floor.\n→ 水で木の床が傷んでしまった。\n\ndamage は外見上の傷だけでなく、機能や価値が損なわれる場合にも使われます。"
+      },
+ {
+   "word": "replacement",
+   "pos": "noun",
+   "meanings": [
+     {
+       "meaning": "交換品／交換",
+       "en": "A: The headphones I bought stopped working after two days.\nB: You should ask for a replacement. They're still under warranty.",
+       "ja": "A：買ったヘッドホンが2日で動かなくなっちゃった。\nB：交換してもらったほうがいいよ。まだ保証期間内だし。"
+     }
+   ],
+        "wordNote": "replacement は、壊れたものや使えなくなったものを別のものに取り替えること、またはその代わりとなるものを表します。\n\n返品・交換、部品の取り替え、人の交代など、さまざまな場面で使われます。\n\n【数えられる？ 数えられない？】\n\nreplacement は可算名詞と不可算名詞の両方で使われます。\n\n「代わりの品物・人」を指すときは可算名詞です。\n\nThey sent me a replacement.\n→ 代わりの品物を送ってくれた。\n\nWe need a replacement for the broken chair.\n→ 壊れた椅子の代わりが必要だ。\n\n一方、「交換すること」という行為や過程を一般的に表す場合は、不可算名詞として使われます。\n\nReplacement of the damaged parts will take two days.\n→ 破損した部品の交換には2日かかります。\n\nただし、個別の交換作業を指す場合には a replacement とすることもあります。\n\nThe replacement took less than an hour.\n→ 交換作業は1時間もかからなかった。\n\nつまり、物を指すか行為を指すかだけでなく、個別の交換として捉えるかどうかもポイントです。\n\n【よく使う表現】\n\nask for a replacement\n→ 交換品を求める／交換を依頼する\n\nget a replacement\n→ 交換品を受け取る\n\na replacement part\n→ 交換部品\n\na replacement for ...\n→ ～の代わりとなるもの・人\n\nCan I get a replacement instead of a refund?\n→ 返金ではなく交換してもらえますか？\n\n【replacement と substitute の違い】\n\nreplacement は、元のものに代わって使う品物や人を表し、特に壊れたものや失われたものの交換でよく使われます。\n\nsubstitute は、あるものの代わりに使うものや人を広く表し、一時的な代用にもよく使われます。\n\na replacement phone\n→ 交換用のスマートフォン\n\na substitute teacher\n→ 代わりに授業を担当する先生\n\nまた、replace は動詞です。\n\nThey replaced the broken screen.\n→ 壊れた画面を交換してくれた。\n\nreplacement は買い物のトラブルだけでなく、仕事や日常生活でも使える便利な名詞です。"
+      },
+      {
+        "word": "warranty",
+        "pos": "noun",
+        "meanings": [
+          {
+            "meaning": "製品保証／保証",
+            "en": "A: Is the repair covered by the warranty?\nB: Yes, as long as the damage wasn't caused by misuse.",
+            "ja": "A：この修理は保証の対象になるの？\nB：うん、誤った使い方が原因の故障じゃなければね。"
+          }
+        ],
+        "wordNote": "warranty は、製品が一定の条件のもとで正常に機能することをメーカーや販売者が保証し、故障などが起きた場合の修理や交換について定めた保証を表します。\n\n家電、スマートフォン、車などを購入するときによく登場する言葉です。\n\n【数えられる？ 数えられない？】\n\nwarranty は可算名詞です。\n\n一つの保証契約なら a warranty、複数なら warranties になります。\n\nThis laptop comes with a one-year warranty.\n→ このノートパソコンには1年間の保証が付いています。\n\nThe company offers different warranties for different products.\n→ その会社は製品によって異なる保証を提供しています。\n\nなお、under warranty（保証期間内で）や out of warranty（保証期間外で）では、冠詞を付けません。\n\nMy phone is still under warranty.\n→ 私のスマホはまだ保証期間内です。\n\n【よく使う表現】\n\na manufacturer's warranty\n→ メーカー保証\n\nan extended warranty\n→ 延長保証\n\na warranty period\n→ 保証期間\n\nbe covered by the warranty\n→ 保証の対象になる\n\nThe repair isn't covered by the warranty.\n→ その修理は保証の対象外です。\n\nIs accidental damage covered by the warranty?\n→ 偶発的な破損も保証の対象になりますか？\n\n【warranty と guarantee の違い】\n\nwarranty は、特に製品について、保証期間や修理・交換の条件を定めた保証を指すことが多い言葉です。\n\nguarantee は、製品の品質や性能だけでなく、サービスの結果や満足度など、より広い範囲の保証や約束に使われます。\n\na two-year warranty\n→ 2年間の製品保証\n\na money-back guarantee\n→ 返金保証\n\nただし、製品保証の文脈では warranty と guarantee が重なって使われることもあります。\n\n【保証書は何と言う？】\n\n保証そのものが warranty で、保証書という書類を明確に指したい場合は warranty card や warranty document などと言えます。\n\nDo I need the warranty card to get it repaired?\n→ 修理してもらうには保証書が必要ですか？\n\nEven if a product is still under warranty, not all defects or damage are necessarily covered.\n→ 保証期間内であっても、すべての故障や破損が無条件に保証されるわけではありません。\n\n保証対象を確認するときは、be covered by the warranty という表現が特に役立ちます。"
+      },
       
       {
         "pos": "others",
@@ -9588,7 +9703,10 @@
           }
         ]
       },
-      
+  
+ 
+ 
+  
       {
         "pos": "verb",
         "word": "bake",
@@ -9630,18 +9748,7 @@
           }
         ]
       },
-      {
-        "pos": "verb",
-        "word": "carry",
-        "wordNote": null,
-        "meanings": [
-          {
-            "meaning": "運ぶ",
-            "en": "I carry my iPhone everywhere.",
-            "ja": "僕はiPhoneをどこにでも持ち歩いてるよ。"
-          }
-        ]
-      },
+
       {
         "pos": "verb",
         "word": "climb",
@@ -9765,18 +9872,7 @@
           }
         ]
       },
-      {
-        "pos": "verb",
-        "word": "take",
-        "wordNote": "take の基本イメージは、何かを手に取り、自分の行為の中に取り込んで「そこから先へ持っていく」ことです。\n\nTake your ID with you.\n→ 身分証を持っていって。\n\nbring が「こちらへ持ってくる」なら、take は「今いる所から別の所へ持っていく」という方向の違いがあります。\n\nしかし take は、物を運ぶ以外にも非常によく使われます。\n\ntake a photo\n→ 写真を撮る\n\ntake a break\n→ 休憩を取る\n\ntake medicine\n→ 薬を飲む\n\ntake a seat\n→ 座る\n\nこれらは日本語では別々の動詞になりますが、英語では「その行為・機会を自分の側へ取り込む」と考えるとつながって見えます。\n\nまた、\n\nIt takes ten minutes.\n→ 10分かかります。\n\nのように、必要な時間を「取る」という使い方もあります。\n\ntake は訳語を一つずつ暗記するより、「取って、自分の行為として持っていく」という基本感覚から意味の広がりを見ると使いやすくなります。",
-        "meanings": [
-          {
-            "meaning": "持っていく",
-            "en": "A: Don't forget to take your ID with you.\nB: Good catch. They check it at the entrance, right?",
-            "ja": "A: 身分証持っていくの忘れないでね。\nB: 言ってくれて助かった。入口で確認されるんだよね？"
-          }
-        ]
-      },
+
       {
         "pos": "verb",
         "word": "borrow",
@@ -9801,30 +9897,7 @@
           }
         ]
       },
-      {
-        "pos": "verb",
-        "word": "reach",
-        "wordNote": "reach の基本イメージは、手や動きが伸びて「目的の点に届く」ことです。\n\nWe reached the hotel around eleven.\n→ 11時ごろホテルに着きました。\n\nreach は他動詞なので、場所を直接後ろに置きます。\n\nreach the station\n→ 駅に着く\n\nreach the top\n→ 頂上に到達する\n\n通常、reach to the station のように場所の前へ to は付けません。\n\nreach の「届く」という感覚は、場所だけでなく目標や合意にも広がります。\n\nreach a goal\n→ 目標に到達する\n\nreach an agreement\n→ 合意に達する\n\nPrices reached a record high.\n→ 価格が過去最高に達しました。\n\narrive は「到着した」という出来事を見るのに対して、reach は「目的点まで届いた」という感覚が強い語です。\n\narrive at the station\nreach the station\n\nの形の違いにも注意しましょう。",
-        "meanings": [
-          {
-            "meaning": "着く",
-            "en": "A: What time did you reach the hotel?\nB: Around eleven. The train was delayed again.",
-            "ja": "A: ホテルには何時に着いた？\nB: 11時ごろ。また電車が遅れてたんだ。"
-          }
-        ]
-      },
-      {
-        "pos": "verb",
-        "word": "miss",
-        "wordNote": "miss の基本イメージは、狙っていたもの・そこにあるはずのものに「届かない、すれ違う」ことです。\n\nI missed the last train.\n→ 終電に乗り損ねました。\n\n電車は来たけれど、自分がそこに間に合わず、乗る機会に届かなかったという感覚です。\n\nそこから、いろいろな意味に広がります。\n\nmiss a chance\n→ 機会を逃す\n\nmiss the target\n→ 的を外す\n\nI missed your call.\n→ 電話に出られなかった。\n\nまた、\n\nI miss you.\n→ あなたがいなくて寂しい。／会いたい。\n\nという非常によく使う表現もあります。\n\nこの場合も「そこにいてほしい人が今ここにいない」という欠けた感覚があります。\n\n「狙ったところに届かない」「あるはずのものが欠けている」という感覚で見ると、miss の意味がつながってきます。",
-        "meanings": [
-          {
-            "meaning": "乗りそこなう",
-            "en": "A: I missed the last train.\nB: Do you want me to help you find a taxi?",
-            "ja": "A: 終電逃しちゃった。\nB: タクシー探すの手伝おうか？"
-          }
-        ]
-      },
+
       {
         "pos": "verb",
         "word": "spend",
@@ -9873,23 +9946,7 @@
           }
         ]
       },
-      {
-        "pos": "verb",
-        "word": "call",
-        "wordNote": "call の基本の感覚は、「声・名前・電話などを使って、相手に働きかける」ことです。\n\nそこから、よく使う二つの意味に広がります。\n\n1. 電話する\n\nI'll call you later.\n→ あとで電話するね。\n\ncall someone\n→ 人に電話する\n\n英語では普通、\n\n× call to you\n○ call you\n\nのように、人を直接後ろに置きます。\n\n2. 呼ぶ・〜と呼ぶ\n\nWhat do you call this in English?\n→ これは英語で何と言いますか？\n\nCall me Ken.\n→ ケンって呼んで。\n\nThey call this area the Old Town.\n→ この地域はOld Townと呼ばれています。\n\n「電話する」と「呼ぶ」は日本語では別の動詞ですが、call には「相手へ呼びかける」という共通の感覚があります。",
-        "meanings": [
-          {
-            "meaning": "電話する",
-            "en": "A: I'll call you when I get there.\nB: Okay. I'll keep my phone nearby.",
-            "ja": "A: 着いたら電話するね。\nB: 分かった。すぐ取れるようにスマホ近くに置いとく。"
-          },
-          {
-            "meaning": "呼ぶ",
-            "en": "A: What do you call this in English?\nB: I'm not sure. Let's look it up.",
-            "ja": "A: これ、英語で何て呼ぶの？\nB: 分からないな。調べてみよう。"
-          }
-        ]
-      },
+
       {
         "pos": "verb",
         "word": "meet",
@@ -10098,18 +10155,7 @@
           }
         ]
       },
-      {
-        "pos": "verb",
-        "word": "bring",
-        "wordNote": "bring の基本イメージは、人や物を「こちら側・基準になる場所へ持ってくる」ことです。\n\nCan you bring your notebook tomorrow?\n→ 明日ノートを持ってきてくれる？\n\n話し手や聞き手がいる場所、または会話の中で基準になっている場所へ向かう感覚があります。\n\nBring your charger to my room.\n→ 充電器を私の部屋に持ってきて。\n\n一方、take は、今いる場所から別の場所へ持っていく感覚です。\n\nbring\n→ こちらへ持ってくる\n\ntake\n→ あちらへ持っていく\n\nまた bring は、物を運ぶだけではありません。\n\nThat song brings back memories.\n→ その曲を聞くと昔の記憶がよみがえる。\n\nThe new system brought us a lot of problems.\n→ 新しい仕組みは私たちに多くの問題をもたらしました。\n\n「何かをこちら側へ連れてくる」という感覚が、記憶・結果・変化をもたらす使い方にも広がっています。",
-        "meanings": [
-          {
-            "meaning": "持ってくる",
-            "en": "A: Can you bring your notebook tomorrow?\nB: Sure. Do you want me to bring the worksheet too?",
-            "ja": "A: 明日ノート持ってきてくれる？\nB: いいよ。ワークシートも持っていこうか？"
-          }
-        ]
-      },
+
       {
         "pos": "verb",
         "word": "hold",
@@ -11031,6 +11077,141 @@
           }
         ],
         "wordNote": "work の中心には、「人・物・方法などが、本来の役割を果たして、結果を生み出す」という感覚があります。\n\nまず、いちばん基本的なのは「働く」「仕事をする」です。\n\nDo you still work at the bookstore?\n→ まだ本屋で働いてるの？\n\nYeah, but only on weekends now.\n→ うん。でも今は週末だけ。\n\nwork at ...\n→ ～で働く\n\nwork for ...\n→ ～に勤める／～のために働く\n\nwork as ...\n→ ～として働く\n\nのように使います。\n\nI work at a hospital.\n→ 病院で働いています。\n\nShe works for a software company.\n→ 彼女はソフトウェア会社に勤めています。\n\nHe works as a designer.\n→ 彼はデザイナーとして働いています。\n\nat は「働いている場所」、for は「勤務先・雇用主」、as は「職種・役割」に注目します。\n\nwork は、仕事そのものだけでなく、「何かに取り組む」「作業する」という意味でも非常によく使われます。\n\nWhat are you working on?\n→ 何に取り組んでるの？／何の作業してるの？\n\nI’m fixing the photos from our trip.\n→ 旅行の写真を整理してるところ。\n\nここは、日本語話者が少し誤解しやすいところです。\n\nwork = 働く\n\nと覚えていると、\n\nWhat are you working on?\n→ どこで働いてるの？\n\nのように読みたくなるかもしれません。\n\nでも、\n\nwork on ...\n→ ～に取り組む／～について作業する\n\nという意味です。\n\non のあとには、勤務先ではなく「今取り組んでいる対象」が来ます。\n\nwork on a project\n→ プロジェクトに取り組む\n\nwork on a report\n→ レポートを作成する／レポートに取り組む\n\nwork on a problem\n→ 問題に取り組む\n\nwork on improving my English\n→ 英語を上達させることに取り組む\n\nのように使います。\n\nWhat are you working on these days?\n→ 最近、何に取り組んでるの？\n\nI’m working on a new list.\n→ 新しいリストを作ってるところ。\n\nのように、仕事以外の活動にも使えます。\n\nつまり work は、「雇われて働く」という意味だけでなく、何かに力をかけて進めることも表します。\n\nwork は、人だけでなく、機械や道具についても使います。\n\nWhy isn’t the Wi-Fi working?\n→ なんでWi-Fi繋がらないの？\n\nI don’t know. I’ll restart the router.\n→ 分からない。ルーター再起動してみる。\n\nここでは、\n\nwork\n→ 機能する／作動する\n\nという意味です。\n\nThe printer isn’t working.\n→ プリンターが動かない。\n\nDoes this remote still work?\n→ このリモコンまだ使える？\n\nMy card isn’t working.\n→ カードが使えない。\n\nThe elevator isn’t working today.\n→ 今日エレベーターが動いてない。\n\nというように使います。\n\n機械や道具が、本来するべきことをきちんとしている\n→ work\n\nという感覚です。\n\nそのため、\n\nIt works.\n→ 動くよ。／使えるよ。\n\nIt doesn’t work.\n→ 動かない。／使えない。\n\nも非常によく使います。\n\nwork は、計画や方法について「うまくいく」という意味でも使います。\n\nDo you think this plan will work?\n→ この方法うまくいくと思う？\n\nIt might. Let’s try it for a week.\n→ いけるかも。1週間試してみよう。\n\nThe plan worked.\n→ その計画はうまくいった。\n\nThat won’t work.\n→ それじゃうまくいかないよ。\n\nThis should work.\n→ これでうまくいくはず。\n\nのように使います。\n\nここでも、計画や方法が「期待されている役割を果たして、結果を出す」という work の感覚があります。\n\n薬や方法の「効果がある」にも work を使います。\n\nThis medicine works really well for me.\n→ この薬、私にはすごく効く。\n\nDoes this cream actually work?\n→ このクリーム、本当に効くの？\n\nThat trick doesn’t work anymore.\n→ その方法、もう通用しないよ。\n\nこの場合も、\n\n期待した効果を出す\n→ work\n\nということです。\n\n特に便利なのが、\n\nwork for someone\n→ 人にとってうまくいく／都合がいい／効果がある\n\nという使い方です。\n\nHow about meeting at six?\n→ 6時に会うのはどう？\n\nThat works for me.\n→ うん、それで大丈夫。\n\nDoes Friday work for you?\n→ 金曜日で都合いい？\n\nTen o’clock works better for me.\n→ 私は10時のほうが都合いい。\n\nここでは、\n\nその時間・予定が、自分にとって問題なく機能する\n→ 都合がいい\n\nという感覚です。\n\nThat works for me.\nは、予定を決めるときに非常によく使える表現です。\n\nwork together\nもよく使います。\n\nwork together\n→ 一緒に働く／協力する\n\nWe need to work together on this.\n→ これは協力してやらないとね。\n\nThese two colors work well together.\n→ この2色、よく合うね。\n\n人同士が協力する場合だけでなく、物の組み合わせについて「うまく機能する」「相性がいい」という意味でも使えます。\n\nwork with ...\nには、\n\n～と一緒に働く\n～を使って作業する\n\nという使い方があります。\n\nI work with Emma.\n→ Emmaと一緒に働いています。\n\nI work with a lot of data.\n→ 大量のデータを扱う仕事をしています。\n\nThis software works with both Mac and Windows.\n→ このソフトはMacとWindowsの両方で使えます。\n\n文脈によって、人・物・システムなどと「うまく一緒に機能する」という意味になります。\n\nwork out は特に重要な表現です。\n\nwork out\n→ うまくいく\n\nI hope everything works out.\n→ 全部うまくいくといいね。\n\nIt didn’t work out the way we expected.\n→ 思っていたようにはうまくいかなかった。\n\nまた、\n\nwork something out\n→ 問題を解決する／答えを見つける\n\nという意味もあります。\n\nDon’t worry. We’ll work it out.\n→ 心配しないで。何とか解決しよう。\n\nWe need to work out how much this will cost.\n→ これにいくらかかるか計算しないと。\n\nさらに、\n\nwork out\n→ 運動する\n\nという意味もあります。\n\nI work out three times a week.\n→ 週3回運動しています。\n\n同じ work out でも、\n\n物事がうまくいく\n問題を解決する\n運動する\n\nと意味が変わるので、文脈を見ることが大切です。\n\nmake something work も便利です。\n\nmake it work\n→ なんとかうまくやる／成立させる\n\nThe schedule is tight, but we can make it work.\n→ スケジュールはきついけど、なんとかできるよ。\n\nWe don’t have much space, but we’ll make it work.\n→ あまり場所はないけど、なんとかするよ。\n\nここでは、「今の条件でもちゃんと機能する状態にする」という感覚があります。\n\nまた、\n\nwork hard\n→ 一生懸命働く／頑張る\n\nだけでなく、\n\nwork hard on ...\n→ ～に一生懸命取り組む\n\nとも言えます。\n\nShe worked really hard on that presentation.\n→ 彼女、あのプレゼンにすごく力を入れてたよ。\n\nwork は、日本語では、\n\n働く\n仕事をする\n取り組む\n作業する\n動く\n使える\n機能する\nうまくいく\n効果がある\n都合がいい\n\nなど、かなり違う言葉に訳されます。\n\nでも中心にあるのは、\n\n人が役割を果たす\n→ 働く\n\n人が何かを進める\n→ 取り組む／作業する\n\n機械が役割を果たす\n→ 機能する／作動する\n\n方法や計画が期待した結果を出す\n→ うまくいく\n\n薬などが期待した効果を出す\n→ 効果がある\n\n予定が自分にとって問題なく機能する\n→ 都合がいい\n\nという共通した感覚です。\n\nI work at a bookstore.\nWhat are you working on?\nThe Wi-Fi isn’t working.\nThe plan worked.\nThis medicine works for me.\nDoes Friday work for you?\nI hope everything works out.\nWe’ll make it work.\n\n一見するとかなり違う意味に見えますが、どれも「人・物・方法などが、本来の役割を果たして、結果を生み出す」という work の中心イメージから広がっています。"
+      },
+      {
+        "pos": "verb",
+        "word": "move",
+        "meanings": [
+          {
+            "meaning": "動く／動かす",
+            "en": "A: Could you move your bag? I need to sit here.\nB: Sure, sorry.",
+            "ja": "A：バッグ動かしてもらえる？ ここ座りたいんだ。\nB：もちろん、ごめん。"
+          },
+          {
+            "meaning": "移す／変更する",
+            "en": "A: Did they move the meeting?\nB: Yeah. It’s Friday afternoon now.",
+            "ja": "A：会議の日程変わったの？\nB：うん。今は金曜の午後になったよ。"
+          },
+          {
+            "meaning": "引っ越す／移り住む",
+            "en": "A: Are you still living near the station?\nB: No, we moved across town last month.",
+            "ja": "A：まだ駅の近くに住んでるの？\nB：ううん。先月、街の反対側に引っ越したよ。"
+          },
+          {
+            "meaning": "感動させる／心を動かす",
+            "en": "A: Did you like the film?\nB: Yeah. The ending really moved me.",
+            "ja": "A：映画よかった？\nB：うん。ラスト、すごく心を動かされた。"
+          }
+        ],
+        "wordNote": "move の中心には、「人・物・予定・気持ちなどを、今いる位置や状態から別の位置・状態へ動かす」という感覚があります。\n\nまず、基本の意味は「動く」「動かす」です。\n\nCould you move your bag? I need to sit here.\n→ バッグ動かしてもらえる？ ここ座りたいんだ。\n\nSure, sorry.\n→ もちろん、ごめん。\n\nmove the chair\n→ 椅子を動かす\n\nmove the table\n→ テーブルを動かす\n\nDon’t move.\n→ 動かないで。\n\nNothing moved.\n→ 何も動かなかった。\n\nのように、自分が動く場合にも、何かを動かす場合にも使えます。\n\nThe car started to move.\n→ 車が動き始めた。\n\nCan you move this box a little?\n→ この箱、少し動かしてくれる？\n\nというように、\n\nmove\n→ 自分が別の位置へ動く\n\nmove something\n→ 何かを別の位置へ動かす\n\nの両方で使えます。\n\nmove は、物理的な物だけでなく、予定や時間などを別の位置へ「移す」ときにも使います。\n\nDid they move the meeting?\n→ 会議の日程変わったの？\n\nYeah. It’s Friday afternoon now.\n→ うん。今は金曜の午後になったよ。\n\nmove the meeting to Friday\n→ 会議を金曜日に移す\n\nmove the deadline\n→ 締切を変更する\n\nmove the appointment\n→ 予約・約束の日時を変更する\n\nCan we move the meeting to three?\n→ 会議を3時に変更できる？\n\nのように使います。\n\nカレンダーの上で予定を別の場所へ動かすような感覚です。\n\nそのため、日本語では「変更する」と訳しても、英語では move が自然なことがあります。\n\nmove は、「引っ越す」「移り住む」という意味でも非常によく使います。\n\nAre you still living near the station?\n→ まだ駅の近くに住んでるの？\n\nNo, we moved across town last month.\n→ ううん。先月、街の反対側に引っ越したよ。\n\nmove to ...\n→ ～へ引っ越す\n\nmove into ...\n→ ～へ引っ越して入る\n\nmove out\n→ 引っ越して出ていく\n\nのように使います。\n\nWe’re moving to Osaka next spring.\n→ 来年の春、大阪へ引っ越します。\n\nThey moved into a bigger apartment.\n→ 彼らはもっと広いアパートへ引っ越しました。\n\nMy neighbor moved out last week.\n→ 隣の人、先週引っ越していったよ。\n\nここでも、「生活の場所を別の位置へ動かす」という感覚です。\n\nそして move には、「感動させる」「心を動かす」という使い方があります。\n\nDid you like the film?\n→ 映画よかった？\n\nYeah. The ending really moved me.\n→ うん。ラスト、すごく心を動かされた。\n\nThe story really moved me.\n→ その話には本当に感動した。\n\nI was deeply moved by her speech.\n→ 彼女のスピーチに深く感動しました。\n\nbe moved by ...\n→ ～に感動する／心を動かされる\n\nという形もよく使います。\n\n日本語では、\n\n「感動した」\n→ moved\n\nという発想になりにくいかもしれません。\n\nでも move の中心イメージを考えると、\n\n物の位置が動く\n→ move\n\n人の住む場所が動く\n→ move\n\n予定の位置が動く\n→ move\n\n心の状態が動く\n→ be moved\n\nとつながります。\n\n何かを見たり聞いたりしたことで、自分の気持ちがそれまでの状態から大きく動かされたと考えると、意味が見えやすくなります。\n\nmove on も非常によく使う表現です。\n\nmove on\n→ 先へ進む／次へ進む／気持ちを切り替える\n\nWe can’t change what happened. We need to move on.\n→ 起きたことは変えられない。先に進まないと。\n\nLet’s move on to the next question.\n→ 次の質問へ進みましょう。\n\n人が実際に歩いて移動する場合だけでなく、\n\n話題を次へ進める\n気持ちを過去から先へ進める\n\nという場合にも使われます。\n\nmove forward も似た表現です。\n\nmove forward\n→ 前へ進む／前進する\n\nWe need to decide how to move forward.\n→ これからどう進めるか決めないとね。\n\nThe project is finally moving forward.\n→ プロジェクトがようやく前に進み始めた。\n\nここでも、物事を一つの場所に止めず、次の段階へ動かしていく感覚があります。\n\nmove in には、「引っ越して入る」のほかに、状況によって「近づく」という意味もあります。\n\nThe storm is moving in.\n→ 嵐が近づいてきている。\n\nmove away\n→ 離れる／遠くへ引っ越す\n\nという表現もあります。\n\nShe moved away after college.\n→ 彼女は大学卒業後、遠くへ引っ越しました。\n\nmove around\n→ あちこち動き回る／位置を変える\n\nI move around a lot at work.\n→ 仕事中はかなり動き回ります。\n\nThe furniture gets moved around all the time.\n→ 家具はしょっちゅう配置を変えられます。\n\nmake a move という表現もあります。\n\nmake a move\n→ 行動を起こす／動き始める\n\nIf we want good seats, we should make a move.\n→ いい席を取りたいなら、そろそろ動いたほうがいいよ。\n\nIt’s getting late. We should make a move.\n→ 遅くなってきたし、そろそろ行こうか。\n\nこの場合も、「止まっている状態から動き出す」という move の感覚があります。\n\nget moving も会話でよく使います。\n\nget moving\n→ 動き始める／急いで行動する\n\nCome on, we need to get moving.\n→ ほら、そろそろ行かないと。\n\nWe’d better get moving if we want to catch the train.\n→ 電車に間に合いたいなら、そろそろ急いだほうがいいよ。\n\nこの表現では、文字どおり動き始める場合にも、「さあ行動しよう」という意味にも使えます。\n\nmove は、日本語では、\n\n動く\n動かす\n移す\n変更する\n引っ越す\n感動させる\n先へ進む\n前進する\n\nなど、かなり違う言葉に訳されます。\n\nでも中心にあるのは、\n\n物が別の位置へ動く\n→ 動く／動かす\n\n予定が別の位置へ動く\n→ 移す／変更する\n\n生活の場所が別の位置へ動く\n→ 引っ越す\n\n心の状態が別のところへ動く\n→ 感動する\n\n物事や気持ちが次の段階へ動く\n→ move on / move forward\n\nという共通した感覚です。\n\nMove your bag, please.\nThey moved the meeting to Friday.\nWe moved last month.\nI was really moved by the story.\nLet’s move on.\nThe project is moving forward.\nWe should make a move.\nLet’s get moving.\n\n日本語では別々の動詞に見えますが、どれも「今いる位置や状態から別の位置・状態へ動く」という move の中心イメージから広がっています。"
+      },
+      {
+        "pos": "verb",
+        "word": "lose",
+        "meanings": [
+          {
+            "meaning": "失う／なくす",
+            "en": "A: Have you seen my wallet?\nB: No. Did you lose it again?",
+            "ja": "A：私の財布見なかった？\nB：見てないよ。またなくしたの？"
+          },
+          {
+            "meaning": "負ける／敗れる",
+            "en": "A: How did the game go?\nB: We lost by one point.",
+            "ja": "A：試合どうだった？\nB：1点差で負けたよ。"
+          },
+          {
+            "meaning": "見失う／把握できなくなる",
+            "en": "A: Were you able to follow the explanation?\nB: At first, but I lost track halfway through.",
+            "ja": "A：説明についていけた？\nB：最初はね。でも途中で分からなくなった。"
+          },
+          {
+            "meaning": "減らす／落とす",
+            "en": "A: You look different. Have you lost weight?\nB: A little. I’ve been walking more lately.",
+            "ja": "A：なんか雰囲気違うね。体重減った？\nB：少しね。最近よく歩くようにしてるんだ。"
+          }
+        ],
+        "wordNote": "lose の中心には、「それまで自分の手元・状態・つながりの中にあったものが、そこから外れてしまう」という感覚があります。\n\nまず、基本の意味は「失う」「なくす」です。\n\nlose your phone\n→ スマホをなくす\n\nlose your keys\n→ 鍵をなくす\n\nlose your job\n→ 仕事を失う\n\nlose a chance\n→ 機会を失う\n\nlose interest\n→ 興味を失う\n\nのように、実際の物だけでなく、仕事・機会・興味など、形のないものにも使えます。\n\nI almost lost my phone on the train.\n→ 電車でスマホをなくしかけた。\n\nShe lost her job last month.\n→ 彼女は先月仕事を失いました。\n\nDon’t lose this chance.\n→ この機会を逃さないで。\n\nここでは、「それまで自分のところにあったものが、自分の側から離れてしまう」という感覚があります。\n\nlose は、「負ける」「敗れる」という意味でも使います。\n\nlose a game\n→ 試合に負ける\n\nlose a match\n→ 試合に負ける\n\nlose to ...\n→ ～に負ける\n\nという形で使います。\n\nOur team lost to the same team again.\n→ うちのチーム、また同じチームに負けた。\n\nI hate losing.\n→ 負けるの嫌い。\n\nこの場合は、勝つ可能性や有利な状態を最後まで自分の側に保てなかった、という感覚です。\n\nwin\n→ 勝つ\n\nlose\n→ 負ける\n\nは対になる重要な組み合わせです。\n\nlose には、「見失う」「把握できなくなる」という使い方もあります。\n\nlose track of ...\n→ ～を見失う／把握できなくなる\n\nという表現があります。\n\nI lost track of where we were in the discussion.\n→ 話し合いのどこまで進んだか分からなくなった。\n\nI lost track of him in the crowd.\n→ 人混みの中で彼を見失った。\n\nのように、物理的に見えなくなる場合にも、情報の流れを追えなくなる場合にも使えます。\n\nlose sight of ...\n→ ～を見失う\n\nという表現もあります。\n\nI lost sight of her when the train arrived.\n→ 電車が来たとき、彼女を見失った。\n\nまた、抽象的にも使えます。\n\nDon’t lose sight of your goal.\n→ 目標を見失わないで。\n\nここでは、「見えていたもの・意識していたものとのつながりが切れる」という感覚があります。\n\n特に日常会話で非常によく使うのが、\n\nlose track of time\n→ 時間を忘れる／時間の感覚がなくなる\n\nです。\n\nI was reading and completely lost track of time.\n→ 本を読んでたら、完全に時間を忘れてた。\n\nSorry I’m late. I lost track of time.\n→ 遅れてごめん。時間を忘れてた。\n\n時計をなくしたわけではなく、「今どのくらい時間が経ったのか」という把握が切れてしまった、という表現です。\n\nlose your way\n→ 道に迷う\n\nという使い方もあります。\n\nWe lost our way on the way back to the hotel.\n→ ホテルへ戻る途中で道に迷った。\n\nただし、日常会話では、\n\nget lost\n→ 道に迷う／迷子になる\n\nも非常によく使われます。\n\nWe got lost on the way there.\n→ 行く途中で道に迷った。\n\nlose your way は「進むべき道を見失う」、get lost は「迷った状態になる」という違いがあります。\n\nlose は、体重についてもよく使います。\n\nlose weight\n→ 体重を減らす／体重が落ちる\n\nという決まった表現です。\n\nI’ve lost a little weight since I started walking to work.\n→ 歩いて通勤するようになってから、少し体重が減った。\n\nShe wants to lose a few kilos before the race.\n→ 彼女はレース前に数キロ体重を落としたいと思っている。\n\nここでも、「自分についていた重さが減って、自分の側から離れる」と考えると lose の感覚につながります。\n\n反対は、\n\ngain weight\n→ 体重が増える\n\nです。\n\nlose には、感情や自制心についての表現もたくさんあります。\n\nlose patience\n→ 我慢できなくなる／しびれを切らす\n\nI’m starting to lose patience.\n→ だんだん我慢できなくなってきた。\n\nlose your temper\n→ かっとなる／怒りを爆発させる\n\nHe lost his temper and started yelling.\n→ 彼はかっとなって怒鳴り始めた。\n\nlose control\n→ 自制を失う／制御できなくなる\n\nShe almost lost control of the car.\n→ 彼女は危うく車を制御できなくなるところだった。\n\nDon’t lose control.\n→ 冷静さを失わないで。\n\nここでは、それまで保っていた我慢・冷静さ・制御が自分の手元から離れてしまうという感覚です。\n\nlose your mind という表現もあります。\n\nlose your mind\n→ 正気を失う／どうかする\n\nAre you losing your mind?\n→ どうかしたの？\n\nI thought I was going to lose my mind.\n→ 本当にどうにかなりそうだった。\n\nかなり強い表現なので、文脈によっては大げさな言い方として使われます。\n\nlose touch も便利です。\n\nlose touch\n→ 連絡が途絶える／疎遠になる\n\nWe lost touch after college.\n→ 大学を卒業してから疎遠になった。\n\nI don’t want to lose touch with them.\n→ あの人たちとは連絡を絶やしたくない。\n\nここでは、人とのつながりを「失う」という感覚です。\n\n反対に、\n\nkeep in touch\n→ 連絡を取り続ける\n\nという表現があります。\n\nLet’s keep in touch.\n→ また連絡取り合おうね。\n\nlose sleep over ...\nという表現もあります。\n\nlose sleep over ...\n→ ～を心配して眠れなくなる\n\nDon’t lose sleep over it.\n→ そんなことで悩みすぎなくていいよ。\n\nI’m not going to lose sleep over one bad review.\n→ 悪いレビューが一つあったくらいで、そこまで悩まないよ。\n\nここでは、心配事のせいで本来得られるはずの睡眠を失う、というところから意味が広がっています。\n\nlose interest\n→ 興味を失う\n\nもよく使います。\n\nI started the series, but I lost interest after a few episodes.\n→ そのシリーズ見始めたけど、何話か見たところで興味なくなっちゃった。\n\nlose confidence\n→ 自信を失う\n\nlose hope\n→ 希望を失う\n\nlose focus\n→ 集中力を失う\n\nのように、心の状態についても幅広く使えます。\n\nこうして見ると、lose は、\n\n持っていた物が自分から離れる\n→ なくす\n\n仕事・機会などが自分から離れる\n→ 失う\n\n勝利を自分の側に保てない\n→ 負ける\n\n見えていた人や情報とのつながりが切れる\n→ 見失う／把握できなくなる\n\n重さが自分から減る\n→ 体重を落とす\n\n我慢や冷静さを保てなくなる\n→ lose patience / lose control\n\n人とのつながりが切れる\n→ lose touch\n\nというように広がっています。\n\nlose your phone\nlose a game\nlose track of time\nlose sight of your goal\nlose your way\nlose weight\nlose patience\nlose your temper\nlose touch\nlose interest\n\n日本語ではかなり違う言葉に訳されますが、どれも「それまで自分の手元・状態・つながりの中にあったものが、そこから外れてしまう」という lose の中心イメージからつながっています。"
+      },
+      {
+        "pos": "verb",
+        "word": "send",
+        "meanings": [
+          {
+            "meaning": "送る／発送する",
+            "en": "A: Did you send the package to your sister?\nB: Yeah. It should arrive on Thursday.",
+            "ja": "A：お姉さんに荷物送った？\nB：うん。木曜には届くはず。"
+          },
+          {
+            "meaning": "送信する／送る",
+            "en": "A: Can you send me the photo from yesterday?\nB: Sure. I’ll send it now.",
+            "ja": "A：昨日の写真送ってくれる？\nB：いいよ。今送るね。"
+          },
+          {
+            "meaning": "行かせる／派遣する",
+            "en": "A: The kitchen sink is still leaking.\nB: I’ll ask the landlord to send someone over tomorrow.",
+            "ja": "A：キッチンのシンク、まだ水漏れしてる。\nB：大家さんに頼んで、明日誰か来てもらうよ。"
+          },
+          {
+            "meaning": "～の状態にする／陥らせる",
+            "en": "A: Why did everyone start buying bottled water?\nB: That rumor sent people into a panic.",
+            "ja": "A：なんでみんな急に水を買い始めたの？\nB：あの噂でみんなパニックになったんだよ。"
+          }
+        ],
+        "wordNote": "send の中心には、「人・物・情報などを、自分の側から離して、別の場所・相手・状態へ向かわせる」という感覚があります。\n\nまず、基本の意味は「送る」「発送する」です。\n\nI sent your birthday present this morning.\n→ 今朝、誕生日プレゼント送ったよ。\n\nIt should get there by Friday.\n→ 金曜日までには届くはずだよ。\n\nsend a package\n→ 荷物を送る\n\nsend a letter\n→ 手紙を送る\n\nsend a gift\n→ 贈り物を送る\n\nsend something to ...\n→ 何かを～へ送る\n\nのように使います。\n\nここでは、手元にある物を自分のところから離して、別の場所や人のところへ向かわせています。\n\nCan you send these documents to the main office?\n→ この書類、本社に送ってもらえる？\n\nI’ll send your book back tomorrow.\n→ 明日、本を送り返すね。\n\nのように使えます。\n\n現代の生活では、物だけでなく、メール・写真・ファイル・メッセージなどにも send を非常によく使います。\n\nI just sent you the address.\n→ 今、住所送ったよ。\n\nThanks. I got it.\n→ ありがとう。届いたよ。\n\nsend a message\n→ メッセージを送る\n\nsend an email\n→ メールを送る\n\nsend a photo\n→ 写真を送る\n\nsend a file\n→ ファイルを送る\n\nsend someone a link\n→ 人にリンクを送る\n\nというように使います。\n\ngive と同じように、語順が2通りあります。\n\nsend someone something\n→ 人に何かを送る\n\nsend something to someone\n→ 何かを人に送る\n\nたとえば、\n\nsend Emma the file\n→ エマにファイルを送る\n\nsend the file to Emma\n→ ファイルをエマに送る\n\nのどちらも使えます。\n\nDid you send Ryan the link?\n→ ライアンにリンク送った？\n\nYeah, I sent it to him a few minutes ago.\n→ うん、数分前に送ったよ。\n\nというように使えます。\n\nsend は、人そのものを別の場所へ「行かせる」「派遣する」という意味でも使います。\n\nThe office is short-staffed today, so they’re sending Ben to help us.\n→ 今日こっちは人手不足だから、ベンを応援によこしてくれるんだって。\n\nsend someone to ...\n→ 人を～へ行かせる／派遣する\n\nsend someone home\n→ 人を家へ帰す\n\nsend someone abroad\n→ 人を海外へ派遣する\n\nというように使います。\n\nThe school sent her home because she had a fever.\n→ 熱があったので、学校は彼女を家に帰しました。\n\nThey sent two engineers to check the system.\n→ システムを確認するため、技術者が2人派遣されました。\n\nここでは、人を自分の側から別の場所へ向かわせています。\n\n特に便利なのが、\n\nsend someone over\n→ 人をそちらへ行かせる／人をよこす\n\nという表現です。\n\nA: The air conditioner is making a strange noise.\n→ エアコンから変な音がするんです。\n\nB: Okay. I’ll send someone over this afternoon.\n→ 分かりました。今日の午後、担当者を伺わせます。\n\n日本語では、\n\n「誰かに来てもらう」\n「業者さんに来てもらう」\n\nのように、こちらへ「来る」側から表現することが多いですが、英語では送り手の視点から、\n\nsend someone over\n→ 誰かをそちらへ向かわせる\n\nと表現できます。\n\nつまり、\n\n日本語\n→ 「こちらに来てもらう」\n\n英語\n→ 「そちらへ人を送る」\n\nと、同じ出来事でも視点が変わることがあります。\n\nsend は、「どちらからどちらへ動かしているのか」を意識すると理解しやすくなります。\n\nsend someone back\nもよく使います。\n\nsend someone back\n→ 人を戻す／送り返す\n\nThe doctor sent me back for another test.\n→ 医師にもう一度検査を受けに行くよう言われました。\n\nsend something back\nなら、\n\nsend the shoes back\n→ 靴を返品する／送り返す\n\nのように物にも使えます。\n\nThese shoes are too small. I’m going to send them back.\n→ この靴小さすぎるから、返品するつもり。\n\nsend out という表現もあります。\n\nsend out\n→ 多くの人へ発送する／送信する\n\nWe sent out the invitations yesterday.\n→ 昨日、招待状を発送しました。\n\nThe company sent out an email to all employees.\n→ 会社は全社員にメールを送りました。\n\n一人の相手へ送るというより、複数の相手へ外向きに送り出す感じがあります。\n\nsend for ...\nという表現もあります。\n\nsend for someone\n→ 人を呼びにやる／人を呼ぶ\n\nThey sent for a doctor.\n→ 医者を呼びました。\n\n少し改まった表現ですが、本やニュースなどで出会うことがあります。\n\nsend は、物や人を別の「場所」に動かすだけではありません。\n\n人や物事を別の「状態」へ向かわせることもできます。\n\nThe news sent everyone into a panic.\n→ その知らせで、みんなパニックになった。\n\nsend someone into a panic\n→ 人をパニック状態にする\n\nsend prices up\n→ 価格を押し上げる\n\nsend something down\n→ 何かを下げる\n\nのように使います。\n\nThe sudden shortage sent prices up.\n→ 急な品不足で価格が上がった。\n\nHis joke sent everyone into fits of laughter.\n→ 彼の冗談でみんな大笑いした。\n\nここでは、何かの出来事が人や物事を、それまでとは違う状態へ「送り込む」ような感覚があります。\n\nsend someone to sleep\nという表現もあります。\n\nThat lecture nearly sent me to sleep.\n→ あの講義、もう少しで寝そうになった。\n\nsend someone to sleep\n→ 人を眠らせる\n\nつまり、\n\n起きている状態\n→ 眠っている状態\n\nへ人を「送る」という発想です。\n\nsend には、気持ちや挨拶などを人に届ける使い方もあります。\n\nSend my regards to your parents.\n→ ご両親によろしく伝えて。\n\nSend her my best wishes.\n→ 彼女によろしく伝えて。／彼女の幸運を祈っていると伝えて。\n\nsend someone your love\n→ 人によろしく伝える／愛情を伝える\n\nなどがあります。\n\nここでも、目には見えない気持ちや挨拶を相手のところへ届けるという send の感覚があります。\n\nSend me a message when you get there.\n→ 着いたらメッセージして。\n\nSend me a photo if you see anything interesting.\n→ 何か面白いもの見つけたら写真送って。\n\nのように、日常会話では send me ... が非常によく使われます。\n\nまた、\n\nsend someone something\nと\nsend something to someone\n\nの語順を使い分けると、会話でもかなり便利です。\n\nSend me the details.\n→ 詳細送って。\n\nCould you send the details to Chloe too?\n→ クロエにも詳細送ってくれる？\n\nのように使えます。\n\nこうして見ると、send は、\n\n物を別の場所へ向かわせる\n→ 送る／発送する\n\n情報を相手へ向かわせる\n→ 送信する\n\n人を別の場所へ向かわせる\n→ 行かせる／派遣する\n\n人や物事を別の状態へ向かわせる\n→ ～の状態にする\n\n挨拶や気持ちを相手へ向かわせる\n→ よろしく伝える\n\nというように広がっています。\n\nsend a package\nsend someone a message\nsend someone to another office\nsend someone over\nsend something back\nsend out an email\nsend someone into a panic\nsend someone to sleep\nsend my regards\n\n日本語では「送る」「よこす」「派遣する」「帰す」「～の状態にする」「よろしく伝える」などに訳し分けますが、どれも「人・物・情報などを、自分の側から離して、別の場所・相手・状態へ向かわせる」という send の中心イメージからつながっています。"
+      },
+      {
+        "pos": "verb",
+        "word": "pay",
+        "meanings": [
+          {
+            "meaning": "支払う／お金を払う",
+            "en": "A: Do we pay at the table?\nB: No, you pay at the counter.",
+            "ja": "A：ここで払うの？\nB：ううん、カウンターで払うよ。"
+          },
+          {
+            "meaning": "（人に）賃金・報酬を支払う",
+            "en": "A: Does that part-time job pay well?\nB: Not really, but the hours are flexible.",
+            "ja": "A：そのバイト、給料いいの？\nB：それほどでもないけど、勤務時間は融通が利くよ。"
+          },
+          {
+            "meaning": "注意・敬意などを払う／向ける",
+            "en": "A: Did you hear what the instructor said?\nB: Sorry, I wasn’t paying attention.",
+            "ja": "A：先生が言ったこと聞いてた？\nB：ごめん、ちゃんと聞いてなかった。"
+          },
+          {
+            "meaning": "代償を払う／報いを受ける",
+            "en": "A: He ignored the warning and kept driving.\nB: Yeah, and he paid the price for it.",
+            "ja": "A：警告を無視して、そのまま運転を続けたんだよね。\nB：うん。それで結局、代償を払うことになった。"
+          }
+        ],
+        "wordNote": "pay の中心には、「何かを受け取る・してもらう・行うことに対して、自分の側から価値のあるものを差し出す」という感覚があります。\n\nもっとも基本的なのは、「支払う」「お金を払う」という意味です。\n\nI paid by card.\n→ カードで払ったよ。\n\nCan I pay in cash?\n→ 現金で払えますか？\n\npay the bill\n→ 会計を払う\n\npay the rent\n→ 家賃を払う\n\npay a fee\n→ 料金を払う\n\npay by card\n→ カードで払う\n\npay in cash\n→ 現金で払う\n\nのように使います。\n\n特に大切なのが、\n\npay for something\n→ 何かの代金を払う\n\nという形です。\n\nI’ll pay for the tickets.\n→ チケット代は私が払うよ。\n\nHow much did you pay for that jacket?\n→ そのジャケット、いくらで買ったの？\n\nWho paid for the hotel?\n→ ホテル代、誰が払ったの？\n\nというように使います。\n\npay は「支払う」ですが、物やサービスそのものを目的語にするときには、よく for を使います。\n\npay for dinner\n→ 夕食代を払う\n\npay for the repair\n→ 修理代を払う\n\npay for the service\n→ サービスの料金を払う\n\nとなります。\n\n一方、人にお金を渡す場合には、\n\npay someone\n→ 人にお金を支払う\n\nという形になります。\n\nThey paid me yesterday.\n→ 昨日、給料を払ってもらった。\n\nHow much do they pay you?\n→ そこ、いくらもらってるの？\n\nWe paid the electrician after the work was finished.\n→ 作業が終わってから電気工事の人に代金を払った。\n\nつまり、\n\npay someone\n→ 人に払う\n\npay for something\n→ 物・サービスなどの代金を払う\n\nという違いがあります。\n\n両方を一緒に使うこともできます。\n\nI paid the mechanic $100 for the repair.\n→ 修理代として整備士に100ドル払った。\n\nのように、\n\npay + 人 + 金額\npay + 人 + 金額 + for ...\n\nという形も作れます。\n\npay は、仕事の「給料がいい」「報酬がある」という意味でも使われます。\n\nThis job pays pretty well.\n→ この仕事、けっこう給料いいよ。\n\nThat internship doesn’t pay much.\n→ そのインターン、あまり給料出ないよ。\n\nDoes the job pay well?\n→ その仕事、給料いいの？\n\nここでは、仕事そのものが「お金を支払うもの」として表現されています。\n\npay は、お金だけに使うわけではありません。\n\n非常によく使うのが、\n\npay attention\n→ 注意を払う\n\nです。\n\nYou need to pay attention to the signs.\n→ 標識をちゃんと見ておいたほうがいいよ。\n\nI wasn’t paying attention and missed my stop.\n→ ぼんやりしてて、降りる駅を乗り過ごした。\n\npay attention to ...\n→ ～に注意を向ける\n\nという形でよく使います。\n\nここでは、お金ではなく、自分の「注意」という価値のあるものを対象へ向けています。\n\n日本語でも「注意を払う」と言うので、英語と日本語の感覚が比較的近い表現です。\n\npay respect\n→ 敬意を表する\n\nという使い方もあります。\n\nWe should pay respect to the people who made this possible.\n→ これを実現した人たちに敬意を表すべきだね。\n\npay your respects\n→ 敬意を表する／挨拶に伺う\n\nという表現もあります。\n\npay a compliment\n→ 褒める\n\nもあります。\n\nShe paid me a nice compliment on my presentation.\n→ 彼女、私のプレゼンをすごく褒めてくれた。\n\nここでも、お金以外の「価値あるもの」を相手に差し出していると考えると、pay の感覚につながります。\n\npay には、「代償を払う」という意味もあります。\n\npay the price\n→ 代償を払う\n\nという表現がよく使われます。\n\nHe worked without taking any breaks, and eventually he paid the price.\n→ 休みも取らず働き続けて、結局その代償を払うことになった。\n\nYou’ll pay a price if you keep ignoring the problem.\n→ その問題を無視し続けたら、いずれ代償を払うことになるよ。\n\nここで払うのはお金とは限りません。\n\n時間\n健康\n信用\n機会\n\nなどを失うことが、「代償を払う」と表現されます。\n\npay for ...\nにも、この意味があります。\n\nHe made a careless mistake and paid for it later.\n→ 彼は不注意なミスをして、あとでその代償を払うことになった。\n\nYou’ll pay for this.\n→ この報いは受けてもらうからね。\n\nこの表現は文脈によってかなり強い言い方になります。\n\npay back も重要です。\n\npay someone back\n→ 人にお金を返す\n\nI’ll pay you back tomorrow.\n→ 明日返すね。\n\nThanks for covering lunch. I’ll pay you back later.\n→ お昼代立て替えてくれてありがとう。あとで返すね。\n\npay back は、お金以外にも使えます。\n\nSomeday I’ll pay you back for helping me.\n→ いつか助けてもらったお返しをするよ。\n\n文脈によっては、\n\npay someone back\n→ 仕返しをする\n\nという意味にもなります。\n\nHe’s still trying to pay me back for that prank.\n→ あのいたずらの仕返し、まだしようとしてるよ。\n\n「受け取ったものに対して返す」という同じ感覚から、返済にもお返しにも仕返しにも広がっています。\n\nそして、とても便利なのが pay off です。\n\npay off\n→ 完済する\n→ 努力などが実を結ぶ／報われる\n\nという使い方があります。\n\nまず、お金では、\n\nWe finally paid off the loan.\n→ ようやくローンを完済した。\n\npay off a loan\n→ ローンを完済する\n\npay off a debt\n→ 借金を完済する\n\nのように使います。\n\n一方、努力や準備については、\n\nAll those late nights finally paid off.\n→ 夜遅くまで頑張ったのが、ついに報われた。\n\nYour preparation really paid off.\n→ 準備してきた成果がちゃんと出たね。\n\nThe extra practice paid off in the end.\n→ 追加で練習した成果が、最後には実を結んだ。\n\nとなります。\n\nこの pay off は、「努力そのものが支払われる」と考えるより、\n\n時間や努力を先に投入する\n→ 後から成果という見返りが返ってくる\n\nという感覚で捉えると分かりやすくなります。\n\nつまり、\n\n努力\n→ 投資\n\n成果\n→ 見返り\n\nのような関係です。\n\nIt pays to ...\nという表現もあります。\n\nIt pays to check before you buy.\n→ 買う前に確認しておく価値はあるよ。\n\nIt pays to be careful.\n→ 注意しておくに越したことはない。\n\nIt pays to compare prices.\n→ 値段を比較しておく価値はある。\n\nここでの pay は、「それをすると見返りがある」という感覚です。\n\n文字どおりお金が支払われるわけではなく、\n\n～しておくと得になる\n～する価値がある\n\nという意味になります。\n\npay a visit\nという表現もあります。\n\npay a visit to ...\n→ ～を訪れる\n\nWe paid a visit to the new museum while we were there.\n→ そこにいる間に、新しい博物館にも立ち寄った。\n\nやや改まった言い方ですが、文章や会話でも見かけます。\n\npay は、お金だけを扱う動詞に見えますが、実際には、\n\nお金を差し出す\n→ 支払う\n\n人に報酬を差し出す\n→ 賃金・報酬を払う\n\n注意を向ける\n→ pay attention\n\n敬意を向ける\n→ pay respect\n\n行動の結果として何かを失う\n→ 代償を払う\n\n受け取ったものに対して返す\n→ pay back\n\n投入した努力に対して成果が返ってくる\n→ pay off\n\n行動に見返りがある\n→ It pays to ...\n\nというように広がっています。\n\npay the bill\npay for dinner\npay someone\npay attention\npay the price\npay someone back\npay off a loan\nhard work pays off\nIt pays to check\n\n日本語では「払う」「支払う」「注意を向ける」「報いる」「返す」「実を結ぶ」などに訳し分けますが、どれも「何かに対して価値のあるものを差し出し、そのやり取りや見返りが生じる」という pay の感覚からつながっています。"
+      },
+      {
+        "pos": "verb",
+        "word": "cut",
+        "meanings": [
+          {
+            "meaning": "切る／切り分ける",
+            "en": "A: Can you cut the pizza into six pieces?\nB: Sure. Pass me the knife.",
+            "ja": "A：ピザを6つに切ってくれる？\nB：いいよ。ナイフ取って。"
+          },
+          {
+            "meaning": "切って傷つける／切り傷をつける",
+            "en": "A: What happened to your hand?\nB: I cut my finger while opening a package.",
+            "ja": "A：手どうしたの？\nB：荷物を開けてたとき、指切っちゃった。"
+          },
+          {
+            "meaning": "減らす／削減する",
+            "en": "A: Why are they changing the schedule?\nB: They’re trying to cut costs.",
+            "ja": "A：なんで予定変えるの？\nB：コストを削減しようとしてるんだって。"
+          },
+          {
+            "meaning": "止める／遮断する",
+            "en": "A: Why did all the lights go out?\nB: They cut the power to fix the wiring.",
+            "ja": "A：なんで全部電気消えたの？\nB：配線を直すために電気を止めたんだって。"
+          }
+        ],
+        "wordNote": "cut の中心には、「ひと続きになっているものに境目を入れて、分ける・減らす・つながりを断つ」という感覚があります。\n\nまず、基本の意味は「切る」「切り分ける」です。\n\nCould you cut this sandwich in half?\n→ このサンドイッチ、半分に切ってくれる？\n\nShe cut the paper into small squares.\n→ 彼女は紙を小さな正方形に切りました。\n\ncut paper\n→ 紙を切る\n\ncut vegetables\n→ 野菜を切る\n\ncut something in half\n→ 何かを半分に切る\n\ncut something into pieces\n→ 何かをいくつかに切り分ける\n\nのように使います。\n\nここでは、ひと続きだったものに境目を入れて、いくつかの部分に分けています。\n\ncut は、人の体を「切る」「切って傷つける」という意味でも使います。\n\nI cut my thumb while cooking.\n→ 料理中に親指を切っちゃった。\n\nBe careful with that glass. You could cut yourself.\n→ そのガラス気をつけて。手を切るかもしれないよ。\n\ncut your finger\n→ 指を切る\n\ncut your hand\n→ 手を切る\n\ncut yourself\n→ 自分の体を切ってしまう\n\nというように使います。\n\nここでも、皮膚に「切れ目が入る」という同じイメージがあります。\n\ncut には、「減らす」「削減する」という使い方もあります。\n\nThe company needs to cut expenses this year.\n→ 会社は今年、経費を削減する必要があります。\n\nThey cut the price by 20 percent.\n→ 20％値下げした。\n\ncut costs\n→ コストを削減する\n\ncut spending\n→ 支出を減らす\n\ncut the budget\n→ 予算を削る\n\ncut prices\n→ 値段を下げる\n\nというように使います。\n\nここでは、全体の量から一部分を切り落として小さくする感覚です。\n\nこの使い方から、\n\ncut down on ...\n→ ～を減らす\n\nという非常に便利な表現があります。\n\nI’m trying to cut down on sugar.\n→ 砂糖を減らそうとしてるんだ。\n\nYou should probably cut down on coffee.\n→ コーヒー、少し減らしたほうがいいかもね。\n\nI’m trying to cut down on screen time before bed.\n→ 寝る前のスマホや画面を見る時間を減らそうとしてる。\n\ncut down on sugar\n→ 糖分を減らす\n\ncut down on coffee\n→ コーヒーの量を減らす\n\ncut down on spending\n→ 支出を減らす\n\nのように、「完全にやめるのではなく、量を減らす」ときによく使います。\n\ncut back on ...\nもよく似ています。\n\ncut back on ...\n→ ～を減らす／節約する\n\nWe’re cutting back on eating out this month.\n→ 今月は外食を減らしてるんだ。\n\nThe school had to cut back on spending.\n→ 学校は支出を減らさなければならなかった。\n\ncut down on と cut back on はどちらも「減らす」という意味で使われますが、cut back on は特に費用・活動・使用量などを控える場面でよく使われます。\n\ncut out も重要です。\n\ncut out\n→ 切り取る／取り除く／やめる\n\nという意味があります。\n\nI cut the picture out of the magazine.\n→ 雑誌からその写真を切り抜いた。\n\nこの場合は文字どおり、周りから切り離しています。\n\n一方、\n\nI cut out sugary drinks for a month.\n→ 1か月、甘い飲み物をやめた。\n\nThe doctor told him to cut out alcohol.\n→ 医師は彼にお酒をやめるよう言いました。\n\nのように、「生活の中から完全に取り除く」という意味にもなります。\n\nつまり、\n\ncut down on coffee\n→ コーヒーを減らす\n\ncut out coffee\n→ コーヒーをやめる\n\nという違いがあります。\n\n「少し減らす」のか、「完全に取り除く」のかで使い分けられます。\n\ncut には、「止める」「遮断する」という意味もあります。\n\nThe water was cut off for a few hours.\n→ 数時間、水が止まっていました。\n\nThey had to cut the electricity while they repaired the line.\n→ 配線を修理している間、電気を止める必要がありました。\n\ncut the power\n→ 電気を止める／遮断する\n\ncut the water supply\n→ 給水を止める\n\ncut the connection\n→ 接続を切る\n\nここでは、流れていたもの・続いていたもののつながりを切っています。\n\nこの意味から特によく使うのが、\n\ncut off\n→ 切り離す／遮断する／途中で切る\n\nです。\n\nThe call suddenly got cut off.\n→ 通話が突然切れた。\n\nSorry, we got cut off.\n→ ごめん、通話切れちゃったね。\n\nOur internet was cut off for about ten minutes.\n→ 10分くらいネットが切れてた。\n\nというように、電話や通信が途中で切れるときによく使います。\n\n会話にも使えます。\n\nSorry, I didn’t mean to cut you off.\n→ ごめん、話を遮るつもりじゃなかった。\n\nHe kept cutting me off before I could finish.\n→ 私が話し終わる前に、彼が何度も話を遮ってきた。\n\nここでは、相手が続けていた話の流れを途中で「切る」感覚です。\n\ncut someone off\nは、状況によっては、\n\n人との関係を断つ\n援助や供給を止める\n\nという意味にもなります。\n\nHis parents cut him off financially.\n→ 両親は彼への経済的援助を打ち切った。\n\nThe village was cut off by heavy snow.\n→ その村は大雪で外部との交通が遮断された。\n\n同じ cut off でも、「何と何のつながりが切れたのか」によって意味が変わります。\n\ncut in という表現もあります。\n\ncut in\n→ 話に割り込む／途中に入る\n\nSorry to cut in, but I have a question.\n→ 話の途中ごめん、質問があるんだけど。\n\nShe cut in before I could answer.\n→ 私が答える前に彼女が割り込んできた。\n\n車の運転では、\n\nA car suddenly cut in front of me.\n→ 車が突然、私の前に割り込んできた。\n\nのようにも使います。\n\n「続いていた流れの途中に入り込む」という感覚です。\n\ncut something short\nも便利です。\n\ncut something short\n→ ～を途中で切り上げる\n\nWe had to cut the meeting short because the fire alarm went off.\n→ 火災報知器が鳴ったので、会議を途中で切り上げなければならなかった。\n\nWe cut our trip short because of the weather.\n→ 天気のせいで旅行を予定より早く切り上げた。\n\n本来もっと続くはずだったものを途中で「切る」ので、予定より早く終わらせるという意味になります。\n\ncut corners という表現もあります。\n\ncut corners\n→ 手間・費用を省く／必要な工程まで省く\n\nThey rushed the project and cut too many corners.\n→ 急いでプロジェクトを進めて、必要な工程までかなり省いてしまった。\n\nYou can save money, but don’t cut corners on safety.\n→ お金は節約してもいいけど、安全面で必要なことまで省かないで。\n\n四角い角をきちんと回らず近道するイメージから、「手順を省く」という意味になっています。\n\n状況によっては単なる効率化ではなく、「本来必要なことまで省いてしまう」という否定的な意味になります。\n\ncut ties with ...\nという表現もあります。\n\ncut ties with ...\n→ ～との関係を断つ\n\nThe company cut ties with the supplier.\n→ その会社はその供給業者との関係を断ちました。\n\nShe decided to cut ties with people who kept causing trouble.\n→ 彼女はいつも問題を起こす人たちとの関係を断つことにした。\n\nここでも、人と人・組織と組織の間にあったつながりを「切る」という感覚です。\n\n映像・文章・編集でも cut はよく使われます。\n\nWe should cut this part. It’s too long.\n→ この部分カットしたほうがいいね。長すぎる。\n\nThey cut several scenes from the final version.\n→ 完成版ではいくつかの場面がカットされました。\n\ncut a scene\n→ 場面をカットする\n\ncut a paragraph\n→ 段落を削る\n\ncut unnecessary details\n→ 不要な細部を削る\n\nというように、全体から不要な部分を切り離す感覚です。\n\n髪についても cut を使います。\n\nI need to get my hair cut.\n→ 髪を切ってもらわないと。\n\nこの形は特に大切です。\n\nI cut my hair.\n→ 自分で自分の髪を切った\n\nI got my hair cut.\n→ 髪を切ってもらった\n\nとなります。\n\n美容院で切ってもらったのに I cut my hair. と言うと、「自分で切った」という意味になりやすいので注意が必要です。\n\nこうして見ると、cut は、\n\n物に境目を入れる\n→ 切る／切り分ける\n\n皮膚に切れ目が入る\n→ 切って傷つける\n\n量の一部を切り落とす\n→ 減らす／削減する\n\n生活から完全に取り除く\n→ cut out\n\n流れや供給を切る\n→ 遮断する\n\n会話の流れを途中で切る\n→ cut someone off\n\n予定された長さを途中で切る\n→ cut something short\n\n必要な工程まで削る\n→ cut corners\n\n人や組織のつながりを切る\n→ cut ties\n\n不要な部分を切り離す\n→ 編集でカットする\n\nというように広がっています。\n\ncut the paper\ncut your finger\ncut costs\ncut down on sugar\ncut out sugary drinks\ncut the power\nget cut off\ncut someone off\ncut in\ncut something short\ncut corners\ncut ties\ncut a scene\n\n日本語では「切る」「減らす」「削る」「やめる」「遮断する」「割り込む」「打ち切る」「関係を断つ」などに訳し分けますが、どれも「ひと続きになっているものに境目を入れて、分ける・減らす・つながりを断つ」という cut の中心イメージからつながっています。"
       },
       
       

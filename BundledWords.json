@@ -825,7 +825,59 @@
     "meaning": "締め切り／期限",
     "pos": "noun"
   },
+  {
+    "word": "shortage",
+    "meaning": "不足／欠乏",
+    "pos": "noun"
+  },
+  {
+    "word": "deposit",
+    "meaning": "預け金／保証金",
+    "pos": "noun"
+  },
+  {
+    "word": "intersection",
+    "meaning": "交差点",
+    "pos": "noun"
+  },
+  {
+    "word": "symptom",
+    "meaning": "症状",
+    "pos": "noun"
+  },
+  {
+    "word": "subscription",
+    "meaning": "定期購読／定額サービスの契約",
+    "pos": "noun"
+  },
+  {
+    "word": "maintenance",
+    "meaning": "維持管理／点検・整備",
+    "pos": "noun"
+  },
+  {
+    "word": "appliance",
+    "meaning": "家電製品／器具",
+    "pos": "noun"
+  },
+  {
+    "word": "damage",
+    "meaning": "損傷／被害",
+    "pos": "noun"
+  },
+  {
+    "word": "replacement",
+    "meaning": "交換品／交換",
+    "pos": "noun"
+  },
+  {
+    "word": "warranty",
+    "meaning": "製品保証／保証",
+    "pos": "noun"
+  },
 
+  
+  
   
   
   
@@ -1193,8 +1245,6 @@
     "meaning": "保存する",
     "pos": "verb"
   },
-  
-  
   {
     "word": "put",
     "meaning": "置く",
@@ -2206,8 +2256,106 @@
     "meaning": "うまくいく／効果がある",
     "pos": "verb"
   },
-  
-  
+  {
+    "word": "move",
+    "meaning": "動く／動かす",
+    "pos": "verb"
+  },
+  {
+    "word": "move",
+    "meaning": "移す／変更する",
+    "pos": "verb"
+  },
+  {
+    "word": "move",
+    "meaning": "引っ越す／移り住む",
+    "pos": "verb"
+  },
+  {
+    "word": "move",
+    "meaning": "感動させる／心を動かす",
+    "pos": "verb"
+  },
+  {
+    "word": "lose",
+    "meaning": "失う／なくす",
+    "pos": "verb"
+  },
+  {
+    "word": "lose",
+    "meaning": "負ける／敗れる",
+    "pos": "verb"
+  },
+  {
+    "word": "lose",
+    "meaning": "見失う／把握できなくなる",
+    "pos": "verb"
+  },
+  {
+    "word": "lose",
+    "meaning": "減らす／落とす",
+    "pos": "verb"
+  },
+  {
+    "word": "send",
+    "meaning": "送る／発送する",
+    "pos": "verb"
+  },
+  {
+    "word": "send",
+    "meaning": "送信する／送る",
+    "pos": "verb"
+  },
+  {
+    "word": "send",
+    "meaning": "行かせる／派遣する",
+    "pos": "verb"
+  },
+  {
+    "word": "send",
+    "meaning": "～の状態にする／陥らせる",
+    "pos": "verb"
+  },
+  {
+    "word": "pay",
+    "meaning": "支払う／お金を払う",
+    "pos": "verb"
+  },
+  {
+    "word": "pay",
+    "meaning": "（人に）賃金・報酬を支払う",
+    "pos": "verb"
+  },
+  {
+    "word": "pay",
+    "meaning": "注意・敬意などを払う／向ける",
+    "pos": "verb"
+  },
+  {
+    "word": "pay",
+    "meaning": "代償を払う／報いを受ける",
+    "pos": "verb"
+  },
+  {
+    "word": "cut",
+    "meaning": "切る／切り分ける",
+    "pos": "verb"
+  },
+  {
+    "word": "cut",
+    "meaning": "切って傷つける／切り傷をつける",
+    "pos": "verb"
+  },
+  {
+    "word": "cut",
+    "meaning": "減らす／削減する",
+    "pos": "verb"
+  },
+  {
+    "word": "cut",
+    "meaning": "止める／遮断する",
+    "pos": "verb"
+  },
   
   
   
