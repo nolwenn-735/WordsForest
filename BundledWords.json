@@ -875,7 +875,64 @@
     "meaning": "製品保証／保証",
     "pos": "noun"
   },
+  {
+    "word": "purchase",
+    "meaning": "購入／購入品",
+    "pos": "noun"
+  },
+  {
+    "word": "fee",
+    "meaning": "料金／手数料",
+    "pos": "noun"
+  },
+  {
+    "word": "balance",
+    "meaning": "残高／差引残高",
+    "pos": "noun"
+  },
+  {
+    "word": "balance",
+    "meaning": "均衡／バランス",
+    "pos": "noun"
+  },
+  {
+    "word": "installment",
+    "meaning": "分割払いの1回分",
+    "pos": "noun"
+  },
+  {
+    "word": "policy",
+    "meaning": "規定／方針",
+    "pos": "noun"
+  },
+  {
+    "word": "behavior",
+    "meaning": "行動／振る舞い",
+    "pos": "noun"
+  },
+  {
+    "word": "attitude",
+    "meaning": "態度／考え方",
+    "pos": "noun"
+  },
+  {
+    "word": "expectation",
+    "meaning": "期待／予想",
+    "pos": "noun"
+  },
+  {
+    "word": "reputation",
+    "meaning": "評判／評価",
+    "pos": "noun"
+  },
+  {
+    "word": "consequence",
+    "meaning": "結果／影響",
+    "pos": "noun"
+  },
 
+  
+  
   
   
   
@@ -965,6 +1022,27 @@
   {
     "word": "watch",
     "meaning": "見る",
+    "pos": "verb"
+  },
+  {
+    "word": "watch",
+    "meaning": "見守る／監視する",
+    "pos": "verb"
+  },
+  {
+    "word": "watch",
+    "meaning": "気をつける／注意する",
+    "pos": "verb"
+  },
+
+  {
+    "word": "mind",
+    "meaning": "気にする／嫌がる",
+    "pos": "verb"
+  },
+  {
+    "word": "mind",
+    "meaning": "注意する／気をつける",
     "pos": "verb"
   },
   {
@@ -2354,6 +2432,138 @@
   {
     "word": "cut",
     "meaning": "止める／遮断する",
+    "pos": "verb"
+  },
+  {
+    "word": "pull",
+    "meaning": "引く／引っぱる",
+    "pos": "verb"
+  },
+  {
+    "word": "pull",
+    "meaning": "引き寄せる／引き出す",
+    "pos": "verb"
+  },
+  {
+    "word": "pull",
+    "meaning": "引きつける／集める",
+    "pos": "verb"
+  },
+
+  {
+    "word": "wear",
+    "meaning": "身につける／着ている",
+    "pos": "verb"
+  },
+  {
+    "word": "wear",
+    "meaning": "（髪型・表情などを）している",
+    "pos": "verb"
+  },
+
+  {
+    "word": "fix",
+    "meaning": "修理する／直す",
+    "pos": "verb"
+  },
+  {
+    "word": "fix",
+    "meaning": "問題を解決する／改善する",
+    "pos": "verb"
+  },
+  {
+    "word": "fix",
+    "meaning": "固定する／取り付ける",
+    "pos": "verb"
+  },
+
+  {
+    "word": "fill",
+    "meaning": "満たす／いっぱいにする",
+    "pos": "verb"
+  },
+  {
+    "word": "fill",
+    "meaning": "（席・場所・空間などを）埋める",
+    "pos": "verb"
+  },
+  {
+    "word": "fill",
+    "meaning": "（役職・空席などを）埋める",
+    "pos": "verb"
+  },
+
+  {
+    "word": "cover",
+    "meaning": "覆う／かぶせる",
+    "pos": "verb"
+  },
+  {
+    "word": "cover",
+    "meaning": "範囲を扱う／含む",
+    "pos": "verb"
+  },
+  {
+    "word": "cover",
+    "meaning": "費用を負担する／支払う",
+    "pos": "verb"
+  },
+  {
+    "word": "cover",
+    "meaning": "代わりに担当する／穴を埋める",
+    "pos": "verb"
+  },
+  {
+    "word": "join",
+    "meaning": "参加する／加わる",
+    "pos": "verb"
+  },
+  {
+    "word": "join",
+    "meaning": "（人と）合流する／一緒になる",
+    "pos": "verb"
+  },
+  {
+    "word": "join",
+    "meaning": "つなぐ／結ぶ",
+    "pos": "verb"
+  },
+
+  {
+    "word": "lend",
+    "meaning": "貸す",
+    "pos": "verb"
+  },
+
+  {
+    "word": "accept",
+    "meaning": "受け入れる／承諾する",
+    "pos": "verb"
+  },
+  {
+    "word": "accept",
+    "meaning": "認める／受け止める",
+    "pos": "verb"
+  },
+  {
+    "word": "accept",
+    "meaning": "（支払い・申込みなどを）受け付ける",
+    "pos": "verb"
+  },
+
+  {
+    "word": "offer",
+    "meaning": "提供する／差し出す",
+    "pos": "verb"
+  },
+  {
+    "word": "offer",
+    "meaning": "申し出る／提案する",
+    "pos": "verb"
+  },
+  {
+    "word": "offer",
+    "meaning": "（金額・条件などを）提示する",
     "pos": "verb"
   },
   

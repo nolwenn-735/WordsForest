@@ -126,7 +126,7 @@ private struct WordCardBasicsHelpSections: View {
 
             Section("💗 My Collectionと📦 覚えたBOX") {
                 Text(
-                    "単語カード右端の♡をタップすると「💗 My Collection」に入り、覚えにくい単語をあとからまとめて学習できます。"
+                    "単語カード右端の♡をタップすると「💗 My Collection」に入り、覚えたい単語や「メモ」で使いたい単語などをあとからまとめて学習できます。"
                 )
 
                 Text(

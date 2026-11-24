@@ -203,7 +203,7 @@ struct HomePage: View {
                         NavigationLink {
                             MyCollectionRootView()
                         } label: {
-                            Text("💗  My Collection（覚えにくい単語）")
+                            Text("💗  My Collection（覚えたい単語）")
                         }
                         .buttonStyle(
                             ColoredPillButtonStyle(
