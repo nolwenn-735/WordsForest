@@ -965,11 +965,6 @@
     "pos": "verb"
   },
   {
-    "word": "look",
-    "meaning": "診察する",
-    "pos": "verb"
-  },
-  {
     "word": "run",
     "meaning": "運営する",
     "pos": "verb"
@@ -1217,6 +1212,11 @@
   {
     "word": "look",
     "meaning": "見る",
+    "pos": "verb"
+  },
+  {
+    "word": "look",
+    "meaning": "～に見える／～のように見える",
     "pos": "verb"
   },
   {
@@ -2566,6 +2566,153 @@
     "meaning": "（金額・条件などを）提示する",
     "pos": "verb"
   },
+  {
+    "word": "seem",
+    "meaning": "～のように見える／思える",
+    "pos": "verb"
+  },
+
+  {
+    "word": "matter",
+    "meaning": "重要である／問題である",
+    "pos": "verb"
+  },
+
+  {
+    "word": "wonder",
+    "meaning": "～かなと思う／知りたいと思う",
+    "pos": "verb"
+  },
+
+  {
+    "word": "realize",
+    "meaning": "気づく／理解する",
+    "pos": "verb"
+  },
+  {
+    "word": "realize",
+    "meaning": "実現する",
+    "pos": "verb"
+  },
+
+  {
+    "word": "expect",
+    "meaning": "予想する／～と思う",
+    "pos": "verb"
+  },
+  {
+    "word": "expect",
+    "meaning": "期待する",
+    "pos": "verb"
+  },
+  {
+    "word": "expect",
+    "meaning": "～することを求める／当然とする",
+    "pos": "verb"
+  },
+  {
+    "word": "return",
+    "meaning": "戻る／帰る",
+    "pos": "verb"
+  },
+  {
+    "word": "return",
+    "meaning": "返す／返品する",
+    "pos": "verb"
+  },
+
+  {
+    "word": "spend",
+    "meaning": "（お金を）使う",
+    "pos": "verb"
+  },
+  {
+    "word": "spend",
+    "meaning": "（時間を）過ごす／費やす",
+    "pos": "verb"
+  },
+
+  {
+    "word": "charge",
+    "meaning": "料金を請求する",
+    "pos": "verb"
+  },
+  {
+    "word": "charge",
+    "meaning": "充電する",
+    "pos": "verb"
+  },
+  {
+    "word": "charge",
+    "meaning": "告発する／罪に問う",
+    "pos": "verb"
+  },
+
+  {
+    "word": "afford",
+    "meaning": "～する余裕がある／～を買う余裕がある",
+    "pos": "verb"
+  },
+  {
+    "word": "handle",
+    "meaning": "対処する／扱う",
+    "pos": "verb"
+  },
+  {
+    "word": "handle",
+    "meaning": "（物を）扱う／手に取る",
+    "pos": "verb"
+  },
+
+  {
+    "word": "manage",
+    "meaning": "管理する／運営する",
+    "pos": "verb"
+  },
+  {
+    "word": "manage",
+    "meaning": "何とかやり遂げる",
+    "pos": "verb"
+  },
+  {
+    "word": "manage",
+    "meaning": "うまく対処する／やりくりする",
+    "pos": "verb"
+  },
+
+  {
+    "word": "prevent",
+    "meaning": "防ぐ／妨げる",
+    "pos": "verb"
+  },
+
+  {
+    "word": "allow",
+    "meaning": "許可する／～することを認める",
+    "pos": "verb"
+  },
+  {
+    "word": "allow",
+    "meaning": "可能にする",
+    "pos": "verb"
+  },
+
+  {
+    "word": "support",
+    "meaning": "支える／助ける",
+    "pos": "verb"
+  },
+  {
+    "word": "support",
+    "meaning": "支持する／賛成する",
+    "pos": "verb"
+  },
+  {
+    "word": "support",
+    "meaning": "（重さなどを）支える",
+    "pos": "verb"
+  },
+  
   
   
   

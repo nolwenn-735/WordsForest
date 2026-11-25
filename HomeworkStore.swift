@@ -700,7 +700,7 @@ final class HomeworkStore: ObservableObject {
             word: "outcome",
             pos: .noun,
             from: "結果／成り行き",
-            to: "レシート／結末"
+            to: "結果／結末"
         ) {
             renamedCount += 1
         }
@@ -749,6 +749,15 @@ final class HomeworkStore: ObservableObject {
             collapsedCount += 1
         }
 
+        if collapseBundledMeaning(
+            word: "look",
+            pos: .verb,
+            from: "診察する",
+            into: "見る"
+        ) {
+            collapsedCount += 1
+        }
+
         // ---------------------------------------------------------
         // 4. BundledWords.json の不足meaningを追加
         //
@@ -756,7 +765,7 @@ final class HomeworkStore: ObservableObject {
         // 同じwordに複数meaningがあっても、
         // それぞれ独立したStoredWordとして追加される。
         // ---------------------------------------------------------
-
+        
         var knownKeys = Set(
             words.map {
                 WordKey(
