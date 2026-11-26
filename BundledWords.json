@@ -325,6 +325,11 @@
     "pos": "noun"
   },
   {
+    "word": "pink",
+    "meaning": "ピンク色",
+    "pos": "noun"
+  },
+  {
     "word": "schedule",
     "meaning": "予定",
     "pos": "noun"
@@ -460,7 +465,8 @@
   },
   {"word":"group",
    "meaning":"グループ／集団",
-   "pos":"noun"},
+   "pos":"noun"
+  },
   {
     "word": "group",
     "meaning": "班",
@@ -688,7 +694,8 @@
   },
   {"word":"bill",
    "meaning":"法案",
-   "pos":"noun"},
+   "pos":"noun"
+  },
   {
     "word": "cashier",
     "meaning": "レジ係",
@@ -930,6 +937,101 @@
     "meaning": "結果／影響",
     "pos": "noun"
   },
+  {
+    "word": "destination",
+    "meaning": "目的地／行き先",
+    "pos": "noun"
+  },
+  {
+    "word": "departure",
+    "meaning": "出発",
+    "pos": "noun"
+  },
+  {
+    "word": "delay",
+    "meaning": "遅延／遅れ",
+    "pos": "noun"
+  },
+  {
+    "word": "luggage",
+    "meaning": "荷物／旅行かばん",
+    "pos": "noun"
+  },
+  {
+    "word": "facility",
+    "meaning": "施設",
+    "pos": "noun"
+  },
+  {
+    "word": "facility",
+    "meaning": "設備",
+    "pos": "noun"
+  },
+  {
+    "word": "recovery",
+    "meaning": "回復／復旧",
+    "pos": "noun"
+  },
+  {
+    "word": "treatment",
+    "meaning": "治療／処置",
+    "pos": "noun"
+  },
+  {
+    "word": "treatment",
+    "meaning": "扱い／待遇",
+    "pos": "noun"
+  },
+  {
+    "word": "notification",
+    "meaning": "通知／お知らせ",
+    "pos": "noun"
+  },
+  {
+    "word": "attachment",
+    "meaning": "添付ファイル／添付資料",
+    "pos": "noun"
+  },
+  {
+    "word": "attachment",
+    "meaning": "愛着／愛情",
+    "pos": "noun"
+  },
+  {
+    "word": "update",
+    "meaning": "最新情報／近況報告",
+    "pos": "noun"
+  },
+  {
+    "word": "update",
+    "meaning": "更新／アップデート",
+    "pos": "noun"
+  },
+  {
+    "word": "impression",
+    "meaning": "印象",
+    "pos": "noun"
+  },
+  {
+    "word": "interaction",
+    "meaning": "交流／やり取り",
+    "pos": "noun"
+  },
+  {
+    "word": "disagreement",
+    "meaning": "意見の相違／不一致",
+    "pos": "noun"
+  },
+  {
+    "word": "encouragement",
+    "meaning": "励まし／後押し",
+    "pos": "noun"
+  },
+  {
+    "word": "trust",
+    "meaning": "信頼／信用",
+    "pos": "noun"
+  },
 
   
   
@@ -1115,6 +1217,21 @@
     "meaning": "売る",
     "pos": "verb"
   },
+  {
+  "word": "sell",
+   "meaning": "売れる",
+   "pos": "verb"
+ },
+ {
+   "word": "exchange",
+   "meaning": "両替する",
+   "pos": "verb"
+ },
+ {
+   "word": "exchange",
+   "meaning": "交わす／やり取りする",
+   "pos": "verb"
+ },
   {
     "word": "use",
     "meaning": "使う",
@@ -1669,6 +1786,11 @@
     "pos": "verb"
   },
   {
+    "word": "share",
+    "meaning": "共有する",
+    "pos": "verb"
+  },
+  {
     "word": "stay",
     "meaning": "とどまる／その場にいる",
     "pos": "verb"
@@ -1706,6 +1828,11 @@
   {
     "word": "check",
     "meaning": "確認する",
+    "pos": "verb"
+  },
+  {
+    "word": "check",
+    "meaning": "調べる／点検する",
     "pos": "verb"
   },
   {
@@ -1749,6 +1876,11 @@
     "pos": "verb"
   },
   {
+    "word": "remember",
+    "meaning": "思い出す",
+    "pos": "verb"
+  },
+  {
     "word": "start",
     "meaning": "始める",
     "pos": "verb"
@@ -1784,6 +1916,11 @@
     "pos": "verb"
   },
   {
+    "word": "improve",
+    "meaning": "上達する／良くなる",
+    "pos": "verb"
+  },
+  {
     "word": "include",
     "meaning": "含む",
     "pos": "verb"
@@ -1801,6 +1938,11 @@
   {
     "word": "solve",
     "meaning": "解く",
+    "pos": "verb"
+  },
+  {
+    "word": "solve",
+    "meaning": "解決する",
     "pos": "verb"
   },
   {
@@ -1896,6 +2038,21 @@
   {
     "word": "follow",
     "meaning": "ついて行く",
+    "pos": "verb"
+  },
+  {
+    "word": "follow",
+    "meaning": "従う／守る",
+    "pos": "verb"
+  },
+  {
+    "word": "follow",
+    "meaning": "理解する／話についていく",
+    "pos": "verb"
+  },
+  {
+    "word": "follow",
+    "meaning": "フォローする",
     "pos": "verb"
   },
   {
@@ -2077,6 +2234,16 @@
   {
     "word": "exchange",
     "meaning": "交換する",
+    "pos": "verb"
+  },
+  {
+    "word": "exchange",
+    "meaning": "両替する",
+    "pos": "verb"
+  },
+  {
+    "word": "exchange",
+    "meaning": "交わす／やり取りする",
     "pos": "verb"
   },
   {
@@ -2571,19 +2738,16 @@
     "meaning": "～のように見える／思える",
     "pos": "verb"
   },
-
   {
     "word": "matter",
     "meaning": "重要である／問題である",
     "pos": "verb"
   },
-
   {
     "word": "wonder",
     "meaning": "～かなと思う／知りたいと思う",
     "pos": "verb"
   },
-
   {
     "word": "realize",
     "meaning": "気づく／理解する",
@@ -2712,9 +2876,139 @@
     "meaning": "（重さなどを）支える",
     "pos": "verb"
   },
+  {
+    "word": "lead",
+    "meaning": "導く／案内する",
+    "pos": "verb"
+  },
+  {
+    "word": "lead",
+    "meaning": "率いる／指揮する",
+    "pos": "verb"
+  },
+  {
+    "word": "lead",
+    "meaning": "～につながる／～をもたらす",
+    "pos": "verb"
+  },
+
+  {
+    "word": "clear",
+    "meaning": "片づける／取り除く",
+    "pos": "verb"
+  },
+  {
+    "word": "clear",
+    "meaning": "（場所・道などを）空ける",
+    "pos": "verb"
+  },
+  {
+    "word": "clear",
+    "meaning": "解消する／明らかにする",
+    "pos": "verb"
+  },
+
+  {
+    "word": "treat",
+    "meaning": "扱う／接する",
+    "pos": "verb"
+  },
+  {
+    "word": "treat",
+    "meaning": "治療する／手当てする",
+    "pos": "verb"
+  },
+  {
+    "word": "treat",
+    "meaning": "ごちそうする／おごる",
+    "pos": "verb"
+  },
+
+  {
+    "word": "serve",
+    "meaning": "（食事・飲み物を）出す／提供する",
+    "pos": "verb"
+  },
+  {
+    "word": "serve",
+    "meaning": "接客する／応対する",
+    "pos": "verb"
+  },
+  {
+    "word": "serve",
+    "meaning": "～として役立つ／機能する",
+    "pos": "verb"
+  },
+
+  {
+    "word": "point",
+    "meaning": "指す／指し示す",
+    "pos": "verb"
+  },
+  {
+    "word": "point",
+    "meaning": "（物を）向ける",
+    "pos": "verb"
+  },
+  {
+    "word": "trust",
+    "meaning": "信頼する／信用する",
+    "pos": "verb"
+  },
+
+  {
+    "word": "depend",
+    "meaning": "頼る／依存する",
+    "pos": "verb"
+  },
+  {
+    "word": "depend",
+    "meaning": "～次第である／～による",
+    "pos": "verb"
+  },
+
+  {
+    "word": "belong",
+    "meaning": "所属する／一員である",
+    "pos": "verb"
+  },
+  {
+    "word": "belong",
+    "meaning": "～のものである／～に属する",
+    "pos": "verb"
+  },
+
+  {
+    "word": "avoid",
+    "meaning": "避ける",
+    "pos": "verb"
+  },
+
+  {
+    "word": "apply",
+    "meaning": "申し込む／応募する",
+    "pos": "verb"
+  },
+  {
+    "word": "apply",
+    "meaning": "適用する／当てはめる",
+    "pos": "verb"
+  },
+  {
+    "word": "apply",
+    "meaning": "当てはまる／適用される",
+    "pos": "verb"
+  },
+  {
+    "word": "apply",
+    "meaning": "塗る／つける",
+    "pos": "verb"
+  },
   
   
   
+  
+
   
   
   
@@ -3332,1097 +3626,6 @@
     "word": "off",
       "meaning": "傷んでいる・状態がおかしい",
       "pos": "adj"
-  },
-
-  
-  
-  {
-    "word": "slowly",
-    "meaning": "ゆっくり",
-    "pos": "adv"
-  },
-  {
-    "word": "quickly",
-    "meaning": "素早く",
-    "pos": "adv"
-  },
-  {
-    "word": "carefully",
-    "meaning": "注意深く",
-    "pos": "adv"
-  },
-  {
-    "word": "often",
-    "meaning": "しばしば",
-    "pos": "adv"
-  },
-  {
-    "word": "happily",
-    "meaning": "幸せそうに",
-    "pos": "adv"
-  },
-  {
-    "word": "sadly",
-    "meaning": "悲しそうに",
-    "pos": "adv"
-  },
-  {
-    "word": "neatly",
-    "meaning": "きちんと",
-    "pos": "adv"
-  },
-  {
-    "word": "loudly",
-    "meaning": "大声で",
-    "pos": "adv"
-  },
-  {
-    "word": "silently",
-    "meaning": "静かに",
-    "pos": "adv"
-  },
-  {
-    "word": "eagerly",
-    "meaning": "熱心に",
-    "pos": "adv"
-  },
-  {
-    "word": "gently",
-    "meaning": "優しく",
-    "pos": "adv"
-  },
-  {
-    "word": "bravely",
-    "meaning": "勇敢に",
-    "pos": "adv"
-  },
-  {
-    "word": "brightly",
-    "meaning": "明るく",
-    "pos": "adv"
-  },
-  {
-    "word": "calmly",
-    "meaning": "落ち着いて",
-    "pos": "adv"
-  },
-  {
-    "word": "there",
-    "meaning": "そこに／そこで／あそこに",
-    "pos": "adv"
-  },
-  {
-    "word": "everywhere",
-    "meaning": "どこにでも／いたるところに",
-    "pos": "adv"
-  },
-  {
-    "word": "back",
-    "meaning": "後ろへ／後ろに",
-    "pos": "adv"
-  },
-  {
-    "word": "early",
-    "meaning": "早く／早めに",
-    "pos": "adv"
-  },
-  {
-    "word": "early",
-    "meaning": "早い時期に",
-    "pos": "adv"
-  },
-  {
-    "word": "here",
-    "meaning": "ここに",
-    "pos": "adv"
-  },
-  {
-    "word": "away",
-    "meaning": "離れて／向こうに",
-    "pos": "adv"
-  },
-  {
-    "word": "away",
-    "meaning": "離れていく／立ち去って",
-    "pos": "adv"
-  },
-  {
-    "word": "away",
-    "meaning": "不在で／留守で",
-    "pos": "adv"
-  },
-  {
-    "word": "back",
-    "meaning": "戻って／元の場所へ",
-    "pos": "adv"
-  },
-  {
-    "word": "off",
-    "meaning": "離れて／外れて",
-    "pos": "adv"
-  },
-  {
-    "word": "far",
-    "meaning": "遠くに／遠くへ",
-    "pos": "adv"
-  },
-  {
-    "word": "far",
-    "meaning": "はるかに／ずっと",
-    "pos": "adv"
-  },
-  {
-    "word": "only",
-    "meaning": "〜だけ／ただ〜だけ",
-    "pos": "adv"
-  },
-  {
-    "word": "only",
-    "meaning": "たった／わずか",
-    "pos": "adv"
-  },
-  {
-    "word": "even",
-    "meaning": "〜さえ／〜すら",
-    "pos": "adv"
-  },
-  {
-    "word": "even",
-    "meaning": "さらに／いっそう",
-    "pos": "adv"
-  },
-  {
-    "word": "well",
-    "meaning": "上手に／うまく",
-    "pos": "adv"
-  },
-  {
-    "word": "well",
-    "meaning": "よく／十分に",
-    "pos": "adv"
-  },
-  {
-    "word": "about",
-    "meaning": "約／およそ",
-    "pos": "adv"
-  },
-  {
-    "word": "about",
-    "meaning": "まさに〜しようとしている",
-    "pos": "adv"
-  },
-  {
-    "word": "tonight",
-    "meaning": "今夜／今晩",
-    "pos": "adv"
-  },
-  {
-    "word": "not",
-    "meaning": "〜ない",
-    "pos": "adv"
-  },
-  {
-    "word": "late",
-    "meaning": "遅く／遅れて",
-    "pos": "adv"
-  },
-  {
-    "word": "rarely",
-    "meaning": "めったに〜ない",
-    "pos": "adv"
-  },
-  {
-    "word": "daily",
-    "meaning": "毎日",
-    "pos": "adv"
-  },
-  {
-    "word": "apart",
-    "meaning": "離れて",
-    "pos": "adv"
-  },
-  {
-    "word": "somewhere",
-    "meaning": "どこかで",
-    "pos": "adv"
-  },
-  {
-    "word": "inside",
-    "meaning": "中で",
-    "pos": "adv"
-  },
-  {
-    "word": "outside",
-    "meaning": "外で",
-    "pos": "adv"
-  },
-  {
-    "word": "easily",
-    "meaning": "簡単に",
-    "pos": "adv"
-  },
-  {
-    "word": "really",
-    "meaning": "本当に",
-    "pos": "adv"
-  },
-  
-  {
-    "word": "maybe",
-    "meaning": "たぶん",
-    "pos": "adv"
-  },
-  {
-    "word": "safely",
-    "meaning": "安全に",
-    "pos": "adv"
-  },
-  {
-    "word": "kindly",
-    "meaning": "親切に",
-    "pos": "adv"
-  },
-  {
-    "word": "gracefully",
-    "meaning": "優雅に",
-    "pos": "adv"
-  },
-  {
-    "word": "angrily",
-    "meaning": "怒って",
-    "pos": "adv"
-  },
-  {
-    "word": "exactly",
-    "meaning": "正確に",
-    "pos": "adv"
-  },
-  {
-    "word": "anywhere",
-    "meaning": "どこでも",
-    "pos": "adv"
-  },
-  {
-    "word": "already",
-    "meaning": "すでに",
-    "pos": "adv"
-  },
-  {
-    "word": "certainly",
-    "meaning": "確かに",
-    "pos": "adv"
-  },
-  {
-    "word": "finally",
-    "meaning": "ついに",
-    "pos": "adv"
-  },
-  {
-    "word": "forward",
-    "meaning": "前へ",
-    "pos": "adv"
-  },
-  {
-    "word": "perhaps",
-    "meaning": "もしかすると",
-    "pos": "adv"
-  },
-  {
-    "word": "recently",
-    "meaning": "最近",
-    "pos": "adv"
-  },
-  {
-    "word": "sometimes",
-    "meaning": "ときどき",
-    "pos": "adv"
-  },
-  {
-    "word": "suddenly",
-    "meaning": "突然",
-    "pos": "adv"
-  },
-  {
-    "word": "upstairs",
-    "meaning": "上の階で",
-    "pos": "adv"
-  },
-  {
-    "word": "always",
-    "meaning": "いつも／必ず",
-    "pos": "adv"
-  },
-  {
-    "word": "never",
-    "meaning": "決して〜ない／一度も〜ない",
-    "pos": "adv"
-  },
-  {
-    "word": "soon",
-    "meaning": "もうすぐ／近いうちに",
-    "pos": "adv"
-  },
-  {
-    "word": "later",
-    "meaning": "あとで／もっと遅く",
-    "pos": "adv"
-  },
-  {
-    "word": "again",
-    "meaning": "再び／もう一度",
-    "pos": "adv"
-  },
-  {
-    "word": "very",
-    "meaning": "とても／非常に",
-    "pos": "adv"
-  },
-  {
-    "word": "nearly",
-    "meaning": "ほとんど／もう少しで",
-    "pos": "adv"
-  },
-  {
-    "word": "fast",
-    "meaning": "速く",
-    "pos": "adv"
-  },
-  {
-    "word": "now",
-    "meaning": "今",
-    "pos": "adv"
-  },
-  {
-    "word": "now",
-    "meaning": "今では",
-    "pos": "adv"
-  },
-  {
-    "word": "today",
-    "meaning": "今日",
-    "pos": "adv"
-  },
-  {
-    "word": "tomorrow",
-    "meaning": "明日",
-    "pos": "adv"
-  },
-  {
-    "word": "together",
-    "meaning": "いっしょに",
-    "pos": "adv"
-  },
-  {
-    "word": "usually",
-    "meaning": "たいてい",
-    "pos": "adv"
-  },
-  {
-    "word": "aloud",
-    "meaning": "声に出して",
-    "pos": "adv"
-  },
-  {
-    "word": "clearly",
-    "meaning": "はっきりと",
-    "pos": "adv"
-  },
-  {
-    "word": "correctly",
-    "meaning": "正しく",
-    "pos": "adv"
-  },
-  {
-    "word": "directly",
-    "meaning": "直接",
-    "pos": "adv"
-  },
-  {
-    "word": "especially",
-    "meaning": "特に",
-    "pos": "adv"
-  },
-  {
-    "word": "individually",
-    "meaning": "各自で",
-    "pos": "adv"
-  },
-  {
-    "word": "quietly",
-    "meaning": "静かに",
-    "pos": "adv"
-  },
-  {
-    "word": "separately",
-    "meaning": "別々に",
-    "pos": "adv"
-  },
-  {
-    "word": "twice",
-    "meaning": "2回",
-    "pos": "adv"
-  },
-  {
-    "word": "wrongly",
-    "meaning": "まちがって",
-    "pos": "adv"
-  },
-  {
-    "word": "downstairs",
-    "meaning": "下の階で",
-    "pos": "adv"
-  },
-  {
-    "word": "hard",
-    "meaning": "一生懸命に／熱心に",
-    "pos": "adv"
-  },
-  {
-    "word": "hard",
-    "meaning": "強く／激しく",
-    "pos": "adv"
-  },
-  {
-    "word": "hardly",
-    "meaning": "ほとんど〜ない",
-    "pos": "adv"
-  },
-  {
-    "word": "barely",
-    "meaning": "かろうじて／ぎりぎり",
-    "pos": "adv"
-  },
-  {
-    "word": "barely",
-    "meaning": "ほとんど〜ない／ほぼ〜できない",
-    "pos": "adv"
-  },
-  {
-    "word": "just",
-    "meaning": "ちょうど",
-    "pos": "adv"
-  },
-  {
-    "word": "still",
-    "meaning": "まだ",
-    "pos": "adv"
-  },
-  {
-    "word": "then",
-    "meaning": "そのとき",
-    "pos": "adv"
-  },
-  {
-    "word": "then",
-    "meaning": "それから",
-    "pos": "adv"
-  },
-  {
-    "word": "then",
-    "meaning": "それなら",
-    "pos": "adv"
-  },
-  {
-    "word": "yet",
-    "meaning": "まだ",
-    "pos": "adv"
-  },
-  {
-    "word": "abroad",
-    "meaning": "海外へ",
-    "pos": "adv"
-  },
-  {
-    "word": "downtown",
-    "meaning": "街中へ",
-    "pos": "adv"
-  },
-  {
-    "word": "east",
-    "meaning": "東へ",
-    "pos": "adv"
-  },
-  {
-    "word": "home",
-    "meaning": "家へ",
-    "pos": "adv"
-  },
-  {
-    "word": "left",
-    "meaning": "左へ",
-    "pos": "adv"
-  },
-  {
-    "word": "nearby",
-    "meaning": "近くに",
-    "pos": "adv"
-  },
-  {
-    "word": "north",
-    "meaning": "北へ",
-    "pos": "adv"
-  },
-  {
-    "word": "right",
-    "meaning": "右へ",
-    "pos": "adv"
-  },
-  {
-    "word": "south",
-    "meaning": "南へ",
-    "pos": "adv"
-  },
-  {
-    "word": "west",
-    "meaning": "西へ",
-    "pos": "adv"
-  },
-  {
-    "word": "anyway",
-    "meaning": "とにかく／いずれにせよ",
-    "pos": "adv"
-  },
-  {
-    "word": "anyway",
-    "meaning": "それでも",
-    "pos": "adv"
-  },
-  {
-    "word": "deeply",
-    "meaning": "深く",
-    "pos": "adv"
-  },
-  {
-    "word": "honestly",
-    "meaning": "正直に",
-    "pos": "adv"
-  },
-  {
-    "word": "seriously",
-    "meaning": "まじめに",
-    "pos": "adv"
-  },
-  {"word":"seriously",
-   "meaning":"本気で／真剣に",
-   "pos":"adv"
-  },
-  {
-    "word": "cheaply",
-    "meaning": "安く",
-    "pos": "adv"
-  },
-  {
-    "word": "instead",
-    "meaning": "代わりに",
-    "pos": "adv"
-  },
-  {
-    "word": "online",
-    "meaning": "オンラインで",
-    "pos": "adv"
-  },
-  {
-    "word": "overnight",
-    "meaning": "一晩で",
-    "pos": "adv"
-  },
-  {
-    "word": "enough",
-    "meaning": "十分に",
-    "pos": "adv"
-  },
-  {
-    "word": "ago",
-    "meaning": "〜前に",
-    "pos": "adv"
-  },
-  {
-    "word": "almost",
-    "meaning": "ほとんど",
-    "pos": "adv"
-  },
-  {
-    "word": "almost",
-    "meaning": "もう少しで",
-    "pos": "adv"
-  },
-  {
-    "word": "ever",
-    "meaning": "これまでに／いつか／一度でも",
-    "pos": "adv"
-  },
-  {
-    "word": "so",
-    "meaning": "とても",
-    "pos": "adv"
-  },
-  {
-    "word": "so",
-    "meaning": "そんなに",
-    "pos": "adv"
-  },
-  {
-    "word": "more",
-    "meaning": "もっと／さらに",
-    "pos": "adv"
-  },
-  {
-    "word": "most",
-    "meaning": "最も／いちばん",
-    "pos": "adv"
-  },
-  {
-    "word": "mostly",
-    "meaning": "主に／大部分は",
-    "pos": "adv"
-  },
-  {
-    "word": "sure",
-    "meaning": "確かに／本当に",
-    "pos": "adv"
-  },
-  {
-    "word": "high",
-    "meaning": "高く／高いところに",
-    "pos": "adv"
-  },
-  {
-    "word": "highly",
-    "meaning": "非常に／大いに",
-    "pos": "adv"
-  },
-  {
-    "word": "near",
-    "meaning": "近くに",
-    "pos": "adv"
-  },
-  {
-    "word": "too",
-    "meaning": "〜すぎる",
-    "pos": "adv"
-  },
-  {
-    "word": "too",
-    "meaning": "〜もまた",
-    "pos": "adv"
-  },
-  {
-    "word": "quite",
-    "meaning": "かなり",
-    "pos": "adv"
-  },
-  {
-    "word": "quite",
-    "meaning": "完全に",
-    "pos": "adv"
-  },
-  {
-    "word": "pretty",
-    "meaning": "かなり／けっこう",
-    "pos": "adv"
-  },
-  {
-    "word": "fairly",
-    "meaning": "かなり／まずまず",
-    "pos": "adv"
-  },
-  {
-    "word": "rather",
-    "meaning": "かなり／思ったより",
-    "pos": "adv"
-  },
-  {
-    "word": "rather",
-    "meaning": "むしろ／〜する方がいい",
-    "pos": "adv"
-  },
-  {
-    "word": "almost",
-    "meaning": "ほとんど",
-    "pos": "adv"
-  },
-  {
-    "word": "almost",
-    "meaning": "もう少しで",
-    "pos": "adv"
-  },
-  {
-    "word": "much",
-    "meaning": "大いに",
-    "pos": "adv"
-  },
-  {
-    "word": "much",
-    "meaning": "ずっと",
-    "pos": "adv"
-  },
-  {
-    "word": "lately",
-    "meaning": "最近／このところ",
-    "pos": "adv"
-  },
-  {
-    "word": "eventually",
-    "meaning": "最終的には／結局は",
-    "pos": "adv"
-  },
-  
-  
-  
-  {
-    "word": "the",
-    "meaning": "定冠詞　その〜、例の",
-    "pos": "others"
-  },
-  {
-    "word": "a",
-    "meaning": "不定冠詞　ある〜、ひとつの",
-    "pos": "others"
-  },
-  {
-    "word": "in",
-    "meaning": "前置詞　〜の中で",
-    "pos": "others"
-  },
-  {
-    "word": "on",
-    "meaning": "前置詞　〜の上に",
-    "pos": "others"
-  },
-  {
-    "word": "to",
-    "meaning": "前置詞/不定詞　到達点を示す/〜すること",
-    "pos": "others"
-  },
-  {
-    "word": "and",
-    "meaning": "接続詞　〜と、そして",
-    "pos": "others"
-  },
-  {
-    "word": "but",
-    "meaning": "接続詞　しかし",
-    "pos": "others"
-  },
-  {
-    "word": "can",
-    "meaning": "助動詞　〜できる",
-    "pos": "others"
-  },
-  {
-    "word": "at",
-    "meaning": "前置詞　〜で",
-    "pos": "others"
-  },
-  {
-    "word": "do",
-    "meaning": "助動詞/動詞　する",
-    "pos": "others"
-  },
-  {
-    "word": "does",
-    "meaning": "助動詞/動詞　〜する(3単現)",
-    "pos": "others"
-  },
-  {
-    "word": "did",
-    "meaning": "助動詞/動詞　〜した",
-    "pos": "others"
-  },
-  {
-    "word": "will",
-    "meaning": "助動詞　〜するだろう",
-    "pos": "others"
-  },
-  {
-    "word": "if",
-    "meaning": "接続詞　もし〜なら",
-    "pos": "others"
-  },
-  {
-    "word": "because",
-    "meaning": "接続詞　なぜなら/〜なので",
-    "pos": "others"
-  },
-  {
-    "word": "with",
-    "meaning": "前置詞　〜と一緒に",
-    "pos": "others"
-  },
-  {
-    "word": "without",
-    "meaning": "前置詞　〜なしで",
-    "pos": "others"
-  },
-  {
-    "word": "under",
-    "meaning": "前置詞　〜の下に",
-    "pos": "others"
-  },
-  {
-    "word": "as",
-    "meaning": "前置詞/接続詞/副詞 〜として/〜する時/同じくらい",
-    "pos": "others"
-  },
-  {
-    "word": "oh",
-    "meaning": "間投詞　おおっ",
-    "pos": "others"
-  },
-  {
-    "word": "hey",
-    "meaning": "間投詞　ねえ",
-    "pos": "others"
-  },
-  {
-    "word": "behind",
-    "meaning": "前置詞 〜の後ろに",
-    "pos": "others"
-  },
-  {
-    "word": "between",
-    "meaning": "前置詞 〜の間に",
-    "pos": "others"
-  },
-  {
-    "word": "through",
-    "meaning": "前置詞 〜を通って",
-    "pos": "others"
-  },
-  {
-    "word": "during",
-    "meaning": "前置詞 〜の間に",
-    "pos": "others"
-  },
-  {
-    "word": "before",
-    "meaning": "前置詞/接続詞 〜の前に",
-    "pos": "others"
-  },
-  {
-    "word": "after",
-    "meaning": "前置詞/接続詞 〜の後で",
-    "pos": "others"
-  },
-  {
-    "word": "until",
-    "meaning": "前置詞/接続詞 〜まで",
-    "pos": "others"
-  },
-  {
-    "word": "although",
-    "meaning": "接続詞 〜だけれども",
-    "pos": "others"
-  },
-  {
-    "word": "when",
-    "meaning": "接続詞 〜するとき",
-    "pos": "others"
-  },
-  {
-    "word": "something",
-    "meaning": "代名詞 何か",
-    "pos": "others"
-  },
-  {
-    "word": "nothing",
-    "meaning": "代名詞 何も〜ないもの",
-    "pos": "others"
-  },
-  {
-    "word": "around",
-    "meaning": "前置詞/副詞 〜のまわりに",
-    "pos": "others"
-  },
-  {
-    "word": "because",
-    "meaning": "接続詞 なぜなら/〜なので",
-    "pos": "others"
-  },
-  {
-    "word": "someone",
-    "meaning": "代名詞 だれか",
-    "pos": "others"
-  },
-  {
-    "word": "everyone",
-    "meaning": "代名詞 みんな",
-    "pos": "others"
-  },
-  {
-    "word": "everything",
-    "meaning": "代名詞 すべて",
-    "pos": "others"
-  },
-  {
-    "word": "another",
-    "meaning": "形容詞/代名詞 もう一つの",
-    "pos": "others"
-  },
-  {
-    "word": "across",
-    "meaning": "前置詞/副詞 〜を横切って",
-    "pos": "others"
-  },
-  {
-    "word": "among",
-    "meaning": "前置詞 〜の間で",
-    "pos": "others"
-  },
-  {
-    "word": "both",
-    "meaning": "代名詞/形容詞/副詞 両方",
-    "pos": "others"
-  },
-  {
-    "word": "either",
-    "meaning": "代名詞/形容詞/副詞 どちらか",
-    "pos": "others"
-  },
-  {
-    "word": "enough",
-    "meaning": "形容詞/代名詞/副詞 十分な/十分に",
-    "pos": "others"
-  },
-  {
-    "word": "every",
-    "meaning": "形容詞 すべての",
-    "pos": "others"
-  },
-  {
-    "word": "few",
-    "meaning": "形容詞/代名詞 ほとんどない/少数",
-    "pos": "others"
-  },
-  {
-    "word": "many",
-    "meaning": "形容詞/代名詞 たくさんの",
-    "pos": "others"
-  },
-  {
-    "word": "most",
-    "meaning": "形容詞/代名詞/副詞 ほとんどの/最も",
-    "pos": "others"
-  },
-  {
-    "word": "several",
-    "meaning": "形容詞/代名詞 いくつかの",
-    "pos": "others"
-  },
-  {
-    "word": "whether",
-    "meaning": "接続詞 〜かどうか",
-    "pos": "others"
-  },
-  {
-    "word": "along",
-    "meaning": "前置詞/副詞 〜に沿って",
-    "pos": "others"
-  },
-  {
-    "word": "beside",
-    "meaning": "前置詞 〜のそばに",
-    "pos": "others"
-  },
-  {
-    "word": "down",
-    "meaning": "前置詞/副詞 下へ",
-    "pos": "others"
-  },
-  {
-    "word": "off",
-    "meaning": "前置詞/副詞 離れて/消えて",
-    "pos": "others"
-  },
-  {
-    "word": "over",
-    "meaning": "前置詞/副詞 〜の上に/上へ",
-    "pos": "others"
-  },
-  {
-    "word": "past",
-    "meaning": "前置詞 〜を過ぎて",
-    "pos": "others"
-  },
-  {
-    "word": "since",
-    "meaning": "前置詞/接続詞 〜以来/〜なので",
-    "pos": "others"
-  },
-  {
-    "word": "than",
-    "meaning": "接続詞/前置詞 〜より",
-    "pos": "others"
-  },
-  {
-    "word": "yourself",
-    "meaning": "代名詞 あなた自身",
-    "pos": "others"
-  },
-  {
-    "word": "each",
-    "meaning": "形容詞/代名詞 それぞれの",
-    "pos": "others"
-  },
-  {
-    "word": "beyond",
-    "meaning": "前置詞 〜の向こうに",
-    "pos": "others"
-  },
-  {
-    "word": "near",
-    "meaning": "前置詞 〜の近くに",
-    "pos": "others"
-  },
-  {
-    "word": "onto",
-    "meaning": "前置詞 〜の上へ",
-    "pos": "others"
-  },
-  {
-    "word": "toward",
-    "meaning": "前置詞 〜の方へ",
-    "pos": "others"
-  },
-  {
-    "word": "via",
-    "meaning": "前置詞 〜経由で",
-    "pos": "others"
-  },
-  {
-    "word": "within",
-    "meaning": "前置詞 〜の中に",
-    "pos": "others"
-  },
-  {
-    "word": "anyone",
-    "meaning": "代名詞 だれでも/だれか",
-    "pos": "others"
-  },
-  {
-    "word": "myself",
-    "meaning": "代名詞 私自身",
-    "pos": "others"
-  },
-  {
-    "word": "while",
-    "meaning": "接続詞 〜する間",
-    "pos": "others"
-  },
-  {
-    "word": "some",
-    "meaning": "形容詞/代名詞 いくつかの",
-    "pos": "others"
-  },
-  {
-    "word": "below",
-    "meaning": "前置詞/副詞 〜より下に",
-    "pos": "others"
-  },
-  {
-    "word": "throughout",
-    "meaning": "前置詞 〜の間じゅう",
-    "pos": "others"
   },
   {
     "word": "bitter",
@@ -8601,14 +7804,1109 @@
   },
   {"word":"precious",
    "meaning":"大切な",
-   "pos":"adj"},
-
-
-  {
-    "word": "pink",
-    "meaning": "ピンク色",
-    "pos": "noun"
+   "pos":"adj"
   },
+
+  
+  
+ 
+ 
+  
+  
+  
+  {
+    "word": "slowly",
+    "meaning": "ゆっくり",
+    "pos": "adv"
+  },
+  {
+    "word": "quickly",
+    "meaning": "素早く",
+    "pos": "adv"
+  },
+  {
+    "word": "carefully",
+    "meaning": "注意深く",
+    "pos": "adv"
+  },
+  {
+    "word": "often",
+    "meaning": "しばしば",
+    "pos": "adv"
+  },
+  {
+    "word": "happily",
+    "meaning": "幸せそうに",
+    "pos": "adv"
+  },
+  {
+    "word": "sadly",
+    "meaning": "悲しそうに",
+    "pos": "adv"
+  },
+  {
+    "word": "neatly",
+    "meaning": "きちんと",
+    "pos": "adv"
+  },
+  {
+    "word": "loudly",
+    "meaning": "大声で",
+    "pos": "adv"
+  },
+  {
+    "word": "silently",
+    "meaning": "静かに",
+    "pos": "adv"
+  },
+  {
+    "word": "eagerly",
+    "meaning": "熱心に",
+    "pos": "adv"
+  },
+  {
+    "word": "gently",
+    "meaning": "優しく",
+    "pos": "adv"
+  },
+  {
+    "word": "bravely",
+    "meaning": "勇敢に",
+    "pos": "adv"
+  },
+  {
+    "word": "brightly",
+    "meaning": "明るく",
+    "pos": "adv"
+  },
+  {
+    "word": "calmly",
+    "meaning": "落ち着いて",
+    "pos": "adv"
+  },
+  {
+    "word": "there",
+    "meaning": "そこに／そこで／あそこに",
+    "pos": "adv"
+  },
+  {
+    "word": "everywhere",
+    "meaning": "どこにでも／いたるところに",
+    "pos": "adv"
+  },
+  {
+    "word": "back",
+    "meaning": "後ろへ／後ろに",
+    "pos": "adv"
+  },
+  {
+    "word": "early",
+    "meaning": "早く／早めに",
+    "pos": "adv"
+  },
+  {
+    "word": "early",
+    "meaning": "早い時期に",
+    "pos": "adv"
+  },
+  {
+    "word": "here",
+    "meaning": "ここに",
+    "pos": "adv"
+  },
+  {
+    "word": "away",
+    "meaning": "離れて／向こうに",
+    "pos": "adv"
+  },
+  {
+    "word": "away",
+    "meaning": "離れていく／立ち去って",
+    "pos": "adv"
+  },
+  {
+    "word": "away",
+    "meaning": "不在で／留守で",
+    "pos": "adv"
+  },
+  {
+    "word": "back",
+    "meaning": "戻って／元の場所へ",
+    "pos": "adv"
+  },
+  {
+    "word": "off",
+    "meaning": "離れて／外れて",
+    "pos": "adv"
+  },
+  {
+    "word": "far",
+    "meaning": "遠くに／遠くへ",
+    "pos": "adv"
+  },
+  {
+    "word": "far",
+    "meaning": "はるかに／ずっと",
+    "pos": "adv"
+  },
+  {
+    "word": "only",
+    "meaning": "〜だけ／ただ〜だけ",
+    "pos": "adv"
+  },
+  {
+    "word": "only",
+    "meaning": "たった／わずか",
+    "pos": "adv"
+  },
+  {
+    "word": "even",
+    "meaning": "〜さえ／〜すら",
+    "pos": "adv"
+  },
+  {
+    "word": "even",
+    "meaning": "さらに／いっそう",
+    "pos": "adv"
+  },
+  {
+    "word": "well",
+    "meaning": "上手に／うまく",
+    "pos": "adv"
+  },
+  {
+    "word": "well",
+    "meaning": "よく／十分に",
+    "pos": "adv"
+  },
+  {
+    "word": "about",
+    "meaning": "約／およそ",
+    "pos": "adv"
+  },
+  {
+    "word": "about",
+    "meaning": "まさに〜しようとしている",
+    "pos": "adv"
+  },
+  {
+    "word": "tonight",
+    "meaning": "今夜／今晩",
+    "pos": "adv"
+  },
+  {
+    "word": "not",
+    "meaning": "〜ない",
+    "pos": "adv"
+  },
+  {
+    "word": "late",
+    "meaning": "遅く／遅れて",
+    "pos": "adv"
+  },
+  {
+    "word": "rarely",
+    "meaning": "めったに〜ない",
+    "pos": "adv"
+  },
+  {
+    "word": "daily",
+    "meaning": "毎日",
+    "pos": "adv"
+  },
+  {
+    "word": "apart",
+    "meaning": "離れて",
+    "pos": "adv"
+  },
+  {
+    "word": "somewhere",
+    "meaning": "どこかで",
+    "pos": "adv"
+  },
+  {
+    "word": "inside",
+    "meaning": "中で",
+    "pos": "adv"
+  },
+  {
+    "word": "outside",
+    "meaning": "外で",
+    "pos": "adv"
+  },
+  {
+    "word": "easily",
+    "meaning": "簡単に",
+    "pos": "adv"
+  },
+  {
+    "word": "really",
+    "meaning": "本当に",
+    "pos": "adv"
+  },
+  
+  {
+    "word": "maybe",
+    "meaning": "たぶん",
+    "pos": "adv"
+  },
+  {
+    "word": "safely",
+    "meaning": "安全に",
+    "pos": "adv"
+  },
+  {
+    "word": "kindly",
+    "meaning": "親切に",
+    "pos": "adv"
+  },
+  {
+    "word": "gracefully",
+    "meaning": "優雅に",
+    "pos": "adv"
+  },
+  {
+    "word": "angrily",
+    "meaning": "怒って",
+    "pos": "adv"
+  },
+  {
+    "word": "exactly",
+    "meaning": "正確に",
+    "pos": "adv"
+  },
+  {
+    "word": "anywhere",
+    "meaning": "どこでも",
+    "pos": "adv"
+  },
+  {
+    "word": "already",
+    "meaning": "すでに",
+    "pos": "adv"
+  },
+  {
+    "word": "certainly",
+    "meaning": "確かに",
+    "pos": "adv"
+  },
+  {
+    "word": "finally",
+    "meaning": "ついに",
+    "pos": "adv"
+  },
+  {
+    "word": "forward",
+    "meaning": "前へ",
+    "pos": "adv"
+  },
+  {
+    "word": "perhaps",
+    "meaning": "もしかすると",
+    "pos": "adv"
+  },
+  {
+    "word": "recently",
+    "meaning": "最近",
+    "pos": "adv"
+  },
+  {
+    "word": "sometimes",
+    "meaning": "ときどき",
+    "pos": "adv"
+  },
+  {
+    "word": "suddenly",
+    "meaning": "突然",
+    "pos": "adv"
+  },
+  {
+    "word": "upstairs",
+    "meaning": "上の階で",
+    "pos": "adv"
+  },
+  {
+    "word": "always",
+    "meaning": "いつも／必ず",
+    "pos": "adv"
+  },
+  {
+    "word": "never",
+    "meaning": "決して〜ない／一度も〜ない",
+    "pos": "adv"
+  },
+  {
+    "word": "soon",
+    "meaning": "もうすぐ／近いうちに",
+    "pos": "adv"
+  },
+  {
+    "word": "later",
+    "meaning": "あとで／もっと遅く",
+    "pos": "adv"
+  },
+  {
+    "word": "again",
+    "meaning": "再び／もう一度",
+    "pos": "adv"
+  },
+  {
+    "word": "very",
+    "meaning": "とても／非常に",
+    "pos": "adv"
+  },
+  {
+    "word": "nearly",
+    "meaning": "ほとんど／もう少しで",
+    "pos": "adv"
+  },
+  {
+    "word": "fast",
+    "meaning": "速く",
+    "pos": "adv"
+  },
+  {
+    "word": "now",
+    "meaning": "今",
+    "pos": "adv"
+  },
+  {
+    "word": "now",
+    "meaning": "今では",
+    "pos": "adv"
+  },
+  {
+    "word": "today",
+    "meaning": "今日",
+    "pos": "adv"
+  },
+  {
+    "word": "tomorrow",
+    "meaning": "明日",
+    "pos": "adv"
+  },
+  {
+    "word": "together",
+    "meaning": "いっしょに",
+    "pos": "adv"
+  },
+  {
+    "word": "usually",
+    "meaning": "たいてい",
+    "pos": "adv"
+  },
+  {
+    "word": "aloud",
+    "meaning": "声に出して",
+    "pos": "adv"
+  },
+  {
+    "word": "clearly",
+    "meaning": "はっきりと",
+    "pos": "adv"
+  },
+  {
+    "word": "correctly",
+    "meaning": "正しく",
+    "pos": "adv"
+  },
+  {
+    "word": "directly",
+    "meaning": "直接",
+    "pos": "adv"
+  },
+  {
+    "word": "especially",
+    "meaning": "特に",
+    "pos": "adv"
+  },
+  {
+    "word": "individually",
+    "meaning": "各自で",
+    "pos": "adv"
+  },
+  {
+    "word": "quietly",
+    "meaning": "静かに",
+    "pos": "adv"
+  },
+  {
+    "word": "separately",
+    "meaning": "別々に",
+    "pos": "adv"
+  },
+  {
+    "word": "twice",
+    "meaning": "2回",
+    "pos": "adv"
+  },
+  {
+    "word": "wrongly",
+    "meaning": "まちがって",
+    "pos": "adv"
+  },
+  {
+    "word": "downstairs",
+    "meaning": "下の階で",
+    "pos": "adv"
+  },
+  {
+    "word": "hard",
+    "meaning": "一生懸命に／熱心に",
+    "pos": "adv"
+  },
+  {
+    "word": "hard",
+    "meaning": "強く／激しく",
+    "pos": "adv"
+  },
+  {
+    "word": "hardly",
+    "meaning": "ほとんど〜ない",
+    "pos": "adv"
+  },
+  {
+    "word": "barely",
+    "meaning": "かろうじて／ぎりぎり",
+    "pos": "adv"
+  },
+  {
+    "word": "barely",
+    "meaning": "ほとんど〜ない／ほぼ〜できない",
+    "pos": "adv"
+  },
+  {
+    "word": "just",
+    "meaning": "ちょうど",
+    "pos": "adv"
+  },
+  {
+    "word": "still",
+    "meaning": "まだ",
+    "pos": "adv"
+  },
+  {
+    "word": "then",
+    "meaning": "そのとき",
+    "pos": "adv"
+  },
+  {
+    "word": "then",
+    "meaning": "それから",
+    "pos": "adv"
+  },
+  {
+    "word": "then",
+    "meaning": "それなら",
+    "pos": "adv"
+  },
+  {
+    "word": "yet",
+    "meaning": "まだ",
+    "pos": "adv"
+  },
+  {
+    "word": "abroad",
+    "meaning": "海外へ",
+    "pos": "adv"
+  },
+  {
+    "word": "downtown",
+    "meaning": "街中へ",
+    "pos": "adv"
+  },
+  {
+    "word": "east",
+    "meaning": "東へ",
+    "pos": "adv"
+  },
+  {
+    "word": "home",
+    "meaning": "家へ",
+    "pos": "adv"
+  },
+  {
+    "word": "left",
+    "meaning": "左へ",
+    "pos": "adv"
+  },
+  {
+    "word": "nearby",
+    "meaning": "近くに",
+    "pos": "adv"
+  },
+  {
+    "word": "north",
+    "meaning": "北へ",
+    "pos": "adv"
+  },
+  {
+    "word": "right",
+    "meaning": "右へ",
+    "pos": "adv"
+  },
+  {
+    "word": "south",
+    "meaning": "南へ",
+    "pos": "adv"
+  },
+  {
+    "word": "west",
+    "meaning": "西へ",
+    "pos": "adv"
+  },
+  {
+    "word": "anyway",
+    "meaning": "とにかく／いずれにせよ",
+    "pos": "adv"
+  },
+  {
+    "word": "anyway",
+    "meaning": "それでも",
+    "pos": "adv"
+  },
+  {
+    "word": "deeply",
+    "meaning": "深く",
+    "pos": "adv"
+  },
+  {
+    "word": "honestly",
+    "meaning": "正直に",
+    "pos": "adv"
+  },
+  {
+    "word": "seriously",
+    "meaning": "まじめに",
+    "pos": "adv"
+  },
+  {"word":"seriously",
+   "meaning":"本気で／真剣に",
+   "pos":"adv"
+  },
+  {
+    "word": "cheaply",
+    "meaning": "安く",
+    "pos": "adv"
+  },
+  {
+    "word": "instead",
+    "meaning": "代わりに",
+    "pos": "adv"
+  },
+  {
+    "word": "online",
+    "meaning": "オンラインで",
+    "pos": "adv"
+  },
+  {
+    "word": "overnight",
+    "meaning": "一晩で",
+    "pos": "adv"
+  },
+  {
+    "word": "enough",
+    "meaning": "十分に",
+    "pos": "adv"
+  },
+  {
+    "word": "ago",
+    "meaning": "〜前に",
+    "pos": "adv"
+  },
+  {
+    "word": "almost",
+    "meaning": "ほとんど",
+    "pos": "adv"
+  },
+  {
+    "word": "almost",
+    "meaning": "もう少しで",
+    "pos": "adv"
+  },
+  {
+    "word": "ever",
+    "meaning": "これまでに／いつか／一度でも",
+    "pos": "adv"
+  },
+  {
+    "word": "so",
+    "meaning": "とても",
+    "pos": "adv"
+  },
+  {
+    "word": "so",
+    "meaning": "そんなに",
+    "pos": "adv"
+  },
+  {
+    "word": "more",
+    "meaning": "もっと／さらに",
+    "pos": "adv"
+  },
+  {
+    "word": "most",
+    "meaning": "最も／いちばん",
+    "pos": "adv"
+  },
+  {
+    "word": "mostly",
+    "meaning": "主に／大部分は",
+    "pos": "adv"
+  },
+  {
+    "word": "sure",
+    "meaning": "確かに／本当に",
+    "pos": "adv"
+  },
+  {
+    "word": "high",
+    "meaning": "高く／高いところに",
+    "pos": "adv"
+  },
+  {
+    "word": "highly",
+    "meaning": "非常に／大いに",
+    "pos": "adv"
+  },
+  {
+    "word": "near",
+    "meaning": "近くに",
+    "pos": "adv"
+  },
+  {
+    "word": "too",
+    "meaning": "〜すぎる",
+    "pos": "adv"
+  },
+  {
+    "word": "too",
+    "meaning": "〜もまた",
+    "pos": "adv"
+  },
+  {
+    "word": "quite",
+    "meaning": "かなり",
+    "pos": "adv"
+  },
+  {
+    "word": "quite",
+    "meaning": "完全に",
+    "pos": "adv"
+  },
+  {
+    "word": "pretty",
+    "meaning": "かなり／けっこう",
+    "pos": "adv"
+  },
+  {
+    "word": "fairly",
+    "meaning": "かなり／まずまず",
+    "pos": "adv"
+  },
+  {
+    "word": "rather",
+    "meaning": "かなり／思ったより",
+    "pos": "adv"
+  },
+  {
+    "word": "rather",
+    "meaning": "むしろ／〜する方がいい",
+    "pos": "adv"
+  },
+  {
+    "word": "almost",
+    "meaning": "ほとんど",
+    "pos": "adv"
+  },
+  {
+    "word": "almost",
+    "meaning": "もう少しで",
+    "pos": "adv"
+  },
+  {
+    "word": "much",
+    "meaning": "大いに",
+    "pos": "adv"
+  },
+  {
+    "word": "much",
+    "meaning": "ずっと",
+    "pos": "adv"
+  },
+  {
+    "word": "lately",
+    "meaning": "最近／このところ",
+    "pos": "adv"
+  },
+  {
+    "word": "eventually",
+    "meaning": "最終的には／結局は",
+    "pos": "adv"
+  },
+  
+  
+  
+  
+  
+  
+  
+  {
+    "word": "the",
+    "meaning": "定冠詞　その〜、例の",
+    "pos": "others"
+  },
+  {
+    "word": "a",
+    "meaning": "不定冠詞　ある〜、ひとつの",
+    "pos": "others"
+  },
+  {
+    "word": "in",
+    "meaning": "前置詞　〜の中で",
+    "pos": "others"
+  },
+  {
+    "word": "on",
+    "meaning": "前置詞　〜の上に",
+    "pos": "others"
+  },
+  {
+    "word": "to",
+    "meaning": "前置詞/不定詞　到達点を示す/〜すること",
+    "pos": "others"
+  },
+  {
+    "word": "and",
+    "meaning": "接続詞　〜と、そして",
+    "pos": "others"
+  },
+  {
+    "word": "but",
+    "meaning": "接続詞　しかし",
+    "pos": "others"
+  },
+  {
+    "word": "can",
+    "meaning": "助動詞　〜できる",
+    "pos": "others"
+  },
+  {
+    "word": "at",
+    "meaning": "前置詞　〜で",
+    "pos": "others"
+  },
+  {
+    "word": "do",
+    "meaning": "助動詞/動詞　する",
+    "pos": "others"
+  },
+  {
+    "word": "does",
+    "meaning": "助動詞/動詞　〜する(3単現)",
+    "pos": "others"
+  },
+  {
+    "word": "did",
+    "meaning": "助動詞/動詞　〜した",
+    "pos": "others"
+  },
+  {
+    "word": "will",
+    "meaning": "助動詞　〜するだろう",
+    "pos": "others"
+  },
+  {
+    "word": "if",
+    "meaning": "接続詞　もし〜なら",
+    "pos": "others"
+  },
+  {
+    "word": "because",
+    "meaning": "接続詞　なぜなら/〜なので",
+    "pos": "others"
+  },
+  {
+    "word": "with",
+    "meaning": "前置詞　〜と一緒に",
+    "pos": "others"
+  },
+  {
+    "word": "without",
+    "meaning": "前置詞　〜なしで",
+    "pos": "others"
+  },
+  {
+    "word": "under",
+    "meaning": "前置詞　〜の下に",
+    "pos": "others"
+  },
+  {
+    "word": "as",
+    "meaning": "前置詞/接続詞/副詞 〜として/〜する時/同じくらい",
+    "pos": "others"
+  },
+  {
+    "word": "oh",
+    "meaning": "間投詞　おおっ",
+    "pos": "others"
+  },
+  {
+    "word": "hey",
+    "meaning": "間投詞　ねえ",
+    "pos": "others"
+  },
+  {
+    "word": "behind",
+    "meaning": "前置詞 〜の後ろに",
+    "pos": "others"
+  },
+  {
+    "word": "between",
+    "meaning": "前置詞 〜の間に",
+    "pos": "others"
+  },
+  {
+    "word": "through",
+    "meaning": "前置詞 〜を通って",
+    "pos": "others"
+  },
+  {
+    "word": "during",
+    "meaning": "前置詞 〜の間に",
+    "pos": "others"
+  },
+  {
+    "word": "before",
+    "meaning": "前置詞/接続詞 〜の前に",
+    "pos": "others"
+  },
+  {
+    "word": "after",
+    "meaning": "前置詞/接続詞 〜の後で",
+    "pos": "others"
+  },
+  {
+    "word": "until",
+    "meaning": "前置詞/接続詞 〜まで",
+    "pos": "others"
+  },
+  {
+    "word": "although",
+    "meaning": "接続詞 〜だけれども",
+    "pos": "others"
+  },
+  {
+    "word": "when",
+    "meaning": "接続詞 〜するとき",
+    "pos": "others"
+  },
+  {
+    "word": "something",
+    "meaning": "代名詞 何か",
+    "pos": "others"
+  },
+  {
+    "word": "nothing",
+    "meaning": "代名詞 何も〜ないもの",
+    "pos": "others"
+  },
+  {
+    "word": "around",
+    "meaning": "前置詞/副詞 〜のまわりに",
+    "pos": "others"
+  },
+  {
+    "word": "because",
+    "meaning": "接続詞 なぜなら/〜なので",
+    "pos": "others"
+  },
+  {
+    "word": "someone",
+    "meaning": "代名詞 だれか",
+    "pos": "others"
+  },
+  {
+    "word": "everyone",
+    "meaning": "代名詞 みんな",
+    "pos": "others"
+  },
+  {
+    "word": "everything",
+    "meaning": "代名詞 すべて",
+    "pos": "others"
+  },
+  {
+    "word": "another",
+    "meaning": "形容詞/代名詞 もう一つの",
+    "pos": "others"
+  },
+  {
+    "word": "across",
+    "meaning": "前置詞/副詞 〜を横切って",
+    "pos": "others"
+  },
+  {
+    "word": "among",
+    "meaning": "前置詞 〜の間で",
+    "pos": "others"
+  },
+  {
+    "word": "both",
+    "meaning": "代名詞/形容詞/副詞 両方",
+    "pos": "others"
+  },
+  {
+    "word": "either",
+    "meaning": "代名詞/形容詞/副詞 どちらか",
+    "pos": "others"
+  },
+  {
+    "word": "enough",
+    "meaning": "形容詞/代名詞/副詞 十分な/十分に",
+    "pos": "others"
+  },
+  {
+    "word": "every",
+    "meaning": "形容詞 すべての",
+    "pos": "others"
+  },
+  {
+    "word": "few",
+    "meaning": "形容詞/代名詞 ほとんどない/少数",
+    "pos": "others"
+  },
+  {
+    "word": "many",
+    "meaning": "形容詞/代名詞 たくさんの",
+    "pos": "others"
+  },
+  {
+    "word": "most",
+    "meaning": "形容詞/代名詞/副詞 ほとんどの/最も",
+    "pos": "others"
+  },
+  {
+    "word": "several",
+    "meaning": "形容詞/代名詞 いくつかの",
+    "pos": "others"
+  },
+  {
+    "word": "whether",
+    "meaning": "接続詞 〜かどうか",
+    "pos": "others"
+  },
+  {
+    "word": "along",
+    "meaning": "前置詞/副詞 〜に沿って",
+    "pos": "others"
+  },
+  {
+    "word": "beside",
+    "meaning": "前置詞 〜のそばに",
+    "pos": "others"
+  },
+  {
+    "word": "down",
+    "meaning": "前置詞/副詞 下へ",
+    "pos": "others"
+  },
+  {
+    "word": "off",
+    "meaning": "前置詞/副詞 離れて/消えて",
+    "pos": "others"
+  },
+  {
+    "word": "over",
+    "meaning": "前置詞/副詞 〜の上に/上へ",
+    "pos": "others"
+  },
+  {
+    "word": "past",
+    "meaning": "前置詞 〜を過ぎて",
+    "pos": "others"
+  },
+  {
+    "word": "since",
+    "meaning": "前置詞/接続詞 〜以来/〜なので",
+    "pos": "others"
+  },
+  {
+    "word": "than",
+    "meaning": "接続詞/前置詞 〜より",
+    "pos": "others"
+  },
+  {
+    "word": "yourself",
+    "meaning": "代名詞 あなた自身",
+    "pos": "others"
+  },
+  {
+    "word": "each",
+    "meaning": "形容詞/代名詞 それぞれの",
+    "pos": "others"
+  },
+  {
+    "word": "beyond",
+    "meaning": "前置詞 〜の向こうに",
+    "pos": "others"
+  },
+  {
+    "word": "near",
+    "meaning": "前置詞 〜の近くに",
+    "pos": "others"
+  },
+  {
+    "word": "onto",
+    "meaning": "前置詞 〜の上へ",
+    "pos": "others"
+  },
+  {
+    "word": "toward",
+    "meaning": "前置詞 〜の方へ",
+    "pos": "others"
+  },
+  {
+    "word": "via",
+    "meaning": "前置詞 〜経由で",
+    "pos": "others"
+  },
+  {
+    "word": "within",
+    "meaning": "前置詞 〜の中に",
+    "pos": "others"
+  },
+  {
+    "word": "anyone",
+    "meaning": "代名詞 だれでも/だれか",
+    "pos": "others"
+  },
+  {
+    "word": "myself",
+    "meaning": "代名詞 私自身",
+    "pos": "others"
+  },
+  {
+    "word": "while",
+    "meaning": "接続詞 〜する間",
+    "pos": "others"
+  },
+  {
+    "word": "some",
+    "meaning": "形容詞/代名詞 いくつかの",
+    "pos": "others"
+  },
+  {
+    "word": "below",
+    "meaning": "前置詞/副詞 〜より下に",
+    "pos": "others"
+  },
+  {
+    "word": "throughout",
+    "meaning": "前置詞 〜の間じゅう",
+    "pos": "others"
+  },
+
   {
     "word": "after",
     "meaning": "前置詞　〜の後で",
