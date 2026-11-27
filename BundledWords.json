@@ -1223,16 +1223,6 @@
    "pos": "verb"
  },
  {
-   "word": "exchange",
-   "meaning": "両替する",
-   "pos": "verb"
- },
- {
-   "word": "exchange",
-   "meaning": "交わす／やり取りする",
-   "pos": "verb"
- },
-  {
     "word": "use",
     "meaning": "使う",
     "pos": "verb"
@@ -1263,8 +1253,23 @@
     "pos": "verb"
   },
   {
+    "word": "drive",
+    "meaning": "車で送る／連れていく",
+    "pos": "verb"
+  },
+  {
+    "word": "drive",
+    "meaning": "～を駆り立てる／～させる",
+    "pos": "verb"
+  },
+  {
     "word": "ride",
     "meaning": "乗る",
+    "pos": "verb"
+  },
+  {
+    "word": "ride",
+    "meaning": "（乗り物に）乗って行く",
     "pos": "verb"
   },
   {
@@ -1812,6 +1817,11 @@
     "pos": "verb"
   },
   {
+    "word": "travel",
+    "meaning": "移動する／伝わる",
+    "pos": "verb"
+  },
+  {
     "word": "answer",
     "meaning": "答える",
     "pos": "verb"
@@ -2036,6 +2046,11 @@
     "pos": "verb"
   },
   {
+    "word": "cross",
+    "meaning": "交差する／交わる",
+    "pos": "verb"
+  },
+  {
     "word": "follow",
     "meaning": "ついて行く",
     "pos": "verb"
@@ -2083,6 +2098,21 @@
   {
     "word": "pass",
     "meaning": "通り過ぎる",
+    "pos": "verb"
+  },
+  {
+    "word": "pass",
+    "meaning": "渡す／回す",
+    "pos": "verb"
+  },
+  {
+    "word": "pass",
+    "meaning": "合格する",
+    "pos": "verb"
+  },
+  {
+    "word": "pass",
+    "meaning": "（時間が）過ぎる",
     "pos": "verb"
   },
   {
@@ -3004,8 +3034,161 @@
     "meaning": "塗る／つける",
     "pos": "verb"
   },
-  
-  
+  {
+    "word": "replace",
+    "meaning": "取り替える／交換する",
+    "pos": "verb"
+  },
+  {
+    "word": "replace",
+    "meaning": "～に取って代わる／代わりになる",
+    "pos": "verb"
+  },
+  {
+    "word": "collect",
+    "meaning": "集める／収集する",
+    "pos": "verb"
+  },
+  {
+    "word": "collect",
+    "meaning": "受け取る／引き取る",
+    "pos": "verb"
+  },
+  {
+    "word": "collect",
+    "meaning": "回収する",
+    "pos": "verb"
+  },
+  {
+    "word": "receive",
+    "meaning": "受け取る",
+    "pos": "verb"
+  },
+  {
+    "word": "receive",
+    "meaning": "（サービス・治療・支援などを）受ける",
+    "pos": "verb"
+  },
+  {
+    "word": "waste",
+    "meaning": "無駄にする／浪費する",
+    "pos": "verb"
+  },
+  {
+    "word": "own",
+    "meaning": "所有する／持っている",
+    "pos": "verb"
+  },
+  {
+    "word": "protect",
+    "meaning": "守る／保護する",
+    "pos": "verb"
+  },
+  {
+    "word": "protect",
+    "meaning": "～から守る／防ぐ",
+    "pos": "verb"
+  },
+  {
+    "word": "develop",
+    "meaning": "発達する／成長する",
+    "pos": "verb"
+  },
+  {
+    "word": "develop",
+    "meaning": "発展する／発達させる",
+    "pos": "verb"
+  },
+  {
+    "word": "develop",
+    "meaning": "開発する／作り上げる",
+    "pos": "verb"
+  },
+  {
+    "word": "develop",
+    "meaning": "身につける／生じる",
+    "pos": "verb"
+  },
+  {
+    "word": "create",
+    "meaning": "作り出す／生み出す",
+    "pos": "verb"
+  },
+  {
+    "word": "disagree",
+    "meaning": "意見が合わない／反対する",
+    "pos": "verb"
+  },
+  {
+    "word": "earn",
+    "meaning": "稼ぐ／収入を得る",
+    "pos": "verb"
+  },
+  {
+    "word": "earn",
+    "meaning": "得る／勝ち取る",
+    "pos": "verb"
+  },
+  {
+    "word": "enter",
+    "meaning": "入る／入場する",
+    "pos": "verb"
+  },
+  {
+    "word": "enter",
+    "meaning": "入力する／記入する",
+    "pos": "verb"
+  },
+  {
+    "word": "enter",
+    "meaning": "参加する／出場する",
+    "pos": "verb"
+  },
+  {
+    "word": "land",
+    "meaning": "着陸する／着地する",
+    "pos": "verb"
+  },
+  {
+    "word": "land",
+    "meaning": "手に入れる／獲得する",
+    "pos": "verb"
+  },
+  {
+    "word": "search",
+    "meaning": "捜す／捜索する",
+    "pos": "verb"
+  },
+  {
+    "word": "search",
+    "meaning": "検索する",
+    "pos": "verb"
+  },
+  {
+    "word": "press",
+    "meaning": "押す",
+    "pos": "verb"
+  },
+  {
+    "word": "press",
+    "meaning": "強く求める／迫る",
+    "pos": "verb"
+  },
+  {
+    "word": "block",
+    "meaning": "ふさぐ／遮る",
+    "pos": "verb"
+  },
+  {
+    "word": "block",
+    "meaning": "妨げる／阻止する",
+    "pos": "verb"
+  },
+  {
+    "word": "block",
+    "meaning": "ブロックする",
+    "pos": "verb"
+  },
   
   
 
@@ -8921,6 +9104,6 @@
     "word": "after",
     "meaning": "接続詞  〜したあとで",
     "pos": "others"
-  },
+  }
 
 ]
